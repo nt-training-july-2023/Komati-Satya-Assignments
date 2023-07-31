@@ -33,7 +33,7 @@ public static void main(String[] args) {
     	if(i>50) {
     		k=l.indexOf(i);
     		System.out.println(i+" "+k);
-    		itr1.set(5);
+    		itr1.set(l.get(k)+5);
     		
        	}
     		
