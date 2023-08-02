@@ -29,7 +29,7 @@ import java.io.ObjectOutputStream;
 	@Override
 	public void writeExternal(ObjectOutput out) throws IOException {
 		out.writeObject(s);
-		out.writeObject(i);
+		out.writeOInt(i);
 		}
 	@Override
 	public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
