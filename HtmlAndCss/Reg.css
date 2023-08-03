@@ -1,10 +1,10 @@
 .def{
-    margin-left: 200px;
+    margin-left: 220px;
     margin-top:-237px;
    
 }
 .abc{
-    margin-left: -50px;
+    margin-left: -30px;
 }
 .re{
     padding-bottom: 6px;
@@ -18,19 +18,19 @@
     margin-right: 380px;
     margin-top: 90px;
     background-color: white;
-    border-radius:5px;
+    border-radius: 5px;
     
     
 }
 .f{
     width:180px;
-    height:25px;
+    height: 25px;
 }
 .gen{
-    margin-left:-50px;
+    margin-left:-30px;
 }
 .gen1{
-    margin-left: 60px;
+    margin-left: 50px;
 }
 
 #b{
@@ -38,17 +38,20 @@
     
     
     .btn{
-        margin-left: -55px;
+        margin-left: -39px;
         padding:6px;
         margin-top: 7px;
         width:435px;
         background:linear-gradient(#73b0df,#7f99d4,#956abc);
         border-radius: 5px;
-        
 }
-}
+    }
+
 .bo{
     height: 544px;
     background:linear-gradient(#73b0df,#7f99d4,#956abc);
 }
-
+#h{
+    text-decoration: underline;
+    
+}
