@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="reg.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    <script>
+        function abc(){
+           window.alert("Form submited");
+        }
+    </script>
+
+</head>
+
+<body class="bo">
+    <div class="xyz">
+    <form>
+        <div class="re">
+            <div class="abc">
+                <h2 id="h"><u>Re</u>gistration</h2>
+                <labal><b>Full name</b></labal><br><br>
+                <input class="f" type="text" placeholder="Enter your name" required><br><br>
+                <label><b>Email</b></label><br><br>
+                <input class="f" type="email" placeholder="Enter your email" required /><br><br>
+                <label><b>Password</b></label><br><br>
+                <input class="f" type="password" placeholder="Enter your password" required /><br>
+            </div>
+            <div class="def">
+                <label><b>Username</b></label><br><br>
+                <input class="f" type="text" placeholder="Enter your username" required /><br><br>
+                <label><b>Phone Number</b></label><br><br>
+                <input class="f" type="text" placeholder="Enter your number" required/><br><br>
+                <label><b>Confirm Password</b></label><br><br>
+                <input class="f" type="password" placeholder="Confirm your password" required/><br><br>
+            </div>
+            <div class="gen">
+            <label><b>Gender</b></label><br><br>
+            <input type="radio" name="gender" value="male">
+            <label>Male</label>
+            <input class="gen1" type="radio" name="gender" value="female">
+            <label>Female</label>
+            <input class="gen1" type="radio" name="gender" value="no">
+            <label>Prefer not to say</label>
+            </div>
+            <div id="b">
+            <button class="btn" type="submit" value="Register" onclick="abc()"><b>Register</b></button>
+            </div>
+
+        </div>
+    
+
+    </form>
+    </div>
+</body>
