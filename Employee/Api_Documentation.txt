@@ -1,0 +1,6 @@
+In the spring boot example...
+==>For the getting the employee details "localhost:6000/Employee" api is used.
+==>For the getting a one employee details "localhost:6000/Employee/{id}" API is used.Here id is Employee Id.We have to given the employe id,whose details want.
+==>For the posting an employee detaails "localhost:6000/Employee" API is used.It stores the employee details to the database.
+==>For the updating an employee details "localhost:6000/Employee/{id}" API is used.It updates the employee details whose id matches with the given id.
+==>For the deleting an employee details "localhost:6000/Employee/{id}" API is used.It deletes the employee details whose id matches with the given id.
