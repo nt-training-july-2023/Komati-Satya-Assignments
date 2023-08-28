@@ -15,6 +15,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
@@ -35,17 +36,20 @@ public class Student {
 	private String userName;
 	@Column(nullable=false)
 	@NotEmpty(message="email is required")
+	@Pattern(regexp = "^[A-Z0-9a-z+_-]+@nucleusteq[.]com$", message = "Email is not valid")
 	private String email;
 	@Column(nullable=false)
 	@NotEmpty(message="gender is required")
 	private String gender;
 	@Column(nullable=false)
 	@NotEmpty(message="phoneNumber is required")
+	@Pattern(regexp = "^[0-9]{10}$",message="Phone number must contain 10 digits")
 	private String phoneNumber;
 	@Column(nullable=false)
 	@NotEmpty(message="role is required")
 	private String role;
 	@Column(nullable=false)
+	@Pattern(regexp="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&-+=])(?=\\S+$).{8,}$",message="Minimum eight and m")
 	@NotEmpty(message="password is required")
 	private String password;
 	@NotEmpty(message="dateOfBirth is required")

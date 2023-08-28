@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.example.demo.entity.StudentResult;
 import com.example.demo.entity.questions;
 
-public interface ResService {
+public interface ResultService {
 
 	StudentResult addRes(StudentResult sr);
 	Optional<StudentResult> getRes(int id);

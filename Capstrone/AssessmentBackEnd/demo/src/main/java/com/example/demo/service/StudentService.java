@@ -10,10 +10,11 @@ import com.example.demo.entity.Student;
 
 
 
-public interface StuService {
+public interface StudentService {
    Student saveStudent(Student s);
    Optional<Student> findById(int id);
-   String aunthenticateUser(LoginDto l);
+   Optional<Student> aunthenticateUser(LoginDto l);
    List<Student> findAllStu();
-   void updateStudent(Student s,int id);
+   Student updateStudent(Student s,int id);
+   void deleteStudent(int id);
 }

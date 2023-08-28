@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.aspectj.weaver.loadtime.Options;
@@ -10,15 +11,16 @@ import com.example.demo.entity.quiz;
 
 
 
-public interface QueService {
+public interface QuestionsService {
 
 	questions addQuestion(questions q);
 	
-	Optional<questions> getQuestions(int id);
+	List<questions> getQuestions();
 	
 	void delete(int id);
 	questions updateQue(questions q,int id);
 	
-//	List<questions> 
+    List<questions> findQueById(int id);
+    Optional<questions> findByQuestion(String name);
 	
 }

@@ -13,4 +13,6 @@ public interface quizService {
 	List<quiz> findAll();
 	void deleteQuiz(int id); 
 	quiz updateQuiz(quiz q,int id);
+	List<quiz> findQuizById(int id);
+	Optional<quiz> findQuizByName(String name);
 }

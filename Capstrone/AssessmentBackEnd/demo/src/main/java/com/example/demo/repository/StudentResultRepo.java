@@ -7,6 +7,6 @@ import com.example.demo.entity.StudentResult;
 
 
 @Repository
-public interface StuResultRepo extends JpaRepository<StudentResult,Integer>{
+public interface StudentResultRepo extends JpaRepository<StudentResult,Integer>{
 
 }
