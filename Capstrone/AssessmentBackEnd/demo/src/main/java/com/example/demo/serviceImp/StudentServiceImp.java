@@ -29,6 +29,13 @@ public class StudentServiceImp implements StudentService {
      */
     @Autowired
     private StudentRepo st;
+    /**
+     * Constructor.
+     * @param repo repo
+     */
+    public StudentServiceImp(final StudentRepo repo) {
+        this.st = repo;
+    }
 
     /**
      * authenticate user method.
