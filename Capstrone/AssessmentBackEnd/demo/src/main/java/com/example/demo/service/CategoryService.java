@@ -1,18 +1,53 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.Locale.Category;
 import java.util.Optional;
 
-import com.example.demo.entity.Student;
-import com.example.demo.entity.category;
+import com.example.demo.dto.CategoryDto;
+import com.example.demo.entity.Category;
 
+/**
+ * CategoryService interface.
+ */
 public interface CategoryService {
-	
-	category saveCat(category c);
-	 Optional<category> findById(int id);
-	 List<category> findAll();
-	 category updateCat(category c,int id);
-	 void deleteCat(int id);
-	 Optional<category> findByName(String s);
+    /**
+     * saveCat method.
+     * @param c category
+     * @return category
+     */
+    CategoryDto saveCat(Category c);
+
+    /**
+     * findBymethod method.
+     * @param id category id
+     * @return category
+     */
+    Optional<CategoryDto> findById(int id);
+
+    /**
+     * finaAll method.
+     * @return category
+     */
+    List<CategoryDto> findAll();
+
+    /**
+     * update category method.
+     * @param c  category
+     * @param id id
+     * @return category
+     */
+    CategoryDto updateCat(CategoryDto c, int id);
+
+    /**
+     * delete category method.
+     * @param id category id
+     */
+    void deleteCat(int id);
+
+    /**
+     * findByName method.
+     * @param s category name
+     * @return category
+     */
+    Optional<CategoryDto> findByName(String s);
 }

@@ -2,16 +2,29 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Optional;
-
 import com.example.demo.entity.StudentResult;
-import com.example.demo.entity.questions;
 
+/**
+ * Result service interface.
+ */
 public interface ResultService {
+    /**
+     * add result.
+     * @param sr student result
+     * @return student result
+     */
+    StudentResult addRes(StudentResult sr);
 
-	StudentResult addRes(StudentResult sr);
-	Optional<StudentResult> getRes(int id);
-	
-	List<StudentResult> getAllRes();
-	
-	
+    /**
+     * get result method.
+     * @param id student id
+     * @return student result
+     */
+    Optional<StudentResult> getRes(int id);
+
+    /**
+     * get all result method.
+     * @return student result
+     */
+    List<StudentResult> getAllRes();
 }

@@ -7,16 +7,26 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import com.example.demo.entity.questions;
+import com.example.demo.entity.Questions;
 
-
-
+/**
+ * repository for question.
+ */
 @Repository
-public interface QuestionsRepo extends JpaRepository<questions,Integer>{
+public interface QuestionsRepo extends JpaRepository<Questions, Integer> {
+    /**
+     * query for questions.
+     * @param id quiz id
+     * @return questions
+     */
+    @Query("select q from Questions q where q.qui.quizId=:id")
+    List<Questions> findQueById(int id);
 
-	@Query("select q from questions q where q.qui.quiz_Id=:id")
-    List<questions> findQueById(int id);
-    
-    @Query("select q from from questions q where q.question=:question")
-    Optional<questions> findByQuestion(String question);
+    /**
+     * query for question.
+     * @param question question name
+     * @return questions
+     */
+    @Query("select q from from Questions q where q.question=:question")
+    Optional<Questions> findByQuestion(String question);
 }

@@ -6,17 +6,26 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+import com.example.demo.entity.Quiz;
 
-import com.example.demo.entity.category;
-import com.example.demo.entity.quiz;
-
+/**
+ * repository for quiz.
+ */
 @Repository
-public interface QuizRepo extends JpaRepository<quiz,Integer> {
-	
-    @Query("select q from quiz q where q.cate.category_Id=:id")
-    List<quiz> findQuizById(int id);
-    
-    @Query("select q from quiz q where q.topic_Name=:name")
-    Optional<quiz> findQuizByName(String name);
+public interface QuizRepo extends JpaRepository<Quiz, Integer> {
+    /**
+     * query for quiz.
+     * @param id category id
+     * @return quiz
+     */
+    @Query("select q from Quiz q where q.cate.categoryId=:id")
+    List<Quiz> findQuizById(int id);
 
+    /**
+     * query for quiz.
+     * @param name topic name
+     * @return quiz
+     */
+    @Query("select q from Quiz q where q.topicName=:name")
+    Optional<Quiz> findQuizByName(String name);
 }

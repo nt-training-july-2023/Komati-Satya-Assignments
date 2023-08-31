@@ -3,24 +3,52 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
-import org.aspectj.weaver.loadtime.Options;
-import org.springframework.stereotype.Service;
+import com.example.demo.dto.QuestionsDto;
+import com.example.demo.dto.QuestionsUpdateDto;
+import com.example.demo.entity.Questions;
 
-import com.example.demo.entity.questions;
-import com.example.demo.entity.quiz;
-
-
-
+/**
+ * Question service interface.
+ */
 public interface QuestionsService {
+    /**
+     * add question question.
+     * @param q question q
+     * @return question
+     */
+    QuestionsDto addQuestion(Questions q);
 
-	questions addQuestion(questions q);
-	
-	List<questions> getQuestions();
-	
-	void delete(int id);
-	questions updateQue(questions q,int id);
-	
-    List<questions> findQueById(int id);
-    Optional<questions> findByQuestion(String name);
-	
+    /**
+     * get question method.
+     * @return question
+     */
+    List<QuestionsDto> getQuestions();
+
+    /**
+     * delete question.
+     * @param id question id
+     */
+    void delete(int id);
+
+    /**
+     * update question method.
+     * @param q  question
+     * @param id question id
+     * @return question
+     */
+    QuestionsUpdateDto updateQue(QuestionsUpdateDto q, int id);
+
+    /**
+     * find by id method.
+     * @param id quiz id
+     * @return list of question
+     */
+    List<QuestionsDto> findQueById(int id);
+
+    /**
+     * find by question method.
+     * @param name question
+     * @return question
+     */
+    Optional<QuestionsDto> findByQuestion(String name);
 }

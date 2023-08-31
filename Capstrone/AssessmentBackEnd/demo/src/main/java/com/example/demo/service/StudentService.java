@@ -2,19 +2,53 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Optional;
-
-import org.springframework.stereotype.Service;
-
 import com.example.demo.dto.LoginDto;
+import com.example.demo.dto.StudentDto;
+import com.example.demo.dto.StudentSaveDto;
 import com.example.demo.entity.Student;
 
-
-
+/**
+ * student service method.
+ */
 public interface StudentService {
-   Student saveStudent(Student s);
-   Optional<Student> findById(int id);
-   Optional<Student> aunthenticateUser(LoginDto l);
-   List<Student> findAllStu();
-   Student updateStudent(Student s,int id);
-   void deleteStudent(int id);
+    /**
+     * save student method.
+     * @param s student
+     * @return student
+     */
+    StudentSaveDto saveStudent(Student s);
+
+    /**
+     * find by id method.
+     * @param id student id
+     * @return student
+     */
+    Optional<StudentDto> findById(int id);
+
+    /**
+     * authenticateUser method.
+     * @param l loginDto
+     * @return student
+     */
+    Optional<StudentDto> aunthenticateUser(LoginDto l);
+
+    /**
+     * find all student method.
+     * @return student
+     */
+    List<StudentDto> findAllStu();
+
+    /**
+     * update student method.
+     * @param s  student
+     * @param id student id
+     * @return student
+     */
+    StudentDto updateStudent(StudentDto s, int id);
+
+    /**
+     * delete student method.
+     * @param id student id
+     */
+    void deleteStudent(int id);
 }

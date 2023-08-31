@@ -3,16 +3,59 @@ package com.example.demo.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.example.demo.entity.category;
-import com.example.demo.entity.quiz;
+import com.example.demo.dto.QuizDto;
+import com.example.demo.dto.QuizUpdateDto;
+import com.example.demo.entity.Quiz;
 
-public interface quizService {
+/**
+ * quiz service interface.
+ */
+public interface QuizService {
+    /**
+     * add quiz method.
+     * @param q quiz
+     * @return quiz
+     */
+    QuizDto addQuiz(Quiz q);
 
-	quiz addQuiz(quiz q);
-	Optional<quiz> getQuiz(int id);
-	List<quiz> findAll();
-	void deleteQuiz(int id); 
-	quiz updateQuiz(quiz q,int id);
-	List<quiz> findQuizById(int id);
-	Optional<quiz> findQuizByName(String name);
+    /**
+     * get quiz method.
+     * @param id quiz id
+     * @return quiz
+     */
+    Optional<QuizDto> getQuiz(int id);
+
+    /**
+     * find all method.
+     * @return quiz
+     */
+    List<QuizDto> findAll();
+
+    /**
+     * delete quiz method.
+     * @param id quiz id
+     */
+    void deleteQuiz(int id);
+
+    /**
+     * update quiz method.
+     * @param q  quiz
+     * @param id quiz id
+     * @return quiz
+     */
+    QuizUpdateDto updateQuiz(QuizUpdateDto q, int id);
+
+    /**
+     * find by id method.
+     * @param id quiz id
+     * @return quiz
+     */
+    List<QuizDto> findQuizById(int id);
+
+    /**
+     * find quiz by name method.
+     * @param name category name
+     * @return quiz
+     */
+    Optional<QuizDto> findQuizByName(String name);
 }
