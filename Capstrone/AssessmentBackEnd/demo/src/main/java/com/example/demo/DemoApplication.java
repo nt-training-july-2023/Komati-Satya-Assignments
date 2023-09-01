@@ -19,6 +19,6 @@ public class DemoApplication {
  * @param args main method arguments
  */
   public static void main(final String[] args) {
-    SpringApplication.run(DemoApplication.class, args);
+    new DemoApplication().run(args);
   }
 }

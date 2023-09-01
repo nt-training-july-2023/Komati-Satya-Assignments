@@ -31,6 +31,10 @@ public class QuizSirviceImp implements QuizService {
      */
     @Autowired
     private CategoryRepo cr;
+    public QuizSirviceImp(final QuizRepo repo, final CategoryRepo categoryRepo) {
+        this.qr=repo;
+        this.cr=categoryRepo;
+    }
     /**
      * add quiz method.
      * @param quiz quiz
@@ -141,6 +145,7 @@ public class QuizSirviceImp implements QuizService {
      */
     @Override
     public final QuizUpdateDto updateQuiz(final QuizUpdateDto q, final int id) {
+        if(qr.findAll().size()!=0) {
         Optional<Quiz> existingQuiz = qr.findById(id);
         if (existingQuiz.isPresent()) {
             Quiz exiQuiz = existingQuiz.get();
@@ -152,6 +157,9 @@ public class QuizSirviceImp implements QuizService {
             return q;
         } else {
             throw new NotFoundException("wrong quiz id");
+        }
+        } else {
+            throw new AllNotFoundException("no quiz is present");
         }
     }
     /**

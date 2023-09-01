@@ -12,5 +12,12 @@ class AllNotFoundExceptionTest {
         AllNotFoundException exception=new AllNotFoundException(message);
         assertEquals(message,exception.getMessage());
     }
+    
+    @Test
+    void testAllNotFoundExceptionn() {
+        String message="no studentresult is present";
+        AllNotFoundException exception=new AllNotFoundException(message);
+        assertEquals(message,exception.getMessage());
+    } 
 
 }

@@ -3,6 +3,7 @@ package com.example.demo.dto;
 
 
 
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,5 +28,6 @@ public class CategoryDto {
     /**
      * store the category id.
      */
+    @Id
     private int categoryId;
 }

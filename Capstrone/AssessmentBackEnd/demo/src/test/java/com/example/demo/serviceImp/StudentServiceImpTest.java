@@ -152,7 +152,6 @@ class StudentServiceImpTest {
         s.setPassword("Satya@1919");
         s.setRole("student");
         repo.save(s);
-        int studentId1=2;
         when(repo.findAll()).thenReturn(Collections.singletonList(new Student()));
         when(repo.findById(studentId)).thenReturn(Optional.empty());
         assertThrows(NotFoundException.class, () ->{
@@ -216,6 +215,51 @@ class StudentServiceImpTest {
            assertFalse(new BCryptPasswordEncoder().matches(loginDto.getPassword(), hashCode));
             assertThrows(PasswordMissMatchException.class, () ->{
                 studentService.aunthenticateUser(loginDto);
+            });
+        }
+        
+        @Test
+        void testUpdateStudent() {
+            Student s=new Student();
+            int studentId=1; 
+            s.setUserId(studentId);
+            s.setUserName("Satya");
+            s.setEmail("satya1919@nucleusteq.com");
+            s.setDateOfBirth("24-02-2001");
+            s.setGender("female");
+            s.setPhoneNumber("8639924113");
+            s.setPassword("Satya@1919");
+            s.setRole("student");
+            studentService.saveStudent(s);
+            StudentDto s1=new StudentDto();
+            s1.setDateOfBirth(s.getDateOfBirth());
+            s1.setEmail(s.getEmail());
+            s1.setGender(s.getGender());
+            s1.setPhoneNumber(s.getPhoneNumber());
+            s1.setRole(s.getRole());
+            s1.setUserId(s.getUserId());
+            s1.setUserName(s.getUserName());
+            when(repo.findById(studentId)).thenReturn(Optional.of(s));
+            assertTrue(Optional.of(s).isPresent());
+            StudentDto s2=new StudentDto();
+            s2.setUserId(studentId);
+            s2.setUserName("SatyaKomati");
+            s2.setEmail("satya1919@nucleusteq.com");
+            s2.setDateOfBirth("24-02-2001");
+            s2.setGender("female");
+            s2.setPhoneNumber("8639924113");
+            s2.setRole("student");
+            StudentDto studentDto= studentService.updateStudent(s2, studentId);
+            assertEquals(s.getUserName(),studentDto.getUserName());
+            
+        }
+        @Test
+        void testUpdateNotFoundException() {
+            int studentId=1;
+            StudentDto s=new StudentDto();
+            when(repo.findById(studentId)).thenReturn(Optional.empty());
+            assertThrows(NotFoundException.class, () ->{
+                studentService.updateStudent(s, studentId);
             });
         }
    
