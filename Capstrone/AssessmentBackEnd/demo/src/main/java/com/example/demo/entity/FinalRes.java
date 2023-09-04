@@ -74,4 +74,12 @@ public class FinalRes {
      */
     @Column(nullable = false)
     private String email;
+    /**
+     * category id.
+     */
+    private int categoryId;
+    /**
+     * stores attempted questions.
+     */
+    private int attemptedQuestions;
 }

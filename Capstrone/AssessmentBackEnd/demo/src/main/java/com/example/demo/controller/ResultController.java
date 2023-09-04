@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.StudentResult;
+import com.example.demo.dto.ResultDto;
 import com.example.demo.response.Responsee;
 import com.example.demo.service.ResultService;
 
@@ -34,9 +34,9 @@ public class ResultController {
      */
     @PostMapping("/res")
     public final ResponseEntity<Object> addRes(
-            @RequestBody final StudentResult sr) {
+            @RequestBody final ResultDto sr) {
         try {
-            StudentResult user = rs.addRes(sr);
+            ResultDto user = rs.addRes(sr);
             return Responsee.generateResponce("succcessfully add the data",
                     HttpStatus.OK, "Student result_Information", user);
         } catch (Exception e) {
@@ -54,7 +54,7 @@ public class ResultController {
     @GetMapping("/res/{id}")
     public final ResponseEntity<Object> getRes(@PathVariable final int id) {
         try {
-            Optional<StudentResult> user = rs.getRes(id);
+            Optional<ResultDto> user = rs.getRes(id);
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Student result_Information", user);
         } catch (Exception e) {
@@ -70,7 +70,7 @@ public class ResultController {
     @GetMapping("/res")
     public final ResponseEntity<Object> getAllRes() {
         try {
-            List<StudentResult> user = rs.getAllRes();
+            List<ResultDto> user = rs.getAllRes();
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Student result_Information", user);
         } catch (Exception e) {

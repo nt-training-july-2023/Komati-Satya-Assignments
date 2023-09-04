@@ -2,7 +2,7 @@ package com.example.demo.serviceImp;
 
 import static org.junit.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.CALLS_REAL_METHODS;
+
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -16,12 +16,12 @@ import org.junit.jupiter.api.Test;
 
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.entity.Category;
-import com.example.demo.entity.Student;
+
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.CategoryRepo;
-import com.example.demo.repository.StudentRepo;
+
 
 class CategoryServiceImpTest {
 
@@ -97,6 +97,7 @@ class CategoryServiceImpTest {
         List<CategoryDto> categoryDto=categoryService.findAll();
         assertEquals(1,categoryDto.size());
         assertEquals("java",categoryDto.get(0).getCategoryName());
+        assertEquals("java basics",categoryDto.get(0).getCategoryDescription());
     }
     @Test
     void testAllCategoriesNotFound() {
@@ -121,6 +122,7 @@ class CategoryServiceImpTest {
          cd.setCategoryId(1);
          CategoryDto c=categoryService.updateCat(cd, 1);
          assertEquals(category.getCategoryName(),cd.getCategoryName());
+         assertEquals(category.getCategoryDescription(),cd.getCategoryDescription());
    }
     
     @Test
@@ -164,7 +166,6 @@ class CategoryServiceImpTest {
        when(repo.findByCategoryName(c.getCategoryName())).thenReturn(Optional.of(c));
        Optional<CategoryDto> categoryDto=categoryService.findByName(c.getCategoryName());
        assertTrue(categoryDto.isPresent());
-      // assertEquals(c.getCategoryId(),categoryDto.get().getCategoryId());
        assertEquals(c.getCategoryName(),categoryDto.get().getCategoryName());
        assertEquals(c.getCategoryDescription(),categoryDto.get().getCategoryDescription());
    }

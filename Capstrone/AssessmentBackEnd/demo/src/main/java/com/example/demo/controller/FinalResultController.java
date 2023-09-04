@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,8 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.example.demo.entity.FinalRes;
+import com.example.demo.dto.ResultDto;
 import com.example.demo.response.Responsee;
 import com.example.demo.service.FinalResService;
 
@@ -31,7 +30,7 @@ public class FinalResultController {
     @GetMapping("/finalResult/{id}")
     public final ResponseEntity<Object> getById(@PathVariable final int id) {
         try {
-            Optional<FinalRes> c = fs.getById(id);
+            List<ResultDto> c = fs.getById(id);
             System.out.println(c);
             return Responsee.generateResponce("succcessfully retrieve the data",
                     HttpStatus.OK, "User_Information", c);

@@ -31,9 +31,15 @@ public class QuizSirviceImp implements QuizService {
      */
     @Autowired
     private CategoryRepo cr;
-    public QuizSirviceImp(final QuizRepo repo, final CategoryRepo categoryRepo) {
-        this.qr=repo;
-        this.cr=categoryRepo;
+    /**
+     * constructor.
+     * @param repo quiz repository
+     * @param categoryRepo category repository
+     */
+    public QuizSirviceImp(final QuizRepo repo,
+            final CategoryRepo categoryRepo) {
+        this.qr = repo;
+        this.cr = categoryRepo;
     }
     /**
      * add quiz method.
@@ -145,7 +151,7 @@ public class QuizSirviceImp implements QuizService {
      */
     @Override
     public final QuizUpdateDto updateQuiz(final QuizUpdateDto q, final int id) {
-        if(qr.findAll().size()!=0) {
+        if (qr.findAll().size() != 0) {
         Optional<Quiz> existingQuiz = qr.findById(id);
         if (existingQuiz.isPresent()) {
             Quiz exiQuiz = existingQuiz.get();
@@ -169,10 +175,14 @@ public class QuizSirviceImp implements QuizService {
      */
     @Override
     public final List<QuizDto> findQuizById(final int id) {
-        if (qr.findQuizById(id).size() != 0) {
-            List<Quiz> l = qr.findAll();
+        if (qr.findAll().size() != 0) {
+            if (qr.findQuizById(id).size() != 0) {
+            List<Quiz> l = qr.findQuizById(id);
             List<QuizDto> ld = convertToDto(l);
             return ld;
+            } else {
+                throw new NotFoundException("wrong category id");
+            }
         } else {
             throw new AllNotFoundException("no quiz is present");
         }

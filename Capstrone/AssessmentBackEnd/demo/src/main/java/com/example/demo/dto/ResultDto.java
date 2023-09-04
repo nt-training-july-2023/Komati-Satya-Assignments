@@ -1,12 +1,13 @@
 package com.example.demo.dto;
 
-import java.sql.Date;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 /**
  * Result data transfer object.
  */
+@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -18,7 +19,7 @@ public class ResultDto {
     /**
      * stores the date and time.
      */
-    private Date dateAndTime;
+    private String dateAndTime;
     /**
      * stores the result.
      */
@@ -32,17 +33,31 @@ public class ResultDto {
      */
     private String userName;
     /**
-     * set Date and time.
-     * @param newDateAndTime time
+     * stores email.
      */
-    public final void setDateAndTime(final Date newDateAndTime) {
-        this.dateAndTime = new Date(newDateAndTime.getTime());
-    }
+    private String email;
     /**
-     * get Date and time.
-     *@return date
+     * stores quiz Name.
      */
-    public final Date getDateAndTime() {
-        return new Date(dateAndTime.getTime());
-    }
+    private String quizName;
+    /**
+     * stores category name.
+     */
+    private String categoryName;
+    /**
+     * stores obtainMarks.
+     */
+    private int obtainMarks;
+    /**
+     * stores categortId.
+     */
+    private int categoryId;
+    /**
+     * result id.
+     */
+    private int resultId;
+    /**
+     * stores user id.
+     */
+    private int userId;
 }

@@ -32,6 +32,16 @@ public class QuestionServiceImp implements QuestionsService {
      */
     @Autowired
     private QuizRepo qrr;
+   /**
+    * constructor.
+    * @param questionsRepo questions repository
+    * @param quizRepo quiz repository
+    */
+    public QuestionServiceImp(final QuestionsRepo questionsRepo,
+            final QuizRepo quizRepo) {
+       this.qr = questionsRepo;
+       this.qrr = quizRepo;
+    }
 
     /**
      * add question method.
@@ -122,7 +132,7 @@ public class QuestionServiceImp implements QuestionsService {
     @Override
     public final QuestionsUpdateDto updateQue(final QuestionsUpdateDto q,
             final int id) {
-
+        if (qr.findAll().size() != 0) {
         Optional<Questions> existingQue = qr.findById(id);
         if (existingQue.isPresent()) {
             Questions exiQue = existingQue.get();
@@ -136,6 +146,9 @@ public class QuestionServiceImp implements QuestionsService {
             return q;
         } else {
             throw new NotFoundException("wrong question Id,enter a valid Id");
+        }
+        } else {
+            throw new AllNotFoundException("no question is present");
         }
     }
 

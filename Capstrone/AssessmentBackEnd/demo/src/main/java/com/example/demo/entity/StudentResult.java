@@ -7,12 +7,16 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
 /**
  * set the user id.
  */
+@Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class StudentResult {
@@ -48,6 +52,10 @@ public class StudentResult {
     @JoinColumn(name = "qz_Id")
     @JsonIgnoreProperties("se")
     private Quiz qe;
+    /**
+     * categoryId.
+     */
+    private int categoryId;
     /**
      * stores the result id.
      */
@@ -136,18 +144,18 @@ public class StudentResult {
      * @return student
      */
     public final Student getSs() {
-        return new Student(ss.getUserId(), ss.getDateOfBirth(),
+        return new Student(ss.getUserId(), ss.getUserName(),
                 ss.getEmail(), ss.getGender(),
-                ss.getRole(), ss.getUserName(), ss.getPhoneNumber());
+                 ss.getPhoneNumber(), ss.getRole(), ss.getDateOfBirth());
     }
     /**
      * set student.
      * @param sss student
      */
     public final void setSs(final Student sss) {
-        this.ss = new Student(sss.getUserId(), sss.getDateOfBirth(),
+        this.ss = new Student(sss.getUserId(), sss.getUserName(),
                 sss.getEmail(), sss.getGender(),
-                sss.getRole(), sss.getUserName(), sss.getPhoneNumber());
+                sss.getPhoneNumber(), sss.getRole(), sss.getDateOfBirth());
     }
 //    /**
 //     * constructor.
@@ -181,5 +189,19 @@ public class StudentResult {
      */
     public final void setDateAndTime(final String dateAndTimee) {
         this.dateAndTime = dateAndTimee;
+    }
+    /**
+     * get category id.
+     * @return category id.
+     */
+    public final int getCategoryId() {
+        return categoryId;
+    }
+    /**
+     * set category id.
+     * @param categoryid category id.
+     */
+    public final void setCategoryId(final int categoryid) {
+        this.categoryId = categoryid;
     }
 }

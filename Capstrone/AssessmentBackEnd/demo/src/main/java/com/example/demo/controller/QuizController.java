@@ -128,7 +128,7 @@ public class QuizController {
             @PathVariable final int id) {
         try {
             List<QuizDto> user = qs.findQuizById(id);
-            return Responsee.generateResponce("succcessfully update the data",
+            return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Quiz_Information", user);
         } catch (Exception e) {
             return Responsee.generateResponce(e.getMessage(),

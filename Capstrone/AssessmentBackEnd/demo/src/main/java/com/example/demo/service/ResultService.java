@@ -2,7 +2,9 @@ package com.example.demo.service;
 
 import java.util.List;
 import java.util.Optional;
-import com.example.demo.entity.StudentResult;
+
+import com.example.demo.dto.ResultDto;
+
 
 /**
  * Result service interface.
@@ -13,18 +15,18 @@ public interface ResultService {
      * @param sr student result
      * @return student result
      */
-    StudentResult addRes(StudentResult sr);
+    ResultDto addRes(ResultDto sr);
 
     /**
      * get result method.
      * @param id student id
      * @return student result
      */
-    Optional<StudentResult> getRes(int id);
+    Optional<ResultDto> getRes(int id);
 
     /**
      * get all result method.
      * @return student result
      */
-    List<StudentResult> getAllRes();
+    List<ResultDto> getAllRes();
 }

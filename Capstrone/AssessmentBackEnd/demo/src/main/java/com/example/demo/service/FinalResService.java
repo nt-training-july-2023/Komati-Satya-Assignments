@@ -1,7 +1,8 @@
 package com.example.demo.service;
 
-import java.util.Optional;
-import com.example.demo.entity.FinalRes;
+import java.util.List;
+import com.example.demo.dto.ResultDto;
+
 
 /**
  * Final result service interface.
@@ -12,5 +13,5 @@ public interface FinalResService {
      * @param id student id
      * @return final result
      */
-    Optional<FinalRes> getById(int id);
+    List<ResultDto> getById(int id);
 }
