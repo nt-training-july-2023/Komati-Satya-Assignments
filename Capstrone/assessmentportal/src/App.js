@@ -23,7 +23,7 @@ function App() {
         <Route path="/Registration" element={<Registration/>}></Route>
         <Route path="/Category" element={<Category/>}></Route>
         <Route path="/AddCategory" element={<AddCategory/>}></Route>
-        <Route path="/UpdateCategory/:Id" element={<UpdateCategory/>}></Route>
+        <Route path="/UpdateCategory/:categoryId" element={<UpdateCategory/>}></Route>
        </Routes>
      </BrowserRouter>
     </div>

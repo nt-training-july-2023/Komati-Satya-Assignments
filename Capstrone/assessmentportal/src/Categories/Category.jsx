@@ -63,7 +63,7 @@ function Category() {
                 <td>{item.categoryName}</td>
                 <td>{item.categoryDescription}</td>
                 <td><button type="button" onClick={() => deleteData(item.categoryId)}>Delete</button></td>
-                {/* <td><Link to={`/UpdateCategory/${item.categoryId}`}>Update</Link></td> */}
+                <td><Link to={`/UpdateCategory/${item.categoryId}`}>Update</Link></td>
               </tr>
             ))}
           </tbody>

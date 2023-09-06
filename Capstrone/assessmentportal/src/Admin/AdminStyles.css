@@ -3,7 +3,7 @@ ul {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: white
   }
   
   li {
@@ -12,16 +12,25 @@ ul {
   
   li a {
     display: block;
-    color: white;
+    color: purple;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
   }
   
   li a:hover:not(.active) {
-    background-color: #111;
+    background-color:blue;
   }
-  
+/*   
   .active {
-    background-color: #04AA6D;
+    background-color: purple;
+  } */
+
+  .adminBackground{
+    
+     background-image: url('https://img.freepik.com/free-vector/abstract-technological-background_23-2148897676.jpg?w=740&t=st=1693995002~exp=1693995602~hmac=3c930400ef916c412bf97f64a94ef7853f5af0b1744caf8bdcb582c197361b35');
+     background-size: cover;
+     background-repeat: no-repeat;
+     width: 100%;
+     height: 100vh;
   }

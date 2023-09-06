@@ -39,10 +39,10 @@ const AddCategory=()=>{
     return(
         <div className="formData">
             <form>
-           <label>Category Name</label>
+           <label>Category Name</label><br></br><br></br>
           
-           <input type="text" name="categoryName" value={categoryData.categoryName} placeholder="Enter category name" onChange={changeData}></input>
-           <label>Category description</label>
+           <input type="text" name="categoryName" value={categoryData.categoryName} placeholder="Enter category name" onChange={changeData}></input><br></br><br></br>
+           <label>Category description</label><br></br><br></br>
            <textarea type="text" name="categoryDescription" value={categoryData.categoryDescription} placeholder="Enter category description" onChange={changeData}></textarea>
            <button type="button" onClick={addCategoryData} >Add</button>
            </form>

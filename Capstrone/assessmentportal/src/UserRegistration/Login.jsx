@@ -112,8 +112,8 @@ const Login = () => {
         
             <form>
                 <div className="signin">
-                    <h1 className="heading">SignIn</h1>
-                    <label className="head"><b>Email</b></label><br /><br />
+                    <h1 className="heading">SignIn Here!!</h1>
+                    <label className="head" ><b>Email</b></label><br /><br />
                     <input className="data" type="email" name="email" value={loginData.email} onChange={changeData} /><br /><br />
                     <label className="head"><b>Password</b></label><br /><br />
                     <input className="data" type="password" name="password" value={loginData.password} onChange={changeData} /><br />
