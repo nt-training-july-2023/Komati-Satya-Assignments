@@ -1,4 +1,4 @@
-.loginData{
+/* .loginData{
     display: flex;
   justify-content: center;
   align-items: center;
@@ -39,6 +39,129 @@
 }
 .head{
     /* float: left; */
-    margin-right:5% ;
-}
+    /* margin-right:5% ; */
 
+ */
+/* Default styles for larger screens */
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+ opacity:0;
+}
+.loginData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    float: right;
+    /* background-color: blue  */
+    /* background-image: url('https://cambridge-community.org.uk/professional-development/gswafl/assets/RBub64xYJJ/afl_m7_aw_001-2560x1440.jpeg');
+  background-size: cover; /* Adjust the background size */
+  /* background-repeat: no-repeat; */ 
+  background-color: "#551a8b";
+  }
+  
+  .signin {
+    width: 420px;
+    box-shadow: rgb(0 0 0/16%) 1px 1px 10px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 8px;
+    background-color: white;
+  
+    margin: 0 auto;
+  }
+  
+  .heading {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 24px;
+    color: rgb(34, 34, 34);
+    font-weight: 800;
+  }
+  
+  .data {
+    width: 85%;
+    padding: 6px;
+    color: wheat;
+    border-radius: 5px;
+  }
+  
+  .btn {
+    width: 85%;
+    padding: 5px;
+    margin-top: 20px;
+    border-radius: 5px;
+    color: white;
+    background-color: rgb(113, 184, 113);
+    border-radius: 5px;
+  }
+  
+  .anchor {
+    text-decoration: none;
+    margin-left: 15px;
+  }
+  
+  .head {
+    margin-right: 5%;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .ligin{
+      min-height: auto;
+      height: 100vh;
+    }
+    .loginData {
+      width: 100%;
+      
+    padding-top: 10px;
+    padding-bottom: 10px;
+    /* background-image: url('https://cambridge-community.org.uk/professional-development/gswafl/assets/RBub64xYJJ/afl_m7_aw_001-2560x1440.jpeg');
+  background-size: cover; 
+  background-repeat: no-repeat; */
+    }
+  
+    .signin {
+      width: 90%;
+      padding-top: 20px;
+      padding-bottom: 10px;
+    }
+  
+    .heading {
+      font-size: 20px;
+    }
+  
+    .data {
+      width: 80%;
+      outline: auto;
+      padding:8px;
+    }
+  
+    .btn {
+      width: 80%;
+      margin-top: 15px;
+    }
+  
+    .anchor {
+      margin-left: 0;
+      margin-top: 10px;
+      display: flex;
+      margin-left: 40px;
+    }
+  
+    .head {
+      margin-right: 0;
+    }
+  }
+  
+ 
+  
+  

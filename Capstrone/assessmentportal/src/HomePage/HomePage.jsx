@@ -7,8 +7,8 @@ const HomePage=()=>{
 
   
    return(
-       <div>
-        
+       <div className="body">
+          <h2 className="heading">Assessment PlatForm</h2>
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="/Login">SignIn</a></li>

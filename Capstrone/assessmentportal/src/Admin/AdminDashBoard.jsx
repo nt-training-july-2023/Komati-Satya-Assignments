@@ -1,5 +1,5 @@
 import React from "react";
-
+import './AdminStyles.css';
 export default function AdminDashBoard()
 {
     return(

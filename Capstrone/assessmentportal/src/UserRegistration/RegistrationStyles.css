@@ -4,7 +4,10 @@
     justify-content: center;
     align-items: center; 
      width: 100vw; 
-    height: 100vh;  
+    height: 100vh;   
+    background-image: url('https://cambridge-community.org.uk/professional-development/gswafl/assets/RBub64xYJJ/afl_m7_aw_001-2560x1440.jpeg');
+    background-size: cover; /* Adjust the background size */
+    background-repeat: no-repeat;  
     
 }
 
@@ -12,10 +15,10 @@
     width: 90%; 
     max-width: 420px; 
     box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
-    padding: 30px 20px 20px; 
+    padding: 30px; 
     border-radius: 8px;
-    background-color: white;
-    margin: 20px auto; 
+    background-color:white;
+    margin: 10px auto; 
 }
 
 .values {
@@ -28,16 +31,29 @@ button {
     padding: 10px; 
     margin-top: 10px;
     border-radius: 5px;
+    background-color: rgb(113, 184, 113);
+    color: white;
 }
 
 .details {
     margin-top: 15px;
 }
+.gen {
+    display: flex;
+    align-items: flex-start; 
+    margin: px;
+    margin-left: 20px;
+  }
+
+  .gen2{
+    margin-left: 40px;
+  }
 
 
 @media screen and (min-width: 768px) {
     .gen2 {
-        margin-left: 50px; 
+        margin-right:0px;
+        margin-bottom: 51px;
     }
 
     .side {
@@ -49,6 +65,27 @@ button {
     }
 }
 .anchor1{
-margin-top: -700px;
-float:right;
-} 
+margin-top: 10%;
+text-decoration: none;
+}  
+
+@media screen and (max-width:480px) {
+    .signUp{
+        max-width: 100%;
+        margin: 10px;
+        padding: 15px;
+    }
+    .gen2{
+        margin-left: 10px;
+    }
+    .role{
+        margin-left: 0;
+    }
+    .values{
+        height: auto;
+    }
+    button{
+        margin-top: 15px;
+    }
+}
+
