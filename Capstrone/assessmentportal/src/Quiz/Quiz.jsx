@@ -7,19 +7,21 @@ import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
 function Quiz() {
-    const { categoryId } = useParams();
-    // console.log(categoryId)
+  const { categoryId } = useParams();
+  // console.log(categoryId)
   const verifyRole = localStorage.getItem('userRole');
   const [quiz, setQuiz] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [text, setText] = useState("");
   const [originalQuiz, setOriginalQuiz] = useState([]);
   useEffect(() => {
-    {verifyRole === 'Admin' &&
-    getQuizes();
+    {
+      verifyRole === 'Admin' &&
+      getQuizes();
     }
-    {verifyRole === 'student' &&
-    getQuiz();
+    {
+      verifyRole === 'student' &&
+      getQuiz();
     }
   }, [categoryId]);
   const getQuiz = async () => {
@@ -64,8 +66,8 @@ function Quiz() {
   //     console.log(error);
   //   }
   // };
-  const deleteData=()=>{
-    
+  const deleteData = () => {
+
   }
   const navigate = useNavigate();
   const addData = () => {
@@ -73,21 +75,23 @@ function Quiz() {
   }
   const handleSearch = async () => {
     console.log(text)
-   const filteredQuiz = quiz.filter(item =>
-     (item.topicName || '').toLowerCase().includes((text||'').toLowerCase())
-   );
-   setQuiz(filteredQuiz);
- };
+    const filteredQuiz = quiz.filter(item =>
+      (item.topicName || '').toLowerCase().includes((text || '').toLowerCase())
+    );
+    setQuiz(filteredQuiz);
+  };
   const clearSearch = () => {
     setQuiz(originalQuiz);
     setText("");
   }
   const backTo = () => {
-    {verifyRole === 'Admin' &&
-    navigate(-1);
+    {
+      verifyRole === 'Admin' &&
+      navigate(-1);
     }
-    {verifyRole === 'student' &&
-    navigate(-2);
+    {
+      verifyRole === 'student' &&
+      navigate(-1);
     }
   }
   return (
@@ -135,7 +139,7 @@ function Quiz() {
                       {verifyRole === 'Admin' && <>
                         <td><button className="deleteData" type="button" onClick={() => deleteData(item.quizId)}>Delete</button></td>
                         <td><Link to={`/UpdateQuiz/${item.categoryId}`} className="updateData">Update</Link></td></>}
-                        {verifyRole === 'student' && <>
+                      {verifyRole === 'student' && <>
                         <td><Link to={`/Quiz/${item.categoryId}`} className="updateData">Take Test</Link></td></>}
                     </tr>
                   ))}

@@ -49,7 +49,7 @@ function Category() {
     navigate('/AddCategory');
   }
   const handleSearch = async () => {
-     console.log(searchText)
+    console.log(searchText)
     const filteredCategory = category.filter(item =>
       item.categoryName.toLowerCase().includes(searchText.toLowerCase())
     );
@@ -60,11 +60,13 @@ function Category() {
     setSearchText("");
   }
   const backTo = () => {
-    {verifyRole === 'Admin' &&
-    navigate(-1);
+    {
+      verifyRole === 'Admin' &&
+      navigate(-1);
     }
-    {verifyRole === 'student' &&
-    navigate(-1);
+    {
+      verifyRole === 'student' &&
+      navigate(-1);
     }
   }
   return (
@@ -72,7 +74,7 @@ function Category() {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Category Details</h1>
-          <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button>
+          <button className="addButton" onClick={() => backTo()}>Back</button>
           {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add category</button>}
           <div className="searchContainer">
             <input
@@ -108,7 +110,7 @@ function Category() {
                       {verifyRole === 'Admin' && <>
                         <td><button className="deleteData" type="button" onClick={() => deleteData(item.categoryId)}>Delete</button></td>
                         <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData">Update</Link></td></>}
-                        {verifyRole === 'student' && <>
+                      {verifyRole === 'student' && <>
                         <td><Link to={`/Quiz/${item.categoryId}`} className="updateData">View Quiz Topics</Link></td></>}
                     </tr>
                   ))}

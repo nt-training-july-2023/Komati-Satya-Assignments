@@ -32,7 +32,7 @@ const Login = () => {
 
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
-            if(validationErrors.email && validationErrors.password){
+            if (validationErrors.email && validationErrors.password) {
                 await Swal.fire({
                     title: 'Error!',
                     text: 'Credentials required',
@@ -40,7 +40,7 @@ const Login = () => {
                     confirmButtonText: 'Ok'
                 });
             }
-           else if (validationErrors.email && !(validationErrors.password)) {
+            else if (validationErrors.email && !(validationErrors.password)) {
                 await Swal.fire({
                     title: 'Error!',
                     text: 'Email is required',
@@ -57,15 +57,15 @@ const Login = () => {
                 });
             }
         } else {
-            
+
             setErrors({});
 
             try {
                 const response = await axios.post('http://localhost:6002/login', loginData);
-        
+
                 localStorage.setItem("userRole", response.data.User_Information.role);
                 console.log(response)
- 
+
                 if (response.data.message === "password must be same") {
                     await Swal.fire({
                         title: 'Error!',
@@ -80,7 +80,7 @@ const Login = () => {
                         icon: 'error',
                         confirmButtonText: 'Cool'
                     });
-                } else  {
+                } else {
                     if (response?.data.User_Information.role === "Admin") {
                         await Swal.fire({
                             title: 'Login Success',
@@ -90,7 +90,7 @@ const Login = () => {
                         });
                         // navigate('/AdminDashBoard');
                         navigate(`/AdminDashBoard?data=${JSON.stringify(response.data)}`);
-                        
+
                     } else if (response?.data.User_Information.role === "student") {
                         await Swal.fire({
                             title: 'Login Success',
@@ -101,10 +101,10 @@ const Login = () => {
                         // navigate('/UserDashBoard');
                         navigate(`/UserDashBoard?data=${JSON.stringify(response.data)}`);
                     }
-                   
+
                 }
             } catch (error) {
-                
+
                 console.error(error);
             }
         }
@@ -112,21 +112,21 @@ const Login = () => {
 
     return (
         <div className="login" >
-           
-        <div className="loginData">
-        
-            <form>
-                <div className="signin">
-                    <h1 className="heading">SignIn Here!!</h1>
-                    <label className="head" ><b>Email</b></label><br /><br />
-                    <input className="data" type="email" name="email" value={loginData.email} onChange={changeData} /><br /><br />
-                    <label className="head"><b>Password</b></label><br /><br />
-                    <input className="data" type="password" name="password" value={loginData.password} onChange={changeData} /><br />
-                    <button className="btn" type="submit" onClick={login}>Login</button><br/><br/>
-                    <a className="anchor" href="Registration">New user SignUp here!!</a>
-                </div>
-            </form>
-        </div>
+
+            <div className="loginData">
+
+                <form>
+                    <div className="signin">
+                        <h1 className="heading">SignIn Here!!</h1>
+                        <label className="head" ><b>Email</b></label><br /><br />
+                        <input className="data" type="email" name="email" value={loginData.email} onChange={changeData} /><br /><br />
+                        <label className="head"><b>Password</b></label><br /><br />
+                        <input className="data" type="password" name="password" value={loginData.password} onChange={changeData} /><br />
+                        <button className="btn" type="submit" onClick={login}>Login</button><br /><br />
+                        <a className="anchor" href="Registration">New user SignUp here!!</a>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 }

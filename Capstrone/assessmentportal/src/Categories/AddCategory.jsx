@@ -5,17 +5,17 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import './AddCategoryStyles.css';
 import ErrorPage from "../ErrorPage";
-const AddCategory=()=>{
+const AddCategory = () => {
     const verifyRole = localStorage.getItem('userRole');
-    const[categoryData,setCategoryData]=useState({
-        categoryName:"",
-        categoryDescription:""
+    const [categoryData, setCategoryData] = useState({
+        categoryName: "",
+        categoryDescription: ""
     });
-    const navigate=useNavigate();
+    const navigate = useNavigate();
     const changeData = (e) => {
         setCategoryData({ ...categoryData, [e.target.name]: e.target.value });
     }
-    const addCategoryData= async() =>{
+    const addCategoryData = async () => {
         const response = await axios.post('http://localhost:6002/category', categoryData);
         console.log(response);
 
@@ -26,59 +26,58 @@ const AddCategory=()=>{
                 icon: 'success',
                 confirmButtonText: 'Ok'
             });
-             navigate('/Category');
-         }
-         else if(response.data.message === "Category already present")
-         {
+            navigate('/Category');
+        }
+        else if (response.data.message === "Category already present") {
             await Swal.fire({
                 title: 'Error!',
                 text: 'Category already present',
                 icon: 'error',
                 confirmButtonText: 'Ok'
             });
-         }
+        }
     }
-    const cancelAddCategory=()=>{
+    const cancelAddCategory = () => {
         Swal.fire({
             title: 'Do you want to cancel the add category?',
             showDenyButton: true,
             confirmButtonText: 'Yes',
             denyButtonText: 'No',
             customClass: {
-              actions: 'my-actions',
-              cancelButton: 'order-1 right-gap',
-              confirmButton: 'order-2',
-              denyButton: 'order-3',
+                actions: 'my-actions',
+                cancelButton: 'order-1 right-gap',
+                confirmButton: 'order-2',
+                denyButton: 'order-3',
             }
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire('Changes are not saved', '', 'info')
                 navigate('/Category')
-              
+
             } else if (result.isDenied) {
-               
+
             }
-          })
+        })
     }
     console.log(categoryData)
-    return(
+    return (
         <div className="login3">
-             {verifyRole === 'Admin' ? <>
-        <div className="loginData3">
-            <h1 className="heading3">Add Category</h1>
-            <form>
-                <div className="signin3">
-           <label className="head3">Category Name</label><br></br><br></br>
-          
-           <input className="data3" type="text" name="categoryName" value={categoryData.categoryName} placeholder="Enter category name" onChange={changeData}></input><br></br><br></br>
-           <label className="head3">Category description</label><br></br><br></br>
-           <textarea className="data3" type="text" name="categoryDescription" value={categoryData.categoryDescription} placeholder="Enter category description" onChange={changeData}></textarea>
-           <button className="btn4" type="button" onClick={addCategoryData} >Add Category</button>
-           <button className="btn5" type="button" onClick={cancelAddCategory}>Cancel</button>
-           </div>
-           </form>
-        </div>
-        </>: <ErrorPage/>}
+            {verifyRole === 'Admin' ? <>
+                <div className="loginData3">
+                    <h1 className="heading3">Add Category</h1>
+                    <form>
+                        <div className="signin3">
+                            <label className="head3">Category Name</label><br></br><br></br>
+
+                            <input className="data3" type="text" name="categoryName" value={categoryData.categoryName} placeholder="Enter category name" onChange={changeData}></input><br></br><br></br>
+                            <label className="head3">Category description</label><br></br><br></br>
+                            <textarea className="data3" type="text" name="categoryDescription" value={categoryData.categoryDescription} placeholder="Enter category description" onChange={changeData}></textarea>
+                            <button className="btn4" type="button" onClick={addCategoryData} >Add Category</button>
+                            <button className="btn5" type="button" onClick={cancelAddCategory}>Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </> : <ErrorPage />}
         </div>
     );
 
