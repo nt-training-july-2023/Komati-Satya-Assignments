@@ -8,6 +8,7 @@ import Registration from './UserRegistration/Registration';
 import Category from './Categories/Category';
 import AddCategory from './Categories/AddCategory';
 import UpdateCategory from './Categories/UpdateCategory';
+import UserUpdate from './User/UserUpdate';
 
 function App() {
  
@@ -24,6 +25,7 @@ function App() {
         <Route path="/Category" element={<Category/>}></Route>
         <Route path="/AddCategory" element={<AddCategory/>}></Route>
         <Route path="/UpdateCategory/:categoryId" element={<UpdateCategory/>}></Route>
+        <Route path="/UserUpdate/:userId" element={<UserUpdate/>}></Route>
        </Routes>
      </BrowserRouter>
     </div>

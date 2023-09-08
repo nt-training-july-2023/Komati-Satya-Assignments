@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import './UpdateCategoryStyle.css';
 const UpdateCategory = () => {
   const { categoryId } = useParams();
   console.log(categoryId);
@@ -78,12 +79,16 @@ const UpdateCategory = () => {
     
    }
   return (
-    <div>
-      <h1>Update Category</h1>
+    
+    <div className="login2">
+      <div className="loginData2">
+      <h1 className="heading2">Update Category</h1>
       <form>
-        <div>
-          <label>Category Name:</label>
+        <div className="signin2">
+          <div>
+          <label className="head2">Category Name:</label>
           <input
+           className="data2"
             type="text"
             value={categoryData.categoryName}
             onChange={(e) =>
@@ -95,8 +100,9 @@ const UpdateCategory = () => {
           />
         </div>
         <div>
-          <label>Category Description:</label>
+          <label className="head2">Category Description:</label>
           <textarea
+          className="data2"
             value={categoryData.categoryDescription}
             onChange={(e) =>
               setCategoryData({
@@ -106,9 +112,12 @@ const UpdateCategory = () => {
             }
           />
         </div>
-        <button type="button" onClick={handleUpdateCategory}> Update Category</button>
-        <button type="button" onClick={cancelUpdate}>Cancel</button>
+        <button className="btn2" type="button" onClick={handleUpdateCategory}> Update Category</button>
+        <button className="btn3" type="button" onClick={cancelUpdate}>Cancel</button>
+        </div>
       </form>
+      <h1>hello</h1>
+    </div>
     </div>
   );
 };

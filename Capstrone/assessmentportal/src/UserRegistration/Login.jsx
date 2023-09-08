@@ -86,7 +86,8 @@ const Login = () => {
                             icon: 'success',
                             confirmButtonText: 'Ok'
                         });
-                        navigate('/AdminDashBoard');
+                        // navigate('/AdminDashBoard');
+                        navigate(`/AdminDashBoard?data=${JSON.stringify(response.data)}`);
                         
                     } else if (response?.data.User_Information.role === "student") {
                         await Swal.fire({
@@ -95,7 +96,8 @@ const Login = () => {
                             icon: 'success',
                             confirmButtonText: 'Ok'
                         });
-                        navigate('/UserDashBoard');
+                        // navigate('/UserDashBoard');
+                        navigate(`/UserDashBoard?data=${JSON.stringify(response.data)}`);
                     }
                 }
             } catch (error) {
@@ -118,7 +120,7 @@ const Login = () => {
                     <label className="head"><b>Password</b></label><br /><br />
                     <input className="data" type="password" name="password" value={loginData.password} onChange={changeData} /><br />
                     <button className="btn" type="submit" onClick={login}>Login</button><br/><br/>
-                    <a className="anchor" href="Registration">New user!!</a>
+                    <a className="anchor" href="Registration">New user SignUp here!!</a>
                 </div>
             </form>
         </div>

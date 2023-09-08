@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import './AddCategoryStyles.css';
 const AddCategory=()=>{
     const[categoryData,setCategoryData]=useState({
         categoryName:"",
@@ -35,17 +36,45 @@ const AddCategory=()=>{
             });
          }
     }
+    const cancelAddCategory=()=>{
+        Swal.fire({
+            title: 'Do you want to cancel the add category?',
+            showDenyButton: true,
+            confirmButtonText: 'Yes',
+            denyButtonText: 'No',
+            customClass: {
+              actions: 'my-actions',
+              cancelButton: 'order-1 right-gap',
+              confirmButton: 'order-2',
+              denyButton: 'order-3',
+            }
+          }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire('Changes are not saved', '', 'info')
+                navigate('/Category')
+              
+            } else if (result.isDenied) {
+               
+            }
+          })
+    }
     console.log(categoryData)
     return(
-        <div className="formData">
+        <div className="login3">
+        <div className="loginData3">
+            <h1 className="heading3">Add Category</h1>
             <form>
-           <label>Category Name</label><br></br><br></br>
+                <div className="signin3">
+           <label className="head3">Category Name</label><br></br><br></br>
           
-           <input type="text" name="categoryName" value={categoryData.categoryName} placeholder="Enter category name" onChange={changeData}></input><br></br><br></br>
-           <label>Category description</label><br></br><br></br>
-           <textarea type="text" name="categoryDescription" value={categoryData.categoryDescription} placeholder="Enter category description" onChange={changeData}></textarea>
-           <button type="button" onClick={addCategoryData} >Add</button>
+           <input className="data3" type="text" name="categoryName" value={categoryData.categoryName} placeholder="Enter category name" onChange={changeData}></input><br></br><br></br>
+           <label className="head3">Category description</label><br></br><br></br>
+           <textarea className="data3" type="text" name="categoryDescription" value={categoryData.categoryDescription} placeholder="Enter category description" onChange={changeData}></textarea>
+           <button className="btn4" type="button" onClick={addCategoryData} >Add Category</button>
+           <button className="btn5" type="button" onClick={cancelAddCategory}>Cancel</button>
+           </div>
            </form>
+        </div>
         </div>
     );
 
