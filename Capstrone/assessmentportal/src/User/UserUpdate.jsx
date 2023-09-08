@@ -5,9 +5,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const UserUpdate = () => {
+  const verifyRole = localStorage.getItem('userRole');
   const { userId } = useParams();
   const navigate = useNavigate();
-  
+  const [sendData,setSendData]=useState(null);
   const [userData, setUserData] = useState({
     userName: "",
     phoneNumber: "",
@@ -24,6 +25,7 @@ const UserUpdate = () => {
       .get(`http://localhost:6002/student/${userId}`) 
       .then((response) => {
         console.log(response)
+        setSendData(response);
         const userInformation = response.data.User_Information;
         console.log("User Information:", userInformation);
         const { userName, phoneNumber, dateOfBirth, gender,email,userId,role } = userInformation;
@@ -53,11 +55,13 @@ const UserUpdate = () => {
             icon: "success",
             confirmButtonText: "Ok",
           });
-          navigate(`/UserDashBoard?data=${JSON.stringify(response.data)}`);
+          navigate(`/UserDashBoard?data=${encodeURIComponent(JSON.stringify(response.data))}`);
+
         }
       });
   };
-
+  console.log("sendData")
+   console.log(sendData)
   const cancelUpdate = () => {
     Swal.fire({
       title: "Do you want to cancel the changes?",
@@ -73,13 +77,17 @@ const UserUpdate = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         Swal.fire("Changes are not saved", "", "info");
-        navigate(`/UserDashBoard?data=${JSON.stringify(userData)}`);
+        // navigate(`/UserDashBoard?data=${encodeURIComponent(JSON.stringify(sendData))}`);
+        console.log("Data to pass on cancel:", sendData); // Log the data you intend to pass
+navigate(`/UserDashBoard?data=${encodeURIComponent(JSON.stringify(sendData))}`);
+
       }
     });
   };
 
   return (
     <div className="login2">
+       {verifyRole === 'student' && <>
       <div className="loginData2">
         <h1 className="heading2">Update Student Details</h1>
         <form>
@@ -181,6 +189,7 @@ const UserUpdate = () => {
           </div>
         </form>
       </div>
+      </>}
     </div>
   );
 };

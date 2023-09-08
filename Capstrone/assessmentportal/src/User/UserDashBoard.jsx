@@ -3,18 +3,29 @@ import React from "react";
 
 import Swal from "sweetalert2";
 import { useNavigate,useLocation} from "react-router-dom";
+import ErrorPage from "../ErrorPage";
 
 
 const UserDashBoard=()=>
 {
 
   const navigate=useNavigate();
-  const location=useLocation();
-  const searchParams = new URLSearchParams(location.search);
-    const dataString = searchParams.get('data');
-    const data = JSON.parse(dataString);
-    const userInformation = data && data.User_Information;
-    const { userName, email,userId,role,phoneNumber,dateOfBirth,gender } = data?.User_Information || {};
+ 
+  //   // const data = JSON.parse(dataString);
+  //   const data = dataString ? JSON.parse(dataString) : { User_Information: {} };
+  //   // const userInformation = data && data.User_Information;
+  //   const userInformation = data.User_Information || {}
+  //   const { userName, email,userId,role,phoneNumber,dateOfBirth,gender } = data?.User_Information || {};
+  const location = useLocation();
+const searchParams = new URLSearchParams(location.search);
+const dataString = searchParams.get('data');
+const data = JSON.parse(dataString);
+console.log(data)
+
+// Ensure that data and User_Information exist before accessing properties
+const userInformation = data?.User_Information || {};
+const { userName, email, userId, role, phoneNumber, dateOfBirth, gender } = userInformation;
+ const verifyRole=localStorage.getItem('userRole');
   const logoutPage=()=>{
     Swal.fire({
       title: 'Do you want to logout page??',
@@ -30,7 +41,7 @@ const UserDashBoard=()=>
       }
     }).then((result) => {
       if (result.isConfirmed) {
-         
+        localStorage.removeItem('userRole');
           navigate('/')
         
       } else if (result.isDenied) {
@@ -45,6 +56,7 @@ const UserDashBoard=()=>
 
     return(
         <div className="admin">
+           {verifyRole === 'student' ? <>
          <ul className="nav-bar">
             <li><a href="/">Home</a></li>
             <li><a href="/Category">Categories</a></li>
@@ -95,7 +107,8 @@ const UserDashBoard=()=>
                 <button type="button" onClick={UpdateData}>Update Details</button>
 
           </div>
-        </div>
+          </>: <ErrorPage/>}    
+            </div>
     )
 }
 export default UserDashBoard

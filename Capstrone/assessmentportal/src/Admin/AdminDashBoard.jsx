@@ -2,7 +2,8 @@ import React from "react";
 import './AdminStyles.css';
 import Swal from "sweetalert2";
 import { useNavigate,useLocation} from "react-router-dom";
-
+import ErrorPage from "../ErrorPage";
+import { Link } from "react-router-dom";
 
 const AdminDashBoard=()=>
 {
@@ -14,7 +15,9 @@ const AdminDashBoard=()=>
     const data = JSON.parse(dataString);
     const userInformation = data && data.User_Information;
     const { userName, email,userId,role,phoneNumber,dateOfBirth,gender } = data?.User_Information || {};
+    const verifyRole = localStorage.getItem('userRole');
   const logoutPage=()=>{
+    
     Swal.fire({
       title: 'Do you want to logout page??',
       showDenyButton: true,
@@ -29,7 +32,7 @@ const AdminDashBoard=()=>
       }
     }).then((result) => {
       if (result.isConfirmed) {
-         
+        localStorage.removeItem('userRole');
           navigate('/')
         
       } else if (result.isDenied) {
@@ -40,7 +43,9 @@ const AdminDashBoard=()=>
   }
 
     return(
+      
         <div className="admin">
+          {verifyRole === 'Admin' ? <>
          <ul className="nav-bar">
             <li><a href="/">Home</a></li>
             <li><a href="/Category">Categories</a></li>
@@ -52,7 +57,7 @@ const AdminDashBoard=()=>
             
           </ul>
           <div className="adminBackground">
-            <h2>Welcome to AdminDashBoard</h2>
+            <h2>Welcome to AdminDashBoard </h2>
             <div>
 
                     {/* <pre>{JSON.stringify(userInformation, null, 2)}</pre> */}
@@ -92,7 +97,7 @@ const AdminDashBoard=()=>
                   </tbody>
                 </table>
 
-          </div>
+          </div></>: <ErrorPage/>}
         </div>
     )
 }

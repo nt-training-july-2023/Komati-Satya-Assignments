@@ -4,7 +4,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import './AddCategoryStyles.css';
+import ErrorPage from "../ErrorPage";
 const AddCategory=()=>{
+    const verifyRole = localStorage.getItem('userRole');
     const[categoryData,setCategoryData]=useState({
         categoryName:"",
         categoryDescription:""
@@ -61,6 +63,7 @@ const AddCategory=()=>{
     console.log(categoryData)
     return(
         <div className="login3">
+             {verifyRole === 'Admin' ? <>
         <div className="loginData3">
             <h1 className="heading3">Add Category</h1>
             <form>
@@ -75,6 +78,7 @@ const AddCategory=()=>{
            </div>
            </form>
         </div>
+        </>: <ErrorPage/>}
         </div>
     );
 

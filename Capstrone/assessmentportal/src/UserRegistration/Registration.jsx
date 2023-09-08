@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import './RegistrationStyles.css'
 
 const Registration = () => {
+  
   const [formData, setFormData] = useState({
     userName: "",
     email: "",

@@ -9,6 +9,8 @@ import Category from './Categories/Category';
 import AddCategory from './Categories/AddCategory';
 import UpdateCategory from './Categories/UpdateCategory';
 import UserUpdate from './User/UserUpdate';
+import ErrorPage from './ErrorPage';
+import Quiz from './Quiz/Quiz';
 
 function App() {
  
@@ -26,6 +28,9 @@ function App() {
         <Route path="/AddCategory" element={<AddCategory/>}></Route>
         <Route path="/UpdateCategory/:categoryId" element={<UpdateCategory/>}></Route>
         <Route path="/UserUpdate/:userId" element={<UserUpdate/>}></Route>
+        <Route path="/NotFoundPage" element={<ErrorPage/>}></Route>
+        <Route path="/Quiz/:categoryId" element={<Quiz/>}></Route>
+        <Route path="/Quiz" element={<Quiz/>}></Route>
        </Routes>
      </BrowserRouter>
     </div>

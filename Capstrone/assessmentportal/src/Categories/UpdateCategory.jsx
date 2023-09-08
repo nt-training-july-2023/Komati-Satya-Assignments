@@ -5,7 +5,9 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import './UpdateCategoryStyle.css';
+import ErrorPage from "../ErrorPage";
 const UpdateCategory = () => {
+  const verifyRole = localStorage.getItem('userRole');
   const { categoryId } = useParams();
   console.log(categoryId);
   const [categoryData, setCategoryData] = useState({
@@ -81,6 +83,7 @@ const UpdateCategory = () => {
   return (
     
     <div className="login2">
+       {verifyRole === 'Admin' ?<>
       <div className="loginData2">
       <h1 className="heading2">Update Category</h1>
       <form>
@@ -116,8 +119,8 @@ const UpdateCategory = () => {
         <button className="btn3" type="button" onClick={cancelUpdate}>Cancel</button>
         </div>
       </form>
-      <h1>hello</h1>
     </div>
+    </>: <ErrorPage/>}
     </div>
   );
 };
