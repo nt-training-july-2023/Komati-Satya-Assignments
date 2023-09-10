@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import ErrorPage from "../ErrorPage";
 
 const UserUpdate = () => {
   const verifyRole = localStorage.getItem('userRole');
@@ -62,34 +63,12 @@ const UserUpdate = () => {
   };
   console.log("sendData")
   console.log(sendData)
-  const cancelUpdate = () => {
-    Swal.fire({
-      title: "Do you want to cancel the changes?",
-      showDenyButton: true,
-      confirmButtonText: "Yes",
-      denyButtonText: "No",
-      customClass: {
-        actions: "my-actions",
-        cancelButton: "order-1 right-gap",
-        confirmButton: "order-2",
-        denyButton: "order-3",
-      },
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire("Changes are not saved", "", "info");
-        // navigate(`/UserDashBoard?data=${encodeURIComponent(JSON.stringify(sendData))}`);
-        console.log("Data to pass on cancel:", sendData);
-        navigate(`/UserDashBoard?data=${encodeURIComponent(JSON.stringify(sendData))}`);
-
-      }
-    });
-  };
-
   return (
     <div className="login2">
-      {verifyRole === 'student' && <>
+      {(verifyRole === 'Admin' || verifyRole === 'student') ?
+      <>
         <div className="loginData2">
-          <h1 className="heading2">Update Student Details</h1>
+          <h1 className="heading2">Update Details</h1>
           <form>
             <div className="signin2">
               <div>
@@ -182,14 +161,12 @@ const UserUpdate = () => {
 
               <button className="btn2" type="button" onClick={handleUpdateCategory}>
                 Update Student Details
-              </button>
-              <button className="btn3" type="button" onClick={cancelUpdate}>
-                Cancel
+             
               </button>
             </div>
           </form>
         </div>
-      </>}
+      </> : <ErrorPage/>}
     </div>
   );
 };

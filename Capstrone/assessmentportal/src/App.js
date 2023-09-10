@@ -3,7 +3,7 @@ import './App.css';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Login from './UserRegistration/Login';
 import UserDashBoard from './User/UserDashBoard';
-import AdminDashBoard from './Admin/AdminDashBoard';
+
 import Registration from './UserRegistration/Registration';
 import Category from './Categories/Category';
 import AddCategory from './Categories/AddCategory';
@@ -11,6 +11,9 @@ import UpdateCategory from './Categories/UpdateCategory';
 import UserUpdate from './User/UserUpdate';
 import ErrorPage from './ErrorPage';
 import Quiz from './Quiz/Quiz';
+import AddQuiz from './Quiz/AddQuiz';
+import Student from './User/Students';
+
 
 function App() {
  
@@ -19,10 +22,10 @@ function App() {
     <div className="App">
      <BrowserRouter>
        <Routes>
-        {/* <Route path="/" element={<HomePage/>}></Route> */}
+        {/* <Route path="/Home" element={<HomePage/>}></Route> */}
         <Route path="/" element={<Login/>}></Route>
         <Route path="/UserDashBoard" element={<UserDashBoard/>}></Route>
-        <Route path="/AdminDashBoard" element={<AdminDashBoard/>}></Route>
+        {/* <Route path="/AdminDashBoard" element={<AdminDashBoard/>}></Route> */}
         <Route path="/Registration" element={<Registration/>}></Route>
         <Route path="/Category" element={<Category/>}></Route>
         <Route path="/AddCategory" element={<AddCategory/>}></Route>
@@ -31,6 +34,8 @@ function App() {
         <Route path="/NotFoundPage" element={<ErrorPage/>}></Route>
         <Route path="/Quiz/:categoryId" element={<Quiz/>}></Route>
         <Route path="/Quiz" element={<Quiz/>}></Route>
+        <Route path="/AddQuiz" element={<AddQuiz/>}></Route>
+        <Route path="/Students" element={<Student/>}></Route>
        </Routes>
      </BrowserRouter>
     </div>

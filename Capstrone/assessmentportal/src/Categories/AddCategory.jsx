@@ -7,6 +7,7 @@ import './AddCategoryStyles.css';
 import ErrorPage from "../ErrorPage";
 const AddCategory = () => {
     const verifyRole = localStorage.getItem('userRole');
+    const [errors, setErrors] = useState({});
     const [categoryData, setCategoryData] = useState({
         categoryName: "",
         categoryDescription: ""
@@ -15,7 +16,48 @@ const AddCategory = () => {
     const changeData = (e) => {
         setCategoryData({ ...categoryData, [e.target.name]: e.target.value });
     }
-    const addCategoryData = async () => {
+    const addCategoryData = async (e) => {
+
+        e.preventDefault();
+
+        const validationErrors = {};
+
+        if (!categoryData.categoryName) {
+            validationErrors.categoryName = 'category name Required';
+        }
+        if (!categoryData.categoryDescription) {
+            validationErrors.categoryDescription = 'category description Required';
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            if (validationErrors.categoryName && validationErrors.categoryDescription) {
+                await Swal.fire({
+                    title: 'Error!',
+                    text: 'data required',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            }
+            else if (validationErrors.categoryName && !(validationErrors.categoryDescription)) {
+                await Swal.fire({
+                    title: 'Error!',
+                    text: 'category name is required',
+                    icon: 'error',
+                    confirmButtonText: 'Ok'
+                });
+            }
+            if (validationErrors.categoryDescription && !(validationErrors.categoryName)) {
+                await Swal.fire({
+                    title: 'Error!',
+                    text: 'category description is required',
+                    icon: 'error',
+                    confirmButtonText: 'Cool'
+                });
+            }
+        } else {
+
+            setErrors({});
         const response = await axios.post('http://localhost:6002/category', categoryData);
         console.log(response);
 
@@ -37,6 +79,7 @@ const AddCategory = () => {
             });
         }
     }
+}
     const cancelAddCategory = () => {
         Swal.fire({
             title: 'Do you want to cancel the add category?',
@@ -59,6 +102,7 @@ const AddCategory = () => {
             }
         })
     }
+
     console.log(categoryData)
     return (
         <div className="login3">

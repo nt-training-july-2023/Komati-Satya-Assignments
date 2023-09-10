@@ -110,8 +110,12 @@ function Category() {
                       {verifyRole === 'Admin' && <>
                         <td><button className="deleteData" type="button" onClick={() => deleteData(item.categoryId)}>Delete</button></td>
                         <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData">Update</Link></td></>}
-                      {verifyRole === 'student' && <>
-                        <td><Link to={`/Quiz/${item.categoryId}`} className="updateData">View Quiz Topics</Link></td></>}
+                        {verifyRole === 'Admin' || verifyRole === 'student' ? (
+                  <td><Link to={`/Quiz/${item.categoryId}`} className="updateData">View Quiz Topics</Link></td>
+) : (
+  <></>
+)}
+
                     </tr>
                   ))}
                 </tbody>

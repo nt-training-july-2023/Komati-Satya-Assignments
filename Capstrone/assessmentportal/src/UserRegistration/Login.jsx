@@ -89,7 +89,7 @@ const Login = () => {
                             confirmButtonText: 'Ok'
                         });
                         // navigate('/AdminDashBoard');
-                        navigate(`/AdminDashBoard?data=${JSON.stringify(response.data)}`);
+                        navigate(`/UserDashBoard?data=${JSON.stringify(response.data)}`);
 
                     } else if (response?.data.User_Information.role === "student") {
                         await Swal.fire({
@@ -112,9 +112,10 @@ const Login = () => {
 
     return (
         <div className="login" >
-
+            
             <div className="loginData">
-
+            <h1 className="ass">Assessment Portal</h1>
+            <h2 className="know">- Come...Test your Knowledge Here!!!</h2>
                 <form>
                     <div className="signin">
                         <h1 className="heading">SignIn Here!!</h1>

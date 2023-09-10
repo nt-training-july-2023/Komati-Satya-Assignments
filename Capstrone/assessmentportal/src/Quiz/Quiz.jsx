@@ -16,11 +16,6 @@ function Quiz() {
   const [originalQuiz, setOriginalQuiz] = useState([]);
   useEffect(() => {
     {
-      verifyRole === 'Admin' &&
-      getQuizes();
-    }
-    {
-      verifyRole === 'student' &&
       getQuiz();
     }
   }, [categoryId]);

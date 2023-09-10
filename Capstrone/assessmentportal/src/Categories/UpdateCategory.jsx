@@ -8,6 +8,7 @@ import './UpdateCategoryStyle.css';
 import ErrorPage from "../ErrorPage";
 const UpdateCategory = () => {
   const verifyRole = localStorage.getItem('userRole');
+  const [errors, setErrors] = useState({});
   const { categoryId } = useParams();
   console.log(categoryId);
   const [categoryData, setCategoryData] = useState({
@@ -34,7 +35,47 @@ const UpdateCategory = () => {
   }, [categoryId]);
 
 
-  const handleUpdateCategory = () => {
+  const handleUpdateCategory = async(e) => {
+    e.preventDefault();
+
+    const validationErrors = {};
+
+    if (!categoryData.categoryName) {
+        validationErrors.categoryName = 'category name Required';
+    }
+    if (!categoryData.categoryDescription) {
+        validationErrors.categoryDescription = 'category description Required';
+    }
+
+    if (Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors);
+        if (validationErrors.categoryName && validationErrors.categoryDescription) {
+            await Swal.fire({
+                title: 'Error!',
+                text: 'data required',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
+        else if (validationErrors.categoryName && !(validationErrors.categoryDescription)) {
+            await Swal.fire({
+                title: 'Error!',
+                text: 'category name is required',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
+        if (validationErrors.categoryDescription && !(validationErrors.categoryName)) {
+            await Swal.fire({
+                title: 'Error!',
+                text: 'category description is required',
+                icon: 'error',
+                confirmButtonText: 'Cool'
+            });
+        }
+    } else {
+
+        setErrors({});
     axios.put(`http://localhost:6002/cat/${categoryId}`, categoryData)
       .then((response) => {
         if (response.data.message === "succcessfully update the data") {
@@ -47,7 +88,8 @@ const UpdateCategory = () => {
           navigate('/Category')
         }
       })
-  };
+    }
+  }
   const cancelUpdate = () => {
     // Swal.fire({
     //     title: 'Cancel',
