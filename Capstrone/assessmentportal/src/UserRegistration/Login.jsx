@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import './LoginStyles.css';
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import {FaEye,FaEyeSlash} from 'react-icons/fa';
 
 const Login = () => {
     const [loginData, setLoginData] = useState({
@@ -13,15 +14,17 @@ const Login = () => {
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
-
+    const[showPassword,setShowPassword]=useState("true");
     const changeData = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
     }
-
+    const togglePassword=()=>{
+        setShowPassword(!showPassword);
+    }
     const login = async (e) => {
         e.preventDefault();
 
-        const validationErrors = {};
+        const validationErrors = {};    
 
         if (!loginData.email) {
             validationErrors.email = 'Email Required';
@@ -121,8 +124,14 @@ const Login = () => {
                         <h1 className="heading">SignIn Here!!</h1>
                         <label className="head" ><b>Email</b></label><br /><br />
                         <input className="data" type="email" name="email" value={loginData.email} onChange={changeData} /><br /><br />
+                        <div className="password-container">
                         <label className="head"><b>Password</b></label><br /><br />
-                        <input className="data" type="password" name="password" value={loginData.password} onChange={changeData} /><br />
+                        <input className="data" type={showPassword ? 'password' : 'text'} name="password" value={loginData.password} onChange={changeData} /><br />
+                        <button className="show-password" type="button" onClick={togglePassword}>
+
+                            {showPassword ? <FaEyeSlash/> :<FaEye/>}
+                        </button>
+                        </div>
                         <button className="btn" type="submit" onClick={login}>Login</button><br /><br />
                         <a className="anchor" href="Registration">New user SignUp here!!</a>
                     </div>

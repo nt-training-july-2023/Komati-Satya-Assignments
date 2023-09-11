@@ -121,7 +121,7 @@ function Category() {
                 </tbody>
               </table>
             </div>
-          )}
+           )} 
         </> : <ErrorPage />}
     </div>
   );

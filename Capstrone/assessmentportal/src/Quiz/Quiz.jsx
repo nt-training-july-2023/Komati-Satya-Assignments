@@ -74,6 +74,7 @@ function Quiz() {
       (item.topicName || '').toLowerCase().includes((text || '').toLowerCase())
     );
     setQuiz(filteredQuiz);
+    console.log(quiz)
   };
   const clearSearch = () => {
     setQuiz(originalQuiz);

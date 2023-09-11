@@ -163,7 +163,7 @@ const Registration = () => {
             if (response.data.message === "successfully added data") {
               Swal.fire({
                 title: 'adding data',
-                text: 'Successfully added data',
+                text: 'User Registred Successfully',
                 icon: 'success',
                 confirmButtonText: 'Ok'
               });
@@ -201,8 +201,8 @@ const Registration = () => {
         <div className="signUp">
           <h1>Registration</h1>
           <div className="details">
-            <label className="side">UserName</label><br /><br />
-            <input className="values" type="text" placeholder="enter a username" name="userName" value={formData.userName} onChange={changeData} /><br /><br />
+            <label className="side">Name</label><br /><br />
+            <input className="values" type="text" placeholder="enter a name" name="userName" value={formData.userName} onChange={changeData} /><br /><br />
             <label className="side">Email</label><br /><br />
             <input className="values" type="email" placeholder="enter a email" name="email" value={formData.email} onChange={changeData} /><br /><br />
 

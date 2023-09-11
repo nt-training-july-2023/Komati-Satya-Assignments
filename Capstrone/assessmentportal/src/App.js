@@ -13,6 +13,7 @@ import ErrorPage from './ErrorPage';
 import Quiz from './Quiz/Quiz';
 import AddQuiz from './Quiz/AddQuiz';
 import Student from './User/Students';
+import Result from './Result/Result';
 
 
 function App() {
@@ -36,6 +37,8 @@ function App() {
         <Route path="/Quiz" element={<Quiz/>}></Route>
         <Route path="/AddQuiz" element={<AddQuiz/>}></Route>
         <Route path="/Students" element={<Student/>}></Route>
+        <Route path="/Result" element={<Result/>}></Route>
+        <Route path="/Result/:userId" element={<Result/>}></Route>
        </Routes>
      </BrowserRouter>
     </div>
