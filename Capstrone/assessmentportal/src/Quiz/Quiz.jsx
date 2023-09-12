@@ -43,30 +43,28 @@ function Quiz() {
       setIsLoading(false);
     }
   };
-  // const deleteData = async (id) => {
-  //   try {
-  //     const response = await axios.delete(`http://localhost:6002/cat/${id}`);
-  //     console.log(response);
-  //     if (response.data.message === "succcessfully delete the data") {
-  //       Swal.fire({
-  //         title: 'Deleting data',
-  //         text: 'Successfully deleted data',
-  //         icon: 'success',
-  //         confirmButtonText: 'Ok'
-  //       });
-  //     }
-  //     getQuiz();
-  //   }
-  //   catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-  const deleteData = () => {
-
-  }
+  const deleteData = async (id) => {
+    try {
+    const response = await axios.delete(`http://localhost:6002/quiz/${id}`);
+      console.log(response);
+      if (response.data.message === "succcessfully delete the data") {
+        Swal.fire({
+          title: 'Deleting data',
+          text: 'Successfully deleted data',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        });
+      }
+      getQuiz();
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
+  
   const navigate = useNavigate();
   const addData = () => {
-    navigate('/AddQuiz');
+    navigate(`/AddQuiz/${categoryId}`);
   }
   const handleSearch = async () => {
     console.log(text)
@@ -134,9 +132,11 @@ function Quiz() {
                       <td>{item.passMarks}</td>
                       {verifyRole === 'Admin' && <>
                         <td><button className="deleteData" type="button" onClick={() => deleteData(item.quizId)}>Delete</button></td>
-                        <td><Link to={`/UpdateQuiz/${item.categoryId}`} className="updateData">Update</Link></td></>}
+                        <td><Link to={`/UpdateQuiz/${item.quizId}`} className="updateData">Update</Link></td>
+                        <td><Link to={`/Questions/${item.quizId}`} className="updateData">view Questions</Link></td>
+                        </>}
                       {verifyRole === 'student' && <>
-                        <td><Link to={`/Quiz/${item.categoryId}`} className="updateData">Take Test</Link></td></>}
+                        <td><Link to={`/Quiz/${item.quizId}`} className="updateData">Take Test</Link></td></>}
                     </tr>
                   ))}
                 </tbody>

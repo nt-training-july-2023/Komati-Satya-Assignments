@@ -2,8 +2,7 @@ package com.example.demo.serviceImp;
 
 import java.util.ArrayList;
 import java.util.List;
-
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -92,8 +91,23 @@ public class FinalResultServiceImp implements FinalResService {
             resultDto.setEmail(f.getEmail());
             resultDto.setResultId(f.getResultId());
             resultDto.setMaxMarks(f.getMaxMarks());
+            resultDto.setUserId(f.getUserId());
+            resultDto.setTotalQuestions(f.getTotalNoOfQuestions());
+            resultDto.setUserId(f.getUserId());
+//            resultDto.setTotalQuestions(f.);
             r.add(resultDto);
         }
       return r;
 }
-     }
+    @Override
+    public List<ResultDto> findAll() {
+       if(fs.findAll().size()!= 0) {
+           List<FinalRes> finalResult = fs.findAll();
+           List<ResultDto> resultDto = convertToDto(finalResult);
+           return resultDto;
+       }
+       else {
+           throw new AllNotFoundException("No results are there");
+       }
+    }
+  }

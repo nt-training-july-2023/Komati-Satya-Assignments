@@ -14,4 +14,9 @@ public interface FinalResService {
      * @return final result
      */
     List<ResultDto> getById(int id);
+    /**
+     * find all results method.
+     * @return result dto
+     */
+    List<ResultDto> findAll();
 }

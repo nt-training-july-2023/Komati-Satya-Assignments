@@ -82,4 +82,8 @@ public class FinalRes {
      * stores attempted questions.
      */
     private int attemptedQuestions;
+    /**
+     * total questions.
+     */
+    private int totalNoOfQuestions;
 }

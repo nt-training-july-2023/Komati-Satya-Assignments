@@ -8,7 +8,7 @@ class QuestionsDtoTest {
 
     @Test
     void testAllArgsConstructor() {
-        QuestionsDto questionsDto = new QuestionsDto("java is?","oops","popl","none","both","oopl",1);
+        QuestionsDto questionsDto = new QuestionsDto("java is?","oops","popl","none","both","oopl",1,7);
         assertEquals("java is?",questionsDto.getQuestion());
         assertEquals("oops",questionsDto.getOption1());
         assertEquals("popl",questionsDto.getOption2());

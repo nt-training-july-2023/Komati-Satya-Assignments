@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import './CategoryStyles.css'
@@ -12,6 +12,8 @@ function Category() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
   const [originalCategory, setOriginalCategory] = useState([]);
+  const {userId} =useParams()
+  console.log(userId)
   useEffect(() => {
     getCategories();
   }, []);

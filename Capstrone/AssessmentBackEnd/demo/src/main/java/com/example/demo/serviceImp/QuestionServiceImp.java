@@ -100,6 +100,7 @@ public class QuestionServiceImp implements QuestionsService {
             qu.setOption4(que.getOption4());
             qu.setOption3(que.getOption3());
             qu.setQuestion(que.getQuestion());
+            qu.setQuestionId(que.getQid());
             qd.add(qu);
         }
         return qd;
@@ -161,7 +162,7 @@ public class QuestionServiceImp implements QuestionsService {
     public final List<QuestionsDto> findQueById(final int id) {
         if (qr.findAll().size() != 0) {
             if (qr.findQueById(id).size() != 0) {
-                List<Questions> l = qr.findAll();
+                List<Questions> l = qr.findQueById(id);
                 List<QuestionsDto> ld = convertToDto(l);
                 return ld;
             } else {
@@ -192,6 +193,7 @@ public class QuestionServiceImp implements QuestionsService {
                 qu.setOption4(que.getOption4());
                 qu.setOption3(que.getOption3());
                 qu.setQuestion(que.getQuestion());
+                qu.setQuestionId(que.getQid());
                 return Optional.of(qu);
             } else {
                 throw new NotFoundException(

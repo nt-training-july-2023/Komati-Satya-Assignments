@@ -93,3 +93,19 @@ button {
         margin-top: 15px;
     }
 }
+
+.show-password2{
+    position:absolute;
+    top:65%;
+    right: 16px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+    font-size: medium;
+    width: 10px;
+  }
+  .password-container2{
+    position: relative;
+  }

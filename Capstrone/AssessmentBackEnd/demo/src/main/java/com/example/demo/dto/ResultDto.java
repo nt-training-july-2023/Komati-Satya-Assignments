@@ -60,4 +60,8 @@ public class ResultDto {
      * stores user id.
      */
     private int userId;
+    /**
+     * total questions.
+     */
+    private int totalQuestions;
 }

@@ -66,7 +66,7 @@ const Login = () => {
             try {
                 const response = await axios.post('http://localhost:6002/login', loginData);
 
-                localStorage.setItem("userRole", response.data.User_Information.role);
+                
                 console.log(response)
 
                 if (response.data.message === "password must be same") {
@@ -85,6 +85,7 @@ const Login = () => {
                     });
                 } else {
                     if (response?.data.User_Information.role === "Admin") {
+                        localStorage.setItem("userRole", response.data.User_Information.role);
                         await Swal.fire({
                             title: 'Login Success',
                             text: 'Correct credentials',
@@ -95,6 +96,7 @@ const Login = () => {
                         navigate(`/UserDashBoard?data=${JSON.stringify(response.data)}`);
 
                     } else if (response?.data.User_Information.role === "student") {
+                        localStorage.setItem("userRole", response.data.User_Information.role);
                         await Swal.fire({
                             title: 'Login Success',
                             text: 'Correct credentials',

@@ -91,7 +91,14 @@
   .heading {
     font-size: 20px;
   }
-
+  .show-password {
+   
+      margin-right: -17px;
+      font-size: 0.8rem; 
+      margin-top: 10px;
+    }
+ 
+  
   .data {
     width: 80%;
     outline: auto;
@@ -119,8 +126,10 @@
     min-height: auto;
     height: 100vh;
   }
-  .show-password{
-    right: 20px;
+  .show-password {
+    margin-right: -17px;
+    font-size: 0.8rem; 
+    margin-top: 10px;
   }
 
   .loginData {

@@ -48,4 +48,8 @@ public class QuestionsDto {
      * quiz id.
      */
     private int quizId;
+    /**
+     * questionId
+     */
+    private int questionId;
 }

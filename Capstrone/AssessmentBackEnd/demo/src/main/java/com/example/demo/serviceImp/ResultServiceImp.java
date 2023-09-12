@@ -94,6 +94,7 @@ public class ResultServiceImp implements ResultService {
         fr.setCategoryId(sr.getCategoryId());
         fr.setCategoryName(sr.getCategoryName());
         fr.setEmail(sr.getEmail());
+        fr.setTotalNoOfQuestions(sr.getTotalQuestions());
         if (qr.findQuizByName(fr.getQuizTopic()).isPresent()) {
             if (cr.findByCategoryName(fr.getCategoryName()).isPresent()) {
                     f.save(fr);

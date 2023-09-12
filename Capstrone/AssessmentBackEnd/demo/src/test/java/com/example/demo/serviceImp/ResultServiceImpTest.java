@@ -48,7 +48,7 @@ class ResultServiceImpTest {
     @Test
     void testAddResult() {
         ResultDto sr = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
-                "Java",97,9,10,1);
+                "Java",97,9,10,1,12);
         Student student=new Student();
         student.setEmail("satya@nucleusteq.com");
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.of(student));
@@ -87,7 +87,7 @@ class ResultServiceImpTest {
     @Test
     void testAddQuizNotFoundExcetion() {
         ResultDto sr = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
-                "Java",97,9,10,1);
+                "Java",97,9,10,1,12);
         Student student=new Student();
         student.setEmail("satya@nucleusteq.com");
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.of(student));
@@ -113,7 +113,7 @@ class ResultServiceImpTest {
     @Test
     void testAddCategoryNotPresent() {
         ResultDto sr = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
-                "Java",97,9,10,1);
+                "Java",97,9,10,1,12);
         Student student=new Student();
         student.setEmail("satya@nucleusteq.com");
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.of(student));

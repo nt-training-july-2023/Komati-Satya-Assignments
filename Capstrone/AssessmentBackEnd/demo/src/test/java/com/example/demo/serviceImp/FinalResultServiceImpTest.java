@@ -89,7 +89,7 @@ class FinalResultServiceImpTest {
         
         int studentId=1;
         ResultDto finalDto = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
-                "Java",97,9,10,1);
+                "Java",97,9,10,1,12);
         FinalRes finalRess=new FinalRes();
         finalRess.setCategoryName("java");
         finalRess.setDateAndTime("23-10-23");

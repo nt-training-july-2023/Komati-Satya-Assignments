@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import './RegistrationStyles.css'
-
+import {FaEye,FaEyeSlash} from 'react-icons/fa';
 const Registration = () => {
-
+  const[showPassword,setShowPassword]=useState("true");
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
@@ -24,7 +24,9 @@ const Registration = () => {
   const changeData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
+  const togglePassword=()=>{
+    setShowPassword(!showPassword);
+}
   const validateForm = () => {
     const validationErrors = {};
 
@@ -206,12 +208,26 @@ const Registration = () => {
             <label className="side">Email</label><br /><br />
             <input className="values" type="email" placeholder="enter a email" name="email" value={formData.email} onChange={changeData} /><br /><br />
 
-            <label className="side">Password</label><br /><br />
-            <input className="values" type="password" placeholder="enter a password" name="password" value={formData.password} onChange={changeData} /><br /><br />
+            {/* <label className="side">Password</label><br /><br />
+            <input className="values" type="password" placeholder="enter a password" name="password" value={formData.password} onChange={changeData} /><br /><br /> */}
+              <div className="password-container2">
+                        <label className="side">Password</label><br /><br />
+                        <input className="values" type={showPassword ? 'password' : 'text'} name="password" placeholder="enter a password" value={formData.password} onChange={changeData} /><br />
+                        <button className="show-password2" type="button" onClick={togglePassword}>
 
-            <label className="side">Confirm Password</label><br /><br />
-            <input className="values" type="password" placeholder="enter a confirm password" name="confirmPassword" value={formData.confirmPassword} onChange={changeData} /><br /><br />
+                            {showPassword ? <FaEyeSlash/> :<FaEye/>}
+                        </button>
+                        </div>
+            {/* <label className="side">Confirm Password</label><br /><br />
+            <input className="values" type="password" placeholder="enter a confirm password" name="confirmPassword" value={formData.confirmPassword} onChange={changeData} /><br /><br /> */}
+             <div className="password-container2">
+                        <label className="side">Confirm Password</label><br /><br />
+                        <input className="values" type={showPassword ? 'password' : 'text'} name="confirmPassword" placeholder="enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
+                        <button className="show-password2" type="button" onClick={togglePassword}>
 
+                            {showPassword ? <FaEyeSlash/> :<FaEye/>}
+                        </button>
+                        </div>
             <label className="side">DateOfBirth</label><br /><br />
             <input className="values" type="Date" placeholder="enter a date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} /><br /><br />
 

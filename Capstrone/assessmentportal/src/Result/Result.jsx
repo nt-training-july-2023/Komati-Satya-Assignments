@@ -22,6 +22,9 @@ const Result=()=>{
     try {
       const response = await axios.get('http://localhost:6002/finalResult');
       console.log(response)
+      if(response.data.message==="No results are there"){
+        <h1>No results</h1>
+      }
       setResult(response.data.Result_Information || []);
       setOriginalResult(response.data.Result_Information || []);
     } catch (error) {
@@ -34,6 +37,9 @@ const Result=()=>{
     try {
       const response = await axios.get(`http://localhost:6002/finalResult/${userId}`);
       console.log(response)
+      if(response.data.message=="No user is there"){
+        <h1>No results</h1>
+      }
       setResult(response.data.User_Information || []);
       setOriginalResult(response.data.User_Information || []);
     } catch (error) {
