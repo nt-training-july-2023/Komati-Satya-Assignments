@@ -97,6 +97,11 @@ const Login = () => {
 
                     } else if (response?.data.User_Information.role === "student") {
                         localStorage.setItem("userRole", response.data.User_Information.role);
+                        localStorage.setItem("userEmail",response.data.User_Information.email);
+                        localStorage.setItem("userName",response.data.User_Information.userName);
+                        localStorage.setItem("userId",response.data.User_Information.userId);
+                        console.log(response.data.User_Information.userId)
+
                         await Swal.fire({
                             title: 'Login Success',
                             text: 'Correct credentials',

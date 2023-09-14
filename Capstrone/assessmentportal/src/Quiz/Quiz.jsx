@@ -8,15 +8,18 @@ import { useParams } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
 function Quiz() {
   const { categoryId } = useParams();
-  // console.log(categoryId)
   const verifyRole = localStorage.getItem('userRole');
   const [quiz, setQuiz] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [text, setText] = useState("");
   const [originalQuiz, setOriginalQuiz] = useState([]);
+  const [disabled,setDisabled]=useState("false");
+  const [quizData,setQuizData]=useState([]);
+  const verifyUserId=localStorage.getItem('userId')
   useEffect(() => {
     {
       getQuiz();
+      getResult();
     }
   }, [categoryId]);
   const getQuiz = async () => {
@@ -31,6 +34,22 @@ function Quiz() {
       setIsLoading(false);
     }
   };
+  const getResult = async () => {
+    try {
+      const response = await axios.get(`http://localhost:6002/finalResult/${verifyUserId}`);
+      
+      if(response.data.message=="No user is there"){
+        <h1>No results</h1>
+      }
+      setQuizData(response.data.User_Information || []);
+      
+    } catch (error) {
+      console.error('An error occurred:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+  console.log(quizData)
   const getQuizes = async () => {
     try {
       const response = await axios.get(`http://localhost:6002/quiz`);
@@ -88,6 +107,71 @@ function Quiz() {
       navigate(-1);
     }
   }
+  console.log(quizData.quizName)
+  const handleTakeTest=async(topicName,quizId)=>{
+ 
+    console.log(quizData.quizName)
+    const hasAttempted = quizData.some(data => data.quizName === topicName);
+    if(hasAttempted){
+      await Swal.fire({
+        title: 'Warning',
+        text: 'You already taken the test',
+        icon: 'warning',
+        confirmButtonText: 'Ok'
+    });
+    }
+    else{
+    { localStorage.setItem('quizName', topicName)}
+    
+  //   await Swal.fire({
+  //     title: 'Add Quiz',
+  //     text: 'Added Quiz',
+  //     icon: 'success',
+  //     confirmButtonText: 'Ok'
+  // });
+  // navigate(`/Test/${quizId}`);
+  Swal.fire({
+    title: 'Instructions',
+    background:'#f5f2f2',
+    showDenyButton: true,
+    confirmButtonText: 'Yes',
+    denyButtonText: 'No',
+    heightAuto: false,
+    customClass: {
+      actions: 'my-actions',
+      cancelButton: 'order-1 right-gap',
+      confirmButton: 'order-2',
+      denyButton: 'order-3',
+    },
+    onOpen: (modalElement) => {
+      modalElement.querySelector('.swal2-content').style.overflowY = 'auto';
+    },
+    html: `
+      <div style="background-color: #f5f2f2;">
+        <p>Here are the quiz instructions</p>
+        <ul style="background-color:#f5f2f2">
+          <li>1. Once you start the quiz you can't go to back.</li>
+          <li>2. The quiz stopps once the timer runs out.</li>
+          <li>3. No negative marking for wrong answers. </li>
+          <li>4. You can attempt the quiz only once</li>
+          <li>5. Questions are of Multiple Choice</li?
+        </ul>
+      </div>
+    `
+  }).then((result) => {
+    if (result.isConfirmed) {
+      navigate(`/Test/${quizId}`);
+     
+     
+    } else if (result.isDenied) {
+    
+    }
+  });
+  
+  console.log(quizData)
+ }
+
+  }
   return (
     <div className="categoryData">
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
@@ -130,13 +214,16 @@ function Quiz() {
                       <td>{item.topicDescription}</td>
                       <td>{item.maxMarks}</td>
                       <td>{item.passMarks}</td>
+                      { localStorage.setItem('passMarks',item.passMarks )}
                       {verifyRole === 'Admin' && <>
                         <td><button className="deleteData" type="button" onClick={() => deleteData(item.quizId)}>Delete</button></td>
                         <td><Link to={`/UpdateQuiz/${item.quizId}`} className="updateData">Update</Link></td>
                         <td><Link to={`/Questions/${item.quizId}`} className="updateData">view Questions</Link></td>
                         </>}
+                        
                       {verifyRole === 'student' && <>
-                        <td><Link to={`/Quiz/${item.quizId}`} className="updateData">Take Test</Link></td></>}
+                     <td><Link to="#" className="updateData" onClick={()=>handleTakeTest(item.topicName,item.quizId)}>Take Test</Link></td></>}
+
                     </tr>
                   ))}
                 </tbody>

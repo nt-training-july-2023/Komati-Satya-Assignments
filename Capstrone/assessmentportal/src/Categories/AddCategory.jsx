@@ -88,6 +88,14 @@ const AddCategory = () => {
                 setErrors({});
             axios.put(`http://localhost:6002/cat/${categoryId}`, categoryData)
               .then((response) => {
+                if(response.data.status==207){
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Category Already present',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                      });
+                }
                 if (response.data.message === "succcessfully update the data") {
                   Swal.fire({
                     title: 'Updating data',

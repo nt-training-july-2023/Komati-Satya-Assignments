@@ -71,7 +71,11 @@ function Category() {
       navigate(-1);
     }
   }
+  const handleViewTopic=(categoryName)=>{
+    { localStorage.setItem('categoryName', categoryName)}
+  }
   return (
+    <div className="App">
     <div className="categoryData">
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
@@ -113,7 +117,9 @@ function Category() {
                         <td><button className="deleteData" type="button" onClick={() => deleteData(item.categoryId)}>Delete</button></td>
                         <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData">Update</Link></td></>}
                         {verifyRole === 'Admin' || verifyRole === 'student' ? (
-                  <td><Link to={`/Quiz/${item.categoryId}`} className="updateData">View Quiz Topics</Link></td>
+                  <td><Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={()=>handleViewTopic(item.categoryName)}>
+                   
+                    View Quiz Topics</Link></td>
 ) : (
   <></>
 )}
@@ -125,6 +131,7 @@ function Category() {
             </div>
            )} 
         </> : <ErrorPage />}
+    </div>
     </div>
   );
 }

@@ -16,6 +16,7 @@ import Student from './User/Students';
 import Result from './Result/Result';
 import Questions from './Questions/Questions';
 import AddQuestions from './Questions/AddQuestions';
+import Test from './Questions/Test';
 
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Route path="/Questions/:quizId" element={<Questions/>}></Route>
         <Route path="/AddQuestion/:quizId" element={<AddQuestions/>}></Route>
         <Route path="/UpdateQuestion/:question" element={<AddQuestions/>}></Route>
+        <Route path="/Test/:quizId" element={<Test/>}></Route>
        </Routes>
      </BrowserRouter>
     </div>

@@ -31,39 +31,26 @@ const Questions=()=>{
       setIsLoading(false);
     }
   };
-//   const getQuizes = async () => {
-//     try {
-//       const response = await axios.get(`http://localhost:6002/quiz`);
-//       console.log(response)
-//       setQuiz(response.data.Quiz_Information || []);
-//       setOriginalQuiz(response.data.Quiz_Information || []);
-//     } catch (error) {
-//       console.error('An error occurred:', error);
-//     } finally {
-//       setIsLoading(false);
-//     }
-//   };
-//   const deleteData = async (id) => {
-//     try {
-//     const response = await axios.delete(`http://localhost:6002/quiz/${id}`);
-//       console.log(response);
-//       if (response.data.message === "succcessfully delete the data") {
-//         Swal.fire({
-//           title: 'Deleting data',
-//           text: 'Successfully deleted data',
-//           icon: 'success',
-//           confirmButtonText: 'Ok'
-//         });
-//       }
-//       getQuiz();
-//     }
-//     catch (error) {
-//       console.log(error);
-//     }
-//   };
-  const deleteData=()=>{
 
-  }
+  const deleteData = async (id) => {
+    try {
+    const response = await axios.delete(`http://localhost:6002/que/${id}`);
+      console.log(response);
+      if (response.data.message === "succcessfully delete the data") {
+        Swal.fire({
+          title: 'Deleting data',
+          text: 'Successfully deleted data',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        });
+      }
+      getQuestions();
+    }
+    catch (error) {
+      console.log(error);
+    }
+  };
+ 
   const navigate = useNavigate();
   const addData = () => {
      navigate(`/AddQuestion/${quizId}`);
@@ -139,12 +126,11 @@ const Questions=()=>{
                       <td>{item.correctOption}</td>
                      
                       {verifyRole === 'Admin' && <>
-                        <td><button className="deleteData" type="button" onClick={() => deleteData(item.quizId)}>Delete</button></td>
+                        <td><button className="deleteData" type="button" onClick={() => deleteData(item.questionId)}>Delete</button></td>
                         <td><Link to={`/UpdateQuestion/${item.question}`} className="updateData">Update</Link></td>
 
                         </>}
                      
-                       
                     </tr>
                   ))}
                 </tbody>

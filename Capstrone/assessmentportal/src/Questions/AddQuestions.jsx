@@ -3,7 +3,7 @@ import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import './Questions.css';
 import ErrorPage from "../ErrorPage";
 
 const AddQuestions=()=>{
@@ -68,7 +68,8 @@ const AddQuestions=()=>{
                 option3,
                 option4,
                 correctOption,
-                questionId,quizId
+                questionId,
+                quizId
             });
             setQuestionData2({
                 question,
@@ -85,46 +86,57 @@ const AddQuestions=()=>{
         }
       }, [quizId]);
     const addQuestionData = async (e) => {
-
-
-//        if(quizId){
-//             e.preventDefault();
+     if(question){
+            e.preventDefault();
+           const validationErrors = {};
         
-            
-//             const validationErrors = {};
+             if (!questionData2.question) {
+                 validationErrors.question = 'queation name Required';
+             }
+             if (!questionData2.option1) {
+                 validationErrors.option1 = 'option1 Required';
+             }
+             if (!questionData2.option2) {
+                validationErrors.option2 = 'option2 Required';
+            }
+            if (!questionData2.option3) {
+                validationErrors.option3 = 'option3 Required';
+            }
+            if (!questionData2.option4) {
+                validationErrors.option4 = 'option4 Required';
+            }
+            if (!questionData2.correctOption) {
+                validationErrors.correctOption = 'correctOption Required';
+            }
         
-//              if (!quizData.topicName) {
-//                  validationErrors.topicName = 'quiz name Required';
-//              }
-//              if (!quizData.topicDescription) {
-//                  validationErrors.topicDescription = 'quiz description Required';
-//              }
-//              if (!quizData.maxMarks) {
-//                  validationErrors.maxMarks = 'max marks Required';
-//              }
-//              if (!quizData.passMarks) {
-//                  validationErrors.passMarks = 'pass marks Required';
-//              }
+             if (Object.keys(validationErrors).length > 0) {
+                 setErrors(validationErrors);
+                 // if (validationErrors.topicName && validationErrors.topicDescription && validationErrors.maxMarks &&  validationErrors.passMarks ) {
+                 if(validationErrors){   
+                 await Swal.fire({
+                         title: 'Error!',
+                         text: 'All question data required',
+                         icon: 'error',
+                         confirmButtonText: 'Ok'
+                     });
+                 }
         
-//              if (Object.keys(validationErrors).length > 0) {
-//                  setErrors(validationErrors);
-//                  // if (validationErrors.topicName && validationErrors.topicDescription && validationErrors.maxMarks &&  validationErrors.passMarks ) {
-//                  if(validationErrors){   
-//                  await Swal.fire({
-//                          title: 'Error!',
-//                          text: 'All quiz data required',
-//                          icon: 'error',
-//                          confirmButtonText: 'Ok'
-//                      });
-//                  }
-        
-//              } else {
-        if(question){
+             }
+              else {
+       
                 setErrors({});
                 console.log(questionData2)
             axios.put(`http://localhost:6002/que/${questionData.questionId}`, questionData2)
               .then((response) => {
                 console.log(response)
+                if(response.data.status==207){
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'questions Already present',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                      });
+                }
                 if (response.data.message === "succcessfully update the data") {
                   Swal.fire({
                     title: 'Updating data',
@@ -136,51 +148,57 @@ const AddQuestions=()=>{
                 }
               })
             
-        
             }
-
+            }
+        
       
-//   else{
-//         e.preventDefault();
-// //        console.log(quizData)
-//        const validationErrors = {};
+  else{
+        e.preventDefault();
 
-//         if (!quizData.topicName) {
-//             validationErrors.topicName = 'quiz name Required';
-//         }
-//         if (!quizData.topicDescription) {
-//             validationErrors.topicDescription = 'quiz description Required';
-//         }
-//         if (!quizData.maxMarks) {
-//             validationErrors.maxMarks = 'max marks Required';
-//         }
-//         if (!quizData.passMarks) {
-//             validationErrors.passMarks = 'pass marks Required';
-//         }
+       const validationErrors = {};
 
-//         if (Object.keys(validationErrors).length > 0) {
-//             setErrors(validationErrors);
-//             // if (validationErrors.topicName && validationErrors.topicDescription && validationErrors.maxMarks &&  validationErrors.passMarks ) {
-//             if(validationErrors){   
-//             await Swal.fire({
-//                     title: 'Error!',
-//                     text: 'All quiz data required',
-//                     icon: 'error',
-//                     confirmButtonText: 'Ok'
-//                 });
-//             }
+       if (!questionData2.question) {
+        validationErrors.question = 'queation name Required';
+    }
+    if (!questionData2.option1) {
+        validationErrors.option1 = 'option1 Required';
+    }
+    if (!questionData2.option2) {
+       validationErrors.option2 = 'option2 Required';
+   }
+   if (!questionData2.option3) {
+       validationErrors.option3 = 'option3 Required';
+   }
+   if (!questionData2.option4) {
+       validationErrors.option4 = 'option4 Required';
+   }
+   if (!questionData2.correctOption) {
+       validationErrors.correctOption = 'correctOption Required';
+   }
 
-//         } else {
-//         setErrors({});
-else{
+    if (Object.keys(validationErrors).length > 0) {
+        setErrors(validationErrors);
+        // if (validationErrors.topicName && validationErrors.topicDescription && validationErrors.maxMarks &&  validationErrors.passMarks ) {
+        if(validationErrors){   
+        await Swal.fire({
+                title: 'Error!',
+                text: 'All question data required',
+                icon: 'error',
+                confirmButtonText: 'Ok'
+            });
+        }
+
+        } else {
+        setErrors({});
+
         const response = await axios.post('http://localhost:6002/que', requestData);
         console.log(response.data.message);
          
         if (response.data.message === "succcessfully add the data") {
             console.log("jygd")
             await Swal.fire({
-                title: 'Add Quiz',
-                text: 'Added Quiz',
+                title: 'Add Question',
+                text: 'Added Question',
                 icon: 'success',
                 confirmButtonText: 'Ok'
             });
@@ -195,6 +213,7 @@ else{
             });
         }
     }
+}
 }
 const cancelAddQuestion = () => {
     Swal.fire({
@@ -211,22 +230,23 @@ const cancelAddQuestion = () => {
     }).then((result) => {
         if (result.isConfirmed) {
             Swal.fire('Changes are not saved', '', 'info')
-            navigate(`/Questions/${quizId}`);
+            navigate(`/Questions/${questionData.quizId}`);
 
         } else if (result.isDenied) {
 
         }
     })
 }
+    
     return (
         <div className="login3">
            
             {verifyRole === 'Admin' ? (
                 <div className="loginData3">
                     <h1 className="heading3">
-                        {quizId?  "Add Quiz": "Update Quiz" }</h1>
+                        {quizId?  "Add Question": "Update Question" }</h1>
                     <form>
-                        <div className="signin3">
+                        <div className="signin4">
                             <label className="head3">Question</label><br /><br />
                             <input
                                 className="data3"
@@ -282,7 +302,7 @@ const cancelAddQuestion = () => {
                                 onChange={changeData}
                             /><br /><br />
                             <button className="btn4" type="button" onClick={addQuestionData}>
-                            {quizId ? "Add Quiz" :"update Quiz" }
+                            {quizId ? "Add Question" :"update Question" }
                             </button>
                             <button className="btn5" type="button" onClick={cancelAddQuestion}>Cancel</button>
                         </div>
