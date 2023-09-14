@@ -2,7 +2,7 @@ package com.example.demo.serviceImp;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -99,14 +99,16 @@ public class FinalResultServiceImp implements FinalResService {
         }
       return r;
 }
+     /**
+      * find all methods.
+      */
     @Override
-    public List<ResultDto> findAll() {
-       if(fs.findAll().size()!= 0) {
+    public final List<ResultDto> findAll() {
+       if (fs.findAll().size() != 0) {
            List<FinalRes> finalResult = fs.findAll();
            List<ResultDto> resultDto = convertToDto(finalResult);
            return resultDto;
-       }
-       else {
+       } else {
            throw new AllNotFoundException("No results are there");
        }
     }

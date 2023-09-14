@@ -41,6 +41,10 @@ public class FinalResultController {
                     HttpStatus.MULTI_STATUS, "Result_Information", null);
         }
     }
+    /**
+     * find all students result.
+     * @return response
+     */
     @GetMapping("/finalResult")
     public final ResponseEntity<Object> findAllResult() {
         try {

@@ -42,7 +42,7 @@ public class CategoryServiceImp implements CategoryService {
             CategoryDto cd = new CategoryDto();
             cd.setCategoryDescription(c.getCategoryDescription());
             cd.setCategoryName(c.getCategoryName());
-            cd.setCategoryId(c.getCategoryId() );
+            cd.setCategoryId(c.getCategoryId());
             a.save(c);
             return cd;
         } else {

@@ -28,7 +28,7 @@ public class Quiz {
     /**
      * stores the topic name.
      */
-    @Column(nullable = false)
+    @Column(nullable = false , unique=true)
     private String topicName;
     /**
      * stores the topic description.

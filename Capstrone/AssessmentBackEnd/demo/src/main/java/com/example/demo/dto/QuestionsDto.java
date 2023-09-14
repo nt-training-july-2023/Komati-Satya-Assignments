@@ -49,7 +49,7 @@ public class QuestionsDto {
      */
     private int quizId;
     /**
-     * questionId
+     * questionId.
      */
     private int questionId;
 }

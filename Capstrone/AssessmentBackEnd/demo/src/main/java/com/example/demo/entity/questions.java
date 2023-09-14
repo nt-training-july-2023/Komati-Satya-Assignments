@@ -28,7 +28,7 @@ public class Questions {
     /**
      * stores the question.
      */
-    @Column(nullable = false)
+    @Column(nullable = false , unique=true)
     private String question;
     /**
      * stores the option1.
