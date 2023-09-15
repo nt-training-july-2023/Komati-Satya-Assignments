@@ -15,16 +15,12 @@ const AddQuiz = () => {
     const [quizData, setQuizData] = useState({
         topicName: "",
         topicDescription: "",
-        maxMarks: "",
-        passMarks: "",
         categoryId:parseInt(categoryId, 10)
     });
     const requestData = {
       
         topicName: quizData.topicName,
         topicDescription: quizData.topicDescription,
-        maxMarks: quizData.maxMarks,
-        passMarks: quizData.passMarks,
         cate: {
             categoryId: quizData.categoryId
         }
@@ -71,12 +67,6 @@ const AddQuiz = () => {
              }
              if (!quizData.topicDescription) {
                  validationErrors.topicDescription = 'quiz description Required';
-             }
-             if (!quizData.maxMarks) {
-                 validationErrors.maxMarks = 'max marks Required';
-             }
-             if (!quizData.passMarks) {
-                 validationErrors.passMarks = 'pass marks Required';
              }
         
              if (Object.keys(validationErrors).length > 0) {
@@ -130,12 +120,7 @@ const AddQuiz = () => {
         if (!quizData.topicDescription) {
             validationErrors.topicDescription = 'quiz description Required';
         }
-        if (!quizData.maxMarks) {
-            validationErrors.maxMarks = 'max marks Required';
-        }
-        if (!quizData.passMarks) {
-            validationErrors.passMarks = 'pass marks Required';
-        }
+        
 
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
@@ -225,24 +210,8 @@ const cancelAddQuiz = () => {
                                 placeholder="Enter topic description"
                                 onChange={changeData}
                             ></textarea>
-                            <label className="head3">Max Marks</label><br /><br />
-                            <input
-                                className="data3"
-                                type="text"
-                                name="maxMarks"
-                                value={quizData.maxMarks}
-                                placeholder="Enter max marks"
-                                onChange={changeData}
-                            /><br /><br />
-                            <label className="head3">Pass Marks</label><br /><br />
-                            <input
-                                className="data3"
-                                type="text"
-                                name="passMarks"
-                                value={quizData.passMarks}
-                                placeholder="Enter pass marks"
-                                onChange={changeData}
-                            /><br /><br />
+                           
+                            <br /><br />
                             <button className="btn4" type="button" onClick={addQuizData}>
                             {quizId ? "update Quiz" : "Add Quiz"}
                             </button>

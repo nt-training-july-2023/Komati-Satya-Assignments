@@ -86,6 +86,7 @@ const Login = () => {
                 } else {
                     if (response?.data.User_Information.role === "Admin") {
                         localStorage.setItem("userRole", response.data.User_Information.role);
+                        localStorage.setItem("userId",response.data.User_Information.userId);
                         await Swal.fire({
                             title: 'Login Success',
                             text: 'Correct credentials',
@@ -93,7 +94,8 @@ const Login = () => {
                             confirmButtonText: 'Ok'
                         });
                         // navigate('/AdminDashBoard');
-                        navigate(`/UserDashBoard?data=${JSON.stringify(response.data)}`);
+                        // navigate(`/UserDashBoard?data=${JSON.stringify(response.data)}`);
+                        navigate('/UserDashBoard')
 
                     } else if (response?.data.User_Information.role === "student") {
                         localStorage.setItem("userRole", response.data.User_Information.role);
@@ -108,8 +110,8 @@ const Login = () => {
                             icon: 'success',
                             confirmButtonText: 'Ok'
                         });
-                        // navigate('/UserDashBoard');
-                        navigate(`/UserDashBoard?data=${JSON.stringify(response.data)}`);
+                        navigate('/UserDashBoard');
+                       
                     }
 
                 }

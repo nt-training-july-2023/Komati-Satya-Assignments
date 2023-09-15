@@ -4,26 +4,30 @@ import './AdminStyles.css';
 import Swal from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
-
+import { useEffect,useState } from "react";
+import axios from "axios";
 
 const UserDashBoard = () => {
 
   const navigate = useNavigate();
-
-  //   // const data = JSON.parse(dataString);
-  //   const data = dataString ? JSON.parse(dataString) : { User_Information: {} };
-  //   // const userInformation = data && data.User_Information;
-  //   const userInformation = data.User_Information || {}
-  //   const { userName, email,userId,role,phoneNumber,dateOfBirth,gender } = data?.User_Information || {};
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  const dataString = searchParams.get('data');
-  const data = JSON.parse(dataString);
+  const [data, setData] = useState([]);
+  const verifyUserId = localStorage.getItem('userId');
   console.log(data)
+  useEffect(() => {
+    getStudent();
+  }, []);
 
-  // Ensure that data and User_Information exist before accessing properties
-  const userInformation = data?.User_Information || {};
-  const { userName, email, userId, role, phoneNumber, dateOfBirth, gender } = userInformation;
+  const getStudent = async () => {
+    try {
+      const response = await axios.get(`http://localhost:6002/student/${verifyUserId}`);
+      console.log(response.data);
+      console.log(response.data.User_Information)
+      setData(response.data.User_Information || []);
+      console.log(data)
+    } catch (error) {
+      console.error('An error occurred:', error);
+    }
+  };
   const verifyRole = localStorage.getItem('userRole');
   const logoutPage = () => {
     Swal.fire({
@@ -50,7 +54,7 @@ const UserDashBoard = () => {
 
   }
   const UpdateData = () => {
-    navigate(`/UserUpdate/${userId}`)
+    navigate(`/UserUpdate/${verifyUserId}`)
   }
 
   return (
@@ -67,7 +71,7 @@ const UserDashBoard = () => {
           <li><a href="/Result">Result</a></li>
           </>}
           {verifyRole=='student' && <>
-          <li><a href={`/Result/${userId}`}>Result</a></li>
+          <li><a href={`/Result/${verifyUserId}`}>Result</a></li>
           </>}
           <li><a className="logout" href="#" onClick={logoutPage}>Logout</a></li>
 
@@ -102,24 +106,24 @@ const UserDashBoard = () => {
           <table className="information">
             <tbody className="details">
               <tr>
-                <td> <strong>Name:</strong> {userName}<br /></td>
+                <td> <strong>Name:</strong> {data.userName}<br /></td>
               </tr>
 
               <tr>
-                <td><strong>UserId:</strong> {userId}<br /></td>
+                <td><strong>UserId:</strong> {data.userId}<br /></td>
               </tr>
               <tr>
-                <td> <strong>Email:</strong> {email}<br /></td>
+                <td> <strong>Email:</strong> {data.email}<br /></td>
               </tr>
               <tr>
-                <td> <strong>Gender:</strong> {gender}<br /></td>
+                <td> <strong>Gender:</strong> {data.gender}<br /></td>
               </tr>
               <tr>
-                <td><strong>PhoneNumber:</strong> {phoneNumber}<br /></td>
+                <td><strong>PhoneNumber:</strong> {data.phoneNumber}<br /></td>
               </tr>
 
               <tr>
-                <td><strong>Date Of Birth:</strong> {dateOfBirth}<br /></td>
+                <td><strong>Date Of Birth:</strong> {data.dateOfBirth}<br /></td>
               </tr>
             </tbody>
           </table>

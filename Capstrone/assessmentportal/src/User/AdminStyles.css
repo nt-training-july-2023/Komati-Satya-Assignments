@@ -4,7 +4,7 @@ ul {
   padding: 0;
   overflow: hidden;
   background-color: #5dcc5d;
-  height: 110px;
+  height: 130px;
 }
 
 .nav-bar {
@@ -54,7 +54,7 @@ li a:hover:not(.active) {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 20px auto;
   max-width: 320px;
-  min-height: 70vh;
+  min-height: 40vh;
 }
 
 .adminBackground h2 {
@@ -105,5 +105,6 @@ li a:hover:not(.active) {
 
   .adminBackground {
     max-width: 80%;
+ 
   }
 }

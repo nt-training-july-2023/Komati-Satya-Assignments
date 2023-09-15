@@ -70,19 +70,16 @@ const Questions=()=>{
   const backTo = () => {
     {
       verifyRole === 'Admin' &&
-      navigate(-1);
+      navigate('/UserDashBoard');
     }
-    {
-      verifyRole === 'student' &&
-      navigate(-1);
-    }
+   
   }
   return (
     <div className="categoryData">
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Questions Details</h1>
-          <button className="addButton" onClick={() => backTo()}>Back</button>
+          <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button>
           {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add Question</button>}
           <div className="searchContainer">
             <input

@@ -64,11 +64,11 @@ function Category() {
   const backTo = () => {
     {
       verifyRole === 'Admin' &&
-      navigate(-1);
+      navigate('/UserDashBoard');
     }
     {
       verifyRole === 'student' &&
-      navigate(-1);
+      navigate('/UserDashBoard');
     }
   }
   const handleViewTopic=(categoryName)=>{
@@ -80,7 +80,7 @@ function Category() {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Category Details</h1>
-          <button className="addButton" onClick={() => backTo()}>Back</button>
+          <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button>
           {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add category</button>}
           <div className="searchContainer">
             <input

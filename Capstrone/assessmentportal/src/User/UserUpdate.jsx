@@ -1,4 +1,4 @@
-
+import './UserUpdate.css';
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
@@ -61,6 +61,9 @@ const UserUpdate = () => {
         }
       });
   };
+  const cancelUpdate=()=>{
+    navigate('/UserDashBoard');
+  }
   console.log("sendData")
   console.log(sendData)
   return (
@@ -161,7 +164,9 @@ const UserUpdate = () => {
 
               <button className="btn2" type="button" onClick={handleUpdateCategory}>
                 Update Student Details
-             
+              </button>
+              <button className="btn3" type="button" onClick={cancelUpdate}>
+                Cancel
               </button>
             </div>
           </form>

@@ -43,7 +43,7 @@ function Student() {
   const backTo = () => {
     {
       verifyRole === 'Admin' &&
-      navigate(-1);
+      navigate('/UserDashBoard');
     }
    
   }
@@ -52,7 +52,7 @@ function Student() {
       {verifyRole === 'Admin' &&
         <>
           <h1 className="addHead">Students Details</h1>
-          <button className="addButton" onClick={() => backTo()}>Back</button>
+          <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button>
        
           <div className="searchContainer">
             <input

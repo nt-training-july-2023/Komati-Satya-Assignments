@@ -68,11 +68,11 @@ const Result=()=>{
   const backTo = () => {
     {
       verifyRole === 'Admin' &&
-      navigate(-1);
+      navigate('/UserDashBoard');
     }
     {
       verifyRole === 'student' &&
-      navigate(-1);
+      navigate('/UserDashBoard');
     }
   }
   return (
@@ -80,7 +80,7 @@ const Result=()=>{
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Student Result Details</h1>
-          <button className="addButton" onClick={() => backTo()}>Back</button>
+          <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button>
          
           <div className="searchContainer">
             <input
@@ -110,7 +110,6 @@ const Result=()=>{
                     <th>AttemptedQuestions</th>
                     <th>Maximum Marks</th>
                     <th>Obtained Marks</th>
-                    <th>Result</th>
                   </tr>
                 </thead>
                 <tbody className="bodyData">
@@ -126,7 +125,6 @@ const Result=()=>{
                       <td>{item.attemptedQuestions}</td>
                       <td>{item.maxMarks}</td>
                       <td>{item.obtainMarks}</td>
-                      <td>{item.result}</td>
                     
 
                     </tr>

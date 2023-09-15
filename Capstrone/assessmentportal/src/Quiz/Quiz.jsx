@@ -100,17 +100,17 @@ function Quiz() {
   const backTo = () => {
     {
       verifyRole === 'Admin' &&
-      navigate(-1);
+      navigate('/UserDashBoard');
     }
     {
       verifyRole === 'student' &&
-      navigate(-1);
+      navigate('/UserDashBoard');
     }
   }
   console.log(quizData.quizName)
   const handleTakeTest=async(topicName,quizId)=>{
  
-    console.log(quizData.quizName)
+    // console.log(quizData.quizName)
     const hasAttempted = quizData.some(data => data.quizName === topicName);
     if(hasAttempted){
       await Swal.fire({
@@ -154,7 +154,9 @@ function Quiz() {
           <li>2. The quiz stopps once the timer runs out.</li>
           <li>3. No negative marking for wrong answers. </li>
           <li>4. You can attempt the quiz only once</li>
-          <li>5. Questions are of Multiple Choice</li?
+          <li>5. Questions are of Multiple Choice</li>
+          <li>6. Each Question carry one mark</li>
+
         </ul>
       </div>
     `
@@ -177,7 +179,7 @@ function Quiz() {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Quiz Details</h1>
-          <button className="addButton" onClick={() => backTo()}>Back</button>
+          <button className="addButton" onClick={() => backTo()}>BackToDahBoard</button>
           {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add Quiz</button>}
           <div className="searchContainer">
             <input
@@ -200,8 +202,7 @@ function Quiz() {
                   <tr className="rowData">
                     <th>Quiz Name</th>
                     <th>Quiz Description</th>
-                    <th>Maximum Marks</th>
-                    <th>Pass Marks</th>
+                    
                     {/* <th>Delete</th>
               <th>Update</th> */}
                   </tr>
@@ -212,9 +213,6 @@ function Quiz() {
                     <tr key={item.quizId}>
                       <td>{item.topicName}</td>
                       <td>{item.topicDescription}</td>
-                      <td>{item.maxMarks}</td>
-                      <td>{item.passMarks}</td>
-                      { localStorage.setItem('passMarks',item.passMarks )}
                       {verifyRole === 'Admin' && <>
                         <td><button className="deleteData" type="button" onClick={() => deleteData(item.quizId)}>Delete</button></td>
                         <td><Link to={`/UpdateQuiz/${item.quizId}`} className="updateData">Update</Link></td>
