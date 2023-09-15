@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import './CategoryStyles.css'
 import ErrorPage from "../ErrorPage";
+import CategoryApi from "../APIs/CategoryApi";
 function Category() {
   const verifyRole = localStorage.getItem('userRole');
   const [category, setCategory] = useState([]);
@@ -18,19 +19,23 @@ function Category() {
     getCategories();
   }, []);
   const getCategories = async () => {
-    try {
-      const response = await axios.get('http://localhost:6002/cat');
+    
+      // const response = await axios.get('http://localhost:6002/cat');
+
+       CategoryApi.getAllCategories().then(
+        response=>{
       setCategory(response.data.Category_Information || []);
       setOriginalCategory(response.data.Category_Information || []);
-    } catch (error) {
+    } ).catch (error=> {
       console.error('An error occurred:', error);
-    } finally {
+    } ).finally (()=>{
       setIsLoading(false);
-    }
+    })
   };
   const deleteData = async (id) => {
-    try {
-      const response = await axios.delete(`http://localhost:6002/cat/${id}`);
+   
+      // const response = await axios.delete(`http://localhost:6002/cat/${id}`);
+      CategoryApi.deleteCategory(id).then(response=>{
       console.log(response);
       if (response.data.message === "succcessfully delete the data") {
         Swal.fire({
@@ -41,11 +46,10 @@ function Category() {
         });
       }
       getCategories();
-    }
-    catch (error) {
+    }).catch (error=> {
       console.log(error);
-    }
-  };
+    })
+  }
   const navigate = useNavigate();
   const addData = () => {
     navigate('/AddCategory');

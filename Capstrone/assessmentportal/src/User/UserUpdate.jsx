@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import ErrorPage from "../ErrorPage";
+import UserApi from '../APIs/UserApi';
 
 const UserUpdate = () => {
   const verifyRole = localStorage.getItem('userRole');
@@ -22,8 +23,9 @@ const UserUpdate = () => {
 
   useEffect(() => {
 
-    axios
-      .get(`http://localhost:6002/student/${userId}`)
+    // axios
+    //   .get(`http://localhost:6002/student/${userId}`)
+    UserApi.getUserById(userId)
       .then((response) => {
         console.log(response)
         setSendData(response);
@@ -46,8 +48,9 @@ const UserUpdate = () => {
       });
   }, [userId]);
   const handleUpdateCategory = () => {
-    axios
-      .put(`http://localhost:6002/student/${userId}`, userData)
+    // axios
+    //   .put(`http://localhost:6002/student/${userId}`, userData)
+    UserApi.updateUser(userId,userData)
       .then((response) => {
         if (response.data.message === "successfully update the data") {
           Swal.fire({

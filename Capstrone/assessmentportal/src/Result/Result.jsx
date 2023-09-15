@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 import ErrorPage from "../ErrorPage";
+import FinalResultApi from "../APIs/FinalResultApi";
 const Result=()=>{
   const verifyRole = localStorage.getItem('userRole');
   const [result, setResult] = useState([]);
@@ -15,38 +16,39 @@ const Result=()=>{
   const {userId}=useParams();
   useEffect(() => {
 
-    {verifyRole === 'Admin' ? getAllResults() : getResult()}
+    {verifyRole === 'Admin' ? getAllResultss() : getResultt()}
 
   }, []);
-  const getAllResults = async () => {
-    try {
-      const response = await axios.get('http://localhost:6002/finalResult');
+  const getAllResultss =() => {
+  
+      //const response = await axios.get('http://localhost:6002/finalResult');
+      FinalResultApi.getAllResult().then(response=>{
       console.log(response)
       if(response.data.message==="No results are there"){
         <h1>No results</h1>
       }
       setResult(response.data.Result_Information || []);
       setOriginalResult(response.data.Result_Information || []);
-    } catch (error) {
+    } ).catch (error=> {
       console.error('An error occurred:', error);
-    } finally {
+    } ).finally(()=>{
       setIsLoading(false);
-    }
+    })
   };
-  const getResult = async () => {
-    try {
-      const response = await axios.get(`http://localhost:6002/finalResult/${userId}`);
+  const getResultt=() => {
+      //const response = await axios.get(`http://localhost:6002/finalResult/${userId}`);
+      FinalResultApi.getResultByStudentId(userId).then(response=>{
       console.log(response)
       if(response.data.message=="No user is there"){
         <h1>No results</h1>
       }
       setResult(response.data.User_Information || []);
       setOriginalResult(response.data.User_Information || []);
-    } catch (error) {
+    }). catch (error=>{
       console.error('An error occurred:', error);
-    } finally {
+    }).finally(()=> {
       setIsLoading(false);
-    }
+    })
   };
 
   const navigate = useNavigate();

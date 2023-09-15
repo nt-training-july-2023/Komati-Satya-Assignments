@@ -5,6 +5,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import './RegistrationStyles.css'
 import {FaEye,FaEyeSlash} from 'react-icons/fa';
+import UserApi from "../APIs/UserApi";
 const Registration = () => {
   const[showPassword,setShowPassword]=useState("true");
   const [formData, setFormData] = useState({
@@ -158,8 +159,9 @@ const Registration = () => {
       }
 
       else {
-        axios
-          .post('http://localhost:6002/student', formData)
+        // axios
+        //   .post('http://localhost:6002/student', formData)
+        UserApi.addUser(formData)
           .then((response) => {
             console.log(response)
             if (response.data.message === "successfully added data") {

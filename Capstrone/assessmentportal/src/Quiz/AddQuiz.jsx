@@ -3,8 +3,10 @@ import React, { useState,useEffect } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-
+import './QuizStyles.css'
 import ErrorPage from "../ErrorPage";
+import QuizApi from "../APIs/QuizApi";
+
 
 const AddQuiz = () => {
     const verifyRole = localStorage.getItem('userRole');
@@ -33,7 +35,8 @@ const AddQuiz = () => {
     }
     useEffect(() => {
         if(quizId){
-        axios.get(`http://localhost:6002/quiz/${quizId}`)
+        //axios.get(`http://localhost:6002/quiz/${quizId}`)
+       QuizApi.getQuiz(quizId)
           .then((response) => {
     
             console.log(response);
@@ -73,7 +76,7 @@ const AddQuiz = () => {
                  setErrors(validationErrors);
                  // if (validationErrors.topicName && validationErrors.topicDescription && validationErrors.maxMarks &&  validationErrors.passMarks ) {
                  if(validationErrors){   
-                 await Swal.fire({
+                 Swal.fire({
                          title: 'Error!',
                          text: 'All quiz data required',
                          icon: 'error',
@@ -84,7 +87,8 @@ const AddQuiz = () => {
              } else {
         
                 setErrors({});
-            axios.put(`http://localhost:6002/quiz/${quizId}`, quizData)
+           // axios.put(`http://localhost:6002/quiz/${quizId}`, quizData)
+           QuizApi.updateQuiz(quizId,quizData)
               .then((response) => {
                 if(response.data.status==207){
                     Swal.fire({
@@ -126,7 +130,7 @@ const AddQuiz = () => {
             setErrors(validationErrors);
             // if (validationErrors.topicName && validationErrors.topicDescription && validationErrors.maxMarks &&  validationErrors.passMarks ) {
             if(validationErrors){   
-            await Swal.fire({
+             Swal.fire({
                     title: 'Error!',
                     text: 'All quiz data required',
                     icon: 'error',
@@ -137,12 +141,13 @@ const AddQuiz = () => {
         } else {
         setErrors({});
 
-        const response = await axios.post('http://localhost:6002/quiz', requestData);
+       // const response = await axios.post('http://localhost:6002/quiz', requestData);
+       QuizApi.addQuiz(requestData).then(response=>{
         console.log(response.data.message);
          
         if (response.data.message === "succcessfully add the data") {
             console.log("jygd")
-            await Swal.fire({
+             Swal.fire({
                 title: 'Add Quiz',
                 text: 'Added Quiz',
                 icon: 'success',
@@ -151,16 +156,19 @@ const AddQuiz = () => {
             navigate(`/Quiz/${quizData.categoryId}`);
             
         } else if (response.data.message === "Topic is already exist,enter a new topic") {
-            await Swal.fire({
+            Swal.fire({
                 title: 'Error!',
                 text: 'Quiz already present',
                 icon: 'error',
                 confirmButtonText: 'Ok'
             });
         }
-    }
+    }).catch(error=>{
+        console.log(error)
+    })
 }
-    }
+}
+} 
 
 const cancelAddQuiz = () => {
     Swal.fire({
@@ -184,6 +192,7 @@ const cancelAddQuiz = () => {
         }
     })
 }
+    
     return (
         <div className="login3">
             {verifyRole === 'Admin' ? (

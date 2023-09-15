@@ -6,6 +6,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
 import { useEffect,useState } from "react";
 import axios from "axios";
+import UserApi from "../APIs/UserApi";
 
 const UserDashBoard = () => {
 
@@ -18,16 +19,17 @@ const UserDashBoard = () => {
   }, []);
 
   const getStudent = async () => {
-    try {
-      const response = await axios.get(`http://localhost:6002/student/${verifyUserId}`);
+      //const response = await axios.get(`http://localhost:6002/student/${verifyUserId}`);
+      UserApi.getUserById(verifyUserId).then(response=>{
       console.log(response.data);
       console.log(response.data.User_Information)
       setData(response.data.User_Information || []);
       console.log(data)
-    } catch (error) {
+    }).catch (error=> {
       console.error('An error occurred:', error);
-    }
+    })
   };
+
   const verifyRole = localStorage.getItem('userRole');
   const logoutPage = () => {
     Swal.fire({
@@ -45,6 +47,11 @@ const UserDashBoard = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.removeItem('userRole');
+        localStorage.removeItem('userEmail')
+        localStorage.removeItem('userName')
+        localStorage.removeItem('userId')
+        localStorage.removeItem('categoryName')
+        localStorage.removeItem('quizName')
         navigate('/')
 
       } else if (result.isDenied) {

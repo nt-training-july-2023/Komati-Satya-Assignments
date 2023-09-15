@@ -20,7 +20,7 @@
 }
 
 .signin3 {
-  max-width: 420px;
+  width: 420px;
   padding: 30px 20px;
   border-radius: 8px;
   background-color: rgb(131, 179, 131);
@@ -93,7 +93,7 @@
   }
 
   .signin3 {
-    max-width: 90%;
+    width: 90%;
     padding: 20px 10px;
   }
 

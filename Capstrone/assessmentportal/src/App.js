@@ -17,7 +17,7 @@ import Result from './Result/Result';
 import Questions from './Questions/Questions';
 import AddQuestions from './Questions/AddQuestions';
 import Test from './Questions/Test';
-import Demo from './UserRegistration/demo';
+
 
 
 function App() {
@@ -48,7 +48,6 @@ function App() {
         <Route path="/AddQuestion/:quizId" element={<AddQuestions/>}></Route>
         <Route path="/UpdateQuestion/:question" element={<AddQuestions/>}></Route>
         <Route path="/Test/:quizId" element={<Test/>}></Route>
-        <Route path="/demo" element={<Demo/>}></Route>
        </Routes>
      </BrowserRouter>
     </div>

@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 // import '../CategoryStyles.css'
 import ErrorPage from "../ErrorPage";
+import UserApi from "../APIs/UserApi";
 function Student() {
   const verifyRole = localStorage.getItem('userRole');
   const [student, setStudent] = useState([]);
@@ -16,15 +17,16 @@ function Student() {
     getStudents();
   }, []);
   const getStudents= async () => {
-    try {
-      const response = await axios.get('http://localhost:6002/students');
+  
+      // const response = await axios.get('http://localhost:6002/students');
+      UserApi.getAllStudents().then(response=>{
       setStudent(response.data.User_Information || []);
       setOriginalStudent(response.data.User_Information|| []);
-    } catch (error) {
+    }).catch (error=>{
       console.error('An error occurred:', error);
-    } finally {
+    }).finally(()=>{
       setIsLoading(false);
-    }
+    })
   };
 
   const navigate = useNavigate();

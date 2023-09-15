@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import './Questions.css';
 import ErrorPage from "../ErrorPage";
+import QuestionsApi from "../APIs/QuestionsApi";
 
 const AddQuestions=()=>{
     const verifyRole = localStorage.getItem('userRole');
@@ -54,7 +55,8 @@ const AddQuestions=()=>{
     }
     useEffect(() => {
         if(question){
-        axios.get(`http://localhost:6002/questionByName/${question}`)
+        // axios.get(`http://localhost:6002/questionByName/${question}`)
+        QuestionsApi.getByQuestion(question)
           .then((response) => {
     
             console.log(response);
@@ -113,7 +115,7 @@ const AddQuestions=()=>{
                  setErrors(validationErrors);
                  // if (validationErrors.topicName && validationErrors.topicDescription && validationErrors.maxMarks &&  validationErrors.passMarks ) {
                  if(validationErrors){   
-                 await Swal.fire({
+                  Swal.fire({
                          title: 'Error!',
                          text: 'All question data required',
                          icon: 'error',
@@ -126,7 +128,8 @@ const AddQuestions=()=>{
        
                 setErrors({});
                 console.log(questionData2)
-            axios.put(`http://localhost:6002/que/${questionData.questionId}`, questionData2)
+           // axios.put(`http://localhost:6002/que/${questionData.questionId}`, questionData2)
+           QuestionsApi.updateQuestion(questionData.questionId,questionData2)
               .then((response) => {
                 console.log(response)
                 if(response.data.status==207){
@@ -151,7 +154,7 @@ const AddQuestions=()=>{
             }
             }
         
-      
+        
   else{
         e.preventDefault();
 
@@ -191,12 +194,13 @@ const AddQuestions=()=>{
         } else {
         setErrors({});
 
-        const response = await axios.post('http://localhost:6002/que', requestData);
+      //  const response = await axios.post('http://localhost:6002/que', requestData);
+      QuestionsApi.addQuestion(requestData).then(requestData).then(response=>{
         console.log(response.data.message);
          
         if (response.data.message === "succcessfully add the data") {
             console.log("jygd")
-            await Swal.fire({
+            Swal.fire({
                 title: 'Add Question',
                 text: 'Added Question',
                 icon: 'success',
@@ -205,16 +209,20 @@ const AddQuestions=()=>{
             navigate(`/Questions/${quizId}`);
             
         } else if (response.data.message === "question already exist") {
-            await Swal.fire({
+             Swal.fire({
                 title: 'Error!',
                 text: 'Question already present',
                 icon: 'error',
                 confirmButtonText: 'Ok'
             });
         }
-    }
+    }).catch(error=>{
+        console.log(error)
+    })
 }
+  }
 }
+
 const cancelAddQuestion = () => {
     Swal.fire({
         title: 'Do you want to cancel the  question?',

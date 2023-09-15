@@ -6,6 +6,9 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
+import QuizApi from "../APIs/QuizApi";
+import ResultApi from "../APIs/ResultApi";
+import FinalResultApi from "../APIs/FinalResultApi";
 function Quiz() {
   const { categoryId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
@@ -23,48 +26,36 @@ function Quiz() {
     }
   }, [categoryId]);
   const getQuiz = async () => {
-    try {
-      const response = await axios.get(`http://localhost:6002/quizz/${categoryId}`);
+    
+     // const response = await axios.get(`http://localhost:6002/quizz/${categoryId}`);
+     QuizApi.getQuizByCategoryId(categoryId).then(response=>{
       console.log(response)
       setQuiz(response.data.Quiz_Information || []);
       setOriginalQuiz(response.data.Quiz_Information || []);
-    } catch (error) {
+    }).catch (error => {
       console.error('An error occurred:', error);
-    } finally {
+    }). finally(()=> {
       setIsLoading(false);
-    }
+    })
   };
   const getResult = async () => {
-    try {
-      const response = await axios.get(`http://localhost:6002/finalResult/${verifyUserId}`);
-      
+     // const response = await axios.get(`http://localhost:6002/finalResult/${verifyUserId}`);
+      FinalResultApi.getResultByStudentId(verifyUserId).then(response=>{
       if(response.data.message=="No user is there"){
         <h1>No results</h1>
       }
       setQuizData(response.data.User_Information || []);
       
-    } catch (error) {
+    }).catch (error=>{
       console.error('An error occurred:', error);
-    } finally {
+    }). finally(()=> {
       setIsLoading(false);
-    }
+    })
   };
   console.log(quizData)
-  const getQuizes = async () => {
-    try {
-      const response = await axios.get(`http://localhost:6002/quiz`);
-      console.log(response)
-      setQuiz(response.data.Quiz_Information || []);
-      setOriginalQuiz(response.data.Quiz_Information || []);
-    } catch (error) {
-      console.error('An error occurred:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  };
   const deleteData = async (id) => {
-    try {
-    const response = await axios.delete(`http://localhost:6002/quiz/${id}`);
+    //const response = await axios.delete(`http://localhost:6002/quiz/${id}`);
+    QuizApi.deleteQuiz(id).then(response=>{
       console.log(response);
       if (response.data.message === "succcessfully delete the data") {
         Swal.fire({
@@ -75,10 +66,10 @@ function Quiz() {
         });
       }
       getQuiz();
-    }
-    catch (error) {
+    }).
+    catch (error=> {
       console.log(error);
-    }
+    })
   };
   
   const navigate = useNavigate();

@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import './AddCategoryStyles.css';
 import ErrorPage from "../ErrorPage";
+import CategoryApi from "../APIs/CategoryApi";
 const AddCategory = () => {
     const verifyRole = localStorage.getItem('userRole');
     const { categoryId } = useParams();
@@ -21,7 +22,8 @@ const AddCategory = () => {
    
     useEffect(() => {
         if(categoryId){
-        axios.get(`http://localhost:6002/cat/${categoryId}`)
+            //axios.get(`http://localhost:6002/category/cat/${categoryId}`)
+             CategoryApi.getCategoryById(categoryId)
           .then((response) => {
     
             console.log(response);
@@ -38,14 +40,8 @@ const AddCategory = () => {
           });
         }
       }, [categoryId]);
-
-
-    
     const handleSubmit=async(e)=>{
-    if(categoryId) {
-
-
-          
+    if(categoryId) {          
             e.preventDefault();
         
             const validationErrors = {};
@@ -60,7 +56,7 @@ const AddCategory = () => {
             if (Object.keys(validationErrors).length > 0) {
                 setErrors(validationErrors);
                 if (validationErrors.categoryName && validationErrors.categoryDescription) {
-                    await Swal.fire({
+                     Swal.fire({
                         title: 'Error!',
                         text: 'data required',
                         icon: 'error',
@@ -68,7 +64,7 @@ const AddCategory = () => {
                     });
                 }
                 else if (validationErrors.categoryName && !(validationErrors.categoryDescription)) {
-                    await Swal.fire({
+                     Swal.fire({
                         title: 'Error!',
                         text: 'category name is required',
                         icon: 'error',
@@ -76,7 +72,7 @@ const AddCategory = () => {
                     });
                 }
                 if (validationErrors.categoryDescription && !(validationErrors.categoryName)) {
-                    await Swal.fire({
+                        Swal.fire({
                         title: 'Error!',
                         text: 'category description is required',
                         icon: 'error',
@@ -86,7 +82,8 @@ const AddCategory = () => {
             } else {
         
                 setErrors({});
-            axios.put(`http://localhost:6002/cat/${categoryId}`, categoryData)
+           // axios.put(`http://localhost:6002/cat/${categoryId}`, categoryData)
+            CategoryApi.updateCategory(categoryId,categoryData)
               .then((response) => {
                 if(response.data.status==207){
                     Swal.fire({
@@ -108,12 +105,7 @@ const AddCategory = () => {
               })
             }
           }
-        
-        
-    
 else{
-
-    
         e.preventDefault();
 
         const validationErrors = {};
@@ -128,7 +120,7 @@ else{
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             if (validationErrors.categoryName && validationErrors.categoryDescription) {
-                await Swal.fire({
+                 Swal.fire({
                     title: 'Error!',
                     text: 'data required',
                     icon: 'error',
@@ -136,7 +128,7 @@ else{
                 });
             }
             else if (validationErrors.categoryName && !(validationErrors.categoryDescription)) {
-                await Swal.fire({
+                 Swal.fire({
                     title: 'Error!',
                     text: 'category name is required',
                     icon: 'error',
@@ -154,11 +146,11 @@ else{
         } else {
 
             setErrors({});
-        const response = await axios.post('http://localhost:6002/category', categoryData);
-        console.log(response);
-
+        // const response = await axios.post('http://localhost:6002/category', categoryData);
+       
+       CategoryApi.addCategory(categoryData).then(response=>{
         if (response.data.message === "succcessfully added data") {
-            await Swal.fire({
+            Swal.fire({
                 title: 'Add category',
                 text: 'Added category',
                 icon: 'success',
@@ -167,15 +159,18 @@ else{
             navigate('/Category');
         }
         else if (response.data.message === "Category already present") {
-            await Swal.fire({
+            Swal.fire({
                 title: 'Error!',
                 text: 'Category already present',
                 icon: 'error',
                 confirmButtonText: 'Ok'
             });
         }
-    }
-
+    }).catch(error=>{
+        console.log(error)
+    })
+        
+}
 }
     }
     const cancelAddCategory = () => {

@@ -6,6 +6,7 @@ import './LoginStyles.css';
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import {FaEye,FaEyeSlash} from 'react-icons/fa';
+import UserApi from "../APIs/UserApi";
 
 const Login = () => {
     const [loginData, setLoginData] = useState({
@@ -62,32 +63,28 @@ const Login = () => {
         } else {
 
             setErrors({});
-
-            try {
-                const response = await axios.post('http://localhost:6002/login', loginData);
-
-                
-                console.log(response)
-
+                //  const response = await axios.post('http://localhost:6002/student/login', loginData);
+                    UserApi.loginUser(loginData).then(response=>{
+               
                 if (response.data.message === "password must be same") {
-                    await Swal.fire({
+                   Swal.fire({
                         title: 'Error!',
                         text: 'Wrong password',
                         icon: 'error',
-                        confirmButtonText: 'Cool'
+                        confirmButtonText: 'Ok'
                     });
                 } else if (response.data.message === "Email not exist") {
-                    await Swal.fire({
+                     Swal.fire({
                         title: 'Error!',
                         text: 'Wrong email',
                         icon: 'error',
-                        confirmButtonText: 'Cool'
+                        confirmButtonText: 'Ok'
                     });
                 } else {
                     if (response?.data.User_Information.role === "Admin") {
                         localStorage.setItem("userRole", response.data.User_Information.role);
                         localStorage.setItem("userId",response.data.User_Information.userId);
-                        await Swal.fire({
+                         Swal.fire({
                             title: 'Login Success',
                             text: 'Correct credentials',
                             icon: 'success',
@@ -104,7 +101,7 @@ const Login = () => {
                         localStorage.setItem("userId",response.data.User_Information.userId);
                         console.log(response.data.User_Information.userId)
 
-                        await Swal.fire({
+                         Swal.fire({
                             title: 'Login Success',
                             text: 'Correct credentials',
                             icon: 'success',
@@ -115,10 +112,11 @@ const Login = () => {
                     }
 
                 }
-            } catch (error) {
+            }).catch (error=> {
 
                 console.error(error);
-            }
+            })
+            
         }
     }
 
@@ -149,5 +147,6 @@ const Login = () => {
         </div>
     );
 }
+
 
 export default Login;

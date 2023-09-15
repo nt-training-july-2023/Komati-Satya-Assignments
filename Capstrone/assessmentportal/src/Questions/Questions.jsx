@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
+import QuestionsApi from "../APIs/QuestionsApi";
 const Questions=()=>{
   const { quizId } = useParams();
   // console.log(categoryId)
@@ -20,21 +21,21 @@ const Questions=()=>{
     }
   }, [quizId]);
   const getQuestions = async () => {
-    try {
-      const response = await axios.get(`http://localhost:6002/questions/${quizId}`);
+      //const response = await axios.get(`http://localhost:6002/questions/${quizId}`);
+      QuestionsApi.getQuestionByQuizId(quizId).then(response=>{
       console.log(response)
       setQuestions(response.data.Questions_Information || []);
       setOriginalQuestions(response.data.Questions_Information || []);
-    } catch (error) {
+    }).catch (error=>{
       console.error('An error occurred:', error);
-    } finally {
+    }).finally(()=> {
       setIsLoading(false);
-    }
+    })
   };
 
   const deleteData = async (id) => {
-    try {
-    const response = await axios.delete(`http://localhost:6002/que/${id}`);
+   // const response = await axios.delete(`http://localhost:6002/que/${id}`);
+   QuestionsApi.deleteQuestion(id).then(response=>{
       console.log(response);
       if (response.data.message === "succcessfully delete the data") {
         Swal.fire({
@@ -45,10 +46,10 @@ const Questions=()=>{
         });
       }
       getQuestions();
-    }
-    catch (error) {
+    })
+    .catch (error=>{
       console.log(error);
-    }
+    })
   };
  
   const navigate = useNavigate();
