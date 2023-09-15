@@ -39,7 +39,7 @@ public class QuestionsController {
      * @param q question
      * @return response
      */
-    @PostMapping("/que")
+    @PostMapping("/questions")
     public final ResponseEntity<Object> addQuestion(
             @RequestBody final Questions q) {
         try {
@@ -56,7 +56,7 @@ public class QuestionsController {
      * getting all the questions method.
      * @return response
      */
-    @GetMapping("/que")
+    @GetMapping("/questions")
     public final ResponseEntity<Object> getQuestions() {
         try {
             List<QuestionsDto> user = qs.getQuestions();
@@ -73,7 +73,7 @@ public class QuestionsController {
      * @param id question id
      * @return response
      */
-    @DeleteMapping("/que/{id}")
+    @DeleteMapping("/questions/{id}")
     public final ResponseEntity<Object> delete(@PathVariable final int id) {
         try {
             qs.delete(id);
@@ -91,7 +91,7 @@ public class QuestionsController {
      * @param q  question
      * @return response
      */
-    @PutMapping("/que/{id}")
+    @PutMapping("/questions/que/{id}")
     public final ResponseEntity<Object> updateQue(
             @RequestBody final QuestionsUpdateDto q,
             @PathVariable final int id) {
@@ -128,7 +128,7 @@ public class QuestionsController {
      * @param name question
      * @return response
      */
-    @GetMapping("/questionByName/{name}")
+    @GetMapping("/questions/questionByName/{name}")
     public final ResponseEntity<Object> findByQuestion(
             @PathVariable final String name) {
         try {

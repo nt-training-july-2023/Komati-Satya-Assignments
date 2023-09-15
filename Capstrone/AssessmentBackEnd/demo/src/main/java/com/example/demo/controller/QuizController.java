@@ -55,7 +55,7 @@ public class QuizController {
      * @param id quiz id
      * @return response
      */
-    @GetMapping("/quiz/{id}")
+    @GetMapping("/quiz/id/{id}")
     public final ResponseEntity<Object> getQuiz(@PathVariable final int id) {
         try {
             Optional<QuizDto> user = qs.getQuiz(id);
@@ -125,7 +125,7 @@ public class QuizController {
      * @param id quiz id
      * @return response
      */
-    @GetMapping("/quizz/{id}")
+    @GetMapping("quiz/quizz/{id}")
     public final ResponseEntity<Object> findQuizById(
             @PathVariable final int id) {
         try {
@@ -143,7 +143,7 @@ public class QuizController {
      * @param name quiz
      * @return response
      */
-    @GetMapping("/quizByName/{name}")
+    @GetMapping("/quiz/quizByName/{name}")
     public final ResponseEntity<Object> findQuizByName(
             @PathVariable final String name) {
         try {

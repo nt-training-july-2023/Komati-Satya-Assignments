@@ -52,7 +52,7 @@ public class CategoryController {
      * @param id id of category.
      * @return response
      */
-    @GetMapping("/cat/{id}")
+    @GetMapping("/category/cat/{id}")
     public final ResponseEntity<Object> findById(@PathVariable final int id) {
         try {
             Optional<CategoryDto> user = cs.findById(id);
@@ -67,7 +67,7 @@ public class CategoryController {
      * Category find all method.
      * @return response.
      */
-    @GetMapping("/cat")
+    @GetMapping("/category")
     public final ResponseEntity<Object> findAll() {
         try {
             List<CategoryDto> user = cs.findAll();
@@ -84,7 +84,7 @@ public class CategoryController {
      * @param id category id.
      * @return response.
      */
-    @PutMapping("/cat/{id}")
+    @PutMapping("/category/{id}")
     public final ResponseEntity<Object> updateCat(@RequestBody final
             CategoryDto c,
             @PathVariable final int id) {
@@ -102,7 +102,7 @@ public class CategoryController {
      * @param id category id.
      * @return response.
      */
-    @DeleteMapping("/cat/{id}")
+    @DeleteMapping("/category/{id}")
     public final ResponseEntity<Object> deleteCat(@PathVariable final int id) {
         try {
             cs.deleteCat(id);

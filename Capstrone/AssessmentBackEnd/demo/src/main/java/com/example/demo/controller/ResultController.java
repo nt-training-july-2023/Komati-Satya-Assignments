@@ -34,7 +34,7 @@ public class ResultController {
      * @param sr student result
      * @return response
      */
-    @PostMapping("/res")
+    @PostMapping("/result")
     public final ResponseEntity<Object> addRes(
             @RequestBody final ResultDto sr) {
         try {
@@ -53,7 +53,7 @@ public class ResultController {
      * @param id result id
      * @return response
      */
-    @GetMapping("/res/{id}")
+    @GetMapping("/result/{id}")
     public final ResponseEntity<Object> getRes(@PathVariable final int id) {
         try {
             Optional<ResultDto> user = rs.getRes(id);
@@ -69,7 +69,7 @@ public class ResultController {
      * getting all results method.
      * @return response
      */
-    @GetMapping("/res")
+    @GetMapping("/result")
     public final ResponseEntity<Object> getAllRes() {
         try {
             List<ResultDto> user = rs.getAllRes();

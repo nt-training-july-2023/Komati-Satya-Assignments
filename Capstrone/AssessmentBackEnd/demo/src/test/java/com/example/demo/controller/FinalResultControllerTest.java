@@ -48,6 +48,23 @@ class FinalResultControllerTest {
         assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
         assertNotNull(response.getBody());
     }
+    @Test
+    void testAllResultSuccess() {
+        List<ResultDto> resultDto=new ArrayList<>();
+        when(resultService.findAll()).thenReturn(resultDto);
+        ResponseEntity<Object> response=resultController.findAllResult();
+        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertNotNull(response.getBody());
+    }
+    
+    @Test
+    void testAllResultError() {
+        FinalRes finalResult=new FinalRes();
+        when(resultService.findAll()).thenThrow(new AllNotFoundException("No results are there"));
+        ResponseEntity<Object> response=resultController.findAllResult();
+        assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
+        assertNotNull(response.getBody());
+    }
     
 
 }

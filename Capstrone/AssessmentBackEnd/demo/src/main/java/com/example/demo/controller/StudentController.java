@@ -73,7 +73,7 @@ public class StudentController {
      * @param l loginDto
      * @return response
      */
-    @PostMapping("/login")
+    @PostMapping("/student/login")
     public final ResponseEntity<Object> login(@RequestBody final LoginDto l) {
         try {
             Optional<StudentDto> user = stu.aunthenticateUser(l);
@@ -89,7 +89,7 @@ public class StudentController {
      * finding all students method.
      * @return response
      */
-    @GetMapping("/students")
+    @GetMapping("/student/students")
     public final ResponseEntity<Object> findAllStu() {
         try {
             List<StudentDto> user = stu.findAllStu();
