@@ -28,23 +28,13 @@ public class Quiz {
     /**
      * stores the topic name.
      */
-    @Column(nullable = false , unique=true)
+    @Column(nullable = false, unique = true)
     private String topicName;
     /**
      * stores the topic description.
      */
     @Column(nullable = false)
     private String topicDescription;
-    /**
-     * stores the maximum marks.
-     */
-    @Column(nullable = false)
-    private int maxMarks;
-    /**
-     * stores the pass marks.
-     */
-    @Column(nullable = false)
-    private int passMarks;
     /**
      * get quiz.
      * @return quiz
@@ -86,34 +76,6 @@ public class Quiz {
      */
     public final void setTopicDescription(final String topicDescriptionn) {
         this.topicDescription = topicDescriptionn;
-    }
-    /**
-     * get question.
-     * @return marks
-     */
-    public final int getMaxMarks() {
-        return maxMarks;
-    }
-    /**
-     * get question.
-     * @param maxMarkss max marks
-     */
-    public final void setMaxMarks(final int maxMarkss) {
-        this.maxMarks = maxMarkss;
-    }
-    /**
-     * get question.
-     * @return pass marks
-     */
-    public final int getPassMarks() {
-        return passMarks;
-    }
-    /**
-     * get question.
-     * @param passMarkss pass marks
-     */
-    public final void setPassMarks(final int passMarkss) {
-        this.passMarks = passMarkss;
     }
     /**
      * get question.
@@ -164,18 +126,13 @@ public class Quiz {
      * @param quizid quiz id
      * @param topicname topic name
      * @param topicdescription description
-     * @param maxmarks marks
-     * @param passmarks pass marks
      */
     public Quiz(final int quizid, final String topicname,
-            final String topicdescription,
-            final int maxmarks, final int passmarks) {
+            final String topicdescription) {
         super();
         this.quizId = quizid;
         this.topicName = topicname;
         this.topicDescription = topicdescription;
-        this.maxMarks = maxmarks;
-        this.passMarks = passmarks;
     }
     /**
      * Many to one relationship with category.

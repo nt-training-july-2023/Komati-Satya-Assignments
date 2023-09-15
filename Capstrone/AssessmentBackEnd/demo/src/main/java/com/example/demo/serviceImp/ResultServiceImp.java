@@ -85,7 +85,6 @@ public class ResultServiceImp implements ResultService {
          fr.setUserId(sr.getUserId());
         fr.setUserName(sr.getUserName());
         fr.setQuizTopic(sr.getQuizName());
-        fr.setResult(sr.getResult());
         fr.setDateAndTime(sr.getDateAndTime());
         fr.setMarks(sr.getObtainMarks());
         fr.setMaxMarks(sr.getMaxMarks());
@@ -145,7 +144,6 @@ public class ResultServiceImp implements ResultService {
                 resultDto.setCategoryName(c.getCategoryName());
                 resultDto.setQuizName(fr.getQe().getTopicName());
                 resultDto.setResult(fr.getResult());
-                resultDto.setMaxMarks(fr.getQe().getMaxMarks());
                 resultDto.setDateAndTime(fr.getDateAndTime());
                 resultDto.setObtainMarks(fr.getMaxMarks());
                 resultDto.setAttemptedQuestions(fr.getAttemptedQuestions());
@@ -190,7 +188,6 @@ public class ResultServiceImp implements ResultService {
             resultDto.setCategoryName(c.get().getCategoryName());
             resultDto.setQuizName(fr.getQe().getTopicName());
             resultDto.setResult(fr.getResult());
-            resultDto.setMaxMarks(fr.getQe().getMaxMarks());
             resultDto.setDateAndTime(fr.getDateAndTime());
             resultDto.setObtainMarks(fr.getMaxMarks());
             resultDto.setCategoryId(c.get().getCategoryId());

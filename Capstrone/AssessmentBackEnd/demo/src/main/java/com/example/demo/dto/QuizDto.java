@@ -30,16 +30,6 @@ public class QuizDto {
     @Column(nullable = false)
     private String topicDescription;
     /**
-     * stores the maximum marks.
-     */
-    @Column(nullable = false)
-    private int maxMarks;
-    /**
-     * stores the pass marks.
-     */
-    @Column(nullable = false)
-    private int passMarks;
-    /**
      * category id.
      */
     private int categoryId;

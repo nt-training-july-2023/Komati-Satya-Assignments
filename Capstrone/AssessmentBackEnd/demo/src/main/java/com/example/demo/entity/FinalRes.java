@@ -45,11 +45,6 @@ public class FinalRes {
     @Column(nullable = false)
     private String categoryName;
     /**
-     * stores the final student result.
-     */
-    @Column(nullable = false)
-    private String result;
-    /**
      * stores the date and time.
      */
     @Column(nullable = false)

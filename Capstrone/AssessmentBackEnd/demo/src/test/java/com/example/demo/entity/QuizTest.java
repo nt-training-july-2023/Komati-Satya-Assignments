@@ -12,10 +12,6 @@ class QuizTest {
     @Test
     public void testGetterSetter() {
         Quiz q=new Quiz();
-        q.setMaxMarks(10);
-        assertEquals(10,q.getMaxMarks());
-        q.setPassMarks(8);
-        assertEquals(8,q.getPassMarks());
         q.setQuizId(1);
         assertEquals(1,q.getQuizId());
         q.setTopicName("variables");
@@ -44,8 +40,6 @@ class QuizTest {
     public void testNoargsConstructor() {
         Quiz q=new Quiz();
         assertEquals(0,q.getQuizId());
-        assertEquals(0,q.getMaxMarks());
-        assertEquals(0,q.getPassMarks());
         assertNull(q.getTopicName());
         assertNull(q.getTopicDescription());
     }
@@ -57,10 +51,8 @@ class QuizTest {
         String topicDescription="java basics";
         int pass=10;
         int marks=15;
-        Quiz q=new Quiz(id,topic,topicDescription,marks,pass);
+        Quiz q=new Quiz(id,topic,topicDescription);
         assertEquals(id,q.getQuizId());
-        assertEquals(marks,q.getMaxMarks());
-        assertEquals(pass,q.getPassMarks());
         assertEquals(topic,q.getTopicName());
         assertEquals(topicDescription,q.getTopicDescription());
     }

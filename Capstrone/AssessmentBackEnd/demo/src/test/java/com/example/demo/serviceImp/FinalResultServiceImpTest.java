@@ -97,7 +97,6 @@ class FinalResultServiceImpTest {
         finalRess.setMarks(97);
         finalRess.setFinalId(12);
         finalRess.setQuizTopic("Array");
-        finalRess.setResult("pass");
         finalRess.setResultId(13);
         finalRess.setUserId(studentId);
         finalRess.setUserName("satya");

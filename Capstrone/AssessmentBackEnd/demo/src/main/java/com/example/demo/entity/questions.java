@@ -28,7 +28,7 @@ public class Questions {
     /**
      * stores the question.
      */
-    @Column(nullable = false , unique=true)
+    @Column(nullable = false, unique = true)
     private String question;
     /**
      * stores the option1.
@@ -90,8 +90,7 @@ public class Questions {
      */
     public final Quiz getQui() {
         return new Quiz(qui.getQuizId(), qui.getTopicName(),
-                qui.getTopicDescription(),
-                qui.getMaxMarks(), qui.getPassMarks()
+                qui.getTopicDescription()
                 );
     }
     /**
@@ -100,8 +99,7 @@ public class Questions {
      */
     public final void setQui(final Quiz quii) {
         this.qui = new Quiz(quii.getQuizId(), quii.getTopicName(),
-                quii.getTopicDescription(),
-                quii.getMaxMarks(), quii.getPassMarks()
+                quii.getTopicDescription()
                 );
     }
 }

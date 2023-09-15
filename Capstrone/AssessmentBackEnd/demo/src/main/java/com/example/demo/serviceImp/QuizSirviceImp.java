@@ -52,8 +52,6 @@ public class QuizSirviceImp implements QuizService {
             if (!qr.findQuizByName(quiz.getTopicName()).isPresent()) {
                 QuizDto qd = new QuizDto();
                 qd.setQuizId(quiz.getQuizId());
-                qd.setMaxMarks(quiz.getMaxMarks());
-                qd.setPassMarks(quiz.getPassMarks());
                 qd.setTopicDescription(quiz.getTopicDescription());
                 qd.setTopicName(quiz.getTopicName());
                 qd.setCategoryId(quiz.getCate().getCategoryId());
@@ -80,8 +78,6 @@ public class QuizSirviceImp implements QuizService {
                  Optional<Quiz> q = qr.findById(id);
                  Quiz quiz = q.get();
                  qd.setQuizId(quiz.getQuizId());
-                 qd.setMaxMarks(quiz.getMaxMarks());
-                 qd.setPassMarks(quiz.getPassMarks());
                  qd.setTopicDescription(quiz.getTopicDescription());
                  qd.setTopicName(quiz.getTopicName());
                  qd.setCategoryId(quiz.getCate().getCategoryId());
@@ -117,8 +113,6 @@ public class QuizSirviceImp implements QuizService {
         for (Quiz quiz:l) {
             QuizDto qd = new QuizDto();
             qd.setQuizId(quiz.getQuizId());
-            qd.setMaxMarks(quiz.getMaxMarks());
-            qd.setPassMarks(quiz.getPassMarks());
             qd.setTopicDescription(quiz.getTopicDescription());
             qd.setTopicName(quiz.getTopicName());
             qd.setCategoryId(quiz.getCate().getCategoryId());
@@ -157,8 +151,6 @@ public class QuizSirviceImp implements QuizService {
             Quiz exiQuiz = existingQuiz.get();
             exiQuiz.setTopicName(q.getTopicName());
             exiQuiz.setTopicDescription(q.getTopicDescription());
-            exiQuiz.setMaxMarks(q.getMaxMarks());
-            exiQuiz.setPassMarks(q.getPassMarks());
             qr.save(exiQuiz);
             return q;
         } else {
@@ -201,8 +193,6 @@ public class QuizSirviceImp implements QuizService {
                Optional<Quiz> qui = qr.findQuizByName(name);
                Quiz quiz = qui.get();
                qd.setQuizId(quiz.getQuizId());
-               qd.setMaxMarks(quiz.getMaxMarks());
-               qd.setPassMarks(quiz.getPassMarks());
                qd.setTopicDescription(quiz.getTopicDescription());
                qd.setTopicName(quiz.getTopicName());
                qd.setCategoryId(quiz.getCate().getCategoryId());

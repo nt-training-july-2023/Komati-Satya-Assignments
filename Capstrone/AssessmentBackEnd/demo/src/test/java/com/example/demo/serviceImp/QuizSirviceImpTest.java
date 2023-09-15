@@ -38,15 +38,14 @@ class QuizSirviceImpTest {
     
     @Test
     void testAddQuiz() {
-        Quiz q=new Quiz(1,"variables","java variables",15,10);
+        Quiz q=new Quiz(1,"variables","java variables");
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         when(categoryRepo.findById(q.getCate().getCategoryId())).thenReturn(Optional.of(c));
         when(quizRepo.findQuizByName(q.getTopicName())).thenReturn(Optional.empty());
         QuizDto quizDto=new QuizDto();
         quizDto.setCategoryId(c.getCategoryId());
-        quizDto.setMaxMarks(q.getMaxMarks());
-        quizDto.setPassMarks(q.getMaxMarks());
+     
         quizDto.setQuizId(q.getQuizId());
         quizDto.setTopicDescription(q.getTopicDescription());
         quizDto.setTopicName(q.getTopicName());
@@ -54,7 +53,7 @@ class QuizSirviceImpTest {
     }
     @Test
     public void testCategoryNotPresent() {
-        Quiz q=new Quiz(1,"variables","java variables",15,10);
+        Quiz q=new Quiz(1,"variables","java variables");
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         when(categoryRepo.findById(q.getCate().getCategoryId())).thenReturn(Optional.empty());
@@ -64,7 +63,7 @@ class QuizSirviceImpTest {
     }
     @Test 
     public void testQuizAlreadyPresent() {
-     Quiz q=new Quiz(1,"variables","java variables",15,10);   
+     Quiz q=new Quiz(1,"variables","java variables");   
      Category c=new Category(10,"java","java basics");
      q.setCate(c);
      when(categoryRepo.findById(q.getCate().getCategoryId())).thenReturn(Optional.of(c));
@@ -75,7 +74,7 @@ class QuizSirviceImpTest {
     }
     @Test
     public void testGetQuizById() {
-        Quiz q=new Quiz(1,"variables","java variables",15,10);   
+        Quiz q=new Quiz(1,"variables","java variables");   
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
@@ -84,8 +83,7 @@ class QuizSirviceImpTest {
         assertEquals(q.getCate().getCategoryId(),quizDto.get().getCategoryId());
         assertEquals(q.getTopicName(),quizDto.get().getTopicName());
         assertEquals(q.getTopicDescription(),quizDto.get().getTopicDescription());
-        assertEquals(q.getMaxMarks(),quizDto.get().getMaxMarks());
-        assertEquals(q.getPassMarks(),quizDto.get().getPassMarks());
+ 
         assertEquals(q.getQuizId(),quizDto.get().getQuizId());
     }
     @Test
@@ -109,7 +107,7 @@ class QuizSirviceImpTest {
     @Test
     public void testFindAll() {
         List<Quiz> quiz=new ArrayList<>();
-        Quiz q=new Quiz(1,"variables","java variables",15,10);   
+        Quiz q=new Quiz(1,"variables","java variables");   
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         quiz.add(q);
@@ -119,8 +117,7 @@ class QuizSirviceImpTest {
         assertEquals(q.getQuizId(),quizDto.get(0).getQuizId());
         assertEquals(q.getTopicName(),quizDto.get(0).getTopicName());
         assertEquals(q.getTopicDescription(),quizDto.get(0).getTopicDescription());
-        assertEquals(q.getMaxMarks(),quizDto.get(0).getMaxMarks());
-        assertEquals(q.getPassMarks(),quizDto.get(0).getPassMarks());
+
         assertEquals(q.getQuizId(),quizDto.get(0).getQuizId());
     }
     @Test
@@ -132,7 +129,7 @@ class QuizSirviceImpTest {
     }
     @Test
     public void testUpdateQuiz() {
-        Quiz q=new Quiz(1,"variables","java variables",15,10);   
+        Quiz q=new Quiz(1,"variables","java variables");   
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         quizRepo.save(q);
@@ -141,8 +138,6 @@ class QuizSirviceImpTest {
         quizDto.setQuizId(q.getQuizId());
         quizDto.setTopicName(q.getTopicName());
         quizDto.setTopicDescription(q.getTopicDescription());
-        quizDto.setPassMarks(q.getPassMarks());
-        quizDto.setMaxMarks(q.getMaxMarks());
         when(quizRepo.findById(q.getQuizId())).thenReturn(Optional.of(q));
         assertTrue(Optional.of(q).isPresent());
         QuizUpdateDto quiz=new QuizUpdateDto(1,"variables","java basics",20,15);
@@ -152,8 +147,6 @@ class QuizSirviceImpTest {
         QuizUpdateDto qd=quizService.updateQuiz(quiz, 1);
         assertEquals(q.getTopicName(),qd.getTopicName());
         assertEquals(q.getTopicDescription(),qd.getTopicDescription());
-        assertEquals(q.getMaxMarks(),qd.getMaxMarks());
-        assertEquals(q.getPassMarks(),qd.getPassMarks());
         assertEquals(q.getQuizId(),qd.getQuizId());
         assertEquals(quiz.getPassMarks(),qd.getPassMarks());
     }
@@ -177,7 +170,7 @@ class QuizSirviceImpTest {
     
     @Test
     public void testDeleteQuiz() {
-        Quiz q=new Quiz(1,"variables","java variables",15,10);   
+        Quiz q=new Quiz(1,"variables","java variables");   
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         quizRepo.save(q);
@@ -204,10 +197,10 @@ class QuizSirviceImpTest {
     }
     @Test
     public void testQuizByCategoryId() {
-        Quiz q1=new Quiz(1,"variables","java variables",15,10);   
+        Quiz q1=new Quiz(1,"variables","java variables");   
         Category c=new Category(10,"java","java basics");
         q1.setCate(c);
-        Quiz q2=new Quiz(2,"arrays","java arrays",20,10);
+        Quiz q2=new Quiz(2,"arrays","java arrays");
         q2.setCate(c);
         List<Quiz> quiz=new ArrayList<>();
         quiz.add(q1);
@@ -218,8 +211,7 @@ class QuizSirviceImpTest {
         System.out.println(quizDto);
       assertEquals("variables",quizDto.get(0).getTopicName());  
       assertEquals("java variables",quizDto.get(0).getTopicDescription());
-      assertEquals(15,quizDto.get(0).getMaxMarks());
-      assertEquals(10,quizDto.get(0).getPassMarks());
+   
       assertEquals(10,quizDto.get(0).getCategoryId());
         
     }
@@ -242,7 +234,7 @@ class QuizSirviceImpTest {
      }
      @Test   
      void testFindQuizByQuizName() {
-         Quiz q=new Quiz(1,"variables","java variables",15,10);   
+         Quiz q=new Quiz(1,"variables","java variables");   
          Category c=new Category(10,"java","java basics");
          q.setCate(c);
          when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
@@ -252,8 +244,6 @@ class QuizSirviceImpTest {
          assertEquals(q.getCate().getCategoryId(),quizDto.get().getCategoryId());
          assertEquals(q.getTopicName(),quizDto.get().getTopicName());
          assertEquals(q.getTopicDescription(),quizDto.get().getTopicDescription());
-         assertEquals(q.getMaxMarks(),quizDto.get().getMaxMarks());
-         assertEquals(q.getPassMarks(),quizDto.get().getPassMarks());
          assertEquals(q.getQuizId(),quizDto.get().getQuizId());
     }
      @Test

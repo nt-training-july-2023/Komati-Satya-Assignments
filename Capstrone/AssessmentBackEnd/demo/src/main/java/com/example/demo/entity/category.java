@@ -28,7 +28,7 @@ public class Category {
     /**
      * store category name.
      */
-    @Column(nullable = false , unique=true)
+    @Column(nullable = false, unique = true)
     private String categoryName;
     /**
      * store category description.

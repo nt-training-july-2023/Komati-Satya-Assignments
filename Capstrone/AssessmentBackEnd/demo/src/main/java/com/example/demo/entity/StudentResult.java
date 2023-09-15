@@ -128,8 +128,7 @@ public class StudentResult {
      */
     public final Quiz getQe() {
         return new Quiz(qe.getQuizId(), qe.getTopicName(),
-                qe.getTopicDescription(),
-                qe.getMaxMarks(), qe.getPassMarks()
+                qe.getTopicDescription()
                 );
     }
     /**
@@ -138,8 +137,7 @@ public class StudentResult {
      */
     public final void setQe(final Quiz qee) {
         this.qe = new Quiz(qee.getQuizId(), qee.getTopicName(),
-                qee.getTopicDescription(),
-                qee.getMaxMarks(), qee.getPassMarks()
+                qee.getTopicDescription()
                 );
     }
     /**

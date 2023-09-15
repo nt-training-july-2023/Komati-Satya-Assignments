@@ -62,7 +62,6 @@ class ResultServiceImpTest {
           fr.setUserId(sr.getUserId());
          fr.setUserName(sr.getUserName());
          fr.setQuizTopic(sr.getQuizName());
-         fr.setResult(sr.getResult());
          fr.setDateAndTime(sr.getDateAndTime());
          fr.setMarks(sr.getObtainMarks());
          fr.setMaxMarks(sr.getMaxMarks());
@@ -98,7 +97,6 @@ class ResultServiceImpTest {
           fr.setUserId(sr.getUserId());
          fr.setUserName(sr.getUserName());
          fr.setQuizTopic(sr.getQuizName());
-         fr.setResult(sr.getResult());
          fr.setDateAndTime(sr.getDateAndTime());
          fr.setMarks(sr.getObtainMarks());
          fr.setMaxMarks(sr.getMaxMarks());
@@ -125,7 +123,6 @@ class ResultServiceImpTest {
           fr.setUserId(sr.getUserId());
          fr.setUserName(sr.getUserName());
          fr.setQuizTopic(sr.getQuizName());
-         fr.setResult(sr.getResult());
          fr.setDateAndTime(sr.getDateAndTime());
          fr.setMarks(sr.getObtainMarks());
          fr.setMaxMarks(sr.getMaxMarks());
