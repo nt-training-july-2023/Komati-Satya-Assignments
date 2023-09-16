@@ -100,6 +100,7 @@ const Result=()=>{
             <p>Loading...</p>
           ) : (
             <div className="tableContainer">
+               {result.length !== 0 ? (
               <table className="tableData">
                 <thead className="headData">
                   <tr className="rowData">
@@ -133,6 +134,9 @@ const Result=()=>{
                   ))}
                 </tbody>
               </table>
+                ) : (
+                  <h1>No Result</h1>
+                )}
             </div>
            )} 
         </> : <ErrorPage />}

@@ -188,6 +188,7 @@ function Quiz() {
             <p>Loading...</p>
           ) : (
             <div className="tableContainer">
+                 {quiz.length !== 0 ? (
               <table className="tableData">
                 <thead className="headData">
                   <tr className="rowData">
@@ -217,6 +218,9 @@ function Quiz() {
                   ))}
                 </tbody>
               </table>
+               ) : (
+                <h1>No Quiz</h1>
+              )}
             </div>
           )}
         </> : <ErrorPage />}

@@ -166,7 +166,7 @@ const Registration = () => {
             console.log(response)
             if (response.data.message === "successfully added data") {
               Swal.fire({
-                title: 'adding data',
+                title: 'Registration',
                 text: 'User Registred Successfully',
                 icon: 'success',
                 confirmButtonText: 'Ok'

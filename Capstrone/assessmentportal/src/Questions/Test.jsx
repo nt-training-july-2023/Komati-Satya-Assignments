@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -9,7 +8,6 @@ import QuizApi from "../APIs/QuizApi";
 import Questions from "./Questions";
 import QuestionsApi from "../APIs/QuestionsApi";
 import ResultApi from "../APIs/ResultApi";
-
 function Test() {
   const navigate = useNavigate();
   const verifyRole = localStorage.getItem("userRole");
@@ -17,10 +15,10 @@ function Test() {
   const [isLoading, setIsLoading] = useState(false);
   const [quiz, setQuiz] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(20*60);
   const [timerId, setTimerId] = useState(null);
   const [questions, setQuestions] = useState([]);
-  const [userScore, setUserScore] = useState(0); // Initialize the user's score
+  const [userScore, setUserScore] = useState(0);
   const { quizId } = useParams();
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [quizSubmitted, setQuizSubmitted] = useState(false);
@@ -38,6 +36,7 @@ function Test() {
   const [numberOfQuestions, setNumberOfQuestions] = useState();
   const [attemptedQuestionss, setAttemptedQuestions] = useState(0);
   const [date, setDate] = useState()
+ 
 
   useEffect(() => {
     const currentDate = new Date();
@@ -73,6 +72,7 @@ function Test() {
     })
   }
   // console.log(quiz)
+  
 
   useEffect(() => {
     getQuestions();
@@ -241,8 +241,6 @@ function Test() {
       obtainMarks: userScore,
       dateAndTime: date,
     };
-
-
     // const response = await axios.post('http://localhost:6002/res', postDataa);
     ResultApi.addResult(postDataa).then(response => {
       console.log('POST response:', response.data);
@@ -251,7 +249,6 @@ function Test() {
       console.error('Error sending data to the server:', error);
     })
   };
-
   console.log("a" + resultt);
   console.log("a" + attemptedQuestionss);
   console.log("a" + userScore);
@@ -325,11 +322,10 @@ function Test() {
                   </form>
                   {!quizSubmitted && (
                     <button className="submitQuizButton" onClick={handleSubmitQuiz} type="button">
-                      Submit Quiz
+                      Submit Test
                     </button>
                   )}
                 </div>
-
               </>
             ) : (
               <h1>No questions</h1>

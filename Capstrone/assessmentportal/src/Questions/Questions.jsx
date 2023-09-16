@@ -98,6 +98,7 @@ const Questions=()=>{
             <p>Loading...</p>
           ) : (
             <div className="tableContainer">
+               {questions.length !== 0 ? (
               <table className="tableData">
                 <thead className="headData">
                   <tr className="rowData">
@@ -133,6 +134,9 @@ const Questions=()=>{
                   ))}
                 </tbody>
               </table>
+                ) : (
+                  <h1>No Questions</h1>
+                )}
             </div>
           )}
         </> : <ErrorPage />}

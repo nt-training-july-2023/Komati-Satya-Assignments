@@ -16,15 +16,16 @@ function Student() {
   useEffect(() => {
     getStudents();
   }, []);
-  const getStudents= async () => {
-  
-      // const response = await axios.get('http://localhost:6002/students');
-      UserApi.getAllStudents().then(response=>{
+  const getStudents = async () => {
+
+    // const response = await axios.get('http://localhost:6002/students');
+    UserApi.getAllStudents().then(response => {
       setStudent(response.data.User_Information || []);
-      setOriginalStudent(response.data.User_Information|| []);
-    }).catch (error=>{
+      setOriginalStudent(response.data.User_Information || []);
+
+    }).catch(error => {
       console.error('An error occurred:', error);
-    }).finally(()=>{
+    }).finally(() => {
       setIsLoading(false);
     })
   };
@@ -45,9 +46,9 @@ function Student() {
   const backTo = () => {
     {
       verifyRole === 'Admin' &&
-      navigate('/UserDashBoard');
+        navigate('/UserDashBoard');
     }
-   
+
   }
   return (
     <div className="categoryData">
@@ -55,7 +56,7 @@ function Student() {
         <>
           <h1 className="addHead">Students Details</h1>
           <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button>
-       
+
           <div className="searchContainer">
             <input
               className="search"
@@ -72,6 +73,7 @@ function Student() {
             <p>Loading...</p>
           ) : (
             <div className="tableContainer">
+               {student.length !== 0 ? (
               <table className="tableData">
                 <thead className="headData">
                   <tr className="rowData">
@@ -86,23 +88,26 @@ function Student() {
                   </tr>
                 </thead>
                 <tbody className="bodyData">
-                  {student.map(item => (
-
-                    <tr key={item.userId}>
-                      <td>{item.userName}</td>
-                      <td>{item.userId}</td>
-                      <td>{item.email}</td>
-                      <td>{item.gender}</td>
-                      <td>{item.phoneNumber}</td>
-                      <td>{item.dateOfBirth}</td>
-
-                    </tr>
-                  ))}
+                  {student
+                    .filter(item => item.role === 'student')
+                    .map(item => (
+                      <tr key={item.userId}>
+                        <td>{item.userName}</td>
+                        <td>{item.userId}</td>
+                        <td>{item.email}</td>
+                        <td>{item.gender}</td>
+                        <td>{item.phoneNumber}</td>
+                        <td>{item.dateOfBirth}</td>
+                      </tr>
+                    ))}
                 </tbody>
               </table>
+               ) : (
+                <h1>No Students</h1>
+              )}
             </div>
           )}
-        </> }
+        </>}
     </div>
   );
 }

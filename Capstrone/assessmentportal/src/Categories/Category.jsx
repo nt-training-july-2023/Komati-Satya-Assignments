@@ -80,6 +80,7 @@ function Category() {
   }
   return (
     <div className="App">
+      
     <div className="categoryData">
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
@@ -102,6 +103,7 @@ function Category() {
             <p>Loading...</p>
           ) : (
             <div className="tableContainer">
+                {category.length !== 0 ? (
               <table className="tableData">
                 <thead className="headData">
                   <tr className="rowData">
@@ -132,10 +134,14 @@ function Category() {
                   ))}
                 </tbody>
               </table>
+               ) : (
+                <h1>No Category</h1>
+              )}
             </div>
            )} 
         </> : <ErrorPage />}
     </div>
+    
     </div>
   );
 }
