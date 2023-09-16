@@ -198,5 +198,4 @@ const UserUpdate = () => {
     </div>
   );
 };
-
 export default UserUpdate;

@@ -234,5 +234,4 @@ const cancelAddQuiz = () => {
         </div>
     );
 }
-
 export default AddQuiz
