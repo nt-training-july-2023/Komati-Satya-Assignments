@@ -90,13 +90,16 @@ li a:hover:not(.active) {
 
 @media (max-width: 668px) {
   ul {
-    height: auto;
+    display:flex;
+    flex-wrap: wrap; 
+    
   }
 
   li {
     float: left;
     width: 30%;
     text-align: left;
+    height: auto;
   }
 
   li a {
@@ -105,6 +108,8 @@ li a:hover:not(.active) {
 
   .adminBackground {
     max-width: 80%;
- 
+  }
+  .nav-bar{
+    height: 100%;
   }
 }

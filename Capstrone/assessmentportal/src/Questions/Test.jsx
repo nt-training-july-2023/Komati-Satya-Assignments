@@ -17,7 +17,7 @@ function Test() {
   const [isLoading, setIsLoading] = useState(false);
   const [quiz, setQuiz] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [timeLeft, setTimeLeft] = useState(10);
+  const [timeLeft, setTimeLeft] = useState(60*20);
   const [timerId, setTimerId] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [userScore, setUserScore] = useState(0); // Initialize the user's score
@@ -38,6 +38,8 @@ function Test() {
   const [numberOfQuestions, setNumberOfQuestions] = useState();
   const [attemptedQuestionss, setAttemptedQuestions] = useState(0);
   const [date, setDate] = useState()
+   
+  
 
   useEffect(() => {
     const currentDate = new Date();
@@ -187,7 +189,7 @@ function Test() {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-
+           
         if (!quizSubmitted) {
           let score = 0;
 
@@ -202,17 +204,14 @@ function Test() {
 
           setUserScore(score);
           setQuizSubmitted(true);
-
-          getAtt();
+          getAtt()
         }
       }
     })
 
   };
-
   useEffect(() => {
     if (quizSubmitted) {
-
       postData();
     }
   }, [quizSubmitted, userScore]);
@@ -225,8 +224,6 @@ function Test() {
   //     setResult("pass");
   //   }
   // };
-
-
   const postData = async () => {
     const postDataa = {
       userId: verifyUserId,

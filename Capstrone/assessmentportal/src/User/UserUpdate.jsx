@@ -65,7 +65,27 @@ const UserUpdate = () => {
       });
   };
   const cancelUpdate=()=>{
-    navigate('/UserDashBoard');
+    Swal.fire({
+      title: 'Do you want to update details??',
+      showDenyButton: true,
+      // showCancelButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: 'No',
+      customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+      }
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Changes are not saved', '', 'info')
+      navigate('/UserDashBoard');
+      } else if (result.isDenied) {
+
+      }
+    })
+   
   }
   console.log("sendData")
   console.log(sendData)
