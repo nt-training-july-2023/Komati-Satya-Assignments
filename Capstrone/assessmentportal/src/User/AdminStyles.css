@@ -91,13 +91,16 @@ li a {
 
 @media (max-width: 668px) {
   ul {
-    height: auto;
+    display:flex;
+    flex-wrap: wrap; 
+    
   }
 
   li {
     float: left;
     width: 30%;
     text-align: left;
+    height: auto;
   }
 
   li a {
@@ -106,6 +109,8 @@ li a {
 
   .adminBackground {
     max-width: 80%;
- 
+  }
+  .nav-bar{
+    height: 100%;
   }
 }

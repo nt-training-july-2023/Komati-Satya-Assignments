@@ -85,7 +85,6 @@ const UserUpdate = () => {
 
       }
   })
-   
   }
   console.log("sendData")
   console.log(sendData)
