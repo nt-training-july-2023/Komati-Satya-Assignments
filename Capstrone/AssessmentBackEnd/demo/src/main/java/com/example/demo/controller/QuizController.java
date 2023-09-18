@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +34,11 @@ public class QuizController {
      */
     @Autowired
     private QuizService qs;
-
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(QuizController.class);
     /**
      * save quiz method.
      * @param q quiz
@@ -42,9 +48,11 @@ public class QuizController {
     public final ResponseEntity<Object> saveQuiz(@RequestBody final Quiz q) {
         try {
             QuizDto user = qs.addQuiz(q);
+            LOGGER.info("Adding Quiz");
             return Responsee.generateResponce("succcessfully add the data",
                     HttpStatus.OK, "Quiz Topic_Information", user);
         } catch (Exception e) {
+            LOGGER.info("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Quiz Topic_Information", null);
         }
@@ -59,9 +67,11 @@ public class QuizController {
     public final ResponseEntity<Object> getQuiz(@PathVariable final int id) {
         try {
             Optional<QuizDto> user = qs.getQuiz(id);
+            LOGGER.info("get quiz by quiz id");
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Quiz_topic_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "QuizTopic_Information", null);
         }
@@ -75,9 +85,11 @@ public class QuizController {
     public final ResponseEntity<Object> findAll() {
         try {
             List<QuizDto> user = qs.findAll();
+            LOGGER.info("Find all quizes");
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Quiz_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Quiz_Information", null);
         }
@@ -92,9 +104,11 @@ public class QuizController {
     public final ResponseEntity<Object> deleteQuiz(@PathVariable final int id) {
         try {
             qs.deleteQuiz(id);
+            LOGGER.info("Delete quiz");
             return Responsee.generateResponce("succcessfully delete the data",
                     HttpStatus.OK, "Quiz_Information", null);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Quiz_Information", null);
         }
@@ -112,9 +126,11 @@ public class QuizController {
             @PathVariable final int id) {
         try {
             QuizUpdateDto user = qs.updateQuiz(q, id);
+            LOGGER.info("Update the quiz");
             return Responsee.generateResponce("succcessfully update the data",
                     HttpStatus.OK, "Quiz_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Quiz_Information", null);
         }
@@ -130,9 +146,11 @@ public class QuizController {
             @PathVariable final int id) {
         try {
             List<QuizDto> user = qs.findQuizById(id);
+            LOGGER.info("Fina quiz by categoryID");
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Quiz_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Quiz_Information", null);
         }
@@ -148,9 +166,11 @@ public class QuizController {
             @PathVariable final String name) {
         try {
             Optional<QuizDto> user = qs.findQuizByName(name);
+            LOGGER.info("Find quiz by name");
             return Responsee.generateResponce("succcessfully update the data",
                     HttpStatus.OK, "Quiz_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Quiz_Information", null);
         }

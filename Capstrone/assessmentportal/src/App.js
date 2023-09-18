@@ -17,11 +17,16 @@ import Result from './Result/Result';
 import Questions from './Questions/Questions';
 import AddQuestions from './Questions/AddQuestions';
 import Test from './Questions/Test';
+import { useState } from 'react';
 
 
 
 function App() {
- 
+ const[isRefresh,setIsRefresh]=useState(false)
+
+ function setTrue() {
+  setIsRefresh(true);
+ }
   return (
   
     <div className="App">
@@ -37,8 +42,8 @@ function App() {
         <Route path="/UpdateCategory/:categoryId" element={<AddCategory/>}></Route>
         <Route path="/UserUpdate/:userId" element={<UserUpdate/>}></Route>
         <Route path="/NotFoundPage" element={<ErrorPage/>}></Route>
-        <Route path="/Quiz/:categoryId" element={<Quiz/>}></Route>
-        <Route path="/Quiz" element={<Quiz/>}></Route>
+        <Route path="/Quiz/:categoryId" element={<Quiz setTrue={setTrue}/>}></Route>
+        <Route path="/Quiz" element={<Quiz />}></Route>
         <Route path="/AddQuiz/:categoryId" element={<AddQuiz/>}></Route>
         <Route path="/Students" element={<Student/>}></Route>
         <Route path="/Result" element={<Result/>}></Route>
@@ -47,7 +52,7 @@ function App() {
         <Route path="/Questions/:quizId" element={<Questions/>}></Route>
         <Route path="/AddQuestion/:quizId" element={<AddQuestions/>}></Route>
         <Route path="/UpdateQuestion/:question" element={<AddQuestions/>}></Route>
-        <Route path="/Test/:quizId" element={<Test/>}></Route>
+        <Route path="/Test/:quizId" element={<Test isRefresh={isRefresh}/>}></Route>
        </Routes>
      </BrowserRouter>
     </div>

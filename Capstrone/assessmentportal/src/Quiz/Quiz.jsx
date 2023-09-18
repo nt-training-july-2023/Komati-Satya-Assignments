@@ -9,7 +9,7 @@ import ErrorPage from "../ErrorPage";
 import QuizApi from "../APIs/QuizApi";
 import ResultApi from "../APIs/ResultApi";
 import FinalResultApi from "../APIs/FinalResultApi";
-function Quiz() {
+function Quiz({setTrue}) {
   const { categoryId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
   const [quiz, setQuiz] = useState([]);
@@ -153,6 +153,7 @@ function Quiz() {
     `
   }).then((result) => {
     if (result.isConfirmed) {
+      setTrue();
       navigate(`/Test/${quizId}`);
      
      

@@ -30,12 +30,12 @@
   
   .question-container {
     margin-bottom: 20px;
+    text-align: left;
   }
   
   .question-container h4 {
     font-size: 18px;
-    margin-bottom: 10px;
-    margin-right: 470px;
+    margin: 0;
   }
   
 
@@ -99,6 +99,7 @@
   
     .question-container h4 {
       font-size: 16px;
+      margin: 0;
     }
   
     .option-container {
@@ -113,3 +114,8 @@
       font-size: 14px;
     }
   } 
+  @media (max-width: 650px) {
+    .question-container h4 {
+      font-size: 14px; 
+    }
+  }

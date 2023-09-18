@@ -70,15 +70,15 @@ const UserDashBoard = () => {
       <>
         <ul className="nav-bar">
           {/* <li><a href="/">Home</a></li> */}
-          <li><a href="/Category">Categories</a></li>
+          <li className="aa"><a href="/Category">Categories</a></li>
           {verifyRole === 'Admin' && <>
-          <li><a href="/Students">Students</a></li>
+          <li className="aa"><a href="/Students">Students</a></li>
         </>}
           {verifyRole=='Admin' && <>
-          <li><a href="/Result">Result</a></li>
+          <li className="aa"><a href="/Result">Result</a></li>
           </>}
           {verifyRole=='student' && <>
-          <li><a href={`/Result/${verifyUserId}`}>Result</a></li>
+          <li className="aa"><a href={`/Result/${verifyUserId}`}>Result</a></li>
           </>}
           <li><a className="logout" href="#" onClick={logoutPage}>Logout</a></li>
 

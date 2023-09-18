@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,7 +30,11 @@ public class ResultController {
      */
     @Autowired
     private ResultService rs;
-
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(ResultController.class);
     /**
      * adding result method.
      * @param sr student result
@@ -39,9 +45,11 @@ public class ResultController {
             @RequestBody final ResultDto sr) {
         try {
             ResultDto user = rs.addRes(sr);
+            LOGGER.info("Adding result");
             return Responsee.generateResponce("succcessfully add the data",
                     HttpStatus.OK, "Student result_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Student result_Information",
                     null);
@@ -57,9 +65,11 @@ public class ResultController {
     public final ResponseEntity<Object> getRes(@PathVariable final int id) {
         try {
             Optional<ResultDto> user = rs.getRes(id);
+            LOGGER.info("Get result by id");
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Student result_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "result_Information", null);
         }
@@ -73,9 +83,11 @@ public class ResultController {
     public final ResponseEntity<Object> getAllRes() {
         try {
             List<ResultDto> user = rs.getAllRes();
+            LOGGER.info("getting all result");
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Student result_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "result_Information", null);
         }

@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,12 +22,19 @@ import com.example.demo.entity.Category;
 import com.example.demo.response.Responsee;
 import com.example.demo.service.CategoryService;
 
+
+
 /**
  * Category controller class.
  */
 @RestController
 @CrossOrigin(origins = "*")
 public class CategoryController {
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(CategoryController.class);
     /**
      * auto wiring category service class.
      */
@@ -40,9 +49,11 @@ public class CategoryController {
     public final ResponseEntity<Object> saveCat(@RequestBody final Category c) {
         try {
             CategoryDto user = cs.saveCat(c);
+            LOGGER.info("Adding new category");
             return Responsee.generateResponce("succcessfully added data",
                     HttpStatus.OK, "Category_Information", user);
         } catch (Exception e) {
+            LOGGER.error("category already present error");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Category_Information", null);
         }
@@ -56,9 +67,11 @@ public class CategoryController {
     public final ResponseEntity<Object> findById(@PathVariable final int id) {
         try {
             Optional<CategoryDto> user = cs.findById(id);
+            LOGGER.info("find category by category id");
             return Responsee.generateResponce("succcessfully retrieve the data",
                     HttpStatus.OK, "Category_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Category_Information", null);
         }
@@ -71,9 +84,11 @@ public class CategoryController {
     public final ResponseEntity<Object> findAll() {
         try {
             List<CategoryDto> user = cs.findAll();
+            LOGGER.info("fina all categories");
             return Responsee.generateResponce("succcessfully retrieve the data",
                     HttpStatus.OK, "Category_Information", user);
         } catch (Exception e) {
+            LOGGER.error("exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Category_Information", null);
         }
@@ -90,9 +105,11 @@ public class CategoryController {
             @PathVariable final int id) {
         try {
             CategoryDto user = cs.updateCat(c, id);
+            LOGGER.info("update category");
             return Responsee.generateResponce("succcessfully update the data",
                     HttpStatus.OK, "Category_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Category_Information", null);
         }
@@ -106,9 +123,11 @@ public class CategoryController {
     public final ResponseEntity<Object> deleteCat(@PathVariable final int id) {
         try {
             cs.deleteCat(id);
+            LOGGER.info("delete category");
             return Responsee.generateResponce("succcessfully delete the data",
                     HttpStatus.OK, "User_Information", null);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Category_Information", null);
         }
@@ -123,9 +142,11 @@ public class CategoryController {
             @PathVariable final String s) {
         try {
             Optional<CategoryDto> c = cs.findByName(s);
+            LOGGER.info("find category by category name");
             return Responsee.generateResponce("succcessfully retrieve the data",
                     HttpStatus.OK, "User_Information", c);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "Category_Information", null);
         }

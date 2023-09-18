@@ -8,7 +8,7 @@ import QuizApi from "../APIs/QuizApi";
 import Questions from "./Questions";
 import QuestionsApi from "../APIs/QuestionsApi";
 import ResultApi from "../APIs/ResultApi";
-function Test() {
+function Test({isRefresh}) {
   const navigate = useNavigate();
   const verifyRole = localStorage.getItem("userRole");
   const [questionCounter, setQuestionCounter] = useState(1);
@@ -210,6 +210,18 @@ function Test() {
 
   };
 
+  useEffect(() => {
+    if(!isRefresh) {
+      localStorage.removeItem('userRole');
+      localStorage.removeItem('userEmail')
+      localStorage.removeItem('userName')
+      localStorage.removeItem('userId')
+      localStorage.removeItem('categoryName')
+      localStorage.removeItem('quizName')
+      navigate("/")
+       //  navigate(-1)
+    }
+  })
   useEffect(() => {
     if (quizSubmitted) {
 

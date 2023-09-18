@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,7 +35,11 @@ public class StudentController {
      */
     @Autowired
     private StudentService stu;
-
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(StudentController.class);
     /**
      * student save method.
      * @param s student
@@ -43,9 +49,11 @@ public class StudentController {
     public final ResponseEntity<Object> save(@RequestBody final Student s) {
         try {
             StudentSaveDto user = stu.saveStudent(s);
+            LOGGER.info("Student registration");
             return Responsee.generateResponce("successfully added data",
                     HttpStatus.OK, "User_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "User_Information", null);
         }
@@ -60,9 +68,11 @@ public class StudentController {
     public final ResponseEntity<Object> findById(@PathVariable final int id) {
         try {
             Optional<StudentDto> user = stu.findById(id);
+            LOGGER.info("Student registration");
             return Responsee.generateResponce("successfully get the data",
                     HttpStatus.OK, "User_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "User_Information", null);
         }
@@ -77,9 +87,11 @@ public class StudentController {
     public final ResponseEntity<Object> login(@RequestBody final LoginDto l) {
         try {
             Optional<StudentDto> user = stu.aunthenticateUser(l);
+            LOGGER.info("Student login");
             return Responsee.generateResponce("succcessfully retrieve the data",
                     HttpStatus.OK, "User_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "User_Information", null);
         }
@@ -93,10 +105,12 @@ public class StudentController {
     public final ResponseEntity<Object> findAllStu() {
         try {
             List<StudentDto> user = stu.findAllStu();
+            LOGGER.info("Find all students");
             return Responsee.generateResponce(
                     "successfully retrieve all the data", HttpStatus.OK,
                     "User_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "User_Information", null);
         }
@@ -113,9 +127,11 @@ public class StudentController {
             @RequestBody final StudentDto s, @PathVariable final int id) {
         try {
             StudentDto user = stu.updateStudent(s, id);
+            LOGGER.info("Updatation of student");
             return Responsee.generateResponce("successfully update the data",
                     HttpStatus.OK, "User_Information", user);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "User_Information", null);
         }
@@ -131,9 +147,11 @@ public class StudentController {
             @PathVariable final int id) {
         try {
             stu.deleteStudent(id);
+            LOGGER.info("Deletion of student");
             return Responsee.generateResponce("successfully delete the data",
                     HttpStatus.OK, "User_Information", null);
         } catch (Exception e) {
+            LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
                     HttpStatus.MULTI_STATUS, "User_Information", null);
         }
