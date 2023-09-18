@@ -10271,3 +10271,25 @@ org.hibernate.HibernateException: Getter methods of lazy classes cannot be final
 2023-09-18T17:10:37.579+05:30  INFO 10292 --- [http-nio-6002-exec-1] c.e.demo.controller.StudentController    : Student registration
 2023-09-18T17:10:37.595+05:30  INFO 10292 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.StudentServiceImp    : find student by id
 2023-09-18T17:10:37.595+05:30  INFO 10292 --- [http-nio-6002-exec-6] c.e.demo.controller.StudentController    : Student registration
+2023-09-18T17:13:34.817+05:30  INFO 10292 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-18T17:13:34.817+05:30  INFO 10292 --- [http-nio-6002-exec-2] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-18T17:13:34.828+05:30  INFO 10292 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-18T17:13:34.828+05:30  INFO 10292 --- [http-nio-6002-exec-4] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-18T17:13:39.482+05:30  INFO 10292 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-09-18T17:13:39.482+05:30  INFO 10292 --- [http-nio-6002-exec-5] c.e.demo.controller.StudentController    : Student registration
+2023-09-18T17:13:39.501+05:30  INFO 10292 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-09-18T17:13:39.501+05:30  INFO 10292 --- [http-nio-6002-exec-7] c.e.demo.controller.StudentController    : Student registration
+2023-09-18T17:13:51.311+05:30  INFO 10292 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.StudentServiceImp    : student login
+2023-09-18T17:13:51.311+05:30  INFO 10292 --- [http-nio-6002-exec-9] c.e.demo.controller.StudentController    : Student login
+2023-09-18T17:13:51.349+05:30  INFO 10292 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-09-18T17:13:51.349+05:30  INFO 10292 --- [http-nio-6002-exec-10] c.e.demo.controller.StudentController    : Student registration
+2023-09-18T17:13:51.358+05:30  INFO 10292 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-09-18T17:13:51.358+05:30  INFO 10292 --- [http-nio-6002-exec-1] c.e.demo.controller.StudentController    : Student registration
+2023-09-18T17:13:54.102+05:30  INFO 10292 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-18T17:13:54.102+05:30  INFO 10292 --- [http-nio-6002-exec-6] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-18T17:13:54.123+05:30  INFO 10292 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-18T17:13:54.123+05:30  INFO 10292 --- [http-nio-6002-exec-3] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-18T17:14:09.316+05:30  INFO 10292 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-18T17:14:09.316+05:30  INFO 10292 --- [http-nio-6002-exec-2] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-18T17:14:09.337+05:30  INFO 10292 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-18T17:14:09.337+05:30  INFO 10292 --- [http-nio-6002-exec-4] c.e.demo.controller.CategoryController   : fina all categories
