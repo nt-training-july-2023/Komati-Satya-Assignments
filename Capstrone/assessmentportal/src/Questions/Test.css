@@ -16,8 +16,6 @@
   .timer {
     font-size: 18px;
   }
-  
-  
   .quiz-container {
     max-width: 800px;
     margin: 20px auto;
@@ -27,15 +25,15 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  
+ 
   .question-container {
     margin-bottom: 20px;
     text-align: left;
   }
-  
+   
   .question-container h4 {
     font-size: 18px;
-    margin: 0;
+    margin-right:0 ;
   }
   
 
@@ -99,7 +97,9 @@
   
     .question-container h4 {
       font-size: 16px;
+
       margin: 0;
+
     }
   
     .option-container {

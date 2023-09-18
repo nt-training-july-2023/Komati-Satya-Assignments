@@ -134,7 +134,7 @@ function Quiz({setTrue}) {
   console.log(quizData.quizName)
   const handleTakeTest=async(topicName,quizId)=>{
  
-    // console.log(quizData.quizName)
+    console.log(quizData.quizName)
     const hasAttempted = quizData.some(data => data.quizName === topicName);
     if(hasAttempted){
       await Swal.fire({
