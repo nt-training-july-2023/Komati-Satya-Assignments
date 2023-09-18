@@ -3,7 +3,8 @@ package com.example.demo.serviceImp;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,11 @@ public class FinalResultServiceImp implements FinalResService {
     @Autowired
     private CategoryRepo cr;
     /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(FinalResultServiceImp.class);
+    /**
      * constructor.
      * @param finalRepo final repository
      * @param categoryRepo category repository
@@ -61,11 +67,14 @@ public class FinalResultServiceImp implements FinalResService {
             if (fs.getByUserId(id).size() != 0) {
             List<FinalRes> finalRes = fs.getByUserId(id);
             List<ResultDto> resultDto = convertToDto(finalRes);
+            LOGGER.info("get result by user id");
                 return resultDto;
             } else {
+                LOGGER.error("User did not take the test");
                 throw new NotFoundException("User did not take the test");
             }
         } else {
+            LOGGER.error("No user is there");
             throw new AllNotFoundException("No user is there");
         }
     }
@@ -106,8 +115,10 @@ public class FinalResultServiceImp implements FinalResService {
        if (fs.findAll().size() != 0) {
            List<FinalRes> finalResult = fs.findAll();
            List<ResultDto> resultDto = convertToDto(finalResult);
+           LOGGER.info("find all result");
            return resultDto;
        } else {
+           LOGGER.error("No results are there");
            throw new AllNotFoundException("No results are there");
        }
     }

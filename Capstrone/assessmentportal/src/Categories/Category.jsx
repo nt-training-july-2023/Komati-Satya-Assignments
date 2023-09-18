@@ -33,22 +33,54 @@ function Category() {
     })
   };
   const deleteData = async (id) => {
-   
-      // const response = await axios.delete(`http://localhost:6002/cat/${id}`);
-      CategoryApi.deleteCategory(id).then(response=>{
-      console.log(response);
-      if (response.data.message === "succcessfully delete the data") {
-        Swal.fire({
-          title: 'Deleting data',
-          text: 'Successfully deleted data',
-          icon: 'success',
-          confirmButtonText: 'Ok'
-        });
+    Swal.fire({
+      title: 'Do you want to delete category?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: 'No',
+      customClass: {
+          actions: 'my-actions',
+          cancelButton: 'order-1 right-gap',
+          confirmButton: 'order-2',
+          denyButton: 'order-3',
       }
-      getCategories();
-    }).catch (error=> {
-      console.log(error);
-    })
+  }).then((result) => {
+      if (result.isConfirmed) {
+            // const response = await axios.delete(`http://localhost:6002/cat/${id}`);
+      CategoryApi.deleteCategory(id).then(response=>{
+        console.log(response);
+        if (response.data.message === "succcessfully delete the data") {
+          Swal.fire({
+            title: 'Deleting data',
+            text: 'Successfully deleted data',
+            icon: 'success',
+            confirmButtonText: 'Ok'
+          });
+        }
+        getCategories();
+      }).catch (error=> {
+        console.log(error);
+      })
+
+      } else if (result.isDenied) {
+
+      }
+  })
+    //   // const response = await axios.delete(`http://localhost:6002/cat/${id}`);
+    //   CategoryApi.deleteCategory(id).then(response=>{
+    //   console.log(response);
+    //   if (response.data.message === "succcessfully delete the data") {
+    //     Swal.fire({
+    //       title: 'Deleting data',
+    //       text: 'Successfully deleted data',
+    //       icon: 'success',
+    //       confirmButtonText: 'Ok'
+    //     });
+    //   }
+    //   getCategories();
+    // }).catch (error=> {
+    //   console.log(error);
+    // })
   }
   const navigate = useNavigate();
   const addData = () => {

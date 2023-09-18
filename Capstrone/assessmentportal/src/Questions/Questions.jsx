@@ -34,22 +34,55 @@ const Questions=()=>{
   };
 
   const deleteData = async (id) => {
-   // const response = await axios.delete(`http://localhost:6002/que/${id}`);
-   QuestionsApi.deleteQuestion(id).then(response=>{
-      console.log(response);
-      if (response.data.message === "succcessfully delete the data") {
-        Swal.fire({
-          title: 'Deleting data',
-          text: 'Successfully deleted data',
-          icon: 'success',
-          confirmButtonText: 'Ok'
-        });
+    Swal.fire({
+      title: 'Do you want to delete question?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: 'No',
+      customClass: {
+          actions: 'my-actions',
+          cancelButton: 'order-1 right-gap',
+          confirmButton: 'order-2',
+          denyButton: 'order-3',
       }
-      getQuestions();
-    })
-    .catch (error=>{
-      console.log(error);
-    })
+  }).then((result) => {
+      if (result.isConfirmed) {
+           // const response = await axios.delete(`http://localhost:6002/que/${id}`);
+   QuestionsApi.deleteQuestion(id).then(response=>{
+    console.log(response);
+    if (response.data.message === "succcessfully delete the data") {
+      Swal.fire({
+        title: 'Deleting data',
+        text: 'Successfully deleted data',
+        icon: 'success',
+        confirmButtonText: 'Ok'
+      });
+    }
+    getQuestions();
+  })
+  .catch (error=>{
+    console.log(error);
+  })
+      } else if (result.isDenied) {
+
+      }
+  })
+  //  // const response = await axios.delete(`http://localhost:6002/que/${id}`);
+  //  QuestionsApi.deleteQuestion(id).then(response=>{
+  //     console.log(response);
+  //     if (response.data.message === "succcessfully delete the data") {
+  //       Swal.fire({
+  //         title: 'Deleting data',
+  //         text: 'Successfully deleted data',
+  //         icon: 'success',
+  //         confirmButtonText: 'Ok'
+  //       });
+  //     }
+  //     getQuestions();
+  //   })
+  //   .catch (error=>{
+  //     console.log(error);
+  //   })
   };
  
   const navigate = useNavigate();
@@ -107,7 +140,7 @@ const Questions=()=>{
                     <th>Option2</th>
                     <th>Option3</th>
                     <th>Option4</th>
-                    <th>Correct Option</th>
+                    <th>Correct Answer</th>
                     
                     {/* <th>Delete</th>
               <th>Update</th> */}

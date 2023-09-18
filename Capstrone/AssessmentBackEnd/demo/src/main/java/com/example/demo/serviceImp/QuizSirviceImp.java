@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,11 @@ public class QuizSirviceImp implements QuizService {
     @Autowired
     private CategoryRepo cr;
     /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(QuizSirviceImp.class);
+    /**
      * constructor.
      * @param repo quiz repository
      * @param categoryRepo category repository
@@ -56,12 +63,16 @@ public class QuizSirviceImp implements QuizService {
                 qd.setTopicName(quiz.getTopicName());
                 qd.setCategoryId(quiz.getCate().getCategoryId());
                 qr.save(quiz);
+                LOGGER.info("add question");
                 return qd;
             } else {
+                LOGGER.error("Topic is already exist,"
+                        + "enter a new topic");
                 throw new AlreadyExistException("Topic is already exist,"
                         + "enter a new topic");
             }
         } else {
+            LOGGER.error("Category is not present");
             throw new NotFoundException("Category is not present");
         }
     }
@@ -81,11 +92,14 @@ public class QuizSirviceImp implements QuizService {
                  qd.setTopicDescription(quiz.getTopicDescription());
                  qd.setTopicName(quiz.getTopicName());
                  qd.setCategoryId(quiz.getCate().getCategoryId());
+                 LOGGER.info("get quiz by id");
                 return Optional.of(qd);
             } else {
+                LOGGER.error("wrong quiz id");
                 throw new NotFoundException("wrong quiz id");
             }
         } else {
+            LOGGER.error("no quiz is present");
             throw new AllNotFoundException("no quiz is present");
         }
     }
@@ -129,10 +143,13 @@ public class QuizSirviceImp implements QuizService {
         if (qr.findAll().size() != 0) {
             if (qr.findById(id).isPresent()) {
                 qr.deleteById(id);
+                LOGGER.info("delete quiz");
             } else {
+                LOGGER.error("wrong quiz id");
                 throw new NotFoundException("wrong quiz id");
             }
         } else {
+            LOGGER.error("no quiz is present");
             throw new AllNotFoundException("no quiz is present");
         }
 
@@ -152,11 +169,14 @@ public class QuizSirviceImp implements QuizService {
             exiQuiz.setTopicName(q.getTopicName());
             exiQuiz.setTopicDescription(q.getTopicDescription());
             qr.save(exiQuiz);
+            LOGGER.info("update quiz");
             return q;
         } else {
+            LOGGER.error("wrong quiz id");
             throw new NotFoundException("wrong quiz id");
         }
         } else {
+            LOGGER.error("no quiz is present");
             throw new AllNotFoundException("no quiz is present");
         }
     }
@@ -171,11 +191,14 @@ public class QuizSirviceImp implements QuizService {
             if (qr.findQuizById(id).size() != 0) {
             List<Quiz> l = qr.findQuizById(id);
             List<QuizDto> ld = convertToDto(l);
+            LOGGER.info("Find quiz by category id");
             return ld;
             } else {
+                LOGGER.error("wrong category id");
                 throw new NotFoundException("wrong category id");
             }
         } else {
+            LOGGER.error("no quiz is present");
             throw new AllNotFoundException("no quiz is present");
         }
 
@@ -196,11 +219,14 @@ public class QuizSirviceImp implements QuizService {
                qd.setTopicDescription(quiz.getTopicDescription());
                qd.setTopicName(quiz.getTopicName());
                qd.setCategoryId(quiz.getCate().getCategoryId());
+               LOGGER.info("find quiz by name");
                return Optional.of(qd);
             } else {
+                LOGGER.error("topic is not found");
                 throw new NotFoundException("topic is not found");
             }
         } else {
+            LOGGER.error("no quiz is present");
             throw new AllNotFoundException("no quiz is present");
         }
 

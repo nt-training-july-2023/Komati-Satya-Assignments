@@ -3,6 +3,9 @@ package com.example.demo.serviceImp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.CategoryDto;
@@ -22,7 +25,11 @@ public class CategoryServiceImp implements CategoryService {
      * categoryRepo object.
      */
     private CategoryRepo a;
-
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(CategoryServiceImp.class);
     /**
      * constructor.
      * @param st categoryRepo
@@ -44,8 +51,10 @@ public class CategoryServiceImp implements CategoryService {
             cd.setCategoryName(c.getCategoryName());
             cd.setCategoryId(c.getCategoryId());
             a.save(c);
+            LOGGER.info("save category");
             return cd;
         } else {
+            LOGGER.error("Category already present");
             throw new AlreadyExistException("Category already present");
         }
     }
@@ -65,11 +74,14 @@ public class CategoryServiceImp implements CategoryService {
                 cad.setCategoryDescription(ca.getCategoryDescription());
                 cad.setCategoryName(ca.getCategoryName());
                 cad.setCategoryId(ca.getCategoryId());
+                LOGGER.info("find category by category id");
                 return Optional.of(cad);
             } else {
+                LOGGER.error("wrong category id");
                 throw new NotFoundException("wrong category id");
             }
         } else {
+            LOGGER.error("no category is there");
             throw new AllNotFoundException("no category is there");
         }
     }
@@ -83,8 +95,10 @@ public class CategoryServiceImp implements CategoryService {
         if (a.findAll().size() != 0) {
             List<Category> c = a.findAll();
             List<CategoryDto> cd = convertToDto(c);
+            LOGGER.info("find all categories");
             return cd;
         } else {
+            LOGGER.error("No categories are there");
             throw new AllNotFoundException("No categories are there");
         }
     }
@@ -120,9 +134,10 @@ public class CategoryServiceImp implements CategoryService {
             existingCategory.setCategoryName(c.getCategoryName());
             existingCategory.setCategoryDescription(c.getCategoryDescription());
             a.save(existingCategory);
-
+            LOGGER.info("update category");
             return c;
         } else {
+            LOGGER.error("wrong category id");
             throw new NotFoundException("wrong category id");
         }
     }
@@ -136,10 +151,13 @@ public class CategoryServiceImp implements CategoryService {
         if (a.findAll().size() != 0) {
             if (a.findById(id).isPresent()) {
                 a.deleteById(id);
+                LOGGER.info("delete category");
             } else {
+                LOGGER.error("wrong category id");
                 throw new NotFoundException("wrong category id");
             }
         } else {
+            LOGGER.error("No categories are there");
             throw new AllNotFoundException("No categories are there");
         }
     }
@@ -157,11 +175,14 @@ public class CategoryServiceImp implements CategoryService {
                 Optional<Category> c = a.findByCategoryName(s);
                 cad.setCategoryDescription(c.get().getCategoryDescription());
                 cad.setCategoryName(c.get().getCategoryName());
+                LOGGER.info("find category by category name");
                 return Optional.of(cad);
             } else {
+                LOGGER.error("Category not present");
                 throw new NotFoundException("Category not present");
             }
         } else {
+            LOGGER.error("No categories are there");
             throw new AllNotFoundException("No categories are there");
         }
     }

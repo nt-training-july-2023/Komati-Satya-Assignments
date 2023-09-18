@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -51,6 +53,11 @@ public class ResultServiceImp implements ResultService {
      */
     @Autowired
     private StudentRepo srr;
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(ResultServiceImp.class);
    /**
     * constructor.
     * @param resultRepo result repository
@@ -96,12 +103,15 @@ public class ResultServiceImp implements ResultService {
         fr.setTotalNoOfQuestions(sr.getTotalQuestions());
         if (qr.findQuizByName(fr.getQuizTopic()).isPresent()) {
             if (cr.findByCategoryName(fr.getCategoryName()).isPresent()) {
+                    LOGGER.info("save result");
                     f.save(fr);
             } else {
+                LOGGER.error("Category is not present");
                 throw new NotFoundException("Category is not present");
             }
 
         } else {
+            LOGGER.error("Quiz is not present");
             throw new NotFoundException("Quiz is not present");
         }
         f.save(fr);
@@ -120,6 +130,7 @@ public class ResultServiceImp implements ResultService {
         ss.setResultId(sr.getResultId());
         s.save(ss);
        } else {
+           LOGGER.error("Wrong email id");
            throw new NotFoundException("wrong email id");
        }
         return sr;
@@ -148,11 +159,14 @@ public class ResultServiceImp implements ResultService {
                 resultDto.setObtainMarks(fr.getMaxMarks());
                 resultDto.setAttemptedQuestions(fr.getAttemptedQuestions());
                 resultDto.setCategoryId(c.getCategoryId());
+                LOGGER.info("get result hy id");
                 return Optional.of(resultDto);
             } else {
+                LOGGER.error("wrong user Id,enter a valid Id");
                 throw new NotFoundException("wrong user Id,enter a valid Id");
             }
         } else {
+            LOGGER.error("no studentresult is present");
             throw new AllNotFoundException("no studentresult is present");
         }
     }
@@ -165,8 +179,10 @@ public class ResultServiceImp implements ResultService {
         if (s.findAll().size() != 0) {
             List<StudentResult> sr  = s.findAll();
             List<ResultDto> resultDto = convertToDto(sr);
+            LOGGER.info("find all result");
             return resultDto;
         } else {
+            LOGGER.info("studentresult is present");
             throw new AllNotFoundException("no studentresult is present");
         }
     }

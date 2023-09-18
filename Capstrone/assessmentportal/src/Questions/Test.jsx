@@ -270,6 +270,8 @@ function Test({isRefresh}) {
     <div className="quiz-container">
        {verifyRole === 'student' ? (
           <>
+           {questions.length !== 0 ? (
+              <>
       <div className="navbar">
         <h1 className="navbar-title">Test</h1>
         <div className="timer">
@@ -278,10 +280,7 @@ function Test({isRefresh}) {
       </div>
 
       <div className="categoryData">
-
-       
-            {questions.length !== 0 ? (
-              <>
+           
                 <div>
                   <form className="testData">
                     {questions.map((item, index) => (
@@ -338,12 +337,13 @@ function Test({isRefresh}) {
                     </button>
                   )}
                 </div>
-              </>
+          
+          
+      </div>
+      </>
             ) : (
               <h1>No questions</h1>
             )}
-          
-      </div>
       </>): (<ErrorPage/>)}
     </div>
   );

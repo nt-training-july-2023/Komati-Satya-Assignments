@@ -54,7 +54,20 @@ function Quiz({setTrue}) {
   };
   console.log(quizData)
   const deleteData = async (id) => {
-    //const response = await axios.delete(`http://localhost:6002/quiz/${id}`);
+    Swal.fire({
+      title: 'Do you want to delete quiz?',
+      showDenyButton: true,
+      confirmButtonText: 'Yes',
+      denyButtonText: 'No',
+      customClass: {
+          actions: 'my-actions',
+          cancelButton: 'order-1 right-gap',
+          confirmButton: 'order-2',
+          denyButton: 'order-3',
+      }
+  }).then((result) => {
+      if (result.isConfirmed) {
+           //const response = await axios.delete(`http://localhost:6002/quiz/${id}`);
     QuizApi.deleteQuiz(id).then(response=>{
       console.log(response);
       if (response.data.message === "succcessfully delete the data") {
@@ -70,6 +83,26 @@ function Quiz({setTrue}) {
     catch (error=> {
       console.log(error);
     })
+      } else if (result.isDenied) {
+
+      }
+  })
+    // //const response = await axios.delete(`http://localhost:6002/quiz/${id}`);
+    // QuizApi.deleteQuiz(id).then(response=>{
+    //   console.log(response);
+    //   if (response.data.message === "succcessfully delete the data") {
+    //     Swal.fire({
+    //       title: 'Deleting data',
+    //       text: 'Successfully deleted data',
+    //       icon: 'success',
+    //       confirmButtonText: 'Ok'
+    //     });
+    //   }
+    //   getQuiz();
+    // }).
+    // catch (error=> {
+    //   console.log(error);
+    // })
   };
   
   const navigate = useNavigate();
@@ -142,12 +175,13 @@ function Quiz({setTrue}) {
         <p>Here are the quiz instructions</p>
         <ul style="background-color:#f5f2f2">
           <li>1. Once you start the quiz you can't go to back.</li>
-          <li>2. The quiz stopps once the timer runs out.</li>
-          <li>3. No negative marking for wrong answers. </li>
-          <li>4. You can attempt the quiz only once</li>
-          <li>5. Questions are of Multiple Choice</li>
-          <li>6. Each Question carry one mark</li>
-
+          <li>2. Do not refresh the page</li>
+          <li>3. The quiz stopps once the timer runs out.</li>
+          <li>4. No negative marking for wrong answers. </li>
+          <li>5. You can attempt the quiz only once</li>
+          <li>6. Questions are of Multiple Choice</li>
+          <li>7. Each Question carry one mark</li>
+         
         </ul>
       </div>
     `

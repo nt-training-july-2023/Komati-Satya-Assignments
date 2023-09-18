@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,11 @@ public class StudentServiceImp implements StudentService {
      */
     @Autowired
     private StudentRepo st;
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(StudentServiceImp.class);
     /**
      * Constructor.
      * @param repo repo
@@ -59,12 +66,14 @@ public class StudentServiceImp implements StudentService {
                 studentDto.setDateOfBirth(st1.getDateOfBirth());
                 studentDto.setEmail(st1.getEmail());
                 studentDto.setRole(st1.getRole());
+                LOGGER.info("student login");
                 return Optional.of(studentDto);
             } else {
-
+                LOGGER.error("password must be same");
                 throw new PasswordMissMatchException("password must be same");
             }
         } else {
+            LOGGER.error("Email not exist");
             throw new EmailDoesNotExistException("Email not exist");
         }
 
@@ -89,9 +98,10 @@ public class StudentServiceImp implements StudentService {
             studentDto.setDateOfBirth(stu.getDateOfBirth());
             studentDto.setEmail(stu.getEmail());
             studentDto.setRole(stu.getRole());
-
+            LOGGER.info("student registration");
             return studentDto;
         } else {
+            LOGGER.error("Email already exist");
             throw new DuplicateEmailException("Email already exist");
         }
 
@@ -115,8 +125,10 @@ public class StudentServiceImp implements StudentService {
             studentDto.setDateOfBirth(stu.getDateOfBirth());
             studentDto.setEmail(stu.getEmail());
             studentDto.setRole(stu.getRole());
+            LOGGER.info("find student by id");
             return Optional.of(studentDto);
         } else {
+            LOGGER.error("User not found");
             throw new NotFoundException("User not found");
         }
     }
@@ -130,8 +142,10 @@ public class StudentServiceImp implements StudentService {
         if (st.findAll().size() != 0) {
             List<Student> s = st.findAll();
             List<StudentDto> sd = convertToDto(s);
+            LOGGER.info("find all students");
             return sd;
         } else {
+            LOGGER.error("No user is present");
             throw new AllNotFoundException("No user is present");
         }
 
@@ -174,9 +188,11 @@ public class StudentServiceImp implements StudentService {
             exiStudent.setPhoneNumber(s.getPhoneNumber());
             exiStudent.setUserName(s.getUserName());
             st.save(exiStudent);
+            LOGGER.info("update student");
             return s;
 
         } else {
+            LOGGER.error("user not found");
             throw new NotFoundException("User not found,give a correct id");
         }
     }
@@ -189,10 +205,13 @@ public class StudentServiceImp implements StudentService {
         if (st.findAll().size() != 0) {
             if (st.findById(id).isPresent()) {
                 st.deleteById(id);
+                LOGGER.info("deletion of student");
             } else {
+                LOGGER.error("User not found");
                 throw new NotFoundException("User not found,give a correct id");
             }
         } else {
+            LOGGER.error("User not found");
             throw new AllNotFoundException("No user is present");
         }
     }
