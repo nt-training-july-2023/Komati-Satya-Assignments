@@ -28,7 +28,7 @@ class QuizDtoTest {
     }
     @Test
     void testAllArgsConstructor() {
-        QuizDto quizDto=new QuizDto(1,"arrays","java",18); 
+        QuizDto quizDto=new QuizDto(1,"arrays","java",18,6); 
         assertEquals(1,quizDto.getQuizId());
         assertEquals("arrays",quizDto.getTopicName());
         assertEquals("java",quizDto.getTopicDescription());

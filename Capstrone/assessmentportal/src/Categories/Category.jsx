@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import './CategoryStyles.css'
 import ErrorPage from "../ErrorPage";
 import CategoryApi from "../APIs/CategoryApi";
+import DisableBackButton from "../APIs/disableBackButton";
 function Category() {
   const verifyRole = localStorage.getItem('userRole');
   const [category, setCategory] = useState([]);
@@ -114,6 +115,7 @@ function Category() {
     <div className="App">
       
     <div className="categoryData">
+    <DisableBackButton/>
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Category Details</h1>

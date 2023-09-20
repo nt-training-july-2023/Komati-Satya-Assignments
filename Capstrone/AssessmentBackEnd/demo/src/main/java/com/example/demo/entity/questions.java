@@ -90,7 +90,7 @@ public class Questions {
      */
     public final Quiz getQui() {
         return new Quiz(qui.getQuizId(), qui.getTopicName(),
-                qui.getTopicDescription()
+                qui.getTopicDescription(), qui.getTimer()
                 );
     }
     /**
@@ -99,7 +99,7 @@ public class Questions {
      */
     public final void setQui(final Quiz quii) {
         this.qui = new Quiz(quii.getQuizId(), quii.getTopicName(),
-                quii.getTopicDescription()
+                quii.getTopicDescription(), quii.getTimer()
                 );
     }
 }

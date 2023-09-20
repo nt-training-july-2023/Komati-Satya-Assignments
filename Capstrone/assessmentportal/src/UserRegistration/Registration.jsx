@@ -4,10 +4,10 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Swal from "sweetalert2";
 import './RegistrationStyles.css'
-import {FaEye,FaEyeSlash} from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import UserApi from "../APIs/UserApi";
 const Registration = () => {
-  const[showPassword,setShowPassword]=useState("true");
+  const [showPassword, setShowPassword] = useState("true");
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
@@ -25,9 +25,9 @@ const Registration = () => {
   const changeData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const togglePassword=()=>{
+  const togglePassword = () => {
     setShowPassword(!showPassword);
-}
+  }
   const validateForm = () => {
     const validationErrors = {};
 
@@ -207,32 +207,34 @@ const Registration = () => {
           <div className="details">
             <label className="side">Name</label><br /><br />
             <input className="values" type="text" placeholder="enter a name" name="userName" value={formData.userName} onChange={changeData} /><br /><br />
+            {/* <p style={{ color: "red", fontSize: "15px" }}>{errors.userName}</p> */}
             <label className="side">Email</label><br /><br />
             <input className="values" type="email" placeholder="enter a email" name="email" value={formData.email} onChange={changeData} /><br /><br />
 
             {/* <label className="side">Password</label><br /><br />
             <input className="values" type="password" placeholder="enter a password" name="password" value={formData.password} onChange={changeData} /><br /><br /> */}
-              <div className="password-container2">
-                        <label className="side">Password</label><br /><br />
-                        <input className="values" type={showPassword ? 'password' : 'text'} name="password" placeholder="enter a password" value={formData.password} onChange={changeData} /><br />
-                        <button className="show-password2" type="button" onClick={togglePassword}>
+            <div className="password-container2">
+              <label className="side">Password</label><br /><br />
+              <input className="values" type={showPassword ? 'password' : 'text'} name="password" placeholder="enter a password" value={formData.password} onChange={changeData} /><br />
+              <button className="show-password2" type="button" onClick={togglePassword}>
 
-                            {showPassword ? <FaEyeSlash/> :<FaEye/>}
-                        </button>
-                        </div>
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div><br/>
             {/* <label className="side">Confirm Password</label><br /><br />
             <input className="values" type="password" placeholder="enter a confirm password" name="confirmPassword" value={formData.confirmPassword} onChange={changeData} /><br /><br /> */}
-             <div className="password-container2">
-                        <label className="side">Confirm Password</label><br /><br />
-                        <input className="values" type={showPassword ? 'password' : 'text'} name="confirmPassword" placeholder="enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
-                        <button className="show-password2" type="button" onClick={togglePassword}>
+            <div className="password-container2">
+              <label className="side">Confirm Password</label><br /><br />
+              <input className="values" type={showPassword ? 'password' : 'text'} name="confirmPassword" placeholder="enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
+              <button className="show-password2" type="button" onClick={togglePassword}>
 
-                            {showPassword ? <FaEyeSlash/> :<FaEye/>}
-                        </button>
-                        </div>
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div><br/>
             <label className="side">DateOfBirth</label><br /><br />
             <input className="values" type="Date" placeholder="enter a date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} /><br /><br />
-
+            <label className="side">Phone number</label><br /><br />
+            <input className="values" type="text" name="phoneNumber" placeholder="enter a phone number" value={formData.phoneNumber} onChange={changeData} /><br /><br />
             <label className="side">Gender</label><br /><br />
 
             <div className="gen">
@@ -243,10 +245,7 @@ const Registration = () => {
               <input className="gen2" type="radio" name="gender" value={formData.gender} onChange={changeData} />
               <label className="gender">Other</label><br />
             </div>
-            <label className="side">Phone number</label><br /><br />
-            <input className="values" type="text" name="phoneNumber" value={formData.phoneNumber} onChange={changeData} /><br /><br />
-
-            <button type="button" onClick={submitData}>Register</button>
+            <button className="submit" type="button" onClick={submitData}>Register</button>
             <a href="/" className="anchor1">Already have an account? Login here!!!</a>
           </div>
         </div>

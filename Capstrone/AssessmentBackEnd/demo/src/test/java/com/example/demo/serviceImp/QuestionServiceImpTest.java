@@ -41,7 +41,7 @@ class QuestionServiceImpTest {
     @Test
     void testAddQuestion() {
         Questions q=new Questions("java is","oops","popl","none","both","oopl");
-       Quiz quiz=new Quiz(1,"variables","java variables");
+       Quiz quiz=new Quiz(1,"variables","java variables",60);
         q.setQui(quiz);
       when(quizRepo.findById(q.getQui().getQuizId())).thenReturn(Optional.of(quiz));
         when(questionsRepo.findByQuestion(q.getQuestion())).thenReturn(Optional.empty());
@@ -59,7 +59,7 @@ class QuestionServiceImpTest {
     @Test
     void testQuestionAlreadyExistException() {
         Questions q=new Questions("java is","oops","popl","none","both","oopl");
-        Quiz quiz=new Quiz(1,"variables","java variables");
+        Quiz quiz=new Quiz(1,"variables","java variables",60);
         q.setQui(quiz);
         when(quizRepo.findById(q.getQui().getQuizId())).thenReturn(Optional.of(quiz));
         when(questionsRepo.findByQuestion(q.getQuestion())).thenReturn(Optional.of(q));
@@ -70,7 +70,7 @@ class QuestionServiceImpTest {
    @Test
     void testQuizTopicNotPresent() {
         Questions q=new Questions("java is","oops","popl","none","both","oopl");
-        Quiz quiz=new Quiz(1,"variables","java variables");
+        Quiz quiz=new Quiz(1,"variables","java variables",60);
         q.setQui(quiz);
         when(quizRepo.findById(q.getQui().getQuizId())).thenReturn(Optional.empty());
         assertThrows(NotFoundException.class,()->{
@@ -80,7 +80,7 @@ class QuestionServiceImpTest {
     @Test
    void testGetAll() {
         Questions q=new Questions("java is","oops","popl","none","both","oopl");
-        Quiz quiz=new Quiz(1,"variables","java variables");
+        Quiz quiz=new Quiz(1,"variables","java variables",60);
          q.setQui(quiz);
          List<Questions> q1=new ArrayList<>();
          q1.add(q);
@@ -105,7 +105,7 @@ class QuestionServiceImpTest {
     void testDeleteById() {
         Questions q=new Questions("java is","oops","popl","none","both","oopl");
         q.setQid(10);
-        Quiz quiz=new Quiz(1,"variables","java variables");
+        Quiz quiz=new Quiz(1,"variables","java variables",60);
         q.setQui(quiz);
         when(questionsRepo.findAll()).thenReturn(Collections.singletonList(new Questions()));
         when(questionsRepo.findById(q.getQid())).thenReturn(Optional.of(q));
@@ -134,7 +134,7 @@ class QuestionServiceImpTest {
     public void testUpdateQuestion() {
         Questions q=new Questions("java is","oops","popl","none","both","oopl");
         q.setQid(1);
-        Quiz quiz=new Quiz(1,"variables","java variables");
+        Quiz quiz=new Quiz(1,"variables","java variables",60);
          q.setQui(quiz);
         questionsRepo.save(q);
         QuestionsDto questionsDto=new QuestionsDto();
@@ -180,7 +180,7 @@ class QuestionServiceImpTest {
     public void testGetQuestionByQuizId() {
         Questions q1=new Questions("java is","oops","popl","none","both","oopl");
         q1.setQid(1);
-        Quiz quiz=new Quiz(1,"variables","java variables");
+        Quiz quiz=new Quiz(1,"variables","java variables",60);
          q1.setQui(quiz);
          Questions q2=new Questions("variable is","oops","popl","none","both","oopl");
          q2.setQui(quiz);
@@ -228,7 +228,7 @@ class QuestionServiceImpTest {
      void testFindQuestionByQuestionName() {
          Questions q1=new Questions("java is","oops","popl","none","both","oopl");
          q1.setQid(1);
-         Quiz quiz=new Quiz(1,"variables","java variables");
+         Quiz quiz=new Quiz(1,"variables","java variables",60);
           q1.setQui(quiz);
          when(questionsRepo.findAll()).thenReturn(Collections.singletonList(new Questions()));
          when(questionsRepo.findByQuestion(q1.getQuestion())).thenReturn(Optional.of(q1));

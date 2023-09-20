@@ -1,5 +1,5 @@
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './LoginStyles.css';
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import {FaEye,FaEyeSlash} from 'react-icons/fa';
 import UserApi from "../APIs/UserApi";
+import DisableBackButton from "../APIs/disableBackButton";
 
 const Login = () => {
     const [loginData, setLoginData] = useState({
@@ -119,10 +120,10 @@ const Login = () => {
             
         }
     }
-
+  
     return (
         <div className="login" >
-            
+            <DisableBackButton/>
             <div className="loginData">
             <h1 className="ass">Assessment Portal</h1>
             <h2 className="know">- Come...Test your Knowledge Here!!!</h2>

@@ -8,16 +8,15 @@ import QuizApi from "../APIs/QuizApi";
 import Questions from "./Questions";
 import QuestionsApi from "../APIs/QuestionsApi";
 import ResultApi from "../APIs/ResultApi";
-function Test({isRefresh}) {
+import DisableBackButton from "../APIs/disableBackButton";
+
+function Test({ isRefresh }) {
   const navigate = useNavigate();
   const verifyRole = localStorage.getItem("userRole");
   const [questionCounter, setQuestionCounter] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [quiz, setQuiz] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
-  const [timeLeft, setTimeLeft] = useState(20*60);
-
   const [timerId, setTimerId] = useState(null);
   const [questions, setQuestions] = useState([]);
   const [userScore, setUserScore] = useState(0);
@@ -34,26 +33,27 @@ function Test({isRefresh}) {
   const verifyQuizName = localStorage.getItem('quizName')
   // console.log(verifyQuizName)
   const verifyUserId = localStorage.getItem('userId')
+  const verifyTimer = localStorage.getItem('timer')
   console.log(verifyUserId)
   const [numberOfQuestions, setNumberOfQuestions] = useState();
   const [attemptedQuestionss, setAttemptedQuestions] = useState(0);
   const [date, setDate] = useState()
+  const [timeLeft, setTimeLeft] = useState((verifyTimer) * (60));
   useEffect(() => {
     const currentDate = new Date();
-  const options = { 
-    year: 'numeric', 
-    month: '2-digit', 
-    day: '2-digit', 
-    hour: '2-digit', 
-    minute: '2-digit', 
-    second: '2-digit', 
-    hour12: true 
-  };
-  const formattedDate = currentDate.toLocaleDateString('en-US', options);
-  setDate(formattedDate);
+    const options = {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    };
+    const formattedDate = currentDate.toLocaleDateString('en-US', options);
+    setDate(formattedDate);
 
   }, [])
-
   //  console.log(date)
   useEffect(() => {
     getQuiz();
@@ -64,16 +64,12 @@ function Test({isRefresh}) {
     QuizApi.getQuiz(quizId).then(response => {
       console.log(response)
       setQuiz(response.data.Quiz_topic_Information || []);
-      console.log(quiz)
     }).catch(error => {
       console.error('An error occurred:', error);
     }).finally(() => {
       setIsLoading(false);
     })
   }
-  // console.log(quiz)
-  
-
   useEffect(() => {
     getQuestions();
 
@@ -187,7 +183,7 @@ function Test({isRefresh}) {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-           
+
         if (!quizSubmitted) {
           let score = 0;
 
@@ -208,16 +204,14 @@ function Test({isRefresh}) {
     })
 
   };
+
+
   useEffect(() => {
-    if(!isRefresh) {
-      localStorage.removeItem('userRole');
-      localStorage.removeItem('userEmail')
-      localStorage.removeItem('userName')
-      localStorage.removeItem('userId')
-      localStorage.removeItem('categoryName')
-      localStorage.removeItem('quizName')
-      navigate("/")
-       //  navigate(-1)
+    if (!isRefresh) {
+  
+      const cat = localStorage.getItem("categoryId")
+      console.log(cat)
+      navigate(`/Quiz/${cat}`)
     }
   })
   useEffect(() => {
@@ -261,21 +255,27 @@ function Test({isRefresh}) {
   console.log("a" + userScore);
   console.log(quiz.maxMarks)
   console.log(resultt)
+  const backTo = () => {
+    const cat = localStorage.getItem("categoryId")
+    console.log(cat)
+    navigate(`/Quiz/${cat}`)
+  }
   return (
     <div className="quiz-container">
-       {verifyRole === 'student' ? (
-          <>
-           {questions.length !== 0 ? (
-              <>
-      <div className="navbar">
-        <h1 className="navbar-title">Test</h1>
-        <div className="timer">
-          Time Left: {formatTime(timeLeft)}
-        </div>
-      </div>
+      <DisableBackButton />
+      {verifyRole === 'student' ? (
+        <>
+          {questions.length !== 0 ? (
+            <>
+              <div className="navbar">
+                <h1 className="navbar-title">Test</h1>
+                <div className="timer">
+                  Time Left: {formatTime(timeLeft)}
+                </div>
+              </div>
 
-      <div className="categoryData">
-           
+              <div className="categoryData">
+
                 <div>
                   <form className="testData">
                     {questions.map((item, index) => (
@@ -332,14 +332,19 @@ function Test({isRefresh}) {
                     </button>
                   )}
                 </div>
-          
-          
-      </div>
-      </>
-            ) : (
+
+
+              </div>
+            </>
+          ) : (
+            <div>
               <h1>No questions</h1>
-            )}
-      </>): (<ErrorPage/>)}
+              <button className="back" onClick={() => backTo()}>Back</button>
+              </div>
+          )}
+        </>) :
+
+        (<ErrorPage />)}
     </div>
   );
 }

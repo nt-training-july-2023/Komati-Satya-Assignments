@@ -118,4 +118,15 @@
     .question-container h4 {
       font-size: 14px; 
     }
+    .back{
+      width:100%;
+    }
+  }
+  .back{
+    width: 20%;
+  }
+  @media (max-width: 300px) {
+    .back{
+      width: 50%;
+    }
   }

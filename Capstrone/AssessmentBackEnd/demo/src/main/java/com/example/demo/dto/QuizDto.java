@@ -33,4 +33,8 @@ public class QuizDto {
      * category id.
      */
     private int categoryId;
+    /**
+     * stores time.
+     */
+    private int timer;
 }

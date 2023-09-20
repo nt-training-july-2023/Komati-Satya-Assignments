@@ -9,6 +9,7 @@ import ErrorPage from "../ErrorPage";
 import QuizApi from "../APIs/QuizApi";
 import ResultApi from "../APIs/ResultApi";
 import FinalResultApi from "../APIs/FinalResultApi";
+import DisableBackButton from "../APIs/disableBackButton";
 function Quiz({setTrue}) {
   const { categoryId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
@@ -22,7 +23,7 @@ function Quiz({setTrue}) {
   useEffect(() => {
     {
       getQuiz();
-      getResult();
+     
     }
   }, [categoryId]);
   const getQuiz = async () => {
@@ -38,20 +39,7 @@ function Quiz({setTrue}) {
       setIsLoading(false);
     })
   };
-  const getResult = async () => {
-     // const response = await axios.get(`http://localhost:6002/finalResult/${verifyUserId}`);
-      FinalResultApi.getResultByStudentId(verifyUserId).then(response=>{
-      if(response.data.message=="No user is there"){
-        <h1>No results</h1>
-      }
-      setQuizData(response.data.User_Information || []);
-      
-    }).catch (error=>{
-      console.error('An error occurred:', error);
-    }). finally(()=> {
-      setIsLoading(false);
-    })
-  };
+
   console.log(quizData)
   const deleteData = async (id) => {
     Swal.fire({
@@ -87,22 +75,6 @@ function Quiz({setTrue}) {
 
       }
   })
-    // //const response = await axios.delete(`http://localhost:6002/quiz/${id}`);
-    // QuizApi.deleteQuiz(id).then(response=>{
-    //   console.log(response);
-    //   if (response.data.message === "succcessfully delete the data") {
-    //     Swal.fire({
-    //       title: 'Deleting data',
-    //       text: 'Successfully deleted data',
-    //       icon: 'success',
-    //       confirmButtonText: 'Ok'
-    //     });
-    //   }
-    //   getQuiz();
-    // }).
-    // catch (error=> {
-    //   console.log(error);
-    // })
   };
   
   const navigate = useNavigate();
@@ -132,28 +104,10 @@ function Quiz({setTrue}) {
     }
   }
   console.log(quizData.quizName)
-  const handleTakeTest=async(topicName,quizId)=>{
- 
-    console.log(quizData.quizName)
-    const hasAttempted = quizData.some(data => data.quizName === topicName);
-    if(hasAttempted){
-      await Swal.fire({
-        title: 'Warning',
-        text: 'You already taken the test',
-        icon: 'warning',
-        confirmButtonText: 'Ok'
-    });
-    }
-    else{
+  const handleTakeTest=async(topicName,quizId,timer,categoryId)=>{
     { localStorage.setItem('quizName', topicName)}
-    
-  //   await Swal.fire({
-  //     title: 'Add Quiz',
-  //     text: 'Added Quiz',
-  //     icon: 'success',
-  //     confirmButtonText: 'Ok'
-  // });
-  // navigate(`/Test/${quizId}`);
+    { localStorage.setItem('timer', timer)}
+    { localStorage.setItem('categoryId', categoryId)}
   Swal.fire({
     title: 'Instructions',
     background:'#f5f2f2',
@@ -178,9 +132,8 @@ function Quiz({setTrue}) {
           <li>2. Do not refresh the page</li>
           <li>3. The quiz stopps once the timer runs out.</li>
           <li>4. No negative marking for wrong answers. </li>
-          <li>5. You can attempt the quiz only once</li>
-          <li>6. Questions are of Multiple Choice</li>
-          <li>7. Each Question carry one mark</li>
+          <li>5. Questions are of Multiple Choice</li>
+          <li>6. Each Question carry one mark</li>
          
         </ul>
       </div>
@@ -198,10 +151,9 @@ function Quiz({setTrue}) {
   
   console.log(quizData)
  }
-
-  }
   return (
     <div className="categoryData">
+      <DisableBackButton/>
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Quiz Details</h1>
@@ -229,6 +181,7 @@ function Quiz({setTrue}) {
                   <tr className="rowData">
                     <th>Quiz Name</th>
                     <th>Quiz Description</th>
+                    <th>Time(in Min)</th>
                     
                     {/* <th>Delete</th>
               <th>Update</th> */}
@@ -240,6 +193,7 @@ function Quiz({setTrue}) {
                     <tr key={item.quizId}>
                       <td>{item.topicName}</td>
                       <td>{item.topicDescription}</td>
+                      <td>{item.timer}</td>
                       {verifyRole === 'Admin' && <>
                         <td><button className="deleteData" type="button" onClick={() => deleteData(item.quizId)}>Delete</button></td>
                         <td><Link to={`/UpdateQuiz/${item.quizId}`} className="updateData">Update</Link></td>
@@ -247,7 +201,7 @@ function Quiz({setTrue}) {
                         </>}
                         
                       {verifyRole === 'student' && <>
-                     <td><Link to="#" className="updateData" onClick={()=>handleTakeTest(item.topicName,item.quizId)}>Take Test</Link></td></>}
+                     <td><Link to="#" className="updateData" onClick={()=>handleTakeTest(item.topicName,item.quizId,item.timer,item.categoryId)}>Take Test</Link></td></>}
 
                     </tr>
                   ))}

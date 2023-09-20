@@ -119,7 +119,7 @@ const Questions=()=>{
             <input
               className="search"
               type="text"
-              placeholder="Search by Quiz Name"
+              placeholder="Search by Question"
               value={text}
               onChange={(e) => setText(e.target.value)}
             />

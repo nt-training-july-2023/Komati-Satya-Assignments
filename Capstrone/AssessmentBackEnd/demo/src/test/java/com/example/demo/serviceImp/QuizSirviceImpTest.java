@@ -38,7 +38,7 @@ class QuizSirviceImpTest {
     
     @Test
     void testAddQuiz() {
-        Quiz q=new Quiz(1,"variables","java variables");
+        Quiz q=new Quiz(1,"variables","java variables",60);
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         when(categoryRepo.findById(q.getCate().getCategoryId())).thenReturn(Optional.of(c));
@@ -53,7 +53,7 @@ class QuizSirviceImpTest {
     }
     @Test
     public void testCategoryNotPresent() {
-        Quiz q=new Quiz(1,"variables","java variables");
+        Quiz q=new Quiz(1,"variables","java variables",60);
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         when(categoryRepo.findById(q.getCate().getCategoryId())).thenReturn(Optional.empty());
@@ -63,7 +63,7 @@ class QuizSirviceImpTest {
     }
     @Test 
     public void testQuizAlreadyPresent() {
-     Quiz q=new Quiz(1,"variables","java variables");   
+     Quiz q=new Quiz(1,"variables","java variables",60);   
      Category c=new Category(10,"java","java basics");
      q.setCate(c);
      when(categoryRepo.findById(q.getCate().getCategoryId())).thenReturn(Optional.of(c));
@@ -74,7 +74,7 @@ class QuizSirviceImpTest {
     }
     @Test
     public void testGetQuizById() {
-        Quiz q=new Quiz(1,"variables","java variables");   
+        Quiz q=new Quiz(1,"variables","java variables",60);   
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
@@ -107,7 +107,7 @@ class QuizSirviceImpTest {
     @Test
     public void testFindAll() {
         List<Quiz> quiz=new ArrayList<>();
-        Quiz q=new Quiz(1,"variables","java variables");   
+        Quiz q=new Quiz(1,"variables","java variables",60);   
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         quiz.add(q);
@@ -129,7 +129,7 @@ class QuizSirviceImpTest {
     }
     @Test
     public void testUpdateQuiz() {
-        Quiz q=new Quiz(1,"variables","java variables");   
+        Quiz q=new Quiz(1,"variables","java variables",60);   
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         quizRepo.save(q);
@@ -140,7 +140,7 @@ class QuizSirviceImpTest {
         quizDto.setTopicDescription(q.getTopicDescription());
         when(quizRepo.findById(q.getQuizId())).thenReturn(Optional.of(q));
         assertTrue(Optional.of(q).isPresent());
-        QuizUpdateDto quiz=new QuizUpdateDto(1,"variables","java basics",20,15);
+        QuizUpdateDto quiz=new QuizUpdateDto(1,"variables","java basics",60);
         List<Quiz> quizList=new ArrayList<>();
         quizList.add(q);
         when(quizRepo.findAll()).thenReturn(quizList);
@@ -148,11 +148,11 @@ class QuizSirviceImpTest {
         assertEquals(q.getTopicName(),qd.getTopicName());
         assertEquals(q.getTopicDescription(),qd.getTopicDescription());
         assertEquals(q.getQuizId(),qd.getQuizId());
-        assertEquals(quiz.getPassMarks(),qd.getPassMarks());
+        
     }
     @Test
     public void testNoQuizisPresent() {
-        QuizUpdateDto d=new QuizUpdateDto(1,"variables","java basics",20,15);
+        QuizUpdateDto d=new QuizUpdateDto(1,"variables","java basics",20);
         when(quizRepo.findAll()).thenReturn(new ArrayList<>());
         assertThrows(AllNotFoundException.class , () ->{
             quizService.updateQuiz(d,1);
@@ -160,7 +160,7 @@ class QuizSirviceImpTest {
     }
     @Test
     public void testUpdateQuizNotPresent() {
-        QuizUpdateDto d=new QuizUpdateDto(1,"variables","java basics",20,15);
+        QuizUpdateDto d=new QuizUpdateDto(1,"variables","java basics",20);
         when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
         when(quizRepo.findById(1)).thenReturn(Optional.empty());
         assertThrows(NotFoundException.class, () ->{
@@ -170,7 +170,7 @@ class QuizSirviceImpTest {
     
     @Test
     public void testDeleteQuiz() {
-        Quiz q=new Quiz(1,"variables","java variables");   
+        Quiz q=new Quiz(1,"variables","java variables",60);   
         Category c=new Category(10,"java","java basics");
         q.setCate(c);
         quizRepo.save(q);
@@ -197,10 +197,10 @@ class QuizSirviceImpTest {
     }
     @Test
     public void testQuizByCategoryId() {
-        Quiz q1=new Quiz(1,"variables","java variables");   
+        Quiz q1=new Quiz(1,"variables","java variables",60);   
         Category c=new Category(10,"java","java basics");
         q1.setCate(c);
-        Quiz q2=new Quiz(2,"arrays","java arrays");
+        Quiz q2=new Quiz(2,"arrays","java arrays",60);
         q2.setCate(c);
         List<Quiz> quiz=new ArrayList<>();
         quiz.add(q1);
@@ -234,7 +234,7 @@ class QuizSirviceImpTest {
      }
      @Test   
      void testFindQuizByQuizName() {
-         Quiz q=new Quiz(1,"variables","java variables");   
+         Quiz q=new Quiz(1,"variables","java variables",60);   
          Category c=new Category(10,"java","java basics");
          q.setCate(c);
          when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));

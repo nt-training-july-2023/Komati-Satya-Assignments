@@ -36,6 +36,11 @@ public class Quiz {
     @Column(nullable = false)
     private String topicDescription;
     /**
+     * stores the time.
+     */
+    @Column(nullable = false)
+    private int timer;
+    /**
      * get quiz.
      * @return quiz
      */
@@ -76,6 +81,20 @@ public class Quiz {
      */
     public final void setTopicDescription(final String topicDescriptionn) {
         this.topicDescription = topicDescriptionn;
+    }
+    /**
+     * get timer.
+     * @return time
+     */
+    public final int getTimer() {
+        return timer;
+    }
+    /**
+     * set time.
+     * @param timerr time
+     */
+    public final void setTimer(final int timerr) {
+        this.timer = timerr;
     }
     /**
      * get question.
@@ -126,13 +145,15 @@ public class Quiz {
      * @param quizid quiz id
      * @param topicname topic name
      * @param topicdescription description
+     * @param timerr time
      */
     public Quiz(final int quizid, final String topicname,
-            final String topicdescription) {
+            final String topicdescription, final int timerr) {
         super();
         this.quizId = quizid;
         this.topicName = topicname;
         this.topicDescription = topicdescription;
+        this.timer = timerr;
     }
     /**
      * Many to one relationship with category.

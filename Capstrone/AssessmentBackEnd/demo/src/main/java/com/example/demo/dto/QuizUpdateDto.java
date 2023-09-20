@@ -27,12 +27,7 @@ public class QuizUpdateDto {
      */
     private String topicDescription;
     /**
-     * stores the maximum marks.
+     * stores the time.
      */
-    private int maxMarks;
-    /**
-     * stores the pass marks.
-     */
-    private int passMarks;
-
+    private int timer;
 }

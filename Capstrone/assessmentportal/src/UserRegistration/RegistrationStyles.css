@@ -23,10 +23,10 @@
     border-radius: 6px;
 }
 
-button {
+.submit {
     width: 100%;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: -10px;
     border-radius: 5px;
     background-color: #5dcc5d;
     cursor: pointer;
@@ -35,6 +35,9 @@ button {
 
 .details {
     margin-top: 15px;
+}
+.side{
+    float: left;
 }
 
 .gen {
@@ -47,20 +50,31 @@ button {
 .gen2 {
     margin-left: 40px;
 }
-
-
+.show-password2{
+    position:absolute;
+    top:82%;
+    right: 16px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: black;
+    font-size: medium;
+    width: 10px;
+  }
+  .password-container2{
+    position: relative;
+  }
 @media screen and (min-width: 768px) {
     .gen2 {
         margin-right: 0px;
         margin-bottom: 51px;
     }
-
-    .side {
-        float: left;
-    }
-
     .role {
         margin-right: 280px;
+    }
+    .submit {
+        margin-top:-30px;
     }
 }
 
@@ -85,27 +99,18 @@ button {
     }
 
     .values {
-        height: auto;
+        height:25px;
 
     }
+    .side {
+        float: left;
+    }
+    .show-password2{
+        top:80%;
+    }
 
-    button {
+    .submit {
         margin-top: 15px;
     }
 }
 
-.show-password2{
-    position:absolute;
-    top:65%;
-    right: 16px;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: black;
-    font-size: medium;
-    width: 10px;
-  }
-  .password-container2{
-    position: relative;
-  }

@@ -51,7 +51,7 @@ class QuizTest {
         String topicDescription="java basics";
         int pass=10;
         int marks=15;
-        Quiz q=new Quiz(id,topic,topicDescription);
+        Quiz q=new Quiz(id,topic,topicDescription,40);
         assertEquals(id,q.getQuizId());
         assertEquals(topic,q.getTopicName());
         assertEquals(topicDescription,q.getTopicDescription());

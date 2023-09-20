@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 
 import ErrorPage from "../ErrorPage";
 import FinalResultApi from "../APIs/FinalResultApi";
+import DisableBackButton from "../APIs/disableBackButton";
 const Result=()=>{
   const verifyRole = localStorage.getItem('userRole');
   const [result, setResult] = useState([]);
@@ -77,8 +78,10 @@ const Result=()=>{
       navigate('/UserDashBoard');
     }
   }
+  const sortedResults = [...result].sort((a, b) => new Date(b.dateAndTime) - new Date(a.dateAndTime));
   return (
     <div className="categoryData">
+      <DisableBackButton/>
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Student Result Details</h1>
@@ -100,7 +103,7 @@ const Result=()=>{
             <p>Loading...</p>
           ) : (
             <div className="tableContainer">
-               {result.length !== 0 ? (
+               {sortedResults.length !== 0 ? (
               <table className="tableData">
                 <thead className="headData">
                   <tr className="rowData">
@@ -116,7 +119,7 @@ const Result=()=>{
                   </tr>
                 </thead>
                 <tbody className="bodyData">
-                  {result.map(item => (
+                  {sortedResults.map(item => (
 
                     <tr key={item.resultId}>
                       <td>{item.userName}</td>

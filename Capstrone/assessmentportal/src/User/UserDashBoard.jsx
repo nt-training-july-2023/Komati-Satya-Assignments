@@ -7,9 +7,10 @@ import ErrorPage from "../ErrorPage";
 import { useEffect,useState } from "react";
 import axios from "axios";
 import UserApi from "../APIs/UserApi";
+import DisableBackButton from "../APIs/disableBackButton";
 
 const UserDashBoard = () => {
-
+  
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const verifyUserId = localStorage.getItem('userId');
@@ -29,7 +30,13 @@ const UserDashBoard = () => {
       console.error('An error occurred:', error);
     })
   };
-
+  useEffect(()=>{
+    const verifyId = localStorage.getItem('userId');
+    if(!verifyId){
+      navigate('/')
+    }
+  })
+ 
   const verifyRole = localStorage.getItem('userRole');
   const logoutPage = () => {
     Swal.fire({
@@ -65,7 +72,9 @@ const UserDashBoard = () => {
   }
 
   return (
+    
     <div className="admin">
+      <DisableBackButton/>
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
       <>
         <ul className="nav-bar">
@@ -85,10 +94,10 @@ const UserDashBoard = () => {
         </ul>
         <div className="adminBackground">
         {verifyRole === 'student' && <>
-          <h2>Welcome to StudentDashBoard</h2>
+          <h2>Welcome to Student Dashboard</h2>
         </>}
         {verifyRole === 'Admin' && <>
-          <h2>Welcome to AdminDashBoard</h2>
+          <h2>Welcome to Admin Dashboard</h2>
         </>}
         
           <div>
@@ -102,14 +111,6 @@ const UserDashBoard = () => {
           <h2>Admin information</h2>
         </>}
           </div>
-          {/* <div className="information">
-                    <strong>Name:</strong> {userName}<br/>
-                    <strong>Email:</strong> {email}<br/>
-                    <strong>gender:</strong> {gender}<br/>
-                    <strong>phoneNumber:</strong> {phoneNumber}<br/>
-                    <strong>userId:</strong> {userId}<br/>
-                    <strong>Date Of Birth:</strong> {dateOfBirth}<br/>
-                </div> */}
           <table className="information">
             <tbody className="details">
               <tr>
@@ -134,7 +135,7 @@ const UserDashBoard = () => {
               </tr>
             </tbody>
           </table>
-          <button type="button" onClick={UpdateData}>Update Details</button>
+          <button className="btn2" type="button" onClick={UpdateData}>Update Details</button>
 
         </div>
       </> : <ErrorPage />}

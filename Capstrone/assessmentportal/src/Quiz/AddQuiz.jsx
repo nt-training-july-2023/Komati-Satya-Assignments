@@ -7,7 +7,6 @@ import './QuizStyles.css'
 import ErrorPage from "../ErrorPage";
 import QuizApi from "../APIs/QuizApi";
 
-
 const AddQuiz = () => {
     const verifyRole = localStorage.getItem('userRole');
     const [errors, setErrors] = useState({});
@@ -17,12 +16,14 @@ const AddQuiz = () => {
     const [quizData, setQuizData] = useState({
         topicName: "",
         topicDescription: "",
+        timer: "",
         categoryId:parseInt(categoryId, 10)
     });
     const requestData = {
       
         topicName: quizData.topicName,
         topicDescription: quizData.topicDescription,
+        timer:quizData.timer,
         cate: {
             categoryId: quizData.categoryId
         }
@@ -42,12 +43,11 @@ const AddQuiz = () => {
             console.log(response);
             const quizInformation = response.data.Quiz_topic_Information;
             console.log(quizInformation)
-            const { topicName, topicDescription,maxMarks,passMarks ,categoryId} = quizInformation;
+            const { topicName, topicDescription,timer,categoryId} = quizInformation;
             setQuizData({
                 topicName,
                 topicDescription,
-                maxMarks,
-                passMarks,
+                timer,
                 categoryId
             });
           })
@@ -219,8 +219,17 @@ const cancelAddQuiz = () => {
                                 placeholder="Enter topic description"
                                 onChange={changeData}
                             ></textarea>
-                           
-                            <br /><br />
+                            <div>
+                            <label className="head3">Time</label><br /><br />
+                            <input
+                                className="data3"
+                                type="number"
+                                name="timer"
+                                value={quizData.timer}
+                                placeholder="Enter time in min"
+                                onChange={changeData}
+                            /><br /><br />
+                           </div>
                             <button className="btn4" type="button" onClick={addQuizData}>
                             {quizId ? "update Quiz" : "Add Quiz"}
                             </button>

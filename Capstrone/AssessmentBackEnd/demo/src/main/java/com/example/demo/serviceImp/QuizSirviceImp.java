@@ -62,6 +62,7 @@ public class QuizSirviceImp implements QuizService {
                 qd.setTopicDescription(quiz.getTopicDescription());
                 qd.setTopicName(quiz.getTopicName());
                 qd.setCategoryId(quiz.getCate().getCategoryId());
+                qd.setTimer(quiz.getTimer());
                 qr.save(quiz);
                 LOGGER.info("add question");
                 return qd;
@@ -92,6 +93,7 @@ public class QuizSirviceImp implements QuizService {
                  qd.setTopicDescription(quiz.getTopicDescription());
                  qd.setTopicName(quiz.getTopicName());
                  qd.setCategoryId(quiz.getCate().getCategoryId());
+                 qd.setTimer(quiz.getTimer());
                  LOGGER.info("get quiz by id");
                 return Optional.of(qd);
             } else {
@@ -130,6 +132,7 @@ public class QuizSirviceImp implements QuizService {
             qd.setTopicDescription(quiz.getTopicDescription());
             qd.setTopicName(quiz.getTopicName());
             qd.setCategoryId(quiz.getCate().getCategoryId());
+            qd.setTimer(quiz.getTimer());
             ld.add(qd);
         }
         return ld;
@@ -168,6 +171,7 @@ public class QuizSirviceImp implements QuizService {
             Quiz exiQuiz = existingQuiz.get();
             exiQuiz.setTopicName(q.getTopicName());
             exiQuiz.setTopicDescription(q.getTopicDescription());
+            exiQuiz.setTimer(q.getTimer());
             qr.save(exiQuiz);
             LOGGER.info("update quiz");
             return q;
@@ -219,6 +223,7 @@ public class QuizSirviceImp implements QuizService {
                qd.setTopicDescription(quiz.getTopicDescription());
                qd.setTopicName(quiz.getTopicName());
                qd.setCategoryId(quiz.getCate().getCategoryId());
+               qd.setTimer(quiz.getTimer());
                LOGGER.info("find quiz by name");
                return Optional.of(qd);
             } else {
