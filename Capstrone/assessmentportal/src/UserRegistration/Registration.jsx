@@ -220,7 +220,7 @@ const Registration = () => {
 
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
-            </div><br/>
+            </div><br />
             {/* <label className="side">Confirm Password</label><br /><br />
             <input className="values" type="password" placeholder="enter a confirm password" name="confirmPassword" value={formData.confirmPassword} onChange={changeData} /><br /><br /> */}
             <div className="password-container2">
@@ -230,7 +230,7 @@ const Registration = () => {
 
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </button>
-            </div><br/>
+            </div><br />
             <label className="side">DateOfBirth</label><br /><br />
             <input className="values" type="Date" placeholder="enter a date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} /><br /><br />
             <label className="side">Phone number</label><br /><br />

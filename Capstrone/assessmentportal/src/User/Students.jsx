@@ -53,7 +53,7 @@ function Student() {
   }
   return (
     <div className="categoryData">
-      <Navbar/>
+      <Navbar />
       {verifyRole === 'Admin' &&
         <>
           <h1 className="addHead">Students Details</h1>
@@ -75,36 +75,36 @@ function Student() {
             <p>Loading...</p>
           ) : (
             <div className="tableContainer">
-               {student.length !== 0 ? (
-              <table className="tableData">
-                <thead className="headData">
-                  <tr className="rowData">
-                    <th>Student Name</th>
-                    <th>User Id</th>
-                    <th>Email</th>
-                    <th>Gender</th>
-                    <th>Phone Number</th>
-                    <th>Date of Birth</th>
-                    {/* <th>Delete</th>
+              {student.length !== 0 ? (
+                <table className="tableData">
+                  <thead className="headData">
+                    <tr className="rowData">
+                      <th>Student Name</th>
+                      <th>User Id</th>
+                      <th>Email</th>
+                      <th>Gender</th>
+                      <th>Phone Number</th>
+                      <th>Date of Birth</th>
+                      {/* <th>Delete</th>
               <th>Update</th> */}
-                  </tr>
-                </thead>
-                <tbody className="bodyData">
-                  {student
-                    .filter(item => item.role === 'student')
-                    .map(item => (
-                      <tr key={item.userId}>
-                        <td>{item.userName}</td>
-                        <td>{item.userId}</td>
-                        <td>{item.email}</td>
-                        <td>{item.gender}</td>
-                        <td>{item.phoneNumber}</td>
-                        <td>{item.dateOfBirth}</td>
-                      </tr>
-                    ))}
-                </tbody>
-              </table>
-               ) : (
+                    </tr>
+                  </thead>
+                  <tbody className="bodyData">
+                    {student
+                      .filter(item => item.role === 'student')
+                      .map(item => (
+                        <tr key={item.userId}>
+                          <td>{item.userName}</td>
+                          <td>{item.userId}</td>
+                          <td>{item.email}</td>
+                          <td>{item.gender}</td>
+                          <td>{item.phoneNumber}</td>
+                          <td>{item.dateOfBirth}</td>
+                        </tr>
+                      ))}
+                  </tbody>
+                </table>
+              ) : (
                 <h1>No Students</h1>
               )}
             </div>

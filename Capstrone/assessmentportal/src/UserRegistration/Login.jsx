@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import './LoginStyles.css';
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
-import {FaEye,FaEyeSlash} from 'react-icons/fa';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import UserApi from "../APIs/UserApi";
 import DisableBackButton from "../APIs/disableBackButton";
 
@@ -16,17 +16,17 @@ const Login = () => {
     });
     const [errors, setErrors] = useState({});
     const navigate = useNavigate();
-    const[showPassword,setShowPassword]=useState("true");
+    const [showPassword, setShowPassword] = useState("true");
     const changeData = (e) => {
         setLoginData({ ...loginData, [e.target.name]: e.target.value });
     }
-    const togglePassword=()=>{
+    const togglePassword = () => {
         setShowPassword(!showPassword);
     }
     const login = async (e) => {
         e.preventDefault();
 
-        const validationErrors = {};    
+        const validationErrors = {};
 
         if (!loginData.email) {
             validationErrors.email = 'Email Required';
@@ -64,18 +64,18 @@ const Login = () => {
         } else {
 
             setErrors({});
-                //  const response = await axios.post('http://localhost:6002/student/login', loginData);
-                    UserApi.loginUser(loginData).then(response=>{
-               
+            //  const response = await axios.post('http://localhost:6002/student/login', loginData);
+            UserApi.loginUser(loginData).then(response => {
+
                 if (response.data.message === "password must be same") {
-                   Swal.fire({
+                    Swal.fire({
                         title: 'Error!',
                         text: 'Wrong password',
                         icon: 'error',
                         confirmButtonText: 'Ok'
                     });
                 } else if (response.data.message === "Email not exist") {
-                     Swal.fire({
+                    Swal.fire({
                         title: 'Error!',
                         text: 'Wrong email',
                         icon: 'error',
@@ -84,8 +84,8 @@ const Login = () => {
                 } else {
                     if (response?.data.User_Information.role === "Admin") {
                         localStorage.setItem("userRole", response.data.User_Information.role);
-                        localStorage.setItem("userId",response.data.User_Information.userId);
-                         Swal.fire({
+                        localStorage.setItem("userId", response.data.User_Information.userId);
+                        Swal.fire({
                             title: 'Login Success',
                             text: 'Correct credentials',
                             icon: 'success',
@@ -97,48 +97,48 @@ const Login = () => {
 
                     } else if (response?.data.User_Information.role === "student") {
                         localStorage.setItem("userRole", response.data.User_Information.role);
-                        localStorage.setItem("userEmail",response.data.User_Information.email);
-                        localStorage.setItem("userName",response.data.User_Information.userName);
-                        localStorage.setItem("userId",response.data.User_Information.userId);
+                        localStorage.setItem("userEmail", response.data.User_Information.email);
+                        localStorage.setItem("userName", response.data.User_Information.userName);
+                        localStorage.setItem("userId", response.data.User_Information.userId);
                         console.log(response.data.User_Information.userId)
 
-                         Swal.fire({
+                        Swal.fire({
                             title: 'Login Success',
                             text: 'Correct credentials',
                             icon: 'success',
                             confirmButtonText: 'Ok'
                         });
                         navigate('/UserDashBoard');
-                       
+
                     }
 
                 }
-            }).catch (error=> {
+            }).catch(error => {
 
                 console.error(error);
             })
-            
+
         }
     }
-  
+
     return (
         <div className="login" >
-            <DisableBackButton/>
+            <DisableBackButton />
             <div className="loginData">
-            <h1 className="ass">Assessment Portal</h1>
-            <h2 className="know">- Come...Test your Knowledge Here!!!</h2>
+                <h1 className="ass">Assessment Portal</h1>
+                <h2 className="know">- Come...Test your Knowledge Here!!!</h2>
                 <form>
                     <div className="signin">
                         <h1 className="heading">SignIn Here!!</h1>
                         <label className="head" ><b>Email</b></label><br /><br />
                         <input className="data" type="email" name="email" value={loginData.email} onChange={changeData} /><br /><br />
                         <div className="password-container">
-                        <label className="head"><b>Password</b></label><br /><br />
-                        <input className="data" type={showPassword ? 'password' : 'text'} name="password" value={loginData.password} onChange={changeData} /><br />
-                        <button className="show-password" type="button" onClick={togglePassword}>
+                            <label className="head"><b>Password</b></label><br /><br />
+                            <input className="data" type={showPassword ? 'password' : 'text'} name="password" value={loginData.password} onChange={changeData} /><br />
+                            <button className="show-password" type="button" onClick={togglePassword}>
 
-                            {showPassword ? <FaEyeSlash/> :<FaEye/>}
-                        </button>
+                                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            </button>
                         </div>
                         <button className="btn" type="submit" onClick={login}>Login</button><br /><br />
                         <a className="anchor" href="Registration">New user SignUp here!!</a>

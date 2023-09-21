@@ -18,12 +18,8 @@ import Questions from './Questions/Questions';
 import AddQuestions from './Questions/AddQuestions';
 import Test from './Questions/Test';
 import { useState } from 'react';
-
-
-
 function App() {
  const[isRefresh,setIsRefresh]=useState(false)
-
  function setTrue() {
   setIsRefresh(true);
  }
@@ -52,7 +48,7 @@ function App() {
         <Route path="/Questions/:quizId" element={<Questions/>}></Route>
         <Route path="/AddQuestion/:quizId" element={<AddQuestions/>}></Route>
         <Route path="/UpdateQuestion/:question" element={<AddQuestions/>}></Route>
-        <Route path="/Test/:quizId" element={<Test isRefresh={isRefresh}/>}></Route>
+        <Route path="/Test/:quizId" element={<Test isRefresh={isRefresh} setTrue={setTrue}/>}></Route>
        </Routes>
      </BrowserRouter>
     </div>

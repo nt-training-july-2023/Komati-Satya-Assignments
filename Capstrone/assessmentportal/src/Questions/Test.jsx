@@ -10,14 +10,15 @@ import QuestionsApi from "../APIs/QuestionsApi";
 import ResultApi from "../APIs/ResultApi";
 import DisableBackButton from "../APIs/disableBackButton";
 
-function Test({ isRefresh }) {
+function Test({ isRefresh, setTrue }) {
   const navigate = useNavigate();
   const verifyRole = localStorage.getItem("userRole");
+  const cat = localStorage.getItem("categoryId")
   const [questionCounter, setQuestionCounter] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [quiz, setQuiz] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [timerId, setTimerId] = useState(null);
+
   const [questions, setQuestions] = useState([]);
   const [userScore, setUserScore] = useState(0);
   const { quizId } = useParams();
@@ -38,7 +39,8 @@ function Test({ isRefresh }) {
   const [numberOfQuestions, setNumberOfQuestions] = useState();
   const [attemptedQuestionss, setAttemptedQuestions] = useState(0);
   const [date, setDate] = useState()
-  const [timeLeft, setTimeLeft] = useState((verifyTimer) * (60));
+  const [timeLeft, setTimeLeft] = useState((verifyTimer)*10);
+
   useEffect(() => {
     const currentDate = new Date();
     const options = {
@@ -128,6 +130,7 @@ function Test({ isRefresh }) {
     const timer = setTimeout(() => {
       if (timeLeft > 0) {
         setTimeLeft(timeLeft - 1);
+        localStorage.setItem('timerValue', timeLeft - 1);
       } else {
         clearTimeout(timer);
         Swal.fire({
@@ -142,7 +145,11 @@ function Test({ isRefresh }) {
 
     return () => clearTimeout(timer);
   }, [timeLeft]);
-
+  useEffect(() => {
+    const storedTimeLeft = localStorage.getItem('timerValue');
+    const initialTimeLeft = storedTimeLeft ? parseInt(storedTimeLeft) : verifyTimer * 60;
+    setTimeLeft(initialTimeLeft);
+  }, []);
 
   const formatTime = (seconds) => {
     const minutes = Math.floor(seconds / 60);
@@ -164,8 +171,8 @@ function Test({ isRefresh }) {
 
       setUserScore(score);
       setQuizSubmitted(true);
-
       getAtt();
+      localStorage.removeItem('timerValue');
     }
   }
   const handleSubmitQuiz = async () => {
@@ -199,6 +206,7 @@ function Test({ isRefresh }) {
           setUserScore(score);
           setQuizSubmitted(true);
           getAtt()
+          localStorage.removeItem('timerValue');
         }
       }
     })
@@ -206,14 +214,51 @@ function Test({ isRefresh }) {
   };
 
 
+
   useEffect(() => {
     if (!isRefresh) {
-  
-      const cat = localStorage.getItem("categoryId")
-      console.log(cat)
-      navigate(`/Quiz/${cat}`)
+      //   window.alert("do you want to refresh the page");
+      //   setIsRefresh(true);
+
+      // const cat = localStorage.getItem("categoryId")
+      // console.log(cat)
+      // navigate(`/Quiz/${cat}`)
+
+      Swal.fire({
+        title: 'Do you want to refresh the page??',
+        showDenyButton: true,
+        // showCancelButton: true,
+        confirmButtonText: 'Yes',
+        denyButtonText: 'No',
+        customClass: {
+          actions: 'my-actions',
+          cancelButton: 'order-1 right-gap',
+          confirmButton: 'order-2',
+          denyButton: 'order-3',
+        }
+      }).then((result) => {
+        if (result.isConfirmed) {
+          //     const cat = localStorage.getItem("categoryId")
+          // console.log(cat)
+          // navigate(`/Quiz/${cat}`)
+          localStorage.removeItem('timerValue');
+          setQuizSubmitted(true);
+
+
+        } else if (result.isDenied) {
+
+        }
+      })
+      //   if (window.confirm("Do you want to refresh the page?") === true) {
+
+      //       const cat = localStorage.getItem("categoryId")
+      //   console.log(cat)
+      //   navigate(`/Quiz/${cat}`)
+      // } else {
+      //   setTrue(true)
+      // }
     }
-  })
+  }, [isRefresh, setTrue])
   useEffect(() => {
     if (quizSubmitted) {
       postData();
@@ -241,6 +286,7 @@ function Test({ isRefresh }) {
       totalQuestions: numberOfQuestions,
       obtainMarks: userScore,
       dateAndTime: date,
+      categoryId: cat
     };
     // const response = await axios.post('http://localhost:6002/res', postDataa);
     ResultApi.addResult(postDataa).then(response => {
@@ -332,15 +378,13 @@ function Test({ isRefresh }) {
                     </button>
                   )}
                 </div>
-
-
               </div>
             </>
           ) : (
             <div>
               <h1>No questions</h1>
               <button className="back" onClick={() => backTo()}>Back</button>
-              </div>
+            </div>
           )}
         </>) :
 
