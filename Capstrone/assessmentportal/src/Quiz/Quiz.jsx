@@ -10,6 +10,7 @@ import QuizApi from "../APIs/QuizApi";
 import ResultApi from "../APIs/ResultApi";
 import FinalResultApi from "../APIs/FinalResultApi";
 import DisableBackButton from "../APIs/disableBackButton";
+import Navbar from "../Navbar/Navbar";
 function Quiz({setTrue}) {
   const { categoryId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
@@ -153,11 +154,12 @@ function Quiz({setTrue}) {
  }
   return (
     <div className="categoryData">
+      <Navbar/>
       <DisableBackButton/>
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Quiz Details</h1>
-          <button className="addButton" onClick={() => backTo()}>BackToDahBoard</button>
+          {/* <button className="addButton" onClick={() => backTo()}>BackToDahBoard</button> */}
           {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add Quiz</button>}
           <div className="searchContainer">
             <input

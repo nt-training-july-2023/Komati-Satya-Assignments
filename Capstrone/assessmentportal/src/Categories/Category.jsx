@@ -8,6 +8,7 @@ import './CategoryStyles.css'
 import ErrorPage from "../ErrorPage";
 import CategoryApi from "../APIs/CategoryApi";
 import DisableBackButton from "../APIs/disableBackButton";
+import Navbar from "../Navbar/Navbar";
 function Category() {
   const verifyRole = localStorage.getItem('userRole');
   const [category, setCategory] = useState([]);
@@ -116,10 +117,11 @@ function Category() {
       
     <div className="categoryData">
     <DisableBackButton/>
+    <Navbar/>
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Category Details</h1>
-          <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button>
+          {/* <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button> */}
           {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add category</button>}
           <div className="searchContainer">
             <input

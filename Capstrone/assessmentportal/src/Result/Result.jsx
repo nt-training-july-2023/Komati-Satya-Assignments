@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import ErrorPage from "../ErrorPage";
 import FinalResultApi from "../APIs/FinalResultApi";
 import DisableBackButton from "../APIs/disableBackButton";
+import Navbar from "../Navbar/Navbar";
 const Result=()=>{
   const verifyRole = localStorage.getItem('userRole');
   const [result, setResult] = useState([]);
@@ -82,10 +83,11 @@ const Result=()=>{
   return (
     <div className="categoryData">
       <DisableBackButton/>
+      <Navbar/>
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Student Result Details</h1>
-          <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button>
+          {/* <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button> */}
          
           <div className="searchContainer">
             <input

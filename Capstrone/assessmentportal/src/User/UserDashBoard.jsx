@@ -2,12 +2,13 @@
 import React from "react";
 import './AdminStyles.css';
 import Swal from "sweetalert2";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Navigate } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
 import { useEffect,useState } from "react";
 import axios from "axios";
 import UserApi from "../APIs/UserApi";
 import DisableBackButton from "../APIs/disableBackButton";
+import Navbar from "../Navbar/Navbar";
 
 const UserDashBoard = () => {
   
@@ -30,69 +31,66 @@ const UserDashBoard = () => {
       console.error('An error occurred:', error);
     })
   };
-  useEffect(()=>{
-    const verifyId = localStorage.getItem('userId');
-    if(!verifyId){
-      navigate('/')
-    }
-  })
  
   const verifyRole = localStorage.getItem('userRole');
-  const logoutPage = () => {
-    Swal.fire({
-      title: 'Do you want to logout page??',
-      showDenyButton: true,
-      // showCancelButton: true,
-      confirmButtonText: 'Yes',
-      denyButtonText: 'No',
-      customClass: {
-        actions: 'my-actions',
-        cancelButton: 'order-1 right-gap',
-        confirmButton: 'order-2',
-        denyButton: 'order-3',
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        localStorage.removeItem('userRole');
-        localStorage.removeItem('userEmail')
-        localStorage.removeItem('userName')
-        localStorage.removeItem('userId')
-        localStorage.removeItem('categoryName')
-        localStorage.removeItem('quizName')
-        navigate('/')
+  // const logoutPage = () => {
+  //   Swal.fire({
+  //     title: 'Do you want to logout page??',
+  //     showDenyButton: true,
+  //     // showCancelButton: true,
+  //     confirmButtonText: 'Yes',
+  //     denyButtonText: 'No',
+  //     customClass: {
+  //       actions: 'my-actions',
+  //       cancelButton: 'order-1 right-gap',
+  //       confirmButton: 'order-2',
+  //       denyButton: 'order-3',
+  //     }
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       localStorage.removeItem('userRole');
+  //       localStorage.removeItem('userEmail')
+  //       localStorage.removeItem('userName')
+  //       localStorage.removeItem('userId')
+  //       localStorage.removeItem('categoryName')
+  //       localStorage.removeItem('quizName')
+  //       navigate('/')
 
-      } else if (result.isDenied) {
+  //     } else if (result.isDenied) {
 
-      }
-    })
+  //     }
+  //   })
 
-  }
+  
   const UpdateData = () => {
     navigate(`/UserUpdate/${verifyUserId}`)
   }
 
   return (
     
-    <div className="admin">
-      <DisableBackButton/>
-      {(verifyRole === 'Admin' || verifyRole === 'student') ?
-      <>
-        <ul className="nav-bar">
-          {/* <li><a href="/">Home</a></li> */}
-          <li className="aa"><a href="/Category">Categories</a></li>
-          {verifyRole === 'Admin' && <>
-          <li className="aa"><a href="/Students">Students</a></li>
-        </>}
-          {verifyRole=='Admin' && <>
-          <li className="aa"><a href="/Result">Result</a></li>
-          </>}
-          {verifyRole=='student' && <>
-          <li className="aa"><a href={`/Result/${verifyUserId}`}>Result</a></li>
-          </>}
-          <li><a className="logout" href="#" onClick={logoutPage}>Logout</a></li>
+    // <div className="admin">
+    //   <DisableBackButton/>
+    //   {(verifyRole === 'Admin' || verifyRole === 'student') ?
+    //   <>
+    //     <ul className="nav-bar">
+    //       {/* <li><a href="/">Home</a></li> */}
+    //       <li className="aa"><a href="/Category">Categories</a></li>
+    //       {verifyRole === 'Admin' && <>
+    //       <li className="aa"><a href="/Students">Students</a></li>
+    //     </>}
+    //       {verifyRole=='Admin' && <>
+    //       <li className="aa"><a href="/Result">Result</a></li>
+    //       </>}
+    //       {verifyRole=='student' && <>
+    //       <li className="aa"><a href={`/Result/${verifyUserId}`}>Result</a></li>
+    //       </>}
+    //       <li><a className="logout" href="#" onClick={logoutPage}>Logout</a></li>
 
-        </ul>
+    //     </ul>
+     <div>
+      <Navbar/>
         <div className="adminBackground">
+    
         {verifyRole === 'student' && <>
           <h2>Welcome to Student Dashboard</h2>
         </>}
@@ -138,8 +136,8 @@ const UserDashBoard = () => {
           <button className="btn2" type="button" onClick={UpdateData}>Update Details</button>
 
         </div>
-      </> : <ErrorPage />}
-    </div>
+      
+     </div>
   )
 }
 export default UserDashBoard

@@ -3,7 +3,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #5dcc5d;
+  background-color: rgb(95, 236, 95); 
   height: 145px;
 }
 
@@ -12,16 +12,16 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #5dcc5d;
+  background-color: rgb(95, 236, 95);
   height: 56px;
 }
 
 li {
   float: left;
 }
-.aa:hover{
+/* .aa:hover{
   background-color: rgb(52, 214, 52);
-}
+} */
 
 li a {
   display: block;
@@ -87,13 +87,20 @@ li a {
   background-color:rgb(216, 93, 93);
   
 }
+li a:hover:not(.active) {
+  background-color: rgb(52, 214, 52);
+}
+li a.active {
+  color: white;
+   background-color: #5dcc5d; 
+   
+}
 
 
 @media (max-width: 668px) {
   ul {
     display:flex;
     flex-wrap: wrap; 
-    
   }
 
   li {
@@ -113,4 +120,13 @@ li a {
   .nav-bar{
     height: 100%;
   }
+}
+@media (max-width: 300px){
+ .aa{
+  padding:4px;
+ }
+ li a{
+  font-size: 18px;
+ }
+ 
 }

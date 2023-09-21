@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 // import '../CategoryStyles.css'
 import ErrorPage from "../ErrorPage";
 import UserApi from "../APIs/UserApi";
+import Navbar from "../Navbar/Navbar";
 function Student() {
   const verifyRole = localStorage.getItem('userRole');
   const [student, setStudent] = useState([]);
@@ -52,10 +53,11 @@ function Student() {
   }
   return (
     <div className="categoryData">
+      <Navbar/>
       {verifyRole === 'Admin' &&
         <>
           <h1 className="addHead">Students Details</h1>
-          <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button>
+          {/* <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button> */}
 
           <div className="searchContainer">
             <input

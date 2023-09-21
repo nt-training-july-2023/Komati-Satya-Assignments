@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
 import QuestionsApi from "../APIs/QuestionsApi";
+import Navbar from "../Navbar/Navbar";
 const Questions=()=>{
   const { quizId } = useParams();
   // console.log(categoryId)
@@ -110,10 +111,11 @@ const Questions=()=>{
   }
   return (
     <div className="categoryData">
+      <Navbar/>
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Questions Details</h1>
-          <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button>
+          {/* <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button> */}
           {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add Question</button>}
           <div className="searchContainer">
             <input

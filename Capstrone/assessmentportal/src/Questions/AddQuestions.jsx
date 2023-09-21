@@ -47,12 +47,13 @@ const AddQuestions = () => {
             quizId: quizId
         }
     };
-    
+
 
     const navigate = useNavigate();
 
     const changeData = (e) => {
         setQuestionData2({ ...questionData2, [e.target.name]: e.target.value });
+
     }
     useEffect(() => {
         if (question) {
@@ -196,11 +197,10 @@ const AddQuestions = () => {
                 setErrors({});
 
                 //  const response = await axios.post('http://localhost:6002/que', requestData);
-                QuestionsApi.addQuestion(requestData).then(requestData).then(response => {
+                QuestionsApi.addQuestion(requestData).then(response => {
                     console.log(response.data.message);
 
                     if (response.data.message === "succcessfully add the data") {
-                        console.log("jygd")
                         Swal.fire({
                             title: 'Add Question',
                             text: 'Added Question',
@@ -302,26 +302,20 @@ const AddQuestions = () => {
                                 onChange={changeData}
                             /><br /><br />
                             <label className="head3">Correct Answer</label><br /><br />
-
                             <select
                                 className="data3"
                                 name="correctOption"
                                 value={questionData2.correctOption}
                                 onChange={changeData}
                             >
-                                {questionData2.option1 && (
-                                    <option >{questionData2.option1}</option>
-                                )}
-                                {questionData2.option2 && (
-                                    <option>{questionData2.option2}</option>
-                                )}
-                                {questionData2.option3 && (
-                                    <option>{questionData2.option3}</option>
-                                )}
-                                {questionData2.option4 && (
-                                    <option>{questionData2.option4}</option>
-                                )}
-                            </select><br /><br />
+                                <option value="">Select Option</option>
+                                <option value={questionData2.option1}>{questionData2.option1}</option>
+                                <option value={questionData2.option2}>{questionData2.option2}</option>
+                                <option value={questionData2.option3}>{questionData2.option3}</option>
+                                <option value={questionData2.option4}>{questionData2.option4}</option>
+                            </select>
+
+                            <br /><br />
                             <button className="btn4" type="button" onClick={addQuestionData}>
                                 {quizId ? "Add Question" : "update Question"}
                             </button>
@@ -335,6 +329,4 @@ const AddQuestions = () => {
         </div>
     );
 }
-
-
 export default AddQuestions
