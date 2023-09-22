@@ -18,7 +18,6 @@ function Test({ isRefresh, setTrue }) {
   const [isLoading, setIsLoading] = useState(false);
   const [quiz, setQuiz] = useState([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-
   const [questions, setQuestions] = useState([]);
   const [userScore, setUserScore] = useState(0);
   const { quizId } = useParams();
@@ -26,21 +25,15 @@ function Test({ isRefresh, setTrue }) {
   const [quizSubmitted, setQuizSubmitted] = useState(false);
   const [resultt, setResult] = useState("");
   const verifyEmail = localStorage.getItem('userEmail');
-  // console.log(verifyEmail);
   const verifyName = localStorage.getItem('userName');
-  // console.log(verifyName);
   const verifyCategory = localStorage.getItem('categoryName')
-  // console.log(verifyCategory);
   const verifyQuizName = localStorage.getItem('quizName')
-  // console.log(verifyQuizName)
   const verifyUserId = localStorage.getItem('userId')
   const verifyTimer = localStorage.getItem('timer')
-  console.log(verifyUserId)
   const [numberOfQuestions, setNumberOfQuestions] = useState();
   const [attemptedQuestionss, setAttemptedQuestions] = useState(0);
   const [date, setDate] = useState()
   const [timeLeft, setTimeLeft] = useState((verifyTimer)*10);
-
   useEffect(() => {
     const currentDate = new Date();
     const options = {
@@ -54,17 +47,12 @@ function Test({ isRefresh, setTrue }) {
     };
     const formattedDate = currentDate.toLocaleDateString('en-US', options);
     setDate(formattedDate);
-
   }, [])
-  //  console.log(date)
   useEffect(() => {
     getQuiz();
   }, [quizId])
   const getQuiz = async () => {
-
-    // const response = await axios.get(`http://localhost:6002/quiz/${quizId}`);
     QuizApi.getQuiz(quizId).then(response => {
-      console.log(response)
       setQuiz(response.data.Quiz_topic_Information || []);
     }).catch(error => {
       console.error('An error occurred:', error);
@@ -78,8 +66,6 @@ function Test({ isRefresh, setTrue }) {
   }, [quizId]);
 
   const getQuestions = async () => {
-
-    //  const response = await axios.get(`http://localhost:6002/questions/${quizId}`);
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
       setQuestions(response.data.Questions_Information || []);
       setNumberOfQuestions(response.data.Questions_Information.length)
@@ -105,6 +91,7 @@ function Test({ isRefresh, setTrue }) {
     setSelectedOptions((prevSelectedOptions) => {
       const updatedOptions = [...prevSelectedOptions];
       updatedOptions[currentQuestionIndex] = selectedOption;
+      localStorage.setItem(`selectedOption_${questionId}`, selectedOption);
       return updatedOptions;
     });
 
@@ -118,13 +105,7 @@ function Test({ isRefresh, setTrue }) {
       }
     });
     setAttemptedQuestions(atte)
-    console.log("Attempted Questions:", atte);
   };
-
-  console.log(attemptedQuestionss);
-
-
-  console.log(userScore)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -147,7 +128,7 @@ function Test({ isRefresh, setTrue }) {
   }, [timeLeft]);
   useEffect(() => {
     const storedTimeLeft = localStorage.getItem('timerValue');
-    const initialTimeLeft = storedTimeLeft ? parseInt(storedTimeLeft) : verifyTimer * 60;
+    const initialTimeLeft = storedTimeLeft ? parseInt(storedTimeLeft) :verifyTimer*60;
     setTimeLeft(initialTimeLeft);
   }, []);
 
@@ -158,23 +139,46 @@ function Test({ isRefresh, setTrue }) {
   };
   const timeOutSubmit = () => {
     if (!quizSubmitted) {
-      let score = 0;
-
-      questions.forEach((item, index) => {
-        console.log(item.correctOption)
-        console.log(selectedOptions[index])
-        if (item.correctOption === selectedOptions[index]) {
-          score = score + 1;
-          index++;
-        }
-      });
-
+      // let score = 0;
+      // questions.forEach((item, index) => {
+      //   if (item.correctOption === selectedOptions[index]) {
+      //     score = score + 1;
+      //     index++;
+      //   }
+      // });
+      const score=calculateScore()
       setUserScore(score);
       setQuizSubmitted(true);
       getAtt();
+      removeSelectedOptionsInLocalStorage()
       localStorage.removeItem('timerValue');
+      localStorage.removeItem('userScore')
     }
   }
+  const calculateScore = () => {
+    let score = 0;
+    console.log("hgf")
+    for (let i = 0; i < questions.length; i++) {
+      const questionId = questions[i].questionId;
+      const selectedOption = localStorage.getItem(`selectedOption_${questionId}`);
+      const correctOption = questions[i].correctOption;
+  
+      // Check if the selected option matches the correct option
+      if (selectedOption === correctOption) {       
+        score++;       
+      }
+    }  
+    // calculateScoree(score)
+    localStorage.setItem('user', score);
+    return score;
+  };
+  // const calculateScoree=(score)=>{
+  //   console.log(score)
+  //   console.log("yt")
+  //   // localStorage.setItem('userScore', score);
+  //   console.log('ty')
+  // }
+  
   const handleSubmitQuiz = async () => {
     Swal.fire({
       title: 'Do you want to Submit the test??',
@@ -192,44 +196,72 @@ function Test({ isRefresh, setTrue }) {
       if (result.isConfirmed) {
 
         if (!quizSubmitted) {
-          let score = 0;
+          // let score = 0;
 
-          questions.forEach((item, index) => {
-            console.log(item.correctOption)
-            console.log(selectedOptions[index])
-            if (item.correctOption === selectedOptions[index]) {
-              score = score + 1;
-              index++;
-            }
-          });
-
-          setUserScore(score);
+          // questions.forEach((item, index) => {
+          //   if (item.correctOption === selectedOptions[index]) {
+          //     score = score + 1;
+          //     index++;
+          //   }
+          // });
+          calculateScore()
+          const s=localStorage.getItem("user");
+          setUserScore(s);
+          removeSelectedOptionsInLocalStorage()
+          
           setQuizSubmitted(true);
           getAtt()
           localStorage.removeItem('timerValue');
+          
         }
       }
     })
 
   };
-
-
-
+  const countSelectedOptionsInLocalStorage = () => {
+    let count = 0;
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      // Check if the key matches the naming convention
+      if (key.startsWith("selectedOption_")) {
+        count++;
+        
+      }
+    }
+    
+    return count;
+  };
+  const removeSelectedOptionsInLocalStorage = () => {
+    const keysToRemove = [];
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i);
+      // Check if the key matches the naming convention
+      if (key.startsWith("selectedOption_")) {
+        keysToRemove.push(key);
+      }
+    }
+  
+    // Remove all the selected options from localStorage
+    keysToRemove.forEach((key) => {
+      localStorage.removeItem(key);
+    });
+  
+    return keysToRemove.length;
+  };
   useEffect(() => {
     if (!isRefresh) {
-      //   window.alert("do you want to refresh the page");
-      //   setIsRefresh(true);
-
-      // const cat = localStorage.getItem("categoryId")
-      // console.log(cat)
-      // navigate(`/Quiz/${cat}`)
+      calculateScore()
+    }
+  })
+  useEffect(() => {
+    if (!isRefresh) {
 
       Swal.fire({
-        title: 'Do you want to refresh the page??',
+        title: 'If you refresh the page the test will be submitted',
         showDenyButton: true,
         // showCancelButton: true,
-        confirmButtonText: 'Yes',
-        denyButtonText: 'No',
+        confirmButtonText: 'Go ahead',
+        denyButtonText: 'Cancel',
         customClass: {
           actions: 'my-actions',
           cancelButton: 'order-1 right-gap',
@@ -241,22 +273,19 @@ function Test({ isRefresh, setTrue }) {
           //     const cat = localStorage.getItem("categoryId")
           // console.log(cat)
           // navigate(`/Quiz/${cat}`)
+         
           localStorage.removeItem('timerValue');
+          const a=countSelectedOptionsInLocalStorage()
+          setAttemptedQuestions(a);
+          const ss=localStorage.getItem('user')
+          setUserScore(ss);
           setQuizSubmitted(true);
-
-
+          removeSelectedOptionsInLocalStorage()
+          localStorage.removeItem('user')
         } else if (result.isDenied) {
 
         }
       })
-      //   if (window.confirm("Do you want to refresh the page?") === true) {
-
-      //       const cat = localStorage.getItem("categoryId")
-      //   console.log(cat)
-      //   navigate(`/Quiz/${cat}`)
-      // } else {
-      //   setTrue(true)
-      // }
     }
   }, [isRefresh, setTrue])
   useEffect(() => {
@@ -264,15 +293,6 @@ function Test({ isRefresh, setTrue }) {
       postData();
     }
   }, [quizSubmitted, userScore]);
-
-  // const getResult = (score) => {
-  //   const passMarks=numberOfQuestions-3;
-  //   if (quiz.passMarks > score) {
-  //     setResult("fail");
-  //   } else {
-  //     setResult("pass");
-  //   }
-  // };
   const postData = async () => {
     const postDataa = {
       userId: verifyUserId,
@@ -288,23 +308,15 @@ function Test({ isRefresh, setTrue }) {
       dateAndTime: date,
       categoryId: cat
     };
-    // const response = await axios.post('http://localhost:6002/res', postDataa);
     ResultApi.addResult(postDataa).then(response => {
-      console.log('POST response:', response.data);
       navigate(`/Result/${verifyUserId}`)
     }).catch(error => {
       console.error('Error sending data to the server:', error);
     })
   };
-  console.log("a" + resultt);
-  console.log("a" + attemptedQuestionss);
-  console.log("a" + userScore);
-  console.log(quiz.maxMarks)
-  console.log(resultt)
   const backTo = () => {
-    const cat = localStorage.getItem("categoryId")
-    console.log(cat)
-    navigate(`/Quiz/${cat}`)
+    const categoryId = localStorage.getItem("categoryId")
+    navigate(`/Quiz/${categoryId}`)
   }
   return (
     <div className="quiz-container">
@@ -335,6 +347,7 @@ function Test({ isRefresh, setTrue }) {
                               name={`question_${item.questionId}`}
                               value={item.option1}
                               onChange={() => handleOptionChange(item.questionId, item.option1)}
+                              
                             />
                             <label htmlFor={`option1_${item.questionId}`}>{item.option1}</label>
                           </div>

@@ -11,10 +11,7 @@ const AddQuestions = () => {
     const verifyRole = localStorage.getItem('userRole');
     const [errors, setErrors] = useState({});
     const { question } = useParams();
-
-    // console.log(categoryId);
     const { quizId } = useParams();
-    console.log(quizId)
     const [questionData, setQuestionData] = useState({
         question: "",
         option1: "",
@@ -57,11 +54,8 @@ const AddQuestions = () => {
     }
     useEffect(() => {
         if (question) {
-            // axios.get(`http://localhost:6002/questionByName/${question}`)
             QuestionsApi.getByQuestion(question)
                 .then((response) => {
-
-                    console.log(response);
                     const questionInformation = response.data.Questions_Information;
 
                     const { question, option1, option2, option3, option4, correctOption, questionId, quizId } = questionInformation;
@@ -114,8 +108,7 @@ const AddQuestions = () => {
             }
 
             if (Object.keys(validationErrors).length > 0) {
-                setErrors(validationErrors);
-                // if (validationErrors.topicName && validationErrors.topicDescription && validationErrors.maxMarks &&  validationErrors.passMarks ) {
+                setErrors(validationErrors)
                 if (validationErrors) {
                     Swal.fire({
                         title: 'Error!',
@@ -129,11 +122,8 @@ const AddQuestions = () => {
             else {
 
                 setErrors({});
-                console.log(questionData2)
-                // axios.put(`http://localhost:6002/que/${questionData.questionId}`, questionData2)
                 QuestionsApi.updateQuestion(questionData.questionId, questionData2)
                     .then((response) => {
-                        console.log(response)
                         if (response.data.status == 207) {
                             Swal.fire({
                                 title: 'Error',
@@ -155,8 +145,6 @@ const AddQuestions = () => {
 
             }
         }
-
-
         else {
             e.preventDefault();
 
@@ -183,7 +171,7 @@ const AddQuestions = () => {
 
             if (Object.keys(validationErrors).length > 0) {
                 setErrors(validationErrors);
-                // if (validationErrors.topicName && validationErrors.topicDescription && validationErrors.maxMarks &&  validationErrors.passMarks ) {
+                
                 if (validationErrors) {
                     await Swal.fire({
                         title: 'Error!',
@@ -195,11 +183,7 @@ const AddQuestions = () => {
 
             } else {
                 setErrors({});
-
-                //  const response = await axios.post('http://localhost:6002/que', requestData);
                 QuestionsApi.addQuestion(requestData).then(response => {
-                    console.log(response.data.message);
-
                     if (response.data.message === "succcessfully add the data") {
                         Swal.fire({
                             title: 'Add Question',

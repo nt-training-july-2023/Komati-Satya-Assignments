@@ -1,10 +1,6 @@
 
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-
+import { useParams } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
 import FinalResultApi from "../APIs/FinalResultApi";
 import DisableBackButton from "../APIs/disableBackButton";
@@ -22,10 +18,7 @@ const Result = () => {
 
   }, []);
   const getAllResultss = () => {
-
-    //const response = await axios.get('http://localhost:6002/finalResult');
     FinalResultApi.getAllResult().then(response => {
-      console.log(response)
       if (response.data.message === "No results are there") {
         <h1>No results</h1>
       }
@@ -38,9 +31,7 @@ const Result = () => {
     })
   };
   const getResultt = () => {
-    //const response = await axios.get(`http://localhost:6002/finalResult/${userId}`);
     FinalResultApi.getResultByStudentId(userId).then(response => {
-      console.log(response)
       if (response.data.message == "No user is there") {
         <h1>No results</h1>
       }
@@ -52,9 +43,6 @@ const Result = () => {
       setIsLoading(false);
     })
   };
-
-  const navigate = useNavigate();
-
   const handleSearch = async () => {
     console.log(searchName)
 
@@ -69,16 +57,6 @@ const Result = () => {
     setResult(originalResult);
     setSearchName("");
   }
-  const backTo = () => {
-    {
-      verifyRole === 'Admin' &&
-        navigate('/UserDashBoard');
-    }
-    {
-      verifyRole === 'student' &&
-        navigate('/UserDashBoard');
-    }
-  }
   const sortedResults = [...result].sort((a, b) => new Date(b.dateAndTime) - new Date(a.dateAndTime));
   return (
     <div className="categoryData">
@@ -87,8 +65,6 @@ const Result = () => {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Student Result Details</h1>
-          {/* <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button> */}
-
           <div className="searchContainer">
             <input
               className="search"

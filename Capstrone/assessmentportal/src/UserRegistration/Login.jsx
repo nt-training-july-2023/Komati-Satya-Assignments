@@ -64,7 +64,7 @@ const Login = () => {
         } else {
 
             setErrors({});
-            //  const response = await axios.post('http://localhost:6002/student/login', loginData);
+           
             UserApi.loginUser(loginData).then(response => {
 
                 if (response.data.message === "password must be same") {
@@ -91,8 +91,7 @@ const Login = () => {
                             icon: 'success',
                             confirmButtonText: 'Ok'
                         });
-                        // navigate('/AdminDashBoard');
-                        // navigate(`/UserDashBoard?data=${JSON.stringify(response.data)}`);
+                  
                         navigate('/UserDashBoard')
 
                     } else if (response?.data.User_Information.role === "student") {

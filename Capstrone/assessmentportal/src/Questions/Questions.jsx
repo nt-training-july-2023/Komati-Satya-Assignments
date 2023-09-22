@@ -10,7 +10,6 @@ import QuestionsApi from "../APIs/QuestionsApi";
 import Navbar from "../Navbar/Navbar";
 const Questions = () => {
   const { quizId } = useParams();
-  // console.log(categoryId)
   const verifyRole = localStorage.getItem('userRole');
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -22,9 +21,7 @@ const Questions = () => {
     }
   }, [quizId]);
   const getQuestions = async () => {
-    //const response = await axios.get(`http://localhost:6002/questions/${quizId}`);
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
-      console.log(response)
       setQuestions(response.data.Questions_Information || []);
       setOriginalQuestions(response.data.Questions_Information || []);
     }).catch(error => {
@@ -48,9 +45,7 @@ const Questions = () => {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        // const response = await axios.delete(`http://localhost:6002/que/${id}`);
         QuestionsApi.deleteQuestion(id).then(response => {
-          console.log(response);
           if (response.data.message === "succcessfully delete the data") {
             Swal.fire({
               title: 'Deleting data',
@@ -68,22 +63,6 @@ const Questions = () => {
 
       }
     })
-    //  // const response = await axios.delete(`http://localhost:6002/que/${id}`);
-    //  QuestionsApi.deleteQuestion(id).then(response=>{
-    //     console.log(response);
-    //     if (response.data.message === "succcessfully delete the data") {
-    //       Swal.fire({
-    //         title: 'Deleting data',
-    //         text: 'Successfully deleted data',
-    //         icon: 'success',
-    //         confirmButtonText: 'Ok'
-    //       });
-    //     }
-    //     getQuestions();
-    //   })
-    //   .catch (error=>{
-    //     console.log(error);
-    //   })
   };
 
   const navigate = useNavigate();
@@ -91,12 +70,10 @@ const Questions = () => {
     navigate(`/AddQuestion/${quizId}`);
   }
   const handleSearch = async () => {
-    console.log(text)
     const filteredQuestions = questions.filter(item =>
       (item.question || '').toLowerCase().includes((text || '').toLowerCase())
     );
     setQuestions(filteredQuestions);
-    // console.log(quiz)
   };
   const clearSearch = () => {
     setQuestions(originalQuestions);
@@ -115,7 +92,6 @@ const Questions = () => {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Questions Details</h1>
-          {/* <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button> */}
           {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add Question</button>}
           <div className="searchContainer">
             <input
@@ -143,9 +119,6 @@ const Questions = () => {
                       <th>Option3</th>
                       <th>Option4</th>
                       <th>Correct Answer</th>
-
-                      {/* <th>Delete</th>
-              <th>Update</th> */}
                     </tr>
                   </thead>
                   <tbody className="bodyData">

@@ -3,11 +3,9 @@ import './App.css';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Login from './UserRegistration/Login';
 import UserDashBoard from './User/UserDashBoard';
-
 import Registration from './UserRegistration/Registration';
 import Category from './Categories/Category';
 import AddCategory from './Categories/AddCategory';
-
 import UserUpdate from './User/UserUpdate';
 import ErrorPage from './ErrorPage';
 import Quiz from './Quiz/Quiz';
@@ -28,10 +26,8 @@ function App() {
     <div className="App">
      <BrowserRouter>
        <Routes>
-        {/* <Route path="/Home" element={<HomePage/>}></Route> */}
         <Route path="/" element={<Login/>}></Route>
         <Route path="/UserDashBoard" element={<UserDashBoard/>}></Route>
-        {/* <Route path="/AdminDashBoard" element={<AdminDashBoard/>}></Route> */}
         <Route path="/Registration" element={<Registration/>}></Route>
         <Route path="/Category" element={<Category/>}></Route>
         <Route path="/AddCategory" element={<AddCategory/>}></Route>

@@ -1,5 +1,4 @@
 
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -7,8 +6,6 @@ import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
 import QuizApi from "../APIs/QuizApi";
-import ResultApi from "../APIs/ResultApi";
-import FinalResultApi from "../APIs/FinalResultApi";
 import DisableBackButton from "../APIs/disableBackButton";
 import Navbar from "../Navbar/Navbar";
 function Quiz({ setTrue }) {
@@ -24,14 +21,10 @@ function Quiz({ setTrue }) {
   useEffect(() => {
     {
       getQuiz();
-
     }
   }, [categoryId]);
   const getQuiz = async () => {
-
-    // const response = await axios.get(`http://localhost:6002/quizz/${categoryId}`);
     QuizApi.getQuizByCategoryId(categoryId).then(response => {
-      console.log(response)
       setQuiz(response.data.Quiz_Information || []);
       setOriginalQuiz(response.data.Quiz_Information || []);
     }).catch(error => {
@@ -56,9 +49,7 @@ function Quiz({ setTrue }) {
       }
     }).then((result) => {
       if (result.isConfirmed) {
-        //const response = await axios.delete(`http://localhost:6002/quiz/${id}`);
         QuizApi.deleteQuiz(id).then(response => {
-          console.log(response);
           if (response.data.message === "succcessfully delete the data") {
             Swal.fire({
               title: 'Deleting data',
@@ -83,7 +74,6 @@ function Quiz({ setTrue }) {
     navigate(`/AddQuiz/${categoryId}`);
   }
   const handleSearch = async () => {
-    console.log(text)
     const filteredQuiz = quiz.filter(item =>
       (item.topicName || '').toLowerCase().includes((text || '').toLowerCase())
     );
@@ -94,17 +84,6 @@ function Quiz({ setTrue }) {
     setQuiz(originalQuiz);
     setText("");
   }
-  const backTo = () => {
-    {
-      verifyRole === 'Admin' &&
-        navigate('/UserDashBoard');
-    }
-    {
-      verifyRole === 'student' &&
-        navigate('/UserDashBoard');
-    }
-  }
-  console.log(quizData.quizName)
   const handleTakeTest = async (topicName, quizId, timer, categoryId) => {
     { localStorage.setItem('quizName', topicName) }
     { localStorage.setItem('timer', timer) }
@@ -135,7 +114,6 @@ function Quiz({ setTrue }) {
           <li>4. No negative marking for wrong answers. </li>
           <li>5. Questions are of Multiple Choice</li>
           <li>6. Each Question carry one mark</li>
-         
         </ul>
       </div>
     `
@@ -143,14 +121,10 @@ function Quiz({ setTrue }) {
       if (result.isConfirmed) {
         setTrue();
         navigate(`/Test/${quizId}`);
-
-
       } else if (result.isDenied) {
 
       }
     });
-
-    console.log(quizData)
   }
   return (
     <div className="categoryData">
@@ -159,7 +133,6 @@ function Quiz({ setTrue }) {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Quiz Details</h1>
-          {/* <button className="addButton" onClick={() => backTo()}>BackToDahBoard</button> */}
           {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add Quiz</button>}
           <div className="searchContainer">
             <input
@@ -184,9 +157,6 @@ function Quiz({ setTrue }) {
                       <th>Quiz Name</th>
                       <th>Quiz Description</th>
                       <th>Time(in Min)</th>
-
-                      {/* <th>Delete</th>
-              <th>Update</th> */}
                     </tr>
                   </thead>
                   <tbody className="bodyData">

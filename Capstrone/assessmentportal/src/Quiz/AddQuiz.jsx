@@ -1,6 +1,5 @@
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import './QuizStyles.css'
@@ -20,7 +19,6 @@ const AddQuiz = () => {
         categoryId: parseInt(categoryId, 10)
     });
     const requestData = {
-
         topicName: quizData.topicName,
         topicDescription: quizData.topicDescription,
         timer: quizData.timer,
@@ -28,18 +26,14 @@ const AddQuiz = () => {
             categoryId: quizData.categoryId
         }
     };
-    console.log("yfu", quizData.Id)
     const navigate = useNavigate();
-
     const changeData = (e) => {
         setQuizData({ ...quizData, [e.target.name]: e.target.value });
     }
     useEffect(() => {
         if (quizId) {
-            //axios.get(`http://localhost:6002/quiz/${quizId}`)
             QuizApi.getQuiz(quizId)
                 .then((response) => {
-
                     console.log(response);
                     const quizInformation = response.data.Quiz_topic_Information;
                     console.log(quizInformation)
@@ -57,8 +51,6 @@ const AddQuiz = () => {
         }
     }, [quizId]);
     const addQuizData = async (e) => {
-
-
         if (quizId) {
             e.preventDefault();
 
@@ -74,7 +66,6 @@ const AddQuiz = () => {
 
             if (Object.keys(validationErrors).length > 0) {
                 setErrors(validationErrors);
-                // if (validationErrors.topicName && validationErrors.topicDescription && validationErrors.maxMarks &&  validationErrors.passMarks ) {
                 if (validationErrors) {
                     Swal.fire({
                         title: 'Error!',
@@ -85,9 +76,7 @@ const AddQuiz = () => {
                 }
 
             } else {
-
                 setErrors({});
-                // axios.put(`http://localhost:6002/quiz/${quizId}`, quizData)
                 QuizApi.updateQuiz(quizId, quizData)
                     .then((response) => {
                         if (response.data.status == 207) {
@@ -110,12 +99,8 @@ const AddQuiz = () => {
                     })
             }
         }
-
-
-
         else {
             e.preventDefault();
-            console.log(quizData)
             const validationErrors = {};
 
             if (!quizData.topicName) {
@@ -128,7 +113,6 @@ const AddQuiz = () => {
 
             if (Object.keys(validationErrors).length > 0) {
                 setErrors(validationErrors);
-                // if (validationErrors.topicName && validationErrors.topicDescription && validationErrors.maxMarks &&  validationErrors.passMarks ) {
                 if (validationErrors) {
                     Swal.fire({
                         title: 'Error!',
@@ -140,13 +124,8 @@ const AddQuiz = () => {
 
             } else {
                 setErrors({});
-
-                // const response = await axios.post('http://localhost:6002/quiz', requestData);
                 QuizApi.addQuiz(requestData).then(response => {
-                    console.log(response.data.message);
-
                     if (response.data.message === "succcessfully add the data") {
-                        console.log("jygd")
                         Swal.fire({
                             title: 'Add Quiz',
                             text: 'Added Quiz',

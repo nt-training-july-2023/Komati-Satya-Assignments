@@ -22,9 +22,6 @@ const UserUpdate = () => {
   });
 
   useEffect(() => {
-
-    // axios
-    //   .get(`http://localhost:6002/student/${userId}`)
     UserApi.getUserById(userId)
       .then((response) => {
         console.log(response)
@@ -48,8 +45,6 @@ const UserUpdate = () => {
       });
   }, [userId]);
   const handleUpdateCategory = () => {
-    // axios
-    //   .put(`http://localhost:6002/student/${userId}`, userData)
     UserApi.updateUser(userId, userData)
       .then((response) => {
         if (response.data.message === "successfully update the data") {

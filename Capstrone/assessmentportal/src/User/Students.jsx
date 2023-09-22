@@ -1,11 +1,6 @@
 
-import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-// import '../CategoryStyles.css'
-import ErrorPage from "../ErrorPage";
 import UserApi from "../APIs/UserApi";
 import Navbar from "../Navbar/Navbar";
 function Student() {
@@ -18,8 +13,6 @@ function Student() {
     getStudents();
   }, []);
   const getStudents = async () => {
-
-    // const response = await axios.get('http://localhost:6002/students');
     UserApi.getAllStudents().then(response => {
       setStudent(response.data.User_Information || []);
       setOriginalStudent(response.data.User_Information || []);
@@ -44,21 +37,13 @@ function Student() {
     setStudent(originalStudent);
     setSearchText("");
   }
-  const backTo = () => {
-    {
-      verifyRole === 'Admin' &&
-        navigate('/UserDashBoard');
-    }
-
-  }
+  
   return (
     <div className="categoryData">
       <Navbar />
       {verifyRole === 'Admin' &&
         <>
           <h1 className="addHead">Students Details</h1>
-          {/* <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button> */}
-
           <div className="searchContainer">
             <input
               className="search"
@@ -85,8 +70,6 @@ function Student() {
                       <th>Gender</th>
                       <th>Phone Number</th>
                       <th>Date of Birth</th>
-                      {/* <th>Delete</th>
-              <th>Update</th> */}
                     </tr>
                   </thead>
                   <tbody className="bodyData">
