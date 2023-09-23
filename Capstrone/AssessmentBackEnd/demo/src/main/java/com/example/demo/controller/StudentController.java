@@ -34,7 +34,7 @@ public class StudentController {
      * auto wiring student service class.
      */
     @Autowired
-    private StudentService stu;
+    private StudentService studentSevice;
     /**
      * Creating a instance of Logger Class.
      */
@@ -48,7 +48,7 @@ public class StudentController {
     @PostMapping("/student")
     public final ResponseEntity<Object> save(@RequestBody final Student s) {
         try {
-            StudentSaveDto user = stu.saveStudent(s);
+            StudentSaveDto user = studentSevice.saveStudent(s);
             LOGGER.info("Student registration");
             return Responsee.generateResponce("successfully added data",
                     HttpStatus.OK, "User_Information", user);
@@ -67,7 +67,7 @@ public class StudentController {
     @GetMapping("/student/{id}")
     public final ResponseEntity<Object> findById(@PathVariable final int id) {
         try {
-            Optional<StudentDto> user = stu.findById(id);
+            Optional<StudentDto> user = studentSevice.findById(id);
             LOGGER.info("Student registration");
             return Responsee.generateResponce("successfully get the data",
                     HttpStatus.OK, "User_Information", user);
@@ -86,7 +86,7 @@ public class StudentController {
     @PostMapping("/student/login")
     public final ResponseEntity<Object> login(@RequestBody final LoginDto l) {
         try {
-            Optional<StudentDto> user = stu.aunthenticateUser(l);
+            Optional<StudentDto> user = studentSevice.aunthenticateUser(l);
             LOGGER.info("Student login");
             return Responsee.generateResponce("succcessfully retrieve the data",
                     HttpStatus.OK, "User_Information", user);
@@ -104,7 +104,7 @@ public class StudentController {
     @GetMapping("/student/students")
     public final ResponseEntity<Object> findAllStu() {
         try {
-            List<StudentDto> user = stu.findAllStu();
+            List<StudentDto> user = studentSevice.findAllStu();
             LOGGER.info("Find all students");
             return Responsee.generateResponce(
                     "successfully retrieve all the data", HttpStatus.OK,
@@ -126,7 +126,7 @@ public class StudentController {
     public final ResponseEntity<Object> updateStudent(
             @RequestBody final StudentDto s, @PathVariable final int id) {
         try {
-            StudentDto user = stu.updateStudent(s, id);
+            StudentDto user = studentSevice.updateStudent(s, id);
             LOGGER.info("Updatation of student");
             return Responsee.generateResponce("successfully update the data",
                     HttpStatus.OK, "User_Information", user);
@@ -146,7 +146,7 @@ public class StudentController {
     public final ResponseEntity<Object> deleteStudent(
             @PathVariable final int id) {
         try {
-            stu.deleteStudent(id);
+            studentSevice.deleteStudent(id);
             LOGGER.info("Deletion of student");
             return Responsee.generateResponce("successfully delete the data",
                     HttpStatus.OK, "User_Information", null);

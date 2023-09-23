@@ -5,6 +5,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import ErrorPage from "../ErrorPage";
 import UserApi from '../APIs/UserApi';
+import Input from '../Inputs/Input';
+import { Button } from 'bootstrap';
+import ButtonComponent from '../Inputs/ButtonComponent';
 
 const UserUpdate = () => {
   const verifyRole = localStorage.getItem('userRole');
@@ -24,10 +27,8 @@ const UserUpdate = () => {
   useEffect(() => {
     UserApi.getUserById(userId)
       .then((response) => {
-        console.log(response)
         setSendData(response);
         const userInformation = response.data.User_Information;
-        console.log("User Information:", userInformation);
         const { userName, phoneNumber, dateOfBirth, gender, email, userId, role } = userInformation;
         setUserData((previousData) => ({
           ...previousData,
@@ -38,7 +39,6 @@ const UserUpdate = () => {
           email: userInformation.email,
           userId: userInformation.userId
         }));
-        console.log(userData);
       })
       .catch((error) => {
         console.error("An error occurred:", error);
@@ -81,8 +81,7 @@ const UserUpdate = () => {
       }
     })
   }
-  console.log("sendData")
-  console.log(sendData)
+  
   return (
     <div className="login2">
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
@@ -93,7 +92,7 @@ const UserUpdate = () => {
               <div className="signin2">
                 <div>
                   <label className="head2">User Id:</label>
-                  <input
+                  <Input
                     className="data2"
                     type="text"
                     value={userData.userId}
@@ -108,7 +107,7 @@ const UserUpdate = () => {
                 </div>
                 <div>
                   <label className="head2">Email:</label>
-                  <input
+                  <Input
                     className="data2"
                     type="text"
                     value={userData.email}
@@ -124,7 +123,7 @@ const UserUpdate = () => {
 
                 <div>
                   <label className="head2">User Name:</label>
-                  <input
+                  <Input
                     className="data2"
                     type="text"
                     value={userData.userName}
@@ -138,7 +137,7 @@ const UserUpdate = () => {
                 </div>
                 <div>
                   <label className="head2">Phone Number:</label>
-                  <input
+                  <Input
                     className="data2"
                     type="text"
                     value={userData.phoneNumber}
@@ -152,7 +151,7 @@ const UserUpdate = () => {
                 </div>
                 <div>
                   <label className="head2">Date of Birth:</label>
-                  <input
+                  <Input
                     className="data2"
                     type="text"
                     value={userData.dateOfBirth}
@@ -166,7 +165,7 @@ const UserUpdate = () => {
                 </div>
                 <div>
                   <label className="head2">Gender:</label>
-                  <input
+                  <Input
                     className="data2"
                     type="text"
                     value={userData.gender}
@@ -179,12 +178,12 @@ const UserUpdate = () => {
                   />
                 </div>
 
-                <button className="btn2" type="button" onClick={handleUpdateCategory}>
+                <ButtonComponent className="btn2" type="button" onClick={handleUpdateCategory}>
                   Update Student Details
-                </button>
-                <button className="btn3" type="button" onClick={cancelUpdate}>
+                </ButtonComponent>
+                <ButtonComponent className="btn3" type="button" onClick={cancelUpdate}>
                   Cancel
-                </button>
+                </ButtonComponent>
               </div>
             </form>
           </div>

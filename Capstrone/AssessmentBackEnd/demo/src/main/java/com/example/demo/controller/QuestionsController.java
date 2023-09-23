@@ -34,7 +34,7 @@ public class QuestionsController {
      * auto wiring question service class.
      */
     @Autowired
-    private QuestionsService qs;
+    private QuestionsService questionsService;
     /**
      * Creating a instance of Logger Class.
      */
@@ -50,7 +50,7 @@ public class QuestionsController {
     public final ResponseEntity<Object> addQuestion(
             @RequestBody final Questions q) {
         try {
-            QuestionsDto user = qs.addQuestion(q);
+            QuestionsDto user = questionsService.addQuestion(q);
             LOGGER.info("Adding a  questions");
             return Responsee.generateResponce("succcessfully add the data",
                     HttpStatus.OK, "Questions_Information", user);
@@ -69,7 +69,7 @@ public class QuestionsController {
     public final ResponseEntity<Object> getQuestions() {
         try {
             LOGGER.info("Get all questions");
-            List<QuestionsDto> user = qs.getQuestions();
+            List<QuestionsDto> user = questionsService.getQuestions();
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Questions_Information", user);
         } catch (Exception e) {
@@ -87,7 +87,7 @@ public class QuestionsController {
     @DeleteMapping("/questions/{id}")
     public final ResponseEntity<Object> delete(@PathVariable final int id) {
         try {
-            qs.delete(id);
+            questionsService.delete(id);
             LOGGER.info("Delete question");
             return Responsee.generateResponce("succcessfully delete the data",
                     HttpStatus.OK, "Questions_Information", null);
@@ -109,7 +109,7 @@ public class QuestionsController {
             @RequestBody final QuestionsUpdateDto q,
             @PathVariable final int id) {
         try {
-            QuestionsUpdateDto user = qs.updateQue(q, id);
+            QuestionsUpdateDto user = questionsService.updateQue(q, id);
             LOGGER.info("update question");
             return Responsee.generateResponce("succcessfully update the data",
                     HttpStatus.OK, "Questions_Information", user);
@@ -129,7 +129,7 @@ public class QuestionsController {
     public final ResponseEntity<Object> findQueById(
             @PathVariable final int id) {
         try {
-            List<QuestionsDto> user = qs.findQueById(id);
+            List<QuestionsDto> user = questionsService.findQueById(id);
             LOGGER.info("Get all questions by quiz id");
             return Responsee.generateResponce("succcessfully get the data",
                     HttpStatus.OK, "Questions_Information", user);
@@ -149,7 +149,7 @@ public class QuestionsController {
     public final ResponseEntity<Object> findByQuestion(
             @PathVariable final String name) {
         try {
-            Optional<QuestionsDto> user = qs.findByQuestion(name);
+            Optional<QuestionsDto> user = questionsService.findByQuestion(name);
             LOGGER.info("Get question");
             return Responsee.generateResponce("succcessfully get the data",
                     HttpStatus.OK, "Questions_Information", user);

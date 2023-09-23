@@ -29,7 +29,7 @@ public class ResultController {
      * auto wiring result service class.
      */
     @Autowired
-    private ResultService rs;
+    private ResultService resultService;
     /**
      * Creating a instance of Logger Class.
      */
@@ -44,7 +44,7 @@ public class ResultController {
     public final ResponseEntity<Object> addRes(
             @RequestBody final ResultDto sr) {
         try {
-            ResultDto user = rs.addRes(sr);
+            ResultDto user = resultService.addRes(sr);
             LOGGER.info("Adding result");
             return Responsee.generateResponce("succcessfully add the data",
                     HttpStatus.OK, "Student result_Information", user);
@@ -64,7 +64,7 @@ public class ResultController {
     @GetMapping("/result/{id}")
     public final ResponseEntity<Object> getRes(@PathVariable final int id) {
         try {
-            Optional<ResultDto> user = rs.getRes(id);
+            Optional<ResultDto> user = resultService.getRes(id);
             LOGGER.info("Get result by id");
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Student result_Information", user);
@@ -82,7 +82,7 @@ public class ResultController {
     @GetMapping("/result")
     public final ResponseEntity<Object> getAllRes() {
         try {
-            List<ResultDto> user = rs.getAllRes();
+            List<ResultDto> user = resultService.getAllRes();
             LOGGER.info("getting all result");
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Student result_Information", user);

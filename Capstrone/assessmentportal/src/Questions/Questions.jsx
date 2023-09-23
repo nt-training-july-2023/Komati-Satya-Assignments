@@ -8,6 +8,8 @@ import { useParams } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
 import QuestionsApi from "../APIs/QuestionsApi";
 import Navbar from "../Navbar/Navbar";
+import Input from "../Inputs/Input";
+import ButtonComponent from "../Inputs/ButtonComponent";
 const Questions = () => {
   const { quizId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
@@ -92,17 +94,17 @@ const Questions = () => {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Questions Details</h1>
-          {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add Question</button>}
+          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}>Add Question</ButtonComponent>}
           <div className="searchContainer">
-            <input
+            <Input
               className="search"
               type="text"
               placeholder="Search by Question"
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
-            <button className="searchButton" onClick={handleSearch}>Search</button>
-            <button className="searchButton" onClick={clearSearch}>Clear Search</button>
+            <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
+            <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
 
           </div>
           {isLoading ? (
@@ -133,7 +135,7 @@ const Questions = () => {
                         <td>{item.correctOption}</td>
 
                         {verifyRole === 'Admin' && <>
-                          <td><button className="deleteData" type="button" onClick={() => deleteData(item.questionId)}>Delete</button></td>
+                          <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.questionId)}>Delete</ButtonComponent></td>
                           <td><Link to={`/UpdateQuestion/${item.question}`} className="updateData">Update</Link></td>
 
                         </>}

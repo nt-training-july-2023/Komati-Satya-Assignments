@@ -41,8 +41,8 @@ class CategoryControllerTest {
         category.setCategoryName("java");
         CategoryDto categoryDto=new CategoryDto();
         categoryDto.setCategoryName("java");
-        when(categoryService.saveCat(category)).thenReturn(categoryDto);
-        ResponseEntity<Object> response=categoryController.saveCat(category);
+        when(categoryService.saveCategory(category)).thenReturn(categoryDto);
+        ResponseEntity<Object> response=categoryController.saveCategory(category);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());
     }
@@ -50,8 +50,8 @@ class CategoryControllerTest {
     void testAddCategoryError() {
         Category category=new Category();
         category.setCategoryName("java");
-        when(categoryService.saveCat(category)).thenThrow(new AlreadyExistException("Category already present"));
-        ResponseEntity<Object> response=categoryController.saveCat(category);
+        when(categoryService.saveCategory(category)).thenThrow(new AlreadyExistException("Category already present"));
+        ResponseEntity<Object> response=categoryController.saveCategory(category);
         assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
         assertNotNull(response.getBody());
     }
@@ -99,8 +99,8 @@ class CategoryControllerTest {
         categoryDto.setCategoryName("java");
         categoryDto.setCategoryName("React");
         int i=1;
-        when(categoryService.updateCat(categoryDto, i)).thenReturn(categoryDto);
-        ResponseEntity<Object> response=categoryController.updateCat(categoryDto, i);
+        when(categoryService.updateCategory(categoryDto, i)).thenReturn(categoryDto);
+        ResponseEntity<Object> response=categoryController.updateCategory(categoryDto, i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());  
     }
@@ -110,8 +110,8 @@ class CategoryControllerTest {
         categoryDto.setCategoryName("java");
         categoryDto.setCategoryName("React");
         int i=1;
-        when(categoryService.updateCat(categoryDto, i)).thenThrow(new NotFoundException("wrong category id"));
-        ResponseEntity<Object> response=categoryController.updateCat(categoryDto, i);
+        when(categoryService.updateCategory(categoryDto, i)).thenThrow(new NotFoundException("wrong category id"));
+        ResponseEntity<Object> response=categoryController.updateCategory(categoryDto, i);
         assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
         assertNotNull(response.getBody()); 
     }
@@ -119,7 +119,7 @@ class CategoryControllerTest {
     void testDeleteCategorySuccess() {
         Category c=new Category();
         c.setCategoryId(1);
-        ResponseEntity<Object> response=categoryController.deleteCat(1);
+        ResponseEntity<Object> response=categoryController.deleteCategory(1);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());     
     }
@@ -127,8 +127,8 @@ class CategoryControllerTest {
     void testDeleteCategoryError() {
         Category c=new Category();
         c.setCategoryId(1);
-        doThrow(new NotFoundException("wrong category id")).when(categoryService).deleteCat(1);
-        ResponseEntity<Object> response=categoryController.deleteCat(1);
+        doThrow(new NotFoundException("wrong category id")).when(categoryService).deleteCategory(1);
+        ResponseEntity<Object> response=categoryController.deleteCategory(1);
         assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
         assertNotNull(response.getBody());  
     }

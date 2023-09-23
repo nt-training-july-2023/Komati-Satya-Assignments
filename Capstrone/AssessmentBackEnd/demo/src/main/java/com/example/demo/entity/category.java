@@ -41,7 +41,7 @@ public class Category {
     @OneToMany(targetEntity = Quiz.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "c_fk", referencedColumnName = "categoryId")
     @JsonIgnoreProperties("Category")
-    private List<Quiz> qu;
+    private List<Quiz> quiz;
     /**
      * get category.
      * @return category id
@@ -89,14 +89,14 @@ public class Category {
      * @return quiz quiz
      */
     public final List<Quiz> getQu() {
-        return new ArrayList<>(qu);
+        return new ArrayList<>(quiz);
     }
     /**
      * set method.
-     * @param quu quiz
+     * @param quizz quiz
      */
-    public final void setQu(final List<Quiz> quu) {
-        this.qu = new ArrayList<>(quu);
+    public final void setQu(final List<Quiz> quizz) {
+        this.quiz = new ArrayList<>(quizz);
     }
     /**
      * Constructor.

@@ -6,6 +6,8 @@ import Swal from "sweetalert2";
 import './RegistrationStyles.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import UserApi from "../APIs/UserApi";
+import Input from "../Inputs/Input";
+import ButtonComponent from "../Inputs/ButtonComponent";
 const Registration = () => {
   const [showPassword, setShowPassword] = useState("true");
   const [formData, setFormData] = useState({
@@ -122,7 +124,7 @@ const Registration = () => {
       else {
         UserApi.addUser(formData)
           .then((response) => {
-            console.log(response)
+            
             if (response.data.message === "successfully added data") {
               Swal.fire({
                 title: 'Registration',
@@ -163,42 +165,42 @@ const Registration = () => {
           <h1>Registration</h1>
           <div className="details">
             <label className="side">Name</label><br /><br />
-            <input className="values" type="text" placeholder="enter a name" name="userName" value={formData.userName} onChange={changeData} /><br /><br />
+            <Input className="values" type="text" placeholder="enter a name" name="userName" value={formData.userName} onChange={changeData} /><br /><br />
             {/* <p style={{ color: "red", fontSize: "15px" }}>{errors.userName}</p> */}
             <label className="side">Email</label><br /><br />
-            <input className="values" type="email" placeholder="enter a email" name="email" value={formData.email} onChange={changeData} /><br /><br />
+            <Input className="values" type="email" placeholder="enter a email" name="email" value={formData.email} onChange={changeData} /><br /><br />
             <div className="password-container2">
               <label className="side">Password</label><br /><br />
-              <input className="values" type={showPassword ? 'password' : 'text'} name="password" placeholder="enter a password" value={formData.password} onChange={changeData} /><br />
-              <button className="show-password2" type="button" onClick={togglePassword}>
+              <Input className="values" type={showPassword ? 'password' : 'text'} name="password" placeholder="enter a password" value={formData.password} onChange={changeData} /><br />
+              <ButtonComponent className="show-password2" type="button" onClick={togglePassword}>
 
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
+              </ButtonComponent>
             </div><br />
            
             <div className="password-container2">
               <label className="side">Confirm Password</label><br /><br />
-              <input className="values" type={showPassword ? 'password' : 'text'} name="confirmPassword" placeholder="enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
-              <button className="show-password2" type="button" onClick={togglePassword}>
+              <Input className="values" type={showPassword ? 'password' : 'text'} name="confirmPassword" placeholder="enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
+              <ButtonComponent className="show-password2" type="button" onClick={togglePassword}>
 
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
-              </button>
+              </ButtonComponent>
             </div><br />
             <label className="side">DateOfBirth</label><br /><br />
-            <input className="values" type="Date" placeholder="enter a date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} /><br /><br />
+            <Input className="values" type="Date" placeholder="enter a date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} /><br /><br />
             <label className="side">Phone number</label><br /><br />
-            <input className="values" type="text" name="phoneNumber" placeholder="enter a phone number" value={formData.phoneNumber} onChange={changeData} /><br /><br />
+            <Input className="values" type="text" name="phoneNumber" placeholder="enter a phone number" value={formData.phoneNumber} onChange={changeData} /><br /><br />
             <label className="side">Gender</label><br /><br />
 
             <div className="gen">
-              <input className="gen1" type="radio" name="gender" value={formData.gender} onChange={changeData} />
+              <Input className="gen1" type="radio" name="gender" value={formData.gender} onChange={changeData} />
               <label className="gender">Male</label>
-              <input className="gen2" type="radio" name="gender" value={formData.gender} onChange={changeData} />
+              <Input className="gen2" type="radio" name="gender" value={formData.gender} onChange={changeData} />
               <label className="gender">Female</label>
-              <input className="gen2" type="radio" name="gender" value={formData.gender} onChange={changeData} />
+              <Input className="gen2" type="radio" name="gender" value={formData.gender} onChange={changeData} />
               <label className="gender">Other</label><br />
             </div>
-            <button className="submit" type="button" onClick={submitData}>Register</button>
+            <ButtonComponent className="submit" type="button" onClick={submitData}>Register</ButtonComponent>
             <a href="/" className="anchor1">Already have an account? Login here!!!</a>
           </div>
         </div>

@@ -27,34 +27,35 @@ public class FinalResultServiceImp implements FinalResService {
      * auto wiring final result repository.
      */
     @Autowired
-    private FinalResultRepo fs;
+    private FinalResultRepo finalResultRepo;
     /**
      * auto wiring student result repository.
      */
     @Autowired
-    private StudentResultRepo s;
+    private StudentResultRepo studentResultRepo;
     /**
      * auto wiring final category repository.
      */
     @Autowired
-    private CategoryRepo cr;
+    private CategoryRepo categoryRepo;
     /**
      * Creating a instance of Logger Class.
      */
     private static final Logger LOGGER = LoggerFactory
             .getLogger(FinalResultServiceImp.class);
+
     /**
      * constructor.
-     * @param finalRepo final repository
-     * @param categoryRepo category repository
-     * @param resultRepo result repository
+     * @param finalRepo    final repository
+     * @param categoryyRepo category repository
+     * @param resultRepo   result repository
      */
     public FinalResultServiceImp(final FinalResultRepo finalRepo,
-           final CategoryRepo categoryRepo,
-           final StudentResultRepo resultRepo) {
-       this.fs = finalRepo;
-       this.cr = categoryRepo;
-       this.s = resultRepo;
+            final CategoryRepo categoryyRepo,
+            final StudentResultRepo resultRepo) {
+        this.finalResultRepo = finalRepo;
+        this.categoryRepo = categoryyRepo;
+        this.studentResultRepo = resultRepo;
     }
     /**
      * get by id method.
@@ -63,11 +64,11 @@ public class FinalResultServiceImp implements FinalResService {
      */
     @Override
     public final List<ResultDto> getById(final int id) {
-        if (fs.findAll().size() != 0) {
-            if (fs.getByUserId(id).size() != 0) {
-            List<FinalRes> finalRes = fs.getByUserId(id);
-            List<ResultDto> resultDto = convertToDto(finalRes);
-            LOGGER.info("get result by user id");
+        if (finalResultRepo.findAll().size() != 0) {
+            if (finalResultRepo.getByUserId(id).size() != 0) {
+                List<FinalRes> finalRes = finalResultRepo.getByUserId(id);
+                List<ResultDto> resultDto = convertToDto(finalRes);
+                LOGGER.info("get result by user id");
                 return resultDto;
             } else {
                 LOGGER.error("User did not take the test");
@@ -78,14 +79,14 @@ public class FinalResultServiceImp implements FinalResService {
             throw new AllNotFoundException("No user is there");
         }
     }
-     /**
-      * convert to dto method.
-      * @param finalRes final result
-      * @return list of result
-      */
-     private List<ResultDto> convertToDto(final List<FinalRes> finalRes) {
+    /**
+     * convert to dto method.
+     * @param finalRes final result
+     * @return list of result
+     */
+    private List<ResultDto> convertToDto(final List<FinalRes> finalRes) {
         List<ResultDto> r = new ArrayList<>();
-        for (FinalRes f:finalRes) {
+        for (FinalRes f : finalRes) {
             ResultDto resultDto = new ResultDto();
             resultDto.setCategoryName(f.getCategoryName());
             resultDto.setDateAndTime(f.getDateAndTime());
@@ -93,7 +94,6 @@ public class FinalResultServiceImp implements FinalResService {
             resultDto.setQuizName(f.getQuizTopic());
             resultDto.setUserName(f.getUserName());
             resultDto.setObtainMarks(f.getMarks());
-         //   Optional<Category> c=cr.findByCategoryName(f.getCategoryName());
             resultDto.setCategoryId(f.getCategoryId());
             resultDto.setAttemptedQuestions(f.getAttemptedQuestions());
             resultDto.setEmail(f.getEmail());
@@ -102,24 +102,23 @@ public class FinalResultServiceImp implements FinalResService {
             resultDto.setUserId(f.getUserId());
             resultDto.setTotalQuestions(f.getTotalNoOfQuestions());
             resultDto.setUserId(f.getUserId());
-//            resultDto.setTotalQuestions(f.);
             r.add(resultDto);
         }
-      return r;
-}
-     /**
-      * find all methods.
-      */
+        return r;
+    }
+    /**
+     * find all methods.
+     */
     @Override
     public final List<ResultDto> findAll() {
-       if (fs.findAll().size() != 0) {
-           List<FinalRes> finalResult = fs.findAll();
-           List<ResultDto> resultDto = convertToDto(finalResult);
-           LOGGER.info("find all result");
-           return resultDto;
-       } else {
-           LOGGER.error("No results are there");
-           throw new AllNotFoundException("No results are there");
-       }
+        if (finalResultRepo.findAll().size() != 0) {
+            List<FinalRes> finalResult = finalResultRepo.findAll();
+            List<ResultDto> resultDto = convertToDto(finalResult);
+            LOGGER.info("find all result");
+            return resultDto;
+        } else {
+            LOGGER.error("No results are there");
+            throw new AllNotFoundException("No results are there");
+        }
     }
-  }
+}

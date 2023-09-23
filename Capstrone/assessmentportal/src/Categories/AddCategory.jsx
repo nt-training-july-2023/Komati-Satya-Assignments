@@ -6,10 +6,12 @@ import Swal from "sweetalert2";
 import './AddCategoryStyles.css';
 import ErrorPage from "../ErrorPage";
 import CategoryApi from "../APIs/CategoryApi";
+import Input from "../Inputs/Input";
+import ButtonComponent from "../Inputs/ButtonComponent";
+import TextareaComponent from "../Inputs/TextareaComponent";
 const AddCategory = () => {
     const verifyRole = localStorage.getItem('userRole');
     const { categoryId } = useParams();
-  console.log(categoryId);
     const [errors, setErrors] = useState({});
     const [categoryData, setCategoryData] = useState({
         categoryName: "",
@@ -26,9 +28,7 @@ const AddCategory = () => {
              CategoryApi.getCategoryById(categoryId)
           .then((response) => {
     
-            console.log(response);
             const userInformation = response.data.Category_Information;
-            console.log(userInformation)
             const { categoryName, categoryDescription } = userInformation;
             setCategoryData({
               categoryName,
@@ -167,7 +167,7 @@ else{
             });
         }
     }).catch(error=>{
-        console.log(error)
+       
     })
         
 }
@@ -195,8 +195,6 @@ else{
             }
         })
     }
-
-    console.log(categoryData)
     return (
         <div className="login3">
             {verifyRole === 'Admin' ? <>
@@ -207,14 +205,14 @@ else{
                         <div className="signin3">
                             <label className="head3">Category Name</label><br></br><br></br>
 
-                            <input className="data3" type="text" name="categoryName" value={categoryData.categoryName} placeholder="Enter category name" onChange={changeData}></input><br></br><br></br>
+                            <Input className="data3" type="text" name="categoryName" value={categoryData.categoryName} placeholder="Enter category name" onChange={changeData}/><br></br><br></br>
                             <label className="head3">Category description</label><br></br><br></br>
-                            <textarea className="data3" type="text" name="categoryDescription" value={categoryData.categoryDescription} placeholder="Enter category description" onChange={changeData}></textarea>
-                            <button className="btn4" type="button" onClick={handleSubmit} >
+                            <TextareaComponent className="data3" type="text" name="categoryDescription" value={categoryData.categoryDescription} placeholder="Enter category description" onChange={changeData}></TextareaComponent>
+                            <ButtonComponent className="btn4" type="button" onClick={handleSubmit} >
                                 {categoryId ? "update category" : "Add Category"}
-                                </button>
+                                </ButtonComponent>
                             
-                            <button className="btn5" type="button" onClick={cancelAddCategory}>Cancel</button>
+                            <ButtonComponent className="btn5" type="button" onClick={cancelAddCategory}>Cancel</ButtonComponent>
                         </div>
                     </form>
                 </div>

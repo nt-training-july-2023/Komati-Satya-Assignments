@@ -42,7 +42,7 @@ class CategoryServiceImpTest {
         c.setCategoryDescription("java basics");
         when(repo.findByCategoryName(c.getCategoryName())).thenReturn(Optional.empty());
         when(repo.save(c)).thenReturn(c);
-        CategoryDto categoryDto1=categoryService.saveCat(c);
+        CategoryDto categoryDto1=categoryService.saveCategory(c);
         assertEquals(c.getCategoryName(),categoryDto1.getCategoryName());
         assertEquals(c.getCategoryDescription(),categoryDto1.getCategoryDescription());  
     }
@@ -53,7 +53,7 @@ class CategoryServiceImpTest {
         c.setCategoryName("java");
         when(repo.findByCategoryName(c.getCategoryName())).thenReturn(Optional.of(c));
         assertThrows(AlreadyExistException.class, () ->{
-            categoryService.saveCat(c);
+            categoryService.saveCategory(c);
         });
     }
     
@@ -109,7 +109,7 @@ class CategoryServiceImpTest {
     @Test
    void testUpdateCategory() {
        Category category =new Category(1,"java","java basics");
-       categoryService.saveCat(category);
+       categoryService.saveCategory(category);
          CategoryDto categoryDto=new CategoryDto();
          categoryDto.setCategoryId(category.getCategoryId());
          categoryDto.setCategoryName(category.getCategoryName());
@@ -120,7 +120,7 @@ class CategoryServiceImpTest {
          cd.setCategoryName("Sql");
          cd.setCategoryDescription("java basics");
          cd.setCategoryId(1);
-         CategoryDto c=categoryService.updateCat(cd, 1);
+         CategoryDto c=categoryService.updateCategory(cd, 1);
          assertEquals(category.getCategoryName(),cd.getCategoryName());
          assertEquals(category.getCategoryDescription(),cd.getCategoryDescription());
    }
@@ -131,7 +131,7 @@ class CategoryServiceImpTest {
         CategoryDto c=new CategoryDto();
         when(repo.findById(categoryId)).thenReturn(Optional.empty());
         assertThrows(NotFoundException.class, () ->{
-            categoryService.updateCat(c, categoryId);
+            categoryService.updateCategory(c, categoryId);
         });
     }
     
@@ -139,7 +139,7 @@ class CategoryServiceImpTest {
     public void testDeleteNoCategoriesFound() {
         when(repo.findAll()).thenReturn(new ArrayList<>());
         assertThrows(AllNotFoundException.class, ()->{
-            categoryService.deleteCat(1);
+            categoryService.deleteCategory(1);
         });
     }
    @Test
@@ -148,7 +148,7 @@ class CategoryServiceImpTest {
        repo.save(c);
        when(repo.findAll()).thenReturn(Collections.singletonList(new Category()));
        when(repo.findById(1)).thenReturn(Optional.of(c));
-       categoryService.deleteCat(1);
+       categoryService.deleteCategory(1);
    }
    @Test
    public void testDeleteNotFound() {
@@ -156,7 +156,7 @@ class CategoryServiceImpTest {
        when(repo.findAll()).thenReturn(Collections.singletonList(new Category()));
        when(repo.findById(categoryId)).thenReturn(Optional.empty());
        assertThrows(NotFoundException.class, () ->{
-           categoryService.deleteCat(categoryId);
+           categoryService.deleteCategory(categoryId);
        });
    }
    @Test

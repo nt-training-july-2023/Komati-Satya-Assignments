@@ -5,12 +5,14 @@ import Swal from "sweetalert2";
 import './QuizStyles.css'
 import ErrorPage from "../ErrorPage";
 import QuizApi from "../APIs/QuizApi";
+import Input from "../Inputs/Input";
+import ButtonComponent from "../Inputs/ButtonComponent";
+import TextareaComponent from "../Inputs/TextareaComponent";
 
 const AddQuiz = () => {
     const verifyRole = localStorage.getItem('userRole');
     const [errors, setErrors] = useState({});
     const { categoryId } = useParams();
-    console.log(categoryId);
     const { quizId } = useParams();
     const [quizData, setQuizData] = useState({
         topicName: "",
@@ -34,9 +36,7 @@ const AddQuiz = () => {
         if (quizId) {
             QuizApi.getQuiz(quizId)
                 .then((response) => {
-                    console.log(response);
                     const quizInformation = response.data.Quiz_topic_Information;
-                    console.log(quizInformation)
                     const { topicName, topicDescription, timer, categoryId } = quizInformation;
                     setQuizData({
                         topicName,
@@ -181,7 +181,7 @@ const AddQuiz = () => {
                     <form>
                         <div className="signin3">
                             <label className="head3">Topic Name</label><br /><br />
-                            <input
+                            <Input
                                 className="data3"
                                 type="text"
                                 name="topicName"
@@ -190,17 +190,17 @@ const AddQuiz = () => {
                                 onChange={changeData}
                             /><br /><br />
                             <label className="head3">Topic Description</label><br /><br />
-                            <textarea
+                            <TextareaComponent
                                 className="data3"
                                 type="text"
                                 name="topicDescription"
                                 value={quizData.topicDescription}
                                 placeholder="Enter topic description"
                                 onChange={changeData}
-                            ></textarea>
+                            ></TextareaComponent>
                             <div>
                                 <label className="head3">Time</label><br /><br />
-                                <input
+                                <Input
                                     className="data3"
                                     type="number"
                                     name="timer"
@@ -209,10 +209,10 @@ const AddQuiz = () => {
                                     onChange={changeData}
                                 /><br /><br />
                             </div>
-                            <button className="btn4" type="button" onClick={addQuizData}>
+                            <ButtonComponent className="btn4" type="button" onClick={addQuizData}>
                                 {quizId ? "update Quiz" : "Add Quiz"}
-                            </button>
-                            <button className="btn5" type="button" onClick={cancelAddQuiz}>Cancel</button>
+                            </ButtonComponent>
+                            <ButtonComponent className="btn5" type="button" onClick={cancelAddQuiz}>Cancel</ButtonComponent>
                         </div>
                     </form>
                 </div>

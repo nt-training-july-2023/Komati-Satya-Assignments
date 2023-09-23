@@ -30,34 +30,34 @@ public class StudentServiceImp implements StudentService {
      * auto wiring student repository.
      */
     @Autowired
-    private StudentRepo st;
+    private StudentRepo studentRepo;
     /**
      * Creating a instance of Logger Class.
      */
     private static final Logger LOGGER = LoggerFactory
             .getLogger(StudentServiceImp.class);
+
     /**
      * Constructor.
      * @param repo repo
      */
     public StudentServiceImp(final StudentRepo repo) {
-        this.st = repo;
+        this.studentRepo = repo;
     }
-
     /**
      * authenticate user method.
-     * @param stu loginDto
+     * @param loginDto loginDto
      * @return student
      */
     @Override
-    public final Optional<StudentDto> aunthenticateUser(final LoginDto stu) {
-
+    public final Optional<StudentDto> aunthenticateUser(
+            final LoginDto loginDto) {
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-
-        Optional<Student> student = st.findByEmail(stu.getEmail());
+        Optional<Student> student = studentRepo
+                .findByEmail(loginDto.getEmail());
         if (student.isPresent()) {
             Student st1 = student.get();
-            if (bcrypt.matches(stu.getPassword(), st1.getPassword())) {
+            if (bcrypt.matches(loginDto.getPassword(), st1.getPassword())) {
                 StudentDto studentDto = new StudentDto();
                 studentDto.setUserName(st1.getUserName());
                 studentDto.setUserId(st1.getUserId());
@@ -76,37 +76,33 @@ public class StudentServiceImp implements StudentService {
             LOGGER.error("Email not exist");
             throw new EmailDoesNotExistException("Email not exist");
         }
-
     }
-
     /**
      * save student method.
-     * @param stu student
+     * @param student student
      * @return Student
      */
     @Override
-    public final StudentSaveDto saveStudent(final Student stu) {
-        if (!st.findByEmail(stu.getEmail()).isPresent()) {
+    public final StudentSaveDto saveStudent(final Student student) {
+        if (!studentRepo.findByEmail(student.getEmail()).isPresent()) {
             BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-            String encrypted = bcrypt.encode(stu.getPassword());
-            stu.setPassword(encrypted);
-            st.save(stu);
+            String encrypted = bcrypt.encode(student.getPassword());
+            student.setPassword(encrypted);
+            studentRepo.save(student);
             StudentSaveDto studentDto = new StudentSaveDto();
-            studentDto.setUserName(stu.getUserName());
-            studentDto.setPhoneNumber(stu.getPhoneNumber());
-            studentDto.setGender(stu.getGender());
-            studentDto.setDateOfBirth(stu.getDateOfBirth());
-            studentDto.setEmail(stu.getEmail());
-            studentDto.setRole(stu.getRole());
+            studentDto.setUserName(student.getUserName());
+            studentDto.setPhoneNumber(student.getPhoneNumber());
+            studentDto.setGender(student.getGender());
+            studentDto.setDateOfBirth(student.getDateOfBirth());
+            studentDto.setEmail(student.getEmail());
+            studentDto.setRole(student.getRole());
             LOGGER.info("student registration");
             return studentDto;
         } else {
             LOGGER.error("Email already exist");
             throw new DuplicateEmailException("Email already exist");
         }
-
     }
-
     /**
      * find by id method.
      * @param id student id
@@ -114,17 +110,17 @@ public class StudentServiceImp implements StudentService {
      */
     @Override
     public final Optional<StudentDto> findById(final int id) {
-        if (st.findById(id).isPresent()) {
+        if (studentRepo.findById(id).isPresent()) {
             StudentDto studentDto = new StudentDto();
-            Optional<Student> s = st.findById(id);
-            Student stu = s.get();
-            studentDto.setUserName(stu.getUserName());
-            studentDto.setUserId(stu.getUserId());
-            studentDto.setPhoneNumber(stu.getPhoneNumber());
-            studentDto.setGender(stu.getGender());
-            studentDto.setDateOfBirth(stu.getDateOfBirth());
-            studentDto.setEmail(stu.getEmail());
-            studentDto.setRole(stu.getRole());
+            Optional<Student> s = studentRepo.findById(id);
+            Student student = s.get();
+            studentDto.setUserName(student.getUserName());
+            studentDto.setUserId(student.getUserId());
+            studentDto.setPhoneNumber(student.getPhoneNumber());
+            studentDto.setGender(student.getGender());
+            studentDto.setDateOfBirth(student.getDateOfBirth());
+            studentDto.setEmail(student.getEmail());
+            studentDto.setRole(student.getRole());
             LOGGER.info("find student by id");
             return Optional.of(studentDto);
         } else {
@@ -132,23 +128,21 @@ public class StudentServiceImp implements StudentService {
             throw new NotFoundException("User not found");
         }
     }
-
     /**
      * find all students method.
      * @return student
      */
     @Override
     public final List<StudentDto> findAllStu() {
-        if (st.findAll().size() != 0) {
-            List<Student> s = st.findAll();
-            List<StudentDto> sd = convertToDto(s);
+        if (studentRepo.findAll().size() != 0) {
+            List<Student> student = studentRepo.findAll();
+            List<StudentDto> studentDto = convertToDto(student);
             LOGGER.info("find all students");
-            return sd;
+            return studentDto;
         } else {
             LOGGER.error("No user is present");
             throw new AllNotFoundException("No user is present");
         }
-
     }
     /**
      * convertToDto method.
@@ -157,40 +151,38 @@ public class StudentServiceImp implements StudentService {
      */
     private List<StudentDto> convertToDto(final List<Student> s) {
         List<StudentDto> sd = new ArrayList<>();
-        for (Student stu : s) {
+        for (Student student : s) {
             StudentDto studentDto = new StudentDto();
-            studentDto.setUserName(stu.getUserName());
-            studentDto.setUserId(stu.getUserId());
-            studentDto.setPhoneNumber(stu.getPhoneNumber());
-            studentDto.setGender(stu.getGender());
-            studentDto.setDateOfBirth(stu.getDateOfBirth());
-            studentDto.setEmail(stu.getEmail());
-            studentDto.setRole(stu.getRole());
-
+            studentDto.setUserName(student.getUserName());
+            studentDto.setUserId(student.getUserId());
+            studentDto.setPhoneNumber(student.getPhoneNumber());
+            studentDto.setGender(student.getGender());
+            studentDto.setDateOfBirth(student.getDateOfBirth());
+            studentDto.setEmail(student.getEmail());
+            studentDto.setRole(student.getRole());
             sd.add(studentDto);
         }
         return sd;
     }
-
     /**
      * update student method.
-     * @param s  student
+     * @param studentDto  student
      * @param id student id
      * @result student
      */
     @Override
-    public final StudentDto updateStudent(final StudentDto s, final int id) {
-        Optional<Student> user = st.findById(id);
+    public final StudentDto updateStudent(final StudentDto studentDto,
+            final int id) {
+        Optional<Student> user = studentRepo.findById(id);
         if (user.isPresent()) {
             Student exiStudent = user.get();
-            exiStudent.setDateOfBirth(s.getDateOfBirth());
-            exiStudent.setGender(s.getGender());
-            exiStudent.setPhoneNumber(s.getPhoneNumber());
-            exiStudent.setUserName(s.getUserName());
-            st.save(exiStudent);
+            exiStudent.setDateOfBirth(studentDto.getDateOfBirth());
+            exiStudent.setGender(studentDto.getGender());
+            exiStudent.setPhoneNumber(studentDto.getPhoneNumber());
+            exiStudent.setUserName(studentDto.getUserName());
+            studentRepo.save(exiStudent);
             LOGGER.info("update student");
-            return s;
-
+            return studentDto;
         } else {
             LOGGER.error("user not found");
             throw new NotFoundException("User not found,give a correct id");
@@ -202,9 +194,9 @@ public class StudentServiceImp implements StudentService {
      */
     @Override
     public final void deleteStudent(final int id) {
-        if (st.findAll().size() != 0) {
-            if (st.findById(id).isPresent()) {
-                st.deleteById(id);
+        if (studentRepo.findAll().size() != 0) {
+            if (studentRepo.findById(id).isPresent()) {
+                studentRepo.deleteById(id);
                 LOGGER.info("deletion of student");
             } else {
                 LOGGER.error("User not found");

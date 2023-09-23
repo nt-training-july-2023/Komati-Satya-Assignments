@@ -22,8 +22,6 @@ import com.example.demo.entity.Category;
 import com.example.demo.response.Responsee;
 import com.example.demo.service.CategoryService;
 
-
-
 /**
  * Category controller class.
  */
@@ -39,16 +37,18 @@ public class CategoryController {
      * auto wiring category service class.
      */
     @Autowired
-    private CategoryService cs;
+    private CategoryService categoryService;
+
     /**
      * Category save method.
      * @param c category.
      * @return response
      */
     @PostMapping("/category")
-    public final ResponseEntity<Object> saveCat(@RequestBody final Category c) {
+    public final ResponseEntity<Object> saveCategory(
+            @RequestBody final Category c) {
         try {
-            CategoryDto user = cs.saveCat(c);
+            CategoryDto user = categoryService.saveCategory(c);
             LOGGER.info("Adding new category");
             return Responsee.generateResponce("succcessfully added data",
                     HttpStatus.OK, "Category_Information", user);
@@ -58,6 +58,7 @@ public class CategoryController {
                     HttpStatus.MULTI_STATUS, "Category_Information", null);
         }
     }
+
     /**
      * Category find by id method.
      * @param id id of category.
@@ -66,7 +67,7 @@ public class CategoryController {
     @GetMapping("/category/cat/{id}")
     public final ResponseEntity<Object> findById(@PathVariable final int id) {
         try {
-            Optional<CategoryDto> user = cs.findById(id);
+            Optional<CategoryDto> user = categoryService.findById(id);
             LOGGER.info("find category by category id");
             return Responsee.generateResponce("succcessfully retrieve the data",
                     HttpStatus.OK, "Category_Information", user);
@@ -76,6 +77,7 @@ public class CategoryController {
                     HttpStatus.MULTI_STATUS, "Category_Information", null);
         }
     }
+
     /**
      * Category find all method.
      * @return response.
@@ -83,7 +85,7 @@ public class CategoryController {
     @GetMapping("/category")
     public final ResponseEntity<Object> findAll() {
         try {
-            List<CategoryDto> user = cs.findAll();
+            List<CategoryDto> user = categoryService.findAll();
             LOGGER.info("fina all categories");
             return Responsee.generateResponce("succcessfully retrieve the data",
                     HttpStatus.OK, "Category_Information", user);
@@ -93,6 +95,7 @@ public class CategoryController {
                     HttpStatus.MULTI_STATUS, "Category_Information", null);
         }
     }
+
     /**
      * Category update method.
      * @param c  category.
@@ -100,11 +103,10 @@ public class CategoryController {
      * @return response.
      */
     @PutMapping("/category/{id}")
-    public final ResponseEntity<Object> updateCat(@RequestBody final
-            CategoryDto c,
-            @PathVariable final int id) {
+    public final ResponseEntity<Object> updateCategory(
+            @RequestBody final CategoryDto c, @PathVariable final int id) {
         try {
-            CategoryDto user = cs.updateCat(c, id);
+            CategoryDto user = categoryService.updateCategory(c, id);
             LOGGER.info("update category");
             return Responsee.generateResponce("succcessfully update the data",
                     HttpStatus.OK, "Category_Information", user);
@@ -114,15 +116,17 @@ public class CategoryController {
                     HttpStatus.MULTI_STATUS, "Category_Information", null);
         }
     }
+
     /**
      * Category delete method.
      * @param id category id.
      * @return response.
      */
     @DeleteMapping("/category/{id}")
-    public final ResponseEntity<Object> deleteCat(@PathVariable final int id) {
+    public final ResponseEntity<Object> deleteCategory(
+            @PathVariable final int id) {
         try {
-            cs.deleteCat(id);
+            categoryService.deleteCategory(id);
             LOGGER.info("delete category");
             return Responsee.generateResponce("succcessfully delete the data",
                     HttpStatus.OK, "User_Information", null);
@@ -132,6 +136,7 @@ public class CategoryController {
                     HttpStatus.MULTI_STATUS, "Category_Information", null);
         }
     }
+
     /**
      * Category find by name method.
      * @param s name.
@@ -141,7 +146,7 @@ public class CategoryController {
     public final ResponseEntity<Object> findByName(
             @PathVariable final String s) {
         try {
-            Optional<CategoryDto> c = cs.findByName(s);
+            Optional<CategoryDto> c = categoryService.findByName(s);
             LOGGER.info("find category by category name");
             return Responsee.generateResponce("succcessfully retrieve the data",
                     HttpStatus.OK, "User_Information", c);

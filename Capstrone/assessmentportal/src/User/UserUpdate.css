@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  width: 100%;
+  width: 100%; 
   position: relative;
   height: 100vh;
 }
@@ -19,7 +19,7 @@
 }
 
 .signin2 {
-  max-width: 420px;
+  width: 350px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
   padding: 30px 20px;
   border-radius: 8px;
@@ -92,7 +92,7 @@
   }
 
   .signin2 {
-    max-width: 90%;
+    width: 95%;
     padding: 20px 10px;
   }
 

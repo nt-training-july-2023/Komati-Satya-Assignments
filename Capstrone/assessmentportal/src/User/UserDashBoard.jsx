@@ -9,23 +9,21 @@ import axios from "axios";
 import UserApi from "../APIs/UserApi";
 import DisableBackButton from "../APIs/disableBackButton";
 import Navbar from "../Navbar/Navbar";
+import ButtonComponent from "../Inputs/ButtonComponent";
 
 const UserDashBoard = () => {
 
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const verifyUserId = localStorage.getItem('userId');
-  console.log(data)
+  
   useEffect(() => {
     getStudent();
   }, []);
 
   const getStudent = async () => {
     UserApi.getUserById(verifyUserId).then(response => {
-      console.log(response.data);
-      console.log(response.data.User_Information)
       setData(response.data.User_Information || []);
-      console.log(data)
     }).catch(error => {
       console.error('An error occurred:', error);
     })
@@ -82,7 +80,7 @@ const UserDashBoard = () => {
             </tr>
           </tbody>
         </table>
-        <button className="btn2" type="button" onClick={UpdateData}>Update Details</button>
+        <ButtonComponent className="btn2" type="button" onClick={UpdateData}>Update Details</ButtonComponent>
 
       </div>
 

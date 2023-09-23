@@ -9,6 +9,8 @@ import ErrorPage from "../ErrorPage";
 import CategoryApi from "../APIs/CategoryApi";
 import DisableBackButton from "../APIs/disableBackButton";
 import Navbar from "../Navbar/Navbar";
+import Input from "../Inputs/Input";
+import ButtonComponent from "../Inputs/ButtonComponent";
 function Category() {
   const verifyRole = localStorage.getItem('userRole');
   const [category, setCategory] = useState([]);
@@ -16,13 +18,12 @@ function Category() {
   const [searchText, setSearchText] = useState("");
   const [originalCategory, setOriginalCategory] = useState([]);
   const {userId} =useParams()
-  console.log(userId)
   useEffect(() => {
     getCategories();
   }, []);
   const getCategories = async () => {
     
-      // const response = await axios.get('http://localhost:6002/cat');
+    
 
        CategoryApi.getAllCategories().then(
         response=>{
@@ -48,9 +49,9 @@ function Category() {
       }
   }).then((result) => {
       if (result.isConfirmed) {
-            // const response = await axios.delete(`http://localhost:6002/cat/${id}`);
+       
       CategoryApi.deleteCategory(id).then(response=>{
-        console.log(response);
+       
         if (response.data.message === "succcessfully delete the data") {
           Swal.fire({
             title: 'Deleting data',
@@ -61,35 +62,21 @@ function Category() {
         }
         getCategories();
       }).catch (error=> {
-        console.log(error);
+    
       })
 
       } else if (result.isDenied) {
 
       }
   })
-    //   // const response = await axios.delete(`http://localhost:6002/cat/${id}`);
-    //   CategoryApi.deleteCategory(id).then(response=>{
-    //   console.log(response);
-    //   if (response.data.message === "succcessfully delete the data") {
-    //     Swal.fire({
-    //       title: 'Deleting data',
-    //       text: 'Successfully deleted data',
-    //       icon: 'success',
-    //       confirmButtonText: 'Ok'
-    //     });
-    //   }
-    //   getCategories();
-    // }).catch (error=> {
-    //   console.log(error);
-    // })
+    
   }
   const navigate = useNavigate();
   const addData = () => {
     navigate('/AddCategory');
   }
   const handleSearch = async () => {
-    console.log(searchText)
+    
     const filteredCategory = category.filter(item =>
       item.categoryName.toLowerCase().includes(searchText.toLowerCase())
     );
@@ -122,17 +109,17 @@ function Category() {
         <>
           <h1 className="addHead">Category Details</h1>
           {/* <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button> */}
-          {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add category</button>}
+          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}>Add category</ButtonComponent>}
           <div className="searchContainer">
-            <input
+            <Input
               className="search"
               type="text"
               placeholder="Search by Category Name"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
-            <button className="searchButton" onClick={handleSearch}>Search</button>
-            <button className="searchButton" onClick={clearSearch}>Clear Search</button>
+            <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
+            <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
 
           </div>
           {isLoading ? (
@@ -156,7 +143,7 @@ function Category() {
                       <td>{item.categoryName}</td>
                       <td>{item.categoryDescription}</td>
                       {verifyRole === 'Admin' && <>
-                        <td><button className="deleteData" type="button" onClick={() => deleteData(item.categoryId)}>Delete</button></td>
+                        <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.categoryId)}>Delete</ButtonComponent></td>
                         <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData">Update</Link></td></>}
                         {verifyRole === 'Admin' || verifyRole === 'student' ? (
                   <td><Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={()=>handleViewTopic(item.categoryName)}>

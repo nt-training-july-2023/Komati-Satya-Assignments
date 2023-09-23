@@ -101,44 +101,46 @@ public class Quiz {
      * @return category
      */
     public final Category getCate() {
-        return new Category(cate.getCategoryId(), cate.getCategoryName(),
-                cate.getCategoryDescription());
+        return new Category(category.getCategoryId(),
+                category.getCategoryName(),
+                category.getCategoryDescription());
     }
     /**
      * get question.
-     * @param catee category
+     * @param categoryy category
      */
-    public final void setCate(final Category catee) {
-        this.cate = new Category(catee.getCategoryId(), catee.getCategoryName(),
-                catee.getCategoryDescription());
+    public final void setCate(final Category categoryy) {
+        this.category = new Category(categoryy.getCategoryId(),
+                categoryy.getCategoryName(),
+                categoryy.getCategoryDescription());
     }
     /**
      * get question.
      * @return list
      */
     public final List<StudentResult> getSe() {
-        return new ArrayList<>(se);
+        return new ArrayList<>(studentResult);
     }
     /**
      * get question.
-     * @param see student result
+     * @param student student result
      */
-    public final void setSe(final List<StudentResult> see) {
-        this.se = new ArrayList<>(see);
+    public final void setSe(final List<StudentResult> student) {
+        this.studentResult = new ArrayList<>(student);
     }
     /**
      * get question.
      * @return question question
      */
     public final List<Questions> getQue() {
-        return new ArrayList<>(que);
+        return new ArrayList<>(questions);
     }
     /**
      * set question.
-     * @param quee question
+     * @param question question
      */
-    public final void setQue(final List<Questions> quee) {
-        this.que = new ArrayList<>(quee);
+    public final void setQue(final List<Questions> question) {
+        this.questions = new ArrayList<>(question);
     }
     /**
      * Constructor.
@@ -161,7 +163,7 @@ public class Quiz {
     @ManyToOne
     @JoinColumn(name = "c_fk")
     @JsonIgnoreProperties("qu")
-    private Category cate;
+    private Category category;
     /**
      * one to many relationship with quiz.
      */
@@ -169,12 +171,12 @@ public class Quiz {
     @JoinColumn(name = "qz_id", referencedColumnName = "quizId")
     @JsonIgnoreProperties("Quiz")
     @JsonIgnore
-    private List<StudentResult> se;
+    private List<StudentResult> studentResult;
     /**
      * one to many relationship with questions.
      */
     @OneToMany(targetEntity = Questions.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "qz_fk", referencedColumnName = "quizId")
     @JsonIgnoreProperties("Quiz")
-    private List<Questions> que;
+    private List<Questions> questions;
 }

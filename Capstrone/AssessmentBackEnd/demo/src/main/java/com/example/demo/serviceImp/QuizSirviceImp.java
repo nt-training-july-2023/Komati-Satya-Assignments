@@ -18,6 +18,7 @@ import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.CategoryRepo;
 import com.example.demo.repository.QuizRepo;
 import com.example.demo.service.QuizService;
+
 /**
  * quiz service interface.
  */
@@ -27,26 +28,27 @@ public class QuizSirviceImp implements QuizService {
      * auto wiring quiz repository.
      */
     @Autowired
-    private QuizRepo qr;
+    private QuizRepo quizRepo;
     /**
      * auto wiring quiz category repository.
      */
     @Autowired
-    private CategoryRepo cr;
+    private CategoryRepo categoryRepo;
     /**
      * Creating a instance of Logger Class.
      */
     private static final Logger LOGGER = LoggerFactory
             .getLogger(QuizSirviceImp.class);
+
     /**
      * constructor.
      * @param repo quiz repository
-     * @param categoryRepo category repository
+     * @param categoryyRepo category repository
      */
     public QuizSirviceImp(final QuizRepo repo,
-            final CategoryRepo categoryRepo) {
-        this.qr = repo;
-        this.cr = categoryRepo;
+            final CategoryRepo categoryyRepo) {
+        this.quizRepo = repo;
+        this.categoryRepo = categoryyRepo;
     }
     /**
      * add quiz method.
@@ -55,22 +57,21 @@ public class QuizSirviceImp implements QuizService {
      */
     @Override
     public final QuizDto addQuiz(final Quiz quiz) {
-        if (cr.findById(quiz.getCate().getCategoryId()).isPresent()) {
-            if (!qr.findQuizByName(quiz.getTopicName()).isPresent()) {
-                QuizDto qd = new QuizDto();
-                qd.setQuizId(quiz.getQuizId());
-                qd.setTopicDescription(quiz.getTopicDescription());
-                qd.setTopicName(quiz.getTopicName());
-                qd.setCategoryId(quiz.getCate().getCategoryId());
-                qd.setTimer(quiz.getTimer());
-                qr.save(quiz);
+        if (categoryRepo.findById(quiz.getCate().getCategoryId()).isPresent()) {
+            if (!quizRepo.findQuizByName(quiz.getTopicName()).isPresent()) {
+                QuizDto quizDto = new QuizDto();
+                quizDto.setQuizId(quiz.getQuizId());
+                quizDto.setTopicDescription(quiz.getTopicDescription());
+                quizDto.setTopicName(quiz.getTopicName());
+                quizDto.setCategoryId(quiz.getCate().getCategoryId());
+                quizDto.setTimer(quiz.getTimer());
+                quizRepo.save(quiz);
                 LOGGER.info("add question");
-                return qd;
+                return quizDto;
             } else {
-                LOGGER.error("Topic is already exist,"
-                        + "enter a new topic");
-                throw new AlreadyExistException("Topic is already exist,"
-                        + "enter a new topic");
+                LOGGER.error("Topic is already exist," + "enter a new topic");
+                throw new AlreadyExistException(
+                        "Topic is already exist," + "enter a new topic");
             }
         } else {
             LOGGER.error("Category is not present");
@@ -84,18 +85,18 @@ public class QuizSirviceImp implements QuizService {
      */
     @Override
     public final Optional<QuizDto> getQuiz(final int id) {
-        if (qr.findAll().size() != 0) {
-            if (qr.findById(id).isPresent()) {
-                 QuizDto qd = new QuizDto();
-                 Optional<Quiz> q = qr.findById(id);
-                 Quiz quiz = q.get();
-                 qd.setQuizId(quiz.getQuizId());
-                 qd.setTopicDescription(quiz.getTopicDescription());
-                 qd.setTopicName(quiz.getTopicName());
-                 qd.setCategoryId(quiz.getCate().getCategoryId());
-                 qd.setTimer(quiz.getTimer());
-                 LOGGER.info("get quiz by id");
-                return Optional.of(qd);
+        if (quizRepo.findAll().size() != 0) {
+            if (quizRepo.findById(id).isPresent()) {
+                QuizDto quizDto = new QuizDto();
+                Optional<Quiz> q = quizRepo.findById(id);
+                Quiz quiz = q.get();
+                quizDto.setQuizId(quiz.getQuizId());
+                quizDto.setTopicDescription(quiz.getTopicDescription());
+                quizDto.setTopicName(quiz.getTopicName());
+                quizDto.setCategoryId(quiz.getCate().getCategoryId());
+                quizDto.setTimer(quiz.getTimer());
+                LOGGER.info("get quiz by id");
+                return Optional.of(quizDto);
             } else {
                 LOGGER.error("wrong quiz id");
                 throw new NotFoundException("wrong quiz id");
@@ -111,10 +112,10 @@ public class QuizSirviceImp implements QuizService {
      */
     @Override
     public final List<QuizDto> findAll() {
-        if (qr.findAll().size() != 0) {
-            List<Quiz> l = qr.findAll();
-            List<QuizDto> ld = convertToDto(l);
-            return ld;
+        if (quizRepo.findAll().size() != 0) {
+            List<Quiz> quiz = quizRepo.findAll();
+            List<QuizDto> quizDto = convertToDto(quiz);
+            return quizDto;
         } else {
             throw new AllNotFoundException("no quiz is present");
         }
@@ -125,17 +126,17 @@ public class QuizSirviceImp implements QuizService {
      * @return quizDto
      */
     private List<QuizDto> convertToDto(final List<Quiz> l) {
-        List<QuizDto> ld = new  ArrayList<>();
-        for (Quiz quiz:l) {
+        List<QuizDto> quizDto = new ArrayList<>();
+        for (Quiz quiz : l) {
             QuizDto qd = new QuizDto();
             qd.setQuizId(quiz.getQuizId());
             qd.setTopicDescription(quiz.getTopicDescription());
             qd.setTopicName(quiz.getTopicName());
             qd.setCategoryId(quiz.getCate().getCategoryId());
             qd.setTimer(quiz.getTimer());
-            ld.add(qd);
+            quizDto.add(qd);
         }
-        return ld;
+        return quizDto;
     }
     /**
      * delete quiz method.
@@ -143,9 +144,9 @@ public class QuizSirviceImp implements QuizService {
      */
     @Override
     public final void deleteQuiz(final int id) {
-        if (qr.findAll().size() != 0) {
-            if (qr.findById(id).isPresent()) {
-                qr.deleteById(id);
+        if (quizRepo.findAll().size() != 0) {
+            if (quizRepo.findById(id).isPresent()) {
+                quizRepo.deleteById(id);
                 LOGGER.info("delete quiz");
             } else {
                 LOGGER.error("wrong quiz id");
@@ -155,30 +156,29 @@ public class QuizSirviceImp implements QuizService {
             LOGGER.error("no quiz is present");
             throw new AllNotFoundException("no quiz is present");
         }
-
     }
     /**
      * update quiz method.
      * @param id quiz id
-     * @param q quiz
+     * @param q  quiz
      * @result quiz
      */
     @Override
     public final QuizUpdateDto updateQuiz(final QuizUpdateDto q, final int id) {
-        if (qr.findAll().size() != 0) {
-        Optional<Quiz> existingQuiz = qr.findById(id);
-        if (existingQuiz.isPresent()) {
-            Quiz exiQuiz = existingQuiz.get();
-            exiQuiz.setTopicName(q.getTopicName());
-            exiQuiz.setTopicDescription(q.getTopicDescription());
-            exiQuiz.setTimer(q.getTimer());
-            qr.save(exiQuiz);
-            LOGGER.info("update quiz");
-            return q;
-        } else {
-            LOGGER.error("wrong quiz id");
-            throw new NotFoundException("wrong quiz id");
-        }
+        if (quizRepo.findAll().size() != 0) {
+            Optional<Quiz> existingQuiz = quizRepo.findById(id);
+            if (existingQuiz.isPresent()) {
+                Quiz exiQuiz = existingQuiz.get();
+                exiQuiz.setTopicName(q.getTopicName());
+                exiQuiz.setTopicDescription(q.getTopicDescription());
+                exiQuiz.setTimer(q.getTimer());
+                quizRepo.save(exiQuiz);
+                LOGGER.info("update quiz");
+                return q;
+            } else {
+                LOGGER.error("wrong quiz id");
+                throw new NotFoundException("wrong quiz id");
+            }
         } else {
             LOGGER.error("no quiz is present");
             throw new AllNotFoundException("no quiz is present");
@@ -191,12 +191,12 @@ public class QuizSirviceImp implements QuizService {
      */
     @Override
     public final List<QuizDto> findQuizById(final int id) {
-        if (qr.findAll().size() != 0) {
-            if (qr.findQuizById(id).size() != 0) {
-            List<Quiz> l = qr.findQuizById(id);
-            List<QuizDto> ld = convertToDto(l);
-            LOGGER.info("Find quiz by category id");
-            return ld;
+        if (quizRepo.findAll().size() != 0) {
+            if (quizRepo.findQuizById(id).size() != 0) {
+                List<Quiz> quiz = quizRepo.findQuizById(id);
+                List<QuizDto> quizDto = convertToDto(quiz);
+                LOGGER.info("Find quiz by category id");
+                return quizDto;
             } else {
                 LOGGER.error("wrong category id");
                 throw new NotFoundException("wrong category id");
@@ -214,18 +214,18 @@ public class QuizSirviceImp implements QuizService {
      */
     @Override
     public final Optional<QuizDto> findQuizByName(final String name) {
-        if (qr.findAll().size() != 0) {
-            if (qr.findQuizByName(name).isPresent()) {
-               QuizDto qd = new QuizDto();
-               Optional<Quiz> qui = qr.findQuizByName(name);
-               Quiz quiz = qui.get();
-               qd.setQuizId(quiz.getQuizId());
-               qd.setTopicDescription(quiz.getTopicDescription());
-               qd.setTopicName(quiz.getTopicName());
-               qd.setCategoryId(quiz.getCate().getCategoryId());
-               qd.setTimer(quiz.getTimer());
-               LOGGER.info("find quiz by name");
-               return Optional.of(qd);
+        if (quizRepo.findAll().size() != 0) {
+            if (quizRepo.findQuizByName(name).isPresent()) {
+                QuizDto quizDto = new QuizDto();
+                Optional<Quiz> quizz = quizRepo.findQuizByName(name);
+                Quiz quiz = quizz.get();
+                quizDto.setQuizId(quiz.getQuizId());
+                quizDto.setTopicDescription(quiz.getTopicDescription());
+                quizDto.setTopicName(quiz.getTopicName());
+                quizDto.setCategoryId(quiz.getCate().getCategoryId());
+                quizDto.setTimer(quiz.getTimer());
+                LOGGER.info("find quiz by name");
+                return Optional.of(quizDto);
             } else {
                 LOGGER.error("topic is not found");
                 throw new NotFoundException("topic is not found");
@@ -234,7 +234,5 @@ public class QuizSirviceImp implements QuizService {
             LOGGER.error("no quiz is present");
             throw new AllNotFoundException("no quiz is present");
         }
-
     }
-
 }

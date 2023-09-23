@@ -110,7 +110,7 @@
   border-bottom: 2px solid rgb(93, 204, 93);
   padding: 5px;
   outline: none;
-  width: 17%;
+  width:auto;
   margin-right: 10px;
 }
 

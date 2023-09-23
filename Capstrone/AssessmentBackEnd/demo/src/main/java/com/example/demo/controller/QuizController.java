@@ -33,7 +33,7 @@ public class QuizController {
      * Auto wiring quiz service class.
      */
     @Autowired
-    private QuizService qs;
+    private QuizService quizSevice;
     /**
      * Creating a instance of Logger Class.
      */
@@ -47,7 +47,7 @@ public class QuizController {
     @PostMapping("/quiz")
     public final ResponseEntity<Object> saveQuiz(@RequestBody final Quiz q) {
         try {
-            QuizDto user = qs.addQuiz(q);
+            QuizDto user = quizSevice.addQuiz(q);
             LOGGER.info("Adding Quiz");
             return Responsee.generateResponce("succcessfully add the data",
                     HttpStatus.OK, "Quiz Topic_Information", user);
@@ -66,7 +66,7 @@ public class QuizController {
     @GetMapping("/quiz/id/{id}")
     public final ResponseEntity<Object> getQuiz(@PathVariable final int id) {
         try {
-            Optional<QuizDto> user = qs.getQuiz(id);
+            Optional<QuizDto> user = quizSevice.getQuiz(id);
             LOGGER.info("get quiz by quiz id");
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Quiz_topic_Information", user);
@@ -84,7 +84,7 @@ public class QuizController {
     @GetMapping("/quiz")
     public final ResponseEntity<Object> findAll() {
         try {
-            List<QuizDto> user = qs.findAll();
+            List<QuizDto> user = quizSevice.findAll();
             LOGGER.info("Find all quizes");
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Quiz_Information", user);
@@ -103,7 +103,7 @@ public class QuizController {
     @DeleteMapping("/quiz/{id}")
     public final ResponseEntity<Object> deleteQuiz(@PathVariable final int id) {
         try {
-            qs.deleteQuiz(id);
+            quizSevice.deleteQuiz(id);
             LOGGER.info("Delete quiz");
             return Responsee.generateResponce("succcessfully delete the data",
                     HttpStatus.OK, "Quiz_Information", null);
@@ -125,7 +125,7 @@ public class QuizController {
             @RequestBody final QuizUpdateDto q,
             @PathVariable final int id) {
         try {
-            QuizUpdateDto user = qs.updateQuiz(q, id);
+            QuizUpdateDto user = quizSevice.updateQuiz(q, id);
             LOGGER.info("Update the quiz");
             return Responsee.generateResponce("succcessfully update the data",
                     HttpStatus.OK, "Quiz_Information", user);
@@ -145,7 +145,7 @@ public class QuizController {
     public final ResponseEntity<Object> findQuizById(
             @PathVariable final int id) {
         try {
-            List<QuizDto> user = qs.findQuizById(id);
+            List<QuizDto> user = quizSevice.findQuizById(id);
             LOGGER.info("Fina quiz by categoryID");
             return Responsee.generateResponce("succcessfully retrive the data",
                     HttpStatus.OK, "Quiz_Information", user);
@@ -165,7 +165,7 @@ public class QuizController {
     public final ResponseEntity<Object> findQuizByName(
             @PathVariable final String name) {
         try {
-            Optional<QuizDto> user = qs.findQuizByName(name);
+            Optional<QuizDto> user = quizSevice.findQuizByName(name);
             LOGGER.info("Find quiz by name");
             return Responsee.generateResponce("succcessfully update the data",
                     HttpStatus.OK, "Quiz_Information", user);

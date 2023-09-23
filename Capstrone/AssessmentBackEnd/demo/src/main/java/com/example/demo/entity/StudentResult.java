@@ -1,3 +1,4 @@
+
 package com.example.demo.entity;
 
 
@@ -158,25 +159,6 @@ public class StudentResult {
                 sss.getEmail(), sss.getGender(),
                 sss.getPhoneNumber(), sss.getRole(), sss.getDateOfBirth());
     }
-//    /**
-//     * constructor.
-//     * @param resultid id
-//     * @param maxmarks marks
-//     * @param dateandTime date
-//     * @param resultt result
-//     * @param attemptedquestions question
-//     */
-//    public StudentResult(final int resultid, final int maxmarks,
-//            final String dateandTime,
-//            final String resultt,
-//            final int attemptedquestions) {
-//        super();
-//        this.resultId = resultid;
-//        this.maxMarks = maxmarks;
-//        this.dateAndTime = dateandTime;
-//        this.result = resultt;
-//        this.attemptedQuestions = attemptedquestions;
-//    }
     /**
      * get.
      * @return date

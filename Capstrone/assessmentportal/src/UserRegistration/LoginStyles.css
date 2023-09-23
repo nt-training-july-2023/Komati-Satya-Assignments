@@ -82,7 +82,7 @@
 }
 .show-password{
   position:absolute;
-  top:90%;
+  top:85%;
   right: 50px;
   transform: translateY(-50%);
   background: none;

@@ -15,7 +15,7 @@ public interface CategoryService {
      * @param c category
      * @return category
      */
-    CategoryDto saveCat(Category c);
+    CategoryDto saveCategory(Category c);
 
     /**
      * findBymethod method.
@@ -36,13 +36,13 @@ public interface CategoryService {
      * @param id id
      * @return category
      */
-    CategoryDto updateCat(CategoryDto c, int id);
+    CategoryDto updateCategory(CategoryDto c, int id);
 
     /**
      * delete category method.
      * @param id category id
      */
-    void deleteCat(int id);
+    void deleteCategory(int id);
 
     /**
      * findByName method.

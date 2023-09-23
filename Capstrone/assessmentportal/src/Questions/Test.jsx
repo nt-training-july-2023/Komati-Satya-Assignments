@@ -9,6 +9,8 @@ import Questions from "./Questions";
 import QuestionsApi from "../APIs/QuestionsApi";
 import ResultApi from "../APIs/ResultApi";
 import DisableBackButton from "../APIs/disableBackButton";
+import Input from "../Inputs/Input";
+import ButtonComponent from "../Inputs/ButtonComponent";
 
 function Test({ isRefresh, setTrue }) {
   const navigate = useNavigate();
@@ -157,7 +159,6 @@ function Test({ isRefresh, setTrue }) {
   }
   const calculateScore = () => {
     let score = 0;
-    console.log("hgf")
     for (let i = 0; i < questions.length; i++) {
       const questionId = questions[i].questionId;
       const selectedOption = localStorage.getItem(`selectedOption_${questionId}`);
@@ -168,16 +169,9 @@ function Test({ isRefresh, setTrue }) {
         score++;       
       }
     }  
-    // calculateScoree(score)
     localStorage.setItem('user', score);
     return score;
   };
-  // const calculateScoree=(score)=>{
-  //   console.log(score)
-  //   console.log("yt")
-  //   // localStorage.setItem('userScore', score);
-  //   console.log('ty')
-  // }
   
   const handleSubmitQuiz = async () => {
     Swal.fire({
@@ -341,7 +335,7 @@ function Test({ isRefresh, setTrue }) {
                         <h4>{`${questionCounter + index}. ${item.question}`}</h4>
                         <div className="option-container">
                           <div className="option">
-                            <input
+                            <Input
                               type="radio"
                               id={`option1_${item.questionId}`}
                               name={`question_${item.questionId}`}
@@ -352,7 +346,7 @@ function Test({ isRefresh, setTrue }) {
                             <label htmlFor={`option1_${item.questionId}`}>{item.option1}</label>
                           </div>
                           <div className="option">
-                            <input
+                            <Input
                               type="radio"
                               id={`option2_${item.questionId}`}
                               name={`question_${item.questionId}`}
@@ -362,7 +356,7 @@ function Test({ isRefresh, setTrue }) {
                             <label htmlFor={`option2_${item.questionId}`}>{item.option2}</label>
                           </div>
                           <div className="option">
-                            <input
+                            <Input
                               type="radio"
                               id={`option3_${item.questionId}`}
                               name={`question_${item.questionId}`}
@@ -372,7 +366,7 @@ function Test({ isRefresh, setTrue }) {
                             <label htmlFor={`option3_${item.questionId}`}>{item.option3}</label>
                           </div>
                           <div className="option">
-                            <input
+                            <Input
                               type="radio"
                               id={`option4_${item.questionId}`}
                               name={`question_${item.questionId}`}
@@ -386,9 +380,9 @@ function Test({ isRefresh, setTrue }) {
                     ))}
                   </form>
                   {!quizSubmitted && (
-                    <button className="submitQuizButton" onClick={handleSubmitQuiz} type="button">
+                    <ButtonComponent className="submitQuizButton" onClick={handleSubmitQuiz} type="button">
                       Submit Test
-                    </button>
+                    </ButtonComponent>
                   )}
                 </div>
               </div>
@@ -396,7 +390,7 @@ function Test({ isRefresh, setTrue }) {
           ) : (
             <div>
               <h1>No questions</h1>
-              <button className="back" onClick={() => backTo()}>Back</button>
+              <ButtonComponent className="back" onClick={() => backTo()}>Back</ButtonComponent>
             </div>
           )}
         </>) :

@@ -26,7 +26,7 @@
 .submit {
     width: 100%;
     padding: 10px;
-    margin-top: -10px;
+    margin: -90px 0px 20px;
     border-radius: 5px;
     background-color: #5dcc5d;
     cursor: pointer;
@@ -52,7 +52,7 @@
 }
 .show-password2{
     position:absolute;
-    top:82%;
+    top:65%;
     right: 16px;
     transform: translateY(-50%);
     background: none;
@@ -74,7 +74,7 @@
         margin-right: 280px;
     }
     .submit {
-        margin-top:-30px;
+        margin:-10px 0px 20px;
     }
 }
 
@@ -106,7 +106,7 @@
         float: left;
     }
     .show-password2{
-        top:80%;
+        top:65%;
     }
 
     .submit {

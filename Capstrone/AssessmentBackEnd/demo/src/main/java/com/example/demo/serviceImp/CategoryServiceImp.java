@@ -24,7 +24,7 @@ public class CategoryServiceImp implements CategoryService {
     /**
      * categoryRepo object.
      */
-    private CategoryRepo a;
+    private CategoryRepo categoryRepo;
     /**
      * Creating a instance of Logger Class.
      */
@@ -35,30 +35,30 @@ public class CategoryServiceImp implements CategoryService {
      * @param st categoryRepo
      */
     public CategoryServiceImp(final CategoryRepo st) {
-        this.a = st;
+        this.categoryRepo = st;
     }
-
     /**
      * save category method.
-     * @param c category
+     * @param category category
      * @return category
      */
     @Override
-    public final CategoryDto saveCat(final Category c) {
-        if (!a.findByCategoryName(c.getCategoryName()).isPresent()) {
-            CategoryDto cd = new CategoryDto();
-            cd.setCategoryDescription(c.getCategoryDescription());
-            cd.setCategoryName(c.getCategoryName());
-            cd.setCategoryId(c.getCategoryId());
-            a.save(c);
+    public final CategoryDto saveCategory(final Category category) {
+        if (!categoryRepo.findByCategoryName(category.getCategoryName())
+                .isPresent()) {
+            CategoryDto categoryDto = new CategoryDto();
+            categoryDto
+                    .setCategoryDescription(category.getCategoryDescription());
+            categoryDto.setCategoryName(category.getCategoryName());
+            categoryDto.setCategoryId(category.getCategoryId());
+            categoryRepo.save(category);
             LOGGER.info("save category");
-            return cd;
+            return categoryDto;
         } else {
             LOGGER.error("Category already present");
             throw new AlreadyExistException("Category already present");
         }
     }
-
     /**
      * find by id method.
      * @param id category id.
@@ -66,16 +66,16 @@ public class CategoryServiceImp implements CategoryService {
      */
     @Override
     public final Optional<CategoryDto> findById(final int id) {
-        if (a.findAll().size() != 0) {
-            if (a.findById(id).isPresent()) {
-                CategoryDto cad = new CategoryDto();
-                Optional<Category> c = a.findById(id);
+        if (categoryRepo.findAll().size() != 0) {
+            if (categoryRepo.findById(id).isPresent()) {
+                CategoryDto categoryDto = new CategoryDto();
+                Optional<Category> c = categoryRepo.findById(id);
                 Category ca = c.get();
-                cad.setCategoryDescription(ca.getCategoryDescription());
-                cad.setCategoryName(ca.getCategoryName());
-                cad.setCategoryId(ca.getCategoryId());
+                categoryDto.setCategoryDescription(ca.getCategoryDescription());
+                categoryDto.setCategoryName(ca.getCategoryName());
+                categoryDto.setCategoryId(ca.getCategoryId());
                 LOGGER.info("find category by category id");
-                return Optional.of(cad);
+                return Optional.of(categoryDto);
             } else {
                 LOGGER.error("wrong category id");
                 throw new NotFoundException("wrong category id");
@@ -85,15 +85,14 @@ public class CategoryServiceImp implements CategoryService {
             throw new AllNotFoundException("no category is there");
         }
     }
-
     /**
      * find all method.
      * @return category
      */
     @Override
     public final List<CategoryDto> findAll() {
-        if (a.findAll().size() != 0) {
-            List<Category> c = a.findAll();
+        if (categoryRepo.findAll().size() != 0) {
+            List<Category> c = categoryRepo.findAll();
             List<CategoryDto> cd = convertToDto(c);
             LOGGER.info("find all categories");
             return cd;
@@ -102,11 +101,11 @@ public class CategoryServiceImp implements CategoryService {
             throw new AllNotFoundException("No categories are there");
         }
     }
-     /**
-      * convertToDto method.
-      * @param c category list
-      * @return list category
-      */
+    /**
+     * convertToDto method.
+     * @param c category list
+     * @return list category
+     */
     private List<CategoryDto> convertToDto(final List<Category> c) {
         List<CategoryDto> cd = new ArrayList<>();
         for (Category ca : c) {
@@ -119,7 +118,6 @@ public class CategoryServiceImp implements CategoryService {
         return cd;
 
     }
-
     /**
      * update category method.
      * @param c  category
@@ -127,13 +125,13 @@ public class CategoryServiceImp implements CategoryService {
      * @return category
      */
     @Override
-    public final CategoryDto updateCat(final CategoryDto c, final int id) {
-        Optional<Category> existingCategoryOptional = a.findById(id);
+    public final CategoryDto updateCategory(final CategoryDto c, final int id) {
+        Optional<Category> existingCategoryOptional = categoryRepo.findById(id);
         if (existingCategoryOptional.isPresent()) {
             Category existingCategory = existingCategoryOptional.get();
             existingCategory.setCategoryName(c.getCategoryName());
             existingCategory.setCategoryDescription(c.getCategoryDescription());
-            a.save(existingCategory);
+            categoryRepo.save(existingCategory);
             LOGGER.info("update category");
             return c;
         } else {
@@ -141,16 +139,15 @@ public class CategoryServiceImp implements CategoryService {
             throw new NotFoundException("wrong category id");
         }
     }
-
     /**
      * delete category method.
      * @param id category id
      */
     @Override
-    public final void deleteCat(final int id) {
-        if (a.findAll().size() != 0) {
-            if (a.findById(id).isPresent()) {
-                a.deleteById(id);
+    public final void deleteCategory(final int id) {
+        if (categoryRepo.findAll().size() != 0) {
+            if (categoryRepo.findById(id).isPresent()) {
+                categoryRepo.deleteById(id);
                 LOGGER.info("delete category");
             } else {
                 LOGGER.error("wrong category id");
@@ -161,7 +158,6 @@ public class CategoryServiceImp implements CategoryService {
             throw new AllNotFoundException("No categories are there");
         }
     }
-
     /**
      * find by name method.
      * @param s category name
@@ -169,14 +165,15 @@ public class CategoryServiceImp implements CategoryService {
      */
     @Override
     public final Optional<CategoryDto> findByName(final String s) {
-        if (a.findAll().size() != 0) {
-            if (a.findByCategoryName(s).isPresent()) {
-                CategoryDto cad = new CategoryDto();
-                Optional<Category> c = a.findByCategoryName(s);
-                cad.setCategoryDescription(c.get().getCategoryDescription());
-                cad.setCategoryName(c.get().getCategoryName());
+        if (categoryRepo.findAll().size() != 0) {
+            if (categoryRepo.findByCategoryName(s).isPresent()) {
+                CategoryDto categoryDto = new CategoryDto();
+                Optional<Category> c = categoryRepo.findByCategoryName(s);
+                categoryDto.setCategoryDescription(
+                        c.get().getCategoryDescription());
+                categoryDto.setCategoryName(c.get().getCategoryName());
                 LOGGER.info("find category by category name");
-                return Optional.of(cad);
+                return Optional.of(categoryDto);
             } else {
                 LOGGER.error("Category not present");
                 throw new NotFoundException("Category not present");

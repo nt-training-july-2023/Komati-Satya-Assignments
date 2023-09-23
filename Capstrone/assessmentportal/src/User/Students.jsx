@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserApi from "../APIs/UserApi";
 import Navbar from "../Navbar/Navbar";
+import Input from "../Inputs/Input";
+import ButtonComponent from "../Inputs/ButtonComponent";
 function Student() {
   const verifyRole = localStorage.getItem('userRole');
   const [student, setStudent] = useState([]);
@@ -27,7 +29,6 @@ function Student() {
   const navigate = useNavigate();
 
   const handleSearch = async () => {
-    console.log(searchText)
     const filteredCategory = student.filter(item =>
       item.userName.toLowerCase().includes(searchText.toLowerCase())
     );
@@ -45,15 +46,15 @@ function Student() {
         <>
           <h1 className="addHead">Students Details</h1>
           <div className="searchContainer">
-            <input
+            <Input
               className="search"
               type="text"
               placeholder="Search by Student Name"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
             />
-            <button className="searchButton" onClick={handleSearch}>Search</button>
-            <button className="searchButton" onClick={clearSearch}>Clear Search</button>
+            <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
+            <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
 
           </div>
           {isLoading ? (

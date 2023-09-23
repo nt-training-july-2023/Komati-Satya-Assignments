@@ -8,6 +8,8 @@ import ErrorPage from "../ErrorPage";
 import QuizApi from "../APIs/QuizApi";
 import DisableBackButton from "../APIs/disableBackButton";
 import Navbar from "../Navbar/Navbar";
+import Input from "../Inputs/Input";
+import ButtonComponent from "../Inputs/ButtonComponent";
 function Quiz({ setTrue }) {
   const { categoryId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
@@ -33,8 +35,6 @@ function Quiz({ setTrue }) {
       setIsLoading(false);
     })
   };
-
-  console.log(quizData)
   const deleteData = async (id) => {
     Swal.fire({
       title: 'Do you want to delete quiz?',
@@ -78,7 +78,6 @@ function Quiz({ setTrue }) {
       (item.topicName || '').toLowerCase().includes((text || '').toLowerCase())
     );
     setQuiz(filteredQuiz);
-    console.log(quiz)
   };
   const clearSearch = () => {
     setQuiz(originalQuiz);
@@ -133,17 +132,17 @@ function Quiz({ setTrue }) {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <h1 className="addHead">Quiz Details</h1>
-          {verifyRole === 'Admin' && <button className="addButton" onClick={() => addData()}>Add Quiz</button>}
+          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}>Add Quiz</ButtonComponent>}
           <div className="searchContainer">
-            <input
+            <Input
               className="search"
               type="text"
               placeholder="Search by Quiz Name"
               value={text}
               onChange={(e) => setText(e.target.value)}
             />
-            <button className="searchButton" onClick={handleSearch}>Search</button>
-            <button className="searchButton" onClick={clearSearch}>Clear Search</button>
+            <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
+            <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
 
           </div>
           {isLoading ? (
@@ -167,7 +166,7 @@ function Quiz({ setTrue }) {
                         <td>{item.topicDescription}</td>
                         <td>{item.timer}</td>
                         {verifyRole === 'Admin' && <>
-                          <td><button className="deleteData" type="button" onClick={() => deleteData(item.quizId)}>Delete</button></td>
+                          <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.quizId)}>Delete</ButtonComponent></td>
                           <td><Link to={`/UpdateQuiz/${item.quizId}`} className="updateData">Update</Link></td>
                           <td><Link to={`/Questions/${item.quizId}`} className="updateData">view Questions</Link></td>
                         </>}

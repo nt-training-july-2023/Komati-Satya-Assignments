@@ -1,11 +1,12 @@
 
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import './Questions.css';
 import ErrorPage from "../ErrorPage";
 import QuestionsApi from "../APIs/QuestionsApi";
+import Input from "../Inputs/Input";
+import ButtonComponent from "../Inputs/ButtonComponent";
 
 const AddQuestions = () => {
     const verifyRole = localStorage.getItem('userRole');
@@ -241,7 +242,7 @@ const AddQuestions = () => {
                     <form>
                         <div className="signin4">
                             <label className="head3">Question</label><br /><br />
-                            <input
+                            <Input
                                 className="data3"
                                 type="text"
                                 name="question"
@@ -250,7 +251,7 @@ const AddQuestions = () => {
                                 onChange={changeData}
                             /><br /><br />
                             <label className="head3">Option1</label><br /><br />
-                            <input
+                            <Input
                                 className="data3"
                                 type="text"
                                 name="option1"
@@ -259,7 +260,7 @@ const AddQuestions = () => {
                                 onChange={changeData}
                             /><br /><br />
                             <label className="head3">Option2</label><br /><br />
-                            <input
+                            <Input
                                 className="data3"
                                 type="text"
                                 name="option2"
@@ -268,7 +269,7 @@ const AddQuestions = () => {
                                 onChange={changeData}
                             /><br /><br />
                             <label className="head3">Option3</label><br /><br />
-                            <input
+                            <Input
                                 className="data3"
                                 type="text"
                                 name="option3"
@@ -277,7 +278,7 @@ const AddQuestions = () => {
                                 onChange={changeData}
                             /><br /><br />
                             <label className="head3">Option4</label><br /><br />
-                            <input
+                            <Input
                                 className="data3"
                                 type="text"
                                 name="option4"
@@ -300,10 +301,10 @@ const AddQuestions = () => {
                             </select>
 
                             <br /><br />
-                            <button className="btn4" type="button" onClick={addQuestionData}>
+                            <ButtonComponent className="btn4" type="button" onClick={addQuestionData}>
                                 {quizId ? "Add Question" : "update Question"}
-                            </button>
-                            <button className="btn5" type="button" onClick={cancelAddQuestion}>Cancel</button>
+                            </ButtonComponent>
+                            <ButtonComponent className="btn5" type="button" onClick={cancelAddQuestion}>Cancel</ButtonComponent>
                         </div>
                     </form>
                 </div>

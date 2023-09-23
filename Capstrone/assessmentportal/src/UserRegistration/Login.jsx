@@ -1,13 +1,13 @@
-
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import './LoginStyles.css';
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import UserApi from "../APIs/UserApi";
 import DisableBackButton from "../APIs/disableBackButton";
+import Input from "../Inputs/Input";
+import ButtonComponent from "../Inputs/ButtonComponent";
+
 
 const Login = () => {
     const [loginData, setLoginData] = useState({
@@ -99,7 +99,7 @@ const Login = () => {
                         localStorage.setItem("userEmail", response.data.User_Information.email);
                         localStorage.setItem("userName", response.data.User_Information.userName);
                         localStorage.setItem("userId", response.data.User_Information.userId);
-                        console.log(response.data.User_Information.userId)
+                        
 
                         Swal.fire({
                             title: 'Login Success',
@@ -130,16 +130,24 @@ const Login = () => {
                     <div className="signin">
                         <h1 className="heading">SignIn Here!!</h1>
                         <label className="head" ><b>Email</b></label><br /><br />
-                        <input className="data" type="email" name="email" value={loginData.email} onChange={changeData} /><br /><br />
+    
+                        <Input
+                           className="data"
+                           type="email" 
+                           name="email" 
+                           value={loginData.email}
+                            onChange={changeData} 
+                        />
+                        <br/><br/>
                         <div className="password-container">
                             <label className="head"><b>Password</b></label><br /><br />
                             <input className="data" type={showPassword ? 'password' : 'text'} name="password" value={loginData.password} onChange={changeData} /><br />
-                            <button className="show-password" type="button" onClick={togglePassword}>
+                            <ButtonComponent className="show-password" type="button" onClick={togglePassword}>
 
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
-                            </button>
+                            </ButtonComponent>
                         </div>
-                        <button className="btn" type="submit" onClick={login}>Login</button><br /><br />
+                        <ButtonComponent className="btn" type="submit" onClick={login}>Login</ButtonComponent><br /><br />
                         <a className="anchor" href="Registration">New user SignUp here!!</a>
                     </div>
                 </form>

@@ -5,6 +5,8 @@ import ErrorPage from "../ErrorPage";
 import FinalResultApi from "../APIs/FinalResultApi";
 import DisableBackButton from "../APIs/disableBackButton";
 import Navbar from "../Navbar/Navbar";
+import Input from "../Inputs/Input";
+import ButtonComponent from "../Inputs/ButtonComponent";
 const Result = () => {
   const verifyRole = localStorage.getItem('userRole');
   const [result, setResult] = useState([]);
@@ -44,14 +46,12 @@ const Result = () => {
     })
   };
   const handleSearch = async () => {
-    console.log(searchName)
+
 
     const filteredResult = result.filter(item =>
       (item.userName || '').toLowerCase().includes((searchName || '').toLowerCase())
     );
-    console.log(filteredResult)
     setResult(filteredResult);
-    console.log(result)
   };
   const clearSearch = () => {
     setResult(originalResult);
@@ -66,15 +66,15 @@ const Result = () => {
         <>
           <h1 className="addHead">Student Result Details</h1>
           <div className="searchContainer">
-            <input
+            <Input
               className="search"
               type="text"
               placeholder="Search by user Name"
               value={searchName}
               onChange={(e) => setSearchName(e.target.value)}
             />
-            <button className="searchButton" onClick={handleSearch}>Search</button>
-            <button className="searchButton" onClick={clearSearch}>Clear Search</button>
+            <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
+            <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
 
           </div>
           {isLoading ? (
