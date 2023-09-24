@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -17,9 +16,6 @@ function Quiz({ setTrue }) {
   const [isLoading, setIsLoading] = useState(true);
   const [text, setText] = useState("");
   const [originalQuiz, setOriginalQuiz] = useState([]);
-  const [disabled, setDisabled] = useState("false");
-  const [quizData, setQuizData] = useState([]);
-  const verifyUserId = localStorage.getItem('userId')
   useEffect(() => {
     {
       getQuiz();

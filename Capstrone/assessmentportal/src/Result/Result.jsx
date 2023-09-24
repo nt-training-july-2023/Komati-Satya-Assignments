@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
@@ -46,8 +45,6 @@ const Result = () => {
     })
   };
   const handleSearch = async () => {
-
-
     const filteredResult = result.filter(item =>
       (item.userName || '').toLowerCase().includes((searchName || '').toLowerCase())
     );

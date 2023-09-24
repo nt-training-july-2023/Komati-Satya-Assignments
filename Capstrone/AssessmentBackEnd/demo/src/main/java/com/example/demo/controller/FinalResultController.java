@@ -39,11 +39,10 @@ public class FinalResultController {
     @GetMapping("/finalResult/{id}")
     public final ResponseEntity<Object> getById(@PathVariable final int id) {
         try {
-            List<ResultDto> c = finalResService.getById(id);
+            List<ResultDto> resultDto = finalResService.getById(id);
             LOGGER.info("get result by student id");
-            System.out.println(c);
             return Responsee.generateResponce("succcessfully retrieve the data",
-                    HttpStatus.OK, "User_Information", c);
+                    HttpStatus.OK, "User_Information", resultDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -57,11 +56,10 @@ public class FinalResultController {
     @GetMapping("/finalResult")
     public final ResponseEntity<Object> findAllResult() {
         try {
-            List<ResultDto> c = finalResService.findAll();
+            List<ResultDto> resultDto = finalResService.findAll();
             LOGGER.info("get all results");
-            System.out.println(c);
             return Responsee.generateResponce("succcessfully retrieve the data",
-                    HttpStatus.OK, "Result_Information", c);
+                    HttpStatus.OK, "Result_Information", resultDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),

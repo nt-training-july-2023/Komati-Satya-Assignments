@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UserApi from "../APIs/UserApi";
@@ -25,14 +24,11 @@ function Student() {
       setIsLoading(false);
     })
   };
-
-  const navigate = useNavigate();
-
   const handleSearch = async () => {
-    const filteredCategory = student.filter(item =>
+    const filteredStudent = student.filter(item =>
       item.userName.toLowerCase().includes(searchText.toLowerCase())
     );
-    setStudent(filteredCategory);
+    setStudent(filteredStudent);
   };
   const clearSearch = () => {
     setStudent(originalStudent);

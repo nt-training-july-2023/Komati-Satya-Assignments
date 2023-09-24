@@ -44,10 +44,10 @@ public class ResultController {
     public final ResponseEntity<Object> addRes(
             @RequestBody final ResultDto sr) {
         try {
-            ResultDto user = resultService.addRes(sr);
+            ResultDto resultDto = resultService.addRes(sr);
             LOGGER.info("Adding result");
             return Responsee.generateResponce("succcessfully add the data",
-                    HttpStatus.OK, "Student result_Information", user);
+                    HttpStatus.OK, "Student result_Information", resultDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -64,10 +64,10 @@ public class ResultController {
     @GetMapping("/result/{id}")
     public final ResponseEntity<Object> getRes(@PathVariable final int id) {
         try {
-            Optional<ResultDto> user = resultService.getRes(id);
+            Optional<ResultDto> resultDto = resultService.getRes(id);
             LOGGER.info("Get result by id");
             return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Student result_Information", user);
+                    HttpStatus.OK, "Student result_Information", resultDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -82,10 +82,10 @@ public class ResultController {
     @GetMapping("/result")
     public final ResponseEntity<Object> getAllRes() {
         try {
-            List<ResultDto> user = resultService.getAllRes();
+            List<ResultDto> resultDto = resultService.getAllRes();
             LOGGER.info("getting all result");
             return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Student result_Information", user);
+                    HttpStatus.OK, "Student result_Information", resultDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),

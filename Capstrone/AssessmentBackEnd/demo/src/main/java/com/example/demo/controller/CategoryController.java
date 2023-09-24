@@ -48,10 +48,10 @@ public class CategoryController {
     public final ResponseEntity<Object> saveCategory(
             @RequestBody final Category c) {
         try {
-            CategoryDto user = categoryService.saveCategory(c);
+            CategoryDto categoryDto = categoryService.saveCategory(c);
             LOGGER.info("Adding new category");
             return Responsee.generateResponce("succcessfully added data",
-                    HttpStatus.OK, "Category_Information", user);
+                    HttpStatus.OK, "Category_Information", categoryDto);
         } catch (Exception e) {
             LOGGER.error("category already present error");
             return Responsee.generateResponce(e.getMessage(),
@@ -67,10 +67,10 @@ public class CategoryController {
     @GetMapping("/category/cat/{id}")
     public final ResponseEntity<Object> findById(@PathVariable final int id) {
         try {
-            Optional<CategoryDto> user = categoryService.findById(id);
+            Optional<CategoryDto> categoryDto = categoryService.findById(id);
             LOGGER.info("find category by category id");
             return Responsee.generateResponce("succcessfully retrieve the data",
-                    HttpStatus.OK, "Category_Information", user);
+                    HttpStatus.OK, "Category_Information", categoryDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -85,10 +85,10 @@ public class CategoryController {
     @GetMapping("/category")
     public final ResponseEntity<Object> findAll() {
         try {
-            List<CategoryDto> user = categoryService.findAll();
+            List<CategoryDto> categoryDto = categoryService.findAll();
             LOGGER.info("fina all categories");
             return Responsee.generateResponce("succcessfully retrieve the data",
-                    HttpStatus.OK, "Category_Information", user);
+                    HttpStatus.OK, "Category_Information", categoryDto);
         } catch (Exception e) {
             LOGGER.error("exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -106,10 +106,10 @@ public class CategoryController {
     public final ResponseEntity<Object> updateCategory(
             @RequestBody final CategoryDto c, @PathVariable final int id) {
         try {
-            CategoryDto user = categoryService.updateCategory(c, id);
+            CategoryDto categoryDto = categoryService.updateCategory(c, id);
             LOGGER.info("update category");
             return Responsee.generateResponce("succcessfully update the data",
-                    HttpStatus.OK, "Category_Information", user);
+                    HttpStatus.OK, "Category_Information", categoryDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -146,10 +146,10 @@ public class CategoryController {
     public final ResponseEntity<Object> findByName(
             @PathVariable final String s) {
         try {
-            Optional<CategoryDto> c = categoryService.findByName(s);
+            Optional<CategoryDto> categoryDto = categoryService.findByName(s);
             LOGGER.info("find category by category name");
             return Responsee.generateResponce("succcessfully retrieve the data",
-                    HttpStatus.OK, "User_Information", c);
+                    HttpStatus.OK, "User_Information", categoryDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),

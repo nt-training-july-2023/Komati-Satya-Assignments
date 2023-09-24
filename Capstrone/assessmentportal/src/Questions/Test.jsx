@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import Swal from "sweetalert2";
 import ErrorPage from "../ErrorPage";
 import './Test.css';
 import QuizApi from "../APIs/QuizApi";
-import Questions from "./Questions";
 import QuestionsApi from "../APIs/QuestionsApi";
 import ResultApi from "../APIs/ResultApi";
 import DisableBackButton from "../APIs/disableBackButton";
@@ -83,13 +81,6 @@ function Test({ isRefresh, setTrue }) {
   }, [questions]);
 
   const handleOptionChange = (questionId, selectedOption) => {
-
-    if (currentQuestionIndex < numberOfQuestions) {
-      const currentQuestion = questions[currentQuestionIndex];
-      setCurrentQuestionIndex((currentQuestionIndex) => currentQuestionIndex + 1);
-
-    }
-
     setSelectedOptions((prevSelectedOptions) => {
       const updatedOptions = [...prevSelectedOptions];
       updatedOptions[currentQuestionIndex] = selectedOption;
@@ -98,17 +89,6 @@ function Test({ isRefresh, setTrue }) {
     });
 
   };
-  const getAtt = () => {
-    let atte = 0;
-    questions.forEach((item, index) => {
-      if (selectedOptions[index] !== undefined) {
-        atte++;
-        index++
-      }
-    });
-    setAttemptedQuestions(atte)
-  };
-
   useEffect(() => {
     const timer = setTimeout(() => {
       if (timeLeft > 0) {
@@ -141,20 +121,13 @@ function Test({ isRefresh, setTrue }) {
   };
   const timeOutSubmit = () => {
     if (!quizSubmitted) {
-      // let score = 0;
-      // questions.forEach((item, index) => {
-      //   if (item.correctOption === selectedOptions[index]) {
-      //     score = score + 1;
-      //     index++;
-      //   }
-      // });
       const score=calculateScore()
       setUserScore(score);
+      const a=countSelectedOptionsInLocalStorage()
+      setAttemptedQuestions(a);
       setQuizSubmitted(true);
-      getAtt();
       removeSelectedOptionsInLocalStorage()
       localStorage.removeItem('timerValue');
-      localStorage.removeItem('userScore')
     }
   }
   const calculateScore = () => {
@@ -163,8 +136,6 @@ function Test({ isRefresh, setTrue }) {
       const questionId = questions[i].questionId;
       const selectedOption = localStorage.getItem(`selectedOption_${questionId}`);
       const correctOption = questions[i].correctOption;
-  
-      // Check if the selected option matches the correct option
       if (selectedOption === correctOption) {       
         score++;       
       }
@@ -177,7 +148,6 @@ function Test({ isRefresh, setTrue }) {
     Swal.fire({
       title: 'Do you want to Submit the test??',
       showDenyButton: true,
-      // showCancelButton: true,
       confirmButtonText: 'Yes',
       denyButtonText: 'No',
       customClass: {
@@ -190,56 +160,39 @@ function Test({ isRefresh, setTrue }) {
       if (result.isConfirmed) {
 
         if (!quizSubmitted) {
-          // let score = 0;
-
-          // questions.forEach((item, index) => {
-          //   if (item.correctOption === selectedOptions[index]) {
-          //     score = score + 1;
-          //     index++;
-          //   }
-          // });
           calculateScore()
           const s=localStorage.getItem("user");
           setUserScore(s);
-          removeSelectedOptionsInLocalStorage()
-          
+          const a=countSelectedOptionsInLocalStorage()
+          setAttemptedQuestions(a);
+          removeSelectedOptionsInLocalStorage()         
           setQuizSubmitted(true);
-          getAtt()
-          localStorage.removeItem('timerValue');
-          
+          localStorage.removeItem('timerValue');  
         }
       }
     })
-
   };
   const countSelectedOptionsInLocalStorage = () => {
     let count = 0;
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      // Check if the key matches the naming convention
       if (key.startsWith("selectedOption_")) {
         count++;
-        
       }
-    }
-    
+    }  
     return count;
   };
   const removeSelectedOptionsInLocalStorage = () => {
     const keysToRemove = [];
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i);
-      // Check if the key matches the naming convention
       if (key.startsWith("selectedOption_")) {
         keysToRemove.push(key);
       }
     }
-  
-    // Remove all the selected options from localStorage
     keysToRemove.forEach((key) => {
       localStorage.removeItem(key);
     });
-  
     return keysToRemove.length;
   };
   useEffect(() => {
@@ -253,7 +206,6 @@ function Test({ isRefresh, setTrue }) {
       Swal.fire({
         title: 'If you refresh the page the test will be submitted',
         showDenyButton: true,
-        // showCancelButton: true,
         confirmButtonText: 'Go ahead',
         denyButtonText: 'Cancel',
         customClass: {
@@ -264,10 +216,6 @@ function Test({ isRefresh, setTrue }) {
         }
       }).then((result) => {
         if (result.isConfirmed) {
-          //     const cat = localStorage.getItem("categoryId")
-          // console.log(cat)
-          // navigate(`/Quiz/${cat}`)
-         
           localStorage.removeItem('timerValue');
           const a=countSelectedOptionsInLocalStorage()
           setAttemptedQuestions(a);

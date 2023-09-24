@@ -1,12 +1,10 @@
 import './UserUpdate.css';
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import ErrorPage from "../ErrorPage";
 import UserApi from '../APIs/UserApi';
 import Input from '../Inputs/Input';
-import { Button } from 'bootstrap';
 import ButtonComponent from '../Inputs/ButtonComponent';
 
 const UserUpdate = () => {
@@ -29,7 +27,6 @@ const UserUpdate = () => {
       .then((response) => {
         setSendData(response);
         const userInformation = response.data.User_Information;
-        const { userName, phoneNumber, dateOfBirth, gender, email, userId, role } = userInformation;
         setUserData((previousData) => ({
           ...previousData,
           userName: userInformation.userName,
@@ -54,8 +51,7 @@ const UserUpdate = () => {
             icon: "success",
             confirmButtonText: "Ok",
           });
-          navigate(`/UserDashBoard?data=${encodeURIComponent(JSON.stringify(response.data))}`);
-
+            navigate("/UserDashBoard")
         }
       });
   };

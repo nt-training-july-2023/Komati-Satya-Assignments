@@ -1,8 +1,6 @@
-
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import './QuizStyles.css'
 import ErrorPage from "../ErrorPage";
 import QuizApi from "../APIs/QuizApi";
 import Input from "../Inputs/Input";

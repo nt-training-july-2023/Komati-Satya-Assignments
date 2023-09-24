@@ -48,10 +48,10 @@ public class StudentController {
     @PostMapping("/student")
     public final ResponseEntity<Object> save(@RequestBody final Student s) {
         try {
-            StudentSaveDto user = studentSevice.saveStudent(s);
+            StudentSaveDto studentSaveDto = studentSevice.saveStudent(s);
             LOGGER.info("Student registration");
             return Responsee.generateResponce("successfully added data",
-                    HttpStatus.OK, "User_Information", user);
+                    HttpStatus.OK, "User_Information", studentSaveDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -67,10 +67,10 @@ public class StudentController {
     @GetMapping("/student/{id}")
     public final ResponseEntity<Object> findById(@PathVariable final int id) {
         try {
-            Optional<StudentDto> user = studentSevice.findById(id);
+            Optional<StudentDto> studentDto = studentSevice.findById(id);
             LOGGER.info("Student registration");
             return Responsee.generateResponce("successfully get the data",
-                    HttpStatus.OK, "User_Information", user);
+                    HttpStatus.OK, "User_Information", studentDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -86,10 +86,11 @@ public class StudentController {
     @PostMapping("/student/login")
     public final ResponseEntity<Object> login(@RequestBody final LoginDto l) {
         try {
-            Optional<StudentDto> user = studentSevice.aunthenticateUser(l);
+            Optional<StudentDto> studentDto = studentSevice.
+                    aunthenticateUser(l);
             LOGGER.info("Student login");
             return Responsee.generateResponce("succcessfully retrieve the data",
-                    HttpStatus.OK, "User_Information", user);
+                    HttpStatus.OK, "User_Information", studentDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -104,11 +105,11 @@ public class StudentController {
     @GetMapping("/student/students")
     public final ResponseEntity<Object> findAllStu() {
         try {
-            List<StudentDto> user = studentSevice.findAllStu();
+            List<StudentDto> studentDto = studentSevice.findAllStu();
             LOGGER.info("Find all students");
             return Responsee.generateResponce(
                     "successfully retrieve all the data", HttpStatus.OK,
-                    "User_Information", user);
+                    "User_Information", studentDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -126,10 +127,10 @@ public class StudentController {
     public final ResponseEntity<Object> updateStudent(
             @RequestBody final StudentDto s, @PathVariable final int id) {
         try {
-            StudentDto user = studentSevice.updateStudent(s, id);
+            StudentDto studentDto = studentSevice.updateStudent(s, id);
             LOGGER.info("Updatation of student");
             return Responsee.generateResponce("successfully update the data",
-                    HttpStatus.OK, "User_Information", user);
+                    HttpStatus.OK, "User_Information", studentDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),

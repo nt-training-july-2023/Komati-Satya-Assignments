@@ -1,12 +1,7 @@
-
 import React from "react";
-
 import Swal from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
-import { useEffect, useState } from "react";
-import axios from "axios";
-import UserApi from "../APIs/UserApi";
 import DisableBackButton from "../APIs/disableBackButton";
 
 const Navbar = () => {
@@ -18,7 +13,6 @@ const Navbar = () => {
         Swal.fire({
             title: 'Do you want to logout page??',
             showDenyButton: true,
-            // showCancelButton: true,
             confirmButtonText: 'Yes',
             denyButtonText: 'No',
             customClass: {
@@ -43,16 +37,12 @@ const Navbar = () => {
         })
 
     }
-
-
     return (
-
-        <div className="admin">
+       <div className="admin">
             <DisableBackButton />
             {(verifyRole === 'Admin' || verifyRole === 'student') ?
                 <>
                     <ul className="nav-bar">
-                        {/* <li><a href="/">Home</a></li> */}
                         <li className="aa"><a className={location.pathname === '/UserDashBoard' ? 'active' : ''} href="/UserDashBoard">Profile</a></li>
                         <li className="aa"><a className={location.pathname === '/Category' ? 'active' : ''} href="/Category">Categories</a></li>
                         {verifyRole === 'Admin' && <>

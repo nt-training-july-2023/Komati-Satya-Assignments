@@ -1,6 +1,4 @@
-
 import React, { useState ,useEffect} from "react";
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import './AddCategoryStyles.css';
@@ -24,7 +22,6 @@ const AddCategory = () => {
    
     useEffect(() => {
         if(categoryId){
-            //axios.get(`http://localhost:6002/category/cat/${categoryId}`)
              CategoryApi.getCategoryById(categoryId)
           .then((response) => {
     
@@ -82,7 +79,6 @@ const AddCategory = () => {
             } else {
         
                 setErrors({});
-           // axios.put(`http://localhost:6002/cat/${categoryId}`, categoryData)
             CategoryApi.updateCategory(categoryId,categoryData)
               .then((response) => {
                 if(response.data.status==207){
@@ -146,8 +142,6 @@ else{
         } else {
 
             setErrors({});
-        // const response = await axios.post('http://localhost:6002/category', categoryData);
-       
        CategoryApi.addCategory(categoryData).then(response=>{
         if (response.data.message === "succcessfully added data") {
             Swal.fire({

@@ -50,10 +50,10 @@ public class QuestionsController {
     public final ResponseEntity<Object> addQuestion(
             @RequestBody final Questions q) {
         try {
-            QuestionsDto user = questionsService.addQuestion(q);
+            QuestionsDto questionsDto = questionsService.addQuestion(q);
             LOGGER.info("Adding a  questions");
             return Responsee.generateResponce("succcessfully add the data",
-                    HttpStatus.OK, "Questions_Information", user);
+                    HttpStatus.OK, "Questions_Information", questionsDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -69,9 +69,9 @@ public class QuestionsController {
     public final ResponseEntity<Object> getQuestions() {
         try {
             LOGGER.info("Get all questions");
-            List<QuestionsDto> user = questionsService.getQuestions();
+            List<QuestionsDto> questionsDto = questionsService.getQuestions();
             return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Questions_Information", user);
+                    HttpStatus.OK, "Questions_Information", questionsDto);
         } catch (Exception e) {
             LOGGER.error("Exceptions occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -109,10 +109,10 @@ public class QuestionsController {
             @RequestBody final QuestionsUpdateDto q,
             @PathVariable final int id) {
         try {
-            QuestionsUpdateDto user = questionsService.updateQue(q, id);
+            QuestionsUpdateDto questionsDto = questionsService.updateQue(q, id);
             LOGGER.info("update question");
             return Responsee.generateResponce("succcessfully update the data",
-                    HttpStatus.OK, "Questions_Information", user);
+                    HttpStatus.OK, "Questions_Information", questionsDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -129,10 +129,10 @@ public class QuestionsController {
     public final ResponseEntity<Object> findQueById(
             @PathVariable final int id) {
         try {
-            List<QuestionsDto> user = questionsService.findQueById(id);
+            List<QuestionsDto> questionsDto = questionsService.findQueById(id);
             LOGGER.info("Get all questions by quiz id");
             return Responsee.generateResponce("succcessfully get the data",
-                    HttpStatus.OK, "Questions_Information", user);
+                    HttpStatus.OK, "Questions_Information", questionsDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
@@ -149,10 +149,11 @@ public class QuestionsController {
     public final ResponseEntity<Object> findByQuestion(
             @PathVariable final String name) {
         try {
-            Optional<QuestionsDto> user = questionsService.findByQuestion(name);
+            Optional<QuestionsDto> questionsDto = questionsService.
+                    findByQuestion(name);
             LOGGER.info("Get question");
             return Responsee.generateResponce("succcessfully get the data",
-                    HttpStatus.OK, "Questions_Information", user);
+                    HttpStatus.OK, "Questions_Information", questionsDto);
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),

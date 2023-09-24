@@ -1,5 +1,3 @@
-
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -17,23 +15,19 @@ function Category() {
   const [isLoading, setIsLoading] = useState(true);
   const [searchText, setSearchText] = useState("");
   const [originalCategory, setOriginalCategory] = useState([]);
-  const {userId} =useParams()
   useEffect(() => {
     getCategories();
   }, []);
   const getCategories = async () => {
-    
-    
-
-       CategoryApi.getAllCategories().then(
-        response=>{
-      setCategory(response.data.Category_Information || []);
-      setOriginalCategory(response.data.Category_Information || []);
-    } ).catch (error=> {
-      console.error('An error occurred:', error);
-    } ).finally (()=>{
-      setIsLoading(false);
-    })
+    CategoryApi.getAllCategories().then(
+      response => {
+        setCategory(response.data.Category_Information || []);
+        setOriginalCategory(response.data.Category_Information || []);
+      }).catch(error => {
+        console.error('An error occurred:', error);
+      }).finally(() => {
+        setIsLoading(false);
+      })
   };
   const deleteData = async (id) => {
     Swal.fire({
@@ -42,41 +36,41 @@ function Category() {
       confirmButtonText: 'Yes',
       denyButtonText: 'No',
       customClass: {
-          actions: 'my-actions',
-          cancelButton: 'order-1 right-gap',
-          confirmButton: 'order-2',
-          denyButton: 'order-3',
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
       }
-  }).then((result) => {
+    }).then((result) => {
       if (result.isConfirmed) {
-       
-      CategoryApi.deleteCategory(id).then(response=>{
-       
-        if (response.data.message === "succcessfully delete the data") {
-          Swal.fire({
-            title: 'Deleting data',
-            text: 'Successfully deleted data',
-            icon: 'success',
-            confirmButtonText: 'Ok'
-          });
-        }
-        getCategories();
-      }).catch (error=> {
-    
-      })
+
+        CategoryApi.deleteCategory(id).then(response => {
+
+          if (response.data.message === "succcessfully delete the data") {
+            Swal.fire({
+              title: 'Deleting data',
+              text: 'Successfully deleted data',
+              icon: 'success',
+              confirmButtonText: 'Ok'
+            });
+          }
+          getCategories();
+        }).catch(error => {
+
+        })
 
       } else if (result.isDenied) {
 
       }
-  })
-    
+    })
+
   }
   const navigate = useNavigate();
   const addData = () => {
     navigate('/AddCategory');
   }
   const handleSearch = async () => {
-    
+
     const filteredCategory = category.filter(item =>
       item.categoryName.toLowerCase().includes(searchText.toLowerCase())
     );
@@ -86,85 +80,72 @@ function Category() {
     setCategory(originalCategory);
     setSearchText("");
   }
-  const backTo = () => {
-    {
-      verifyRole === 'Admin' &&
-      navigate('/UserDashBoard');
-    }
-    {
-      verifyRole === 'student' &&
-      navigate('/UserDashBoard');
-    }
-  }
-  const handleViewTopic=(categoryName)=>{
-    { localStorage.setItem('categoryName', categoryName)}
+  const handleViewTopic = (categoryName) => {
+    { localStorage.setItem('categoryName', categoryName) }
   }
   return (
     <div className="App">
-      
-    <div className="categoryData">
-    <DisableBackButton/>
-    <Navbar/>
-      {(verifyRole === 'Admin' || verifyRole === 'student') ?
-        <>
-          <h1 className="addHead">Category Details</h1>
-          {/* <button className="addButton" onClick={() => backTo()}>BackToDashBoard</button> */}
-          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}>Add category</ButtonComponent>}
-          <div className="searchContainer">
-            <Input
-              className="search"
-              type="text"
-              placeholder="Search by Category Name"
-              value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
-            />
-            <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
-            <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
 
-          </div>
-          {isLoading ? (
-            <p>Loading...</p>
-          ) : (
-            <div className="tableContainer">
-                {category.length !== 0 ? (
-              <table className="tableData">
-                <thead className="headData">
-                  <tr className="rowData">
-                    <th>Category Name</th>
-                    <th>Category Description</th>
-                    {/* <th>Delete</th>
-              <th>Update</th> */}
-                  </tr>
-                </thead>
-                <tbody className="bodyData">
-                  {category.map(item => (
+      <div className="categoryData">
+        <DisableBackButton />
+        <Navbar />
+        {(verifyRole === 'Admin' || verifyRole === 'student') ?
+          <>
+            <h1 className="addHead">Category Details</h1>
+            {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}>Add category</ButtonComponent>}
+            <div className="searchContainer">
+              <Input
+                className="search"
+                type="text"
+                placeholder="Search by Category Name"
+                value={searchText}
+                onChange={(e) => setSearchText(e.target.value)}
+              />
+              <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
+              <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
 
-                    <tr key={item.categoryId}>
-                      <td>{item.categoryName}</td>
-                      <td>{item.categoryDescription}</td>
-                      {verifyRole === 'Admin' && <>
-                        <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.categoryId)}>Delete</ButtonComponent></td>
-                        <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData">Update</Link></td></>}
-                        {verifyRole === 'Admin' || verifyRole === 'student' ? (
-                  <td><Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={()=>handleViewTopic(item.categoryName)}>
-                   
-                    View Quiz Topics</Link></td>
-) : (
-  <></>
-)}
-
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-               ) : (
-                <h1>No Category</h1>
-              )}
             </div>
-           )} 
-        </> : <ErrorPage />}
-    </div>
-    
+            {isLoading ? (
+              <p>Loading...</p>
+            ) : (
+              <div className="tableContainer">
+                {category.length !== 0 ? (
+                  <table className="tableData">
+                    <thead className="headData">
+                      <tr className="rowData">
+                        <th>Category Name</th>
+                        <th>Category Description</th>
+                      </tr>
+                    </thead>
+                    <tbody className="bodyData">
+                      {category.map(item => (
+
+                        <tr key={item.categoryId}>
+                          <td>{item.categoryName}</td>
+                          <td>{item.categoryDescription}</td>
+                          {verifyRole === 'Admin' && <>
+                            <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.categoryId)}>Delete</ButtonComponent></td>
+                            <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData">Update</Link></td></>}
+                          {verifyRole === 'Admin' || verifyRole === 'student' ? (
+                            <td><Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={() => handleViewTopic(item.categoryName)}>
+
+                              View Quiz Topics</Link></td>
+                          ) : (
+                            <></>
+                          )}
+
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                ) : (
+                  <h1>No Category</h1>
+                )}
+              </div>
+            )}
+          </> : <ErrorPage />}
+      </div>
+
     </div>
   );
 }

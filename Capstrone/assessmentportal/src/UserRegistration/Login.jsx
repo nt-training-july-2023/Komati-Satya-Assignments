@@ -91,7 +91,6 @@ const Login = () => {
                             icon: 'success',
                             confirmButtonText: 'Ok'
                         });
-                  
                         navigate('/UserDashBoard')
 
                     } else if (response?.data.User_Information.role === "student") {
@@ -99,8 +98,6 @@ const Login = () => {
                         localStorage.setItem("userEmail", response.data.User_Information.email);
                         localStorage.setItem("userName", response.data.User_Information.userName);
                         localStorage.setItem("userId", response.data.User_Information.userId);
-                        
-
                         Swal.fire({
                             title: 'Login Success',
                             text: 'Correct credentials',
@@ -108,7 +105,6 @@ const Login = () => {
                             confirmButtonText: 'Ok'
                         });
                         navigate('/UserDashBoard');
-
                     }
 
                 }

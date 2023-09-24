@@ -1,7 +1,5 @@
-
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import Swal from "sweetalert2";
 import './RegistrationStyles.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -45,8 +43,6 @@ const Registration = () => {
     if (!formData.confirmPassword) {
       validationErrors.confirmPassword = 'Confirm Password Required';
     }
-   
-
     if (!formData.userName) {
       validationErrors.userName = 'Username Required';
     }
@@ -58,14 +54,10 @@ const Registration = () => {
     if (!formData.phoneNumber) {
       validationErrors.phoneNumber = 'Phone Number Required';
     }
-  
-
     setErrors(validationErrors);
 
     return Object.keys(validationErrors).length === 0;
   };
-  const [value, setValue] = useState(true);
-  const [value2, setValue2] = useState(true);
   const re = {
     capital: /(?=.*[A-Z])/,
     length: /(?=.{8,40}$)/,
@@ -166,7 +158,6 @@ const Registration = () => {
           <div className="details">
             <label className="side">Name</label><br /><br />
             <Input className="values" type="text" placeholder="enter a name" name="userName" value={formData.userName} onChange={changeData} /><br /><br />
-            {/* <p style={{ color: "red", fontSize: "15px" }}>{errors.userName}</p> */}
             <label className="side">Email</label><br /><br />
             <Input className="values" type="email" placeholder="enter a email" name="email" value={formData.email} onChange={changeData} /><br /><br />
             <div className="password-container2">
@@ -182,7 +173,6 @@ const Registration = () => {
               <label className="side">Confirm Password</label><br /><br />
               <Input className="values" type={showPassword ? 'password' : 'text'} name="confirmPassword" placeholder="enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
               <ButtonComponent className="show-password2" type="button" onClick={togglePassword}>
-
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </ButtonComponent>
             </div><br />
