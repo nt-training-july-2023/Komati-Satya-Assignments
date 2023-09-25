@@ -22,6 +22,8 @@ import com.example.demo.entity.Category;
 import com.example.demo.response.Responsee;
 import com.example.demo.service.CategoryService;
 
+import jakarta.validation.Valid;
+
 /**
  * Category controller class.
  */
@@ -46,12 +48,12 @@ public class CategoryController {
      */
     @PostMapping("/category")
     public final ResponseEntity<Object> saveCategory(
-            @RequestBody final Category c) {
+            @RequestBody @Valid final Category c) {
         try {
             CategoryDto categoryDto = categoryService.saveCategory(c);
             LOGGER.info("Adding new category");
             return Responsee.generateResponce("succcessfully added data",
-                    HttpStatus.OK, "Category_Information", categoryDto);
+                    HttpStatus.CREATED, "Category_Information", categoryDto);
         } catch (Exception e) {
             LOGGER.error("category already present error");
             return Responsee.generateResponce(e.getMessage(),
@@ -104,7 +106,7 @@ public class CategoryController {
      */
     @PutMapping("/category/{id}")
     public final ResponseEntity<Object> updateCategory(
-            @RequestBody final CategoryDto c, @PathVariable final int id) {
+            @RequestBody @Valid final CategoryDto c, @PathVariable final int id) {
         try {
             CategoryDto categoryDto = categoryService.updateCategory(c, id);
             LOGGER.info("update category");

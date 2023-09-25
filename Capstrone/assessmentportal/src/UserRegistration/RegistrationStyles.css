@@ -31,6 +31,7 @@
     background-color: #5dcc5d;
     cursor: pointer;
     color: white;
+    margin-top: 15px;
 }
 
 .details {
@@ -65,16 +66,16 @@
   .password-container2{
     position: relative;
   }
-@media screen and (min-width: 768px) {
-    .gen2 {
+@media screen and (max-width: 768px) {
+    /* .gen2 {
         margin-right: 0px;
         margin-bottom: 51px;
-    }
+    } */
     .role {
         margin-right: 280px;
     }
     .submit {
-        margin:-10px 0px 20px;
+        margin-top: 15px;
     }
 }
 

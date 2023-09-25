@@ -23,6 +23,8 @@ import com.example.demo.entity.Quiz;
 import com.example.demo.response.Responsee;
 import com.example.demo.service.QuizService;
 
+import jakarta.validation.Valid;
+
 /**
  * Quiz controller class.
  */
@@ -45,7 +47,8 @@ public class QuizController {
      * @return response
      */
     @PostMapping("/quiz")
-    public final ResponseEntity<Object> saveQuiz(@RequestBody final Quiz q) {
+    public final ResponseEntity<Object> saveQuiz(
+            @RequestBody @Valid final Quiz q) {
         try {
             QuizDto quizDto = quizSevice.addQuiz(q);
             LOGGER.info("Adding Quiz");
@@ -122,7 +125,7 @@ public class QuizController {
      */
     @PutMapping("/quiz/{id}")
     public final ResponseEntity<Object> updateQuiz(
-            @RequestBody final QuizUpdateDto q,
+            @RequestBody @Valid final QuizUpdateDto q,
             @PathVariable final int id) {
         try {
             QuizUpdateDto quizDto = quizSevice.updateQuiz(q, id);

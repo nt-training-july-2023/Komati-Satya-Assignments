@@ -7,6 +7,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -29,11 +30,13 @@ public class Questions {
      * stores the question.
      */
     @Column(nullable = false, unique = true)
+    @NotEmpty(message = "Question is required")
     private String question;
     /**
      * stores the option1.
      */
     @Column(nullable = false)
+    @NotEmpty(message = "Option1 is required")
     private String option1;
     /**
      * Constructor.
@@ -61,21 +64,25 @@ public class Questions {
      * stores the option2.
      */
     @Column(nullable = false)
+    @NotEmpty(message = "option2 is required")
     private String option2;
     /**
      * stores the option3.
      */
     @Column(nullable = false)
+    @NotEmpty(message = "option3 is required")
     private String option3;
     /**
      * stores the option4.
      */
     @Column(nullable = false)
+    @NotEmpty(message = "option4 is required")
     private String option4;
     /**
      * stores the correct option.
      */
     @Column(nullable = false)
+    @NotEmpty(message = "correct Option is required")
     private String correctOption;
     /**
      * many to one relationship with quiz.
@@ -88,7 +95,7 @@ public class Questions {
      * get.
      * @return quiz
      */
-    public final Quiz getQui() {
+    public Quiz getQui() {
         return new Quiz(qui.getQuizId(), qui.getTopicName(),
                 qui.getTopicDescription(), qui.getTimer()
                 );
@@ -97,7 +104,7 @@ public class Questions {
      * set.
      * @param quii quiz
      */
-    public final void setQui(final Quiz quii) {
+    public void setQui(final Quiz quii) {
         this.qui = new Quiz(quii.getQuizId(), quii.getTopicName(),
                 quii.getTopicDescription(), quii.getTimer()
                 );

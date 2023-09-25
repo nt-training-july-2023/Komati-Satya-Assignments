@@ -24,6 +24,8 @@ import com.example.demo.entity.Student;
 import com.example.demo.response.Responsee;
 import com.example.demo.service.StudentService;
 
+import jakarta.validation.Valid;
+
 /**
  * Student controller class.
  */
@@ -46,7 +48,8 @@ public class StudentController {
      * @return response.
      */
     @PostMapping("/student")
-    public final ResponseEntity<Object> save(@RequestBody final Student s) {
+    public final ResponseEntity<Object> save(
+            @RequestBody @Valid final Student s) {
         try {
             StudentSaveDto studentSaveDto = studentSevice.saveStudent(s);
             LOGGER.info("Student registration");
@@ -84,7 +87,8 @@ public class StudentController {
      * @return response
      */
     @PostMapping("/student/login")
-    public final ResponseEntity<Object> login(@RequestBody final LoginDto l) {
+    public final ResponseEntity<Object> login(
+            @RequestBody @Valid final LoginDto l) {
         try {
             Optional<StudentDto> studentDto = studentSevice.
                     aunthenticateUser(l);
@@ -94,7 +98,7 @@ public class StudentController {
         } catch (Exception e) {
             LOGGER.error("Exception occur");
             return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
+                    HttpStatus.UNAUTHORIZED, "User_Information", null);
         }
     }
 
@@ -125,7 +129,8 @@ public class StudentController {
      */
     @PutMapping("/student/{id}")
     public final ResponseEntity<Object> updateStudent(
-            @RequestBody final StudentDto s, @PathVariable final int id) {
+            @RequestBody @Valid final StudentDto s,
+            @PathVariable final int id) {
         try {
             StudentDto studentDto = studentSevice.updateStudent(s, id);
             LOGGER.info("Updatation of student");

@@ -1,6 +1,8 @@
 package com.example.demo.dto;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,6 +25,7 @@ public class QuizDto {
      * stores the topic name.
      */
     @Column(nullable = false)
+    @NotEmpty(message = "topic name is required")
     private String topicName;
     /**
      * stores the topic description.
@@ -36,5 +39,6 @@ public class QuizDto {
     /**
      * stores time.
      */
+    @NotNull(message = "timer is required")
     private int timer;
 }

@@ -136,7 +136,7 @@ else{
                     title: 'Error!',
                     text: 'category description is required',
                     icon: 'error',
-                    confirmButtonText: 'Cool'
+                    confirmButtonText: 'Ok'
                 });
             }
         } else {

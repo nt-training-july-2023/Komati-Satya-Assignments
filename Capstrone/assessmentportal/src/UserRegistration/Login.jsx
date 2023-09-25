@@ -58,7 +58,7 @@ const Login = () => {
                     title: 'Error!',
                     text: 'Password is required',
                     icon: 'error',
-                    confirmButtonText: 'Cool'
+                    confirmButtonText: 'Ok'
                 });
             }
         } else {
@@ -74,6 +74,7 @@ const Login = () => {
                         icon: 'error',
                         confirmButtonText: 'Ok'
                     });
+                
                 } else if (response.data.message === "Email not exist") {
                     Swal.fire({
                         title: 'Error!',
@@ -81,7 +82,8 @@ const Login = () => {
                         icon: 'error',
                         confirmButtonText: 'Ok'
                     });
-                } else {
+                } 
+                else {
                     if (response?.data.User_Information.role === "Admin") {
                         localStorage.setItem("userRole", response.data.User_Information.role);
                         localStorage.setItem("userId", response.data.User_Information.userId);

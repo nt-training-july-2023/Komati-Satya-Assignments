@@ -223,7 +223,7 @@ const AddQuestions = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire('Changes are not saved', '', 'info')
-                navigate(`/Questions/${questionData.quizId}`);
+                navigate(`/Questions/${quizId}`);
 
             } else if (result.isDenied) {
 

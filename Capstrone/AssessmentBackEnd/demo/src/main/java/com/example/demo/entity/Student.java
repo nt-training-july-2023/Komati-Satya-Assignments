@@ -83,7 +83,7 @@ public class Student {
      * get the user id.
      * @return userId
      */
-    public final int getUserId() {
+    public int getUserId() {
         return userId;
     }
 
@@ -91,7 +91,7 @@ public class Student {
      * set the user id.
      * @param userIdd stores id
      */
-    public final void setUserId(final int userIdd) {
+    public void setUserId(final int userIdd) {
         this.userId = userIdd;
     }
 
@@ -99,7 +99,7 @@ public class Student {
      * get the user name.
      * @return userName
      */
-    public final String getUserName() {
+    public String getUserName() {
         return userName;
     }
 
@@ -107,7 +107,7 @@ public class Student {
      * set the user name.
      * @param userNamee stores name
      */
-    public final void setUserName(final String userNamee) {
+    public void setUserName(final String userNamee) {
         this.userName = userNamee;
     }
 
@@ -115,7 +115,7 @@ public class Student {
      * get the user email.
      * @return email
      */
-    public final String getEmail() {
+    public String getEmail() {
         return email;
     }
 
@@ -123,7 +123,7 @@ public class Student {
      * set the user email.
      * @param emaill stores email
      */
-    public final void setEmail(final String emaill) {
+    public void setEmail(final String emaill) {
         this.email = emaill;
     }
 
@@ -131,7 +131,7 @@ public class Student {
      * get the user gender.
      * @return gender
      */
-    public final String getGender() {
+    public String getGender() {
         return gender;
     }
 
@@ -139,7 +139,7 @@ public class Student {
      * set the user gender.
      * @param genderr stores gender
      */
-    public final void setGender(final String genderr) {
+    public void setGender(final String genderr) {
         this.gender = genderr;
     }
 
@@ -147,7 +147,7 @@ public class Student {
      * get the user phone number.
      * @return phoneNumber
      */
-    public final String getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
@@ -155,7 +155,7 @@ public class Student {
      * set the user phone number.
      * @param phoneNumberr stores number
      */
-    public final void setPhoneNumber(final String phoneNumberr) {
+    public void setPhoneNumber(final String phoneNumberr) {
         this.phoneNumber = phoneNumberr;
     }
 
@@ -163,7 +163,7 @@ public class Student {
      * get the user role.
      * @return role
      */
-    public final String getRole() {
+    public String getRole() {
         return role;
     }
 
@@ -171,7 +171,7 @@ public class Student {
      * set the user role.
      * @param rolee stores role
      */
-    public final void setRole(final String rolee) {
+    public void setRole(final String rolee) {
         this.role = rolee;
     }
 
@@ -179,7 +179,7 @@ public class Student {
      * get the user password.
      * @return password
      */
-    public final String getPassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -187,7 +187,7 @@ public class Student {
      * set the user password.
      * @param passwordd stores password
      */
-    public final void setPassword(final String passwordd) {
+    public void setPassword(final String passwordd) {
         this.password = passwordd;
     }
 
@@ -195,7 +195,7 @@ public class Student {
      * get the user date of birth.
      * @return dateOfBirth
      */
-    public final String getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -203,7 +203,7 @@ public class Student {
      * set the user date of birth.
      * @param dateOfBirthh stores DOB
      */
-    public final void setDateOfBirth(final String dateOfBirthh) {
+    public void setDateOfBirth(final String dateOfBirthh) {
         this.dateOfBirth = dateOfBirthh;
     }
 

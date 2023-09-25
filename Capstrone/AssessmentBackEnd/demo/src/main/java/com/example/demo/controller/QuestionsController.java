@@ -24,6 +24,8 @@ import com.example.demo.entity.Questions;
 import com.example.demo.response.Responsee;
 import com.example.demo.service.QuestionsService;
 
+import jakarta.validation.Valid;
+
 /**
  * Question controller class.
  */
@@ -48,7 +50,7 @@ public class QuestionsController {
      */
     @PostMapping("/questions")
     public final ResponseEntity<Object> addQuestion(
-            @RequestBody final Questions q) {
+            @RequestBody @Valid final Questions q) {
         try {
             QuestionsDto questionsDto = questionsService.addQuestion(q);
             LOGGER.info("Adding a  questions");
@@ -106,7 +108,7 @@ public class QuestionsController {
      */
     @PutMapping("/questions/que/{id}")
     public final ResponseEntity<Object> updateQue(
-            @RequestBody final QuestionsUpdateDto q,
+            @RequestBody @Valid final QuestionsUpdateDto q,
             @PathVariable final int id) {
         try {
             QuestionsUpdateDto questionsDto = questionsService.updateQue(q, id);

@@ -12,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.NoArgsConstructor;
 /**
  * Quiz entity class.
@@ -29,6 +31,7 @@ public class Quiz {
      * stores the topic name.
      */
     @Column(nullable = false, unique = true)
+    @NotEmpty(message = "topic name is required")
     private String topicName;
     /**
      * stores the topic description.
@@ -39,68 +42,69 @@ public class Quiz {
      * stores the time.
      */
     @Column(nullable = false)
+    @NotNull(message = "timer is required")
     private int timer;
     /**
      * get quiz.
      * @return quiz
      */
-    public final int getQuizId() {
+    public int getQuizId() {
         return quizId;
     }
     /**
      * set quiz id.
      * @param quizIdd quiz id
      */
-    public final void setQuizId(final int quizIdd) {
+    public void setQuizId(final int quizIdd) {
         this.quizId = quizIdd;
     }
     /**
      * get question.
      * @return topic
      */
-    public final String getTopicName() {
+    public String getTopicName() {
         return topicName;
     }
     /**
      * set topic name.
      * @param topicNamee topic
      */
-    public final void setTopicName(final String topicNamee) {
+    public void setTopicName(final String topicNamee) {
         this.topicName = topicNamee;
     }
     /**
      * get question.
      * @return topic
      */
-    public final String getTopicDescription() {
+    public String getTopicDescription() {
         return topicDescription;
     }
     /**
      * get question.
      * @param topicDescriptionn topic
      */
-    public final void setTopicDescription(final String topicDescriptionn) {
+    public void setTopicDescription(final String topicDescriptionn) {
         this.topicDescription = topicDescriptionn;
     }
     /**
      * get timer.
      * @return time
      */
-    public final int getTimer() {
+    public int getTimer() {
         return timer;
     }
     /**
      * set time.
      * @param timerr time
      */
-    public final void setTimer(final int timerr) {
+    public void setTimer(final int timerr) {
         this.timer = timerr;
     }
     /**
      * get question.
      * @return category
      */
-    public final Category getCate() {
+    public Category getCate() {
         return new Category(category.getCategoryId(),
                 category.getCategoryName(),
                 category.getCategoryDescription());
@@ -109,7 +113,7 @@ public class Quiz {
      * get question.
      * @param categoryy category
      */
-    public final void setCate(final Category categoryy) {
+    public void setCate(final Category categoryy) {
         this.category = new Category(categoryy.getCategoryId(),
                 categoryy.getCategoryName(),
                 categoryy.getCategoryDescription());
@@ -118,28 +122,28 @@ public class Quiz {
      * get question.
      * @return list
      */
-    public final List<StudentResult> getSe() {
+    public List<StudentResult> getSe() {
         return new ArrayList<>(studentResult);
     }
     /**
      * get question.
      * @param student student result
      */
-    public final void setSe(final List<StudentResult> student) {
+    public void setSe(final List<StudentResult> student) {
         this.studentResult = new ArrayList<>(student);
     }
     /**
      * get question.
      * @return question question
      */
-    public final List<Questions> getQue() {
+    public List<Questions> getQue() {
         return new ArrayList<>(questions);
     }
     /**
      * set question.
      * @param question question
      */
-    public final void setQue(final List<Questions> question) {
+    public void setQue(final List<Questions> question) {
         this.questions = new ArrayList<>(question);
     }
     /**

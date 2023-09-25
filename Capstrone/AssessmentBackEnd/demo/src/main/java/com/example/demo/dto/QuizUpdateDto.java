@@ -1,6 +1,8 @@
 package com.example.demo.dto;
 
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,6 +23,7 @@ public class QuizUpdateDto {
     /**
      * stores the topic name.
      */
+    @NotEmpty(message = "topic name is required")
     private String topicName;
     /**
      * stores the topic description.
@@ -29,5 +32,6 @@ public class QuizUpdateDto {
     /**
      * stores the time.
      */
+    @NotNull(message = "timer is required")
     private int timer;
 }

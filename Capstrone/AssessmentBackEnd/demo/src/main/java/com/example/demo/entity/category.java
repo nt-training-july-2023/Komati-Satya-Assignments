@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.NoArgsConstructor;
 /**
  * category entity class.
@@ -29,6 +30,7 @@ public class Category {
      * store category name.
      */
     @Column(nullable = false, unique = true)
+    @NotEmpty(message = "category name is required")
     private String categoryName;
     /**
      * store category description.
@@ -46,56 +48,56 @@ public class Category {
      * get category.
      * @return category id
      */
-    public final int getCategoryId() {
+    public int getCategoryId() {
         return categoryId;
     }
     /**
      * set category.
      * @param categoryid id
      */
-    public final void setCategoryId(final int categoryid) {
+    public void setCategoryId(final int categoryid) {
         this.categoryId = categoryid;
     }
     /**
      * get category Name.
      * @return category name
      */
-    public final String getCategoryName() {
+    public String getCategoryName() {
         return categoryName;
     }
     /**
      * set category name.
      * @param categoryname category name
      */
-    public final void setCategoryName(final String categoryname) {
+    public void setCategoryName(final String categoryname) {
         this.categoryName = categoryname;
     }
     /**
      * get category Name.
      * @return name name
      */
-    public final String getCategoryDescription() {
+    public String getCategoryDescription() {
         return categoryDescription;
     }
     /**
      * set category description.
      * @param categorydescription category
      */
-    public final void setCategoryDescription(final String categorydescription) {
+    public void setCategoryDescription(final String categorydescription) {
         this.categoryDescription = categorydescription;
     }
     /**
      * get category Name.
      * @return quiz quiz
      */
-    public final List<Quiz> getQu() {
+    public List<Quiz> getQu() {
         return new ArrayList<>(quiz);
     }
     /**
      * set method.
      * @param quizz quiz
      */
-    public final void setQu(final List<Quiz> quizz) {
+    public void setQu(final List<Quiz> quizz) {
         this.quiz = new ArrayList<>(quizz);
     }
     /**

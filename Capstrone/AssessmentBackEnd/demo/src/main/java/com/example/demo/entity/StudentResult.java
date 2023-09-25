@@ -71,63 +71,63 @@ public class StudentResult {
      * get result.
      * @return result
      */
-    public final int getResultId() {
+    public int getResultId() {
         return resultId;
     }
     /**
      * set id.
      * @param resultid id
      */
-    public final void setResultId(final int resultid) {
+    public void setResultId(final int resultid) {
         this.resultId = resultid;
     }
     /**
      * get marks.
      * @return marks
      */
-    public final int getMaxMarks() {
+    public int getMaxMarks() {
         return maxMarks;
     }
     /**
      * set marks.
      * @param maxMarkss marks
      */
-    public final void setMaxMarks(final int maxMarkss) {
+    public void setMaxMarks(final int maxMarkss) {
         this.maxMarks = maxMarkss;
     }
     /**
      * get result.
      * @return result
      */
-    public final String getResult() {
+    public String getResult() {
         return result;
     }
     /**
      * set result.
      * @param resultt result
      */
-    public final void setResult(final String resultt) {
+    public void setResult(final String resultt) {
         this.result = resultt;
     }
     /**
      * get.
      * @return questions
      */
-    public final int getAttemptedQuestions() {
+    public int getAttemptedQuestions() {
         return attemptedQuestions;
     }
     /**
      * set question.
      * @param attemptedQuestionss questions
      */
-    public final void setAttemptedQuestions(final int attemptedQuestionss) {
+    public void setAttemptedQuestions(final int attemptedQuestionss) {
         this.attemptedQuestions = attemptedQuestionss;
     }
     /**
      * quiz.
      * @return quiz
      */
-    public final Quiz getQe() {
+    public Quiz getQe() {
         return new Quiz(qe.getQuizId(), qe.getTopicName(),
                 qe.getTopicDescription(), qe.getTimer()
                 );
@@ -136,7 +136,7 @@ public class StudentResult {
      * set question.
      * @param qee question
      */
-    public final void setQe(final Quiz qee) {
+    public void setQe(final Quiz qee) {
         this.qe = new Quiz(qee.getQuizId(), qee.getTopicName(),
                 qee.getTopicDescription(), qee.getTimer()
                 );
@@ -145,7 +145,7 @@ public class StudentResult {
      * student.
      * @return student
      */
-    public final Student getSs() {
+    public Student getSs() {
         return new Student(ss.getUserId(), ss.getUserName(),
                 ss.getEmail(), ss.getGender(),
                  ss.getPhoneNumber(), ss.getRole(), ss.getDateOfBirth());
@@ -154,7 +154,7 @@ public class StudentResult {
      * set student.
      * @param sss student
      */
-    public final void setSs(final Student sss) {
+    public void setSs(final Student sss) {
         this.ss = new Student(sss.getUserId(), sss.getUserName(),
                 sss.getEmail(), sss.getGender(),
                 sss.getPhoneNumber(), sss.getRole(), sss.getDateOfBirth());
@@ -163,28 +163,28 @@ public class StudentResult {
      * get.
      * @return date
      */
-    public final String getDateAndTime() {
+    public String getDateAndTime() {
         return dateAndTime;
     }
     /**
      * set.
      * @param dateAndTimee date
      */
-    public final void setDateAndTime(final String dateAndTimee) {
+    public void setDateAndTime(final String dateAndTimee) {
         this.dateAndTime = dateAndTimee;
     }
     /**
      * get category id.
      * @return category id.
      */
-    public final int getCategoryId() {
+    public int getCategoryId() {
         return categoryId;
     }
     /**
      * set category id.
      * @param categoryid category id.
      */
-    public final void setCategoryId(final int categoryid) {
+    public void setCategoryId(final int categoryid) {
         this.categoryId = categoryid;
     }
 }
