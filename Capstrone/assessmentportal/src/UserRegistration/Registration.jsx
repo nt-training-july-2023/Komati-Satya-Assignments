@@ -117,7 +117,7 @@ const Registration = () => {
         UserApi.addUser(formData)
           .then((response) => {
             
-            if (response.data.message === "successfully added data") {
+            if (response.data === "User register successfully") {
               Swal.fire({
                 title: 'Registration',
                 text: 'User Registred Successfully',
@@ -126,7 +126,11 @@ const Registration = () => {
               });
               navigate('/');
             }
-            if (response.data.message === "Email already exist") {
+           
+          })
+          .catch((error) => {
+            console.error('Axios Error:', error);
+            if (error.response.data.errorMessage === "Email already exist") {
               Swal.fire({
                 title: 'Error!',
                 text: 'Email already exists',
@@ -134,9 +138,6 @@ const Registration = () => {
                 confirmButtonText: 'Ok'
               });
             }
-          })
-          .catch((error) => {
-            console.error('Axios Error:', error);
           });
       }
     }

@@ -77,14 +77,7 @@ const AddQuiz = () => {
                 setErrors({});
                 QuizApi.updateQuiz(quizId, quizData)
                     .then((response) => {
-                        if (response.data.status == 207) {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'questions Already present',
-                                icon: 'error',
-                                confirmButtonText: 'Ok'
-                            });
-                        }
+                      
                         if (response.data === "quiz updated successfully") {
                             Swal.fire({
                                 title: 'Updating data',
@@ -93,6 +86,15 @@ const AddQuiz = () => {
                                 confirmButtonText: 'Ok'
                             });
                             navigate(`/Quiz/${quizData.categoryId}`)
+                        }
+                    }).catch((error)=>{
+                        if (error.response.data.errorMessage=="Quiz already exists") {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'questions Already present',
+                                icon: 'error',
+                                confirmButtonText: 'Ok'
+                            });
                         }
                     })
             }

@@ -42,19 +42,11 @@ class CategoryControllerTest {
         CategoryDto categoryDto=new CategoryDto();
         categoryDto.setCategoryName("java");
         when(categoryService.saveCategory(category)).thenReturn(categoryDto);
-        ResponseEntity<Object> response=categoryController.saveCategory(category);
-        assertEquals(HttpStatus.CREATED,response.getStatusCode());
-        assertNotNull(response.getBody());
+        ResponseEntity<String> response=categoryController.saveCategory(category);
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals("added", response.getBody());
     }
-    @Test
-    void testAddCategoryError() {
-        Category category=new Category();
-        category.setCategoryName("java");
-        when(categoryService.saveCategory(category)).thenThrow(new AlreadyExistException("Category already present"));
-        ResponseEntity<Object> response=categoryController.saveCategory(category);
-        assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
-        assertNotNull(response.getBody());
-    }
+
     @Test
     void testFindByIdSuccess() {
         Category category=new Category();
@@ -63,35 +55,17 @@ class CategoryControllerTest {
         CategoryDto categoryDto=new CategoryDto();
         categoryDto.setCategoryName("java");
         when(categoryService.findById(1)).thenReturn(Optional.of(categoryDto));
-        ResponseEntity<Object> response=categoryController.findById(1);
+        ResponseEntity<Optional<CategoryDto>> response=categoryController.findById(1);
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());  
+       
     }
-    @Test
-    void testFindByIdError() {
-        Category category=new Category();
-        category.setCategoryName("java");
-        category.setCategoryId(1);
-        when(categoryService.findById(1)).thenThrow(new NotFoundException("wrong category id"));
-        ResponseEntity<Object> response=categoryController.findById(1);
-        assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
-        assertNotNull(response.getBody()); 
-    }
+
     @Test
     void testFindAllCategoriesSuccess() {
         List<CategoryDto> categoryDto=new ArrayList<>();
         when(categoryService.findAll()).thenReturn(categoryDto);
-        ResponseEntity<Object> response=categoryController.findAll();
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());    
-    }
-    @Test
-    void testFindAllCategoriesError() {
-        List<CategoryDto> categoryDto=new ArrayList<>();
-        when(categoryService.findAll()).thenThrow(new AllNotFoundException("No categories are there"));
-        ResponseEntity<Object> response=categoryController.findAll();
-        assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
-        assertNotNull(response.getBody()); 
+        ResponseEntity<List<CategoryDto>> response=categoryController.findAll();
+        assertEquals(HttpStatus.OK,response.getStatusCode());   
     }
     @Test
     void testUpdateCategorySuccess() {
@@ -100,54 +74,29 @@ class CategoryControllerTest {
         categoryDto.setCategoryName("React");
         int i=1;
         when(categoryService.updateCategory(categoryDto, i)).thenReturn(categoryDto);
-        ResponseEntity<Object> response=categoryController.updateCategory(categoryDto, i);
+        ResponseEntity<String> response=categoryController.updateCategory(categoryDto, i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());  
-    }
-    @Test
-    void testUpdateCategoryError() {
-        CategoryDto categoryDto=new CategoryDto();
-        categoryDto.setCategoryName("java");
-        categoryDto.setCategoryName("React");
-        int i=1;
-        when(categoryService.updateCategory(categoryDto, i)).thenThrow(new NotFoundException("wrong category id"));
-        ResponseEntity<Object> response=categoryController.updateCategory(categoryDto, i);
-        assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
-        assertNotNull(response.getBody()); 
+        assertEquals("Updated successfully", response.getBody());
+        
+          
     }
     @Test
     void testDeleteCategorySuccess() {
         Category c=new Category();
         c.setCategoryId(1);
-        ResponseEntity<Object> response=categoryController.deleteCategory(1);
+        ResponseEntity<String> response=categoryController.deleteCategory(1);
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());     
+        assertNotNull(response.getBody());   
+        assertEquals("Deleted successfully", response.getBody());
     }
-    @Test
-    void testDeleteCategoryError() {
-        Category c=new Category();
-        c.setCategoryId(1);
-        doThrow(new NotFoundException("wrong category id")).when(categoryService).deleteCategory(1);
-        ResponseEntity<Object> response=categoryController.deleteCategory(1);
-        assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
-        assertNotNull(response.getBody());  
-    }
+   
      @Test
     void testFindByCategoryNameSuccess() {
          CategoryDto categoryDto=new CategoryDto();
          categoryDto.setCategoryName("java");
          when(categoryService.findByName("java")).thenReturn(Optional.of(categoryDto));
-         ResponseEntity<Object> response=categoryController.findByName("java");
+         ResponseEntity<Optional<CategoryDto>> response=categoryController.findByName("java");
          assertEquals(HttpStatus.OK,response.getStatusCode());
-         assertNotNull(response.getBody()); 
     }
-     @Test
-     void testFindByCategoryNameError() {
-         CategoryDto categoryDto=new CategoryDto();
-         categoryDto.setCategoryName("java");
-         when(categoryService.findByName("java")).thenThrow(new NotFoundException("Category not present"));
-         ResponseEntity<Object> response=categoryController.findByName("java");
-         assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
-         assertNotNull(response.getBody()); 
-     }
 }
+

@@ -37,19 +37,10 @@ public class FinalResultController {
      * @return response.
      */
     @GetMapping("/finalResult/{id}")
-    public final ResponseEntity< List<ResultDto>> getById(@PathVariable final int id) {
-        //try {
+    public final ResponseEntity<List<ResultDto>> getById(@PathVariable final int id) {
             List<ResultDto> resultDto = finalResService.getById(id);
             LOGGER.info("get result by student id");
                 return ResponseEntity.ok(resultDto);
-
-//            return Responsee.generateResponce("succcessfully retrieve the data",
-//                    HttpStatus.OK, "User_Information", resultDto);
-//        } catch (Exception e) {
-//            LOGGER.error("Exception occur");
-//            return Responsee.generateResponce(e.getMessage(),
-//                    HttpStatus.MULTI_STATUS, "Result_Information", null);
-//        }
     }
     /**
      * find all students result.
@@ -57,17 +48,8 @@ public class FinalResultController {
      */
     @GetMapping("/finalResult")
     public final ResponseEntity<List<ResultDto>> findAllResult() {
-      //  try {
             List<ResultDto> resultDto = finalResService.findAll();
             LOGGER.info("get all results");
             return ResponseEntity.ok(resultDto);
-//            return Responsee.generateResponce("succcessfully retrieve the data",
-//                    HttpStatus.OK, "Result_Information", resultDto);
-//        } catch (Exception e) {
-//            LOGGER.error("Exception occur");
-//            return Responsee.generateResponce(e.getMessage(),
-//                    HttpStatus.MULTI_STATUS, "Result_Information", null);
-//        }
-//    }
     }
 }

@@ -51,35 +51,18 @@ public class QuestionsController {
     @PostMapping("/questions")
     public final ResponseEntity<String> addQuestion(
             @RequestBody @Valid final Questions q) {
-       // try {
             QuestionsDto questionsDto = questionsService.addQuestion(q);
             LOGGER.info("Adding a  questions");
-//            return Responsee.generateResponce("succcessfully add the data",
-//                    HttpStatus.OK, "Questions_Information", questionsDto);
-//        } catch (Exception e) {
-//            LOGGER.error("Exception occur");
-//            return Responsee.generateResponce(e.getMessage(),
-//                    HttpStatus.MULTI_STATUS, "Questions_Information", null);
-//        }
             return ResponseEntity.ok("question added successfully");
     }
-
     /**
      * getting all the questions method.
      * @return response
      */
     @GetMapping("/questions")
-    public final ResponseEntity< List<QuestionsDto>> getQuestions() {
-      //  try {
+    public final ResponseEntity<List<QuestionsDto>> getQuestions() {
             LOGGER.info("Get all questions");
             List<QuestionsDto> questionsDto = questionsService.getQuestions();
-//            return Responsee.generateResponce("succcessfully retrive the data",
-//                    HttpStatus.OK, "Questions_Information", questionsDto);
-//        } catch (Exception e) {
-//            LOGGER.error("Exceptions occur");
-//            return Responsee.generateResponce(e.getMessage(),
-//                    HttpStatus.MULTI_STATUS, "Questions_Information", null);
-//        }
             return ResponseEntity.ok(questionsDto);
     }
 
@@ -90,16 +73,8 @@ public class QuestionsController {
      */
     @DeleteMapping("/questions/{id}")
     public final ResponseEntity<String> delete(@PathVariable final int id) {
-       // try {
             questionsService.delete(id);
             LOGGER.info("Delete question");
-//            return Responsee.generateResponce("succcessfully delete the data",
-//                    HttpStatus.OK, "Questions_Information", null);
-//        } catch (Exception e) {
-//            LOGGER.error("Exception occcur");
-//            return Responsee.generateResponce(e.getMessage(),
-//                    HttpStatus.MULTI_STATUS, "Questions_Information", null);
-//        }
             return ResponseEntity.ok("question deleted successfully");
     }
 
@@ -113,16 +88,8 @@ public class QuestionsController {
     public final ResponseEntity<String> updateQue(
             @RequestBody @Valid final QuestionsUpdateDto q,
             @PathVariable final int id) {
-      //  try {
             QuestionsUpdateDto questionsDto = questionsService.updateQue(q, id);
             LOGGER.info("update question");
-//            return Responsee.generateResponce("succcessfully update the data",
-//                    HttpStatus.OK, "Questions_Information", questionsDto);
-//        } catch (Exception e) {
-//            LOGGER.error("Exception occur");
-//            return Responsee.generateResponce(e.getMessage(),
-//                    HttpStatus.MULTI_STATUS, "Questions_Information", null);
-//        }
             return ResponseEntity.ok("question updated successfully");
     }
 
@@ -134,16 +101,8 @@ public class QuestionsController {
     @GetMapping("/questions/{id}")
     public final ResponseEntity<List<QuestionsDto>> findQueById(
             @PathVariable final int id) {
-       // try {
             List<QuestionsDto> questionsDto = questionsService.findQueById(id);
             LOGGER.info("Get all questions by quiz id");
-//            return Responsee.generateResponce("succcessfully get the data",
-//                    HttpStatus.OK, "Questions_Information", questionsDto);
-//        } catch (Exception e) {
-//            LOGGER.error("Exception occur");
-//            return Responsee.generateResponce(e.getMessage(),
-//                    HttpStatus.MULTI_STATUS, "Questions_Information", null);
-//        }
             return ResponseEntity.ok(questionsDto);
     }
 
@@ -155,17 +114,9 @@ public class QuestionsController {
     @GetMapping("/questions/questionByName/{name}")
     public final ResponseEntity<Optional<QuestionsDto>> findByQuestion(
             @PathVariable final String name) {
-       // try {
             Optional<QuestionsDto> questionsDto = questionsService.
                     findByQuestion(name);
             LOGGER.info("Get question");
-//            return Responsee.generateResponce("succcessfully get the data",
-//                    HttpStatus.OK, "Questions_Information", questionsDto);
-//        } catch (Exception e) {
-//            LOGGER.error("Exception occur");
-//            return Responsee.generateResponce(e.getMessage(),
-//                    HttpStatus.MULTI_STATUS, "Questions_Information", null);
-//        }
           return ResponseEntity.ok(questionsDto);  
     }
 }

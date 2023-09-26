@@ -6,7 +6,7 @@ public class ErrorResponse {
     /**
      * error Code.
      */
-    private HttpStatus errorCode;
+    private Integer errorCode;
 
     /**
      * error Message.
@@ -17,7 +17,7 @@ public class ErrorResponse {
      * @param code    errorCode
      * @param message errorMessage constructor using fields.
      */
-    public ErrorResponse(final HttpStatus code, final String message) {
+    public ErrorResponse(final Integer code, final String message) {
         super();
         this.errorCode = code;
         this.errorMessage = message;
@@ -33,7 +33,7 @@ public class ErrorResponse {
     /**
      * @return errorCode.
      */
-    public HttpStatus getErrorCode() {
+    public Integer getErrorCode() {
         return errorCode;
     }
 
@@ -41,7 +41,7 @@ public class ErrorResponse {
      * @param code
      * setter for errorCode.
      */
-    public void setErrorCode(final HttpStatus code) {
+    public void setErrorCode(final Integer code) {
         this.errorCode = code;
     }
 

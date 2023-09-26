@@ -35,36 +35,16 @@ class FinalResultControllerTest {
         finalResult.setUserId(1);
         List<ResultDto> resultDto=new ArrayList<>();
         when(resultService.getById(1)).thenReturn(resultDto);
-        ResponseEntity<Object> response=resultController.getById(1);
+        ResponseEntity<List<ResultDto>> response=resultController.getById(1);
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());
-    }
-    @Test
-    void testGetByUserIdError() {
-        FinalRes finalResult=new FinalRes();
-        finalResult.setUserId(1);
-        when(resultService.getById(1)).thenThrow(new AllNotFoundException("No user is there"));
-        ResponseEntity<Object> response=resultController.getById(1);
-        assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
         assertNotNull(response.getBody());
     }
     @Test
     void testAllResultSuccess() {
         List<ResultDto> resultDto=new ArrayList<>();
         when(resultService.findAll()).thenReturn(resultDto);
-        ResponseEntity<Object> response=resultController.findAllResult();
+        ResponseEntity<List<ResultDto>> response=resultController.findAllResult();
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());
     }
-    
-    @Test
-    void testAllResultError() {
-        FinalRes finalResult=new FinalRes();
-        when(resultService.findAll()).thenThrow(new AllNotFoundException("No results are there"));
-        ResponseEntity<Object> response=resultController.findAllResult();
-        assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
-        assertNotNull(response.getBody());
-    }
-    
-
 }

@@ -66,27 +66,27 @@ const Login = () => {
             setErrors({});
            
             UserApi.loginUser(loginData).then(response => {
-
-                if (response.data.message === "password must be same") {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Wrong password',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
+               console.log(response)
+                // if (response.data === "password must be same") {
+                //     Swal.fire({
+                //         title: 'Error!',
+                //         text: 'Wrong password',
+                //         icon: 'error',
+                //         confirmButtonText: 'Ok'
+                //     });
                 
-                } else if (response.data.message === "Email not exist") {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Wrong email',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
-                } 
-                else {
-                    if (response?.data.User_Information.role === "Admin") {
-                        localStorage.setItem("userRole", response.data.User_Information.role);
-                        localStorage.setItem("userId", response.data.User_Information.userId);
+                // } else if (response.data === "Email not exist") {
+                //     Swal.fire({
+                //         title: 'Error!',
+                //         text: 'Wrong email',
+                //         icon: 'error',
+                //         confirmButtonText: 'Ok'
+                //     });
+                // } 
+                // else {
+                    if (response?.data.role === "Admin") {
+                        localStorage.setItem("userRole", response.data.role);
+                        localStorage.setItem("userId", response.data.userId);
                         Swal.fire({
                             title: 'Login Success',
                             text: 'Correct credentials',
@@ -95,11 +95,11 @@ const Login = () => {
                         });
                         navigate('/UserDashBoard')
 
-                    } else if (response?.data.User_Information.role === "student") {
-                        localStorage.setItem("userRole", response.data.User_Information.role);
-                        localStorage.setItem("userEmail", response.data.User_Information.email);
-                        localStorage.setItem("userName", response.data.User_Information.userName);
-                        localStorage.setItem("userId", response.data.User_Information.userId);
+                    } else if (response?.data.role === "student") {
+                        localStorage.setItem("userRole", response.data.role);
+                        localStorage.setItem("userEmail", response.data.email);
+                        localStorage.setItem("userName", response.data.userName);
+                        localStorage.setItem("userId", response.data.userId);
                         Swal.fire({
                             title: 'Login Success',
                             text: 'Correct credentials',
@@ -107,12 +107,27 @@ const Login = () => {
                             confirmButtonText: 'Ok'
                         });
                         navigate('/UserDashBoard');
-                    }
-
+                    
                 }
             }).catch(error => {
 
-                console.error(error);
+                console.log(error);
+                if (error.response.data.errorMessage === "password must be same") {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Wrong password',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                
+                } else if (error.response.data.errorMessage === "Email not exist") {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Wrong email',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                    });
+                } 
             })
 
         }

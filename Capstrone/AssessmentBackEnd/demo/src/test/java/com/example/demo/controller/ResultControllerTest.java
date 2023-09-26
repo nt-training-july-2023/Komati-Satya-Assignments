@@ -38,19 +38,8 @@ class ResultControllerTest {
       ResultDto resultDto=new ResultDto();
       resultDto.setResultId(1);
       when(resultService.addRes(resultDto)).thenReturn(resultDto);
-      ResponseEntity<Object> response=resultController.addRes(resultDto);
+      ResponseEntity<String> response=resultController.addRes(resultDto);
       assertEquals(HttpStatus.OK,response.getStatusCode());
-      assertNotNull(response.getBody());
-    }
-    @Test
-    void testAddResultError() {
-      StudentResult studentResult=new StudentResult();
-      studentResult.setResultId(1);
-      ResultDto resultDto=new ResultDto();
-      resultDto.setResultId(1);
-      when(resultService.addRes(resultDto)).thenThrow(new NotFoundException("wrong email id"));
-      ResponseEntity<Object> response=resultController.addRes(resultDto);
-      assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
       assertNotNull(response.getBody());
     }
    @Test
@@ -60,36 +49,16 @@ class ResultControllerTest {
        ResultDto resultDto=new ResultDto();
        resultDto.setResultId(1);
        when(resultService.getRes(1)).thenReturn(Optional.of(resultDto));
-       ResponseEntity<Object> response=resultController.getRes(1);
+       ResponseEntity<Optional<ResultDto>> response=resultController.getRes(1);
        assertEquals(HttpStatus.OK,response.getStatusCode());
        assertNotNull(response.getBody());
     }
    @Test
-   void testGetResultError() {
-      StudentResult studentResult=new StudentResult();
-      studentResult.setResultId(1);
-      ResultDto resultDto=new ResultDto();
-      resultDto.setResultId(1);
-      when(resultService.getRes(1)).thenThrow(new AllNotFoundException("no studentresult is present"));
-      ResponseEntity<Object> response=resultController.getRes(1);
-      assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
-      assertNotNull(response.getBody());
-   }
-   @Test
    void testGetAllResultSuccess() {
        List<ResultDto> resultDto=new ArrayList<>();
        when(resultService.getAllRes()).thenReturn(resultDto);
-       ResponseEntity<Object> response=resultController.getAllRes();
+       ResponseEntity<List<ResultDto>> response=resultController.getAllRes();
        assertEquals(HttpStatus.OK,response.getStatusCode());
-       assertNotNull(response.getBody());
-   }
-   
-   @Test
-   void testGetAllResultError() {
-       List<ResultDto> resultDto=new ArrayList<>();
-       when(resultService.getAllRes()).thenThrow(new AllNotFoundException("no studentresult is present"));
-       ResponseEntity<Object> response=resultController.getAllRes();
-       assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
        assertNotNull(response.getBody());
    }
 }

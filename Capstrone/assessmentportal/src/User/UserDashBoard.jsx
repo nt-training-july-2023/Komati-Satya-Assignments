@@ -20,7 +20,7 @@ const UserDashBoard = () => {
 
   const getStudent = async () => {
     UserApi.getUserById(verifyUserId).then(response => {
-      setData(response.data.User_Information || []);
+      setData(response.data || []);
     }).catch(error => {
       console.error('An error occurred:', error);
     })

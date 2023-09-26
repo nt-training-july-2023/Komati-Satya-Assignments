@@ -28,7 +28,6 @@ public class StudentDto {
     /**
      * stores user role.
      */
-    @NotEmpty(message = "role is required")
     private String role;
     /**
      * stores user gender.

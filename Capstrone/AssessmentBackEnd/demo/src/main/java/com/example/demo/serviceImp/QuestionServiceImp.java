@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
 import com.example.demo.entity.Questions;
+import com.example.demo.entity.Quiz;
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
 import com.example.demo.exceptions.NotFoundException;
@@ -155,6 +156,13 @@ public class QuestionServiceImp implements QuestionsService {
             Optional<Questions> existingQue = questionsRepo.findById(id);
             if (existingQue.isPresent()) {
                 Questions exiQue = existingQue.get();
+                Optional<Questions> question = questionsRepo
+                        .findByQuestion(q.getQuestion());
+                      
+                if (question.isPresent()
+                        && !(question.get().getQid()==id)) {
+                    throw new AlreadyExistException("Question already exists");
+                }
                 exiQue.setOption1(q.getOption1());
                 exiQue.setOption2(q.getOption2());
                 exiQue.setOption3(q.getOption3());
@@ -181,7 +189,7 @@ public class QuestionServiceImp implements QuestionsService {
      */
     @Override
     public final List<QuestionsDto> findQueById(final int id) {
-        if (questionsRepo.findAll().size() != 0) {
+        if (questionsRepo.findQueById(id).size() != 0) {
             if (questionsRepo.findQueById(id).size() != 0) {
                 List<Questions> l = questionsRepo.findQueById(id);
                 List<QuestionsDto> ld = convertToDto(l);

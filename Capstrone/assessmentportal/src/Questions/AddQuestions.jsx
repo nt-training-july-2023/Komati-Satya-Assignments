@@ -135,7 +135,7 @@ const AddQuestions = () => {
                             navigate(`/Questions/${questionData.quizId}`);
                         }
                     }).catch((error)=>{
-                        if (error.response.data.status == 207) {
+                        if (error.response.data.errorMessage=="Question already exists") {
                             Swal.fire({
                                 title: 'Error',
                                 text: 'questions Already present',

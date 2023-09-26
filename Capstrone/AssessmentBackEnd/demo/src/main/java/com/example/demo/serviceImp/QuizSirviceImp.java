@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
+import com.example.demo.entity.Category;
 import com.example.demo.entity.Quiz;
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
@@ -159,6 +160,13 @@ public class QuizSirviceImp implements QuizService {
             Optional<Quiz> existingQuiz = quizRepo.findById(id);
             if (existingQuiz.isPresent()) {
                 Quiz exiQuiz = existingQuiz.get();
+                Optional<Quiz> quiz = quizRepo
+                        .findQuizByName(q.getTopicName());
+                      
+                if (quiz.isPresent()
+                        && !(quiz.get().getQuizId()==id)) {
+                    throw new AlreadyExistException("Quiz already exists");
+                }
                 exiQuiz.setTopicName(q.getTopicName());
                 exiQuiz.setTopicDescription(q.getTopicDescription());
                 exiQuiz.setTimer(q.getTimer());
@@ -181,7 +189,7 @@ public class QuizSirviceImp implements QuizService {
      */
     @Override
     public final List<QuizDto> findQuizById(final int id) {
-        if (quizRepo.findAll().size() != 0) {
+        if (quizRepo.findQuizById(id).size() != 0) {
             if (quizRepo.findQuizById(id).size() != 0) {
                 List<Quiz> quiz = quizRepo.findQuizById(id);
                 List<QuizDto> quizDto = convertToDto(quiz);

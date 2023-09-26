@@ -57,7 +57,7 @@ function Quiz({ setTrue }) {
           getQuiz();
         }).
           catch(error => {
-            console.log(error);
+           
           })
       } else if (result.isDenied) {
 

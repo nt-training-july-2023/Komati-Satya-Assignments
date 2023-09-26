@@ -48,18 +48,11 @@ public class StudentController {
      * @return response.
      */
     @PostMapping("/student")
-    public final ResponseEntity<Object> save(
+    public final ResponseEntity<String> save(
             @RequestBody @Valid final Student s) {
-        try {
             StudentSaveDto studentSaveDto = studentSevice.saveStudent(s);
             LOGGER.info("Student registration");
-            return Responsee.generateResponce("successfully added data",
-                    HttpStatus.OK, "User_Information", studentSaveDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
-        }
+            return ResponseEntity.ok("User register successfully");
     }
 
     /**
@@ -68,17 +61,10 @@ public class StudentController {
      * @return response
      */
     @GetMapping("/student/{id}")
-    public final ResponseEntity<Object> findById(@PathVariable final int id) {
-        try {
+    public final ResponseEntity<Optional<StudentDto>> findById(@PathVariable final int id) {
             Optional<StudentDto> studentDto = studentSevice.findById(id);
             LOGGER.info("Student registration");
-            return Responsee.generateResponce("successfully get the data",
-                    HttpStatus.OK, "User_Information", studentDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
-        }
+            return ResponseEntity.ok(studentDto);
     }
 
     /**
@@ -87,19 +73,12 @@ public class StudentController {
      * @return response
      */
     @PostMapping("/student/login")
-    public final ResponseEntity<Object> login(
+    public final ResponseEntity<Optional<StudentDto>> login(
             @RequestBody @Valid final LoginDto l) {
-        try {
             Optional<StudentDto> studentDto = studentSevice.
                     aunthenticateUser(l);
             LOGGER.info("Student login");
-            return Responsee.generateResponce("succcessfully retrieve the data",
-                    HttpStatus.OK, "User_Information", studentDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.UNAUTHORIZED, "User_Information", null);
-        }
+            return ResponseEntity.ok(studentDto);
     }
 
     /**
@@ -107,18 +86,10 @@ public class StudentController {
      * @return response
      */
     @GetMapping("/student/students")
-    public final ResponseEntity<Object> findAllStu() {
-        try {
+    public final ResponseEntity<List<StudentDto>> findAllStu() {
             List<StudentDto> studentDto = studentSevice.findAllStu();
             LOGGER.info("Find all students");
-            return Responsee.generateResponce(
-                    "successfully retrieve all the data", HttpStatus.OK,
-                    "User_Information", studentDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
-        }
+            return ResponseEntity.ok(studentDto);
     }
 
     /**
@@ -128,19 +99,12 @@ public class StudentController {
      * @return response
      */
     @PutMapping("/student/{id}")
-    public final ResponseEntity<Object> updateStudent(
+    public final ResponseEntity<String> updateStudent(
             @RequestBody @Valid final StudentDto s,
             @PathVariable final int id) {
-        try {
-            StudentDto studentDto = studentSevice.updateStudent(s, id);
+            studentSevice.updateStudent(s, id);
             LOGGER.info("Updatation of student");
-            return Responsee.generateResponce("successfully update the data",
-                    HttpStatus.OK, "User_Information", studentDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
-        }
+            return ResponseEntity.ok("user updated successfully"); 
     }
 
     /**
@@ -149,17 +113,10 @@ public class StudentController {
      * @return response
      */
     @DeleteMapping("/student/{id}")
-    public final ResponseEntity<Object> deleteStudent(
+    public final ResponseEntity<String> deleteStudent(
             @PathVariable final int id) {
-        try {
             studentSevice.deleteStudent(id);
             LOGGER.info("Deletion of student");
-            return Responsee.generateResponce("successfully delete the data",
-                    HttpStatus.OK, "User_Information", null);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
-        }
+            return ResponseEntity.ok("user deleted successfully"); 
     }
 }

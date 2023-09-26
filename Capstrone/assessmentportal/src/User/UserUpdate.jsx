@@ -26,7 +26,7 @@ const UserUpdate = () => {
     UserApi.getUserById(userId)
       .then((response) => {
         setSendData(response);
-        const userInformation = response.data.User_Information;
+        const userInformation = response.data;
         setUserData((previousData) => ({
           ...previousData,
           userName: userInformation.userName,
@@ -44,7 +44,7 @@ const UserUpdate = () => {
   const handleUpdateCategory = () => {
     UserApi.updateUser(userId, userData)
       .then((response) => {
-        if (response.data.message === "successfully update the data") {
+        if (response.data === "user updated successfully") {
           Swal.fire({
             title: "Updating data",
             text: "Successfully updated data",

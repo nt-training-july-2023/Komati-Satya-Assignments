@@ -41,19 +41,11 @@ public class ResultController {
      * @return response
      */
     @PostMapping("/result")
-    public final ResponseEntity<Object> addRes(
+    public final ResponseEntity<String> addRes(
             @RequestBody final ResultDto sr) {
-        try {
             ResultDto resultDto = resultService.addRes(sr);
             LOGGER.info("Adding result");
-            return Responsee.generateResponce("succcessfully add the data",
-                    HttpStatus.OK, "Student result_Information", resultDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Student result_Information",
-                    null);
-        }
+            return ResponseEntity.ok("result added successfully");
     }
 
     /**
@@ -62,17 +54,10 @@ public class ResultController {
      * @return response
      */
     @GetMapping("/result/{id}")
-    public final ResponseEntity<Object> getRes(@PathVariable final int id) {
-        try {
+    public final ResponseEntity<Optional<ResultDto>> getRes(@PathVariable final int id) {
             Optional<ResultDto> resultDto = resultService.getRes(id);
             LOGGER.info("Get result by id");
-            return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Student result_Information", resultDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "result_Information", null);
-        }
+            return ResponseEntity.ok(resultDto);
     }
 
     /**
@@ -80,16 +65,9 @@ public class ResultController {
      * @return response
      */
     @GetMapping("/result")
-    public final ResponseEntity<Object> getAllRes() {
-        try {
+    public final ResponseEntity<List<ResultDto>> getAllRes() {
             List<ResultDto> resultDto = resultService.getAllRes();
             LOGGER.info("getting all result");
-            return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Student result_Information", resultDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "result_Information", null);
-        }
+            return ResponseEntity.ok(resultDto);
     }
 }

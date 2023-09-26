@@ -15,8 +15,8 @@ function Student() {
   }, []);
   const getStudents = async () => {
     UserApi.getAllStudents().then(response => {
-      setStudent(response.data.User_Information || []);
-      setOriginalStudent(response.data.User_Information || []);
+      setStudent(response.data || []);
+      setOriginalStudent(response.data || []);
 
     }).catch(error => {
       console.error('An error occurred:', error);

@@ -81,14 +81,6 @@ const AddCategory = () => {
                 setErrors({});
             CategoryApi.updateCategory(categoryId,categoryData)
               .then((response) => {
-                if(response.data.status==207){
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Category Already present',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                      });
-                }
                 if (response.data === "Updated successfully") {
                   Swal.fire({
                     title: 'Updating data',
@@ -97,6 +89,15 @@ const AddCategory = () => {
                     confirmButtonText: 'Ok'
                   });
                   navigate('/Category')
+                }
+              }).catch((error)=>{
+                if(error.response.data.errorMessage=="Category already exists"){
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'Category Already present',
+                        icon: 'error',
+                        confirmButtonText: 'Ok'
+                      });
                 }
               })
             }

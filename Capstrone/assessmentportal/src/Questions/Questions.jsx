@@ -58,6 +58,7 @@ const Questions = () => {
         })
           .catch(error => {
             console.log(error);
+            getQuestions();
           })
       } else if (result.isDenied) {
 

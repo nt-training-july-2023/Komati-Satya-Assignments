@@ -36,6 +36,7 @@ public class Category {
      * store category description.
      */
     @Column(nullable = false)
+    @NotEmpty(message = "category description is required")
     private String categoryDescription;
     /**
      * one to many relationship with quiz.
