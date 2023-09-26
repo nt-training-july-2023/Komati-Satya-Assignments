@@ -12,6 +12,9 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
@@ -26,25 +29,26 @@ import com.example.demo.repository.QuestionsRepo;
 import com.example.demo.repository.QuizRepo;
 
 class QuestionServiceImpTest {
-
+    @InjectMocks
     private QuestionServiceImp questionsService;
+    @Mock
     private QuestionsRepo questionsRepo;
+    @Mock
     private QuizRepo quizRepo;
     
     @BeforeEach
     void setUp() {
-        questionsRepo=mock(QuestionsRepo.class);
-        quizRepo=mock(QuizRepo.class);
-        questionsService=new QuestionServiceImp(questionsRepo,quizRepo);
+        MockitoAnnotations.openMocks(this);
     }
     
     @Test
     void testAddQuestion() {
-        Questions q=new Questions("java is","oops","popl","none","both","oopl");
+        Questions q=new Questions("java is","oops","popl","none","both","oops");
        Quiz quiz=new Quiz(1,"variables","java variables",60);
         q.setQui(quiz);
       when(quizRepo.findById(q.getQui().getQuizId())).thenReturn(Optional.of(quiz));
         when(questionsRepo.findByQuestion(q.getQuestion())).thenReturn(Optional.empty());
+        assertEquals(q.getCorrectOption(),q.getOption1());
        QuestionsDto questionsDto=new QuestionsDto();
        questionsDto.setQuizId(quiz.getQuizId());
        questionsDto.setQuestion(q.getQuestion());

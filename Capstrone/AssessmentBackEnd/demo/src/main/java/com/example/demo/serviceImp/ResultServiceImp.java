@@ -61,23 +61,6 @@ public class ResultServiceImp implements ResultService {
             .getLogger(ResultServiceImp.class);
 
     /**
-     * constructor.
-     * @param resultRepo   result repository
-     * @param finalRepo    final repository
-     * @param categoryyRepo category repository
-     * @param studenttRepo  student repository
-     * @param quizzRepo     quiz repository
-     */
-    public ResultServiceImp(final StudentResultRepo resultRepo,
-            final FinalResultRepo finalRepo, final CategoryRepo categoryyRepo,
-            final StudentRepo studenttRepo, final QuizRepo quizzRepo) {
-        this.categoryRepo = categoryyRepo;
-        this.finalResultRepo = finalRepo;
-        this.quizRepo = quizzRepo;
-        this.studentResultRepo = resultRepo;
-        this.studentRepo = studenttRepo;
-    }
-    /**
      * add result method.
      * @param resultDto studentResult
      * @return student result

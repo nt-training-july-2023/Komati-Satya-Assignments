@@ -14,6 +14,9 @@ import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import com.example.demo.dto.ResultDto;
 import com.example.demo.entity.Category;
@@ -27,18 +30,18 @@ import com.example.demo.repository.StudentResultRepo;
 
 class FinalResultServiceImpTest {
 
-    
+    @InjectMocks
     private FinalResultServiceImp finalService;
+    @Mock
     private FinalResultRepo finalRepo;
+    @Mock
     private StudentResultRepo resultRepo;
+    @Mock
     private CategoryRepo categoryRepo;
     
     @BeforeEach
     void setUp() {
-        finalRepo=mock(FinalResultRepo.class);
-        categoryRepo=mock(CategoryRepo.class);
-        resultRepo=mock(StudentResultRepo.class);
-        finalService=new FinalResultServiceImp(finalRepo,categoryRepo,resultRepo);
+        MockitoAnnotations.openMocks(this);
     }
     @Test
     void testFindResultByUserId() {        

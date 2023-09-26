@@ -11,6 +11,9 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import com.example.demo.dto.ResultDto;
 import com.example.demo.entity.Category;
@@ -28,22 +31,22 @@ import com.example.demo.repository.StudentResultRepo;
 
 class ResultServiceImpTest {
 
-    
+    @InjectMocks
     private ResultServiceImp resultService;
+    @Mock
     private FinalResultRepo finalRepo;
+    @Mock
     private StudentResultRepo resultRepo;
+    @Mock
     private CategoryRepo categoryRepo;
+    @Mock
     private QuizRepo quizRepo;
+    @Mock
     private StudentRepo studentRepo;
     
     @BeforeEach
     void setUp() {
-        finalRepo=mock(FinalResultRepo.class);
-        categoryRepo=mock(CategoryRepo.class);
-        resultRepo=mock(StudentResultRepo.class);
-        quizRepo=mock(QuizRepo.class);
-        studentRepo=mock(StudentRepo.class);
-        resultService=new ResultServiceImp(resultRepo,finalRepo,categoryRepo,studentRepo,quizRepo);
+        MockitoAnnotations.openMocks(this);
     }
     @Test
     void testAddResult() {

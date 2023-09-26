@@ -43,7 +43,7 @@ class CategoryControllerTest {
         categoryDto.setCategoryName("java");
         when(categoryService.saveCategory(category)).thenReturn(categoryDto);
         ResponseEntity<Object> response=categoryController.saveCategory(category);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals(HttpStatus.CREATED,response.getStatusCode());
         assertNotNull(response.getBody());
     }
     @Test

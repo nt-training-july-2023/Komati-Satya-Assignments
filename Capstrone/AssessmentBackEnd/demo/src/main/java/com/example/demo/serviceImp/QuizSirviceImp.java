@@ -41,16 +41,6 @@ public class QuizSirviceImp implements QuizService {
             .getLogger(QuizSirviceImp.class);
 
     /**
-     * constructor.
-     * @param repo quiz repository
-     * @param categoryyRepo category repository
-     */
-    public QuizSirviceImp(final QuizRepo repo,
-            final CategoryRepo categoryyRepo) {
-        this.quizRepo = repo;
-        this.categoryRepo = categoryyRepo;
-    }
-    /**
      * add quiz method.
      * @param quiz quiz
      * @result quiz

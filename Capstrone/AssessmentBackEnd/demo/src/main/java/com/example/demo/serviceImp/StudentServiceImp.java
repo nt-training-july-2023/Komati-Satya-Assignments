@@ -36,14 +36,6 @@ public class StudentServiceImp implements StudentService {
      */
     private static final Logger LOGGER = LoggerFactory
             .getLogger(StudentServiceImp.class);
-
-    /**
-     * Constructor.
-     * @param repo repo
-     */
-    public StudentServiceImp(final StudentRepo repo) {
-        this.studentRepo = repo;
-    }
     /**
      * authenticate user method.
      * @param loginDto loginDto

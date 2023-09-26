@@ -41,16 +41,6 @@ public class QuestionServiceImp implements QuestionsService {
             .getLogger(QuestionServiceImp.class);
 
     /**
-     * constructor.
-     * @param questionssRepo questions repository
-     * @param quizzRepo quiz repository
-     */
-    public QuestionServiceImp(final QuestionsRepo questionssRepo,
-            final QuizRepo quizzRepo) {
-        this.questionsRepo = questionssRepo;
-        this.quizRepo = quizzRepo;
-    }
-    /**
      * add question method.
      * @param questions question
      * @return question
@@ -60,6 +50,11 @@ public class QuestionServiceImp implements QuestionsService {
         if (quizRepo.findById(questions.getQui().getQuizId()).isPresent()) {
             if (!questionsRepo.findByQuestion(questions.getQuestion())
                     .isPresent()) {
+                if ((questions.getCorrectOption()).equals(questions.getOption1()) ||
+                        (questions.getCorrectOption()).equals(questions.getOption2())  ||
+                        (questions.getCorrectOption()).equals(questions.getOption3()) || 
+                        (questions.getCorrectOption()).equals(questions.getOption4()))  {
+                    System.out.println(questions.getCorrectOption());
                 QuestionsDto qu = new QuestionsDto();
                 qu.setQuizId(questions.getQui().getQuizId());
                 qu.setCorrectOption(questions.getCorrectOption());
@@ -71,6 +66,11 @@ public class QuestionServiceImp implements QuestionsService {
                 questionsRepo.save(questions);
                 LOGGER.info("add question");
                 return qu;
+                }
+                else {
+                    LOGGER.error("coorect option must same with one of four options");
+                    throw new NotFoundException("coorect option must same with one of four options");
+                }
             } else {
                 LOGGER.error("question already exist");
                 throw new AlreadyExistException("question already exist");

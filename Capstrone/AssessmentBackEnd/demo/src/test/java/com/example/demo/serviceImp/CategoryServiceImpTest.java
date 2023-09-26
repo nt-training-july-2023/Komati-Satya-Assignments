@@ -13,6 +13,9 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.entity.Category;
@@ -25,13 +28,14 @@ import com.example.demo.repository.CategoryRepo;
 
 class CategoryServiceImpTest {
 
+    @InjectMocks
     private CategoryServiceImp categoryService;
+    @Mock
     private CategoryRepo repo;
     
     @BeforeEach
     void setUp() {
-        repo=mock(CategoryRepo.class);
-        categoryService=new CategoryServiceImp(repo);
+        MockitoAnnotations.openMocks(this);
     }
     
     @Test

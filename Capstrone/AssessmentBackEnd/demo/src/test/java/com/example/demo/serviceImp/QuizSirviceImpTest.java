@@ -12,6 +12,10 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
 import com.example.demo.entity.Category;
@@ -24,15 +28,16 @@ import com.example.demo.repository.QuizRepo;
 
 class QuizSirviceImpTest {
 
+    @InjectMocks
     private QuizSirviceImp quizService;
+    @Mock
     private QuizRepo quizRepo;
+    @Mock
     private CategoryRepo categoryRepo;
     
     @BeforeEach
     void setUp() {
-        quizRepo=mock(QuizRepo.class);
-        categoryRepo=mock(CategoryRepo.class);
-        quizService=new QuizSirviceImp(quizRepo,categoryRepo);
+        MockitoAnnotations.openMocks(this);
     }
     
     

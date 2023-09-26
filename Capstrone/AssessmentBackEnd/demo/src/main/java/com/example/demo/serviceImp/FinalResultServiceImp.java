@@ -43,20 +43,6 @@ public class FinalResultServiceImp implements FinalResService {
      */
     private static final Logger LOGGER = LoggerFactory
             .getLogger(FinalResultServiceImp.class);
-
-    /**
-     * constructor.
-     * @param finalRepo    final repository
-     * @param categoryyRepo category repository
-     * @param resultRepo   result repository
-     */
-    public FinalResultServiceImp(final FinalResultRepo finalRepo,
-            final CategoryRepo categoryyRepo,
-            final StudentResultRepo resultRepo) {
-        this.finalResultRepo = finalRepo;
-        this.categoryRepo = categoryyRepo;
-        this.studentResultRepo = resultRepo;
-    }
     /**
      * get by id method.
      * @param id final result id

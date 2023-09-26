@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.CategoryDto;
@@ -24,19 +25,13 @@ public class CategoryServiceImp implements CategoryService {
     /**
      * categoryRepo object.
      */
+    @Autowired
     private CategoryRepo categoryRepo;
     /**
      * Creating a instance of Logger Class.
      */
     private static final Logger LOGGER = LoggerFactory
             .getLogger(CategoryServiceImp.class);
-    /**
-     * constructor.
-     * @param st categoryRepo
-     */
-    public CategoryServiceImp(final CategoryRepo st) {
-        this.categoryRepo = st;
-    }
     /**
      * save category method.
      * @param category category

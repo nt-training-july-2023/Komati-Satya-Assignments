@@ -99,7 +99,7 @@ class StudentControllerTest {
         saveDto.setUserName("satya");
         when(studentService.aunthenticateUser(loginDto)).thenThrow(new EmailDoesNotExistException("Email not exist"));
         ResponseEntity<Object> response=studentController.login(loginDto);
-        assertEquals(HttpStatus.MULTI_STATUS,response.getStatusCode());
+        assertEquals(HttpStatus.UNAUTHORIZED,response.getStatusCode());
         assertNotNull(response.getBody());
     }
     @Test

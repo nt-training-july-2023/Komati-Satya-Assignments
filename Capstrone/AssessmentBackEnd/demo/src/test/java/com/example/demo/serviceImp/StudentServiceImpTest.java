@@ -13,6 +13,9 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.example.demo.dto.LoginDto;
@@ -28,14 +31,14 @@ import com.example.demo.repository.StudentRepo;
 
 
 class StudentServiceImpTest {
-
+    @InjectMocks
     private StudentServiceImp studentService;
+    @Mock
     private StudentRepo repo;
     
     @BeforeEach
     void setUp() {
-        repo=mock(StudentRepo.class);
-        studentService=new StudentServiceImp(repo);
+        MockitoAnnotations.openMocks(this);
     }
     @Test
     public void testSaveStudent() {
