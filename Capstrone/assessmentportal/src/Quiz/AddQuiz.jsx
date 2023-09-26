@@ -34,7 +34,7 @@ const AddQuiz = () => {
         if (quizId) {
             QuizApi.getQuiz(quizId)
                 .then((response) => {
-                    const quizInformation = response.data.Quiz_topic_Information;
+                    const quizInformation = response.data;
                     const { topicName, topicDescription, timer, categoryId } = quizInformation;
                     setQuizData({
                         topicName,
@@ -85,7 +85,7 @@ const AddQuiz = () => {
                                 confirmButtonText: 'Ok'
                             });
                         }
-                        if (response.data.message === "succcessfully update the data") {
+                        if (response.data === "quiz updated successfully") {
                             Swal.fire({
                                 title: 'Updating data',
                                 text: 'Successfully updated data',
@@ -123,7 +123,7 @@ const AddQuiz = () => {
             } else {
                 setErrors({});
                 QuizApi.addQuiz(requestData).then(response => {
-                    if (response.data.message === "succcessfully add the data") {
+                    if (response.data === "succcessfully add the data") {
                         Swal.fire({
                             title: 'Add Quiz',
                             text: 'Added Quiz',
@@ -132,7 +132,10 @@ const AddQuiz = () => {
                         });
                         navigate(`/Quiz/${quizData.categoryId}`);
 
-                    } else if (response.data.message === "Topic is already exist,enter a new topic") {
+                    } 
+                }).catch(error => {
+                    console.log(error)
+                    if (error.response.status === 302) {
                         Swal.fire({
                             title: 'Error!',
                             text: 'Quiz already present',
@@ -140,8 +143,6 @@ const AddQuiz = () => {
                             confirmButtonText: 'Ok'
                         });
                     }
-                }).catch(error => {
-                    console.log(error)
                 })
             }
         }

@@ -21,8 +21,9 @@ function Category() {
   const getCategories = async () => {
     CategoryApi.getAllCategories().then(
       response => {
-        setCategory(response.data.Category_Information || []);
-        setOriginalCategory(response.data.Category_Information || []);
+        console.log(response)
+        setCategory(response.data || []);
+        setOriginalCategory(response.data || []);
       }).catch(error => {
         console.error('An error occurred:', error);
       }).finally(() => {
@@ -46,7 +47,7 @@ function Category() {
 
         CategoryApi.deleteCategory(id).then(response => {
 
-          if (response.data.message === "succcessfully delete the data") {
+          if (response.data === "Deleted successfully") {
             Swal.fire({
               title: 'Deleting data',
               text: 'Successfully deleted data',

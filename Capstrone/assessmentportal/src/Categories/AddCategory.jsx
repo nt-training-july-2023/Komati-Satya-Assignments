@@ -25,7 +25,7 @@ const AddCategory = () => {
              CategoryApi.getCategoryById(categoryId)
           .then((response) => {
     
-            const userInformation = response.data.Category_Information;
+            const userInformation = response.data;
             const { categoryName, categoryDescription } = userInformation;
             setCategoryData({
               categoryName,
@@ -89,7 +89,7 @@ const AddCategory = () => {
                         confirmButtonText: 'Ok'
                       });
                 }
-                if (response.data.message === "succcessfully update the data") {
+                if (response.data === "Updated successfully") {
                   Swal.fire({
                     title: 'Updating data',
                     text: 'Successfully updated data',
@@ -143,7 +143,8 @@ else{
 
             setErrors({});
        CategoryApi.addCategory(categoryData).then(response=>{
-        if (response.data.message === "succcessfully added data") {
+        
+          if (response.data === "added") {
             Swal.fire({
                 title: 'Add category',
                 text: 'Added category',
@@ -151,17 +152,20 @@ else{
                 confirmButtonText: 'Ok'
             });
             navigate('/Category');
+           
         }
-        else if (response.data.message === "Category already present") {
-            Swal.fire({
-                title: 'Error!',
-                text: 'Category already present',
-                icon: 'error',
-                confirmButtonText: 'Ok'
-            });
-        }
-    }).catch(error=>{
-       
+       console.log(response)
+    }).catch((error)=>{
+       console.log(error);
+       if (error.response.status === 302) {
+        console.log("fhdk");
+        Swal.fire({
+            title: 'Error!',
+            text: 'Category already present',
+            icon: 'error',
+            confirmButtonText: 'Ok'
+        });
+    }
     })
         
 }

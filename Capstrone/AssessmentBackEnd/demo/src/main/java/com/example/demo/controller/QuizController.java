@@ -47,18 +47,19 @@ public class QuizController {
      * @return response
      */
     @PostMapping("/quiz")
-    public final ResponseEntity<Object> saveQuiz(
+    public final ResponseEntity<String> saveQuiz(
             @RequestBody @Valid final Quiz q) {
-        try {
+       // try {
             QuizDto quizDto = quizSevice.addQuiz(q);
             LOGGER.info("Adding Quiz");
-            return Responsee.generateResponce("succcessfully add the data",
-                    HttpStatus.OK, "Quiz Topic_Information", quizDto);
-        } catch (Exception e) {
-            LOGGER.info("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz Topic_Information", null);
-        }
+//            return Responsee.generateResponce("succcessfully add the data",
+//                    HttpStatus.OK, "Quiz Topic_Information", quizDto);
+//        } catch (Exception e) {
+//            LOGGER.info("Exception occur");
+//            return Responsee.generateResponce(e.getMessage(),
+//                    HttpStatus.MULTI_STATUS, "Quiz Topic_Information", null);
+//        }
+            return ResponseEntity.ok("succcessfully add the data");
     }
 
     /**
@@ -67,17 +68,18 @@ public class QuizController {
      * @return response
      */
     @GetMapping("/quiz/id/{id}")
-    public final ResponseEntity<Object> getQuiz(@PathVariable final int id) {
-        try {
+    public final ResponseEntity<Optional<QuizDto>> getQuiz(@PathVariable final int id) {
+   //     try {
             Optional<QuizDto> quizDto = quizSevice.getQuiz(id);
             LOGGER.info("get quiz by quiz id");
-            return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Quiz_topic_Information", quizDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "QuizTopic_Information", null);
-        }
+//            return Responsee.generateResponce("succcessfully retrive the data",
+//                    HttpStatus.OK, "Quiz_topic_Information", quizDto);
+//        } catch (Exception e) {
+//            LOGGER.error("Exception occur");
+//            return Responsee.generateResponce(e.getMessage(),
+//                    HttpStatus.MULTI_STATUS, "QuizTopic_Information", null);
+//        }
+            return ResponseEntity.ok(quizDto);
     }
 
     /**
@@ -85,17 +87,18 @@ public class QuizController {
      * @return response
      */
     @GetMapping("/quiz")
-    public final ResponseEntity<Object> findAll() {
-        try {
+    public final ResponseEntity< List<QuizDto>> findAll() {
+      //  try {
             List<QuizDto> quizDto = quizSevice.findAll();
             LOGGER.info("Find all quizes");
-            return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Quiz_Information", quizDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
-        }
+//            return Responsee.generateResponce("succcessfully retrive the data",
+//                    HttpStatus.OK, "Quiz_Information", quizDto);
+//        } catch (Exception e) {
+//            LOGGER.error("Exception occur");
+//            return Responsee.generateResponce(e.getMessage(),
+//                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
+//        }
+            return ResponseEntity.ok(quizDto);
     }
 
     /**
@@ -105,16 +108,17 @@ public class QuizController {
      */
     @DeleteMapping("/quiz/{id}")
     public final ResponseEntity<Object> deleteQuiz(@PathVariable final int id) {
-        try {
+       // try {
             quizSevice.deleteQuiz(id);
             LOGGER.info("Delete quiz");
-            return Responsee.generateResponce("succcessfully delete the data",
-                    HttpStatus.OK, "Quiz_Information", null);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
-        }
+//            return Responsee.generateResponce("succcessfully delete the data",
+//                    HttpStatus.OK, "Quiz_Information", null);
+//        } catch (Exception e) {
+//            LOGGER.error("Exception occur");
+//            return Responsee.generateResponce(e.getMessage(),
+//                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
+//        }
+            return ResponseEntity.ok("quiz deleted successfully");
     }
 
     /**
@@ -124,19 +128,20 @@ public class QuizController {
      * @return response
      */
     @PutMapping("/quiz/{id}")
-    public final ResponseEntity<Object> updateQuiz(
+    public final ResponseEntity<String> updateQuiz(
             @RequestBody @Valid final QuizUpdateDto q,
             @PathVariable final int id) {
-        try {
+       // try {
             QuizUpdateDto quizDto = quizSevice.updateQuiz(q, id);
             LOGGER.info("Update the quiz");
-            return Responsee.generateResponce("succcessfully update the data",
-                    HttpStatus.OK, "Quiz_Information", quizDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
-        }
+//            return Responsee.generateResponce("succcessfully update the data",
+//                    HttpStatus.OK, "Quiz_Information", quizDto);
+//        } catch (Exception e) {
+//            LOGGER.error("Exception occur");
+//            return Responsee.generateResponce(e.getMessage(),
+//                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
+//        }
+            return ResponseEntity.ok("quiz updated successfully");
     }
 
     /**
@@ -145,18 +150,19 @@ public class QuizController {
      * @return response
      */
     @GetMapping("quiz/quizz/{id}")
-    public final ResponseEntity<Object> findQuizById(
+    public final ResponseEntity<List<QuizDto>> findQuizById(
             @PathVariable final int id) {
-        try {
+      //  try {
             List<QuizDto> quizDto = quizSevice.findQuizById(id);
             LOGGER.info("Fina quiz by categoryID");
-            return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Quiz_Information", quizDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
-        }
+//            return Responsee.generateResponce("succcessfully retrive the data",
+//                    HttpStatus.OK, "Quiz_Information", quizDto);
+//        } catch (Exception e) {
+//            LOGGER.error("Exception occur");
+//            return Responsee.generateResponce(e.getMessage(),
+//                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
+//        }
+            return ResponseEntity.ok(quizDto);
     }
 
     /**
@@ -165,17 +171,18 @@ public class QuizController {
      * @return response
      */
     @GetMapping("/quiz/quizByName/{name}")
-    public final ResponseEntity<Object> findQuizByName(
+    public final ResponseEntity<Optional<QuizDto>> findQuizByName(
             @PathVariable final String name) {
-        try {
+     //   try {
             Optional<QuizDto> quizDto = quizSevice.findQuizByName(name);
             LOGGER.info("Find quiz by name");
-            return Responsee.generateResponce("succcessfully update the data",
-                    HttpStatus.OK, "Quiz_Information", quizDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
-        }
+//            return Responsee.generateResponce("succcessfully update the data",
+//                    HttpStatus.OK, "Quiz_Information", quizDto);
+//        } catch (Exception e) {
+//            LOGGER.error("Exception occur");
+//            return Responsee.generateResponce(e.getMessage(),
+//                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
+//        }
+            return ResponseEntity.ok(quizDto);
     }
 }

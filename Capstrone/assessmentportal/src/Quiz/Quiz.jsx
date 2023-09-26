@@ -23,8 +23,8 @@ function Quiz({ setTrue }) {
   }, [categoryId]);
   const getQuiz = async () => {
     QuizApi.getQuizByCategoryId(categoryId).then(response => {
-      setQuiz(response.data.Quiz_Information || []);
-      setOriginalQuiz(response.data.Quiz_Information || []);
+      setQuiz(response.data|| []);
+      setOriginalQuiz(response.data || []);
     }).catch(error => {
       console.error('An error occurred:', error);
     }).finally(() => {

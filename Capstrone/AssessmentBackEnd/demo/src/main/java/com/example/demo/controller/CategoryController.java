@@ -47,13 +47,13 @@ public class CategoryController {
      * @return response
      */
     @PostMapping("/category")
-    public final ResponseEntity<Object> saveCategory(
+    public final ResponseEntity<String> saveCategory(
             @RequestBody @Valid final Category c) {
        // try {
-            CategoryDto categoryDto = categoryService.saveCategory(c);
+            categoryService.saveCategory(c);
             LOGGER.info("Adding new category");
-            return Responsee.generateResponce("succcessfully added data",
-                    HttpStatus.CREATED, "Category_Information", categoryDto);
+//            
+            return ResponseEntity.ok("added");
 //        } catch (Exception e) {
 //            LOGGER.error("category already present error");
 //            return Responsee.generateResponce(e.getMessage(),
@@ -67,12 +67,13 @@ public class CategoryController {
      * @return response
      */
     @GetMapping("/category/cat/{id}")
-    public final ResponseEntity<Object> findById(@PathVariable final int id) {
+    public final ResponseEntity<Optional<CategoryDto>> findById(@PathVariable final int id) {
       //  try {
             Optional<CategoryDto> categoryDto = categoryService.findById(id);
             LOGGER.info("find category by category id");
-            return Responsee.generateResponce("succcessfully retrieve the data",
-                    HttpStatus.OK, "Category_Information", categoryDto);
+            return ResponseEntity.ok(categoryDto);
+//            return Responsee.generateResponce("succcessfully retrieve the data",
+//                    HttpStatus.OK, "Category_Information", categoryDto);
 //        } catch (Exception e) {
 //            LOGGER.error("Exception occur");
 //            return Responsee.generateResponce(e.getMessage(),
@@ -85,12 +86,13 @@ public class CategoryController {
      * @return response.
      */
     @GetMapping("/category")
-    public final ResponseEntity<Object> findAll() {
+    public final ResponseEntity<List<CategoryDto>> findAll() {
       //  try {
             List<CategoryDto> categoryDto = categoryService.findAll();
             LOGGER.info("fina all categories");
-            return Responsee.generateResponce("succcessfully retrieve the data",
-                    HttpStatus.OK, "Category_Information", categoryDto);
+//            return Responsee.generateResponce("succcessfully retrieve the data",
+//                    HttpStatus.OK, "Category_Information", categoryDto);
+            return ResponseEntity.ok(categoryDto);
 //        } catch (Exception e) {
 //            LOGGER.error("exception occur");
 //            return Responsee.generateResponce(e.getMessage(),
@@ -105,19 +107,20 @@ public class CategoryController {
      * @return response.
      */
     @PutMapping("/category/{id}")
-    public final ResponseEntity<Object> updateCategory(
+    public final ResponseEntity<String> updateCategory(
             @RequestBody @Valid final CategoryDto c,
             @PathVariable final int id) {
-       try {
-            CategoryDto categoryDto = categoryService.updateCategory(c, id);
+     //  try {
+            categoryService.updateCategory(c, id);
             LOGGER.info("update category");
-            return Responsee.generateResponce("succcessfully update the data",
-                    HttpStatus.OK, "Category_Information", categoryDto);
-        } catch (Exception e) {
-            LOGGER.error("Exception occur");
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Category_Information", null);
-        }
+//            return Responsee.generateResponce("succcessfully update the data",
+//                    HttpStatus.OK, "Category_Information", categoryDto);
+//        } catch (Exception e) {
+//            LOGGER.error("Exception occur");
+//            return Responsee.generateResponce(e.getMessage(),
+//                    HttpStatus.MULTI_STATUS, "Category_Information", null);
+//        }
+            return ResponseEntity.ok("Updated successfully");
     }
 
     /**
@@ -126,13 +129,14 @@ public class CategoryController {
      * @return response.
      */
     @DeleteMapping("/category/{id}")
-    public final ResponseEntity<Object> deleteCategory(
+    public final ResponseEntity<String> deleteCategory(
             @PathVariable final int id) {
        // try {
             categoryService.deleteCategory(id);
             LOGGER.info("delete category");
-            return Responsee.generateResponce("succcessfully delete the data",
-                    HttpStatus.OK, "User_Information", null);
+//            return Responsee.generateResponce("succcessfully delete the data",
+//                    HttpStatus.OK, "User_Information", null);
+            return ResponseEntity.ok("Deleted successfully");
 //        } catch (Exception e) {
 //            LOGGER.error("Exception occur");
 //            return Responsee.generateResponce(e.getMessage(),
@@ -146,13 +150,14 @@ public class CategoryController {
      * @return response.
      */
     @GetMapping("/category/{s}")
-    public final ResponseEntity<Object> findByName(
+    public final ResponseEntity<Optional<CategoryDto>> findByName(
             @PathVariable final String s) {
 //        try {
             Optional<CategoryDto> categoryDto = categoryService.findByName(s);
             LOGGER.info("find category by category name");
-            return Responsee.generateResponce("succcessfully retrieve the data",
-                    HttpStatus.OK, "User_Information", categoryDto);
+//            return Responsee.generateResponce("succcessfully retrieve the data",
+//                    HttpStatus.OK, "User_Information", categoryDto);
+            return ResponseEntity.ok(categoryDto);
 //        } catch (Exception e) {
 //            LOGGER.error("Exception occur");
 //            return Responsee.generateResponce(e.getMessage(),

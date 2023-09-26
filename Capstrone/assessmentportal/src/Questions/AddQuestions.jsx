@@ -56,7 +56,7 @@ const AddQuestions = () => {
         if (question) {
             QuestionsApi.getByQuestion(question)
                 .then((response) => {
-                    const questionInformation = response.data.Questions_Information;
+                    const questionInformation = response.data;
 
                     const { question, option1, option2, option3, option4, correctOption, questionId, quizId } = questionInformation;
                     setQuestionData({
@@ -124,15 +124,8 @@ const AddQuestions = () => {
                 setErrors({});
                 QuestionsApi.updateQuestion(questionData.questionId, questionData2)
                     .then((response) => {
-                        if (response.data.status == 207) {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'questions Already present',
-                                icon: 'error',
-                                confirmButtonText: 'Ok'
-                            });
-                        }
-                        if (response.data.message === "succcessfully update the data") {
+                      
+                        if (response.data=== "question updated successfully") {
                             Swal.fire({
                                 title: 'Updating data',
                                 text: 'Successfully updated data',
@@ -140,6 +133,15 @@ const AddQuestions = () => {
                                 confirmButtonText: 'Ok'
                             });
                             navigate(`/Questions/${questionData.quizId}`);
+                        }
+                    }).catch((error)=>{
+                        if (error.response.data.status == 207) {
+                            Swal.fire({
+                                title: 'Error',
+                                text: 'questions Already present',
+                                icon: 'error',
+                                confirmButtonText: 'Ok'
+                            });
                         }
                     })
 
@@ -184,7 +186,7 @@ const AddQuestions = () => {
             } else {
                 setErrors({});
                 QuestionsApi.addQuestion(requestData).then(response => {
-                    if (response.data.message === "succcessfully add the data") {
+                    if (response.data === "question added successfully") {
                         Swal.fire({
                             title: 'Add Question',
                             text: 'Added Question',
@@ -193,7 +195,10 @@ const AddQuestions = () => {
                         });
                         navigate(`/Questions/${quizId}`);
 
-                    } else if (response.data.message === "question already exist") {
+                    } 
+                }).catch(error => {
+                    console.log(error)
+                    if (error.response.status === 302) {
                         Swal.fire({
                             title: 'Error!',
                             text: 'Question already present',
@@ -201,8 +206,6 @@ const AddQuestions = () => {
                             confirmButtonText: 'Ok'
                         });
                     }
-                }).catch(error => {
-                    console.log(error)
                 })
             }
         }
@@ -223,6 +226,10 @@ const AddQuestions = () => {
         }).then((result) => {
             if (result.isConfirmed) {
                 Swal.fire('Changes are not saved', '', 'info')
+             
+              if(question)
+              navigate(`/Questions/${questionData.quizId}`);
+              else
                 navigate(`/Questions/${quizId}`);
 
             } else if (result.isDenied) {

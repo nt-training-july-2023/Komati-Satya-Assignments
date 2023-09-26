@@ -53,7 +53,7 @@ function Test({ isRefresh, setTrue }) {
   }, [quizId])
   const getQuiz = async () => {
     QuizApi.getQuiz(quizId).then(response => {
-      setQuiz(response.data.Quiz_topic_Information || []);
+      setQuiz(response.data || []);
     }).catch(error => {
       console.error('An error occurred:', error);
     }).finally(() => {
@@ -67,8 +67,8 @@ function Test({ isRefresh, setTrue }) {
 
   const getQuestions = async () => {
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
-      setQuestions(response.data.Questions_Information || []);
-      setNumberOfQuestions(response.data.Questions_Information.length)
+      setQuestions(response.data|| []);
+      setNumberOfQuestions(response.data.length)
 
     }).catch(error => {
       console.error('An error occurred:', error);

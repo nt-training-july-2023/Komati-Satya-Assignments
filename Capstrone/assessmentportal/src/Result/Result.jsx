@@ -23,8 +23,8 @@ const Result = () => {
       if (response.data.message === "No results are there") {
         <h1>No results</h1>
       }
-      setResult(response.data.Result_Information || []);
-      setOriginalResult(response.data.Result_Information || []);
+      setResult(response.data || []);
+      setOriginalResult(response.data || []);
     }).catch(error => {
       console.error('An error occurred:', error);
     }).finally(() => {
@@ -36,8 +36,8 @@ const Result = () => {
       if (response.data.message == "No user is there") {
         <h1>No results</h1>
       }
-      setResult(response.data.User_Information || []);
-      setOriginalResult(response.data.User_Information || []);
+      setResult(response.data || []);
+      setOriginalResult(response.data || []);
     }).catch(error => {
       console.error('An error occurred:', error);
     }).finally(() => {

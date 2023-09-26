@@ -22,8 +22,8 @@ const Questions = () => {
   }, [quizId]);
   const getQuestions = async () => {
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
-      setQuestions(response.data.Questions_Information || []);
-      setOriginalQuestions(response.data.Questions_Information || []);
+      setQuestions(response.data|| []);
+      setOriginalQuestions(response.data || []);
     }).catch(error => {
       console.error('An error occurred:', error);
     }).finally(() => {
@@ -46,7 +46,7 @@ const Questions = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         QuestionsApi.deleteQuestion(id).then(response => {
-          if (response.data.message === "succcessfully delete the data") {
+          if (response.data === "question deleted successfully") {
             Swal.fire({
               title: 'Deleting data',
               text: 'Successfully deleted data',
