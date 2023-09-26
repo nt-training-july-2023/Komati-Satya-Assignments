@@ -56,7 +56,7 @@ public class QuizSirviceImp implements QuizService {
                 quizDto.setCategoryId(quiz.getCate().getCategoryId());
                 quizDto.setTimer(quiz.getTimer());
                 quizRepo.save(quiz);
-                LOGGER.info("add question");
+                LOGGER.info("add quiz");
                 return quizDto;
             } else {
                 LOGGER.error("Topic is already exist," + "enter a new topic");

@@ -33,7 +33,6 @@ public class FinalRes {
      * stores the final student user name.
      */
     @Column(nullable = false)
-    
     private String userName;
     /**
      * stores the quiz topic.

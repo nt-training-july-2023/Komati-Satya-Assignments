@@ -201,6 +201,7 @@ function Test({ isRefresh, setTrue }) {
     }
   })
   useEffect(() => {
+    if(verifyRole === "student"){
     if (!isRefresh) {
 
       Swal.fire({
@@ -229,6 +230,7 @@ function Test({ isRefresh, setTrue }) {
         }
       })
     }
+  }
   }, [isRefresh, setTrue])
   useEffect(() => {
     if (quizSubmitted) {
