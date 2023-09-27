@@ -127,9 +127,8 @@ public class CategoryServiceImp implements CategoryService {
             Category existingCategory = existingCategoryOptional.get();
             Optional<Category> category = categoryRepo
                     .findByCategoryName(c.getCategoryName());
-                  
             if (category.isPresent()
-                    && !(category.get().getCategoryId()==id)) {
+                    && !(category.get().getCategoryId() == id)) {
                 throw new AlreadyExistException(ErrorMessages.CATEGORY_EXIST);
             }
             existingCategory.setCategoryName(c.getCategoryName());

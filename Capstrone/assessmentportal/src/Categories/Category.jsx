@@ -9,6 +9,7 @@ import DisableBackButton from "../APIs/disableBackButton";
 import Navbar from "../Navbar/Navbar";
 import Input from "../Inputs/Input";
 import ButtonComponent from "../Inputs/ButtonComponent";
+import SweetAlert from "../SweetAlertComponents/SweetAlert";
 function Category() {
   const verifyRole = localStorage.getItem('userRole');
   const [category, setCategory] = useState([]);
@@ -31,40 +32,18 @@ function Category() {
       })
   };
   const deleteData = async (id) => {
-    Swal.fire({
-      title: 'Do you want to delete category?',
-      showDenyButton: true,
-      confirmButtonText: 'Yes',
-      denyButtonText: 'No',
-      customClass: {
-        actions: 'my-actions',
-        cancelButton: 'order-1 right-gap',
-        confirmButton: 'order-2',
-        denyButton: 'order-3',
+          SweetAlert.deleteData("category",deleteCategory,id)
+  }
+  const deleteCategory=(id)=>{
+    CategoryApi.deleteCategory(id).then(response => {
+
+      if (response.data === "Deleted successfully") {
+       SweetAlert.success("Deleted successfully")
       }
-    }).then((result) => {
-      if (result.isConfirmed) {
+      getCategories();
+    }).catch(error => {
 
-        CategoryApi.deleteCategory(id).then(response => {
-
-          if (response.data === "Deleted successfully") {
-            Swal.fire({
-              title: 'Deleting data',
-              text: 'Successfully deleted data',
-              icon: 'success',
-              confirmButtonText: 'Ok'
-            });
-          }
-          getCategories();
-        }).catch(error => {
-
-        })
-
-      } else if (result.isDenied) {
-
-      }
     })
-
   }
   const navigate = useNavigate();
   const addData = () => {
@@ -129,7 +108,6 @@ function Category() {
                             <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData">Update</Link></td></>}
                           {verifyRole === 'Admin' || verifyRole === 'student' ? (
                             <td><Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={() => handleViewTopic(item.categoryName)}>
-
                               View Quiz Topics</Link></td>
                           ) : (
                             <></>
@@ -150,6 +128,5 @@ function Category() {
     </div>
   );
 }
-
 export default Category;
 

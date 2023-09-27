@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
-import com.example.demo.entity.Category;
 import com.example.demo.entity.Quiz;
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
@@ -162,9 +161,8 @@ public class QuizSirviceImp implements QuizService {
                 Quiz exiQuiz = existingQuiz.get();
                 Optional<Quiz> quiz = quizRepo
                         .findQuizByName(q.getTopicName());
-                      
                 if (quiz.isPresent()
-                        && !(quiz.get().getQuizId()==id)) {
+                        && !(quiz.get().getQuizId() == id)) {
                     throw new AlreadyExistException(ErrorMessages.QUIZ_EXIST);
                 }
                 exiQuiz.setTopicName(q.getTopicName());
@@ -190,15 +188,10 @@ public class QuizSirviceImp implements QuizService {
     @Override
     public final List<QuizDto> findQuizById(final int id) {
         if (quizRepo.findQuizById(id).size() != 0) {
-            if (quizRepo.findQuizById(id).size() != 0) {
                 List<Quiz> quiz = quizRepo.findQuizById(id);
                 List<QuizDto> quizDto = convertToDto(quiz);
                 LOGGER.info("Find quiz by category id");
                 return quizDto;
-            } else {
-                LOGGER.error("wrong category id");
-                throw new NotFoundException(ErrorMessages.WRONG_CATEGORYID);
-            }
         } else {
             LOGGER.error("no quiz is present");
             throw new AllNotFoundException(ErrorMessages.NO_QUIZ);

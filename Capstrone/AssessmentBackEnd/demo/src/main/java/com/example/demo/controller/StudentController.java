@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,9 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
-import com.example.demo.dto.StudentSaveDto;
 import com.example.demo.entity.Student;
-import com.example.demo.response.Responsee;
 import com.example.demo.service.StudentService;
 
 import jakarta.validation.Valid;
@@ -50,7 +47,7 @@ public class StudentController {
     @PostMapping("/student")
     public final ResponseEntity<String> save(
             @RequestBody @Valid final Student s) {
-            StudentSaveDto studentSaveDto = studentSevice.saveStudent(s);
+            studentSevice.saveStudent(s);
             LOGGER.info("Student registration");
             return ResponseEntity.ok("User register successfully");
     }
@@ -61,7 +58,8 @@ public class StudentController {
      * @return response
      */
     @GetMapping("/student/{id}")
-    public final ResponseEntity<Optional<StudentDto>> findById(@PathVariable final int id) {
+    public final ResponseEntity<Optional<StudentDto>> findById(
+            @PathVariable final int id) {
             Optional<StudentDto> studentDto = studentSevice.findById(id);
             LOGGER.info("Student registration");
             return ResponseEntity.ok(studentDto);
@@ -104,9 +102,8 @@ public class StudentController {
             @PathVariable final int id) {
             studentSevice.updateStudent(s, id);
             LOGGER.info("Updatation of student");
-            return ResponseEntity.ok("user updated successfully"); 
+            return ResponseEntity.ok("user updated successfully");
     }
-
     /**
      * delete student method.
      * @param id student id
@@ -117,6 +114,6 @@ public class StudentController {
             @PathVariable final int id) {
             studentSevice.deleteStudent(id);
             LOGGER.info("Deletion of student");
-            return ResponseEntity.ok("user deleted successfully"); 
+            return ResponseEntity.ok("user deleted successfully");
     }
 }

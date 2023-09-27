@@ -6,6 +6,7 @@ import ErrorPage from "../ErrorPage";
 import QuestionsApi from "../APIs/QuestionsApi";
 import Input from "../Inputs/Input";
 import ButtonComponent from "../Inputs/ButtonComponent";
+import SweetAlert from "../SweetAlertComponents/SweetAlert";
 
 const AddQuestions = () => {
     const verifyRole = localStorage.getItem('userRole');
@@ -110,12 +111,7 @@ const AddQuestions = () => {
             if (Object.keys(validationErrors).length > 0) {
                 setErrors(validationErrors)
                 if (validationErrors) {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'All question data required',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
+                    SweetAlert.fieldsRequired("all data required")
                 }
 
             }
@@ -126,22 +122,12 @@ const AddQuestions = () => {
                     .then((response) => {
                       
                         if (response.data=== "question updated successfully") {
-                            Swal.fire({
-                                title: 'Updating data',
-                                text: 'Successfully updated data',
-                                icon: 'success',
-                                confirmButtonText: 'Ok'
-                            });
+                           SweetAlert.success("Question updated successfully")
                             navigate(`/Questions/${questionData.quizId}`);
                         }
                     }).catch((error)=>{
                         if (error.response.data.errorMessage=="Question already exists") {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'questions Already present',
-                                icon: 'error',
-                                confirmButtonText: 'Ok'
-                            });
+                           SweetAlert.fieldsRequired("Question already present")
                         }
                     })
 
@@ -175,36 +161,21 @@ const AddQuestions = () => {
                 setErrors(validationErrors);
                 
                 if (validationErrors) {
-                    await Swal.fire({
-                        title: 'Error!',
-                        text: 'All question data required',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
+                   SweetAlert.fieldsRequired("all question data required");
                 }
 
             } else {
                 setErrors({});
                 QuestionsApi.addQuestion(requestData).then(response => {
                     if (response.data === "question added successfully") {
-                        Swal.fire({
-                            title: 'Add Question',
-                            text: 'Added Question',
-                            icon: 'success',
-                            confirmButtonText: 'Ok'
-                        });
+                        SweetAlert.success("Question added successfully");
                         navigate(`/Questions/${quizId}`);
 
                     } 
                 }).catch(error => {
                     console.log(error)
                     if (error.response.status === 302) {
-                        Swal.fire({
-                            title: 'Error!',
-                            text: 'Question already present',
-                            icon: 'error',
-                            confirmButtonText: 'Ok'
-                        });
+                        SweetAlert.fieldsRequired("Question already exist");
                     }
                 })
             }
@@ -212,30 +183,10 @@ const AddQuestions = () => {
     }
 
     const cancelAddQuestion = () => {
-        Swal.fire({
-            title: 'Do you want to cancel the  question?',
-            showDenyButton: true,
-            confirmButtonText: 'Yes',
-            denyButtonText: 'No',
-            customClass: {
-                actions: 'my-actions',
-                cancelButton: 'order-1 right-gap',
-                confirmButton: 'order-2',
-                denyButton: 'order-3',
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire('Changes are not saved', '', 'info')
-             
-              if(question)
-              navigate(`/Questions/${questionData.quizId}`);
-              else
-                navigate(`/Questions/${quizId}`);
-
-            } else if (result.isDenied) {
-
-            }
-        })
+        if(question)
+        SweetAlert.cancel("Question?",navigate,`/Questions/${questionData.quizId}`)
+        else
+        SweetAlert.cancel("Question?",navigate,`/Questions/${quizId}`)
     }
 
     return (

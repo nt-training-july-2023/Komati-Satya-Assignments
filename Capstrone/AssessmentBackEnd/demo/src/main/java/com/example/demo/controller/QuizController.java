@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
 import com.example.demo.entity.Quiz;
-import com.example.demo.response.Responsee;
 import com.example.demo.service.QuizService;
 
 import jakarta.validation.Valid;
@@ -60,7 +58,8 @@ public class QuizController {
      * @return response
      */
     @GetMapping("/quiz/id/{id}")
-    public final ResponseEntity<Optional<QuizDto>> getQuiz(@PathVariable final int id) {
+    public final ResponseEntity<Optional<QuizDto>> getQuiz(
+            @PathVariable final int id) {
             Optional<QuizDto> quizDto = quizSevice.getQuiz(id);
             LOGGER.info("get quiz by quiz id");
             return ResponseEntity.ok(quizDto);
@@ -83,7 +82,8 @@ public class QuizController {
      * @return response
      */
     @DeleteMapping("/quiz/{id}")
-    public final ResponseEntity<String> deleteQuiz(@PathVariable final int id) {
+    public final ResponseEntity<String> deleteQuiz(
+            @PathVariable final int id) {
             quizSevice.deleteQuiz(id);
             LOGGER.info("Delete quiz");
             return ResponseEntity.ok("quiz deleted successfully");

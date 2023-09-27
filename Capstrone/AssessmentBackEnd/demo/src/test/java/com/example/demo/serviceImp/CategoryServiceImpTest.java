@@ -120,6 +120,7 @@ class CategoryServiceImpTest {
          categoryDto.setCategoryDescription(category.getCategoryDescription());
          when(repo.findById(categoryDto.getCategoryId())).thenReturn(Optional.of(category));
          assertTrue(Optional.of(category).isPresent());
+         
          CategoryDto cd=new CategoryDto();
          cd.setCategoryName("Sql");
          cd.setCategoryDescription("java basics");

@@ -55,7 +55,9 @@ const Result = () => {
       <Navbar />
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
+        
           <h1 className="addHead">Student Result Details</h1>
+          {(verifyRole === 'Admin' &&<>
           <div className="searchContainer">
             <Input
               className="search"
@@ -66,8 +68,10 @@ const Result = () => {
             />
             <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
             <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
-
+        
           </div>
+         
+           </>)}
           {isLoading ? (
             <p>Loading...</p>
           ) : (

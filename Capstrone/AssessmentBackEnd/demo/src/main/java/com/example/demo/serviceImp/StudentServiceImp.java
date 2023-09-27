@@ -63,7 +63,8 @@ public class StudentServiceImp implements StudentService {
                 return Optional.of(studentDto);
             } else {
                 LOGGER.error("password must be same");
-                throw new PasswordMissMatchException(ErrorMessages.WRONG_PASSWORD);
+                throw new PasswordMissMatchException(
+                        ErrorMessages.WRONG_PASSWORD);
             }
         } else {
             LOGGER.error("Email not exist");

@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ResultDto;
-import com.example.demo.response.Responsee;
 import com.example.demo.service.ResultService;
 
 /**
@@ -43,7 +41,7 @@ public class ResultController {
     @PostMapping("/result")
     public final ResponseEntity<String> addRes(
             @RequestBody final ResultDto sr) {
-            ResultDto resultDto = resultService.addRes(sr);
+            resultService.addRes(sr);
             LOGGER.info("Adding result");
             return ResponseEntity.ok("result added successfully");
     }
@@ -54,7 +52,8 @@ public class ResultController {
      * @return response
      */
     @GetMapping("/result/{id}")
-    public final ResponseEntity<Optional<ResultDto>> getRes(@PathVariable final int id) {
+    public final ResponseEntity<Optional<ResultDto>> getRes(
+            @PathVariable final int id) {
             Optional<ResultDto> resultDto = resultService.getRes(id);
             LOGGER.info("Get result by id");
             return ResponseEntity.ok(resultDto);

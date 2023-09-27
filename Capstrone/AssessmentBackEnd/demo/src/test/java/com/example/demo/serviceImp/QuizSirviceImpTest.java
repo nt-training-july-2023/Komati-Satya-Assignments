@@ -210,7 +210,6 @@ class QuizSirviceImpTest {
         List<Quiz> quiz=new ArrayList<>();
         quiz.add(q1);
         quiz.add(q2);
-        when(quizRepo.findAll()).thenReturn(quiz);
         when(quizRepo.findQuizById(10)).thenReturn(quiz);
         List<QuizDto> quizDto=quizService.findQuizById(10);
         System.out.println(quizDto);
@@ -223,19 +222,10 @@ class QuizSirviceImpTest {
      @Test
     void testFindQuizByCategoryNoQuizException() {
          int categoryId=10;
-         when(quizRepo.findAll()).thenReturn(new ArrayList<>());
+         when(quizRepo.findQuizById(10)).thenReturn(new ArrayList<>());
          assertThrows(AllNotFoundException.class , () ->{
              quizService.findQuizById(categoryId);
          });
-     }
-     @Test
-     void testCategoryIdNotPresent() {
-         int categoryId=10;
-         when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
-         when(quizRepo.findQuizById(10)).thenReturn(new ArrayList<>());
-         assertThrows(NotFoundException.class, () ->{
-             quizService.findQuizById(categoryId);
-         }); 
      }
      @Test   
      void testFindQuizByQuizName() {

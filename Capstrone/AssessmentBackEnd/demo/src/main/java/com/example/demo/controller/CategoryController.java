@@ -48,17 +48,17 @@ public class CategoryController {
     public final ResponseEntity<String> saveCategory(
             @RequestBody @Valid final Category c) {
             categoryService.saveCategory(c);
-            LOGGER.info("Adding new category");           
+            LOGGER.info("Adding new category");
             return ResponseEntity.ok("added");
     }
-
     /**
      * Category find by id method.
      * @param id id of category.
      * @return response
      */
     @GetMapping("/category/cat/{id}")
-    public final ResponseEntity<Optional<CategoryDto>> findById(@PathVariable final int id) {
+    public final ResponseEntity<Optional<CategoryDto>>
+                 findById(@PathVariable final int id) {
             Optional<CategoryDto> categoryDto = categoryService.findById(id);
             LOGGER.info("find category by category id");
             return ResponseEntity.ok(categoryDto);

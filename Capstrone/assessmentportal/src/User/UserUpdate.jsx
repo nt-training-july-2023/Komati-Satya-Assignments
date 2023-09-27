@@ -6,6 +6,7 @@ import ErrorPage from "../ErrorPage";
 import UserApi from '../APIs/UserApi';
 import Input from '../Inputs/Input';
 import ButtonComponent from '../Inputs/ButtonComponent';
+import SweetAlert from '../SweetAlertComponents/SweetAlert';
 
 const UserUpdate = () => {
   const verifyRole = localStorage.getItem('userRole');
@@ -45,37 +46,13 @@ const UserUpdate = () => {
     UserApi.updateUser(userId, userData)
       .then((response) => {
         if (response.data === "user updated successfully") {
-          Swal.fire({
-            title: "Updating data",
-            text: "Successfully updated data",
-            icon: "success",
-            confirmButtonText: "Ok",
-          });
+          SweetAlert.success("Successfully updated data")
             navigate("/UserDashBoard")
         }
       });
   };
   const cancelUpdate = () => {
-    Swal.fire({
-      title: 'Do you want to cancel the update?',
-      showDenyButton: true,
-      confirmButtonText: 'Yes',
-      denyButtonText: 'No',
-      customClass: {
-        actions: 'my-actions',
-        cancelButton: 'order-1 right-gap',
-        confirmButton: 'order-2',
-        denyButton: 'order-3',
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire('Changes are not saved', '', 'info')
-        navigate('/UserDashBoard');
-
-      } else if (result.isDenied) {
-
-      }
-    })
+    SweetAlert.cancel('Update', navigate, '/UserDashBoard')
   }
   
   return (

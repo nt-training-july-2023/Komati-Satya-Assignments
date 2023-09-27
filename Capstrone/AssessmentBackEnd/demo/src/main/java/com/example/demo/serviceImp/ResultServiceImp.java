@@ -93,7 +93,8 @@ public class ResultServiceImp implements ResultService {
                     finalResultRepo.save(finalResult);
                 } else {
                     LOGGER.error("Category is not present");
-                    throw new NotFoundException(ErrorMessages.CATEGORY_NOTPRESENT);
+                    throw new NotFoundException(
+                            ErrorMessages.CATEGORY_NOTPRESENT);
                 }
 
             } else {

@@ -1,6 +1,8 @@
 package com.example.demo.validationMessages;
-
-public class ErrorMessages {
+/**
+ * ErrorMessages.
+ */
+public final class ErrorMessages {
     /**
      *default constructor.
     */
@@ -83,5 +85,4 @@ public class ErrorMessages {
      *password must be same.
     */
     public static final String WRONG_PASSWORD = "password must be same";
-    
 }

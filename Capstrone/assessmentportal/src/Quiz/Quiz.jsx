@@ -9,6 +9,7 @@ import DisableBackButton from "../APIs/disableBackButton";
 import Navbar from "../Navbar/Navbar";
 import Input from "../Inputs/Input";
 import ButtonComponent from "../Inputs/ButtonComponent";
+import SweetAlert from "../SweetAlertComponents/SweetAlert";
 function Quiz({ setTrue }) {
   const { categoryId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
@@ -32,39 +33,19 @@ function Quiz({ setTrue }) {
     })
   };
   const deleteData = async (id) => {
-    Swal.fire({
-      title: 'Do you want to delete quiz?',
-      showDenyButton: true,
-      confirmButtonText: 'Yes',
-      denyButtonText: 'No',
-      customClass: {
-        actions: 'my-actions',
-        cancelButton: 'order-1 right-gap',
-        confirmButton: 'order-2',
-        denyButton: 'order-3',
-      }
-    }).then((result) => {
-      if (result.isConfirmed) {
-        QuizApi.deleteQuiz(id).then(response => {
-          if (response.data.message === "succcessfully delete the data") {
-            Swal.fire({
-              title: 'Deleting data',
-              text: 'Successfully deleted data',
-              icon: 'success',
-              confirmButtonText: 'Ok'
-            });
-          }
-          getQuiz();
-        }).
-          catch(error => {
-           
-          })
-      } else if (result.isDenied) {
-
-      }
-    })
+    SweetAlert.deleteData("quiz",deleteQuiz,id)
   };
-
+  const deleteQuiz=(id)=>{
+    QuizApi.deleteQuiz(id).then(response => {
+      if (response.data === "quiz deleted successfully") {
+        SweetAlert.success("Successfully deleted data")
+      }
+      getQuiz();
+    }).
+      catch(error => {
+       
+      })
+  }
   const navigate = useNavigate();
   const addData = () => {
     navigate(`/AddQuiz/${categoryId}`);

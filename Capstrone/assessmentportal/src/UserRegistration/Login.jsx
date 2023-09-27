@@ -7,6 +7,7 @@ import UserApi from "../APIs/UserApi";
 import DisableBackButton from "../APIs/disableBackButton";
 import Input from "../Inputs/Input";
 import ButtonComponent from "../Inputs/ButtonComponent";
+import SweetAlert from "../SweetAlertComponents/SweetAlert";
 
 
 const Login = () => {
@@ -38,61 +39,23 @@ const Login = () => {
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             if (validationErrors.email && validationErrors.password) {
-                await Swal.fire({
-                    title: 'Error!',
-                    text: 'Credentials required',
-                    icon: 'error',
-                    confirmButtonText: 'Ok'
-                });
+              SweetAlert.fieldsRequired("credentials required")
             }
             else if (validationErrors.email && !(validationErrors.password)) {
-                await Swal.fire({
-                    title: 'Error!',
-                    text: 'Email is required',
-                    icon: 'error',
-                    confirmButtonText: 'Ok'
-                });
+                SweetAlert.fieldsRequired("email required")
             }
             if (validationErrors.password && !(validationErrors.email)) {
-                await Swal.fire({
-                    title: 'Error!',
-                    text: 'Password is required',
-                    icon: 'error',
-                    confirmButtonText: 'Ok'
-                });
+                SweetAlert.fieldsRequired("password required")
             }
         } else {
 
             setErrors({});
            
             UserApi.loginUser(loginData).then(response => {
-               console.log(response)
-                // if (response.data === "password must be same") {
-                //     Swal.fire({
-                //         title: 'Error!',
-                //         text: 'Wrong password',
-                //         icon: 'error',
-                //         confirmButtonText: 'Ok'
-                //     });
-                
-                // } else if (response.data === "Email not exist") {
-                //     Swal.fire({
-                //         title: 'Error!',
-                //         text: 'Wrong email',
-                //         icon: 'error',
-                //         confirmButtonText: 'Ok'
-                //     });
-                // } 
-                // else {
                     if (response?.data.role === "Admin") {
                         localStorage.setItem("userRole", response.data.role);
                         localStorage.setItem("userId", response.data.userId);
-                        Swal.fire({
-                            title: 'Login Success',
-                            text: 'Correct credentials',
-                            icon: 'success',
-                            confirmButtonText: 'Ok'
-                        });
+                        SweetAlert.success("login success")
                         navigate('/UserDashBoard')
 
                     } else if (response?.data.role === "student") {
@@ -100,12 +63,7 @@ const Login = () => {
                         localStorage.setItem("userEmail", response.data.email);
                         localStorage.setItem("userName", response.data.userName);
                         localStorage.setItem("userId", response.data.userId);
-                        Swal.fire({
-                            title: 'Login Success',
-                            text: 'Correct credentials',
-                            icon: 'success',
-                            confirmButtonText: 'Ok'
-                        });
+                        SweetAlert.success("login success")
                         navigate('/UserDashBoard');
                     
                 }
@@ -113,20 +71,10 @@ const Login = () => {
 
                 console.log(error);
                 if (error.response.data.errorMessage === "password must be same") {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Wrong password',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
+                    SweetAlert.fieldsRequired("Wrong password");
                 
                 } else if (error.response.data.errorMessage === "Email not exist") {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'Wrong email',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
+                    SweetAlert.fieldsRequired("Wrong Email");
                 } 
             })
 

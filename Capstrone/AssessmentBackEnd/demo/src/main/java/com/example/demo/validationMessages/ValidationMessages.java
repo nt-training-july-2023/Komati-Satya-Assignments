@@ -1,6 +1,6 @@
 package com.example.demo.validationMessages;
 
-public class ValidationMessages {
+public final class ValidationMessages {
     /**
      *default constructor.
     */
@@ -37,7 +37,8 @@ public class ValidationMessages {
     /**
      *category name is blank.
     */
-    public static final String CATEGORYDESCRIPTION_NOTBLANK = "Category description is required";
+    public static final String CATEGORYDESCRIPTION_NOTBLANK =
+            "Category description is required";
     /**
      *quiz id is null.
     */
@@ -49,7 +50,8 @@ public class ValidationMessages {
     /**
      *quiz name is blank.
     */
-    public static final String QUIZDESCRIPTION_NOTBLANK = "Quiz Description is required";
+    public static final String QUIZDESCRIPTION_NOTBLANK =
+            "Quiz Description is required";
     /**
      *time limit is blank.
     */
@@ -122,7 +124,8 @@ public class ValidationMessages {
     /**
      *phone number is blank.
     */
-    public static final String PHONENUMBER_PATTERN = "Phone number must contain 10 digits";
+    public static final String PHONENUMBER_PATTERN =
+            "Phone number must contain 10 digits";
     /**
      *role is blank.
     */

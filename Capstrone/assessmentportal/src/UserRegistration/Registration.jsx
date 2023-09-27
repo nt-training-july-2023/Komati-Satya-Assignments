@@ -6,6 +6,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import UserApi from "../APIs/UserApi";
 import Input from "../Inputs/Input";
 import ButtonComponent from "../Inputs/ButtonComponent";
+import SweetAlert from "../SweetAlertComponents/SweetAlert";
 const Registration = () => {
   const [showPassword, setShowPassword] = useState("true");
   const [formData, setFormData] = useState({
@@ -68,49 +69,24 @@ const Registration = () => {
 
     if (validateForm()) {
       if (formData.phoneNumber.length < 10) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'phone number must be 10 digits',
-          icon: 'error',
-          confirmButtonText: 'Ok'
-        });
+        SweetAlert.fieldsRequired("Phone number must be 10 digits");
       }
       else if (formData.phoneNumber.length > 10) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'phone number must be 10 digits',
-          icon: 'error',
-          confirmButtonText: 'Ok'
-        });
+        SweetAlert.fieldsRequired("Phone number must be 10 digits");
       }
 
       else if (formData.password && !re.capital.test(formData.password) ||
         !re.specialChar.test(formData.password) ||
         !re.length.test(formData.password) ||
         !re.digit.test(formData.password)) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'Password must contain at least a Capital, Special character, Number, and minimum 8 characters',
-          icon: 'error',
-          confirmButtonText: 'Ok'
-        });
+        SweetAlert.fieldsRequired("Password must contain at least a Capital, Special character, Number, and minimum 8 characters");
 
       }
       else if (formData.password !== formData.confirmPassword) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'password must be same',
-          icon: 'error',
-          confirmButtonText: 'Ok'
-        });
+        SweetAlert.fieldsRequired("Password must be same");
       }
       else if (formData.email && (!/^[A-Z0-9a-z+_-]+@nucleusteq[.]com$/.test(formData.email))) {
-        Swal.fire({
-          title: 'Error!',
-          text: 'Email must contain domain @nucleusteq.com',
-          icon: 'error',
-          confirmButtonText: 'Ok'
-        });
+        SweetAlert.fieldsRequired("Email must contain domain @nucleusteq");
 
       }
       else {
@@ -118,12 +94,7 @@ const Registration = () => {
           .then((response) => {
             
             if (response.data === "User register successfully") {
-              Swal.fire({
-                title: 'Registration',
-                text: 'User Registred Successfully',
-                icon: 'success',
-                confirmButtonText: 'Ok'
-              });
+             SweetAlert.success("User Register successfully");
               navigate('/');
             }
            
@@ -131,23 +102,13 @@ const Registration = () => {
           .catch((error) => {
             console.error('Axios Error:', error);
             if (error.response.data.errorMessage === "Email already exist") {
-              Swal.fire({
-                title: 'Error!',
-                text: 'Email already exists',
-                icon: 'error',
-                confirmButtonText: 'Ok'
-              });
+              SweetAlert.fieldsRequired("Email already exist");
             }
           });
       }
     }
     else {
-      Swal.fire({
-        title: 'Error!',
-        text: 'All credentials are required',
-        icon: 'error',
-        confirmButtonText: 'Ok'
-      });
+      SweetAlert.fieldsRequired("All Credentials required");
     }
   }
 

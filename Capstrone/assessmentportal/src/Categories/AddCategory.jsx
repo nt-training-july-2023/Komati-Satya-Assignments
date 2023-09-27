@@ -7,6 +7,7 @@ import CategoryApi from "../APIs/CategoryApi";
 import Input from "../Inputs/Input";
 import ButtonComponent from "../Inputs/ButtonComponent";
 import TextareaComponent from "../Inputs/TextareaComponent";
+import SweetAlert from "../SweetAlertComponents/SweetAlert";
 const AddCategory = () => {
     const verifyRole = localStorage.getItem('userRole');
     const { categoryId } = useParams();
@@ -53,28 +54,13 @@ const AddCategory = () => {
             if (Object.keys(validationErrors).length > 0) {
                 setErrors(validationErrors);
                 if (validationErrors.categoryName && validationErrors.categoryDescription) {
-                     Swal.fire({
-                        title: 'Error!',
-                        text: 'data required',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
+                     SweetAlert.fieldsRequired("Category data required");
                 }
                 else if (validationErrors.categoryName && !(validationErrors.categoryDescription)) {
-                     Swal.fire({
-                        title: 'Error!',
-                        text: 'category name is required',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
+                    SweetAlert.fieldsRequired("Category name required");
                 }
                 if (validationErrors.categoryDescription && !(validationErrors.categoryName)) {
-                        Swal.fire({
-                        title: 'Error!',
-                        text: 'category description is required',
-                        icon: 'error',
-                        confirmButtonText: 'Cool'
-                    });
+                    SweetAlert.fieldsRequired("Category description required");
                 }
             } else {
         
@@ -82,22 +68,12 @@ const AddCategory = () => {
             CategoryApi.updateCategory(categoryId,categoryData)
               .then((response) => {
                 if (response.data === "Updated successfully") {
-                  Swal.fire({
-                    title: 'Updating data',
-                    text: 'Successfully updated data',
-                    icon: 'success',
-                    confirmButtonText: 'Ok'
-                  });
+                  SweetAlert.success("Category updated successfully");
                   navigate('/Category')
                 }
               }).catch((error)=>{
                 if(error.response.data.errorMessage=="Category already exists"){
-                    Swal.fire({
-                        title: 'Error',
-                        text: 'Category Already present',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                      });
+                   SweetAlert.fieldsRequired("Category already present");
                 }
               })
             }
@@ -117,28 +93,13 @@ else{
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             if (validationErrors.categoryName && validationErrors.categoryDescription) {
-                 Swal.fire({
-                    title: 'Error!',
-                    text: 'data required',
-                    icon: 'error',
-                    confirmButtonText: 'Ok'
-                });
+                SweetAlert.fieldsRequired("Category data required");
             }
             else if (validationErrors.categoryName && !(validationErrors.categoryDescription)) {
-                 Swal.fire({
-                    title: 'Error!',
-                    text: 'category name is required',
-                    icon: 'error',
-                    confirmButtonText: 'Ok'
-                });
+                SweetAlert.fieldsRequired("Category name required");
             }
             if (validationErrors.categoryDescription && !(validationErrors.categoryName)) {
-                await Swal.fire({
-                    title: 'Error!',
-                    text: 'category description is required',
-                    icon: 'error',
-                    confirmButtonText: 'Ok'
-                });
+                SweetAlert.fieldsRequired("Category description required");
             }
         } else {
 
@@ -146,12 +107,7 @@ else{
        CategoryApi.addCategory(categoryData).then(response=>{
         
           if (response.data === "added") {
-            Swal.fire({
-                title: 'Add category',
-                text: 'Added category',
-                icon: 'success',
-                confirmButtonText: 'Ok'
-            });
+            SweetAlert.success("Category added successfully");
             navigate('/Category');
            
         }
@@ -160,39 +116,14 @@ else{
        console.log(error);
        if (error.response.status === 302) {
         console.log("fhdk");
-        Swal.fire({
-            title: 'Error!',
-            text: 'Category already present',
-            icon: 'error',
-            confirmButtonText: 'Ok'
-        });
+        SweetAlert.fieldsRequired("Category already present");
     }
-    })
-        
+    })    
 }
 }
     }
     const cancelAddCategory = () => {
-        Swal.fire({
-            title: 'Do you want to cancel the category?',
-            showDenyButton: true,
-            confirmButtonText: 'Yes',
-            denyButtonText: 'No',
-            customClass: {
-                actions: 'my-actions',
-                cancelButton: 'order-1 right-gap',
-                confirmButton: 'order-2',
-                denyButton: 'order-3',
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire('Changes are not saved', '', 'info')
-                navigate('/Category')
-
-            } else if (result.isDenied) {
-
-            }
-        })
+        SweetAlert.cancel("category",navigate,'/Category')
     }
     return (
         <div className="login3">

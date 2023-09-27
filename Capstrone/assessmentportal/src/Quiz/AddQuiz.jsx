@@ -6,6 +6,7 @@ import QuizApi from "../APIs/QuizApi";
 import Input from "../Inputs/Input";
 import ButtonComponent from "../Inputs/ButtonComponent";
 import TextareaComponent from "../Inputs/TextareaComponent";
+import SweetAlert from "../SweetAlertComponents/SweetAlert";
 
 const AddQuiz = () => {
     const verifyRole = localStorage.getItem('userRole');
@@ -61,16 +62,14 @@ const AddQuiz = () => {
             if (!quizData.topicDescription) {
                 validationErrors.topicDescription = 'quiz description Required';
             }
+            if (!quizData.timer) {
+                validationErrors.topicDescription = 'timer Required';
+            }
 
             if (Object.keys(validationErrors).length > 0) {
                 setErrors(validationErrors);
                 if (validationErrors) {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'All quiz data required',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
+                    SweetAlert.fieldsRequired("All quiz data required")
                 }
 
             } else {
@@ -79,22 +78,13 @@ const AddQuiz = () => {
                     .then((response) => {
                       
                         if (response.data === "quiz updated successfully") {
-                            Swal.fire({
-                                title: 'Updating data',
-                                text: 'Successfully updated data',
-                                icon: 'success',
-                                confirmButtonText: 'Ok'
-                            });
+                            SweetAlert.success("Successfully updated data")
                             navigate(`/Quiz/${quizData.categoryId}`)
                         }
                     }).catch((error)=>{
-                        if (error.response.data.errorMessage=="Quiz already exists") {
-                            Swal.fire({
-                                title: 'Error',
-                                text: 'questions Already present',
-                                icon: 'error',
-                                confirmButtonText: 'Ok'
-                            });
+                       
+                        if (error.response.data.errorMessage === "Quiz already exist") {
+                           SweetAlert.fieldsRequired("Quiz already present")
                         }
                     })
             }
@@ -109,41 +99,29 @@ const AddQuiz = () => {
             if (!quizData.topicDescription) {
                 validationErrors.topicDescription = 'quiz description Required';
             }
+            if (!quizData.timer) {
+                validationErrors.topicDescription = 'quiz timer Required';
+            }
 
 
             if (Object.keys(validationErrors).length > 0) {
                 setErrors(validationErrors);
                 if (validationErrors) {
-                    Swal.fire({
-                        title: 'Error!',
-                        text: 'All quiz data required',
-                        icon: 'error',
-                        confirmButtonText: 'Ok'
-                    });
+                    SweetAlert.fieldsRequired("All quiz data required")
                 }
 
             } else {
                 setErrors({});
                 QuizApi.addQuiz(requestData).then(response => {
                     if (response.data === "succcessfully add the data") {
-                        Swal.fire({
-                            title: 'Add Quiz',
-                            text: 'Added Quiz',
-                            icon: 'success',
-                            confirmButtonText: 'Ok'
-                        });
+                        SweetAlert.success("Quiz added successfully");
                         navigate(`/Quiz/${quizData.categoryId}`);
 
                     } 
                 }).catch(error => {
                     console.log(error)
                     if (error.response.status === 302) {
-                        Swal.fire({
-                            title: 'Error!',
-                            text: 'Quiz already present',
-                            icon: 'error',
-                            confirmButtonText: 'Ok'
-                        });
+                        SweetAlert.fieldsRequired("Quiz already exist")
                     }
                 })
             }
@@ -151,26 +129,7 @@ const AddQuiz = () => {
     }
 
     const cancelAddQuiz = () => {
-        Swal.fire({
-            title: 'Do you want to cancel the  quiz?',
-            showDenyButton: true,
-            confirmButtonText: 'Yes',
-            denyButtonText: 'No',
-            customClass: {
-                actions: 'my-actions',
-                cancelButton: 'order-1 right-gap',
-                confirmButton: 'order-2',
-                denyButton: 'order-3',
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                Swal.fire('Changes are not saved', '', 'info')
-                navigate(`/Quiz/${quizData.categoryId}`);
-
-            } else if (result.isDenied) {
-
-            }
-        })
+        SweetAlert.cancel("quiz",navigate,`/Quiz/${quizData.categoryId}`)
     }
 
     return (

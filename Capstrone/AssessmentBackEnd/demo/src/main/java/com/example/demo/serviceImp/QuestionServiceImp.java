@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
 import com.example.demo.entity.Questions;
-import com.example.demo.entity.Quiz;
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
 import com.example.demo.exceptions.NotFoundException;
@@ -157,10 +156,9 @@ public class QuestionServiceImp implements QuestionsService {
                 Questions exiQue = existingQue.get();
                 Optional<Questions> question = questionsRepo
                         .findByQuestion(q.getQuestion());
-                      
                 if (question.isPresent()
-                        && !(question.get().getQid()==id)) {
-                    throw new AlreadyExistException(ErrorMessages.QUESTION_EXIST);
+                        && !(question.get().getQid() == id)) {
+                throw new AlreadyExistException(ErrorMessages.QUESTION_EXIST);
                 }
                 exiQue.setOption1(q.getOption1());
                 exiQue.setOption2(q.getOption2());
@@ -188,15 +186,10 @@ public class QuestionServiceImp implements QuestionsService {
     @Override
     public final List<QuestionsDto> findQueById(final int id) {
         if (questionsRepo.findQueById(id).size() != 0) {
-            if (questionsRepo.findQueById(id).size() != 0) {
                 List<Questions> l = questionsRepo.findQueById(id);
                 List<QuestionsDto> ld = convertToDto(l);
                 LOGGER.info("find question by question id");
                 return ld;
-            } else {
-                LOGGER.error("wrong question Id,enter a valid Id");
-                throw new NotFoundException(ErrorMessages.WRONG_QUESTIONID);
-            }
         } else {
             LOGGER.error("no question is present");
             throw new AllNotFoundException(ErrorMessages.NO_QUESTION);

@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,8 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
 import com.example.demo.entity.Questions;
-
-import com.example.demo.response.Responsee;
 import com.example.demo.service.QuestionsService;
 
 import jakarta.validation.Valid;
@@ -51,7 +48,7 @@ public class QuestionsController {
     @PostMapping("/questions")
     public final ResponseEntity<String> addQuestion(
             @RequestBody @Valid final Questions q) {
-            QuestionsDto questionsDto = questionsService.addQuestion(q);
+            questionsService.addQuestion(q);
             LOGGER.info("Adding a  questions");
             return ResponseEntity.ok("question added successfully");
     }
@@ -88,7 +85,7 @@ public class QuestionsController {
     public final ResponseEntity<String> updateQue(
             @RequestBody @Valid final QuestionsUpdateDto q,
             @PathVariable final int id) {
-            QuestionsUpdateDto questionsDto = questionsService.updateQue(q, id);
+            questionsService.updateQue(q, id);
             LOGGER.info("update question");
             return ResponseEntity.ok("question updated successfully");
     }
@@ -117,6 +114,6 @@ public class QuestionsController {
             Optional<QuestionsDto> questionsDto = questionsService.
                     findByQuestion(name);
             LOGGER.info("Get question");
-          return ResponseEntity.ok(questionsDto);  
+          return ResponseEntity.ok(questionsDto);
     }
 }

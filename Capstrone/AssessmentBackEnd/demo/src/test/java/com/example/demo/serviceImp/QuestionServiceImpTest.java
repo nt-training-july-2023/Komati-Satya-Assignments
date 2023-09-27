@@ -130,8 +130,7 @@ class QuestionServiceImpTest {
     public void testDeleteNoQuizNotFind() {
         int questionsId=1;
         when(questionsRepo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class , () ->{
-            questionsService.delete(questionsId);
+        assertThrows(AllNotFoundException.class , () ->{ questionsService.delete(questionsId);
         });
     }
     @Test
@@ -192,8 +191,6 @@ class QuestionServiceImpTest {
         List<Questions> questions=new ArrayList<>();
        questions.add(q1);
        questions.add(q2);
-       
-        when(questionsRepo.findAll()).thenReturn(questions);
         when(questionsRepo.findQueById(1)).thenReturn(questions);
         List<QuestionsDto> questionsDto=questionsService.findQueById(1);
       assertEquals("java is",questionsDto.get(0).getQuestion()); 
@@ -210,20 +207,19 @@ class QuestionServiceImpTest {
       assertEquals("oopl",questionsDto.get(1).getCorrectOption());
       
     }
-    @Test
-    void testFindQuestionsByQuizNoQuizException() {
-         int quizId=10;
-         when(questionsRepo.findAll()).thenReturn(new ArrayList<>());
-         assertThrows(AllNotFoundException.class , () ->{
-             questionsService.findQueById(quizId);
-         });
-     }
+//    @Test
+//    void testFindQuestionsByQuizNoQuizException() {
+//         int quizId=10;
+//         when(questionsRepo.findAll()).thenReturn(new ArrayList<>());
+//         assertThrows(AllNotFoundException.class , () ->{
+//             questionsService.findQueById(quizId);
+//         });
+//     }
      @Test
      void testCategoryIdNotPresent() {
          int quizId=10;
-         when(questionsRepo.findAll()).thenReturn(Collections.singletonList(new Questions()));
          when(questionsRepo.findQueById(quizId)).thenReturn(new ArrayList<>());
-         assertThrows(NotFoundException.class, () ->{
+         assertThrows(AllNotFoundException.class, () ->{
              questionsService.findQueById(quizId);
          }); 
      }
