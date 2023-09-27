@@ -16,6 +16,7 @@ import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
 import com.example.demo.repository.CategoryRepo;
 import com.example.demo.service.CategoryService;
+import com.example.demo.validationMessages.ErrorMessages;
 
 /**
  * category service implementation.
@@ -51,7 +52,7 @@ public class CategoryServiceImp implements CategoryService {
             return categoryDto;
         } else {
             LOGGER.error("Category already present");
-            throw new AlreadyExistException("Category already present");
+            throw new AlreadyExistException(ErrorMessages.CATEGORY_EXIST);
         }
     }
     /**
@@ -73,11 +74,11 @@ public class CategoryServiceImp implements CategoryService {
                 return Optional.of(categoryDto);
             } else {
                 LOGGER.error("wrong category id");
-                throw new NotFoundException("wrong category id");
+                throw new NotFoundException(ErrorMessages.WRONG_CATEGORYID);
             }
         } else {
             LOGGER.error("no category is there");
-            throw new AllNotFoundException("no category is there");
+            throw new AllNotFoundException(ErrorMessages.NO_CATEGORY);
         }
     }
     /**
@@ -93,7 +94,7 @@ public class CategoryServiceImp implements CategoryService {
             return cd;
         } else {
             LOGGER.error("No categories are there");
-            throw new AllNotFoundException("No categories are there");
+            throw new AllNotFoundException(ErrorMessages.NO_CATEGORY);
         }
     }
     /**
@@ -129,7 +130,7 @@ public class CategoryServiceImp implements CategoryService {
                   
             if (category.isPresent()
                     && !(category.get().getCategoryId()==id)) {
-                throw new AlreadyExistException("Category already exists");
+                throw new AlreadyExistException(ErrorMessages.CATEGORY_EXIST);
             }
             existingCategory.setCategoryName(c.getCategoryName());
             existingCategory.setCategoryDescription(c.getCategoryDescription());
@@ -138,7 +139,7 @@ public class CategoryServiceImp implements CategoryService {
             return c;
         } else {
             LOGGER.error("wrong category id");
-            throw new NotFoundException("wrong category id");
+            throw new NotFoundException(ErrorMessages.WRONG_CATEGORYID);
         }
     }
     /**
@@ -157,7 +158,7 @@ public class CategoryServiceImp implements CategoryService {
             }
         } else {
             LOGGER.error("No categories are there");
-            throw new AllNotFoundException("No categories are there");
+            throw new AllNotFoundException(ErrorMessages.NO_CATEGORY);
         }
     }
     /**
@@ -178,11 +179,11 @@ public class CategoryServiceImp implements CategoryService {
                 return Optional.of(categoryDto);
             } else {
                 LOGGER.error("Category not present");
-                throw new NotFoundException("Category not present");
+                throw new NotFoundException(ErrorMessages.CATEGORY_NOTPRESENT);
             }
         } else {
             LOGGER.error("No categories are there");
-            throw new AllNotFoundException("No categories are there");
+            throw new AllNotFoundException(ErrorMessages.NO_CATEGORY);
         }
     }
 

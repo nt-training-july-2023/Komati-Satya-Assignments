@@ -23,6 +23,7 @@ import com.example.demo.repository.QuizRepo;
 import com.example.demo.repository.StudentRepo;
 import com.example.demo.repository.StudentResultRepo;
 import com.example.demo.service.ResultService;
+import com.example.demo.validationMessages.ErrorMessages;
 
 /**
  * result service implementation.
@@ -92,12 +93,12 @@ public class ResultServiceImp implements ResultService {
                     finalResultRepo.save(finalResult);
                 } else {
                     LOGGER.error("Category is not present");
-                    throw new NotFoundException("Category is not present");
+                    throw new NotFoundException(ErrorMessages.CATEGORY_NOTPRESENT);
                 }
 
             } else {
                 LOGGER.error("Quiz is not present");
-                throw new NotFoundException("Quiz is not present");
+                throw new NotFoundException(ErrorMessages.QUIZ_NOTPRESENT);
             }
             finalResultRepo.save(finalResult);
             StudentResult studentResult = new StudentResult();
@@ -118,7 +119,7 @@ public class ResultServiceImp implements ResultService {
             studentResultRepo.save(studentResult);
         } else {
             LOGGER.error("Wrong email id");
-            throw new NotFoundException("wrong email id");
+            throw new NotFoundException(ErrorMessages.WRONG_EMAIL);
         }
         return resultDto;
     }
@@ -150,11 +151,11 @@ public class ResultServiceImp implements ResultService {
                 return Optional.of(resultDto);
             } else {
                 LOGGER.error("wrong user Id,enter a valid Id");
-                throw new NotFoundException("wrong user Id,enter a valid Id");
+                throw new NotFoundException(ErrorMessages.WRONG_USERID);
             }
         } else {
             LOGGER.error("no studentresult is present");
-            throw new AllNotFoundException("no studentresult is present");
+            throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }
     /**
@@ -170,7 +171,7 @@ public class ResultServiceImp implements ResultService {
             return resultDto;
         } else {
             LOGGER.info("studentresult is present");
-            throw new AllNotFoundException("no studentresult is present");
+            throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }
     /**

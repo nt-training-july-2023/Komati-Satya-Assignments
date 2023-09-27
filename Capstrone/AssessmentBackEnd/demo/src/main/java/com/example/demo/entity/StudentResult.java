@@ -2,6 +2,7 @@
 package com.example.demo.entity;
 
 
+import com.example.demo.validationMessages.ValidationMessages;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -33,6 +36,7 @@ public class StudentResult {
      * stores the marks.
      */
     @Column(nullable = false)
+    @NotNull(message = ValidationMessages.MARKSOBTAINED_NOTNULL)
     private int maxMarks;
     /**
      * stores the date and time.
@@ -48,6 +52,7 @@ public class StudentResult {
      * stores the res.
      */
     @Column(nullable = false)
+    @NotNull(message = ValidationMessages.ATTEMPTEDQUESTIONS_NOTNULL)
     private int attemptedQuestions;
     /**
      * stores the result id.
@@ -59,6 +64,7 @@ public class StudentResult {
     /**
      * categoryId.
      */
+    //@NotEmpty(message = ValidationMessages.CATEGORY_NOTNULL)
     private int categoryId;
     /**
      * stores the result id.

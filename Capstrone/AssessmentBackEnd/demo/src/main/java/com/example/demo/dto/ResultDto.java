@@ -1,6 +1,9 @@
 package com.example.demo.dto;
 
+import com.example.demo.validationMessages.ValidationMessages;
+
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +19,7 @@ public class ResultDto {
     /**
      * stores the marks.
      */
-    @NotEmpty(message = "marks is required")
+    @NotNull(message = ValidationMessages.TOTALMARKS_NOTNULL)
     private int maxMarks;
     /**
      * stores the date and time.
@@ -31,51 +34,51 @@ public class ResultDto {
     /**
      * stores the res.
      */
-    @NotEmpty(message = "attempted questions are required")
+    @NotNull(message = ValidationMessages.ATTEMPTEDQUESTIONS_NOTNULL)
     private int attemptedQuestions;
     /**
      * stores userName.
      */
-    @NotEmpty(message = "user name is required")
+    @NotEmpty(message = ValidationMessages.NAME_NOTBLANK)
     private String userName;
     /**
      * stores email.
      */
-    @NotEmpty(message = "email is required")
+    @NotEmpty(message = ValidationMessages.EMAIL_NOTBLANK)
     private String email;
     /**
      * stores quiz Name.
      */
-    @NotEmpty(message = "quiz name is required")
+    @NotEmpty(message = ValidationMessages.QUIZNAME_NOTBLANK)
     private String quizName;
     /**
      * stores category name.
      */
-    @NotEmpty(message = "category name is required")
+    @NotEmpty(message = ValidationMessages.CATEGORY_NOTBLANK)
     private String categoryName;
     /**
      * stores obtainMarks.
      */
-    @NotEmpty(message = "obtain marks is required")
+    @NotNull(message = ValidationMessages.MARKSOBTAINED_NOTNULL)
     private int obtainMarks;
     /**
      * stores categortId.
      */
-    @NotEmpty(message = "category id is required")
+   @NotNull(message = ValidationMessages.CATEGORY_NOTNULL)
     private int categoryId;
     /**
      * result id.
      */
-    @NotEmpty(message = "result id is required")
+    @NotNull(message = ValidationMessages.ID_NOTBLANK)
     private int resultId;
     /**
      * stores user id.
      */
-    @NotEmpty(message = "user id is required")
+    @NotNull(message = ValidationMessages.ID_NOTBLANK)
     private int userId;
     /**
      * total questions.
      */
-    @NotEmpty(message = "total questions are required")
+    @NotNull(message = ValidationMessages.TOTALQUESTIONS_NOTNULL)
     private int totalQuestions;
 }

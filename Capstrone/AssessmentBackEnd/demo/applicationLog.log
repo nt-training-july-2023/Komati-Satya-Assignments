@@ -1,0 +1,885 @@
+2023-09-27T00:00:07.503+05:30  WARN 5284 --- [http-nio-6002-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AlreadyExistException: Question already exists]
+2023-09-27T00:00:15.628+05:30  INFO 5284 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T00:00:15.631+05:30  INFO 5284 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T00:00:15.657+05:30  INFO 5284 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T00:00:15.657+05:30  INFO 5284 --- [http-nio-6002-exec-9] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T00:05:24.816+05:30 ERROR 5284 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.StudentServiceImp    : Email not exist
+2023-09-27T00:05:24.824+05:30  WARN 5284 --- [http-nio-6002-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.EmailDoesNotExistException: Email not exist]
+2023-09-27T00:05:46.291+05:30  INFO 5284 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.StudentServiceImp    : student login
+2023-09-27T00:05:46.291+05:30  INFO 5284 --- [http-nio-6002-exec-2] c.e.demo.controller.StudentController    : Student login
+2023-09-27T00:05:46.379+05:30  INFO 5284 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-09-27T00:05:46.379+05:30  INFO 5284 --- [http-nio-6002-exec-1] c.e.demo.controller.StudentController    : Student registration
+2023-09-27T00:05:46.402+05:30  INFO 5284 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-09-27T00:05:46.404+05:30  INFO 5284 --- [http-nio-6002-exec-4] c.e.demo.controller.StudentController    : Student registration
+2023-09-27T00:05:51.014+05:30  INFO 5284 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T00:05:51.020+05:30  INFO 5284 --- [http-nio-6002-exec-7] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T00:05:51.042+05:30  INFO 5284 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T00:05:51.044+05:30  INFO 5284 --- [http-nio-6002-exec-5] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T00:05:53.632+05:30  INFO 5284 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T00:05:53.632+05:30  INFO 5284 --- [http-nio-6002-exec-9] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T00:05:53.669+05:30  INFO 5284 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T00:05:53.669+05:30  INFO 5284 --- [http-nio-6002-exec-10] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T00:05:56.828+05:30  INFO 5284 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T00:05:56.828+05:30  INFO 5284 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T00:05:56.851+05:30  INFO 5284 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T00:05:56.851+05:30  INFO 5284 --- [http-nio-6002-exec-6] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T00:05:56.868+05:30  INFO 5284 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T00:05:56.868+05:30  INFO 5284 --- [http-nio-6002-exec-6] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T00:05:56.876+05:30  INFO 5284 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T00:05:56.876+05:30  INFO 5284 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T00:06:07.453+05:30  INFO 5284 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.ResultServiceImp     : save result
+2023-09-27T00:06:07.514+05:30  INFO 5284 --- [http-nio-6002-exec-1] c.e.demo.controller.ResultController     : Adding result
+2023-09-27T00:06:07.572+05:30  INFO 5284 --- [http-nio-6002-exec-4] c.e.d.serviceImp.FinalResultServiceImp   : get result by user id
+2023-09-27T00:06:07.572+05:30  INFO 5284 --- [http-nio-6002-exec-4] c.e.d.controller.FinalResultController   : get result by student id
+2023-09-27T00:06:07.605+05:30  INFO 5284 --- [http-nio-6002-exec-7] c.e.d.serviceImp.FinalResultServiceImp   : get result by user id
+2023-09-27T00:06:07.605+05:30  INFO 5284 --- [http-nio-6002-exec-7] c.e.d.controller.FinalResultController   : get result by student id
+2023-09-27T10:18:00.258+05:30  INFO 25008 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.8 with PID 25008 (D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo\target\classes started by Komati Satya in D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo)
+2023-09-27T10:18:00.263+05:30  INFO 25008 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-09-27T10:18:00.423+05:30  INFO 25008 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-09-27T10:18:00.424+05:30  INFO 25008 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-09-27T10:18:02.349+05:30  INFO 25008 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-27T10:18:02.539+05:30  INFO 25008 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 164 ms. Found 6 JPA repository interfaces.
+2023-09-27T10:18:07.320+05:30  INFO 25008 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6002 (http)
+2023-09-27T10:18:07.386+05:30  INFO 25008 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-27T10:18:07.387+05:30  INFO 25008 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-09-27T10:18:07.673+05:30  INFO 25008 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-27T10:18:07.682+05:30  INFO 25008 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 7254 ms
+2023-09-27T10:18:08.738+05:30  INFO 25008 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-27T10:18:08.921+05:30  INFO 25008 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.6.Final
+2023-09-27T10:18:08.926+05:30  INFO 25008 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-09-27T10:18:09.251+05:30  INFO 25008 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T10:18:09.592+05:30  INFO 25008 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-27T10:18:09.633+05:30  INFO 25008 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-09-27T10:18:10.109+05:30  INFO 25008 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@65207966
+2023-09-27T10:18:10.114+05:30  INFO 25008 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-09-27T10:18:10.924+05:30  INFO 25008 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T10:18:12.353+05:30  INFO 25008 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-27T10:18:12.587+05:30  INFO 25008 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-27T10:18:13.559+05:30  INFO 25008 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-09-27T10:18:14.928+05:30  WARN 25008 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-27T10:18:15.676+05:30  INFO 25008 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-09-27T10:18:15.767+05:30  INFO 25008 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6002 (http) with context path ''
+2023-09-27T10:18:15.795+05:30  INFO 25008 --- [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 16.611 seconds (process running for 17.94)
+2023-09-27T10:24:20.821+05:30  INFO 25008 --- [http-nio-6002-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-27T10:24:20.821+05:30  INFO 25008 --- [http-nio-6002-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-27T10:24:20.821+05:30  INFO 25008 --- [http-nio-6002-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 0 ms
+2023-09-27T10:24:21.328+05:30  INFO 25008 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.StudentServiceImp    : student login
+2023-09-27T10:24:21.328+05:30  INFO 25008 --- [http-nio-6002-exec-2] c.e.demo.controller.StudentController    : Student login
+2023-09-27T10:24:21.538+05:30  INFO 25008 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-09-27T10:24:21.538+05:30  INFO 25008 --- [http-nio-6002-exec-3] c.e.demo.controller.StudentController    : Student registration
+2023-09-27T10:24:21.548+05:30  INFO 25008 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-09-27T10:24:21.548+05:30  INFO 25008 --- [http-nio-6002-exec-4] c.e.demo.controller.StudentController    : Student registration
+2023-09-27T10:24:33.420+05:30  INFO 25008 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T10:24:33.420+05:30  INFO 25008 --- [http-nio-6002-exec-5] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T10:24:33.456+05:30  INFO 25008 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T10:24:33.456+05:30  INFO 25008 --- [http-nio-6002-exec-6] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T11:58:45.764+05:30 ERROR 25008 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.CategoryServiceImp   : Category already present
+2023-09-27T11:58:45.788+05:30  WARN 25008 --- [http-nio-6002-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AlreadyExistException: Category already present]
+2023-09-27T12:22:53.351+05:30  INFO 25008 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.CategoryServiceImp   : save category
+2023-09-27T12:22:53.351+05:30  INFO 25008 --- [http-nio-6002-exec-2] c.e.demo.controller.CategoryController   : Adding new category
+2023-09-27T12:22:53.420+05:30  INFO 25008 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:22:53.420+05:30  INFO 25008 --- [http-nio-6002-exec-3] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:22:53.448+05:30  INFO 25008 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:22:53.448+05:30  INFO 25008 --- [http-nio-6002-exec-3] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:23:07.987+05:30  INFO 25008 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:23:07.987+05:30  INFO 25008 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:23:08.026+05:30  INFO 25008 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:23:08.026+05:30  INFO 25008 --- [http-nio-6002-exec-5] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:23:13.440+05:30  INFO 25008 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : delete quiz
+2023-09-27T12:23:13.440+05:30  INFO 25008 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : Delete quiz
+2023-09-27T12:23:13.473+05:30  INFO 25008 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:23:13.473+05:30  INFO 25008 --- [http-nio-6002-exec-8] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:23:47.013+05:30 ERROR 25008 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizSirviceImp       : Topic is already exist,enter a new topic
+2023-09-27T12:23:47.025+05:30  WARN 25008 --- [http-nio-6002-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AlreadyExistException: Topic is already exist,enter a new topic]
+2023-09-27T12:24:04.184+05:30  INFO 25008 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:24:04.193+05:30  INFO 25008 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:24:04.226+05:30  INFO 25008 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:24:04.226+05:30  INFO 25008 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:26:27.768+05:30  INFO 13960 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.8 with PID 13960 (D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo\target\classes started by Komati Satya in D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo)
+2023-09-27T12:26:27.773+05:30  INFO 13960 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-09-27T12:26:27.888+05:30  INFO 13960 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-09-27T12:26:27.889+05:30  INFO 13960 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-09-27T12:26:29.276+05:30  INFO 13960 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-27T12:26:29.437+05:30  INFO 13960 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 143 ms. Found 6 JPA repository interfaces.
+2023-09-27T12:26:30.754+05:30  INFO 13960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6002 (http)
+2023-09-27T12:26:30.779+05:30  INFO 13960 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-27T12:26:30.780+05:30  INFO 13960 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-09-27T12:26:30.927+05:30  INFO 13960 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-27T12:26:30.928+05:30  INFO 13960 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3038 ms
+2023-09-27T12:26:31.257+05:30  INFO 13960 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-27T12:26:31.354+05:30  INFO 13960 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.6.Final
+2023-09-27T12:26:31.359+05:30  INFO 13960 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-09-27T12:26:31.629+05:30  INFO 13960 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T12:26:31.938+05:30  INFO 13960 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-27T12:26:31.973+05:30  INFO 13960 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-09-27T12:26:32.323+05:30  INFO 13960 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@6a5aee3b
+2023-09-27T12:26:32.327+05:30  INFO 13960 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-09-27T12:26:33.021+05:30  INFO 13960 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T12:26:34.257+05:30  INFO 13960 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-27T12:26:34.425+05:30  INFO 13960 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-27T12:26:34.962+05:30  INFO 13960 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-09-27T12:26:35.974+05:30  WARN 13960 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-27T12:26:36.566+05:30  INFO 13960 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-09-27T12:26:36.630+05:30  INFO 13960 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6002 (http) with context path ''
+2023-09-27T12:26:36.658+05:30  INFO 13960 --- [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 9.645 seconds (process running for 10.458)
+2023-09-27T12:29:13.239+05:30  INFO 13960 --- [http-nio-6002-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-27T12:29:13.239+05:30  INFO 13960 --- [http-nio-6002-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-27T12:29:13.249+05:30  INFO 13960 --- [http-nio-6002-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 10 ms
+2023-09-27T12:29:13.563+05:30 ERROR 13960 --- [http-nio-6002-exec-1] c.e.d.serviceImp.FinalResultServiceImp   : No results are there
+2023-09-27T12:29:13.679+05:30  WARN 13960 --- [http-nio-6002-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No user is there]
+2023-09-27T12:29:13.698+05:30 ERROR 13960 --- [http-nio-6002-exec-1] c.e.d.serviceImp.FinalResultServiceImp   : No results are there
+2023-09-27T12:29:13.703+05:30  WARN 13960 --- [http-nio-6002-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No user is there]
+2023-09-27T12:34:42.976+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:34:42.977+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:34:43.024+05:30  INFO 13960 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:34:43.024+05:30  INFO 13960 --- [http-nio-6002-exec-4] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:34:54.633+05:30 ERROR 13960 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.CategoryServiceImp   : Category already present
+2023-09-27T12:34:54.633+05:30  WARN 13960 --- [http-nio-6002-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AlreadyExistException: Category already exist]
+2023-09-27T12:35:02.521+05:30  INFO 13960 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:35:02.521+05:30  INFO 13960 --- [http-nio-6002-exec-7] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:35:02.552+05:30  INFO 13960 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:35:02.552+05:30  INFO 13960 --- [http-nio-6002-exec-8] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:35:06.184+05:30  INFO 13960 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:35:06.184+05:30  INFO 13960 --- [http-nio-6002-exec-9] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:35:06.229+05:30  INFO 13960 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:35:06.229+05:30  INFO 13960 --- [http-nio-6002-exec-10] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:35:14.658+05:30 ERROR 13960 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizSirviceImp       : Topic is already exist,enter a new topic
+2023-09-27T12:35:14.658+05:30  WARN 13960 --- [http-nio-6002-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AlreadyExistException: Quiz already exist]
+2023-09-27T12:35:22.342+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:35:22.342+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:35:22.366+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:35:22.366+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:35:27.437+05:30  INFO 13960 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:35:27.437+05:30  INFO 13960 --- [http-nio-6002-exec-4] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:35:27.463+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:35:27.463+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:35:30.166+05:30 ERROR 13960 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizSirviceImp       : no quiz is present
+2023-09-27T12:35:30.168+05:30  WARN 13960 --- [http-nio-6002-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No quiz is there]
+2023-09-27T12:35:30.177+05:30 ERROR 13960 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : no quiz is present
+2023-09-27T12:35:30.177+05:30  WARN 13960 --- [http-nio-6002-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No quiz is there]
+2023-09-27T12:35:57.237+05:30  INFO 13960 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:35:57.237+05:30  INFO 13960 --- [http-nio-6002-exec-8] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:35:57.253+05:30  INFO 13960 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:35:57.253+05:30  INFO 13960 --- [http-nio-6002-exec-9] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:36:00.259+05:30 ERROR 13960 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizSirviceImp       : no quiz is present
+2023-09-27T12:36:00.262+05:30  WARN 13960 --- [http-nio-6002-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No quiz is there]
+2023-09-27T12:36:00.279+05:30 ERROR 13960 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizSirviceImp       : no quiz is present
+2023-09-27T12:36:00.279+05:30  WARN 13960 --- [http-nio-6002-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No quiz is there]
+2023-09-27T12:36:07.713+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : add quiz
+2023-09-27T12:36:07.713+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : Adding Quiz
+2023-09-27T12:36:07.772+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:36:07.779+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:36:07.804+05:30  INFO 13960 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:36:07.804+05:30  INFO 13960 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:36:11.049+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizSirviceImp       : delete quiz
+2023-09-27T12:36:11.049+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.controller.QuizController       : Delete quiz
+2023-09-27T12:36:11.068+05:30 ERROR 13960 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : no quiz is present
+2023-09-27T12:36:11.075+05:30  WARN 13960 --- [http-nio-6002-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No quiz is there]
+2023-09-27T12:36:23.825+05:30  INFO 13960 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:36:23.825+05:30  INFO 13960 --- [http-nio-6002-exec-8] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:36:23.889+05:30  INFO 13960 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:36:23.889+05:30  INFO 13960 --- [http-nio-6002-exec-9] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:36:27.257+05:30  INFO 13960 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.CategoryServiceImp   : delete category
+2023-09-27T12:36:27.257+05:30  INFO 13960 --- [http-nio-6002-exec-1] c.e.demo.controller.CategoryController   : delete category
+2023-09-27T12:36:27.295+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:36:27.297+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:36:34.986+05:30 ERROR 13960 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : no quiz is present
+2023-09-27T12:36:34.990+05:30  WARN 13960 --- [http-nio-6002-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No quiz is there]
+2023-09-27T12:36:34.994+05:30 ERROR 13960 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : no quiz is present
+2023-09-27T12:36:34.994+05:30  WARN 13960 --- [http-nio-6002-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No quiz is there]
+2023-09-27T12:36:41.716+05:30  INFO 13960 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : add quiz
+2023-09-27T12:36:41.716+05:30  INFO 13960 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : Adding Quiz
+2023-09-27T12:36:41.776+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:36:41.776+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:36:41.809+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:36:41.809+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:36:43.902+05:30 ERROR 13960 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : no question is present
+2023-09-27T12:36:43.905+05:30  WARN 13960 --- [http-nio-6002-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No question is there]
+2023-09-27T12:36:43.907+05:30 ERROR 13960 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : no question is present
+2023-09-27T12:36:43.916+05:30  WARN 13960 --- [http-nio-6002-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No question is there]
+2023-09-27T12:36:56.108+05:30  INFO 13960 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuestionServiceImp   : add question
+2023-09-27T12:36:56.108+05:30  INFO 13960 --- [http-nio-6002-exec-9] c.e.demo.controller.QuestionsController  : Adding a  questions
+2023-09-27T12:36:56.176+05:30  INFO 13960 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:36:56.176+05:30  INFO 13960 --- [http-nio-6002-exec-10] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:36:56.211+05:30  INFO 13960 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:36:56.211+05:30  INFO 13960 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:37:06.046+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : find question
+2023-09-27T12:37:06.046+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : Get question
+2023-09-27T12:37:06.102+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : find question
+2023-09-27T12:37:06.103+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : Get question
+2023-09-27T12:37:09.995+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : update question
+2023-09-27T12:37:09.995+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : update question
+2023-09-27T12:37:10.055+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:37:10.055+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:37:10.090+05:30  INFO 13960 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:37:10.090+05:30  INFO 13960 --- [http-nio-6002-exec-7] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:37:23.132+05:30  INFO 13960 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:37:23.132+05:30  INFO 13960 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:37:23.156+05:30  INFO 13960 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:37:23.156+05:30  INFO 13960 --- [http-nio-6002-exec-9] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:37:40.209+05:30 ERROR 13960 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuestionServiceImp   : question already exist
+2023-09-27T12:37:40.213+05:30  WARN 13960 --- [http-nio-6002-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AlreadyExistException: Question already exist]
+2023-09-27T12:37:49.663+05:30  INFO 13960 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : add question
+2023-09-27T12:37:49.663+05:30  INFO 13960 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : Adding a  questions
+2023-09-27T12:37:49.737+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:37:49.738+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:37:49.770+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:37:49.774+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:37:56.131+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : delete question
+2023-09-27T12:37:56.131+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : Delete question
+2023-09-27T12:37:56.166+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:37:56.166+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:37:59.596+05:30  INFO 13960 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : delete question
+2023-09-27T12:37:59.596+05:30  INFO 13960 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : Delete question
+2023-09-27T12:37:59.618+05:30 ERROR 13960 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuestionServiceImp   : no question is present
+2023-09-27T12:37:59.624+05:30  WARN 13960 --- [http-nio-6002-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No question is there]
+2023-09-27T12:38:03.344+05:30 ERROR 13960 --- [http-nio-6002-exec-10] c.e.d.serviceImp.FinalResultServiceImp   : No results are there
+2023-09-27T12:38:03.344+05:30  WARN 13960 --- [http-nio-6002-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No user is there]
+2023-09-27T12:38:03.387+05:30 ERROR 13960 --- [http-nio-6002-exec-1] c.e.d.serviceImp.FinalResultServiceImp   : No results are there
+2023-09-27T12:38:03.388+05:30  WARN 13960 --- [http-nio-6002-exec-1] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No user is there]
+2023-09-27T12:38:05.962+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.StudentServiceImp    : find all students
+2023-09-27T12:38:05.965+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.controller.StudentController    : Find all students
+2023-09-27T12:38:05.990+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.StudentServiceImp    : find all students
+2023-09-27T12:38:05.990+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.controller.StudentController    : Find all students
+2023-09-27T12:38:19.159+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.StudentServiceImp    : student login
+2023-09-27T12:38:19.159+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.controller.StudentController    : Student login
+2023-09-27T12:38:19.224+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-09-27T12:38:19.227+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.controller.StudentController    : Student registration
+2023-09-27T12:38:19.245+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-09-27T12:38:19.245+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.controller.StudentController    : Student registration
+2023-09-27T12:39:00.773+05:30 ERROR 13960 --- [http-nio-6002-exec-8] c.e.d.serviceImp.FinalResultServiceImp   : No user is there
+2023-09-27T12:39:00.773+05:30  WARN 13960 --- [http-nio-6002-exec-8] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No user is there]
+2023-09-27T12:39:00.788+05:30 ERROR 13960 --- [http-nio-6002-exec-9] c.e.d.serviceImp.FinalResultServiceImp   : No user is there
+2023-09-27T12:39:00.793+05:30  WARN 13960 --- [http-nio-6002-exec-9] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No user is there]
+2023-09-27T12:39:26.324+05:30 ERROR 13960 --- [http-nio-6002-exec-10] c.e.d.serviceImp.FinalResultServiceImp   : No user is there
+2023-09-27T12:39:26.327+05:30  WARN 13960 --- [http-nio-6002-exec-10] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No user is there]
+2023-09-27T12:39:29.494+05:30  INFO 13960 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:39:29.494+05:30  INFO 13960 --- [http-nio-6002-exec-1] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:39:29.511+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:39:29.514+05:30  INFO 13960 --- [http-nio-6002-exec-2] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:39:30.880+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:39:30.880+05:30  INFO 13960 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:39:30.909+05:30  INFO 13960 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:39:30.909+05:30  INFO 13960 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:39:32.686+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:39:32.686+05:30  INFO 13960 --- [http-nio-6002-exec-6] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:39:32.706+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:39:32.706+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:39:32.742+05:30  INFO 13960 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:39:32.744+05:30  INFO 13960 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:39:32.744+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:39:32.746+05:30  INFO 13960 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:39:43.658+05:30  INFO 13960 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.ResultServiceImp     : save result
+2023-09-27T12:39:43.710+05:30 ERROR 13960 --- [http-nio-6002-exec-10] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction] with root cause
+
+jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.NotEmpty' validating type 'java.lang.Integer'. Check configuration for 'categoryId'
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getInitializedConstraintValidator(ConstraintTree.java:162) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree.validateConstraints(SimpleConstraintTree.java:58) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateConstraints(ConstraintTree.java:75) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.doValidateConstraint(MetaConstraint.java:130) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.validateConstraint(MetaConstraint.java:123) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateMetaConstraint(ValidatorImpl.java:555) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForSingleDefaultGroupElement(ValidatorImpl.java:518) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForDefaultGroup(ValidatorImpl.java:488) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForCurrentGroup(ValidatorImpl.java:450) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:400) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validate(ValidatorImpl.java:172) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.boot.beanvalidation.BeanValidationEventListener.validate(BeanValidationEventListener.java:128) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.boot.beanvalidation.BeanValidationEventListener.onPreInsert(BeanValidationEventListener.java:81) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.action.internal.EntityInsertAction.preInsert(EntityInsertAction.java:215) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:98) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:633) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:502) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:358) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:39) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1412) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:485) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2301) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:1966) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:439) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:169) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:267) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:561) ~[spring-orm-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:660) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:410) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:164) ~[spring-data-jpa-3.1.2.jar:3.1.2]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244) ~[spring-aop-6.0.11.jar:6.0.11]
+	at jdk.proxy4/jdk.proxy4.$Proxy132.save(Unknown Source) ~[na:na]
+	at com.example.demo.serviceImp.ResultServiceImp.addRes(ResultServiceImp.java:119) ~[classes/:na]
+	at com.example.demo.controller.ResultController.addRes(ResultController.java:46) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.11.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.11.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-09-27T12:41:05.558+05:30  INFO 2036 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.8 with PID 2036 (D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo\target\classes started by Komati Satya in D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo)
+2023-09-27T12:41:05.562+05:30  INFO 2036 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-09-27T12:41:05.691+05:30  INFO 2036 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-09-27T12:41:05.692+05:30  INFO 2036 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-09-27T12:41:07.121+05:30  INFO 2036 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-27T12:41:07.286+05:30  INFO 2036 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 142 ms. Found 6 JPA repository interfaces.
+2023-09-27T12:41:08.661+05:30  INFO 2036 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6002 (http)
+2023-09-27T12:41:08.688+05:30  INFO 2036 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-27T12:41:08.689+05:30  INFO 2036 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-09-27T12:41:08.841+05:30  INFO 2036 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-27T12:41:08.842+05:30  INFO 2036 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3149 ms
+2023-09-27T12:41:09.197+05:30  INFO 2036 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-27T12:41:09.316+05:30  INFO 2036 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.6.Final
+2023-09-27T12:41:09.325+05:30  INFO 2036 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-09-27T12:41:09.670+05:30  INFO 2036 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T12:41:10.010+05:30  INFO 2036 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-27T12:41:10.051+05:30  INFO 2036 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-09-27T12:41:10.462+05:30  INFO 2036 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4e32c542
+2023-09-27T12:41:10.465+05:30  INFO 2036 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-09-27T12:41:11.381+05:30  INFO 2036 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T12:41:12.851+05:30  INFO 2036 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-27T12:41:13.033+05:30  INFO 2036 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-27T12:41:13.573+05:30  INFO 2036 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-09-27T12:41:14.643+05:30  WARN 2036 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-27T12:41:15.260+05:30  INFO 2036 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-09-27T12:41:15.319+05:30  INFO 2036 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6002 (http) with context path ''
+2023-09-27T12:41:15.346+05:30  INFO 2036 --- [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 10.531 seconds (process running for 11.574)
+2023-09-27T12:41:24.564+05:30  INFO 2036 --- [http-nio-6002-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-27T12:41:24.564+05:30  INFO 2036 --- [http-nio-6002-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-27T12:41:24.566+05:30  INFO 2036 --- [http-nio-6002-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-09-27T12:41:24.923+05:30  INFO 2036 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:41:24.923+05:30  INFO 2036 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:41:24.923+05:30  INFO 2036 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:41:24.923+05:30  INFO 2036 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:41:25.081+05:30  INFO 2036 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:41:25.081+05:30  INFO 2036 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:41:25.129+05:30  INFO 2036 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:41:25.129+05:30  INFO 2036 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:41:38.734+05:30  INFO 2036 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.ResultServiceImp     : save result
+2023-09-27T12:41:38.872+05:30 ERROR 2036 --- [http-nio-6002-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction] with root cause
+
+jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.NotEmpty' validating type 'java.lang.Integer'. Check configuration for 'categoryId'
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getInitializedConstraintValidator(ConstraintTree.java:162) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree.validateConstraints(SimpleConstraintTree.java:58) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateConstraints(ConstraintTree.java:75) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.doValidateConstraint(MetaConstraint.java:130) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.validateConstraint(MetaConstraint.java:123) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateMetaConstraint(ValidatorImpl.java:555) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForSingleDefaultGroupElement(ValidatorImpl.java:518) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForDefaultGroup(ValidatorImpl.java:488) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForCurrentGroup(ValidatorImpl.java:450) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:400) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validate(ValidatorImpl.java:172) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.boot.beanvalidation.BeanValidationEventListener.validate(BeanValidationEventListener.java:128) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.boot.beanvalidation.BeanValidationEventListener.onPreInsert(BeanValidationEventListener.java:81) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.action.internal.EntityInsertAction.preInsert(EntityInsertAction.java:215) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:98) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:633) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:502) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:358) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:39) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1412) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:485) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2301) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:1966) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:439) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:169) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:267) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:561) ~[spring-orm-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:660) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:410) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:164) ~[spring-data-jpa-3.1.2.jar:3.1.2]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244) ~[spring-aop-6.0.11.jar:6.0.11]
+	at jdk.proxy4/jdk.proxy4.$Proxy132.save(Unknown Source) ~[na:na]
+	at com.example.demo.serviceImp.ResultServiceImp.addRes(ResultServiceImp.java:119) ~[classes/:na]
+	at com.example.demo.controller.ResultController.addRes(ResultController.java:46) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.11.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.11.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-09-27T12:42:45.661+05:30  INFO 22292 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.8 with PID 22292 (D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo\target\classes started by Komati Satya in D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo)
+2023-09-27T12:42:45.678+05:30  INFO 22292 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-09-27T12:42:45.799+05:30  INFO 22292 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-09-27T12:42:45.799+05:30  INFO 22292 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-09-27T12:42:47.165+05:30  INFO 22292 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-27T12:42:47.351+05:30  INFO 22292 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 159 ms. Found 6 JPA repository interfaces.
+2023-09-27T12:42:48.721+05:30  INFO 22292 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6002 (http)
+2023-09-27T12:42:48.744+05:30  INFO 22292 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-27T12:42:48.745+05:30  INFO 22292 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-09-27T12:42:48.900+05:30  INFO 22292 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-27T12:42:48.902+05:30  INFO 22292 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3101 ms
+2023-09-27T12:42:49.230+05:30  INFO 22292 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-27T12:42:49.347+05:30  INFO 22292 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.6.Final
+2023-09-27T12:42:49.352+05:30  INFO 22292 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-09-27T12:42:49.609+05:30  INFO 22292 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T12:42:49.907+05:30  INFO 22292 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-27T12:42:49.943+05:30  INFO 22292 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-09-27T12:42:50.275+05:30  INFO 22292 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@430f0a2b
+2023-09-27T12:42:50.278+05:30  INFO 22292 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-09-27T12:42:50.952+05:30  INFO 22292 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T12:42:52.446+05:30  INFO 22292 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-27T12:42:52.643+05:30  INFO 22292 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-27T12:42:53.156+05:30  INFO 22292 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-09-27T12:42:54.182+05:30  WARN 22292 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-27T12:42:54.765+05:30  INFO 22292 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-09-27T12:42:54.825+05:30  INFO 22292 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6002 (http) with context path ''
+2023-09-27T12:42:54.851+05:30  INFO 22292 --- [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 9.929 seconds (process running for 10.792)
+2023-09-27T12:43:05.462+05:30  INFO 22292 --- [http-nio-6002-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-27T12:43:05.463+05:30  INFO 22292 --- [http-nio-6002-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-27T12:43:05.468+05:30  INFO 22292 --- [http-nio-6002-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-09-27T12:43:05.954+05:30  INFO 22292 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:43:05.954+05:30  INFO 22292 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:43:05.955+05:30  INFO 22292 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:43:05.955+05:30  INFO 22292 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:43:06.125+05:30  INFO 22292 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:43:06.125+05:30  INFO 22292 --- [http-nio-6002-exec-4] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:43:06.148+05:30  INFO 22292 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:43:06.149+05:30  INFO 22292 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:43:22.776+05:30  INFO 22292 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.ResultServiceImp     : save result
+2023-09-27T12:43:22.952+05:30 ERROR 22292 --- [http-nio-6002-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction] with root cause
+
+jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.NotEmpty' validating type 'java.lang.Integer'. Check configuration for 'maxMarks'
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getInitializedConstraintValidator(ConstraintTree.java:162) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree.validateConstraints(SimpleConstraintTree.java:58) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateConstraints(ConstraintTree.java:75) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.doValidateConstraint(MetaConstraint.java:130) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.validateConstraint(MetaConstraint.java:123) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateMetaConstraint(ValidatorImpl.java:555) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForSingleDefaultGroupElement(ValidatorImpl.java:518) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForDefaultGroup(ValidatorImpl.java:488) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForCurrentGroup(ValidatorImpl.java:450) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:400) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validate(ValidatorImpl.java:172) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.boot.beanvalidation.BeanValidationEventListener.validate(BeanValidationEventListener.java:128) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.boot.beanvalidation.BeanValidationEventListener.onPreInsert(BeanValidationEventListener.java:81) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.action.internal.EntityInsertAction.preInsert(EntityInsertAction.java:215) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:98) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:633) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:502) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:358) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:39) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1412) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:485) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2301) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:1966) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:439) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:169) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:267) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:561) ~[spring-orm-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:660) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:410) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:164) ~[spring-data-jpa-3.1.2.jar:3.1.2]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244) ~[spring-aop-6.0.11.jar:6.0.11]
+	at jdk.proxy4/jdk.proxy4.$Proxy132.save(Unknown Source) ~[na:na]
+	at com.example.demo.serviceImp.ResultServiceImp.addRes(ResultServiceImp.java:119) ~[classes/:na]
+	at com.example.demo.controller.ResultController.addRes(ResultController.java:46) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.11.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.11.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-09-27T12:45:30.260+05:30  INFO 20220 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.8 with PID 20220 (D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo\target\classes started by Komati Satya in D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo)
+2023-09-27T12:45:30.274+05:30  INFO 20220 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-09-27T12:45:30.389+05:30  INFO 20220 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-09-27T12:45:30.389+05:30  INFO 20220 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-09-27T12:45:31.787+05:30  INFO 20220 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-27T12:45:31.948+05:30  INFO 20220 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 139 ms. Found 6 JPA repository interfaces.
+2023-09-27T12:45:33.278+05:30  INFO 20220 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6002 (http)
+2023-09-27T12:45:33.299+05:30  INFO 20220 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-27T12:45:33.300+05:30  INFO 20220 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-09-27T12:45:33.441+05:30  INFO 20220 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-27T12:45:33.443+05:30  INFO 20220 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3052 ms
+2023-09-27T12:45:33.769+05:30  INFO 20220 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-27T12:45:33.899+05:30  INFO 20220 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.6.Final
+2023-09-27T12:45:33.905+05:30  INFO 20220 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-09-27T12:45:34.130+05:30  INFO 20220 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T12:45:34.430+05:30  INFO 20220 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-27T12:45:34.464+05:30  INFO 20220 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-09-27T12:45:34.827+05:30  INFO 20220 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4e32c542
+2023-09-27T12:45:34.831+05:30  INFO 20220 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-09-27T12:45:35.521+05:30  INFO 20220 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T12:45:36.779+05:30  INFO 20220 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-27T12:45:36.945+05:30  INFO 20220 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-27T12:45:37.502+05:30  INFO 20220 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-09-27T12:45:38.577+05:30  WARN 20220 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-27T12:45:39.176+05:30  INFO 20220 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-09-27T12:45:39.243+05:30  INFO 20220 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6002 (http) with context path ''
+2023-09-27T12:45:39.268+05:30  INFO 20220 --- [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 9.771 seconds (process running for 10.622)
+2023-09-27T12:45:59.446+05:30  INFO 20220 --- [http-nio-6002-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-27T12:45:59.447+05:30  INFO 20220 --- [http-nio-6002-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-27T12:45:59.450+05:30  INFO 20220 --- [http-nio-6002-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2023-09-27T12:46:00.058+05:30  INFO 20220 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:46:00.058+05:30  INFO 20220 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:46:00.060+05:30  INFO 20220 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:46:00.061+05:30  INFO 20220 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:46:00.211+05:30  INFO 20220 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:46:00.211+05:30  INFO 20220 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:46:00.222+05:30  INFO 20220 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:46:00.222+05:30  INFO 20220 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:46:14.278+05:30  INFO 20220 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.ResultServiceImp     : save result
+2023-09-27T12:46:14.446+05:30 ERROR 20220 --- [http-nio-6002-exec-5] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.transaction.TransactionSystemException: Could not commit JPA transaction] with root cause
+
+jakarta.validation.UnexpectedTypeException: HV000030: No validator could be found for constraint 'jakarta.validation.constraints.NotEmpty' validating type 'java.lang.Integer'. Check configuration for 'maxMarks'
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getExceptionForNullValidator(ConstraintTree.java:116) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.getInitializedConstraintValidator(ConstraintTree.java:162) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.SimpleConstraintTree.validateConstraints(SimpleConstraintTree.java:58) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.constraintvalidation.ConstraintTree.validateConstraints(ConstraintTree.java:75) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.doValidateConstraint(MetaConstraint.java:130) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.metadata.core.MetaConstraint.validateConstraint(MetaConstraint.java:123) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateMetaConstraint(ValidatorImpl.java:555) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForSingleDefaultGroupElement(ValidatorImpl.java:518) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForDefaultGroup(ValidatorImpl.java:488) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateConstraintsForCurrentGroup(ValidatorImpl.java:450) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validateInContext(ValidatorImpl.java:400) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.validator.internal.engine.ValidatorImpl.validate(ValidatorImpl.java:172) ~[hibernate-validator-8.0.1.Final.jar:8.0.1.Final]
+	at org.hibernate.boot.beanvalidation.BeanValidationEventListener.validate(BeanValidationEventListener.java:128) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.boot.beanvalidation.BeanValidationEventListener.onPreInsert(BeanValidationEventListener.java:81) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.action.internal.EntityInsertAction.preInsert(EntityInsertAction.java:215) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.action.internal.EntityInsertAction.execute(EntityInsertAction.java:98) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:633) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:502) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:358) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:39) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1412) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:485) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2301) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:1966) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:439) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:169) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:267) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101) ~[hibernate-core-6.2.6.Final.jar:6.2.6.Final]
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:561) ~[spring-orm-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:660) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:410) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.data.jpa.repository.support.CrudMethodMetadataPostProcessor$CrudMethodMetadataPopulatingMethodInterceptor.invoke(CrudMethodMetadataPostProcessor.java:164) ~[spring-data-jpa-3.1.2.jar:3.1.2]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.interceptor.ExposeInvocationInterceptor.invoke(ExposeInvocationInterceptor.java:97) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184) ~[spring-aop-6.0.11.jar:6.0.11]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:244) ~[spring-aop-6.0.11.jar:6.0.11]
+	at jdk.proxy4/jdk.proxy4.$Proxy132.save(Unknown Source) ~[na:na]
+	at com.example.demo.serviceImp.ResultServiceImp.addRes(ResultServiceImp.java:119) ~[classes/:na]
+	at com.example.demo.controller.ResultController.addRes(ResultController.java:46) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:205) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:150) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:884) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1081) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:974) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1011) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:914) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:590) ~[tomcat-embed-core-10.1.11.jar:6.0]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885) ~[spring-webmvc-6.0.11.jar:6.0.11]
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658) ~[tomcat-embed-core-10.1.11.jar:6.0]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:205) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51) ~[tomcat-embed-websocket-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116) ~[spring-web-6.0.11.jar:6.0.11]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:174) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:149) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:166) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:482) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:341) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:391) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:894) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1740) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1191) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-10.1.11.jar:10.1.11]
+	at java.base/java.lang.Thread.run(Thread.java:833) ~[na:na]
+
+2023-09-27T12:47:22.416+05:30  INFO 23384 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.8 with PID 23384 (D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo\target\classes started by Komati Satya in D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo)
+2023-09-27T12:47:22.428+05:30  INFO 23384 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-09-27T12:47:22.539+05:30  INFO 23384 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-09-27T12:47:22.539+05:30  INFO 23384 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-09-27T12:47:23.913+05:30  INFO 23384 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-09-27T12:47:24.074+05:30  INFO 23384 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 137 ms. Found 6 JPA repository interfaces.
+2023-09-27T12:47:25.342+05:30  INFO 23384 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6002 (http)
+2023-09-27T12:47:25.367+05:30  INFO 23384 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-09-27T12:47:25.368+05:30  INFO 23384 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-09-27T12:47:25.504+05:30  INFO 23384 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-09-27T12:47:25.505+05:30  INFO 23384 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2964 ms
+2023-09-27T12:47:25.810+05:30  INFO 23384 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-09-27T12:47:25.907+05:30  INFO 23384 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.6.Final
+2023-09-27T12:47:25.916+05:30  INFO 23384 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-09-27T12:47:26.154+05:30  INFO 23384 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T12:47:26.412+05:30  INFO 23384 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-09-27T12:47:26.441+05:30  INFO 23384 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-09-27T12:47:26.764+05:30  INFO 23384 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@430f0a2b
+2023-09-27T12:47:26.769+05:30  INFO 23384 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-09-27T12:47:27.409+05:30  INFO 23384 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-09-27T12:47:28.827+05:30  INFO 23384 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-09-27T12:47:29.002+05:30  INFO 23384 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-09-27T12:47:29.500+05:30  INFO 23384 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-09-27T12:47:30.481+05:30  WARN 23384 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-09-27T12:47:31.092+05:30  INFO 23384 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-09-27T12:47:31.149+05:30  INFO 23384 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6002 (http) with context path ''
+2023-09-27T12:47:31.172+05:30  INFO 23384 --- [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 9.494 seconds (process running for 10.531)
+2023-09-27T12:47:36.839+05:30  INFO 23384 --- [http-nio-6002-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-09-27T12:47:36.840+05:30  INFO 23384 --- [http-nio-6002-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-09-27T12:47:36.845+05:30  INFO 23384 --- [http-nio-6002-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
+2023-09-27T12:47:37.237+05:30  INFO 23384 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:47:37.237+05:30  INFO 23384 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:47:37.239+05:30  INFO 23384 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:47:37.239+05:30  INFO 23384 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:47:37.377+05:30  INFO 23384 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:47:37.378+05:30  INFO 23384 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:47:37.416+05:30  INFO 23384 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:47:37.417+05:30  INFO 23384 --- [http-nio-6002-exec-4] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:47:47.838+05:30  INFO 23384 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.ResultServiceImp     : save result
+2023-09-27T12:47:47.994+05:30  INFO 23384 --- [http-nio-6002-exec-5] c.e.demo.controller.ResultController     : Adding result
+2023-09-27T12:47:48.067+05:30  INFO 23384 --- [http-nio-6002-exec-6] c.e.d.serviceImp.FinalResultServiceImp   : get result by user id
+2023-09-27T12:47:48.068+05:30  INFO 23384 --- [http-nio-6002-exec-6] c.e.d.controller.FinalResultController   : get result by student id
+2023-09-27T12:47:48.110+05:30  INFO 23384 --- [http-nio-6002-exec-7] c.e.d.serviceImp.FinalResultServiceImp   : get result by user id
+2023-09-27T12:47:48.113+05:30  INFO 23384 --- [http-nio-6002-exec-7] c.e.d.controller.FinalResultController   : get result by student id
+2023-09-27T12:47:56.707+05:30  INFO 23384 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:47:56.707+05:30  INFO 23384 --- [http-nio-6002-exec-8] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:47:56.728+05:30  INFO 23384 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:47:56.728+05:30  INFO 23384 --- [http-nio-6002-exec-9] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:47:58.871+05:30  INFO 23384 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:47:58.871+05:30  INFO 23384 --- [http-nio-6002-exec-10] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:47:58.899+05:30  INFO 23384 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:47:58.899+05:30  INFO 23384 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:48:01.122+05:30  INFO 23384 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:48:01.122+05:30  INFO 23384 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:48:01.135+05:30  INFO 23384 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:48:01.135+05:30  INFO 23384 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:48:01.155+05:30  INFO 23384 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:48:01.155+05:30  INFO 23384 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:48:01.202+05:30  INFO 23384 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:48:01.205+05:30  INFO 23384 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:48:13.689+05:30  INFO 23384 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.ResultServiceImp     : save result
+2023-09-27T12:48:13.730+05:30  INFO 23384 --- [http-nio-6002-exec-6] c.e.demo.controller.ResultController     : Adding result
+2023-09-27T12:48:13.806+05:30  INFO 23384 --- [http-nio-6002-exec-7] c.e.d.serviceImp.FinalResultServiceImp   : get result by user id
+2023-09-27T12:48:13.806+05:30  INFO 23384 --- [http-nio-6002-exec-7] c.e.d.controller.FinalResultController   : get result by student id
+2023-09-27T12:48:13.841+05:30  INFO 23384 --- [http-nio-6002-exec-8] c.e.d.serviceImp.FinalResultServiceImp   : get result by user id
+2023-09-27T12:48:13.841+05:30  INFO 23384 --- [http-nio-6002-exec-8] c.e.d.controller.FinalResultController   : get result by student id
+2023-09-27T12:48:16.788+05:30  INFO 23384 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:48:16.788+05:30  INFO 23384 --- [http-nio-6002-exec-9] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:48:16.820+05:30  INFO 23384 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.CategoryServiceImp   : find all categories
+2023-09-27T12:48:16.820+05:30  INFO 23384 --- [http-nio-6002-exec-10] c.e.demo.controller.CategoryController   : fina all categories
+2023-09-27T12:48:17.929+05:30  INFO 23384 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:48:17.929+05:30  INFO 23384 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:48:17.959+05:30  INFO 23384 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : Find quiz by category id
+2023-09-27T12:48:17.959+05:30  INFO 23384 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : Fina quiz by categoryID
+2023-09-27T12:48:20.183+05:30  INFO 23384 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:48:20.183+05:30  INFO 23384 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:48:20.207+05:30  INFO 23384 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:48:20.207+05:30  INFO 23384 --- [http-nio-6002-exec-5] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:48:20.207+05:30  INFO 23384 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:48:20.207+05:30  INFO 23384 --- [http-nio-6002-exec-4] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:48:20.258+05:30  INFO 23384 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:48:20.258+05:30  INFO 23384 --- [http-nio-6002-exec-6] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:48:29.987+05:30  INFO 23384 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:48:29.991+05:30  INFO 23384 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:48:29.996+05:30  INFO 23384 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:48:29.996+05:30  INFO 23384 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:48:30.016+05:30  INFO 23384 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuizSirviceImp       : get quiz by id
+2023-09-27T12:48:30.016+05:30  INFO 23384 --- [http-nio-6002-exec-9] c.e.demo.controller.QuizController       : get quiz by quiz id
+2023-09-27T12:48:30.028+05:30  INFO 23384 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuestionServiceImp   : find question by question id
+2023-09-27T12:48:30.028+05:30  INFO 23384 --- [http-nio-6002-exec-10] c.e.demo.controller.QuestionsController  : Get all questions by quiz id
+2023-09-27T12:48:31.708+05:30  INFO 23384 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.ResultServiceImp     : save result
+2023-09-27T12:48:31.753+05:30  INFO 23384 --- [http-nio-6002-exec-1] c.e.demo.controller.ResultController     : Adding result
+2023-09-27T12:48:31.808+05:30  INFO 23384 --- [http-nio-6002-exec-2] c.e.d.serviceImp.FinalResultServiceImp   : get result by user id
+2023-09-27T12:48:31.808+05:30  INFO 23384 --- [http-nio-6002-exec-2] c.e.d.controller.FinalResultController   : get result by student id
+2023-09-27T12:48:31.840+05:30  INFO 23384 --- [http-nio-6002-exec-3] c.e.d.serviceImp.FinalResultServiceImp   : get result by user id
+2023-09-27T12:48:31.840+05:30  INFO 23384 --- [http-nio-6002-exec-3] c.e.d.controller.FinalResultController   : get result by student id

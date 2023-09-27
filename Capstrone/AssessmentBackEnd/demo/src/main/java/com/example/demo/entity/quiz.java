@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.demo.validationMessages.ValidationMessages;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
@@ -30,19 +32,20 @@ public class Quiz {
     /**
      * stores the topic name.
      */
-    @Column(nullable = false, unique = true)
-    @NotEmpty(message = "topic name is required")
+    @Column(nullable = false)
+    @NotEmpty(message = ValidationMessages.QUIZNAME_NOTBLANK)
     private String topicName;
     /**
      * stores the topic description.
      */
     @Column(nullable = false)
+    @NotEmpty(message = ValidationMessages.QUIZDESCRIPTION_NOTBLANK)
     private String topicDescription;
     /**
      * stores the time.
      */
     @Column(nullable = false)
-    @NotNull(message = "timer is required")
+    @NotNull(message = ValidationMessages.TIMELIMIT_NOTBLANK)
     private int timer;
     /**
      * get quiz.

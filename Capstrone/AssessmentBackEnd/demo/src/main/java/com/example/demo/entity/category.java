@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import com.example.demo.validationMessages.ValidationMessages;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -29,14 +31,14 @@ public class Category {
     /**
      * store category name.
      */
-    @Column(nullable = false, unique = true)
-    @NotEmpty(message = "category name is required")
+    @Column(nullable = false)
+    @NotEmpty(message = ValidationMessages.CATEGORY_NOTBLANK)
     private String categoryName;
     /**
      * store category description.
      */
     @Column(nullable = false)
-    @NotEmpty(message = "category description is required")
+    @NotEmpty(message = ValidationMessages.CATEGORYDESCRIPTION_NOTBLANK)
     private String categoryDescription;
     /**
      * one to many relationship with quiz.

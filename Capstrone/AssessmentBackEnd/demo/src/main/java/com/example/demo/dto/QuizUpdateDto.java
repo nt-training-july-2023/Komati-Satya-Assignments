@@ -1,6 +1,8 @@
 package com.example.demo.dto;
 
 
+import com.example.demo.validationMessages.ValidationMessages;
+
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -23,15 +25,16 @@ public class QuizUpdateDto {
     /**
      * stores the topic name.
      */
-    @NotEmpty(message = "topic name is required")
+    @NotEmpty(message = ValidationMessages.QUIZNAME_NOTBLANK)
     private String topicName;
     /**
      * stores the topic description.
      */
+    @NotEmpty(message = ValidationMessages.QUIZDESCRIPTION_NOTBLANK)
     private String topicDescription;
     /**
      * stores the time.
      */
-    @NotNull(message = "timer is required")
+    @NotNull(message = ValidationMessages.TIMELIMIT_NOTBLANK)
     private int timer;
 }

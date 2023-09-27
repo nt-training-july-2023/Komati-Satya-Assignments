@@ -20,9 +20,6 @@ const Result = () => {
   }, []);
   const getAllResultss = () => {
     FinalResultApi.getAllResult().then(response => {
-      if (response.data.message === "No results are there") {
-        <h1>No results</h1>
-      }
       setResult(response.data || []);
       setOriginalResult(response.data || []);
     }).catch(error => {
@@ -33,9 +30,6 @@ const Result = () => {
   };
   const getResultt = () => {
     FinalResultApi.getResultByStudentId(userId).then(response => {
-      if (response.data.message == "No user is there") {
-        <h1>No results</h1>
-      }
       setResult(response.data || []);
       setOriginalResult(response.data || []);
     }).catch(error => {

@@ -1,4 +1,5 @@
 package com.example.demo.entity;
+import com.example.demo.validationMessages.ValidationMessages;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -30,13 +31,13 @@ public class Questions {
      * stores the question.
      */
     @Column(nullable = false, unique = true)
-    @NotEmpty(message = "Question is required")
+    @NotEmpty(message = ValidationMessages.QUESTION_NOTBLANK)
     private String question;
     /**
      * stores the option1.
      */
     @Column(nullable = false)
-    @NotEmpty(message = "Option1 is required")
+    @NotEmpty(message = ValidationMessages.OPTION1_NOTBLANK)
     private String option1;
     /**
      * Constructor.
@@ -64,25 +65,25 @@ public class Questions {
      * stores the option2.
      */
     @Column(nullable = false)
-    @NotEmpty(message = "option2 is required")
+    @NotEmpty(message = ValidationMessages.OPTION2_NOTBLANK)
     private String option2;
     /**
      * stores the option3.
      */
     @Column(nullable = false)
-    @NotEmpty(message = "option3 is required")
+    @NotEmpty(message = ValidationMessages.OPTION3_NOTBLANK)
     private String option3;
     /**
      * stores the option4.
      */
     @Column(nullable = false)
-    @NotEmpty(message = "option4 is required")
+    @NotEmpty(message = ValidationMessages.OPTION4_NOTBLANK)
     private String option4;
     /**
      * stores the correct option.
      */
     @Column(nullable = false)
-    @NotEmpty(message = "correct Option is required")
+    @NotEmpty(message = ValidationMessages.CORRECTANSWER_NOTBLANK)
     private String correctOption;
     /**
      * many to one relationship with quiz.

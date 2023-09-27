@@ -20,6 +20,7 @@ import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.repository.StudentRepo;
 import com.example.demo.service.StudentService;
+import com.example.demo.validationMessages.ErrorMessages;
 
 /**
  * Student service implementation.
@@ -62,11 +63,11 @@ public class StudentServiceImp implements StudentService {
                 return Optional.of(studentDto);
             } else {
                 LOGGER.error("password must be same");
-                throw new PasswordMissMatchException("password must be same");
+                throw new PasswordMissMatchException(ErrorMessages.WRONG_PASSWORD);
             }
         } else {
             LOGGER.error("Email not exist");
-            throw new EmailDoesNotExistException("Email not exist");
+            throw new EmailDoesNotExistException(ErrorMessages.WRONG_EMAIL);
         }
     }
     /**
@@ -92,7 +93,7 @@ public class StudentServiceImp implements StudentService {
             return studentDto;
         } else {
             LOGGER.error("Email already exist");
-            throw new DuplicateEmailException("Email already exist");
+            throw new DuplicateEmailException(ErrorMessages.EMAIL_EXIST);
         }
     }
     /**
@@ -117,7 +118,7 @@ public class StudentServiceImp implements StudentService {
             return Optional.of(studentDto);
         } else {
             LOGGER.error("User not found");
-            throw new NotFoundException("User not found");
+            throw new NotFoundException(ErrorMessages.USER_NOTPRESENT);
         }
     }
     /**
@@ -133,7 +134,7 @@ public class StudentServiceImp implements StudentService {
             return studentDto;
         } else {
             LOGGER.error("No user is present");
-            throw new AllNotFoundException("No user is present");
+            throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }
     /**
@@ -177,7 +178,7 @@ public class StudentServiceImp implements StudentService {
             return studentDto;
         } else {
             LOGGER.error("user not found");
-            throw new NotFoundException("User not found,give a correct id");
+            throw new NotFoundException(ErrorMessages.WRONG_USERID);
         }
     }
     /**
@@ -192,11 +193,11 @@ public class StudentServiceImp implements StudentService {
                 LOGGER.info("deletion of student");
             } else {
                 LOGGER.error("User not found");
-                throw new NotFoundException("User not found,give a correct id");
+                throw new NotFoundException(ErrorMessages.WRONG_USERID);
             }
         } else {
             LOGGER.error("User not found");
-            throw new AllNotFoundException("No user is present");
+            throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }
 }

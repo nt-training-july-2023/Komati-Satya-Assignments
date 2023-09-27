@@ -17,6 +17,7 @@ import com.example.demo.repository.CategoryRepo;
 import com.example.demo.repository.FinalResultRepo;
 import com.example.demo.repository.StudentResultRepo;
 import com.example.demo.service.FinalResService;
+import com.example.demo.validationMessages.ErrorMessages;
 
 /**
  * Final result service interface.
@@ -58,11 +59,11 @@ public class FinalResultServiceImp implements FinalResService {
                 return resultDto;
             } else {
                 LOGGER.error("User did not take the test");
-                throw new NotFoundException("User did not take the test");
+                throw new NotFoundException(ErrorMessages.USER_NOTTAKE);
             }
         } else {
             LOGGER.error("No user is there");
-            throw new AllNotFoundException("No user is there");
+            throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }
     /**
@@ -104,7 +105,7 @@ public class FinalResultServiceImp implements FinalResService {
             return resultDto;
         } else {
             LOGGER.error("No results are there");
-            throw new AllNotFoundException("No results are there");
+            throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }
 }

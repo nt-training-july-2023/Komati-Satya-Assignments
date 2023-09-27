@@ -49,7 +49,7 @@ public class QuizController {
     @PostMapping("/quiz")
     public final ResponseEntity<String> saveQuiz(
             @RequestBody @Valid final Quiz q) {
-            QuizDto quizDto = quizSevice.addQuiz(q);
+            quizSevice.addQuiz(q);
             LOGGER.info("Adding Quiz");
             return ResponseEntity.ok("succcessfully add the data");
     }
@@ -99,7 +99,7 @@ public class QuizController {
     public final ResponseEntity<String> updateQuiz(
             @RequestBody @Valid final QuizUpdateDto q,
             @PathVariable final int id) {
-            QuizUpdateDto quizDto = quizSevice.updateQuiz(q, id);
+            quizSevice.updateQuiz(q, id);
             LOGGER.info("Update the quiz");
             return ResponseEntity.ok("quiz updated successfully");
     }
