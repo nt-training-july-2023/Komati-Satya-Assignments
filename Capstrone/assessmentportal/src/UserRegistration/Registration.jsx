@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import './RegistrationStyles.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import UserApi from "../APIs/UserApi";
@@ -85,7 +84,7 @@ const Registration = () => {
       else if (formData.password !== formData.confirmPassword) {
         SweetAlert.fieldsRequired("Password must be same");
       }
-      else if (formData.email && (!/^[A-Z0-9a-z+_-]+@nucleusteq[.]com$/.test(formData.email))) {
+      else if (formData.email && (!/^[a-z][a-zA-Z0-9.]*@nucleusteq\.com$/.test(formData.email))) {
         SweetAlert.fieldsRequired("Email must contain domain @nucleusteq");
 
       }
@@ -100,7 +99,6 @@ const Registration = () => {
            
           })
           .catch((error) => {
-            console.error('Axios Error:', error);
             if (error.response.data.errorMessage === "Email already exist") {
               SweetAlert.fieldsRequired("Email already exist");
             }

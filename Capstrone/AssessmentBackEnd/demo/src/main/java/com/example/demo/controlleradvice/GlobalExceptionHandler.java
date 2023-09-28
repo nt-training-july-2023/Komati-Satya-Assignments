@@ -1,4 +1,4 @@
-package com.example.demo.exceptions;
+package com.example.demo.controlleradvice;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,6 +9,14 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import com.example.demo.exceptions.AllNotFoundException;
+import com.example.demo.exceptions.AlreadyExistException;
+import com.example.demo.exceptions.DuplicateEmailException;
+import com.example.demo.exceptions.EmailDoesNotExistException;
+import com.example.demo.exceptions.ErrorResponse;
+import com.example.demo.exceptions.NotFoundException;
+import com.example.demo.exceptions.PasswordMissMatchException;
 /**
  * Global exception handler.
  */

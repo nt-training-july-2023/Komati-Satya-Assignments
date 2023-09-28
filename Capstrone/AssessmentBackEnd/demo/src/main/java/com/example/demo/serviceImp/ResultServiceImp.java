@@ -92,13 +92,13 @@ public class ResultServiceImp implements ResultService {
                     LOGGER.info("save result");
                     finalResultRepo.save(finalResult);
                 } else {
-                    LOGGER.error("Category is not present");
+                    LOGGER.error(ErrorMessages.CATEGORY_NOTPRESENT);
                     throw new NotFoundException(
                             ErrorMessages.CATEGORY_NOTPRESENT);
                 }
 
             } else {
-                LOGGER.error("Quiz is not present");
+                LOGGER.error(ErrorMessages.QUIZ_NOTPRESENT);
                 throw new NotFoundException(ErrorMessages.QUIZ_NOTPRESENT);
             }
             finalResultRepo.save(finalResult);
@@ -119,7 +119,7 @@ public class ResultServiceImp implements ResultService {
             studentResult.setResultId(resultDto.getResultId());
             studentResultRepo.save(studentResult);
         } else {
-            LOGGER.error("Wrong email id");
+            LOGGER.error(ErrorMessages.WRONG_EMAIL);
             throw new NotFoundException(ErrorMessages.WRONG_EMAIL);
         }
         return resultDto;
@@ -151,11 +151,11 @@ public class ResultServiceImp implements ResultService {
                 LOGGER.info("get result hy id");
                 return Optional.of(resultDto);
             } else {
-                LOGGER.error("wrong user Id,enter a valid Id");
+                LOGGER.error(ErrorMessages.WRONG_USERID);
                 throw new NotFoundException(ErrorMessages.WRONG_USERID);
             }
         } else {
-            LOGGER.error("no studentresult is present");
+            LOGGER.error(ErrorMessages.NO_USER);
             throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }
@@ -171,7 +171,7 @@ public class ResultServiceImp implements ResultService {
             LOGGER.info("find all result");
             return resultDto;
         } else {
-            LOGGER.info("studentresult is present");
+            LOGGER.info(ErrorMessages.NO_USER);
             throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }

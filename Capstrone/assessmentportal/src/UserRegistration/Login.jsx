@@ -69,7 +69,6 @@ const Login = () => {
                 }
             }).catch(error => {
 
-                console.log(error);
                 if (error.response.data.errorMessage === "password must be same") {
                     SweetAlert.fieldsRequired("Wrong password");
                 

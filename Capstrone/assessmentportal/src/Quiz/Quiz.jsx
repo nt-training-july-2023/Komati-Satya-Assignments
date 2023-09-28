@@ -26,8 +26,6 @@ function Quiz({ setTrue }) {
     QuizApi.getQuizByCategoryId(categoryId).then(response => {
       setQuiz(response.data|| []);
       setOriginalQuiz(response.data || []);
-    }).catch(error => {
-      console.error('An error occurred:', error);
     }).finally(() => {
       setIsLoading(false);
     })

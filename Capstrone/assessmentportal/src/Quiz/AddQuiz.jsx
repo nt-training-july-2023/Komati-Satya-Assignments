@@ -44,9 +44,7 @@ const AddQuiz = () => {
                         categoryId
                     });
                 })
-                .catch((error) => {
-                    console.error("An error occurred:", error);
-                });
+               
         }
     }, [quizId]);
     const showErrors=(e)=>{
@@ -104,7 +102,7 @@ const AddQuiz = () => {
 
                     } 
                 }).catch(error => {
-                    console.log(error)
+                  
                     if (error.response.status === 302) {
                         SweetAlert.fieldsRequired("Quiz already exist")
                     }

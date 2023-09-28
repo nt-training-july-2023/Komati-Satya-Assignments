@@ -38,9 +38,7 @@ const UserUpdate = () => {
           userId: userInformation.userId
         }));
       })
-      .catch((error) => {
-        console.error("An error occurred:", error);
-      });
+      
   }, [userId]);
   const handleUpdateCategory = () => {
     UserApi.updateUser(userId, userData)

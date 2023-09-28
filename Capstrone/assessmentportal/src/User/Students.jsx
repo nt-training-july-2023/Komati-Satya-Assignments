@@ -19,7 +19,7 @@ function Student() {
       setOriginalStudent(response.data || []);
 
     }).catch(error => {
-      console.error('An error occurred:', error);
+      
     }).finally(() => {
       setIsLoading(false);
     })

@@ -19,6 +19,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
+import com.example.demo.controlleradvice.GlobalExceptionHandler;
+
 class GlobalExceptionHandlerTest {
 
     @InjectMocks

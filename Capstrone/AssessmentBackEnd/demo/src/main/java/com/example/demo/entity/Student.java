@@ -41,7 +41,7 @@ public class Student {
      */
     @Column(nullable = false)
     @NotEmpty(message = ValidationMessages.EMAIL_NOTBLANK)
-    @Pattern(regexp = "^[A-Z0-9a-z.]+@nucleusteq[.]com$",
+    @Pattern(regexp = "^[a-z][a-zA-Z0-9.]*@nucleusteq\\.com",
     message = ValidationMessages.EMAIL_PATTERN)
     private String email;
     /**

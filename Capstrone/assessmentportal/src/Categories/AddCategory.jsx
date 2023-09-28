@@ -33,9 +33,7 @@ const AddCategory = () => {
               categoryDescription,
             });
           })
-          .catch((error) => {
-            console.error("An error occurred:", error);
-          });
+         
         }
       }, [categoryId]);
       const showErrors=(e)=>{
@@ -91,11 +89,9 @@ else{
             navigate('/Category');
            
         }
-       console.log(response)
+      
     }).catch((error)=>{
-       console.log(error);
        if (error.response.status === 302) {
-        console.log("fhdk");
         SweetAlert.fieldsRequired("Category already present");
     }
     })    

@@ -55,8 +55,6 @@ function Test({ isRefresh, setTrue }) {
   const getQuiz = async () => {
     QuizApi.getQuiz(quizId).then(response => {
       setQuiz(response.data || []);
-    }).catch(error => {
-      console.error('An error occurred:', error);
     }).finally(() => {
       setIsLoading(false);
     })
@@ -71,8 +69,6 @@ function Test({ isRefresh, setTrue }) {
       setQuestions(response.data|| []);
       setNumberOfQuestions(response.data.length)
 
-    }).catch(error => {
-      console.error('An error occurred:', error);
     }).finally(() => {
       setIsLoading(false);
     })
@@ -250,8 +246,6 @@ function Test({ isRefresh, setTrue }) {
     };
     ResultApi.addResult(postDataa).then(response => {
       navigate(`/Result/${verifyUserId}`)
-    }).catch(error => {
-      console.error('Error sending data to the server:', error);
     })
   };
   const backTo = () => {

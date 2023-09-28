@@ -58,11 +58,11 @@ public class FinalResultServiceImp implements FinalResService {
                 LOGGER.info("get result by user id");
                 return resultDto;
             } else {
-                LOGGER.error("User did not take the test");
+                LOGGER.error(ErrorMessages.USER_NOTTAKE);
                 throw new NotFoundException(ErrorMessages.USER_NOTTAKE);
             }
         } else {
-            LOGGER.error("No user is there");
+            LOGGER.error(ErrorMessages.NO_USER);
             throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }
@@ -104,7 +104,7 @@ public class FinalResultServiceImp implements FinalResService {
             LOGGER.info("find all result");
             return resultDto;
         } else {
-            LOGGER.error("No results are there");
+            LOGGER.error(ErrorMessages.NO_USER);
             throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }

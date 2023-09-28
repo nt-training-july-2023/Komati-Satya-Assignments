@@ -79,9 +79,7 @@ const AddQuestions = () => {
                         correctOption
                     });
                 })
-                .catch((error) => {
-                    console.error("An error occurred:", error);
-                });
+               
         }
     }, [quizId]);
     const showErrors=(e)=>{
@@ -144,7 +142,7 @@ const AddQuestions = () => {
 
                     } 
                 }).catch(error => {
-                    console.log(error)
+                 
                     if (error.response.status === 302) {
                         SweetAlert.fieldsRequired("Question already exist");
                     }

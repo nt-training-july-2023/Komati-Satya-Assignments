@@ -72,16 +72,15 @@ public class QuestionServiceImp implements QuestionsService {
                 LOGGER.info("add question");
                 return qu;
                 } else {
-                    LOGGER.error("coorect option must same with "
-                            + "one of four options");
+                    LOGGER.error(ErrorMessages.CORRECT_OPTION);
                     throw new NotFoundException(ErrorMessages.CORRECT_OPTION);
                 }
             } else {
-                LOGGER.error("question already exist");
+                LOGGER.error(ErrorMessages.QUESTION_EXIST);
                 throw new AlreadyExistException(ErrorMessages.QUESTION_EXIST);
             }
         } else {
-            LOGGER.error("Quiz topic is not there");
+            LOGGER.error(ErrorMessages.QUIZ_NOTPRESENT);
             throw new NotFoundException(ErrorMessages.QUIZ_NOTPRESENT);
         }
     }
@@ -97,7 +96,7 @@ public class QuestionServiceImp implements QuestionsService {
             LOGGER.info("get all giestions");
             return qd;
         } else {
-            LOGGER.error("no question is present");
+            LOGGER.error(ErrorMessages.NO_QUESTION);
             throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
         }
     }
@@ -133,11 +132,11 @@ public class QuestionServiceImp implements QuestionsService {
                 questionsRepo.deleteById(id);
                 LOGGER.info("delete question");
             } else {
-                LOGGER.error("wrong question Id,enter a valid Id");
+                LOGGER.error(ErrorMessages.WRONG_QUESTIONID);
                 throw new NotFoundException(ErrorMessages.WRONG_QUESTIONID);
             }
         } else {
-            LOGGER.error("no question is present");
+            LOGGER.error(ErrorMessages.NO_QUESTION);
             throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
         }
     }
@@ -170,11 +169,11 @@ public class QuestionServiceImp implements QuestionsService {
                 LOGGER.info("update question");
                 return q;
             } else {
-                LOGGER.error("wrong question Id,enter a valid Id");
+                LOGGER.error(ErrorMessages.WRONG_QUESTIONID);
                 throw new NotFoundException(ErrorMessages.WRONG_QUESTIONID);
             }
         } else {
-            LOGGER.error("no question is present");
+            LOGGER.error(ErrorMessages.NO_QUESTION);
             throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
         }
     }
@@ -191,7 +190,7 @@ public class QuestionServiceImp implements QuestionsService {
                 LOGGER.info("find question by question id");
                 return ld;
         } else {
-            LOGGER.error("no question is present");
+            LOGGER.error(ErrorMessages.NO_QUESTION);
             throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
         }
     }
@@ -218,11 +217,11 @@ public class QuestionServiceImp implements QuestionsService {
                 LOGGER.info("find question");
                 return Optional.of(questionsDto);
             } else {
-                LOGGER.error("Question is not there, enter a valid question");
+                LOGGER.error(ErrorMessages.NO_QUESTION);
                 throw new NotFoundException(ErrorMessages.NO_QUESTION);
             }
         } else {
-            LOGGER.error("no question is present");
+            LOGGER.error(ErrorMessages.NO_QUESTION);
             throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
         }
     }

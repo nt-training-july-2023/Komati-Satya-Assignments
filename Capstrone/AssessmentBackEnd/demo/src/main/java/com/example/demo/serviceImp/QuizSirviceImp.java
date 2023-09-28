@@ -60,11 +60,11 @@ public class QuizSirviceImp implements QuizService {
                 LOGGER.info("add quiz");
                 return quizDto;
             } else {
-                LOGGER.error("Topic is already exist," + "enter a new topic");
+                LOGGER.error(ErrorMessages.QUIZ_EXIST);
                 throw new AlreadyExistException(ErrorMessages.QUIZ_EXIST);
             }
         } else {
-            LOGGER.error("Category is not present");
+            LOGGER.error(ErrorMessages.CATEGORY_NOTPRESENT);
             throw new NotFoundException(ErrorMessages.CATEGORY_NOTPRESENT);
         }
     }
@@ -88,11 +88,11 @@ public class QuizSirviceImp implements QuizService {
                 LOGGER.info("get quiz by id");
                 return Optional.of(quizDto);
             } else {
-                LOGGER.error("wrong quiz id");
+                LOGGER.error(ErrorMessages.WRONG_QUIZID);
                 throw new NotFoundException(ErrorMessages.WRONG_QUIZID);
             }
         } else {
-            LOGGER.error("no quiz is present");
+            LOGGER.error(ErrorMessages.NO_QUIZ);
             throw new AllNotFoundException(ErrorMessages.NO_QUIZ);
         }
     }
@@ -107,6 +107,7 @@ public class QuizSirviceImp implements QuizService {
             List<QuizDto> quizDto = convertToDto(quiz);
             return quizDto;
         } else {
+            LOGGER.error(ErrorMessages.NO_QUIZ);
             throw new AllNotFoundException(ErrorMessages.NO_QUIZ);
         }
     }
@@ -139,11 +140,11 @@ public class QuizSirviceImp implements QuizService {
                 quizRepo.deleteById(id);
                 LOGGER.info("delete quiz");
             } else {
-                LOGGER.error("wrong quiz id");
+                LOGGER.error(ErrorMessages.WRONG_QUIZID);
                 throw new NotFoundException(ErrorMessages.WRONG_QUIZID);
             }
         } else {
-            LOGGER.error("no quiz is present");
+            LOGGER.error(ErrorMessages.NO_QUIZ);
             throw new AllNotFoundException(ErrorMessages.NO_QUIZ);
         }
     }
@@ -172,11 +173,11 @@ public class QuizSirviceImp implements QuizService {
                 LOGGER.info("update quiz");
                 return q;
             } else {
-                LOGGER.error("wrong quiz id");
+                LOGGER.error(ErrorMessages.WRONG_QUIZID);
                 throw new NotFoundException(ErrorMessages.WRONG_QUIZID);
             }
         } else {
-            LOGGER.error("no quiz is present");
+            LOGGER.error(ErrorMessages.NO_QUIZ);
             throw new AllNotFoundException(ErrorMessages.NO_QUIZ);
         }
     }
@@ -193,7 +194,7 @@ public class QuizSirviceImp implements QuizService {
                 LOGGER.info("Find quiz by category id");
                 return quizDto;
         } else {
-            LOGGER.error("no quiz is present");
+            LOGGER.error(ErrorMessages.NO_QUIZ);
             throw new AllNotFoundException(ErrorMessages.NO_QUIZ);
         }
 
@@ -218,11 +219,11 @@ public class QuizSirviceImp implements QuizService {
                 LOGGER.info("find quiz by name");
                 return Optional.of(quizDto);
             } else {
-                LOGGER.error("topic is not found");
+                LOGGER.error(ErrorMessages.QUIZ_NOTPRESENT);
                 throw new NotFoundException(ErrorMessages.QUIZ_NOTPRESENT);
             }
         } else {
-            LOGGER.error("no quiz is present");
+            LOGGER.error(ErrorMessages.NO_QUIZ);
             throw new AllNotFoundException(ErrorMessages.NO_QUIZ);
         }
     }

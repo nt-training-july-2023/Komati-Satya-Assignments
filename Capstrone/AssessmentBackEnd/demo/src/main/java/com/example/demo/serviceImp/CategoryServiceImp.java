@@ -51,7 +51,7 @@ public class CategoryServiceImp implements CategoryService {
             LOGGER.info("save category");
             return categoryDto;
         } else {
-            LOGGER.error("Category already present");
+            LOGGER.error(ErrorMessages.CATEGORY_EXIST);
             throw new AlreadyExistException(ErrorMessages.CATEGORY_EXIST);
         }
     }
@@ -73,11 +73,11 @@ public class CategoryServiceImp implements CategoryService {
                 LOGGER.info("find category by category id");
                 return Optional.of(categoryDto);
             } else {
-                LOGGER.error("wrong category id");
+                LOGGER.error(ErrorMessages.WRONG_CATEGORYID);
                 throw new NotFoundException(ErrorMessages.WRONG_CATEGORYID);
             }
         } else {
-            LOGGER.error("no category is there");
+            LOGGER.error(ErrorMessages.NO_CATEGORY);
             throw new AllNotFoundException(ErrorMessages.NO_CATEGORY);
         }
     }
@@ -93,7 +93,7 @@ public class CategoryServiceImp implements CategoryService {
             LOGGER.info("find all categories");
             return cd;
         } else {
-            LOGGER.error("No categories are there");
+            LOGGER.error(ErrorMessages.NO_CATEGORY);
             throw new AllNotFoundException(ErrorMessages.NO_CATEGORY);
         }
     }
@@ -137,7 +137,7 @@ public class CategoryServiceImp implements CategoryService {
             LOGGER.info("update category");
             return c;
         } else {
-            LOGGER.error("wrong category id");
+            LOGGER.error(ErrorMessages.WRONG_CATEGORYID);
             throw new NotFoundException(ErrorMessages.WRONG_CATEGORYID);
         }
     }
@@ -153,7 +153,7 @@ public class CategoryServiceImp implements CategoryService {
                 LOGGER.info("delete category");
             } else {
                 LOGGER.error("wrong category id");
-                throw new NotFoundException("wrong category id");
+                throw new NotFoundException(ErrorMessages.NO_CATEGORY);
             }
         } else {
             LOGGER.error("No categories are there");
@@ -177,11 +177,11 @@ public class CategoryServiceImp implements CategoryService {
                 LOGGER.info("find category by category name");
                 return Optional.of(categoryDto);
             } else {
-                LOGGER.error("Category not present");
+                LOGGER.error(ErrorMessages.CATEGORY_NOTPRESENT);
                 throw new NotFoundException(ErrorMessages.CATEGORY_NOTPRESENT);
             }
         } else {
-            LOGGER.error("No categories are there");
+            LOGGER.error(ErrorMessages.NO_CATEGORY);
             throw new AllNotFoundException(ErrorMessages.NO_CATEGORY);
         }
     }

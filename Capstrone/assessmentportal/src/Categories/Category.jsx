@@ -22,11 +22,9 @@ function Category() {
   const getCategories = async () => {
     CategoryApi.getAllCategories().then(
       response => {
-        console.log(response)
+      
         setCategory(response.data || []);
         setOriginalCategory(response.data || []);
-      }).catch(error => {
-        console.error('An error occurred:', error);
       }).finally(() => {
         setIsLoading(false);
       })

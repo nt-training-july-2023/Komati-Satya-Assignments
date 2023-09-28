@@ -25,8 +25,6 @@ const Questions = () => {
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
       setQuestions(response.data|| []);
       setOriginalQuestions(response.data || []);
-    }).catch(error => {
-      console.error('An error occurred:', error);
     }).finally(() => {
       setIsLoading(false);
     })
@@ -43,7 +41,7 @@ const Questions = () => {
       getQuestions();
     })
       .catch(error => {
-        console.log(error);
+       
         getQuestions();
       })
   }
