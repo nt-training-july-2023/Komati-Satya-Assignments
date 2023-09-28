@@ -1,5 +1,4 @@
 
-import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 
 class SweetAlert{
@@ -56,6 +55,14 @@ deleteData(data,deleteFunction,id){
         deleteFunction(id)
       }
     })
+}
+timeOut(){
+  Swal.fire({
+    title: 'Time Out',
+    text: 'All answers are saved',
+    icon: 'warning',
+    confirmButtonText: 'Ok'
+  })
 }
   
 }

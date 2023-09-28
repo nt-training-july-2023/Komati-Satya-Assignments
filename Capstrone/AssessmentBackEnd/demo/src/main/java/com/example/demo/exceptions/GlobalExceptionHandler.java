@@ -68,10 +68,10 @@ public class GlobalExceptionHandler {
     handleEmailDoesNotExistException(final
             EmailDoesNotExistException exception) {
         String message = exception.getMessage();
-        Integer errorCode = HttpStatus.NOT_FOUND.value();
+        Integer errorCode = HttpStatus.UNAUTHORIZED.value();
         ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
    return new ResponseEntity<ErrorResponse>(errorResponse,
-          HttpStatus.NOT_FOUND);
+          HttpStatus.UNAUTHORIZED);
    }
     /**
      * NotFoundException handler.
@@ -98,10 +98,10 @@ public class GlobalExceptionHandler {
     handlePasswordMissMatchException(final
             PasswordMissMatchException exception) {
         String message = exception.getMessage();
-        Integer errorCode = HttpStatus.NOT_FOUND.value();
+        Integer errorCode = HttpStatus.UNAUTHORIZED.value();
         ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
    return new ResponseEntity<ErrorResponse>(errorResponse,
-          HttpStatus.NOT_FOUND);
+          HttpStatus.UNAUTHORIZED);
    }
     /**
      * DuplicateEmailException handler.

@@ -38,32 +38,35 @@ const AddCategory = () => {
           });
         }
       }, [categoryId]);
+      const showErrors=(e)=>{
+        e.preventDefault();
+        
+        const validationErrors = {};
+    
+        if (!categoryData.categoryName) {
+            validationErrors.categoryName = 'category name Required';
+        }
+        if (!categoryData.categoryDescription) {
+            validationErrors.categoryDescription = 'category description Required';
+        }
+    
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            if (validationErrors.categoryName && validationErrors.categoryDescription) {
+                 SweetAlert.fieldsRequired("Category data required");
+            }
+            else if (validationErrors.categoryName && !(validationErrors.categoryDescription)) {
+                SweetAlert.fieldsRequired("Category name required");
+            }
+            if (validationErrors.categoryDescription && !(validationErrors.categoryName)) {
+                SweetAlert.fieldsRequired("Category description required");
+            }
+        } 
+      }
     const handleSubmit=async(e)=>{
     if(categoryId) {          
-            e.preventDefault();
-        
-            const validationErrors = {};
-        
-            if (!categoryData.categoryName) {
-                validationErrors.categoryName = 'category name Required';
-            }
-            if (!categoryData.categoryDescription) {
-                validationErrors.categoryDescription = 'category description Required';
-            }
-        
-            if (Object.keys(validationErrors).length > 0) {
-                setErrors(validationErrors);
-                if (validationErrors.categoryName && validationErrors.categoryDescription) {
-                     SweetAlert.fieldsRequired("Category data required");
-                }
-                else if (validationErrors.categoryName && !(validationErrors.categoryDescription)) {
-                    SweetAlert.fieldsRequired("Category name required");
-                }
-                if (validationErrors.categoryDescription && !(validationErrors.categoryName)) {
-                    SweetAlert.fieldsRequired("Category description required");
-                }
-            } else {
-        
+   
+                 showErrors(e);
                 setErrors({});
             CategoryApi.updateCategory(categoryId,categoryData)
               .then((response) => {
@@ -77,32 +80,9 @@ const AddCategory = () => {
                 }
               })
             }
-          }
+          
 else{
-        e.preventDefault();
-
-        const validationErrors = {};
-
-        if (!categoryData.categoryName) {
-            validationErrors.categoryName = 'category name Required';
-        }
-        if (!categoryData.categoryDescription) {
-            validationErrors.categoryDescription = 'category description Required';
-        }
-
-        if (Object.keys(validationErrors).length > 0) {
-            setErrors(validationErrors);
-            if (validationErrors.categoryName && validationErrors.categoryDescription) {
-                SweetAlert.fieldsRequired("Category data required");
-            }
-            else if (validationErrors.categoryName && !(validationErrors.categoryDescription)) {
-                SweetAlert.fieldsRequired("Category name required");
-            }
-            if (validationErrors.categoryDescription && !(validationErrors.categoryName)) {
-                SweetAlert.fieldsRequired("Category description required");
-            }
-        } else {
-
+          showErrors(e);
             setErrors({});
        CategoryApi.addCategory(categoryData).then(response=>{
         
@@ -119,7 +99,7 @@ else{
         SweetAlert.fieldsRequired("Category already present");
     }
     })    
-}
+
 }
     }
     const cancelAddCategory = () => {

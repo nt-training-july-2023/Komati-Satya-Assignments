@@ -133,6 +133,7 @@ function Quiz({ setTrue }) {
                       <th>Quiz Name</th>
                       <th>Quiz Description</th>
                       <th>Time(in Min)</th>
+                     
                     </tr>
                   </thead>
                   <tbody className="bodyData">

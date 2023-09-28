@@ -95,6 +95,7 @@ const Questions = () => {
                       <th>Option3</th>
                       <th>Option4</th>
                       <th>Correct Answer</th>
+                        <th></th>
                     </tr>
                   </thead>
                   <tbody className="bodyData">

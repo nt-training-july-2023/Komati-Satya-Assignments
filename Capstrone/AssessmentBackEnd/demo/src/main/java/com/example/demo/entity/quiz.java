@@ -14,8 +14,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
 import lombok.NoArgsConstructor;
 /**
  * Quiz entity class.
@@ -45,7 +45,7 @@ public class Quiz {
      * stores the time.
      */
     @Column(nullable = false)
-    @NotNull(message = ValidationMessages.TIMELIMIT_NOTBLANK)
+    @Min(value = 1, message = ValidationMessages.TIMELIMIT_NOTBLANK)
     private int timer;
     /**
      * get quiz.

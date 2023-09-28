@@ -49,30 +49,31 @@ const AddQuiz = () => {
                 });
         }
     }, [quizId]);
+    const showErrors=(e)=>{
+        e.preventDefault();
+         const validationErrors = {};
+
+        if (!quizData.topicName) {
+            validationErrors.topicName = 'quiz name Required';
+        }
+        if (!quizData.topicDescription) {
+            validationErrors.topicDescription = 'quiz description Required';
+        }
+        if (!quizData.timer) {
+            validationErrors.timer = 'timer Required';
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors);
+            if (validationErrors) {
+                SweetAlert.fieldsRequired("All quiz data required")
+            }
+
+        }
+    }
     const addQuizData = async (e) => {
         if (quizId) {
-            e.preventDefault();
-
-
-            const validationErrors = {};
-
-            if (!quizData.topicName) {
-                validationErrors.topicName = 'quiz name Required';
-            }
-            if (!quizData.topicDescription) {
-                validationErrors.topicDescription = 'quiz description Required';
-            }
-            if (!quizData.timer) {
-                validationErrors.topicDescription = 'timer Required';
-            }
-
-            if (Object.keys(validationErrors).length > 0) {
-                setErrors(validationErrors);
-                if (validationErrors) {
-                    SweetAlert.fieldsRequired("All quiz data required")
-                }
-
-            } else {
+                showErrors(e)
                 setErrors({});
                 QuizApi.updateQuiz(quizId, quizData)
                     .then((response) => {
@@ -86,31 +87,15 @@ const AddQuiz = () => {
                         if (error.response.data.errorMessage === "Quiz already exist") {
                            SweetAlert.fieldsRequired("Quiz already present")
                         }
+                        if(error.response.status === 400){
+                            SweetAlert.fieldsRequired("Time limit greaterthan 0")
+                        }
                     })
             }
-        }
+        
         else {
-            e.preventDefault();
-            const validationErrors = {};
-
-            if (!quizData.topicName) {
-                validationErrors.topicName = 'quiz name Required';
-            }
-            if (!quizData.topicDescription) {
-                validationErrors.topicDescription = 'quiz description Required';
-            }
-            if (!quizData.timer) {
-                validationErrors.topicDescription = 'quiz timer Required';
-            }
-
-
-            if (Object.keys(validationErrors).length > 0) {
-                setErrors(validationErrors);
-                if (validationErrors) {
-                    SweetAlert.fieldsRequired("All quiz data required")
-                }
-
-            } else {
+        
+               showErrors(e);
                 setErrors({});
                 QuizApi.addQuiz(requestData).then(response => {
                     if (response.data === "succcessfully add the data") {
@@ -123,9 +108,12 @@ const AddQuiz = () => {
                     if (error.response.status === 302) {
                         SweetAlert.fieldsRequired("Quiz already exist")
                     }
+                    if(error.response.status === 400){
+                        SweetAlert.fieldsRequired("Time limit greaterthan 0")
+                    }
                 })
             }
-        }
+        
     }
 
     const cancelAddQuiz = () => {

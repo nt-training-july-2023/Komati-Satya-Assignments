@@ -67,9 +67,9 @@ class GlobalExceptionHandlerTest {
     public void testHandleEmailDoesNotExistException() {
         EmailDoesNotExistException exception = new EmailDoesNotExistException("Email not exist");
         ResponseEntity<ErrorResponse> responseEntity = globalhandler.handleEmailDoesNotExistException(exception);
-        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.UNAUTHORIZED, responseEntity.getStatusCode());
         ErrorResponse errorResponse = responseEntity.getBody();
-        assertEquals(HttpStatus.NOT_FOUND.value(), errorResponse.getErrorCode());
+        assertEquals(HttpStatus.UNAUTHORIZED.value(), errorResponse.getErrorCode());
         assertEquals("Email not exist", errorResponse.getErrorMessage());
     }
     @Test
@@ -85,9 +85,9 @@ class GlobalExceptionHandlerTest {
     public void testHandlePasswordMissMatchException() {
         PasswordMissMatchException exception = new PasswordMissMatchException("password miss match");
         ResponseEntity<ErrorResponse> responseEntity = globalhandler.handlePasswordMissMatchException(exception);
-        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.UNAUTHORIZED, responseEntity.getStatusCode());
         ErrorResponse errorResponse = responseEntity.getBody();
-        assertEquals(HttpStatus.NOT_FOUND.value(), errorResponse.getErrorCode());
+        assertEquals(HttpStatus.UNAUTHORIZED.value(), errorResponse.getErrorCode());
         assertEquals("password miss match", errorResponse.getErrorMessage());
     }
     @Test

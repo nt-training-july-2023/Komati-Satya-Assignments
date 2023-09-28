@@ -9,6 +9,7 @@ import ResultApi from "../APIs/ResultApi";
 import DisableBackButton from "../APIs/disableBackButton";
 import Input from "../Inputs/Input";
 import ButtonComponent from "../Inputs/ButtonComponent";
+import SweetAlert from "../SweetAlertComponents/SweetAlert";
 
 function Test({ isRefresh, setTrue }) {
   const navigate = useNavigate();
@@ -96,12 +97,7 @@ function Test({ isRefresh, setTrue }) {
         localStorage.setItem('timerValue', timeLeft - 1);
       } else {
         clearTimeout(timer);
-        Swal.fire({
-          title: 'Time Out',
-          text: 'All answers are saved',
-          icon: 'warning',
-          confirmButtonText: 'Ok'
-        })
+        SweetAlert.timeOut()
         timeOutSubmit()
       }
     }, 1000);

@@ -49,7 +49,11 @@ const UserUpdate = () => {
           SweetAlert.success("Successfully updated data")
             navigate("/UserDashBoard")
         }
-      });
+      }).catch((error)=>{
+        if(error.response.status === 400){
+          SweetAlert.fieldsRequired("Data required")
+      }
+      })
   };
   const cancelUpdate = () => {
     SweetAlert.cancel('Update', navigate, '/UserDashBoard')

@@ -84,9 +84,8 @@ const AddQuestions = () => {
                 });
         }
     }, [quizId]);
-    const addQuestionData = async (e) => {
-        if (question) {
-            e.preventDefault();
+    const showErrors=(e)=>{
+        e.preventDefault();
             const validationErrors = {};
 
             if (!questionData2.question) {
@@ -115,8 +114,10 @@ const AddQuestions = () => {
                 }
 
             }
-            else {
-
+    }
+    const addQuestionData = async (e) => {
+        if (question) {
+                showErrors(e)
                 setErrors({});
                 QuestionsApi.updateQuestion(questionData.questionId, questionData2)
                     .then((response) => {
@@ -132,39 +133,9 @@ const AddQuestions = () => {
                     })
 
             }
-        }
+        
         else {
-            e.preventDefault();
-
-            const validationErrors = {};
-
-            if (!questionData2.question) {
-                validationErrors.question = 'queation name Required';
-            }
-            if (!questionData2.option1) {
-                validationErrors.option1 = 'option1 Required';
-            }
-            if (!questionData2.option2) {
-                validationErrors.option2 = 'option2 Required';
-            }
-            if (!questionData2.option3) {
-                validationErrors.option3 = 'option3 Required';
-            }
-            if (!questionData2.option4) {
-                validationErrors.option4 = 'option4 Required';
-            }
-            if (!questionData2.correctOption) {
-                validationErrors.correctOption = 'correctOption Required';
-            }
-
-            if (Object.keys(validationErrors).length > 0) {
-                setErrors(validationErrors);
-                
-                if (validationErrors) {
-                   SweetAlert.fieldsRequired("all question data required");
-                }
-
-            } else {
+               showErrors(e)
                 setErrors({});
                 QuestionsApi.addQuestion(requestData).then(response => {
                     if (response.data === "question added successfully") {
@@ -178,7 +149,7 @@ const AddQuestions = () => {
                         SweetAlert.fieldsRequired("Question already exist");
                     }
                 })
-            }
+            
         }
     }
 
