@@ -68,7 +68,6 @@ function Test({ isRefresh, setTrue }) {
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
       setQuestions(response.data|| []);
       setNumberOfQuestions(response.data.length)
-
     }).finally(() => {
       setIsLoading(false);
     })
@@ -84,7 +83,6 @@ function Test({ isRefresh, setTrue }) {
       localStorage.setItem(`selectedOption_${questionId}`, selectedOption);
       return updatedOptions;
     });
-
   };
   useEffect(() => {
     const timer = setTimeout(() => {

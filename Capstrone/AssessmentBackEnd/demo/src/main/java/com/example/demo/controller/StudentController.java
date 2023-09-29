@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
 import com.example.demo.entity.Student;
+import com.example.demo.exceptions.ErrorResponse;
 import com.example.demo.service.StudentService;
+import com.example.demo.validationMessages.LoggerMessages;
 
 import jakarta.validation.Valid;
 
@@ -45,11 +48,16 @@ public class StudentController {
      * @return response.
      */
     @PostMapping("/student")
-    public final ResponseEntity<String> save(
+    public final ResponseEntity<ErrorResponse> save(
             @RequestBody @Valid final Student s) {
             studentSevice.saveStudent(s);
-            LOGGER.info("Student registration");
-            return ResponseEntity.ok("User register successfully");
+            LOGGER.info(LoggerMessages.SAVE_STUDENT);
+           // return ResponseEntity.ok("User register successfully");
+            String message = "User register successfully";
+            Integer errorCode = HttpStatus.CREATED.value();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
+       return new ResponseEntity<ErrorResponse>(errorResponse,
+              HttpStatus.CREATED);
     }
 
     /**
@@ -61,7 +69,7 @@ public class StudentController {
     public final ResponseEntity<Optional<StudentDto>> findById(
             @PathVariable final int id) {
             Optional<StudentDto> studentDto = studentSevice.findById(id);
-            LOGGER.info("Student registration");
+            LOGGER.info(LoggerMessages.FIND_STUDENTBYID);
             return ResponseEntity.ok(studentDto);
     }
 
@@ -75,7 +83,7 @@ public class StudentController {
             @RequestBody @Valid final LoginDto l) {
             Optional<StudentDto> studentDto = studentSevice.
                     aunthenticateUser(l);
-            LOGGER.info("Student login");
+            LOGGER.info(LoggerMessages.LOGIN_STUDENT);
             return ResponseEntity.ok(studentDto);
     }
 
@@ -86,7 +94,7 @@ public class StudentController {
     @GetMapping("/student/students")
     public final ResponseEntity<List<StudentDto>> findAllStu() {
             List<StudentDto> studentDto = studentSevice.findAllStu();
-            LOGGER.info("Find all students");
+            LOGGER.info(LoggerMessages.FIND_ALLSTUDENT);
             return ResponseEntity.ok(studentDto);
     }
 
@@ -97,12 +105,17 @@ public class StudentController {
      * @return response
      */
     @PutMapping("/student/{id}")
-    public final ResponseEntity<String> updateStudent(
+    public final ResponseEntity<ErrorResponse> updateStudent(
             @RequestBody @Valid final StudentDto s,
             @PathVariable final int id) {
             studentSevice.updateStudent(s, id);
-            LOGGER.info("Updatation of student");
-            return ResponseEntity.ok("user updated successfully");
+            LOGGER.info(LoggerMessages.UPDATE_STUDENT);
+          //  return ResponseEntity.ok("user updated successfully");
+            String message = "user updated successfully";
+            Integer errorCode = HttpStatus.OK.value();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
+       return new ResponseEntity<ErrorResponse>(errorResponse,
+              HttpStatus.OK);
     }
     /**
      * delete student method.
@@ -110,10 +123,14 @@ public class StudentController {
      * @return response
      */
     @DeleteMapping("/student/{id}")
-    public final ResponseEntity<String> deleteStudent(
+    public final ResponseEntity<ErrorResponse> deleteStudent(
             @PathVariable final int id) {
             studentSevice.deleteStudent(id);
-            LOGGER.info("Deletion of student");
-            return ResponseEntity.ok("user deleted successfully");
+            LOGGER.info(LoggerMessages.DELETE_STUDENT);
+            String message = "User deleted successfully";
+            Integer errorCode = HttpStatus.OK.value();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
+       return new ResponseEntity<ErrorResponse>(errorResponse,
+              HttpStatus.OK);
     }
 }

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './LoginStyles.css';
-import Swal from "sweetalert2";
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import UserApi from "../APIs/UserApi";
 import DisableBackButton from "../APIs/disableBackButton";
@@ -69,10 +68,10 @@ const Login = () => {
                 }
             }).catch(error => {
 
-                if (error.response.data.errorMessage === "password must be same") {
+                if (error.response.data.message === "password must be same") {
                     SweetAlert.fieldsRequired("Wrong password");
                 
-                } else if (error.response.data.errorMessage === "Email not exist") {
+                } else if (error.response.data.message === "Email not exist") {
                     SweetAlert.fieldsRequired("Wrong Email");
                 } 
             })

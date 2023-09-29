@@ -120,12 +120,12 @@ const AddQuestions = () => {
                 QuestionsApi.updateQuestion(questionData.questionId, questionData2)
                     .then((response) => {
                       
-                        if (response.data=== "question updated successfully") {
+                        if (response.data.message=== "question updated successfully") {
                            SweetAlert.success("Question updated successfully")
                             navigate(`/Questions/${questionData.quizId}`);
                         }
                     }).catch((error)=>{
-                        if (error.response.data.errorMessage=="Question already exists") {
+                        if (error.response.data.message=="Question already exists") {
                            SweetAlert.fieldsRequired("Question already present")
                         }
                     })
@@ -136,7 +136,7 @@ const AddQuestions = () => {
                showErrors(e)
                 setErrors({});
                 QuestionsApi.addQuestion(requestData).then(response => {
-                    if (response.data === "question added successfully") {
+                    if (response.data.message === "question added successfully") {
                         SweetAlert.success("Question added successfully");
                         navigate(`/Questions/${quizId}`);
 

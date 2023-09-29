@@ -76,13 +76,13 @@ const AddQuiz = () => {
                 QuizApi.updateQuiz(quizId, quizData)
                     .then((response) => {
                       
-                        if (response.data === "quiz updated successfully") {
+                        if (response.data.message === "quiz updated successfully") {
                             SweetAlert.success("Successfully updated data")
                             navigate(`/Quiz/${quizData.categoryId}`)
                         }
                     }).catch((error)=>{
                        
-                        if (error.response.data.errorMessage === "Quiz already exist") {
+                        if (error.response.data.message === "Quiz already exist") {
                            SweetAlert.fieldsRequired("Quiz already present")
                         }
                         if(error.response.status === 400){
@@ -96,7 +96,7 @@ const AddQuiz = () => {
                showErrors(e);
                 setErrors({});
                 QuizApi.addQuiz(requestData).then(response => {
-                    if (response.data === "succcessfully add the data") {
+                    if (response.data.message === "succcessfully add the data") {
                         SweetAlert.success("Quiz added successfully");
                         navigate(`/Quiz/${quizData.categoryId}`);
 

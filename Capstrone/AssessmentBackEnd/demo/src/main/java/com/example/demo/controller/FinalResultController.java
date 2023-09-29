@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.ResultDto;
 import com.example.demo.service.FinalResService;
+import com.example.demo.validationMessages.LoggerMessages;
 
 /**
  * Final result controller class.
@@ -38,7 +39,7 @@ public class FinalResultController {
     public final ResponseEntity<List<ResultDto>> getById(
             @PathVariable final int id) {
             List<ResultDto> resultDto = finalResService.getById(id);
-            LOGGER.info("get result by student id");
+            LOGGER.info(LoggerMessages.FIND_RESULT);
                 return ResponseEntity.ok(resultDto);
     }
     /**
@@ -48,7 +49,7 @@ public class FinalResultController {
     @GetMapping("/finalResult")
     public final ResponseEntity<List<ResultDto>> findAllResult() {
             List<ResultDto> resultDto = finalResService.findAll();
-            LOGGER.info("get all results");
+            LOGGER.info(LoggerMessages.FIND_ALLRESULT);
             return ResponseEntity.ok(resultDto);
     }
 }

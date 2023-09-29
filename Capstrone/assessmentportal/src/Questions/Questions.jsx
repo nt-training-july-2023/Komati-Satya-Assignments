@@ -35,7 +35,7 @@ const Questions = () => {
   };
   const deleteQuestion=(id)=>{
     QuestionsApi.deleteQuestion(id).then(response => {
-      if (response.data === "question deleted successfully") {
+      if (response.data.message === "question deleted successfully") {
         SweetAlert.success("Question deleted successfully")
       }
       getQuestions();

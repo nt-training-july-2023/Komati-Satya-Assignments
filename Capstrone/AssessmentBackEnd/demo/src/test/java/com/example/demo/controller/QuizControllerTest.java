@@ -20,6 +20,7 @@ import com.example.demo.dto.QuizUpdateDto;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.Quiz;
 import com.example.demo.exceptions.AllNotFoundException;
+import com.example.demo.exceptions.ErrorResponse;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.serviceImp.QuizSirviceImp;
 
@@ -39,8 +40,10 @@ class QuizControllerTest {
         QuizDto quizDto=new QuizDto();
         quizDto.setTopicName("arrays");
         when(quizService.addQuiz(quiz)).thenReturn(quizDto);
-        ResponseEntity<String> response=quizController.saveQuiz(quiz);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CREATED.value(), "quiz added successfully");
+        ResponseEntity<ErrorResponse> response=quizController.saveQuiz(quiz);
+        assertEquals(HttpStatus.CREATED,response.getStatusCode());
+        assertEquals("quiz added successfully",errorResponse.getMessage());
         assertNotNull(response.getBody());
     }
     @Test
@@ -67,9 +70,11 @@ class QuizControllerTest {
     void testDeleteQuizSuccess() {
         Quiz quiz=new Quiz();
         quiz.setQuizId(1);
-        ResponseEntity<String> response=quizController.deleteQuiz(1);
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CREATED.value(), "quiz deleted successfully");
+        ResponseEntity<ErrorResponse> response=quizController.deleteQuiz(1);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());
+        assertEquals("quiz deleted successfully",errorResponse.getMessage());
     }
     @Test
     void testUpdateQuizSuccess() {
@@ -78,9 +83,11 @@ class QuizControllerTest {
         quizDto.setTopicName("Arrays");
         int i=1;
         when(quizService.updateQuiz(quizDto, i)).thenReturn(quizDto);
-        ResponseEntity<String> response=quizController.updateQuiz(quizDto, i);
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CREATED.value(), "quiz updated successfully");
+        ResponseEntity<ErrorResponse> response=quizController.updateQuiz(quizDto, i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());
+        assertEquals("quiz updated successfully",errorResponse.getMessage());
     }
     @Test
     void testQuizFindById() {

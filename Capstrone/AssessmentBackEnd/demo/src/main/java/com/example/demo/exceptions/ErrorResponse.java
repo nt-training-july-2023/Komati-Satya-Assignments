@@ -2,16 +2,18 @@ package com.example.demo.exceptions;
 
 
 
-public class ErrorResponse {
+public class ErrorResponse<T> {
     /**
      * error Code.
      */
-    private Integer errorCode;
-
+    private Integer code;
     /**
      * error Message.
      */
-    private String errorMessage;
+    private String message;
+   
+
+   
 
     /**
      * @param code    errorCode
@@ -19,8 +21,8 @@ public class ErrorResponse {
      */
     public ErrorResponse(final Integer code, final String message) {
         super();
-        this.errorCode = code;
-        this.errorMessage = message;
+        this.code = code;
+        this.message = message;
     }
 
     /**
@@ -33,32 +35,32 @@ public class ErrorResponse {
     /**
      * @return errorCode.
      */
-    public Integer getErrorCode() {
-        return errorCode;
+    public Integer getCode() {
+        return code;
     }
 
     /**
      * @param code
      * setter for errorCode.
      */
-    public void setErrorCode(final Integer code) {
-        this.errorCode = code;
+    public void setCode(final Integer code) {
+        this.code = code;
     }
 
     /**
      * @return message
      * getter for errorMessage.
      */
-    public String getErrorMessage() {
-        return errorMessage;
+    public String getMessage() {
+        return message;
     }
 
     /**
      * @param message
      * errorMessage setter for errorMessage.
      */
-    public void setErrorMessage(final String message) {
-        this.errorMessage = message;
+    public void setMessage(final String message) {
+        this.message = message;
     }
 }
 

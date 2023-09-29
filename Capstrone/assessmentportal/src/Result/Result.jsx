@@ -22,8 +22,6 @@ const Result = () => {
     FinalResultApi.getAllResult().then(response => {
       setResult(response.data || []);
       setOriginalResult(response.data || []);
-    }).catch(error => {
-     
     }).finally(() => {
       setIsLoading(false);
     })
@@ -32,8 +30,6 @@ const Result = () => {
     FinalResultApi.getResultByStudentId(userId).then(response => {
       setResult(response.data || []);
       setOriginalResult(response.data || []);
-    }).catch(error => {
-     
     }).finally(() => {
       setIsLoading(false);
     })

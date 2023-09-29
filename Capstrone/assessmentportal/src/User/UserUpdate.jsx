@@ -43,13 +43,13 @@ const UserUpdate = () => {
   const handleUpdateCategory = () => {
     UserApi.updateUser(userId, userData)
       .then((response) => {
-        if (response.data === "user updated successfully") {
+        if (response.data.message === "user updated successfully") {
           SweetAlert.success("Successfully updated data")
             navigate("/UserDashBoard")
         }
       }).catch((error)=>{
         if(error.response.status === 400){
-          SweetAlert.fieldsRequired("Data required")
+          SweetAlert.fieldsRequired("Correct Data required")
       }
       })
   };
@@ -154,7 +154,7 @@ const UserUpdate = () => {
                 </div>
 
                 <ButtonComponent className="btn2" type="button" onClick={handleUpdateCategory}>
-                  Update Student Details
+                  Update 
                 </ButtonComponent>
                 <ButtonComponent className="btn3" type="button" onClick={cancelUpdate}>
                   Cancel

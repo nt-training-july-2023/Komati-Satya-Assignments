@@ -35,7 +35,7 @@ function Quiz({ setTrue }) {
   };
   const deleteQuiz=(id)=>{
     QuizApi.deleteQuiz(id).then(response => {
-      if (response.data === "quiz deleted successfully") {
+      if (response.data.message === "quiz deleted successfully") {
         SweetAlert.success("Successfully deleted data")
       }
       getQuiz();

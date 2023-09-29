@@ -113,7 +113,7 @@ li a.active {
   }
 
   .adminBackground {
-    max-width: 80%;
+    max-width: 60%;
   }
   .nav-bar{
     height: 100%;
@@ -126,5 +126,8 @@ li a.active {
  li a{
   font-size: 18px;
  }
+ .adminBackground {
+  max-width: 80%;
+}
  
 }

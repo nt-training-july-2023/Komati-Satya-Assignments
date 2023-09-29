@@ -18,7 +18,6 @@ const Registration = () => {
     dateOfBirth: "",
     phoneNumber: ""
   });
-
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
 
@@ -34,8 +33,6 @@ const Registration = () => {
     if (!formData.email) {
       validationErrors.email = 'Email Required';
     }
-    
-
     if (!formData.password) {
       validationErrors.password = 'Password Required';
     }
@@ -92,14 +89,14 @@ const Registration = () => {
         UserApi.addUser(formData)
           .then((response) => {
             
-            if (response.data === "User register successfully") {
+            if (response.data.message === "User register successfully") {
              SweetAlert.success("User Register successfully");
               navigate('/');
             }
            
           })
           .catch((error) => {
-            if (error.response.data.errorMessage === "Email already exist") {
+            if (error.response.data.message === "Email already exist") {
               SweetAlert.fieldsRequired("Email already exist");
             }
           });

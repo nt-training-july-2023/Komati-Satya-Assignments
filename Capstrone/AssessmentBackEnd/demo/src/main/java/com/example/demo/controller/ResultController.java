@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ResultDto;
+import com.example.demo.exceptions.ErrorResponse;
 import com.example.demo.service.ResultService;
+import com.example.demo.validationMessages.LoggerMessages;
 
 /**
  * result controller class.
@@ -39,11 +42,16 @@ public class ResultController {
      * @return response
      */
     @PostMapping("/result")
-    public final ResponseEntity<String> addRes(
+    public final ResponseEntity<ErrorResponse> addRes(
             @RequestBody final ResultDto sr) {
             resultService.addRes(sr);
-            LOGGER.info("Adding result");
-            return ResponseEntity.ok("result added successfully");
+            LOGGER.info(LoggerMessages.SAVE_RESULT);
+          //  return ResponseEntity.ok("result added successfully");
+            String message = "result added successfully";
+            Integer errorCode = HttpStatus.CREATED.value();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
+       return new ResponseEntity<ErrorResponse>(errorResponse,
+              HttpStatus.CREATED);
     }
 
     /**
@@ -55,7 +63,7 @@ public class ResultController {
     public final ResponseEntity<Optional<ResultDto>> getRes(
             @PathVariable final int id) {
             Optional<ResultDto> resultDto = resultService.getRes(id);
-            LOGGER.info("Get result by id");
+            LOGGER.info(LoggerMessages.FIND_RESULT);
             return ResponseEntity.ok(resultDto);
     }
 
@@ -66,7 +74,7 @@ public class ResultController {
     @GetMapping("/result")
     public final ResponseEntity<List<ResultDto>> getAllRes() {
             List<ResultDto> resultDto = resultService.getAllRes();
-            LOGGER.info("getting all result");
+            LOGGER.info(LoggerMessages.FIND_ALLRESULT);
             return ResponseEntity.ok(resultDto);
     }
 }

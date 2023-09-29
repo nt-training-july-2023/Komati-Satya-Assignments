@@ -48,7 +48,7 @@ class CategoryServiceImpTest {
         when(repo.save(c)).thenReturn(c);
         CategoryDto categoryDto1=categoryService.saveCategory(c);
         assertEquals(c.getCategoryName(),categoryDto1.getCategoryName());
-        assertEquals(c.getCategoryDescription(),categoryDto1.getCategoryDescription());  
+        assertEquals(c.getCategoryDescription(),categoryDto1.getCategoryDescription());
     }
     
     @Test

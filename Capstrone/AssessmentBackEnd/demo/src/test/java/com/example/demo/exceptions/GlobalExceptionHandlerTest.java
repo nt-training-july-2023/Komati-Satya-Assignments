@@ -52,8 +52,8 @@ class GlobalExceptionHandlerTest {
         ResponseEntity<ErrorResponse> responseEntity = globalhandler.handleAlreadyExistException(exception);
         assertEquals(HttpStatus.FOUND, responseEntity.getStatusCode());
         ErrorResponse errorResponse = responseEntity.getBody();
-        assertEquals(HttpStatus.FOUND.value(), errorResponse.getErrorCode());
-        assertEquals("Resource already exists", errorResponse.getErrorMessage());
+        assertEquals(HttpStatus.FOUND.value(), errorResponse.getCode());
+        assertEquals("Resource already exists", errorResponse.getMessage());
     }
     
     @Test
@@ -62,8 +62,8 @@ class GlobalExceptionHandlerTest {
         ResponseEntity<ErrorResponse> responseEntity = globalhandler.handleAllNotFoundException(exception);
         assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
         ErrorResponse errorResponse = responseEntity.getBody();
-        assertEquals(HttpStatus.NO_CONTENT.value(), errorResponse.getErrorCode());
-        assertEquals("Resource not found", errorResponse.getErrorMessage());
+        assertEquals(HttpStatus.NO_CONTENT.value(), errorResponse.getCode());
+        assertEquals("Resource not found", errorResponse.getMessage());
     }
     @Test
     public void testHandleEmailDoesNotExistException() {
@@ -71,8 +71,8 @@ class GlobalExceptionHandlerTest {
         ResponseEntity<ErrorResponse> responseEntity = globalhandler.handleEmailDoesNotExistException(exception);
         assertEquals(HttpStatus.UNAUTHORIZED, responseEntity.getStatusCode());
         ErrorResponse errorResponse = responseEntity.getBody();
-        assertEquals(HttpStatus.UNAUTHORIZED.value(), errorResponse.getErrorCode());
-        assertEquals("Email not exist", errorResponse.getErrorMessage());
+        assertEquals(HttpStatus.UNAUTHORIZED.value(), errorResponse.getCode());
+        assertEquals("Email not exist", errorResponse.getMessage());
     }
     @Test
     public void testHandleNotFoundException() {
@@ -80,8 +80,8 @@ class GlobalExceptionHandlerTest {
         ResponseEntity<ErrorResponse> responseEntity = globalhandler.handleNotFoundExceptionException(exception);
         assertEquals(HttpStatus.CONFLICT, responseEntity.getStatusCode());
         ErrorResponse errorResponse = responseEntity.getBody();
-        assertEquals(HttpStatus.CONFLICT.value(), errorResponse.getErrorCode());
-        assertEquals("not found", errorResponse.getErrorMessage());
+        assertEquals(HttpStatus.CONFLICT.value(), errorResponse.getCode());
+        assertEquals("not found", errorResponse.getMessage());
     }
     @Test
     public void testHandlePasswordMissMatchException() {
@@ -89,8 +89,8 @@ class GlobalExceptionHandlerTest {
         ResponseEntity<ErrorResponse> responseEntity = globalhandler.handlePasswordMissMatchException(exception);
         assertEquals(HttpStatus.UNAUTHORIZED, responseEntity.getStatusCode());
         ErrorResponse errorResponse = responseEntity.getBody();
-        assertEquals(HttpStatus.UNAUTHORIZED.value(), errorResponse.getErrorCode());
-        assertEquals("password miss match", errorResponse.getErrorMessage());
+        assertEquals(HttpStatus.UNAUTHORIZED.value(), errorResponse.getCode());
+        assertEquals("password miss match", errorResponse.getMessage());
     }
     @Test
     public void testHandleDuplicateEmailException() {
@@ -98,7 +98,7 @@ class GlobalExceptionHandlerTest {
         ResponseEntity<ErrorResponse> responseEntity = globalhandler.handleDuplicateEmailException(exception);
         assertEquals(HttpStatus.FOUND, responseEntity.getStatusCode());
         ErrorResponse errorResponse = responseEntity.getBody();
-        assertEquals(HttpStatus.FOUND.value(), errorResponse.getErrorCode());
-        assertEquals("duplicate email", errorResponse.getErrorMessage());
+        assertEquals(HttpStatus.FOUND.value(), errorResponse.getCode());
+        assertEquals("duplicate email", errorResponse.getMessage());
     }
 }

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import './CategoryStyles.css'
 import ErrorPage from "../ErrorPage";
 import CategoryApi from "../APIs/CategoryApi";
@@ -22,7 +21,6 @@ function Category() {
   const getCategories = async () => {
     CategoryApi.getAllCategories().then(
       response => {
-      
         setCategory(response.data || []);
         setOriginalCategory(response.data || []);
       }).finally(() => {
@@ -35,7 +33,7 @@ function Category() {
   const deleteCategory=(id)=>{
     CategoryApi.deleteCategory(id).then(response => {
 
-      if (response.data === "Deleted successfully") {
+      if (response.data.message === "Deleted successfully") {
        SweetAlert.success("Deleted successfully")
       }
       getCategories();

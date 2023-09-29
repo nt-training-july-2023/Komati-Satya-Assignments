@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.entity.Category;
+import com.example.demo.exceptions.ErrorResponse;
 import com.example.demo.service.CategoryService;
+import com.example.demo.validationMessages.LoggerMessages;
 
 import jakarta.validation.Valid;
 
@@ -45,11 +48,15 @@ public class CategoryController {
      * @return response
      */
     @PostMapping("/category")
-    public final ResponseEntity<String> saveCategory(
+    public final ResponseEntity<ErrorResponse> saveCategory(
             @RequestBody @Valid final Category c) {
             categoryService.saveCategory(c);
-            LOGGER.info("Adding new category");
-            return ResponseEntity.ok("added");
+            LOGGER.info(LoggerMessages.SAVE_CATEGORY);
+            String message = "added";
+            Integer errorCode = HttpStatus.CREATED.value();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
+       return new ResponseEntity<ErrorResponse>(errorResponse,
+              HttpStatus.CREATED);
     }
     /**
      * Category find by id method.
@@ -60,8 +67,9 @@ public class CategoryController {
     public final ResponseEntity<Optional<CategoryDto>>
                  findById(@PathVariable final int id) {
             Optional<CategoryDto> categoryDto = categoryService.findById(id);
-            LOGGER.info("find category by category id");
-            return ResponseEntity.ok(categoryDto);
+            LOGGER.info(LoggerMessages.FIND_CATEGORY);
+            return new ResponseEntity<>(categoryDto,HttpStatus.OK);
+           
     }
 
     /**
@@ -71,7 +79,7 @@ public class CategoryController {
     @GetMapping("/category")
     public final ResponseEntity<List<CategoryDto>> findAll() {
             List<CategoryDto> categoryDto = categoryService.findAll();
-            LOGGER.info("fina all categories");
+            LOGGER.info(LoggerMessages.FIND_ALLCATEGORY);
             return ResponseEntity.ok(categoryDto);
     }
 
@@ -82,12 +90,16 @@ public class CategoryController {
      * @return response.
      */
     @PutMapping("/category/{id}")
-    public final ResponseEntity<String> updateCategory(
+    public final ResponseEntity<ErrorResponse> updateCategory(
             @RequestBody @Valid final CategoryDto c,
             @PathVariable final int id) {
             categoryService.updateCategory(c, id);
-            LOGGER.info("update category");
-            return ResponseEntity.ok("Updated successfully");
+            LOGGER.info(LoggerMessages.UPDATE_CATEGORY);
+            String message = "updated category";
+            Integer errorCode = HttpStatus.OK.value();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
+       return new ResponseEntity<ErrorResponse>(errorResponse,
+              HttpStatus.OK);
     }
 
     /**
@@ -96,11 +108,15 @@ public class CategoryController {
      * @return response.
      */
     @DeleteMapping("/category/{id}")
-    public final ResponseEntity<String> deleteCategory(
+    public final ResponseEntity<ErrorResponse> deleteCategory(
             @PathVariable final int id) {
             categoryService.deleteCategory(id);
-            LOGGER.info("delete category");
-            return ResponseEntity.ok("Deleted successfully");
+            LOGGER.info(LoggerMessages.DELETE_CATEGORY);
+            String message = "deleted category";
+            Integer errorCode = HttpStatus.OK.value();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
+       return new ResponseEntity<ErrorResponse>(errorResponse,
+              HttpStatus.OK);
     }
 
     /**
@@ -112,7 +128,7 @@ public class CategoryController {
     public final ResponseEntity<Optional<CategoryDto>> findByName(
             @PathVariable final String s) {
             Optional<CategoryDto> categoryDto = categoryService.findByName(s);
-            LOGGER.info("find category by category name");
+            LOGGER.info(LoggerMessages.FIND_CATEGORY);
             return ResponseEntity.ok(categoryDto);
     }
 }

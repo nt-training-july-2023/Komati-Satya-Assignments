@@ -22,6 +22,7 @@ import com.example.demo.entity.Category;
 
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
+import com.example.demo.exceptions.ErrorResponse;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.serviceImp.CategoryServiceImp;
 
@@ -42,9 +43,10 @@ class CategoryControllerTest {
         CategoryDto categoryDto=new CategoryDto();
         categoryDto.setCategoryName("java");
         when(categoryService.saveCategory(category)).thenReturn(categoryDto);
-        ResponseEntity<String> response=categoryController.saveCategory(category);
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("added", response.getBody());
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CREATED.value(), "added");
+        ResponseEntity<ErrorResponse> response=categoryController.saveCategory(category);
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals("added", errorResponse.getMessage());
     }
 
     @Test
@@ -73,10 +75,11 @@ class CategoryControllerTest {
         categoryDto.setCategoryName("java");
         categoryDto.setCategoryName("React");
         int i=1;
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.OK.value(), "updated category");;
         when(categoryService.updateCategory(categoryDto, i)).thenReturn(categoryDto);
-        ResponseEntity<String> response=categoryController.updateCategory(categoryDto, i);
+        ResponseEntity<ErrorResponse> response=categoryController.updateCategory(categoryDto, i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertEquals("Updated successfully", response.getBody());
+        assertEquals("updated category", errorResponse.getMessage());
         
           
     }
@@ -84,10 +87,11 @@ class CategoryControllerTest {
     void testDeleteCategorySuccess() {
         Category c=new Category();
         c.setCategoryId(1);
-        ResponseEntity<String> response=categoryController.deleteCategory(1);
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.OK.value(), "deleted category");
+        ResponseEntity<ErrorResponse> response=categoryController.deleteCategory(1);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());   
-        assertEquals("Deleted successfully", response.getBody());
+        assertEquals("deleted category", errorResponse.getMessage());
     }
    
      @Test

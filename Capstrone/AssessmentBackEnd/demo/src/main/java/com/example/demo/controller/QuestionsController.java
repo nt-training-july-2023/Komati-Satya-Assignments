@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -19,7 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
 import com.example.demo.entity.Questions;
+import com.example.demo.exceptions.ErrorResponse;
 import com.example.demo.service.QuestionsService;
+import com.example.demo.validationMessages.LoggerMessages;
 
 import jakarta.validation.Valid;
 
@@ -46,11 +49,15 @@ public class QuestionsController {
      * @return response
      */
     @PostMapping("/questions")
-    public final ResponseEntity<String> addQuestion(
+    public final ResponseEntity<ErrorResponse> addQuestion(
             @RequestBody @Valid final Questions q) {
             questionsService.addQuestion(q);
-            LOGGER.info("Adding a  questions");
-            return ResponseEntity.ok("question added successfully");
+            LOGGER.info(LoggerMessages.SAVE_QUESTION);
+            String message = "question added successfully";
+            Integer errorCode = HttpStatus.CREATED.value();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
+       return new ResponseEntity<ErrorResponse>(errorResponse,
+              HttpStatus.CREATED);
     }
     /**
      * getting all the questions method.
@@ -58,7 +65,7 @@ public class QuestionsController {
      */
     @GetMapping("/questions")
     public final ResponseEntity<List<QuestionsDto>> getQuestions() {
-            LOGGER.info("Get all questions");
+            LOGGER.info(LoggerMessages.FIND_ALLQUESTION);
             List<QuestionsDto> questionsDto = questionsService.getQuestions();
             return ResponseEntity.ok(questionsDto);
     }
@@ -69,10 +76,16 @@ public class QuestionsController {
      * @return response
      */
     @DeleteMapping("/questions/{id}")
-    public final ResponseEntity<String> delete(@PathVariable final int id) {
+    public final ResponseEntity<ErrorResponse> delete(@PathVariable final int id) {
             questionsService.delete(id);
-            LOGGER.info("Delete question");
-            return ResponseEntity.ok("question deleted successfully");
+            LOGGER.info(LoggerMessages.DELETE_QUESTION);
+          //  return ResponseEntity.ok("question deleted successfully");
+            String message = "question deleted successfully";
+            Integer errorCode = HttpStatus.OK.value();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
+       return new ResponseEntity<ErrorResponse>(errorResponse,
+              HttpStatus.OK);
+            
     }
 
     /**
@@ -82,12 +95,17 @@ public class QuestionsController {
      * @return response
      */
     @PutMapping("/questions/que/{id}")
-    public final ResponseEntity<String> updateQue(
+    public final ResponseEntity<ErrorResponse> updateQue(
             @RequestBody @Valid final QuestionsUpdateDto q,
             @PathVariable final int id) {
             questionsService.updateQue(q, id);
-            LOGGER.info("update question");
-            return ResponseEntity.ok("question updated successfully");
+            LOGGER.info(LoggerMessages.UPDATE_QUESTION);
+           // return ResponseEntity.ok("question updated successfully");
+            String message = "question updated successfully";
+            Integer errorCode = HttpStatus.OK.value();
+            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
+       return new ResponseEntity<ErrorResponse>(errorResponse,
+              HttpStatus.OK);
     }
 
     /**
@@ -99,7 +117,7 @@ public class QuestionsController {
     public final ResponseEntity<List<QuestionsDto>> findQueById(
             @PathVariable final int id) {
             List<QuestionsDto> questionsDto = questionsService.findQueById(id);
-            LOGGER.info("Get all questions by quiz id");
+            LOGGER.info(LoggerMessages.FIND_QUESTIONBYQUIZID);
             return ResponseEntity.ok(questionsDto);
     }
 
@@ -113,7 +131,7 @@ public class QuestionsController {
             @PathVariable final String name) {
             Optional<QuestionsDto> questionsDto = questionsService.
                     findByQuestion(name);
-            LOGGER.info("Get question");
+            LOGGER.info(LoggerMessages.FIND_QUESTION);
           return ResponseEntity.ok(questionsDto);
     }
 }

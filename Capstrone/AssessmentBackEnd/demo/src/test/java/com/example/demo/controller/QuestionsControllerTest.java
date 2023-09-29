@@ -25,6 +25,7 @@ import com.example.demo.entity.Questions;
 
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
+import com.example.demo.exceptions.ErrorResponse;
 import com.example.demo.serviceImp.QuestionServiceImp;
 
 
@@ -45,9 +46,10 @@ class QuestionsControllerTest {
         QuestionsDto questionsDto=new QuestionsDto();
         questionsDto.setQuestion("java is?");
         when(questionService.addQuestion(question)).thenReturn(questionsDto);
-        ResponseEntity<String> response=questionController.addQuestion(question);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CREATED.value(), "question added successfully");
+        ResponseEntity<ErrorResponse> response=questionController.addQuestion(question);
+        assertEquals(HttpStatus.CREATED,response.getStatusCode());
+        assertEquals("question added successfully",errorResponse.getMessage());
     }
     @Test
     void testGetAllQuestionsSuccess() {
@@ -62,8 +64,10 @@ class QuestionsControllerTest {
         Questions question=new Questions();
         question.setQuestion("java is?");
         int i=1;
-        ResponseEntity<String> response=questionController.delete(i);
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.OK.value(), "question deleted successfully");
+        ResponseEntity<ErrorResponse> response=questionController.delete(i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals("question deleted successfully",errorResponse.getMessage());
         assertNotNull(response.getBody());
     }
     @Test
@@ -73,8 +77,10 @@ class QuestionsControllerTest {
         q.setQuestion("java is??");
         int i=1;
         when(questionService.updateQue(q, i)).thenReturn(q);
-        ResponseEntity<String> response=questionController.updateQue(q, i);
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.OK.value(), "question updated successfully");
+        ResponseEntity<ErrorResponse> response=questionController.updateQue(q, i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
+        assertEquals("question updated successfully",errorResponse.getMessage());
         assertNotNull(response.getBody());  
     }
     @Test
@@ -85,6 +91,7 @@ class QuestionsControllerTest {
         ResponseEntity<List<QuestionsDto>> response=questionController.findQueById(i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());  
+        
     }
     @Test
     void testFindQuestionByQuestionSuccess() {

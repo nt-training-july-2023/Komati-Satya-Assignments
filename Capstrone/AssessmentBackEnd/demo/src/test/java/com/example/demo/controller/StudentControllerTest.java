@@ -23,6 +23,7 @@ import com.example.demo.entity.Student;
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.DuplicateEmailException;
 import com.example.demo.exceptions.EmailDoesNotExistException;
+import com.example.demo.exceptions.ErrorResponse;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.serviceImp.StudentServiceImp;
 
@@ -44,9 +45,11 @@ class StudentControllerTest {
        StudentSaveDto saveDto=new StudentSaveDto();
        saveDto.setUserName("satya");
        when(studentService.saveStudent(student)).thenReturn(saveDto);
-       ResponseEntity<String> response=studentController.save(student);
-       assertEquals(HttpStatus.OK,response.getStatusCode());
+       ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CREATED.value(), "student added successfully");
+       ResponseEntity<ErrorResponse> response=studentController.save(student);
+       assertEquals(HttpStatus.CREATED,response.getStatusCode());
        assertNotNull(response.getBody());
+       assertEquals("student added successfully",errorResponse.getMessage());
     }
     @Test
     void testUserFindByIdSuccess() {
@@ -87,16 +90,20 @@ class StudentControllerTest {
         saveDto.setUserName("Satya");
         int i=1;
         when(studentService.updateStudent(saveDto, 1)).thenReturn(saveDto);
-        ResponseEntity<String> response=studentController.updateStudent(saveDto, i);
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.OK.value(), "student updated successfully");
+        ResponseEntity<ErrorResponse> response=studentController.updateStudent(saveDto, i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());
+        assertEquals("student updated successfully",errorResponse.getMessage());
     }
     @Test
     void testDeleteSuccess() {
         Student student= new Student();
         student.setUserId(1);
-        ResponseEntity<String> response=studentController.deleteStudent(1);
+        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CREATED.value(), "student deleted successfully");
+        ResponseEntity<ErrorResponse> response=studentController.deleteStudent(1);
         assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());    
+        assertNotNull(response.getBody());
+        assertEquals("student deleted successfully",errorResponse.getMessage());
     }
 }

@@ -68,12 +68,12 @@ const AddCategory = () => {
                 setErrors({});
             CategoryApi.updateCategory(categoryId,categoryData)
               .then((response) => {
-                if (response.data === "Updated successfully") {
+                if (response.data.message === "updated category") {
                   SweetAlert.success("Category updated successfully");
                   navigate('/Category')
                 }
               }).catch((error)=>{
-                if(error.response.data.errorMessage=="Category already exists"){
+                if(error.response.data.message=="Category already exists"){
                    SweetAlert.fieldsRequired("Category already present");
                 }
               })
@@ -84,7 +84,7 @@ else{
             setErrors({});
        CategoryApi.addCategory(categoryData).then(response=>{
         
-          if (response.data === "added") {
+          if (response.data.message === "added") {
             SweetAlert.success("Category added successfully");
             navigate('/Category');
            
