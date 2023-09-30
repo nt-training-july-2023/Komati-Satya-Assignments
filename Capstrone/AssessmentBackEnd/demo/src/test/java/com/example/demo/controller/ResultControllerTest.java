@@ -38,7 +38,8 @@ class ResultControllerTest {
       studentResult.setResultId(1);
       ResultDto resultDto=new ResultDto();
       resultDto.setResultId(1);
-      when(resultService.addRes(resultDto)).thenReturn(resultDto);
+      
+      when(resultService.addResult(resultDto)).thenReturn(resultDto);
       Response errorResponse = new Response(HttpStatus.CREATED.value(), "result added successfully");
       ResponseEntity<Response> response=resultController.addRes(resultDto);
       assertEquals(HttpStatus.CREATED,response.getStatusCode());
@@ -51,7 +52,8 @@ class ResultControllerTest {
        studentResult.setResultId(1);
        ResultDto resultDto=new ResultDto();
        resultDto.setResultId(1);
-       when(resultService.getRes(1)).thenReturn(Optional.of(resultDto));
+       
+       when(resultService.getResult(1)).thenReturn(Optional.of(resultDto));
        ResponseEntity<Optional<ResultDto>> response=resultController.getRes(1);
        assertEquals(HttpStatus.OK,response.getStatusCode());
        assertNotNull(response.getBody());
@@ -59,7 +61,7 @@ class ResultControllerTest {
    @Test
    void testGetAllResultSuccess() {
        List<ResultDto> resultDto=new ArrayList<>();
-       when(resultService.getAllRes()).thenReturn(resultDto);
+       when(resultService.getResults()).thenReturn(resultDto);
        ResponseEntity<List<ResultDto>> response=resultController.getAllRes();
        assertEquals(HttpStatus.OK,response.getStatusCode());
        assertNotNull(response.getBody());

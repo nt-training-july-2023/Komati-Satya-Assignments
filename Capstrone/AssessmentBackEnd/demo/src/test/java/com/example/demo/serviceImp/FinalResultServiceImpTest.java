@@ -59,6 +59,7 @@ class FinalResultServiceImpTest {
         finalRess.setUserId(studentId);
         finalRess.setUserName("satya");
         finalRess.setMaxMarks(101);
+        
         Category c=new Category();
         c.setCategoryId(1);
         c.setCategoryName("java");
@@ -106,6 +107,7 @@ class FinalResultServiceImpTest {
         finalRess.setUserId(studentId);
         finalRess.setUserName("satya");
         finalRess.setMaxMarks(101);
+        
         Category c=new Category();
         c.setCategoryId(1);
         c.setCategoryName("java");

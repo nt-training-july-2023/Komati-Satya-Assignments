@@ -68,7 +68,7 @@ const Login = () => {
                 }
             }).catch(error => {
 
-                if (error.response.data.message === "password must be same") {
+                if (error.response.data.message === "wrong password") {
                     SweetAlert.fieldsRequired("Wrong password");
                 
                 } else if (error.response.data.message === "Email not exist") {

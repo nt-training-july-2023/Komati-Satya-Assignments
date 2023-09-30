@@ -15,18 +15,18 @@ public interface ResultService {
      * @param sr student result
      * @return student result
      */
-    ResultDto addRes(ResultDto sr);
+    ResultDto addResult(ResultDto sr);
 
     /**
      * get result method.
      * @param id student id
      * @return student result
      */
-    Optional<ResultDto> getRes(int id);
+    Optional<ResultDto> getResult(int id);
 
     /**
      * get all result method.
      * @return student result
      */
-    List<ResultDto> getAllRes();
+    List<ResultDto> getResults();
 }

@@ -42,6 +42,7 @@ class CategoryControllerTest {
         category.setCategoryName("java");
         CategoryDto categoryDto=new CategoryDto();
         categoryDto.setCategoryName("java");
+        
         when(categoryService.saveCategory(category)).thenReturn(categoryDto);
         Response errorResponse = new Response(HttpStatus.CREATED.value(), "added");
         ResponseEntity<Response> response=categoryController.saveCategory(category);
@@ -56,6 +57,7 @@ class CategoryControllerTest {
         category.setCategoryId(1);
         CategoryDto categoryDto=new CategoryDto();
         categoryDto.setCategoryName("java");
+        
         when(categoryService.findById(1)).thenReturn(Optional.of(categoryDto));
         ResponseEntity<Optional<CategoryDto>> response=categoryController.findById(1);
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -75,6 +77,7 @@ class CategoryControllerTest {
         categoryDto.setCategoryName("java");
         categoryDto.setCategoryName("React");
         int i=1;
+        
         Response errorResponse = new Response(HttpStatus.OK.value(), "updated category");;
         when(categoryService.updateCategory(categoryDto, i)).thenReturn(categoryDto);
         ResponseEntity<Response> response=categoryController.updateCategory(categoryDto, i);

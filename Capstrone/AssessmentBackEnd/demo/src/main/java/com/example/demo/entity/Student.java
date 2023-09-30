@@ -203,27 +203,27 @@ public class Student {
     private List<StudentResult> rs;
     /**
      * Constructor.
-     * @param userIdd userId
-     * @param userNamee user name
-     * @param emaill email
-     * @param genderr gender
-     * @param phoneNumberr phone number
-     * @param rolee role
-     * @param dateofBirth date of birth
+     * @param userid userId
+     * @param username user name
+     * @param useremail email
+     * @param usergender gender
+     * @param phonenumber phone number
+     * @param userrole role
+     * @param dateofbirth date of birth
      */
-    public Student(final int userIdd, final String userNamee,
-         final String emaill,
-           final String genderr,
-             final String phoneNumberr,
-             final String rolee,
-             final String dateofBirth) {
+    public Student(final int userid, final String username,
+         final String useremail,
+           final String usergender,
+             final String phonenumber,
+             final String userrole,
+             final String dateofbirth) {
         super();
-        this.userId = userIdd;
-        this.userName = userNamee;
-        this.email = emaill;
-        this.gender = genderr;
-        this.phoneNumber = phoneNumberr;
-        this.role = rolee;
-        this.dateOfBirth = dateofBirth;
+        this.userId = userid;
+        this.userName = username;
+        this.email = useremail;
+        this.gender = usergender;
+        this.phoneNumber = phonenumber;
+        this.role = userrole;
+        this.dateOfBirth = dateofbirth;
     }
 }

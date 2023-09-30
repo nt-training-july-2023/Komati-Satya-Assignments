@@ -1,16 +1,16 @@
 package com.example.demo.validationMessages;
 
-public class LoggerMessages {
+public class Messages {
    
     /**
      * default constructor.
      */
-    private LoggerMessages() {      
+    private Messages() {      
     }
     /**
      *Save category.
     */
-    public static final String SAVE_CATEGORY = "Category saved";
+    public static final String SAVE_CATEGORY = "category added successfully";
     /**
      * find category.
      */
@@ -22,11 +22,11 @@ public class LoggerMessages {
     /**
      * update category.
      */
-    public static final String UPDATE_CATEGORY = "update category";
+    public static final String UPDATE_CATEGORY = "updated category";
     /**
      * delete category.
      */
-    public static final String DELETE_CATEGORY = "delete category";
+    public static final String DELETE_CATEGORY = "deleted category";
     /**
      * find results.
      */
@@ -38,7 +38,7 @@ public class LoggerMessages {
     /**
      *Save question.
     */
-    public static final String SAVE_QUESTION = "Question saved";
+    public static final String SAVE_QUESTION = "question added successfully";
     /**
      * find questions.
      */
@@ -46,11 +46,11 @@ public class LoggerMessages {
     /**
      * delete question.
      */
-    public static final String DELETE_QUESTION = "delete question";
+    public static final String DELETE_QUESTION = "question deleted successfully";
     /**
      * update question.
      */
-    public static final String UPDATE_QUESTION = "update question";
+    public static final String UPDATE_QUESTION = "question updated successfully";
     /**
      * find question by quiz id.
      */
@@ -62,7 +62,7 @@ public class LoggerMessages {
     /**
      *Save quiz.
     */
-    public static final String SAVE_QUIZ = "Quiz saved";
+    public static final String SAVE_QUIZ = "succcessfully add the data";
     /**
      * find quizes.
      */
@@ -70,11 +70,11 @@ public class LoggerMessages {
     /**
      * delete question.
      */
-    public static final String DELETE_QUIZ = "delete quiz";
+    public static final String DELETE_QUIZ = "quiz deleted successfully";
     /**
      * update quiz.
      */
-    public static final String UPDATE_QUIZ = "update quiz";
+    public static final String UPDATE_QUIZ = "quiz updated successfully";
     /**
      * find quiz category id.
      */
@@ -86,11 +86,11 @@ public class LoggerMessages {
     /**
      *Save result.
     */
-    public static final String SAVE_RESULT = "Result saved";
+    public static final String SAVE_RESULT = "result added successfully";
     /**
      *save student.
     */
-    public static final String SAVE_STUDENT = "Student saved";
+    public static final String SAVE_STUDENT = "User register successfully";
     /**
      * find student by id.
      */
@@ -106,11 +106,11 @@ public class LoggerMessages {
     /**
      * update student.
      */
-    public static final String UPDATE_STUDENT = "update student";
+    public static final String UPDATE_STUDENT = "user updated successfully";
     /**
      * delete student.
      */
-    public static final String DELETE_STUDENT = "delete student";
+    public static final String DELETE_STUDENT = "User deleted successfully";
     
   
 }

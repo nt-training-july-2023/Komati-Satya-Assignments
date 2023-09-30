@@ -36,7 +36,7 @@ public interface StudentService {
      * find all student method.
      * @return student
      */
-    List<StudentDto> findAllStu();
+    List<StudentDto> findAllStudents();
 
     /**
      * update student method.

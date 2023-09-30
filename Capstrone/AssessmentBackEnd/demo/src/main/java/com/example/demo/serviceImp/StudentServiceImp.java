@@ -127,7 +127,7 @@ public class StudentServiceImp implements StudentService {
      * @return student
      */
     @Override
-    public final List<StudentDto> findAllStu() {
+    public final List<StudentDto> findAllStudents() {
         if (studentRepo.findAll().size() != 0) {
             List<Student> student = studentRepo.findAll();
             List<StudentDto> studentDto = convertToDto(student);

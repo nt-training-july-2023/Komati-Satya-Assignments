@@ -22,7 +22,7 @@ import com.example.demo.dto.QuestionsUpdateDto;
 import com.example.demo.entity.Questions;
 import com.example.demo.response.Response;
 import com.example.demo.service.QuestionsService;
-import com.example.demo.validationMessages.LoggerMessages;
+import com.example.demo.validationMessages.Messages;
 
 import jakarta.validation.Valid;
 
@@ -52,8 +52,8 @@ public class QuestionsController {
     public final ResponseEntity<Response> addQuestion(
             @RequestBody @Valid final QuestionsDto q) {
             questionsService.addQuestion(q);
-            LOGGER.info(LoggerMessages.SAVE_QUESTION);
-            String message = "question added successfully";
+            LOGGER.info(Messages.SAVE_QUESTION);
+            String message = Messages.SAVE_QUESTION;
             Integer errorCode = HttpStatus.CREATED.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
@@ -65,7 +65,7 @@ public class QuestionsController {
      */
     @GetMapping("/questions")
     public final ResponseEntity<List<QuestionsDto>> getQuestions() {
-            LOGGER.info(LoggerMessages.FIND_ALLQUESTION);
+            LOGGER.info(Messages.FIND_ALLQUESTION);
             List<QuestionsDto> questionsDto = questionsService.getQuestions();
             return ResponseEntity.ok(questionsDto);
     }
@@ -78,14 +78,12 @@ public class QuestionsController {
     @DeleteMapping("/questions/{id}")
     public final ResponseEntity<Response> delete(@PathVariable final int id) {
             questionsService.delete(id);
-            LOGGER.info(LoggerMessages.DELETE_QUESTION);
-          //  return ResponseEntity.ok("question deleted successfully");
-            String message = "question deleted successfully";
+            LOGGER.info(Messages.DELETE_QUESTION);
+            String message = Messages.DELETE_QUESTION;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
               HttpStatus.OK);
-            
     }
 
     /**
@@ -98,10 +96,9 @@ public class QuestionsController {
     public final ResponseEntity<Response> updateQue(
             @RequestBody @Valid final QuestionsUpdateDto q,
             @PathVariable final int id) {
-            questionsService.updateQue(q, id);
-            LOGGER.info(LoggerMessages.UPDATE_QUESTION);
-           // return ResponseEntity.ok("question updated successfully");
-            String message = "question updated successfully";
+            questionsService.updateQuestion(q, id);
+            LOGGER.info(Messages.UPDATE_QUESTION);
+            String message = Messages.UPDATE_QUESTION;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
@@ -116,8 +113,8 @@ public class QuestionsController {
     @GetMapping("/questions/{id}")
     public final ResponseEntity<List<QuestionsDto>> findQueById(
             @PathVariable final int id) {
-            List<QuestionsDto> questionsDto = questionsService.findQueById(id);
-            LOGGER.info(LoggerMessages.FIND_QUESTIONBYQUIZID);
+            List<QuestionsDto> questionsDto = questionsService.findQuestionById(id);
+            LOGGER.info(Messages.FIND_QUESTIONBYQUIZID);
             return ResponseEntity.ok(questionsDto);
     }
 
@@ -131,7 +128,7 @@ public class QuestionsController {
             @PathVariable final String name) {
             Optional<QuestionsDto> questionsDto = questionsService.
                     findByQuestion(name);
-            LOGGER.info(LoggerMessages.FIND_QUESTION);
+            LOGGER.info(Messages.FIND_QUESTION);
           return ResponseEntity.ok(questionsDto);
     }
 }

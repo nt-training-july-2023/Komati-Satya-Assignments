@@ -29,6 +29,11 @@ const Navbar = () => {
                 localStorage.removeItem('userId')
                 localStorage.removeItem('categoryName')
                 localStorage.removeItem('quizName')
+                localStorage.removeItem('timerValue');  
+                localStorage.removeItem('user');
+                localStorage.removeItem('timer');
+                localStorage.removeItem('categoryId');  
+              
                 navigate('/')
 
             } else if (result.isDenied) {

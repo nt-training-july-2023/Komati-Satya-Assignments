@@ -103,15 +103,15 @@ public class Category {
     }
     /**
      * Constructor.
-     * @param categoryIdd id
-     * @param categoryNamee name
-     * @param categoryDescriptionn description
+     * @param categoryid id
+     * @param categoryname name
+     * @param categorydescription description
      */
-    public Category(final int categoryIdd, final String categoryNamee,
-           final String categoryDescriptionn) {
+    public Category(final int categoryid, final String categoryname,
+           final String categorydescription) {
         super();
-        this.categoryId = categoryIdd;
-        this.categoryName = categoryNamee;
-        this.categoryDescription = categoryDescriptionn;
+        this.categoryId = categoryid;
+        this.categoryName = categoryname;
+        this.categoryDescription = categorydescription;
     }
 }

@@ -50,6 +50,7 @@ class StudentServiceImpTest {
         s.setPhoneNumber("8639924113");
         s.setPassword("Satya@1919");
         s.setRole("student");
+        
         when(repo.findByEmail(s.getEmail())).thenReturn(Optional.empty());
         Student student=new Student();
         student.setDateOfBirth(s.getDateOfBirth());
@@ -88,6 +89,7 @@ class StudentServiceImpTest {
         s.setPhoneNumber("8639924113");
         s.setPassword("Satya@1919");
         s.setRole("student");
+        
         when(repo.findById(studentId)).thenReturn(Optional.of(s));
         Optional<StudentDto> studentDto=studentService.findById(studentId);
         assertTrue(studentDto.isPresent());
@@ -116,9 +118,9 @@ class StudentServiceImpTest {
         s2.setUserName("Siddu");
         s.add(s1);
         s.add(s2);
-        when(repo.findAll()).thenReturn(s);
-        List<StudentDto> studentDto=studentService.findAllStu();
         
+        when(repo.findAll()).thenReturn(s);
+        List<StudentDto> studentDto=studentService.findAllStudents();
         assertEquals(2,studentDto.size());
         assertEquals("Satya",studentDto.get(0).getUserName());
         assertEquals("Siddu",studentDto.get(1).getUserName());
@@ -128,7 +130,7 @@ class StudentServiceImpTest {
     public void testAllStudentsNotFound() {
         when(repo.findAll()).thenReturn(new ArrayList<>());
         assertThrows(AllNotFoundException.class, () ->{
-            studentService.findAllStu();
+            studentService.findAllStudents();
         });
     }
     
@@ -143,6 +145,7 @@ class StudentServiceImpTest {
         s.setPhoneNumber("8639924113");
         s.setPassword("Satya@1919");
         s.setRole("student");
+        
         when(repo.findAll()).thenReturn(Collections.singletonList(new Student()));
         when(repo.findById(studentId)).thenReturn(Optional.of(new Student()));
         assertDoesNotThrow(()-> {
@@ -163,6 +166,7 @@ class StudentServiceImpTest {
         s.setPassword("Satya@1919");
         s.setRole("student");
         repo.save(s);
+        
         when(repo.findAll()).thenReturn(Collections.singletonList(new Student()));
         when(repo.findById(studentId)).thenReturn(Optional.empty());
         assertThrows(NotFoundException.class, () ->{
@@ -176,7 +180,6 @@ class StudentServiceImpTest {
             studentService.deleteStudent(1);
         });
     }
-    
     @Test
     public void testLogin() {
         String email="satya1919@nucleusteq.com";
@@ -188,6 +191,7 @@ class StudentServiceImpTest {
         Student s=new Student();
         s.setEmail(email);
         s.setPassword(hashCode);
+        
         when(repo.findByEmail(email)).thenReturn(Optional.of(s));
         Optional<StudentDto> ss=studentService.aunthenticateUser(loginDto);
         assertTrue(ss.isPresent());
@@ -205,6 +209,7 @@ class StudentServiceImpTest {
         Student s=new Student();
         s.setEmail(email);
         s.setPassword(hashCode);
+        
         when(repo.findByEmail(email)).thenReturn(Optional.empty());
         assertThrows(EmailDoesNotExistException.class, () ->{
           studentService.aunthenticateUser(loginDto);
@@ -222,6 +227,7 @@ class StudentServiceImpTest {
             Student s=new Student();
             s.setEmail(loginDto.getEmail());
             s.setPassword(hashCode);
+            
             when(repo.findByEmail(email)).thenReturn(Optional.of(s));
            assertFalse(new BCryptPasswordEncoder().matches(loginDto.getPassword(), hashCode));
             assertThrows(PasswordMissMatchException.class, () ->{

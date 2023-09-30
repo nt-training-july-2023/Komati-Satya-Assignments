@@ -84,5 +84,5 @@ public final class ErrorMessages {
     /**
      *password must be same.
     */
-    public static final String WRONG_PASSWORD = "password must be same";
+    public static final String WRONG_PASSWORD = "wrong password";
 }

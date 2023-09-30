@@ -67,7 +67,7 @@ public class ResultServiceImp implements ResultService {
      * @return student result
      */
     @Override
-    public final ResultDto addRes(final ResultDto resultDto) {
+    public final ResultDto addResult(final ResultDto resultDto) {
         FinalRes finalResult = new FinalRes();
         if (studentRepo.findByEmail(resultDto.getEmail()).isPresent()) {
             finalResult.setCategoryName(resultDto.getCategoryName());
@@ -130,7 +130,7 @@ public class ResultServiceImp implements ResultService {
      * @return student result
      */
     @Override
-    public final Optional<ResultDto> getRes(final int id) {
+    public final Optional<ResultDto> getResult(final int id) {
         if (studentResultRepo.findAll().size() != 0) {
             Optional<StudentResult> r = studentResultRepo.findById(id);
             if (r.isPresent()) {
@@ -164,7 +164,7 @@ public class ResultServiceImp implements ResultService {
      * @return student result
      */
     @Override
-    public final List<ResultDto> getAllRes() {
+    public final List<ResultDto> getResults() {
         if (studentResultRepo.findAll().size() != 0) {
             List<StudentResult> studentResult = studentResultRepo.findAll();
             List<ResultDto> resultDto = convertToDto(studentResult);

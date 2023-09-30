@@ -44,6 +44,7 @@ class StudentControllerTest {
        student.setUserName("satya");
        StudentSaveDto saveDto=new StudentSaveDto();
        saveDto.setUserName("satya");
+       
        when(studentService.saveStudent(student)).thenReturn("registered");
        Response errorResponse = new Response(HttpStatus.CREATED.value(), "student added successfully");
        ResponseEntity<Response> response=studentController.save(student);
@@ -58,6 +59,7 @@ class StudentControllerTest {
         student.setUserId(12);
         StudentDto saveDto=new StudentDto();
         saveDto.setUserName("satya");
+        
         when(studentService.findById(12)).thenReturn(Optional.of(saveDto));
         ResponseEntity<Optional<StudentDto>> response=studentController.findById(12);
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -70,6 +72,7 @@ class StudentControllerTest {
         loginDto.setPassword("satya@1919");
         StudentDto saveDto=new StudentDto();
         saveDto.setUserName("satya");
+        
         when(studentService.aunthenticateUser(loginDto)).thenReturn(Optional.of(saveDto));
         ResponseEntity<Optional<StudentDto>> response=studentController.login(loginDto);
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -78,7 +81,7 @@ class StudentControllerTest {
     @Test
     void testFindAllStudentsSuccess() {
         List<StudentDto> studentDto=new ArrayList<>();
-        when(studentService.findAllStu()).thenReturn(studentDto);
+        when(studentService.findAllStudents()).thenReturn(studentDto);
         ResponseEntity<List<StudentDto>> response=studentController.findAllStu();
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());  
@@ -89,6 +92,7 @@ class StudentControllerTest {
         saveDto.setUserName("satya");
         saveDto.setUserName("Satya");
         int i=1;
+        
         when(studentService.updateStudent(saveDto, 1)).thenReturn(saveDto);
         Response errorResponse = new Response(HttpStatus.OK.value(), "student updated successfully");
         ResponseEntity<Response> response=studentController.updateStudent(saveDto, i);

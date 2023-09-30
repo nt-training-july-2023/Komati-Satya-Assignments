@@ -45,11 +45,11 @@ class QuestionServiceImpTest {
     void testAddQuestion() {
         QuestionsDto q=new QuestionsDto("java is","oops","popl","none","both","oops",7,9);
        Quiz quiz=new Quiz(9,"variables","java variables",60);
-      //  q.setQui(quiz);
       when(quizRepo.findById(q.getQuizId())).thenReturn(Optional.of(quiz));
         when(questionsRepo.findByQuestion(q.getQuestion())).thenReturn(Optional.empty());
         assertEquals(q.getCorrectOption(),q.getOption1());
        Questions question=new Questions();
+       
        question.setQui(quiz);
        question.setQuestion(q.getQuestion());
        question.setOption1(q.getOption1());
@@ -64,7 +64,8 @@ class QuestionServiceImpTest {
     void testQuestionAlreadyExistException() {
         QuestionsDto q=new QuestionsDto("java is","oops","popl","none","both","oopl",1,3);
         Quiz quiz=new Quiz(1,"variables","java variables",60);
-        Questions question=new Questions("java is","oops","popl","none","both","oopl");;
+        Questions question=new Questions("java is","oops","popl","none","both","oopl");
+        
         when(quizRepo.findById(q.getQuizId())).thenReturn(Optional.of(quiz));
         when(questionsRepo.findByQuestion(q.getQuestion())).thenReturn(Optional.of(question));
         assertThrows(AlreadyExistException.class,()->{
@@ -75,7 +76,7 @@ class QuestionServiceImpTest {
     void testQuizTopicNotPresent() {
         QuestionsDto q=new QuestionsDto("java is","oops","popl","none","both","oopl",7,9);
         Quiz quiz=new Quiz(1,"variables","java variables",60);
-       // q.setQui(quiz);
+        
         when(quizRepo.findById(q.getQuizId())).thenReturn(Optional.empty());
         assertThrows(NotFoundException.class,()->{
             questionsService.addQuestion(q);
@@ -86,6 +87,7 @@ class QuestionServiceImpTest {
         Questions q=new Questions("java is","oops","popl","none","both","oopl");
         Quiz quiz=new Quiz(1,"variables","java variables",60);
          q.setQui(quiz);
+         
          List<Questions> q1=new ArrayList<>();
          q1.add(q);
        when(questionsRepo.findAll()).thenReturn(q1);
@@ -111,6 +113,7 @@ class QuestionServiceImpTest {
         q.setQid(10);
         Quiz quiz=new Quiz(1,"variables","java variables",60);
         q.setQui(quiz);
+        
         when(questionsRepo.findAll()).thenReturn(Collections.singletonList(new Questions()));
         when(questionsRepo.findById(q.getQid())).thenReturn(Optional.of(q));
         questionsService.delete(10);
@@ -148,13 +151,14 @@ class QuestionServiceImpTest {
         questionsDto.setOption3(q.getOption3());
         questionsDto.setOption4(q.getOption4());
         questionsDto.setCorrectOption(q.getCorrectOption());
+        
         when(questionsRepo.findById(q.getQid())).thenReturn(Optional.of(q));
         assertTrue(Optional.of(q).isPresent());
         QuestionsUpdateDto question=new QuestionsUpdateDto("java is?","oops","popl","none","both","oopl");
         List<Questions> questionList=new ArrayList<>();
         questionList.add(q);
         when(questionsRepo.findAll()).thenReturn(questionList);
-        QuestionsUpdateDto qd=questionsService.updateQue(question, 1);
+        QuestionsUpdateDto qd=questionsService.updateQuestion(question, 1);
         assertEquals(q.getQuestion(),qd.getQuestion());
         assertEquals(q.getOption1(),qd.getOption1());
         assertEquals(q.getOption2(),qd.getOption2());
@@ -167,7 +171,7 @@ class QuestionServiceImpTest {
         QuestionsUpdateDto question=new QuestionsUpdateDto("java is?","oops","popl","none","both","oopl");
         when(questionsRepo.findAll()).thenReturn(new ArrayList<>());
         assertThrows(AllNotFoundException.class , () ->{
-            questionsService.updateQue(question, 10);
+            questionsService.updateQuestion(question, 10);
         });
     }
     @Test
@@ -176,7 +180,7 @@ class QuestionServiceImpTest {
         when(questionsRepo.findAll()).thenReturn(Collections.singletonList(new Questions()));
         when(questionsRepo.findById(1)).thenReturn(Optional.empty());
         assertThrows(NotFoundException.class, () ->{
-            questionsService.updateQue(question,1);
+            questionsService.updateQuestion(question,1);
     });
     }
     @Test
@@ -187,12 +191,12 @@ class QuestionServiceImpTest {
          q1.setQui(quiz);
          Questions q2=new Questions("variable is","oops","popl","none","both","oopl");
          q2.setQui(quiz);
-        
         List<Questions> questions=new ArrayList<>();
        questions.add(q1);
        questions.add(q2);
+       
         when(questionsRepo.findQueById(1)).thenReturn(questions);
-        List<QuestionsDto> questionsDto=questionsService.findQueById(1);
+        List<QuestionsDto> questionsDto=questionsService.findQuestionById(1);
       assertEquals("java is",questionsDto.get(0).getQuestion()); 
       assertEquals("variable is",questionsDto.get(1).getQuestion()); 
       assertEquals("oops",questionsDto.get(1).getOption1());
@@ -207,20 +211,13 @@ class QuestionServiceImpTest {
       assertEquals("oopl",questionsDto.get(1).getCorrectOption());
       
     }
-//    @Test
-//    void testFindQuestionsByQuizNoQuizException() {
-//         int quizId=10;
-//         when(questionsRepo.findAll()).thenReturn(new ArrayList<>());
-//         assertThrows(AllNotFoundException.class , () ->{
-//             questionsService.findQueById(quizId);
-//         });
-//     }
+
      @Test
      void testCategoryIdNotPresent() {
          int quizId=10;
          when(questionsRepo.findQueById(quizId)).thenReturn(new ArrayList<>());
          assertThrows(AllNotFoundException.class, () ->{
-             questionsService.findQueById(quizId);
+             questionsService.findQuestionById(quizId);
          }); 
      }
      
@@ -229,7 +226,8 @@ class QuestionServiceImpTest {
          Questions q1=new Questions("java is","oops","popl","none","both","oopl");
          q1.setQid(1);
          Quiz quiz=new Quiz(1,"variables","java variables",60);
-          q1.setQui(quiz);
+         q1.setQui(quiz);
+          
          when(questionsRepo.findAll()).thenReturn(Collections.singletonList(new Questions()));
          when(questionsRepo.findByQuestion(q1.getQuestion())).thenReturn(Optional.of(q1));
          Optional<QuestionsDto> questionsDto=questionsService.findByQuestion(q1.getQuestion());

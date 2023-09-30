@@ -131,7 +131,20 @@ function Quiz({ setTrue }) {
                       <th>Quiz Name</th>
                       <th>Quiz Description</th>
                       <th>Time(in Min)</th>
-                     
+                      {(verifyRole==="Admin" &&
+                        <>
+                        <th></th>
+                        <th>Actions</th>
+                        <th></th>
+                        </>
+                        )}
+                        {(verifyRole==="student" &&
+                        <>
+                      
+                        <th>Actions</th>
+                        <th></th>
+                        </>
+                        )}
                     </tr>
                   </thead>
                   <tbody className="bodyData">
@@ -144,7 +157,7 @@ function Quiz({ setTrue }) {
                         {verifyRole === 'Admin' && <>
                           <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.quizId)}>Delete</ButtonComponent></td>
                           <td><Link to={`/UpdateQuiz/${item.quizId}`} className="updateData">Update</Link></td>
-                          <td><Link to={`/Questions/${item.quizId}`} className="updateData">view Questions</Link></td>
+                          <td><Link to={`/Questions/${item.quizId}`} className="updateData">Questions</Link></td>
                         </>}
 
                         {verifyRole === 'student' && <>

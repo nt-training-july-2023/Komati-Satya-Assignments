@@ -46,18 +46,18 @@ public class Questions {
      * @param option44 question
      * @param correctOptionn question
      */
-    public Questions(final String questionn,
-          final String option11,
-         final String option22,
-        final String option33, final String option44,
-        final String correctOptionn) {
+    public Questions(final String newquestion,
+          final String optionA,
+         final String optionB,
+        final String optionC, final String optionD,
+        final String correctoption) {
         super();
-       this.question = questionn;
-       this.option1 = option11;
-       this.option2 = option22;
-        this.option3 = option33;
-        this.option4 = option44;
-      this.correctOption = correctOptionn;
+       this.question = newquestion;
+       this.option1 = optionA;
+       this.option2 = optionB;
+        this.option3 = optionC;
+        this.option4 = optionD;
+      this.correctOption = correctoption;
    }
     /**
      * stores the option2.

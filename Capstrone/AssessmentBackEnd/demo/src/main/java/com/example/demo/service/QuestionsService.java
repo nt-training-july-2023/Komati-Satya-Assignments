@@ -36,14 +36,14 @@ public interface QuestionsService {
      * @param id question id
      * @return question
      */
-    QuestionsUpdateDto updateQue(QuestionsUpdateDto q, int id);
+    QuestionsUpdateDto updateQuestion(QuestionsUpdateDto q, int id);
 
     /**
      * find by id method.
      * @param id quiz id
      * @return list of question
      */
-    List<QuestionsDto> findQueById(int id);
+    List<QuestionsDto> findQuestionById(int id);
 
     /**
      * find by question method.

@@ -22,7 +22,7 @@ import com.example.demo.dto.QuizUpdateDto;
 import com.example.demo.entity.Quiz;
 import com.example.demo.response.Response;
 import com.example.demo.service.QuizService;
-import com.example.demo.validationMessages.LoggerMessages;
+import com.example.demo.validationMessages.Messages;
 
 import jakarta.validation.Valid;
 
@@ -51,8 +51,8 @@ public class QuizController {
     public final ResponseEntity<Response> saveQuiz(
             @RequestBody @Valid final QuizDto q) {
             quizSevice.addQuiz(q);
-            LOGGER.info(LoggerMessages.SAVE_QUIZ);
-            String message = "succcessfully add the data";
+            LOGGER.info(Messages.SAVE_QUIZ);
+            String message = Messages.SAVE_QUIZ;
             Integer errorCode = HttpStatus.CREATED.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
@@ -68,7 +68,7 @@ public class QuizController {
     public final ResponseEntity<Optional<QuizDto>> getQuiz(
             @PathVariable final int id) {
             Optional<QuizDto> quizDto = quizSevice.getQuiz(id);
-            LOGGER.info(LoggerMessages.FIND_QUIZ);
+            LOGGER.info(Messages.FIND_QUIZ);
             return ResponseEntity.ok(quizDto);
     }
 
@@ -79,7 +79,7 @@ public class QuizController {
     @GetMapping("/quiz")
     public final ResponseEntity<List<QuizDto>> findAll() {
             List<QuizDto> quizDto = quizSevice.findAll();
-            LOGGER.info(LoggerMessages.FIND_ALLQUIZES);
+            LOGGER.info(Messages.FIND_ALLQUIZES);
             return ResponseEntity.ok(quizDto);
     }
 
@@ -92,8 +92,8 @@ public class QuizController {
     public final ResponseEntity<Response> deleteQuiz(
             @PathVariable final int id) {
             quizSevice.deleteQuiz(id);
-            LOGGER.info(LoggerMessages.DELETE_QUIZ);
-            String message = "quiz deleted successfully";
+            LOGGER.info(Messages.DELETE_QUIZ);
+            String message = Messages.DELETE_QUIZ;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
@@ -111,8 +111,8 @@ public class QuizController {
             @RequestBody @Valid final QuizUpdateDto q,
             @PathVariable final int id) {
             quizSevice.updateQuiz(q, id);
-            LOGGER.info(LoggerMessages.UPDATE_QUIZ);
-            String message = "quiz updated successfully";
+            LOGGER.info(Messages.UPDATE_QUIZ);
+            String message = Messages.UPDATE_QUIZ;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
@@ -128,7 +128,7 @@ public class QuizController {
     public final ResponseEntity<List<QuizDto>> findQuizById(
             @PathVariable final int id) {
             List<QuizDto> quizDto = quizSevice.findQuizById(id);
-            LOGGER.info(LoggerMessages.FIND_QUIZBYCATEGORYID);
+            LOGGER.info(Messages.FIND_QUIZBYCATEGORYID);
             return ResponseEntity.ok(quizDto);
     }
 
@@ -141,7 +141,7 @@ public class QuizController {
     public final ResponseEntity<Optional<QuizDto>> findQuizByName(
             @PathVariable final String name) {
             Optional<QuizDto> quizDto = quizSevice.findQuizByName(name);
-            LOGGER.info(LoggerMessages.FIND_QUIZ);
+            LOGGER.info(Messages.FIND_QUIZ);
             return ResponseEntity.ok(quizDto);
     }
 }

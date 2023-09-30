@@ -148,7 +148,7 @@ public class QuestionServiceImp implements QuestionsService {
      * @return questions
      */
     @Override
-    public final QuestionsUpdateDto updateQue(final QuestionsUpdateDto q,
+    public final QuestionsUpdateDto updateQuestion(final QuestionsUpdateDto q,
             final int id) {
         if (questionsRepo.findAll().size() != 0) {
             Optional<Questions> existingQue = questionsRepo.findById(id);
@@ -184,7 +184,7 @@ public class QuestionServiceImp implements QuestionsService {
      * @return questions
      */
     @Override
-    public final List<QuestionsDto> findQueById(final int id) {
+    public final List<QuestionsDto> findQuestionById(final int id) {
         if (questionsRepo.findQueById(id).size() != 0) {
                 List<Questions> l = questionsRepo.findQueById(id);
                 List<QuestionsDto> ld = convertToDto(l);

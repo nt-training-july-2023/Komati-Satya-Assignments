@@ -23,7 +23,7 @@ import com.example.demo.dto.StudentSaveDto;
 import com.example.demo.entity.Student;
 import com.example.demo.response.Response;
 import com.example.demo.service.StudentService;
-import com.example.demo.validationMessages.LoggerMessages;
+import com.example.demo.validationMessages.Messages;
 
 import jakarta.validation.Valid;
 
@@ -52,9 +52,8 @@ public class StudentController {
     public final ResponseEntity<Response> save(
             @RequestBody @Valid final StudentSaveDto s) {
             studentSevice.saveStudent(s);
-            LOGGER.info(LoggerMessages.SAVE_STUDENT);
-           // return ResponseEntity.ok("User register successfully");
-            String message = "User register successfully";
+            LOGGER.info(Messages.SAVE_STUDENT);
+            String message = Messages.SAVE_STUDENT;
             Integer errorCode = HttpStatus.CREATED.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
@@ -70,7 +69,7 @@ public class StudentController {
     public final ResponseEntity<Optional<StudentDto>> findById(
             @PathVariable final int id) {
             Optional<StudentDto> studentDto = studentSevice.findById(id);
-            LOGGER.info(LoggerMessages.FIND_STUDENTBYID);
+            LOGGER.info(Messages.FIND_STUDENTBYID);
             return ResponseEntity.ok(studentDto);
     }
 
@@ -84,7 +83,7 @@ public class StudentController {
             @RequestBody @Valid final LoginDto l) {
             Optional<StudentDto> studentDto = studentSevice.
                     aunthenticateUser(l);
-            LOGGER.info(LoggerMessages.LOGIN_STUDENT);
+            LOGGER.info(Messages.LOGIN_STUDENT);
             return ResponseEntity.ok(studentDto);
     }
 
@@ -94,8 +93,8 @@ public class StudentController {
      */
     @GetMapping("/student/students")
     public final ResponseEntity<List<StudentDto>> findAllStu() {
-            List<StudentDto> studentDto = studentSevice.findAllStu();
-            LOGGER.info(LoggerMessages.FIND_ALLSTUDENT);
+            List<StudentDto> studentDto = studentSevice.findAllStudents();
+            LOGGER.info(Messages.FIND_ALLSTUDENT);
             return ResponseEntity.ok(studentDto);
     }
 
@@ -110,9 +109,8 @@ public class StudentController {
             @RequestBody @Valid final StudentDto s,
             @PathVariable final int id) {
             studentSevice.updateStudent(s, id);
-            LOGGER.info(LoggerMessages.UPDATE_STUDENT);
-          //  return ResponseEntity.ok("user updated successfully");
-            String message = "user updated successfully";
+            LOGGER.info(Messages.UPDATE_STUDENT);
+            String message = Messages.UPDATE_STUDENT;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
@@ -127,8 +125,8 @@ public class StudentController {
     public final ResponseEntity<Response> deleteStudent(
             @PathVariable final int id) {
             studentSevice.deleteStudent(id);
-            LOGGER.info(LoggerMessages.DELETE_STUDENT);
-            String message = "User deleted successfully";
+            LOGGER.info(Messages.DELETE_STUDENT);
+            String message = Messages.DELETE_STUDENT;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,

@@ -89,8 +89,23 @@ function Category() {
                   <table className="tableData">
                     <thead className="headData">
                       <tr className="rowData">
-                        <th>Category Name</th>
+                        <th >Category Name</th>
                         <th>Category Description</th>
+                        {(verifyRole==="Admin" &&
+                        <>
+                        <th></th>
+                        <th>Actions</th>
+                        <th></th>
+                        </>
+                        )}
+                        {(verifyRole==="student" &&
+                        <>
+                        
+                        <th>Actions</th>
+                        <th></th>
+                        </>
+                        )}
+
                       </tr>
                     </thead>
                     <tbody className="bodyData">
@@ -104,7 +119,7 @@ function Category() {
                             <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData">Update</Link></td></>}
                           {verifyRole === 'Admin' || verifyRole === 'student' ? (
                             <td><Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={() => handleViewTopic(item.categoryName)}>
-                              View Quiz Topics</Link></td>
+                              Quizes</Link></td>
                           ) : (
                             <></>
                           )}

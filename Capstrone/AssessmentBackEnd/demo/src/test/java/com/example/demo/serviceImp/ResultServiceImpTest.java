@@ -57,6 +57,7 @@ class ResultServiceImpTest {
         Quiz quiz = new Quiz();
         Category category = new Category();
         FinalRes fr=new FinalRes();
+        
         Optional<Category> c=categoryRepo.findById(sr.getCategoryId());
         Optional<Student> ss=studentRepo.findByEmail(sr.getEmail());
         System.out.println(c);
@@ -72,9 +73,10 @@ class ResultServiceImpTest {
          fr.setCategoryId(sr.getCategoryId());
          fr.setCategoryName(sr.getCategoryName());
          fr.setEmail(sr.getEmail());
+         
         when(quizRepo.findQuizByName("Array")).thenReturn(Optional.of(quiz));
         when(categoryRepo.findByCategoryName("Java")).thenReturn(Optional.of(category));
-         ResultDto result= resultService.addRes(sr);
+         ResultDto result= resultService.addResult(sr);
         assertEquals("satya@nucleusteq.com",result.getEmail());
     }
     @Test
@@ -82,7 +84,7 @@ class ResultServiceImpTest {
         ResultDto sr = new ResultDto();
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.empty());
         assertThrows(NotFoundException.class,   ()->{
-            resultService.addRes(sr);
+            resultService.addResult(sr);
         });
     }
     @Test
@@ -107,8 +109,9 @@ class ResultServiceImpTest {
          fr.setCategoryId(sr.getCategoryId());
          fr.setCategoryName(sr.getCategoryName());
          fr.setEmail(sr.getEmail());
+         
         when(quizRepo.findQuizByName("Array")).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class,   ()->{ resultService.addRes(sr); });
+        assertThrows(NotFoundException.class,   ()->{ resultService.addResult(sr); });
     }
     @Test
     void testAddCategoryNotPresent() {
@@ -133,10 +136,10 @@ class ResultServiceImpTest {
          fr.setCategoryId(sr.getCategoryId());
          fr.setCategoryName(sr.getCategoryName());
          fr.setEmail(sr.getEmail());
+         
         when(quizRepo.findQuizByName("Array")).thenReturn(Optional.of(quiz));
-
         when(categoryRepo.findByCategoryName("Java")).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class,   ()->{ resultService.addRes(sr);    });
+        assertThrows(NotFoundException.class,   ()->{ resultService.addResult(sr);    });
     }
    @Test
     void testGetResult() {
@@ -155,19 +158,19 @@ class ResultServiceImpTest {
         when(resultRepo.findById(1)).thenReturn(Optional.of(s));
         when(categoryRepo.findById(13)).thenReturn(Optional.of(c));
         s.setCategoryId(13);
-        Optional<ResultDto> resultDto=resultService.getRes(s.getResultId());
+        Optional<ResultDto> resultDto=resultService.getResult(s.getResultId());
        assertEquals(resultDto.get().getQuizName(),s.getQe().getTopicName());    
     }
     @Test
    void testGetAllResultNoUserFound() {
         when(resultRepo.findAll()).thenReturn(Collections.emptyList());
-        assertThrows(AllNotFoundException.class,   ()->{ resultService.getRes(1);    });
+        assertThrows(AllNotFoundException.class,   ()->{ resultService.getResult(1);    });
    }
    @Test 
    void testGetAllStudentNotFound() {
        when(resultRepo.findAll()).thenReturn(Collections.singletonList(new StudentResult()));
        when(resultRepo.findById(1)).thenReturn(Optional.empty());
-       assertThrows(NotFoundException.class,   ()->{ resultService.getRes(1);    });
+       assertThrows(NotFoundException.class,   ()->{ resultService.getResult(1);    });
    }
     @Test
    void testGetAllResult() {
@@ -185,16 +188,17 @@ class ResultServiceImpTest {
         s.setCategoryId(13);
         List<StudentResult> studentResult=new ArrayList<>();
         studentResult.add(s);
+        
         when(resultRepo.findAll()).thenReturn(studentResult);
        when(resultRepo.findById(1)).thenReturn(Optional.of(s));
         when(categoryRepo.findById(13)).thenReturn(Optional.of(c));
         assertTrue(Optional.of(c).isPresent());
-        List<ResultDto> resultDto=resultService.getAllRes();
+        List<ResultDto> resultDto=resultService.getResults();
         assertEquals(s.getCategoryId(),resultDto.get(0).getCategoryId());       
    }
     @Test
    void testNoStudentResultIsPresent() {
         when(resultRepo.findAll()).thenReturn(Collections.emptyList());
-        assertThrows(AllNotFoundException.class,   ()->{ resultService.getAllRes();    });
+        assertThrows(AllNotFoundException.class,   ()->{ resultService.getResults();    });
    }
 }

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.ResultDto;
 import com.example.demo.response.Response;
 import com.example.demo.service.ResultService;
-import com.example.demo.validationMessages.LoggerMessages;
+import com.example.demo.validationMessages.Messages;
 
 /**
  * result controller class.
@@ -44,10 +44,9 @@ public class ResultController {
     @PostMapping("/result")
     public final ResponseEntity<Response> addRes(
             @RequestBody final ResultDto sr) {
-            resultService.addRes(sr);
-            LOGGER.info(LoggerMessages.SAVE_RESULT);
-          //  return ResponseEntity.ok("result added successfully");
-            String message = "result added successfully";
+            resultService.addResult(sr);
+            LOGGER.info(Messages.SAVE_RESULT);
+            String message = Messages.SAVE_RESULT;
             Integer errorCode = HttpStatus.CREATED.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
@@ -62,8 +61,8 @@ public class ResultController {
     @GetMapping("/result/{id}")
     public final ResponseEntity<Optional<ResultDto>> getRes(
             @PathVariable final int id) {
-            Optional<ResultDto> resultDto = resultService.getRes(id);
-            LOGGER.info(LoggerMessages.FIND_RESULT);
+            Optional<ResultDto> resultDto = resultService.getResult(id);
+            LOGGER.info(Messages.FIND_RESULT);
             return ResponseEntity.ok(resultDto);
     }
 
@@ -73,8 +72,8 @@ public class ResultController {
      */
     @GetMapping("/result")
     public final ResponseEntity<List<ResultDto>> getAllRes() {
-            List<ResultDto> resultDto = resultService.getAllRes();
-            LOGGER.info(LoggerMessages.FIND_ALLRESULT);
+            List<ResultDto> resultDto = resultService.getResults();
+            LOGGER.info(Messages.FIND_ALLRESULT);
             return ResponseEntity.ok(resultDto);
     }
 }

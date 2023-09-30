@@ -20,7 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.response.Response;
 import com.example.demo.service.CategoryService;
-import com.example.demo.validationMessages.LoggerMessages;
+import com.example.demo.validationMessages.Messages;
+
 
 import jakarta.validation.Valid;
 
@@ -50,8 +51,8 @@ public class CategoryController {
     public final ResponseEntity<Response> saveCategory(
             @RequestBody @Valid final CategoryDto c) {
             categoryService.saveCategory(c);
-            LOGGER.info(LoggerMessages.SAVE_CATEGORY);
-            String message = "added";
+            LOGGER.info(Messages.SAVE_CATEGORY);
+            String message = Messages.SAVE_CATEGORY;
             Integer errorCode = HttpStatus.CREATED.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
@@ -66,7 +67,7 @@ public class CategoryController {
     public final ResponseEntity<Optional<CategoryDto>>
                  findById(@PathVariable final int id) {
             Optional<CategoryDto> categoryDto = categoryService.findById(id);
-            LOGGER.info(LoggerMessages.FIND_CATEGORY);
+            LOGGER.info(Messages.FIND_CATEGORY);
             return new ResponseEntity<>(categoryDto,HttpStatus.OK);
            
     }
@@ -78,7 +79,7 @@ public class CategoryController {
     @GetMapping("/category")
     public final ResponseEntity<List<CategoryDto>> findAll() {
             List<CategoryDto> categoryDto = categoryService.findAll();
-            LOGGER.info(LoggerMessages.FIND_ALLCATEGORY);
+            LOGGER.info(Messages.FIND_ALLCATEGORY);
             return ResponseEntity.ok(categoryDto);
     }
 
@@ -93,8 +94,8 @@ public class CategoryController {
             @RequestBody @Valid final CategoryDto c,
             @PathVariable final int id) {
             categoryService.updateCategory(c, id);
-            LOGGER.info(LoggerMessages.UPDATE_CATEGORY);
-            String message = "updated category";
+            LOGGER.info(Messages.UPDATE_CATEGORY);
+            String message = Messages.UPDATE_CATEGORY;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
@@ -110,8 +111,8 @@ public class CategoryController {
     public final ResponseEntity<Response> deleteCategory(
             @PathVariable final int id) {
             categoryService.deleteCategory(id);
-            LOGGER.info(LoggerMessages.DELETE_CATEGORY);
-            String message = "deleted category";
+            LOGGER.info(Messages.DELETE_CATEGORY);
+            String message = Messages.DELETE_CATEGORY;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return new ResponseEntity<Response>(errorResponse,
@@ -127,7 +128,7 @@ public class CategoryController {
     public final ResponseEntity<Optional<CategoryDto>> findByName(
             @PathVariable final String s) {
             Optional<CategoryDto> categoryDto = categoryService.findByName(s);
-            LOGGER.info(LoggerMessages.FIND_CATEGORY);
+            LOGGER.info(Messages.FIND_CATEGORY);
             return ResponseEntity.ok(categoryDto);
     }
 }

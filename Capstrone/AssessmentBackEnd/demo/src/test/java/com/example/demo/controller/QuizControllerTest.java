@@ -39,6 +39,7 @@ class QuizControllerTest {
         quiz.setTopicName("arrays");
         QuizDto quizDto=new QuizDto();
         quizDto.setTopicName("arrays");
+        
         when(quizService.addQuiz(quiz)).thenReturn(quizDto);
         Response errorResponse = new Response(HttpStatus.CREATED.value(), "quiz added successfully");
         ResponseEntity<Response> response=quizController.saveQuiz(quiz);
@@ -53,6 +54,7 @@ class QuizControllerTest {
         quiz.setQuizId(1);
         QuizDto quizDto=new QuizDto();
         quizDto.setTopicName("arrays");
+        
         when(quizService.getQuiz(1)).thenReturn(Optional.of(quizDto));
         ResponseEntity<Optional<QuizDto>> response=quizController.getQuiz(1);
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -82,6 +84,7 @@ class QuizControllerTest {
         quizDto.setTopicName("arrays");
         quizDto.setTopicName("Arrays");
         int i=1;
+        
         when(quizService.updateQuiz(quizDto, i)).thenReturn(quizDto);
         Response errorResponse = new Response(HttpStatus.CREATED.value(), "quiz updated successfully");
         ResponseEntity<Response> response=quizController.updateQuiz(quizDto, i);
@@ -98,6 +101,7 @@ class QuizControllerTest {
         c.setCategoryId(2);
         QuizDto quizDto=new QuizDto();
         quizDto.setTopicName("arrays");
+        
         List<QuizDto> q=new ArrayList<>();
         when(quizService.findQuizById(2)).thenReturn(q);
         ResponseEntity<List<QuizDto>> response=quizController.findQuizById(2);
@@ -110,6 +114,7 @@ class QuizControllerTest {
         quiz.setTopicName("arrays");
         quiz.setQuizId(1);
         QuizDto quizDto=new QuizDto();
+        
         quizDto.setTopicName("arrays");
         when(quizService.findQuizByName("arrays")).thenReturn(Optional.of(quizDto));
         ResponseEntity<Optional<QuizDto>> response=quizController.findQuizByName("arrays");

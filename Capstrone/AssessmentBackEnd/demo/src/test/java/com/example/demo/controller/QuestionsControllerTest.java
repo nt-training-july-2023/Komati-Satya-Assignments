@@ -45,6 +45,7 @@ class QuestionsControllerTest {
         question.setQuestion("java is?");
         QuestionsDto questionsDto=new QuestionsDto();
         questionsDto.setQuestion("java is?");
+        
         when(questionService.addQuestion(question)).thenReturn(questionsDto);
         Response errorResponse = new Response(HttpStatus.CREATED.value(), "question added successfully");
         ResponseEntity<Response> response=questionController.addQuestion(question);
@@ -64,6 +65,7 @@ class QuestionsControllerTest {
         Questions question=new Questions();
         question.setQuestion("java is?");
         int i=1;
+        
         Response errorResponse = new Response(HttpStatus.OK.value(), "question deleted successfully");
         ResponseEntity<Response> response=questionController.delete(i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -76,7 +78,8 @@ class QuestionsControllerTest {
         q.setQuestion("java is");
         q.setQuestion("java is??");
         int i=1;
-        when(questionService.updateQue(q, i)).thenReturn(q);
+        
+        when(questionService.updateQuestion(q, i)).thenReturn(q);
         Response errorResponse = new Response(HttpStatus.OK.value(), "question updated successfully");
         ResponseEntity<Response> response=questionController.updateQue(q, i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
@@ -87,7 +90,7 @@ class QuestionsControllerTest {
     void testGetQuestionByQuizIdSuccess() {
         List<QuestionsDto> q=new ArrayList<>();
         int i=1;
-        when(questionService.findQueById(i)).thenReturn(q);
+        when(questionService.findQuestionById(i)).thenReturn(q);
         ResponseEntity<List<QuestionsDto>> response=questionController.findQueById(i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());  
@@ -99,6 +102,7 @@ class QuestionsControllerTest {
         question.setQuestion("java is?");
         QuestionsDto questionsDto=new QuestionsDto();
         questionsDto.setQuestion("java is?");
+        
         when(questionService.findByQuestion("java is?")).thenReturn(Optional.of(questionsDto));
         ResponseEntity<Optional<QuestionsDto>> response=questionController.findByQuestion("java is?");
         assertEquals(HttpStatus.OK,response.getStatusCode());

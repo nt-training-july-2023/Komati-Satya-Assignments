@@ -1,6 +1,5 @@
 import React, { useState ,useEffect} from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
 import './AddCategoryStyles.css';
 import ErrorPage from "../ErrorPage";
 import CategoryApi from "../APIs/CategoryApi";
@@ -84,7 +83,7 @@ else{
             setErrors({});
        CategoryApi.addCategory(categoryData).then(response=>{
         
-          if (response.data.message === "added") {
+          if (response.data.message === "category added successfully") {
             SweetAlert.success("Category added successfully");
             navigate('/Category');
            
