@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
 import com.example.demo.entity.Quiz;
-import com.example.demo.exceptions.ErrorResponse;
+import com.example.demo.response.Response;
 import com.example.demo.service.QuizService;
 import com.example.demo.validationMessages.LoggerMessages;
 
@@ -48,14 +48,14 @@ public class QuizController {
      * @return response
      */
     @PostMapping("/quiz")
-    public final ResponseEntity<ErrorResponse> saveQuiz(
-            @RequestBody @Valid final Quiz q) {
+    public final ResponseEntity<Response> saveQuiz(
+            @RequestBody @Valid final QuizDto q) {
             quizSevice.addQuiz(q);
             LOGGER.info(LoggerMessages.SAVE_QUIZ);
             String message = "succcessfully add the data";
             Integer errorCode = HttpStatus.CREATED.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.CREATED);
     }
 
@@ -89,14 +89,14 @@ public class QuizController {
      * @return response
      */
     @DeleteMapping("/quiz/{id}")
-    public final ResponseEntity<ErrorResponse> deleteQuiz(
+    public final ResponseEntity<Response> deleteQuiz(
             @PathVariable final int id) {
             quizSevice.deleteQuiz(id);
             LOGGER.info(LoggerMessages.DELETE_QUIZ);
             String message = "quiz deleted successfully";
             Integer errorCode = HttpStatus.OK.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.OK);
     }
 
@@ -107,15 +107,15 @@ public class QuizController {
      * @return response
      */
     @PutMapping("/quiz/{id}")
-    public final ResponseEntity<ErrorResponse> updateQuiz(
+    public final ResponseEntity<Response> updateQuiz(
             @RequestBody @Valid final QuizUpdateDto q,
             @PathVariable final int id) {
             quizSevice.updateQuiz(q, id);
             LOGGER.info(LoggerMessages.UPDATE_QUIZ);
             String message = "quiz updated successfully";
             Integer errorCode = HttpStatus.OK.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.OK);
     }
 

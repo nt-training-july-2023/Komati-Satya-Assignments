@@ -15,7 +15,7 @@ public interface CategoryService {
      * @param c category
      * @return category
      */
-    CategoryDto saveCategory(Category c);
+    CategoryDto saveCategory(CategoryDto c);
 
     /**
      * findBymethod method.

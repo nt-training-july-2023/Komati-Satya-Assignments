@@ -42,7 +42,7 @@ class StudentServiceImpTest {
     }
     @Test
     public void testSaveStudent() {
-        Student s=new Student();
+        StudentSaveDto s=new StudentSaveDto();
         s.setUserName("Satya");
         s.setEmail("satya1919@nucleusteq.com");
         s.setDateOfBirth("24-02-2001");
@@ -51,21 +51,30 @@ class StudentServiceImpTest {
         s.setPassword("Satya@1919");
         s.setRole("student");
         when(repo.findByEmail(s.getEmail())).thenReturn(Optional.empty());
-        StudentSaveDto studentDto=studentService.saveStudent(s);
-        assertEquals(s.getUserName(),studentDto.getUserName());
-        assertEquals(s.getDateOfBirth(),studentDto.getDateOfBirth());
-        assertEquals(s.getEmail(),studentDto.getEmail());
-        assertEquals(s.getRole(),studentDto.getRole());
-        assertEquals(s.getGender(),studentDto.getGender());
-        assertEquals(s.getPhoneNumber(),studentDto.getPhoneNumber());  
+        Student student=new Student();
+        student.setDateOfBirth(s.getDateOfBirth());
+        student.setUserName(s.getUserName());
+        student.setEmail(s.getEmail());
+        student.setRole(s.getRole());
+        student.setGender(s.getGender());
+        student.setPhoneNumber(s.getPhoneNumber());
+        String register=studentService.saveStudent(s);
+     
+        assertEquals(s.getUserName(),student.getUserName());
+        assertEquals(s.getDateOfBirth(),student.getDateOfBirth());
+        assertEquals(s.getEmail(),student.getEmail());
+        assertEquals(s.getRole(),student.getRole());
+        assertEquals(s.getGender(),student.getGender());
+        assertEquals(s.getPhoneNumber(),student.getPhoneNumber());  
     }
     @Test
     public void testDuplicateEmai() {
-        Student s=new Student();
-        s.setEmail("satya1919@gmail.com");
-        when(repo.findByEmail(s.getEmail())).thenReturn(Optional.of(s));
+        StudentSaveDto studentDto=new StudentSaveDto();
+        studentDto.setEmail("satya1919@gmail.com");
+        Student student=new Student();
+        when(repo.findByEmail(studentDto.getEmail())).thenReturn(Optional.of(student));
         assertThrows(DuplicateEmailException.class, () ->{
-            studentService.saveStudent(s);
+            studentService.saveStudent(studentDto);
         });
     }
     @Test
@@ -222,7 +231,7 @@ class StudentServiceImpTest {
         
         @Test
         void testUpdateStudent() {
-            Student s=new Student();
+            StudentDto s=new StudentDto();
             int studentId=1; 
             s.setUserId(studentId);
             s.setUserName("Satya");
@@ -230,18 +239,19 @@ class StudentServiceImpTest {
             s.setDateOfBirth("24-02-2001");
             s.setGender("female");
             s.setPhoneNumber("8639924113");
-            s.setPassword("Satya@1919");
             s.setRole("student");
-            studentService.saveStudent(s);
-            StudentDto s1=new StudentDto();
-            s1.setDateOfBirth(s.getDateOfBirth());
-            s1.setEmail(s.getEmail());
-            s1.setGender(s.getGender());
-            s1.setPhoneNumber(s.getPhoneNumber());
-            s1.setRole(s.getRole());
-            s1.setUserId(s.getUserId());
-            s1.setUserName(s.getUserName());
-            when(repo.findById(studentId)).thenReturn(Optional.of(s));
+            
+            Student student=new Student();
+            student.setDateOfBirth(s.getDateOfBirth());
+            student.setEmail(s.getEmail());
+            student.setGender(s.getGender());
+            student.setPhoneNumber(s.getPhoneNumber());
+            student.setRole(s.getRole());
+            student.setUserId(s.getUserId());
+            student.setUserName(s.getUserName());
+            
+            when(repo.findById(studentId)).thenReturn(Optional.of(student));
+            studentService.updateStudent(s,1);
             assertTrue(Optional.of(s).isPresent());
             StudentDto s2=new StudentDto();
             s2.setUserId(studentId);
@@ -252,7 +262,7 @@ class StudentServiceImpTest {
             s2.setPhoneNumber("8639924113");
             s2.setRole("student");
             StudentDto studentDto= studentService.updateStudent(s2, studentId);
-            assertEquals(s.getUserName(),studentDto.getUserName());
+            assertEquals(student.getUserName(),studentDto.getUserName());
             
         }
         @Test

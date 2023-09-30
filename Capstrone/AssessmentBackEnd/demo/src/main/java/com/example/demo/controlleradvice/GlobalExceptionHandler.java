@@ -14,9 +14,9 @@ import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
 import com.example.demo.exceptions.DuplicateEmailException;
 import com.example.demo.exceptions.EmailDoesNotExistException;
-import com.example.demo.exceptions.ErrorResponse;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.exceptions.PasswordMissMatchException;
+import com.example.demo.response.Response;
 /**
  * Global exception handler.
  */
@@ -44,12 +44,12 @@ public class GlobalExceptionHandler {
      * @return response
      */
     @ExceptionHandler(AlreadyExistException.class)
-    public final ResponseEntity<ErrorResponse> handleAlreadyExistException(final
+    public final ResponseEntity<Response> handleAlreadyExistException(final
             AlreadyExistException exception) {
         String message = exception.getMessage();
         Integer errorCode = HttpStatus.FOUND.value();
-        ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-   return new ResponseEntity<ErrorResponse>(errorResponse,
+        Response errorResponse = new Response(errorCode, message);
+   return new ResponseEntity<Response>(errorResponse,
           HttpStatus.FOUND);
    }
     /**
@@ -58,12 +58,12 @@ public class GlobalExceptionHandler {
      * @return reaponse
      */
     @ExceptionHandler(AllNotFoundException.class)
-    public final ResponseEntity<ErrorResponse> handleAllNotFoundException(final
+    public final ResponseEntity<Response> handleAllNotFoundException(final
             AllNotFoundException exception) {
         String message = exception.getMessage();
         Integer errorCode = HttpStatus.NO_CONTENT.value();
-        ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-   return new ResponseEntity<ErrorResponse>(errorResponse,
+        Response errorResponse = new Response(errorCode, message);
+   return new ResponseEntity<Response>(errorResponse,
           HttpStatus.NO_CONTENT);
    }
     /**
@@ -72,13 +72,13 @@ public class GlobalExceptionHandler {
      * @return response
      */
     @ExceptionHandler(EmailDoesNotExistException.class)
-    public final ResponseEntity<ErrorResponse>
+    public final ResponseEntity<Response>
     handleEmailDoesNotExistException(final
             EmailDoesNotExistException exception) {
         String message = exception.getMessage();
         Integer errorCode = HttpStatus.UNAUTHORIZED.value();
-        ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-   return new ResponseEntity<ErrorResponse>(errorResponse,
+        Response errorResponse = new Response(errorCode, message);
+   return new ResponseEntity<Response>(errorResponse,
           HttpStatus.UNAUTHORIZED);
    }
     /**
@@ -87,13 +87,13 @@ public class GlobalExceptionHandler {
      * @return response
      */
     @ExceptionHandler(NotFoundException.class)
-    public final ResponseEntity<ErrorResponse>
+    public final ResponseEntity<Response>
     handleNotFoundExceptionException(final
             NotFoundException exception) {
         String message = exception.getMessage();
         Integer errorCode = HttpStatus.CONFLICT.value();
-        ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-   return new ResponseEntity<ErrorResponse>(errorResponse,
+        Response errorResponse = new Response(errorCode, message);
+   return new ResponseEntity<Response>(errorResponse,
           HttpStatus.CONFLICT);
    }
    /**
@@ -102,13 +102,13 @@ public class GlobalExceptionHandler {
     * @return response
     */
     @ExceptionHandler(PasswordMissMatchException.class)
-    public final ResponseEntity<ErrorResponse>
+    public final ResponseEntity<Response>
     handlePasswordMissMatchException(final
             PasswordMissMatchException exception) {
         String message = exception.getMessage();
         Integer errorCode = HttpStatus.UNAUTHORIZED.value();
-        ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-   return new ResponseEntity<ErrorResponse>(errorResponse,
+        Response errorResponse = new Response(errorCode, message);
+   return new ResponseEntity<Response>(errorResponse,
           HttpStatus.UNAUTHORIZED);
    }
     /**
@@ -117,13 +117,13 @@ public class GlobalExceptionHandler {
      * @return response
      */
     @ExceptionHandler(DuplicateEmailException.class)
-    public final ResponseEntity<ErrorResponse>
+    public final ResponseEntity<Response>
     handleDuplicateEmailException(final
             DuplicateEmailException exception) {
         String message = exception.getMessage();
         Integer errorCode = HttpStatus.FOUND.value();
-        ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-   return new ResponseEntity<ErrorResponse>(errorResponse,
+        Response errorResponse = new Response(errorCode, message);
+   return new ResponseEntity<Response>(errorResponse,
           HttpStatus.FOUND);
    }
 }

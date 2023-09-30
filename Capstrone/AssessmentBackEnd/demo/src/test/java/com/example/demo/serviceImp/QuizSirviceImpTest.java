@@ -43,38 +43,35 @@ class QuizSirviceImpTest {
     
     @Test
     void testAddQuiz() {
-        Quiz q=new Quiz(1,"variables","java variables",60);
-        Category c=new Category(10,"java","java basics");
-        q.setCate(c);
-        when(categoryRepo.findById(q.getCate().getCategoryId())).thenReturn(Optional.of(c));
-        when(quizRepo.findQuizByName(q.getTopicName())).thenReturn(Optional.empty());
-        QuizDto quizDto=new QuizDto();
-        quizDto.setCategoryId(c.getCategoryId());
-     
-        quizDto.setQuizId(q.getQuizId());
-        quizDto.setTopicDescription(q.getTopicDescription());
-        quizDto.setTopicName(q.getTopicName());
-        quizService.addQuiz(q);
+        QuizDto quizDto=new QuizDto(1,"variables","java variables",60,4);
+        Category c=new Category(4,"java","java basics");
+        when(categoryRepo.findById(quizDto.getCategoryId())).thenReturn(Optional.of(c));
+        when(quizRepo.findQuizByName(quizDto.getTopicName())).thenReturn(Optional.empty());
+        Quiz quiz=new Quiz();
+        quiz.setCate(c);
+        quiz.setQuizId(quizDto.getQuizId());
+        quiz.setTopicDescription(quizDto.getTopicDescription());
+        quiz.setTopicName(quizDto.getTopicName());
+        quizService.addQuiz(quizDto);
     }
     @Test
     public void testCategoryNotPresent() {
-        Quiz q=new Quiz(1,"variables","java variables",60);
-        Category c=new Category(10,"java","java basics");
-        q.setCate(c);
-        when(categoryRepo.findById(q.getCate().getCategoryId())).thenReturn(Optional.empty());
+        QuizDto q=new QuizDto(1,"variables","java variables",60,3);
+        Category c=new Category(3,"java","java basics");
+        when(categoryRepo.findById(q.getCategoryId())).thenReturn(Optional.empty());
         assertThrows(NotFoundException.class, () ->{
             quizService.addQuiz(q);
         });
     }
     @Test 
     public void testQuizAlreadyPresent() {
-     Quiz q=new Quiz(1,"variables","java variables",60);   
-     Category c=new Category(10,"java","java basics");
-     q.setCate(c);
-     when(categoryRepo.findById(q.getCate().getCategoryId())).thenReturn(Optional.of(c));
-     when(quizRepo.findQuizByName(q.getTopicName())).thenReturn(Optional.of(q));
+     QuizDto quizDto=new QuizDto(1,"variables","java variables",60,2);   
+     Category c=new Category(2,"java","java basics");
+     Quiz quiz=new Quiz(1,"variables","java variables",60);   
+     when(categoryRepo.findById(quizDto.getCategoryId())).thenReturn(Optional.of(c));
+     when(quizRepo.findQuizByName(quizDto.getTopicName())).thenReturn(Optional.of(quiz));
      assertThrows(AlreadyExistException.class, () ->{
-         quizService.addQuiz(q);
+         quizService.addQuiz(quizDto);
      });
     }
     @Test

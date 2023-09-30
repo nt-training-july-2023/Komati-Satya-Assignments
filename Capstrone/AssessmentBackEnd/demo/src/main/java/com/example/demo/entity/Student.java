@@ -34,49 +34,35 @@ public class Student {
      * stores the user name.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.NAME_NOTBLANK)
     private String userName;
     /**
      * stores the user email.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.EMAIL_NOTBLANK)
-    @Pattern(regexp = "^[a-z][a-zA-Z0-9.]*@nucleusteq\\.com",
-    message = ValidationMessages.EMAIL_PATTERN)
     private String email;
     /**
      * stores the user gender.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.GENDER_NOTBLANK)
     private String gender;
     /**
      * stores the user phone number.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.PHONENUMBER_NOTBLANK)
-    @Pattern(regexp = "^[0-9]{10}$",
-    message = ValidationMessages.PHONENUMBER_PATTERN)
     private String phoneNumber;
     /**
      * stores the user role.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.ROLE_NOTBLANK)
     private String role;
     /**
      * stores the user password.
      */
     @Column(nullable = false)
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
-            + "(?=.*[@#$%^&-+=])(?=\\S+$).{8,}$",
-    message = ValidationMessages.PASSWORD_PATTERN)
-    @NotEmpty(message = ValidationMessages.PASSWORD_NOTBLANK)
     private String password;
     /**
      * stores the user date of birth.
      */
-    @NotEmpty(message = ValidationMessages.DOB_NOTBLANK)
     @Column(nullable = false)
     private String dateOfBirth;
 

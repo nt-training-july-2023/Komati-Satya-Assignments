@@ -30,21 +30,22 @@ const AddQuestions = () => {
         option2: "",
         option3: "",
         option4: "",
-        correctOption: ""
+        correctOption: "",
+        quizId: quizId
 
     });
-    const requestData = {
+    // const requestData = {
 
-        question: questionData2.question,
-        option1: questionData2.option1,
-        option2: questionData2.option2,
-        option3: questionData2.option3,
-        option4: questionData2.option4,
-        correctOption: questionData2.correctOption,
-        qui: {
-            quizId: quizId
-        }
-    };
+    //     question: questionData2.question,
+    //     option1: questionData2.option1,
+    //     option2: questionData2.option2,
+    //     option3: questionData2.option3,
+    //     option4: questionData2.option4,
+    //     correctOption: questionData2.correctOption,
+    //     qui: {
+    //         quizId: quizId
+    //     }
+    // };
 
 
     const navigate = useNavigate();
@@ -135,7 +136,7 @@ const AddQuestions = () => {
         else {
                showErrors(e)
                 setErrors({});
-                QuestionsApi.addQuestion(requestData).then(response => {
+                QuestionsApi.addQuestion(questionData2).then(response => {
                     if (response.data.message === "question added successfully") {
                         SweetAlert.success("Question added successfully");
                         navigate(`/Questions/${quizId}`);

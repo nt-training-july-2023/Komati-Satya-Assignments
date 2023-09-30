@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ResultDto;
-import com.example.demo.exceptions.ErrorResponse;
+import com.example.demo.response.Response;
 import com.example.demo.service.ResultService;
 import com.example.demo.validationMessages.LoggerMessages;
 
@@ -42,15 +42,15 @@ public class ResultController {
      * @return response
      */
     @PostMapping("/result")
-    public final ResponseEntity<ErrorResponse> addRes(
+    public final ResponseEntity<Response> addRes(
             @RequestBody final ResultDto sr) {
             resultService.addRes(sr);
             LOGGER.info(LoggerMessages.SAVE_RESULT);
           //  return ResponseEntity.ok("result added successfully");
             String message = "result added successfully";
             Integer errorCode = HttpStatus.CREATED.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.CREATED);
     }
 

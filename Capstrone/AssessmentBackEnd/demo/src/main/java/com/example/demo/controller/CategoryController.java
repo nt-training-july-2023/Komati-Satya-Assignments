@@ -18,8 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.CategoryDto;
-import com.example.demo.entity.Category;
-import com.example.demo.exceptions.ErrorResponse;
+import com.example.demo.response.Response;
 import com.example.demo.service.CategoryService;
 import com.example.demo.validationMessages.LoggerMessages;
 
@@ -48,14 +47,14 @@ public class CategoryController {
      * @return response
      */
     @PostMapping("/category")
-    public final ResponseEntity<ErrorResponse> saveCategory(
-            @RequestBody @Valid final Category c) {
+    public final ResponseEntity<Response> saveCategory(
+            @RequestBody @Valid final CategoryDto c) {
             categoryService.saveCategory(c);
             LOGGER.info(LoggerMessages.SAVE_CATEGORY);
             String message = "added";
             Integer errorCode = HttpStatus.CREATED.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.CREATED);
     }
     /**
@@ -90,15 +89,15 @@ public class CategoryController {
      * @return response.
      */
     @PutMapping("/category/{id}")
-    public final ResponseEntity<ErrorResponse> updateCategory(
+    public final ResponseEntity<Response> updateCategory(
             @RequestBody @Valid final CategoryDto c,
             @PathVariable final int id) {
             categoryService.updateCategory(c, id);
             LOGGER.info(LoggerMessages.UPDATE_CATEGORY);
             String message = "updated category";
             Integer errorCode = HttpStatus.OK.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.OK);
     }
 
@@ -108,14 +107,14 @@ public class CategoryController {
      * @return response.
      */
     @DeleteMapping("/category/{id}")
-    public final ResponseEntity<ErrorResponse> deleteCategory(
+    public final ResponseEntity<Response> deleteCategory(
             @PathVariable final int id) {
             categoryService.deleteCategory(id);
             LOGGER.info(LoggerMessages.DELETE_CATEGORY);
             String message = "deleted category";
             Integer errorCode = HttpStatus.OK.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.OK);
     }
 

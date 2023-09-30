@@ -22,7 +22,7 @@ function Test({ isRefresh, setTrue }) {
   const [questions, setQuestions] = useState([]);
   const [userScore, setUserScore] = useState(0);
   const { quizId } = useParams();
-  const [selectedOptions, setSelectedOptions] = useState([]);
+  const [selectedOptions, setSelectedOptions] = useState({});
   const [quizSubmitted, setQuizSubmitted] = useState(false);
   const [resultt, setResult] = useState("");
   const verifyEmail = localStorage.getItem('userEmail');
@@ -35,6 +35,7 @@ function Test({ isRefresh, setTrue }) {
   const [attemptedQuestionss, setAttemptedQuestions] = useState(0);
   const [date, setDate] = useState()
   const [timeLeft, setTimeLeft] = useState((verifyTimer)*10);
+  
   useEffect(() => {
     const currentDate = new Date();
     const options = {
@@ -77,13 +78,32 @@ function Test({ isRefresh, setTrue }) {
   }, [questions]);
 
   const handleOptionChange = (questionId, selectedOption) => {
-    setSelectedOptions((prevSelectedOptions) => {
-      const updatedOptions = [...prevSelectedOptions];
-      updatedOptions[currentQuestionIndex] = selectedOption;
+    
+      setSelectedOptions((prevSelectedOptions) => {
+        return {
+          ...prevSelectedOptions,
+          [questionId]: selectedOption, // Use questionId as the key to track selected options for each question
+        };
+      });
       localStorage.setItem(`selectedOption_${questionId}`, selectedOption);
-      return updatedOptions;
-    });
+    
   };
+  useEffect(() => {
+    const initialSelectedOptions = {};
+
+    // Check if there are no values in the selectedOptions state
+    if (Object.keys(selectedOptions).length === 0) {
+      for (let i = 0; i < questions.length; i++) {
+        const questionId = questions[i].questionId;
+        const storedOption = localStorage.getItem(`selectedOption_${questionId}`);
+        if (storedOption) {
+          initialSelectedOptions[questionId] = storedOption;
+        }
+      }
+      setSelectedOptions(initialSelectedOptions);
+    }
+  }, [questions, selectedOptions]);
+
   useEffect(() => {
     const timer = setTimeout(() => {
       if (timeLeft > 0) {
@@ -125,6 +145,7 @@ function Test({ isRefresh, setTrue }) {
     for (let i = 0; i < questions.length; i++) {
       const questionId = questions[i].questionId;
       const selectedOption = localStorage.getItem(`selectedOption_${questionId}`);
+      
       const correctOption = questions[i].correctOption;
       if (selectedOption === correctOption) {       
         score++;       
@@ -190,6 +211,7 @@ function Test({ isRefresh, setTrue }) {
       calculateScore()
     }
   })
+  
   useEffect(() => {
     if(verifyRole === "student"){
     if (!isRefresh) {
@@ -279,7 +301,7 @@ function Test({ isRefresh, setTrue }) {
                               name={`question_${item.questionId}`}
                               value={item.option1}
                               onChange={() => handleOptionChange(item.questionId, item.option1)}
-                              
+                              checked={selectedOptions[item.questionId]===item.option1}
                             />
                             <label htmlFor={`option1_${item.questionId}`}>{item.option1}</label>
                           </div>
@@ -290,6 +312,7 @@ function Test({ isRefresh, setTrue }) {
                               name={`question_${item.questionId}`}
                               value={item.option2}
                               onChange={() => handleOptionChange(item.questionId, item.option2)}
+                              checked={selectedOptions[item.questionId]===item.option2}
                             />
                             <label htmlFor={`option2_${item.questionId}`}>{item.option2}</label>
                           </div>
@@ -300,6 +323,7 @@ function Test({ isRefresh, setTrue }) {
                               name={`question_${item.questionId}`}
                               value={item.option3}
                               onChange={() => handleOptionChange(item.questionId, item.option3)}
+                              checked={selectedOptions[item.questionId]===item.option3}
                             />
                             <label htmlFor={`option3_${item.questionId}`}>{item.option3}</label>
                           </div>
@@ -310,6 +334,7 @@ function Test({ isRefresh, setTrue }) {
                               name={`question_${item.questionId}`}
                               value={item.option4}
                               onChange={() => handleOptionChange(item.questionId, item.option4)}
+                              checked={selectedOptions[item.questionId]===item.option4}
                             />
                             <label htmlFor={`option4_${item.questionId}`}>{item.option4}</label>
                           </div>

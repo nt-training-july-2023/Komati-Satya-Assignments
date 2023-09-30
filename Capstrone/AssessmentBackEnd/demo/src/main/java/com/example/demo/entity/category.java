@@ -32,13 +32,11 @@ public class Category {
      * store category name.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.CATEGORY_NOTBLANK)
     private String categoryName;
     /**
      * store category description.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.CATEGORYDESCRIPTION_NOTBLANK)
     private String categoryDescription;
     /**
      * one to many relationship with quiz.

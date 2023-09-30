@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
 import com.example.demo.entity.Questions;
-import com.example.demo.exceptions.ErrorResponse;
+import com.example.demo.response.Response;
 import com.example.demo.service.QuestionsService;
 import com.example.demo.validationMessages.LoggerMessages;
 
@@ -49,14 +49,14 @@ public class QuestionsController {
      * @return response
      */
     @PostMapping("/questions")
-    public final ResponseEntity<ErrorResponse> addQuestion(
-            @RequestBody @Valid final Questions q) {
+    public final ResponseEntity<Response> addQuestion(
+            @RequestBody @Valid final QuestionsDto q) {
             questionsService.addQuestion(q);
             LOGGER.info(LoggerMessages.SAVE_QUESTION);
             String message = "question added successfully";
             Integer errorCode = HttpStatus.CREATED.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.CREATED);
     }
     /**
@@ -76,14 +76,14 @@ public class QuestionsController {
      * @return response
      */
     @DeleteMapping("/questions/{id}")
-    public final ResponseEntity<ErrorResponse> delete(@PathVariable final int id) {
+    public final ResponseEntity<Response> delete(@PathVariable final int id) {
             questionsService.delete(id);
             LOGGER.info(LoggerMessages.DELETE_QUESTION);
           //  return ResponseEntity.ok("question deleted successfully");
             String message = "question deleted successfully";
             Integer errorCode = HttpStatus.OK.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.OK);
             
     }
@@ -95,7 +95,7 @@ public class QuestionsController {
      * @return response
      */
     @PutMapping("/questions/que/{id}")
-    public final ResponseEntity<ErrorResponse> updateQue(
+    public final ResponseEntity<Response> updateQue(
             @RequestBody @Valid final QuestionsUpdateDto q,
             @PathVariable final int id) {
             questionsService.updateQue(q, id);
@@ -103,8 +103,8 @@ public class QuestionsController {
            // return ResponseEntity.ok("question updated successfully");
             String message = "question updated successfully";
             Integer errorCode = HttpStatus.OK.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.OK);
     }
 

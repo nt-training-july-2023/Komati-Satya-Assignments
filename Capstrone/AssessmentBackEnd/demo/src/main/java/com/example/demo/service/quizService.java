@@ -16,7 +16,7 @@ public interface QuizService {
      * @param q quiz
      * @return quiz
      */
-    QuizDto addQuiz(Quiz q);
+    QuizDto addQuiz(QuizDto q);
 
     /**
      * get quiz method.

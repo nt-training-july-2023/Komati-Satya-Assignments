@@ -31,13 +31,11 @@ public class Questions {
      * stores the question.
      */
     @Column(nullable = false, unique = true)
-    @NotEmpty(message = ValidationMessages.QUESTION_NOTBLANK)
     private String question;
     /**
      * stores the option1.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.OPTION1_NOTBLANK)
     private String option1;
     /**
      * Constructor.

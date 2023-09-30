@@ -25,7 +25,7 @@ import com.example.demo.entity.Questions;
 
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
-import com.example.demo.exceptions.ErrorResponse;
+import com.example.demo.response.Response;
 import com.example.demo.serviceImp.QuestionServiceImp;
 
 
@@ -41,13 +41,13 @@ class QuestionsControllerTest {
     }
     @Test
     void testAddQuestionSuccess() {
-        Questions question=new Questions();
+        QuestionsDto question=new QuestionsDto();
         question.setQuestion("java is?");
         QuestionsDto questionsDto=new QuestionsDto();
         questionsDto.setQuestion("java is?");
         when(questionService.addQuestion(question)).thenReturn(questionsDto);
-        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CREATED.value(), "question added successfully");
-        ResponseEntity<ErrorResponse> response=questionController.addQuestion(question);
+        Response errorResponse = new Response(HttpStatus.CREATED.value(), "question added successfully");
+        ResponseEntity<Response> response=questionController.addQuestion(question);
         assertEquals(HttpStatus.CREATED,response.getStatusCode());
         assertEquals("question added successfully",errorResponse.getMessage());
     }
@@ -64,8 +64,8 @@ class QuestionsControllerTest {
         Questions question=new Questions();
         question.setQuestion("java is?");
         int i=1;
-        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.OK.value(), "question deleted successfully");
-        ResponseEntity<ErrorResponse> response=questionController.delete(i);
+        Response errorResponse = new Response(HttpStatus.OK.value(), "question deleted successfully");
+        ResponseEntity<Response> response=questionController.delete(i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals("question deleted successfully",errorResponse.getMessage());
         assertNotNull(response.getBody());
@@ -77,8 +77,8 @@ class QuestionsControllerTest {
         q.setQuestion("java is??");
         int i=1;
         when(questionService.updateQue(q, i)).thenReturn(q);
-        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.OK.value(), "question updated successfully");
-        ResponseEntity<ErrorResponse> response=questionController.updateQue(q, i);
+        Response errorResponse = new Response(HttpStatus.OK.value(), "question updated successfully");
+        ResponseEntity<Response> response=questionController.updateQue(q, i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertEquals("question updated successfully",errorResponse.getMessage());
         assertNotNull(response.getBody());  

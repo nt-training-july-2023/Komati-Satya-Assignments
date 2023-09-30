@@ -16,7 +16,7 @@ public interface QuestionsService {
      * @param q question q
      * @return question
      */
-    QuestionsDto addQuestion(Questions q);
+    QuestionsDto addQuestion(QuestionsDto q);
 
     /**
      * get question method.

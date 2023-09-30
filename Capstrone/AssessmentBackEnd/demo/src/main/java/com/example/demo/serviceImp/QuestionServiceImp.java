@@ -47,30 +47,31 @@ public class QuestionServiceImp implements QuestionsService {
      * @return question
      */
     @Override
-    public final QuestionsDto addQuestion(final Questions questions) {
-        if (quizRepo.findById(questions.getQui().getQuizId()).isPresent()) {
-            if (!questionsRepo.findByQuestion(questions.getQuestion())
+    public final QuestionsDto addQuestion(final QuestionsDto questionsDto) {
+        if (quizRepo.findById(questionsDto.getQuizId()).isPresent()) {
+            if (!questionsRepo.findByQuestion(questionsDto.getQuestion())
                     .isPresent()) {
-                if (questions.getCorrectOption().equals(
-                        questions.getOption1())
-                   || questions.getCorrectOption().equals(
-                           questions.getOption2())
-                   || questions.getCorrectOption().equals(
-                           questions.getOption3())
-                   || questions.getCorrectOption().equals(
-                           questions.getOption4())) {
-                    System.out.println(questions.getCorrectOption());
-                QuestionsDto qu = new QuestionsDto();
-                qu.setQuizId(questions.getQui().getQuizId());
-                qu.setCorrectOption(questions.getCorrectOption());
-                qu.setOption1(questions.getOption1());
-                qu.setOption2(questions.getOption2());
-                qu.setOption4(questions.getOption4());
-                qu.setOption3(questions.getOption3());
-                qu.setQuestion(questions.getQuestion());
-                questionsRepo.save(questions);
+                if (questionsDto.getCorrectOption().equals(
+                        questionsDto.getOption1())
+                   || questionsDto.getCorrectOption().equals(
+                           questionsDto.getOption2())
+                   || questionsDto.getCorrectOption().equals(
+                           questionsDto.getOption3())
+                   || questionsDto.getCorrectOption().equals(
+                           questionsDto.getOption4())) {
+                    System.out.println(questionsDto.getCorrectOption());
+                Questions question = new Questions();
+                question.setQid(questionsDto.getQuizId());
+                question.setQui(quizRepo.findById(questionsDto.getQuizId()).get());
+                question.setCorrectOption(questionsDto.getCorrectOption());
+                question.setOption1(questionsDto.getOption1());
+                question.setOption2(questionsDto.getOption2());
+                question.setOption4(questionsDto.getOption4());
+                question.setOption3(questionsDto.getOption3());
+                question.setQuestion(questionsDto.getQuestion());
+                questionsRepo.save(question);
                 LOGGER.info("add question");
-                return qu;
+                return questionsDto;
                 } else {
                     LOGGER.error(ErrorMessages.CORRECT_OPTION);
                     throw new NotFoundException(ErrorMessages.CORRECT_OPTION);

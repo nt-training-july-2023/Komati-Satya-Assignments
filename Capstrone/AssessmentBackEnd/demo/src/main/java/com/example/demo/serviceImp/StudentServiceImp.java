@@ -77,13 +77,13 @@ public class StudentServiceImp implements StudentService {
      * @return Student
      */
     @Override
-    public final StudentSaveDto saveStudent(final Student student) {
+    public final String saveStudent(final StudentSaveDto student) {
         if (!studentRepo.findByEmail(student.getEmail()).isPresent()) {
             BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
             String encrypted = bcrypt.encode(student.getPassword());
             student.setPassword(encrypted);
-            studentRepo.save(student);
-            StudentSaveDto studentDto = new StudentSaveDto();
+            //studentRepo.save(student);
+            Student studentDto = new Student();
             studentDto.setUserName(student.getUserName());
             studentDto.setPhoneNumber(student.getPhoneNumber());
             studentDto.setGender(student.getGender());
@@ -91,7 +91,7 @@ public class StudentServiceImp implements StudentService {
             studentDto.setEmail(student.getEmail());
             studentDto.setRole(student.getRole());
             LOGGER.info("student registration");
-            return studentDto;
+            return "regiater";
         } else {
             LOGGER.error(ErrorMessages.EMAIL_EXIST);
             throw new DuplicateEmailException(ErrorMessages.EMAIL_EXIST);

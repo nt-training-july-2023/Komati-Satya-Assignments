@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
+import com.example.demo.entity.Category;
 import com.example.demo.entity.Quiz;
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
@@ -47,15 +48,16 @@ public class QuizSirviceImp implements QuizService {
      * @result quiz
      */
     @Override
-    public final QuizDto addQuiz(final Quiz quiz) {
-        if (categoryRepo.findById(quiz.getCate().getCategoryId()).isPresent()) {
-            if (!quizRepo.findQuizByName(quiz.getTopicName()).isPresent()) {
-                QuizDto quizDto = new QuizDto();
-                quizDto.setQuizId(quiz.getQuizId());
-                quizDto.setTopicDescription(quiz.getTopicDescription());
-                quizDto.setTopicName(quiz.getTopicName());
-                quizDto.setCategoryId(quiz.getCate().getCategoryId());
-                quizDto.setTimer(quiz.getTimer());
+    public final QuizDto addQuiz(final QuizDto quizDto) {
+        if (categoryRepo.findById(quizDto.getCategoryId()).isPresent()) {
+            if (!quizRepo.findQuizByName(quizDto.getTopicName()).isPresent()) {
+                Quiz quiz = new Quiz();
+                quiz.setQuizId(quizDto.getQuizId());
+                quiz.setTopicDescription(quizDto.getTopicDescription());
+                quiz.setTopicName(quizDto.getTopicName());
+                Category category = categoryRepo.findById(quizDto.getCategoryId()).get();
+                quiz.setCate(category);
+                quiz.setTimer(quizDto.getTimer());
                 quizRepo.save(quiz);
                 LOGGER.info("add quiz");
                 return quizDto;

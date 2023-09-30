@@ -40,12 +40,16 @@ class CategoryServiceImpTest {
     
     @Test
     void testAddCategory() {
-        Category c=new Category();
+        CategoryDto c=new CategoryDto();
         c.setCategoryId(1);
         c.setCategoryName("java");
         c.setCategoryDescription("java basics");
+        Category category=new Category();
+        category.setCategoryId(1);
+        category.setCategoryDescription(c.getCategoryDescription());
+        category.setCategoryName(c.getCategoryName());
         when(repo.findByCategoryName(c.getCategoryName())).thenReturn(Optional.empty());
-        when(repo.save(c)).thenReturn(c);
+        when(repo.save(category)).thenReturn(category);
         CategoryDto categoryDto1=categoryService.saveCategory(c);
         assertEquals(c.getCategoryName(),categoryDto1.getCategoryName());
         assertEquals(c.getCategoryDescription(),categoryDto1.getCategoryDescription());
@@ -53,11 +57,12 @@ class CategoryServiceImpTest {
     
     @Test
     void testAlreadyExistException() {
+        CategoryDto categoryDto=new CategoryDto();
+        categoryDto.setCategoryName("java");
         Category c=new Category();
-        c.setCategoryName("java");
-        when(repo.findByCategoryName(c.getCategoryName())).thenReturn(Optional.of(c));
+        when(repo.findByCategoryName(categoryDto.getCategoryName())).thenReturn(Optional.of(c));
         assertThrows(AlreadyExistException.class, () ->{
-            categoryService.saveCategory(c);
+            categoryService.saveCategory(categoryDto);
         });
     }
     
@@ -113,11 +118,12 @@ class CategoryServiceImpTest {
     @Test
    void testUpdateCategory() {
        Category category =new Category(1,"java","java basics");
-       categoryService.saveCategory(category);
+      
          CategoryDto categoryDto=new CategoryDto();
          categoryDto.setCategoryId(category.getCategoryId());
          categoryDto.setCategoryName(category.getCategoryName());
          categoryDto.setCategoryDescription(category.getCategoryDescription());
+         categoryService.saveCategory(categoryDto);
          when(repo.findById(categoryDto.getCategoryId())).thenReturn(Optional.of(category));
          assertTrue(Optional.of(category).isPresent());
          

@@ -33,19 +33,16 @@ public class Quiz {
      * stores the topic name.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.QUIZNAME_NOTBLANK)
     private String topicName;
     /**
      * stores the topic description.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.QUIZDESCRIPTION_NOTBLANK)
     private String topicDescription;
     /**
      * stores the time.
      */
     @Column(nullable = false)
-    @Min(value = 1, message = ValidationMessages.TIMELIMIT_NOTBLANK)
     private int timer;
     /**
      * get quiz.

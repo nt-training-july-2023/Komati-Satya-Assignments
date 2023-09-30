@@ -18,8 +18,8 @@ import org.springframework.http.ResponseEntity;
 import com.example.demo.dto.ResultDto;
 import com.example.demo.entity.StudentResult;
 import com.example.demo.exceptions.AllNotFoundException;
-import com.example.demo.exceptions.ErrorResponse;
 import com.example.demo.exceptions.NotFoundException;
+import com.example.demo.response.Response;
 import com.example.demo.serviceImp.ResultServiceImp;
 
 class ResultControllerTest {
@@ -39,8 +39,8 @@ class ResultControllerTest {
       ResultDto resultDto=new ResultDto();
       resultDto.setResultId(1);
       when(resultService.addRes(resultDto)).thenReturn(resultDto);
-      ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CREATED.value(), "result added successfully");
-      ResponseEntity<ErrorResponse> response=resultController.addRes(resultDto);
+      Response errorResponse = new Response(HttpStatus.CREATED.value(), "result added successfully");
+      ResponseEntity<Response> response=resultController.addRes(resultDto);
       assertEquals(HttpStatus.CREATED,response.getStatusCode());
       assertNotNull(response.getBody());
       assertEquals("result added successfully",errorResponse.getMessage());

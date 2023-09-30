@@ -39,14 +39,14 @@ public class CategoryServiceImp implements CategoryService {
      * @return category
      */
     @Override
-    public final CategoryDto saveCategory(final Category category) {
-        if (!categoryRepo.findByCategoryName(category.getCategoryName())
+    public final CategoryDto saveCategory(final CategoryDto categoryDto) {
+        if (!categoryRepo.findByCategoryName(categoryDto.getCategoryName())
                 .isPresent()) {
-            CategoryDto categoryDto = new CategoryDto();
-            categoryDto
-                    .setCategoryDescription(category.getCategoryDescription());
-            categoryDto.setCategoryName(category.getCategoryName());
-            categoryDto.setCategoryId(category.getCategoryId());
+            Category category = new Category();
+            category
+                    .setCategoryDescription(categoryDto.getCategoryDescription());
+            category.setCategoryName(categoryDto.getCategoryName());
+            category.setCategoryId(categoryDto.getCategoryId());
             categoryRepo.save(category);
             LOGGER.info("save category");
             return categoryDto;

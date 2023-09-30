@@ -23,8 +23,8 @@ import com.example.demo.entity.Student;
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.DuplicateEmailException;
 import com.example.demo.exceptions.EmailDoesNotExistException;
-import com.example.demo.exceptions.ErrorResponse;
 import com.example.demo.exceptions.NotFoundException;
+import com.example.demo.response.Response;
 import com.example.demo.serviceImp.StudentServiceImp;
 
 class StudentControllerTest {
@@ -40,13 +40,13 @@ class StudentControllerTest {
     
     @Test
     void testAddStudentSuccess() {
-       Student student=new Student();
+       StudentSaveDto student=new StudentSaveDto();
        student.setUserName("satya");
        StudentSaveDto saveDto=new StudentSaveDto();
        saveDto.setUserName("satya");
-       when(studentService.saveStudent(student)).thenReturn(saveDto);
-       ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CREATED.value(), "student added successfully");
-       ResponseEntity<ErrorResponse> response=studentController.save(student);
+       when(studentService.saveStudent(student)).thenReturn("registered");
+       Response errorResponse = new Response(HttpStatus.CREATED.value(), "student added successfully");
+       ResponseEntity<Response> response=studentController.save(student);
        assertEquals(HttpStatus.CREATED,response.getStatusCode());
        assertNotNull(response.getBody());
        assertEquals("student added successfully",errorResponse.getMessage());
@@ -90,8 +90,8 @@ class StudentControllerTest {
         saveDto.setUserName("Satya");
         int i=1;
         when(studentService.updateStudent(saveDto, 1)).thenReturn(saveDto);
-        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.OK.value(), "student updated successfully");
-        ResponseEntity<ErrorResponse> response=studentController.updateStudent(saveDto, i);
+        Response errorResponse = new Response(HttpStatus.OK.value(), "student updated successfully");
+        ResponseEntity<Response> response=studentController.updateStudent(saveDto, i);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals("student updated successfully",errorResponse.getMessage());
@@ -100,8 +100,8 @@ class StudentControllerTest {
     void testDeleteSuccess() {
         Student student= new Student();
         student.setUserId(1);
-        ErrorResponse errorResponse = new ErrorResponse(HttpStatus.CREATED.value(), "student deleted successfully");
-        ResponseEntity<ErrorResponse> response=studentController.deleteStudent(1);
+        Response errorResponse = new Response(HttpStatus.CREATED.value(), "student deleted successfully");
+        ResponseEntity<Response> response=studentController.deleteStudent(1);
         assertEquals(HttpStatus.OK,response.getStatusCode());
         assertNotNull(response.getBody());
         assertEquals("student deleted successfully",errorResponse.getMessage());

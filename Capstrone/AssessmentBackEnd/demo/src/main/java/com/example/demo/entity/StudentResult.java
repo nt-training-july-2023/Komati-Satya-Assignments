@@ -35,7 +35,6 @@ public class StudentResult {
      * stores the marks.
      */
     @Column(nullable = false)
-    @NotNull(message = ValidationMessages.MARKSOBTAINED_NOTNULL)
     private int maxMarks;
     /**
      * stores the date and time.
@@ -51,7 +50,6 @@ public class StudentResult {
      * stores the res.
      */
     @Column(nullable = false)
-    @NotNull(message = ValidationMessages.ATTEMPTEDQUESTIONS_NOTNULL)
     private int attemptedQuestions;
     /**
      * stores the result id.

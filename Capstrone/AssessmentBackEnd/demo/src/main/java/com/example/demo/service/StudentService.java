@@ -16,7 +16,7 @@ public interface StudentService {
      * @param s student
      * @return student
      */
-    StudentSaveDto saveStudent(Student s);
+    String saveStudent(StudentSaveDto s);
 
     /**
      * find by id method.

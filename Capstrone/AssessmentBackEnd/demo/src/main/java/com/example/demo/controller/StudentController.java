@@ -19,8 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
+import com.example.demo.dto.StudentSaveDto;
 import com.example.demo.entity.Student;
-import com.example.demo.exceptions.ErrorResponse;
+import com.example.demo.response.Response;
 import com.example.demo.service.StudentService;
 import com.example.demo.validationMessages.LoggerMessages;
 
@@ -48,15 +49,15 @@ public class StudentController {
      * @return response.
      */
     @PostMapping("/student")
-    public final ResponseEntity<ErrorResponse> save(
-            @RequestBody @Valid final Student s) {
+    public final ResponseEntity<Response> save(
+            @RequestBody @Valid final StudentSaveDto s) {
             studentSevice.saveStudent(s);
             LOGGER.info(LoggerMessages.SAVE_STUDENT);
            // return ResponseEntity.ok("User register successfully");
             String message = "User register successfully";
             Integer errorCode = HttpStatus.CREATED.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.CREATED);
     }
 
@@ -105,7 +106,7 @@ public class StudentController {
      * @return response
      */
     @PutMapping("/student/{id}")
-    public final ResponseEntity<ErrorResponse> updateStudent(
+    public final ResponseEntity<Response> updateStudent(
             @RequestBody @Valid final StudentDto s,
             @PathVariable final int id) {
             studentSevice.updateStudent(s, id);
@@ -113,8 +114,8 @@ public class StudentController {
           //  return ResponseEntity.ok("user updated successfully");
             String message = "user updated successfully";
             Integer errorCode = HttpStatus.OK.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.OK);
     }
     /**
@@ -123,14 +124,14 @@ public class StudentController {
      * @return response
      */
     @DeleteMapping("/student/{id}")
-    public final ResponseEntity<ErrorResponse> deleteStudent(
+    public final ResponseEntity<Response> deleteStudent(
             @PathVariable final int id) {
             studentSevice.deleteStudent(id);
             LOGGER.info(LoggerMessages.DELETE_STUDENT);
             String message = "User deleted successfully";
             Integer errorCode = HttpStatus.OK.value();
-            ErrorResponse errorResponse = new ErrorResponse(errorCode, message);
-       return new ResponseEntity<ErrorResponse>(errorResponse,
+            Response errorResponse = new Response(errorCode, message);
+       return new ResponseEntity<Response>(errorResponse,
               HttpStatus.OK);
     }
 }

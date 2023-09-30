@@ -4,7 +4,9 @@ import com.example.demo.validationMessages.ValidationMessages;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -38,7 +40,7 @@ public class QuizDto {
     /**
      * category id.
      */
-    @NotEmpty(message = ValidationMessages.CATEGORY_NOTNULL)
+    @NotNull(message = ValidationMessages.CATEGORY_NOTNULL)
     private int categoryId;
     /**
      * stores time.

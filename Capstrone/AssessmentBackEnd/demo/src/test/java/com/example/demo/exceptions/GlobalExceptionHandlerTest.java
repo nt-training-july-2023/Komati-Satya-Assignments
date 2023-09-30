@@ -20,6 +20,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import com.example.demo.controlleradvice.GlobalExceptionHandler;
+import com.example.demo.response.Response;
 
 class GlobalExceptionHandlerTest {
 
@@ -49,9 +50,9 @@ class GlobalExceptionHandlerTest {
     @Test
     public void testHandleAlreadyExistException() {
         AlreadyExistException exception = new AlreadyExistException("Resource already exists");
-        ResponseEntity<ErrorResponse> responseEntity = globalhandler.handleAlreadyExistException(exception);
+        ResponseEntity<Response> responseEntity = globalhandler.handleAlreadyExistException(exception);
         assertEquals(HttpStatus.FOUND, responseEntity.getStatusCode());
-        ErrorResponse errorResponse = responseEntity.getBody();
+        Response errorResponse = responseEntity.getBody();
         assertEquals(HttpStatus.FOUND.value(), errorResponse.getCode());
         assertEquals("Resource already exists", errorResponse.getMessage());
     }
@@ -59,45 +60,45 @@ class GlobalExceptionHandlerTest {
     @Test
     public void testHandleAllNotFoundException() {
         AllNotFoundException exception = new AllNotFoundException("Resource not found");
-        ResponseEntity<ErrorResponse> responseEntity = globalhandler.handleAllNotFoundException(exception);
+        ResponseEntity<Response> responseEntity = globalhandler.handleAllNotFoundException(exception);
         assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
-        ErrorResponse errorResponse = responseEntity.getBody();
+        Response errorResponse = responseEntity.getBody();
         assertEquals(HttpStatus.NO_CONTENT.value(), errorResponse.getCode());
         assertEquals("Resource not found", errorResponse.getMessage());
     }
     @Test
     public void testHandleEmailDoesNotExistException() {
         EmailDoesNotExistException exception = new EmailDoesNotExistException("Email not exist");
-        ResponseEntity<ErrorResponse> responseEntity = globalhandler.handleEmailDoesNotExistException(exception);
+        ResponseEntity<Response> responseEntity = globalhandler.handleEmailDoesNotExistException(exception);
         assertEquals(HttpStatus.UNAUTHORIZED, responseEntity.getStatusCode());
-        ErrorResponse errorResponse = responseEntity.getBody();
+        Response errorResponse = responseEntity.getBody();
         assertEquals(HttpStatus.UNAUTHORIZED.value(), errorResponse.getCode());
         assertEquals("Email not exist", errorResponse.getMessage());
     }
     @Test
     public void testHandleNotFoundException() {
         NotFoundException exception = new NotFoundException("not found");
-        ResponseEntity<ErrorResponse> responseEntity = globalhandler.handleNotFoundExceptionException(exception);
+        ResponseEntity<Response> responseEntity = globalhandler.handleNotFoundExceptionException(exception);
         assertEquals(HttpStatus.CONFLICT, responseEntity.getStatusCode());
-        ErrorResponse errorResponse = responseEntity.getBody();
+        Response errorResponse = responseEntity.getBody();
         assertEquals(HttpStatus.CONFLICT.value(), errorResponse.getCode());
         assertEquals("not found", errorResponse.getMessage());
     }
     @Test
     public void testHandlePasswordMissMatchException() {
         PasswordMissMatchException exception = new PasswordMissMatchException("password miss match");
-        ResponseEntity<ErrorResponse> responseEntity = globalhandler.handlePasswordMissMatchException(exception);
+        ResponseEntity<Response> responseEntity = globalhandler.handlePasswordMissMatchException(exception);
         assertEquals(HttpStatus.UNAUTHORIZED, responseEntity.getStatusCode());
-        ErrorResponse errorResponse = responseEntity.getBody();
+        Response errorResponse = responseEntity.getBody();
         assertEquals(HttpStatus.UNAUTHORIZED.value(), errorResponse.getCode());
         assertEquals("password miss match", errorResponse.getMessage());
     }
     @Test
     public void testHandleDuplicateEmailException() {
         DuplicateEmailException exception = new DuplicateEmailException("duplicate email");
-        ResponseEntity<ErrorResponse> responseEntity = globalhandler.handleDuplicateEmailException(exception);
+        ResponseEntity<Response> responseEntity = globalhandler.handleDuplicateEmailException(exception);
         assertEquals(HttpStatus.FOUND, responseEntity.getStatusCode());
-        ErrorResponse errorResponse = responseEntity.getBody();
+        Response errorResponse = responseEntity.getBody();
         assertEquals(HttpStatus.FOUND.value(), errorResponse.getCode());
         assertEquals("duplicate email", errorResponse.getMessage());
     }

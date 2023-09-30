@@ -43,40 +43,40 @@ class QuestionServiceImpTest {
     
     @Test
     void testAddQuestion() {
-        Questions q=new Questions("java is","oops","popl","none","both","oops");
-       Quiz quiz=new Quiz(1,"variables","java variables",60);
-        q.setQui(quiz);
-      when(quizRepo.findById(q.getQui().getQuizId())).thenReturn(Optional.of(quiz));
+        QuestionsDto q=new QuestionsDto("java is","oops","popl","none","both","oops",7,9);
+       Quiz quiz=new Quiz(9,"variables","java variables",60);
+      //  q.setQui(quiz);
+      when(quizRepo.findById(q.getQuizId())).thenReturn(Optional.of(quiz));
         when(questionsRepo.findByQuestion(q.getQuestion())).thenReturn(Optional.empty());
         assertEquals(q.getCorrectOption(),q.getOption1());
-       QuestionsDto questionsDto=new QuestionsDto();
-       questionsDto.setQuizId(quiz.getQuizId());
-       questionsDto.setQuestion(q.getQuestion());
-       questionsDto.setOption1(q.getOption1());
-       questionsDto.setOption2(q.getOption2());
-       questionsDto.setOption3(q.getOption3());
-       questionsDto.setOption4(q.getOption4());
-       questionsDto.setCorrectOption(q.getCorrectOption());
+       Questions question=new Questions();
+       question.setQui(quiz);
+       question.setQuestion(q.getQuestion());
+       question.setOption1(q.getOption1());
+       question.setOption2(q.getOption2());
+       question.setOption3(q.getOption3());
+       question.setOption4(q.getOption4());
+       question.setCorrectOption(q.getCorrectOption());
        questionsService.addQuestion(q);
     }
     
     @Test
     void testQuestionAlreadyExistException() {
-        Questions q=new Questions("java is","oops","popl","none","both","oopl");
+        QuestionsDto q=new QuestionsDto("java is","oops","popl","none","both","oopl",1,3);
         Quiz quiz=new Quiz(1,"variables","java variables",60);
-        q.setQui(quiz);
-        when(quizRepo.findById(q.getQui().getQuizId())).thenReturn(Optional.of(quiz));
-        when(questionsRepo.findByQuestion(q.getQuestion())).thenReturn(Optional.of(q));
+        Questions question=new Questions("java is","oops","popl","none","both","oopl");;
+        when(quizRepo.findById(q.getQuizId())).thenReturn(Optional.of(quiz));
+        when(questionsRepo.findByQuestion(q.getQuestion())).thenReturn(Optional.of(question));
         assertThrows(AlreadyExistException.class,()->{
             questionsService.addQuestion(q);
         });
    }
    @Test
     void testQuizTopicNotPresent() {
-        Questions q=new Questions("java is","oops","popl","none","both","oopl");
+        QuestionsDto q=new QuestionsDto("java is","oops","popl","none","both","oopl",7,9);
         Quiz quiz=new Quiz(1,"variables","java variables",60);
-        q.setQui(quiz);
-        when(quizRepo.findById(q.getQui().getQuizId())).thenReturn(Optional.empty());
+       // q.setQui(quiz);
+        when(quizRepo.findById(q.getQuizId())).thenReturn(Optional.empty());
         assertThrows(NotFoundException.class,()->{
             questionsService.addQuestion(q);
        });

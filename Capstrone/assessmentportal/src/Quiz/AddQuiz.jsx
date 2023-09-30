@@ -19,14 +19,14 @@ const AddQuiz = () => {
         timer: "",
         categoryId: parseInt(categoryId, 10)
     });
-    const requestData = {
-        topicName: quizData.topicName,
-        topicDescription: quizData.topicDescription,
-        timer: quizData.timer,
-        cate: {
-            categoryId: quizData.categoryId
-        }
-    };
+    // const requestData = {
+    //     topicName: quizData.topicName,
+    //     topicDescription: quizData.topicDescription,
+    //     timer: quizData.timer,
+    //     cate: {
+    //         categoryId: quizData.categoryId
+    //     }
+    // };
     const navigate = useNavigate();
     const changeData = (e) => {
         setQuizData({ ...quizData, [e.target.name]: e.target.value });
@@ -95,7 +95,7 @@ const AddQuiz = () => {
         
                showErrors(e);
                 setErrors({});
-                QuizApi.addQuiz(requestData).then(response => {
+                QuizApi.addQuiz(quizData).then(response => {
                     if (response.data.message === "succcessfully add the data") {
                         SweetAlert.success("Quiz added successfully");
                         navigate(`/Quiz/${quizData.categoryId}`);

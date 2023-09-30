@@ -1,8 +1,8 @@
-package com.example.demo.exceptions;
+package com.example.demo.response;
 
 
 
-public class ErrorResponse<T> {
+public class Response {
     /**
      * error Code.
      */
@@ -11,15 +11,11 @@ public class ErrorResponse<T> {
      * error Message.
      */
     private String message;
-   
-
-   
-
     /**
      * @param code    errorCode
      * @param message errorMessage constructor using fields.
      */
-    public ErrorResponse(final Integer code, final String message) {
+    public Response(final Integer code, final String message) {
         super();
         this.code = code;
         this.message = message;
@@ -28,7 +24,7 @@ public class ErrorResponse<T> {
     /**
      * constructor.
      */
-    public ErrorResponse() {
+    public Response() {
         super();
     }
 
