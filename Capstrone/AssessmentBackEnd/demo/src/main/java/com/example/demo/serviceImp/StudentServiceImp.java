@@ -21,6 +21,7 @@ import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.repository.StudentRepo;
 import com.example.demo.service.StudentService;
 import com.example.demo.validationMessages.ErrorMessages;
+import com.example.demo.validationMessages.Messages;
 
 /**
  * Student service implementation.
@@ -59,7 +60,7 @@ public class StudentServiceImp implements StudentService {
                 studentDto.setDateOfBirth(st1.getDateOfBirth());
                 studentDto.setEmail(st1.getEmail());
                 studentDto.setRole(st1.getRole());
-                LOGGER.info("student login");
+                LOGGER.info(Messages.LOGIN_STUDENT);
                 return Optional.of(studentDto);
             } else {
                 LOGGER.error(ErrorMessages.WRONG_PASSWORD);
@@ -90,7 +91,7 @@ public class StudentServiceImp implements StudentService {
             studentDto.setEmail(student.getEmail());
             studentDto.setRole(student.getRole());
             studentDto.setPassword(encrypted);
-            LOGGER.info("student registration");
+            LOGGER.info(Messages.SAVE_STUDENT);
             studentRepo.save(studentDto);
             return "regiater";
         } else {
@@ -116,7 +117,7 @@ public class StudentServiceImp implements StudentService {
             studentDto.setDateOfBirth(student.getDateOfBirth());
             studentDto.setEmail(student.getEmail());
             studentDto.setRole(student.getRole());
-            LOGGER.info("find student by id");
+            LOGGER.info(Messages.FIND_STUDENTBYID);
             return Optional.of(studentDto);
         } else {
             LOGGER.error(ErrorMessages.USER_NOTPRESENT);
@@ -132,7 +133,7 @@ public class StudentServiceImp implements StudentService {
         if (studentRepo.findAll().size() != 0) {
             List<Student> student = studentRepo.findAll();
             List<StudentDto> studentDto = convertToDto(student);
-            LOGGER.info("find all students");
+            LOGGER.info(Messages.FIND_ALLSTUDENT);
             return studentDto;
         } else {
             LOGGER.error(ErrorMessages.NO_USER);
@@ -176,7 +177,7 @@ public class StudentServiceImp implements StudentService {
             exiStudent.setPhoneNumber(studentDto.getPhoneNumber());
             exiStudent.setUserName(studentDto.getUserName());
             studentRepo.save(exiStudent);
-            LOGGER.info("update student");
+            LOGGER.info(Messages.UPDATE_STUDENT);
             return studentDto;
         } else {
             LOGGER.error(ErrorMessages.WRONG_USERID);
@@ -192,7 +193,7 @@ public class StudentServiceImp implements StudentService {
         if (studentRepo.findAll().size() != 0) {
             if (studentRepo.findById(id).isPresent()) {
                 studentRepo.deleteById(id);
-                LOGGER.info("deletion of student");
+                LOGGER.info(Messages.DELETE_STUDENT);
             } else {
                 LOGGER.error(ErrorMessages.WRONG_USERID);
                 throw new NotFoundException(ErrorMessages.WRONG_USERID);

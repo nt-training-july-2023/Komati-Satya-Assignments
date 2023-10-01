@@ -154,7 +154,7 @@ class QuestionServiceImpTest {
         
         when(questionsRepo.findById(q.getQid())).thenReturn(Optional.of(q));
         assertTrue(Optional.of(q).isPresent());
-        QuestionsUpdateDto question=new QuestionsUpdateDto("java is?","oops","popl","none","both","oopl");
+        QuestionsUpdateDto question=new QuestionsUpdateDto("java is?","oops","popl","none","both","oops");
         List<Questions> questionList=new ArrayList<>();
         questionList.add(q);
         when(questionsRepo.findAll()).thenReturn(questionList);

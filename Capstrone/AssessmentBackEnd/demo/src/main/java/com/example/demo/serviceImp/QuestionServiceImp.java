@@ -21,6 +21,7 @@ import com.example.demo.repository.QuestionsRepo;
 import com.example.demo.repository.QuizRepo;
 import com.example.demo.service.QuestionsService;
 import com.example.demo.validationMessages.ErrorMessages;
+import com.example.demo.validationMessages.Messages;
 
 
 /**
@@ -72,7 +73,6 @@ public class QuestionServiceImp implements QuestionsService {
                            questionsDto.getOption3())
                    || questionsDto.getCorrectOption().equals(
                            questionsDto.getOption4())) {
-                    System.out.println(questionsDto.getCorrectOption());
                 Questions question = new Questions();
                 question.setQid(questionsDto.getQuizId());
                 question.setQui(quizRepo.findById(
@@ -84,7 +84,7 @@ public class QuestionServiceImp implements QuestionsService {
                 question.setOption3(questionsDto.getOption3());
                 question.setQuestion(questionsDto.getQuestion());
                 questionsRepo.save(question);
-                LOGGER.info("add question");
+                LOGGER.info(Messages.SAVE_QUESTION);
                 return questionsDto;
                 } else {
                     LOGGER.error(ErrorMessages.CORRECT_OPTION);
@@ -108,7 +108,7 @@ public class QuestionServiceImp implements QuestionsService {
         if (questionsRepo.findAll().size() != 0) {
             List<Questions> questions = questionsRepo.findAll();
             List<QuestionsDto> qd = convertToDto(questions);
-            LOGGER.info("get all giestions");
+            LOGGER.info(Messages.FIND_ALLQUESTION);
             return qd;
         } else {
             LOGGER.error(ErrorMessages.NO_QUESTION);
@@ -145,7 +145,7 @@ public class QuestionServiceImp implements QuestionsService {
         if (questionsRepo.findAll().size() != 0) {
             if (questionsRepo.findById(id).isPresent()) {
                 questionsRepo.deleteById(id);
-                LOGGER.info("delete question");
+                LOGGER.info(Messages.DELETE_QUESTION);
             } else {
                 LOGGER.error(ErrorMessages.WRONG_QUESTIONID);
                 throw new NotFoundException(ErrorMessages.WRONG_QUESTIONID);
@@ -184,6 +184,14 @@ public class QuestionServiceImp implements QuestionsService {
                     throw new AlreadyExistException(ErrorMessages
                            .OPTION_EXIST);
                 }
+                if (q.getCorrectOption().equals(
+                        q.getOption1())
+                   || q.getCorrectOption().equals(
+                           q.getOption2())
+                   || q.getCorrectOption().equals(
+                           q.getOption3())
+                   || q.getCorrectOption().equals(
+                           q.getOption4())) {
                 exiQue.setOption1(q.getOption1());
                 exiQue.setOption2(q.getOption2());
                 exiQue.setOption3(q.getOption3());
@@ -191,8 +199,12 @@ public class QuestionServiceImp implements QuestionsService {
                 exiQue.setCorrectOption(q.getCorrectOption());
                 exiQue.setQuestion(q.getQuestion());
                 questionsRepo.save(exiQue);
-                LOGGER.info("update question");
+                LOGGER.info(Messages.UPDATE_QUESTION);
                 return q;
+                } else {
+                    LOGGER.error(ErrorMessages.CORRECT_OPTION);
+                    throw new NotFoundException(ErrorMessages.CORRECT_OPTION);
+                }
             } else {
                 LOGGER.error(ErrorMessages.WRONG_QUESTIONID);
                 throw new NotFoundException(ErrorMessages.WRONG_QUESTIONID);
@@ -212,7 +224,7 @@ public class QuestionServiceImp implements QuestionsService {
         if (questionsRepo.findQueById(id).size() != 0) {
                 List<Questions> l = questionsRepo.findQueById(id);
                 List<QuestionsDto> ld = convertToDto(l);
-                LOGGER.info("find question by question id");
+                LOGGER.info(Messages.FIND_QUESTIONBYQUIZID);
                 return ld;
         } else {
             LOGGER.error(ErrorMessages.NO_QUESTION);
@@ -239,7 +251,7 @@ public class QuestionServiceImp implements QuestionsService {
                 questionsDto.setOption3(questions.getOption3());
                 questionsDto.setQuestion(questions.getQuestion());
                 questionsDto.setQuestionId(questions.getQid());
-                LOGGER.info("find question");
+                LOGGER.info(Messages.FIND_QUESTION);
                 return Optional.of(questionsDto);
             } else {
                 LOGGER.error(ErrorMessages.NO_QUESTION);

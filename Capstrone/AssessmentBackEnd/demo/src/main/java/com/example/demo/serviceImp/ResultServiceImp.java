@@ -24,6 +24,7 @@ import com.example.demo.repository.StudentRepo;
 import com.example.demo.repository.StudentResultRepo;
 import com.example.demo.service.ResultService;
 import com.example.demo.validationMessages.ErrorMessages;
+import com.example.demo.validationMessages.Messages;
 
 /**
  * result service implementation.
@@ -89,7 +90,7 @@ public class ResultServiceImp implements ResultService {
                 if (categoryRepo
                         .findByCategoryName(finalResult.getCategoryName())
                         .isPresent()) {
-                    LOGGER.info("save result");
+                    LOGGER.info(Messages.SAVE_RESULT);
                     finalResultRepo.save(finalResult);
                 } else {
                     LOGGER.error(ErrorMessages.CATEGORY_NOTPRESENT);
@@ -148,7 +149,7 @@ public class ResultServiceImp implements ResultService {
                 resultDto.setObtainMarks(fr.getMaxMarks());
                 resultDto.setAttemptedQuestions(fr.getAttemptedQuestions());
                 resultDto.setCategoryId(c.getCategoryId());
-                LOGGER.info("get result hy id");
+                LOGGER.info(Messages.FIND_RESULT);
                 return Optional.of(resultDto);
             } else {
                 LOGGER.error(ErrorMessages.WRONG_USERID);
@@ -168,7 +169,7 @@ public class ResultServiceImp implements ResultService {
         if (studentResultRepo.findAll().size() != 0) {
             List<StudentResult> studentResult = studentResultRepo.findAll();
             List<ResultDto> resultDto = convertToDto(studentResult);
-            LOGGER.info("find all result");
+            LOGGER.info(Messages.FIND_ALLRESULT);
             return resultDto;
         } else {
             LOGGER.info(ErrorMessages.NO_USER);

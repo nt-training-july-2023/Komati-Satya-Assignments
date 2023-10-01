@@ -17,6 +17,7 @@ import com.example.demo.exceptions.AlreadyExistException;
 import com.example.demo.repository.CategoryRepo;
 import com.example.demo.service.CategoryService;
 import com.example.demo.validationMessages.ErrorMessages;
+import com.example.demo.validationMessages.Messages;
 
 /**
  * category service implementation.
@@ -48,7 +49,7 @@ public class CategoryServiceImp implements CategoryService {
             category.setCategoryName(categoryDto.getCategoryName());
             category.setCategoryId(categoryDto.getCategoryId());
             categoryRepo.save(category);
-            LOGGER.info("save category");
+            LOGGER.info(Messages.SAVE_CATEGORY);
             return categoryDto;
         } else {
             LOGGER.error(ErrorMessages.CATEGORY_EXIST);
@@ -70,7 +71,7 @@ public class CategoryServiceImp implements CategoryService {
                 categoryDto.setCategoryDescription(ca.getCategoryDescription());
                 categoryDto.setCategoryName(ca.getCategoryName());
                 categoryDto.setCategoryId(ca.getCategoryId());
-                LOGGER.info("find category by category id");
+                LOGGER.info(Messages.FIND_CATEGORY);
                 return Optional.of(categoryDto);
             } else {
                 LOGGER.error(ErrorMessages.WRONG_CATEGORYID);
@@ -90,7 +91,7 @@ public class CategoryServiceImp implements CategoryService {
         if (categoryRepo.findAll().size() != 0) {
             List<Category> c = categoryRepo.findAll();
             List<CategoryDto> cd = convertToDto(c);
-            LOGGER.info("find all categories");
+            LOGGER.info(Messages.FIND_ALLCATEGORY);
             return cd;
         } else {
             LOGGER.error(ErrorMessages.NO_CATEGORY);
@@ -134,7 +135,7 @@ public class CategoryServiceImp implements CategoryService {
             existingCategory.setCategoryName(c.getCategoryName());
             existingCategory.setCategoryDescription(c.getCategoryDescription());
             categoryRepo.save(existingCategory);
-            LOGGER.info("update category");
+            LOGGER.info(Messages.UPDATE_CATEGORY);
             return c;
         } else {
             LOGGER.error(ErrorMessages.WRONG_CATEGORYID);
@@ -150,13 +151,13 @@ public class CategoryServiceImp implements CategoryService {
         if (categoryRepo.findAll().size() != 0) {
             if (categoryRepo.findById(id).isPresent()) {
                 categoryRepo.deleteById(id);
-                LOGGER.info("delete category");
+                LOGGER.info(Messages.DELETE_CATEGORY);
             } else {
-                LOGGER.error("wrong category id");
+                LOGGER.error(ErrorMessages.NO_CATEGORY);
                 throw new NotFoundException(ErrorMessages.NO_CATEGORY);
             }
         } else {
-            LOGGER.error("No categories are there");
+            LOGGER.error(ErrorMessages.NO_CATEGORY);
             throw new AllNotFoundException(ErrorMessages.NO_CATEGORY);
         }
     }
@@ -174,7 +175,7 @@ public class CategoryServiceImp implements CategoryService {
                 categoryDto.setCategoryDescription(
                         c.get().getCategoryDescription());
                 categoryDto.setCategoryName(c.get().getCategoryName());
-                LOGGER.info("find category by category name");
+                LOGGER.info(Messages.FIND_CATEGORY);
                 return Optional.of(categoryDto);
             } else {
                 LOGGER.error(ErrorMessages.CATEGORY_NOTPRESENT);

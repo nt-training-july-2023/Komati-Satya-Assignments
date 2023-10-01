@@ -18,6 +18,7 @@ import com.example.demo.repository.FinalResultRepo;
 import com.example.demo.repository.StudentResultRepo;
 import com.example.demo.service.FinalResService;
 import com.example.demo.validationMessages.ErrorMessages;
+import com.example.demo.validationMessages.Messages;
 
 /**
  * Final result service interface.
@@ -55,7 +56,7 @@ public class FinalResultServiceImp implements FinalResService {
             if (finalResultRepo.getByUserId(id).size() != 0) {
                 List<FinalRes> finalRes = finalResultRepo.getByUserId(id);
                 List<ResultDto> resultDto = convertToDto(finalRes);
-                LOGGER.info("get result by user id");
+                LOGGER.info(Messages.FIND_RESULT);
                 return resultDto;
             } else {
                 LOGGER.error(ErrorMessages.USER_NOTTAKE);
@@ -101,7 +102,7 @@ public class FinalResultServiceImp implements FinalResService {
         if (finalResultRepo.findAll().size() != 0) {
             List<FinalRes> finalResult = finalResultRepo.findAll();
             List<ResultDto> resultDto = convertToDto(finalResult);
-            LOGGER.info("find all result");
+            LOGGER.info(Messages.FIND_ALLRESULT);
             return resultDto;
         } else {
             LOGGER.error(ErrorMessages.NO_USER);

@@ -20,6 +20,7 @@ import com.example.demo.repository.CategoryRepo;
 import com.example.demo.repository.QuizRepo;
 import com.example.demo.service.QuizService;
 import com.example.demo.validationMessages.ErrorMessages;
+import com.example.demo.validationMessages.Messages;
 
 /**
  * quiz service interface.
@@ -60,7 +61,7 @@ public class QuizSirviceImp implements QuizService {
                 quiz.setCate(category);
                 quiz.setTimer(quizDto.getTimer());
                 quizRepo.save(quiz);
-                LOGGER.info("add quiz");
+                LOGGER.info(Messages.SAVE_QUIZ);
                 return quizDto;
             } else {
                 LOGGER.error(ErrorMessages.QUIZ_EXIST);
@@ -88,7 +89,7 @@ public class QuizSirviceImp implements QuizService {
                 quizDto.setTopicName(quiz.getTopicName());
                 quizDto.setCategoryId(quiz.getCate().getCategoryId());
                 quizDto.setTimer(quiz.getTimer());
-                LOGGER.info("get quiz by id");
+                LOGGER.info(Messages.FIND_QUIZ);
                 return Optional.of(quizDto);
             } else {
                 LOGGER.error(ErrorMessages.WRONG_QUIZID);
@@ -141,7 +142,7 @@ public class QuizSirviceImp implements QuizService {
         if (quizRepo.findAll().size() != 0) {
             if (quizRepo.findById(id).isPresent()) {
                 quizRepo.deleteById(id);
-                LOGGER.info("delete quiz");
+                LOGGER.info(Messages.DELETE_QUIZ);
             } else {
                 LOGGER.error(ErrorMessages.WRONG_QUIZID);
                 throw new NotFoundException(ErrorMessages.WRONG_QUIZID);
@@ -173,7 +174,7 @@ public class QuizSirviceImp implements QuizService {
                 exiQuiz.setTopicDescription(q.getTopicDescription());
                 exiQuiz.setTimer(q.getTimer());
                 quizRepo.save(exiQuiz);
-                LOGGER.info("update quiz");
+                LOGGER.info(Messages.UPDATE_QUIZ);
                 return q;
             } else {
                 LOGGER.error(ErrorMessages.WRONG_QUIZID);
@@ -194,7 +195,7 @@ public class QuizSirviceImp implements QuizService {
         if (quizRepo.findQuizById(id).size() != 0) {
                 List<Quiz> quiz = quizRepo.findQuizById(id);
                 List<QuizDto> quizDto = convertToDto(quiz);
-                LOGGER.info("Find quiz by category id");
+                LOGGER.info(Messages.FIND_QUIZBYCATEGORYID);
                 return quizDto;
         } else {
             LOGGER.error(ErrorMessages.NO_QUIZ);
@@ -219,7 +220,7 @@ public class QuizSirviceImp implements QuizService {
                 quizDto.setTopicName(quiz.getTopicName());
                 quizDto.setCategoryId(quiz.getCate().getCategoryId());
                 quizDto.setTimer(quiz.getTimer());
-                LOGGER.info("find quiz by name");
+                LOGGER.info(Messages.FIND_QUIZ);
                 return Optional.of(quizDto);
             } else {
                 LOGGER.error(ErrorMessages.QUIZ_NOTPRESENT);
