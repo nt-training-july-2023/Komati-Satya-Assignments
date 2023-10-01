@@ -129,6 +129,9 @@ const AddQuestions = () => {
                         if (error.response.data.message=="Question already exists") {
                            SweetAlert.fieldsRequired("Question already present")
                         }
+                        if(error.response.data.message === "Options must be unique"){
+                            SweetAlert.fieldsRequired("Options must be unique");
+                        }
                     })
 
             }
@@ -143,9 +146,12 @@ const AddQuestions = () => {
 
                     } 
                 }).catch(error => {
-                 
-                    if (error.response.status === 302) {
+                    console.log(error)
+                    if (error.response.message === "Question already exists") {
                         SweetAlert.fieldsRequired("Question already exist");
+                    }
+                    if(error.response.data.message === "Options must be unique"){
+                        SweetAlert.fieldsRequired("Options must be unique");
                     }
                 })
             

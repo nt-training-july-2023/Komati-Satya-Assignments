@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
-import com.example.demo.entity.Questions;
 import com.example.demo.response.Response;
 import com.example.demo.service.QuestionsService;
 import com.example.demo.validationMessages.Messages;
@@ -113,7 +112,8 @@ public class QuestionsController {
     @GetMapping("/questions/{id}")
     public final ResponseEntity<List<QuestionsDto>> findQueById(
             @PathVariable final int id) {
-            List<QuestionsDto> questionsDto = questionsService.findQuestionById(id);
+            List<QuestionsDto> questionsDto = questionsService.
+                    findQuestionById(id);
             LOGGER.info(Messages.FIND_QUESTIONBYQUIZID);
             return ResponseEntity.ok(questionsDto);
     }

@@ -59,7 +59,7 @@ class CategoryControllerTest {
         categoryDto.setCategoryName("java");
         
         when(categoryService.findById(1)).thenReturn(Optional.of(categoryDto));
-        ResponseEntity<Optional<CategoryDto>> response=categoryController.findById(1);
+        ResponseEntity<Response> response=categoryController.findById(1);
         assertEquals(HttpStatus.OK,response.getStatusCode());
        
     }

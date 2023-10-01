@@ -85,4 +85,8 @@ public final class ErrorMessages {
      *password must be same.
     */
     public static final String WRONG_PASSWORD = "wrong password";
+    /**
+     * option already exist.
+    */
+    public static final String OPTION_EXIST = "Options must be unique";
 }

@@ -82,7 +82,6 @@ public class StudentServiceImp implements StudentService {
             BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
             String encrypted = bcrypt.encode(student.getPassword());
             student.setPassword(encrypted);
-            //studentRepo.save(student);
             Student studentDto = new Student();
             studentDto.setUserName(student.getUserName());
             studentDto.setPhoneNumber(student.getPhoneNumber());
@@ -90,7 +89,9 @@ public class StudentServiceImp implements StudentService {
             studentDto.setDateOfBirth(student.getDateOfBirth());
             studentDto.setEmail(student.getEmail());
             studentDto.setRole(student.getRole());
+            studentDto.setPassword(encrypted);
             LOGGER.info("student registration");
+            studentRepo.save(studentDto);
             return "regiater";
         } else {
             LOGGER.error(ErrorMessages.EMAIL_EXIST);

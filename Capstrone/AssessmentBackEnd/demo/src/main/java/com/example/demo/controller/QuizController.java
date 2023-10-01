@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
-import com.example.demo.entity.Quiz;
 import com.example.demo.response.Response;
 import com.example.demo.service.QuizService;
 import com.example.demo.validationMessages.Messages;
@@ -114,7 +113,8 @@ public class QuizController {
             LOGGER.info(Messages.UPDATE_QUIZ);
             String message = Messages.UPDATE_QUIZ;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
+            Response errorResponse = new Response(errorCode,
+                    message);
        return new ResponseEntity<Response>(errorResponse,
               HttpStatus.OK);
     }

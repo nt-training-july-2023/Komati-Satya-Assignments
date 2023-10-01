@@ -1,62 +1,42 @@
 package com.example.demo.response;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 
-public class Response {
-    /**
-     * error Code.
-     */
-    private Integer code;
-    /**
-     * error Message.
-     */
-    private String message;
-    /**
-     * @param code    errorCode
-     * @param message errorMessage constructor using fields.
-     */
-    public Response(final Integer code, final String message) {
-        super();
-        this.code = code;
-        this.message = message;
-    }
 
-    /**
-     * constructor.
-     */
-    public Response() {
-        super();
-    }
-
-    /**
-     * @return errorCode.
-     */
-    public Integer getCode() {
-        return code;
-    }
-
-    /**
-     * @param code
-     * setter for errorCode.
-     */
-    public void setCode(final Integer code) {
-        this.code = code;
-    }
-
-    /**
-     * @return message
-     * getter for errorMessage.
-     */
-    public String getMessage() {
-        return message;
-    }
-
-    /**
-     * @param message
-     * errorMessage setter for errorMessage.
-     */
-    public void setMessage(final String message) {
-        this.message = message;
-    }
+    @AllArgsConstructor
+    @Setter
+    @Getter
+    @NoArgsConstructor
+    @JsonInclude(JsonInclude.Include.NON_NULL)
+    public class Response<T> {
+        /**
+         *statuscode attribute.
+        */
+        private int code;
+        /**
+         *message attribute.
+        */
+        private String message;
+        /**
+         *responseDate entity.
+        */
+        private T responseData;
+        /**
+         *parameter constructor.
+         *@param statusCode statusCodeParam
+         *@param messageParam messageParam
+        */
+        public Response(final int statusCode,
+                final String messageParam) {
+            super();
+            this.code = statusCode;
+            this.message = messageParam;
+        }
 }
 

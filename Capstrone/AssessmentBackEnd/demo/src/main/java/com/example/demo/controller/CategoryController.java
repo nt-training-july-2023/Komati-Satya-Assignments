@@ -63,15 +63,19 @@ public class CategoryController {
      * @param id id of category.
      * @return response
      */
-    @GetMapping("/category/cat/{id}")
-    public final ResponseEntity<Optional<CategoryDto>>
+    @GetMapping("/category/category/{id}")
+    public final ResponseEntity<Response>
                  findById(@PathVariable final int id) {
             Optional<CategoryDto> categoryDto = categoryService.findById(id);
             LOGGER.info(Messages.FIND_CATEGORY);
-            return new ResponseEntity<>(categoryDto,HttpStatus.OK);
-           
+            //return new ResponseEntity<>(categoryDto,HttpStatus.OK);
+            String message = Messages.FIND_CATEGORY;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode,
+                    message, categoryDto);
+       return new ResponseEntity<Response>(errorResponse,
+              HttpStatus.OK);
     }
-
     /**
      * Category find all method.
      * @return response.

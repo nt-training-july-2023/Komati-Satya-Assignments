@@ -2,7 +2,7 @@ package com.example.demo.entity;
 
 import java.util.List;
 
-import com.example.demo.validationMessages.ValidationMessages;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
@@ -13,8 +13,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
 import lombok.NoArgsConstructor;
 
 /**

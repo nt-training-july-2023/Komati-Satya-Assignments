@@ -39,12 +39,12 @@ public class Questions {
     private String option1;
     /**
      * Constructor.
-     * @param questionn question
-     * @param option11 question
-     * @param option22 question
-     * @param option33 question
-     * @param option44 question
-     * @param correctOptionn question
+     * @param newquestion question
+     * @param optionA question
+     * @param optionB question
+     * @param optionC question
+     * @param optionD question
+     * @param correctoption question
      */
     public Questions(final String newquestion,
           final String optionA,

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.dto.CategoryDto;
-import com.example.demo.entity.Category;
+
 
 /**
  * CategoryService interface.

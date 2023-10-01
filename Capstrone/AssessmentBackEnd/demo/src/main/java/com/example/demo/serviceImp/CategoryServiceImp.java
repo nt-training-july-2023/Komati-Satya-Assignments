@@ -35,7 +35,7 @@ public class CategoryServiceImp implements CategoryService {
             .getLogger(CategoryServiceImp.class);
     /**
      * save category method.
-     * @param category category
+     * @param categoryDto category
      * @return category
      */
     @Override
@@ -43,8 +43,8 @@ public class CategoryServiceImp implements CategoryService {
         if (!categoryRepo.findByCategoryName(categoryDto.getCategoryName())
                 .isPresent()) {
             Category category = new Category();
-            category
-                    .setCategoryDescription(categoryDto.getCategoryDescription());
+            category.setCategoryDescription(
+                    categoryDto.getCategoryDescription());
             category.setCategoryName(categoryDto.getCategoryName());
             category.setCategoryId(categoryDto.getCategoryId());
             categoryRepo.save(category);

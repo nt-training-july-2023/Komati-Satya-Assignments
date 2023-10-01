@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
-import com.example.demo.entity.Quiz;
+
 
 /**
  * quiz service interface.

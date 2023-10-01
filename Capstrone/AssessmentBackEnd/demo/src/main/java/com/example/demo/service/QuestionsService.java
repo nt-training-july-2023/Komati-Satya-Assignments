@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
-import com.example.demo.entity.Questions;
+
 
 /**
  * Question service interface.

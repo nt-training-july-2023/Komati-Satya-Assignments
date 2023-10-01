@@ -1,11 +1,10 @@
 package com.example.demo.validationMessages;
 
-public class Messages {
-   
+public final class Messages {
     /**
      * default constructor.
      */
-    private Messages() {      
+    private Messages() {
     }
     /**
      *Save category.
@@ -46,15 +45,18 @@ public class Messages {
     /**
      * delete question.
      */
-    public static final String DELETE_QUESTION = "question deleted successfully";
+    public static final String DELETE_QUESTION =
+               "question deleted successfully";
     /**
      * update question.
      */
-    public static final String UPDATE_QUESTION = "question updated successfully";
+    public static final String UPDATE_QUESTION =
+            "question updated successfully";
     /**
      * find question by quiz id.
      */
-    public static final String FIND_QUESTIONBYQUIZID = "find question by quiz id";
+    public static final String FIND_QUESTIONBYQUIZID =
+            "find question by quiz id";
     /**
      * find question.
      */
@@ -111,6 +113,4 @@ public class Messages {
      * delete student.
      */
     public static final String DELETE_STUDENT = "User deleted successfully";
-    
-  
 }

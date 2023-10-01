@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
 import com.example.demo.dto.StudentSaveDto;
-import com.example.demo.entity.Student;
 import com.example.demo.response.Response;
 import com.example.demo.service.StudentService;
 import com.example.demo.validationMessages.Messages;

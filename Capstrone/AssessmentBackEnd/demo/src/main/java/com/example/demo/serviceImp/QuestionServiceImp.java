@@ -1,8 +1,10 @@
 package com.example.demo.serviceImp;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +21,7 @@ import com.example.demo.repository.QuestionsRepo;
 import com.example.demo.repository.QuizRepo;
 import com.example.demo.service.QuestionsService;
 import com.example.demo.validationMessages.ErrorMessages;
+
 
 /**
  * Question service interface.
@@ -43,7 +46,7 @@ public class QuestionServiceImp implements QuestionsService {
 
     /**
      * add question method.
-     * @param questions question
+     * @param questionsDto question
      * @return question
      */
     @Override
@@ -51,6 +54,16 @@ public class QuestionServiceImp implements QuestionsService {
         if (quizRepo.findById(questionsDto.getQuizId()).isPresent()) {
             if (!questionsRepo.findByQuestion(questionsDto.getQuestion())
                     .isPresent()) {
+                Set<String> options = new HashSet<>();
+                options.add(questionsDto.getOption1());
+                options.add(questionsDto.getOption2());
+                options.add(questionsDto.getOption3());
+                options.add(questionsDto.getOption4());
+                final int number = 4;
+                if (options.size() < number) {
+                    throw new AlreadyExistException(ErrorMessages
+                           .OPTION_EXIST);
+                }
                 if (questionsDto.getCorrectOption().equals(
                         questionsDto.getOption1())
                    || questionsDto.getCorrectOption().equals(
@@ -62,7 +75,8 @@ public class QuestionServiceImp implements QuestionsService {
                     System.out.println(questionsDto.getCorrectOption());
                 Questions question = new Questions();
                 question.setQid(questionsDto.getQuizId());
-                question.setQui(quizRepo.findById(questionsDto.getQuizId()).get());
+                question.setQui(quizRepo.findById(
+                        questionsDto.getQuizId()).get());
                 question.setCorrectOption(questionsDto.getCorrectOption());
                 question.setOption1(questionsDto.getOption1());
                 question.setOption2(questionsDto.getOption2());
@@ -159,6 +173,16 @@ public class QuestionServiceImp implements QuestionsService {
                 if (question.isPresent()
                         && !(question.get().getQid() == id)) {
                 throw new AlreadyExistException(ErrorMessages.QUESTION_EXIST);
+                }
+                Set<String> options = new HashSet<>();
+                options.add(q.getOption1());
+                options.add(q.getOption2());
+                options.add(q.getOption3());
+                options.add(q.getOption4());
+                final int number = 4;
+                if (options.size() < number) {
+                    throw new AlreadyExistException(ErrorMessages
+                           .OPTION_EXIST);
                 }
                 exiQue.setOption1(q.getOption1());
                 exiQue.setOption2(q.getOption2());

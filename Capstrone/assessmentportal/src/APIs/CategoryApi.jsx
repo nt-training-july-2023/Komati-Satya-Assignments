@@ -13,7 +13,7 @@ class CategoryApi{
     }
 
     getCategoryById(id){
-        return axios.get(CATEGORY_BASE_URL+'/cat/'+id);
+        return axios.get(CATEGORY_BASE_URL+'/category/'+id);
     }
 
     updateCategory(id, Category){

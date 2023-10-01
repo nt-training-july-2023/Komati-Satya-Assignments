@@ -44,7 +44,7 @@ public class QuizSirviceImp implements QuizService {
 
     /**
      * add quiz method.
-     * @param quiz quiz
+     * @param quizDto quiz
      * @result quiz
      */
     @Override
@@ -55,7 +55,8 @@ public class QuizSirviceImp implements QuizService {
                 quiz.setQuizId(quizDto.getQuizId());
                 quiz.setTopicDescription(quizDto.getTopicDescription());
                 quiz.setTopicName(quizDto.getTopicName());
-                Category category = categoryRepo.findById(quizDto.getCategoryId()).get();
+                Category category = categoryRepo.
+                        findById(quizDto.getCategoryId()).get();
                 quiz.setCate(category);
                 quiz.setTimer(quizDto.getTimer());
                 quizRepo.save(quiz);
