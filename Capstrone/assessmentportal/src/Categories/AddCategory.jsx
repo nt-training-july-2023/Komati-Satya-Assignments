@@ -114,7 +114,7 @@ else{
                             <label className="head3">Category description</label><br></br><br></br>
                             <TextareaComponent className="data3" type="text" name="categoryDescription" value={categoryData.categoryDescription} placeholder="Enter category description" onChange={changeData}></TextareaComponent>
                             <ButtonComponent className="btn4" type="button" onClick={handleSubmit} >
-                                {categoryId ? "update category" : "Add Category"}
+                                {categoryId ? "Update Category" : "Add Category"}
                                 </ButtonComponent>
                             
                             <ButtonComponent className="btn5" type="button" onClick={cancelAddCategory}>Cancel</ButtonComponent>

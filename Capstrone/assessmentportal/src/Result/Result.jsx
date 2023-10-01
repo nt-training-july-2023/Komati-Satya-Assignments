@@ -65,7 +65,7 @@ const Result = () => {
             <Input
               className="search"
               type="text"
-              placeholder="Search by user Name"
+              placeholder="Search by User Name"
               value={searchName}
               onChange={(e) => setSearchName(e.target.value)}
             />
@@ -122,8 +122,4 @@ const Result = () => {
     </div>
   );
 }
-
-
-
-
 export default Result

@@ -82,6 +82,7 @@ function Test({ isRefresh, setTrue }) {
   useEffect(() => {
     setQuestionCounter(1);
   }, [questions]);
+  
   const initializeSelectedOptions = () => {
     const initialSelectedOptions = {};
     for (let i = 0; i < questions.length; i++) {

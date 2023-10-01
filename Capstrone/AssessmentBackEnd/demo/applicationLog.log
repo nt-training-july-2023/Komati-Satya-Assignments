@@ -3458,3 +3458,70 @@ java.lang.NullPointerException: Cannot read field "generatedClass" because "data
 2023-10-01T17:05:14.786+05:30  INFO 23012 --- [Thread-15] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-10-01T17:05:14.787+05:30  INFO 23012 --- [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown initiated...
 2023-10-01T17:05:14.798+05:30  INFO 23012 --- [Thread-15] com.zaxxer.hikari.HikariDataSource       : HikariPool-4 - Shutdown completed.
+2023-10-01T17:05:14.997+05:30  INFO 23012 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.8 with PID 23012 (D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo\target\classes started by Komati Satya in D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo)
+2023-10-01T17:05:14.997+05:30  INFO 23012 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-10-01T17:05:15.282+05:30  INFO 23012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-01T17:05:15.285+05:30  INFO 23012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 2 ms. Found 0 JPA repository interfaces.
+2023-10-01T17:05:15.350+05:30 ERROR 23012 --- [restartedMain] o.s.boot.SpringApplication               : Application run failed
+
+java.lang.NullPointerException: Cannot read field "generatedClass" because "data" is null
+	at org.springframework.cglib.proxy.Enhancer.nextInstance(Enhancer.java:783) ~[spring-core-6.0.11.jar:6.0.11]
+	at org.springframework.cglib.core.AbstractClassGenerator.create(AbstractClassGenerator.java:321) ~[spring-core-6.0.11.jar:6.0.11]
+	at org.springframework.cglib.proxy.Enhancer.createHelper(Enhancer.java:562) ~[spring-core-6.0.11.jar:6.0.11]
+	at org.springframework.cglib.proxy.Enhancer.createClass(Enhancer.java:407) ~[spring-core-6.0.11.jar:6.0.11]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer.createClass(ConfigurationClassEnhancer.java:138) ~[spring-context-6.0.11.jar:6.0.11]
+	at org.springframework.context.annotation.ConfigurationClassEnhancer.enhance(ConfigurationClassEnhancer.java:109) ~[spring-context-6.0.11.jar:6.0.11]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.enhanceConfigurationClasses(ConfigurationClassPostProcessor.java:531) ~[spring-context-6.0.11.jar:6.0.11]
+	at org.springframework.context.annotation.ConfigurationClassPostProcessor.postProcessBeanFactory(ConfigurationClassPostProcessor.java:308) ~[spring-context-6.0.11.jar:6.0.11]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:358) ~[spring-context-6.0.11.jar:6.0.11]
+	at org.springframework.context.support.PostProcessorRegistrationDelegate.invokeBeanFactoryPostProcessors(PostProcessorRegistrationDelegate.java:150) ~[spring-context-6.0.11.jar:6.0.11]
+	at org.springframework.context.support.AbstractApplicationContext.invokeBeanFactoryPostProcessors(AbstractApplicationContext.java:771) ~[spring-context-6.0.11.jar:6.0.11]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:589) ~[spring-context-6.0.11.jar:6.0.11]
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:146) ~[spring-boot-3.1.2.jar:3.1.2]
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:734) ~[spring-boot-3.1.2.jar:3.1.2]
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:436) ~[spring-boot-3.1.2.jar:3.1.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312) ~[spring-boot-3.1.2.jar:3.1.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1306) ~[spring-boot-3.1.2.jar:3.1.2]
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1295) ~[spring-boot-3.1.2.jar:3.1.2]
+	at com.example.demo.DemoApplication.run(DemoApplication.java:15) ~[classes/:na]
+	at com.example.demo.DemoApplication.main(DemoApplication.java:22) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568) ~[na:na]
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50) ~[spring-boot-devtools-3.1.2.jar:3.1.2]
+
+2023-10-01T17:05:21.710+05:30  INFO 23012 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-01T17:05:21.710+05:30  INFO 23012 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-01T17:05:21.721+05:30  INFO 23012 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.8 with PID 23012 (D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo\target\classes started by Komati Satya in D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo)
+2023-10-01T17:05:21.721+05:30  INFO 23012 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-10-01T17:05:22.071+05:30  INFO 23012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-01T17:05:22.125+05:30  INFO 23012 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 53 ms. Found 6 JPA repository interfaces.
+2023-10-01T17:05:22.245+05:30  INFO 23012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6002 (http)
+2023-10-01T17:05:22.246+05:30  INFO 23012 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-01T17:05:22.248+05:30  INFO 23012 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-10-01T17:05:22.287+05:30  INFO 23012 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-01T17:05:22.287+05:30  INFO 23012 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 561 ms
+2023-10-01T17:05:22.346+05:30  INFO 23012 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-01T17:05:22.364+05:30  INFO 23012 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-01T17:05:22.364+05:30  INFO 23012 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-01T17:05:22.366+05:30  INFO 23012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Starting...
+2023-10-01T17:05:22.474+05:30  INFO 23012 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-5 - Added connection org.postgresql.jdbc.PgConnection@2bc08f64
+2023-10-01T17:05:22.474+05:30  INFO 23012 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-5 - Start completed.
+2023-10-01T17:05:22.584+05:30  INFO 23012 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-01T17:05:22.864+05:30  INFO 23012 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-01T17:05:23.089+05:30  INFO 23012 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-01T17:05:23.498+05:30  WARN 23012 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-01T17:05:23.657+05:30  INFO 23012 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-01T17:05:23.673+05:30  INFO 23012 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6002 (http) with context path ''
+2023-10-01T17:05:23.680+05:30  INFO 23012 --- [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 1.997 seconds (process running for 3197.27)
+2023-10-01T17:05:23.681+05:30  INFO 23012 --- [restartedMain] .ConditionEvaluationDeltaLoggingListener : Condition evaluation unchanged
+2023-10-01T17:16:53.514+05:30  INFO 23012 --- [http-nio-6002-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-01T17:16:53.514+05:30  INFO 23012 --- [http-nio-6002-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-01T17:16:53.517+05:30  INFO 23012 --- [http-nio-6002-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-10-01T17:16:53.683+05:30  INFO 23012 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.StudentServiceImp    : student login
+2023-10-01T17:16:53.683+05:30  INFO 23012 --- [http-nio-6002-exec-2] c.e.demo.controller.StudentController    : student logged in
+2023-10-01T17:16:53.743+05:30  INFO 23012 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-10-01T17:16:53.743+05:30  INFO 23012 --- [http-nio-6002-exec-3] c.e.demo.controller.StudentController    : find student by id
+2023-10-01T17:16:53.760+05:30  INFO 23012 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.StudentServiceImp    : find student by id
+2023-10-01T17:16:53.760+05:30  INFO 23012 --- [http-nio-6002-exec-5] c.e.demo.controller.StudentController    : find student by id
