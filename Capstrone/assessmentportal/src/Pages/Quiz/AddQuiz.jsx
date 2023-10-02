@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import QuizApi from "../../APIs/QuizApi";
+import QuizApi from "../../Service/QuizApi";
 import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import TextareaComponent from "../../Components/Inputs/TextareaComponent";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import ErrorPage from "../../ErrorPage";
+import LabelComponent from "../../Components/LabelComponent/LabelComponent";
+import H1Component from "../../Components/HeadingComponent/H1component";
 
 
 const AddQuiz = () => {
@@ -114,11 +116,11 @@ const AddQuiz = () => {
         <div className="login3">
             {verifyRole === 'Admin' ? (
                 <div className="loginData3">
-                    <h1 className="heading3">
-                        {quizId ? "Update Quiz" : "Add Quiz"}</h1>
+                    <H1Component className="heading3">
+                        {quizId ? "Update Quiz" : "Add Quiz"}</H1Component>
                     <form>
                         <div className="signin3">
-                            <label className="head3">Topic Name</label><br /><br />
+                            <LabelComponent className="head3">Topic Name</LabelComponent><br /><br />
                             <Input
                                 className="data3"
                                 type="text"
@@ -127,7 +129,7 @@ const AddQuiz = () => {
                                 placeholder="Enter topic name"
                                 onChange={changeData}
                             /><br /><br />
-                            <label className="head3">Topic Description</label><br /><br />
+                            <LabelComponent className="head3">Topic Description</LabelComponent><br /><br />
                             <TextareaComponent
                                 className="data3"
                                 type="text"
@@ -137,7 +139,7 @@ const AddQuiz = () => {
                                 onChange={changeData}
                             ></TextareaComponent>
                             <div>
-                                <label className="head3">Time</label><br /><br />
+                                <LabelComponent className="head3">Time</LabelComponent><br /><br />
                                 <Input
                                     className="data3"
                                     type="number"

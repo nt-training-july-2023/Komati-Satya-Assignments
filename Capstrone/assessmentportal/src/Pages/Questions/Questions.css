@@ -69,6 +69,13 @@
   .head3 {
     font-size: 20px;
   }
+  .add-icon{
+    font-size: 12px;
+  }
+
+  .no-questions{
+        margin-top: 160px;
+  }
   
   @media screen and (max-width: 768px) {
     .signin4 {
@@ -102,6 +109,4 @@
     .data3 {
         width: 70%;
       }
-  
-
 }

@@ -44,9 +44,9 @@ class CategoryControllerTest {
         categoryDto.setCategoryName("java");
         
         when(categoryService.saveCategory(category)).thenReturn(categoryDto);
-        Response errorResponse = new Response(HttpStatus.CREATED.value(), "added");
+        Response errorResponse = new Response(HttpStatus.OK.value(), "added");
         Response response=categoryController.saveCategory(category);
-        assertEquals(HttpStatus.CREATED.value(), response.getCode());
+        assertEquals(HttpStatus.OK.value(), response.getCode());
         assertEquals("added", errorResponse.getMessage());
     }
 

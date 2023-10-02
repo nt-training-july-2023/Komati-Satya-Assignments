@@ -40,9 +40,9 @@ class ResultControllerTest {
       resultDto.setResultId(1);
       
       when(resultService.addResult(resultDto)).thenReturn(resultDto);
-      Response errorResponse = new Response(HttpStatus.CREATED.value(), "result added successfully");
+      Response errorResponse = new Response(HttpStatus.OK.value(), "result added successfully");
       Response response=resultController.addRes(resultDto);
-      assertEquals(HttpStatus.CREATED.value(),response.getCode());
+      assertEquals(HttpStatus.OK.value(),response.getCode());
       assertEquals("result added successfully",response.getMessage());
     }
    @Test

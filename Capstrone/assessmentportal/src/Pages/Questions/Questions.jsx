@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import ErrorPage from "../../ErrorPage";
-import QuestionsApi from "../../APIs/QuestionsApi";
+import QuestionsApi from "../../Service/QuestionsApi";
 import Navbar from "../../Components/Navbar/Navbar";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Input from "../../Components/Inputs/Input";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
-
+import H1Component from "../../Components/HeadingComponent/H1component";
+import { FaCartPlus, FaList, FaPlus, FaPlusCircle, FaPlusSquare, FaTrash } from "react-icons/fa";
 const Questions = () => {
   const { quizId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
@@ -65,8 +66,8 @@ const Questions = () => {
       <Navbar />
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
-          <h1 className="addHead">Questions Details</h1>
-          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}>Add Question</ButtonComponent>}
+          <H1Component className="addHead">Questions Details</H1Component>
+          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}><FaPlusCircle className="add-icon"/> Add Question</ButtonComponent>}
           <div className="searchContainer">
             <Input
               className="search"
@@ -110,8 +111,8 @@ const Questions = () => {
                         <td>{item.correctOption}</td>
 
                         {verifyRole === 'Admin' && <>
-                          <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.questionId)}>Delete</ButtonComponent></td>
-                          <td><Link to={`/UpdateQuestion/${item.question}`} className="updateData">Update</Link></td>
+                          <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.questionId)}><FaTrash className="add-icon"/> Delete</ButtonComponent></td>
+                          <td><Link to={`/UpdateQuestion/${item.question}`} className="updateData"><FaList className="add-icon"/> Update</Link></td>
 
                         </>}
 
@@ -120,7 +121,7 @@ const Questions = () => {
                   </tbody>
                 </table>
               ) : (
-                <h1>No Questions</h1>
+                <H1Component className="no-questions">No Questions</H1Component>
               )}
             </div>
           )}

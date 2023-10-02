@@ -41,9 +41,9 @@ class QuizControllerTest {
         quizDto.setTopicName("arrays");
         
         when(quizService.addQuiz(quiz)).thenReturn(quizDto);
-        Response errorResponse = new Response(HttpStatus.CREATED.value(), "quiz added successfully");
+        Response errorResponse = new Response(HttpStatus.OK.value(), "quiz added successfully");
         Response response=quizController.saveQuiz(quiz);
-        assertEquals(HttpStatus.CREATED.value(),response.getCode());
+        assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals("quiz added successfully",errorResponse.getMessage());
         
     }

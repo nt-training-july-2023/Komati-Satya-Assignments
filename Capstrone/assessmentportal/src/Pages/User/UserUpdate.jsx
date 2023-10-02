@@ -2,11 +2,13 @@ import './UserUpdate.css';
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
-import UserApi from '../../APIs/UserApi';
+import UserApi from '../../Service/UserApi';
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import Input from '../../Components/Inputs/Input';
 import ButtonComponent from '../../Components/Inputs/ButtonComponent';
 import ErrorPage from '../../ErrorPage';
+import LabelComponent from '../../Components/LabelComponent/LabelComponent';
+import H1Component from '../../Components/HeadingComponent/H1component';
 
 const UserUpdate = () => {
   const verifyRole = localStorage.getItem('userRole');
@@ -62,11 +64,11 @@ const UserUpdate = () => {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <div className="loginData2">
-            <h1 className="heading2">Update Details</h1>
+            <H1Component className="heading2">Update Details</H1Component>
             <form>
               <div className="signin2">
                 <div>
-                  <label className="head2">User Id:</label>
+                  <LabelComponent className="head2">User Id:</LabelComponent>
                   <Input
                     className="data2"
                     type="text"
@@ -81,7 +83,7 @@ const UserUpdate = () => {
                   />
                 </div>
                 <div>
-                  <label className="head2">Email:</label>
+                  <LabelComponent className="head2">Email:</LabelComponent>
                   <Input
                     className="data2"
                     type="text"
@@ -97,7 +99,7 @@ const UserUpdate = () => {
                 </div>
 
                 <div>
-                  <label className="head2">User Name:</label>
+                  <LabelComponent className="head2">User Name:</LabelComponent>
                   <Input
                     className="data2"
                     type="text"
@@ -111,7 +113,7 @@ const UserUpdate = () => {
                   />
                 </div>
                 <div>
-                  <label className="head2">Phone Number:</label>
+                  <LabelComponent className="head2">Phone Number:</LabelComponent>
                   <Input
                     className="data2"
                     type="text"
@@ -125,7 +127,7 @@ const UserUpdate = () => {
                   />
                 </div>
                 <div>
-                  <label className="head2">Date of Birth:</label>
+                  <LabelComponent className="head2">Date of Birth:</LabelComponent>
                   <Input
                     className="data2"
                     type="text"
@@ -139,7 +141,7 @@ const UserUpdate = () => {
                   />
                 </div>
                 <div>
-                  <label className="head2">Gender:</label>
+                  <LabelComponent className="head2">Gender:</LabelComponent>
                   <Input
                     className="data2"
                     type="text"

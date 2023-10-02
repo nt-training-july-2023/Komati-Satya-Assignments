@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import './Questions.css';
-import QuestionsApi from "../../APIs/QuestionsApi";
+import QuestionsApi from "../../Service/QuestionsApi";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import ErrorPage from "../../ErrorPage";
+import LabelComponent from "../../Components/LabelComponent/LabelComponent";
+import H1Component from "../../Components/HeadingComponent/H1component";
 
 const AddQuestions = () => {
     const verifyRole = localStorage.getItem('userRole');
@@ -156,11 +158,11 @@ const AddQuestions = () => {
 
             {verifyRole === 'Admin' ? (
                 <div className="loginData3">
-                    <h1 className="heading3">
-                        {quizId ? "Add Question" : "Update Question"}</h1>
+                    <H1Component className="heading3">
+                        {quizId ? "Add Question" : "Update Question"}</H1Component>
                     <form>
                         <div className="signin4">
-                            <label className="head3">Question</label><br /><br />
+                            <LabelComponent className="head3">Question</LabelComponent><br /><br />
                             <Input
                                 className="data3"
                                 type="text"
@@ -169,7 +171,7 @@ const AddQuestions = () => {
                                 placeholder="Enter question"
                                 onChange={changeData}
                             /><br /><br />
-                            <label className="head3">Option1</label><br /><br />
+                            <LabelComponent className="head3">Option1</LabelComponent><br /><br />
                             <Input
                                 className="data3"
                                 type="text"
@@ -178,7 +180,7 @@ const AddQuestions = () => {
                                 placeholder="Enter option1"
                                 onChange={changeData}
                             /><br /><br />
-                            <label className="head3">Option2</label><br /><br />
+                            <LabelComponent className="head3">Option2</LabelComponent><br /><br />
                             <Input
                                 className="data3"
                                 type="text"
@@ -187,7 +189,7 @@ const AddQuestions = () => {
                                 placeholder="Enter option2"
                                 onChange={changeData}
                             /><br /><br />
-                            <label className="head3">Option3</label><br /><br />
+                            <LabelComponent className="head3">Option3</LabelComponent><br /><br />
                             <Input
                                 className="data3"
                                 type="text"
@@ -196,7 +198,7 @@ const AddQuestions = () => {
                                 placeholder="Enter option3"
                                 onChange={changeData}
                             /><br /><br />
-                            <label className="head3">Option4</label><br /><br />
+                            <LabelComponent className="head3">Option4</LabelComponent><br /><br />
                             <Input
                                 className="data3"
                                 type="text"
@@ -205,7 +207,7 @@ const AddQuestions = () => {
                                 placeholder="Enter option4"
                                 onChange={changeData}
                             /><br /><br />
-                            <label className="head3">Correct Answer</label><br /><br />
+                            <LabelComponent className="head3">Correct Answer</LabelComponent><br /><br />
                             <select
                                 className="data3"
                                 name="correctOption"

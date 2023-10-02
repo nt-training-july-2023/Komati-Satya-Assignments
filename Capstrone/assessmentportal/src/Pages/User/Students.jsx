@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import UserApi from "../../APIs/UserApi";
+import UserApi from "../../Service/UserApi";
 
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Input from "../../Components/Inputs/Input";
 import Navbar from "../../Components/Navbar/Navbar";
+import H1Component from "../../Components/HeadingComponent/H1component";
 
 function Student() {
   const verifyRole = localStorage.getItem('userRole');
@@ -42,7 +43,7 @@ function Student() {
       <Navbar />
       {verifyRole === 'Admin' &&
         <>
-          <h1 className="addHead">Students Details</h1>
+          <H1Component className="addHead">Students Details</H1Component>
           <div className="searchContainer">
             <Input
               className="search"
@@ -87,7 +88,7 @@ function Student() {
                   </tbody>
                 </table>
               ) : (
-                <h1>No Students</h1>
+                <H1Component className="no-questions">No Students</H1Component>
               )}
             </div>
           )}

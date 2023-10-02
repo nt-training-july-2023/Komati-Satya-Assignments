@@ -47,9 +47,9 @@ class QuestionsControllerTest {
         questionsDto.setQuestion("java is?");
         
         when(questionService.addQuestion(question)).thenReturn(questionsDto);
-        Response errorResponse = new Response(HttpStatus.CREATED.value(), "question added successfully");
+        Response errorResponse = new Response(HttpStatus.OK.value(), "question added successfully");
         Response response=questionController.addQuestion(question);
-        assertEquals(HttpStatus.CREATED.value(),response.getCode());
+        assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals("question added successfully",errorResponse.getMessage());
     }
     @Test

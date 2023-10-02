@@ -2,11 +2,14 @@ import React, { useState ,useEffect} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import './AddCategoryStyles.css';
 import ErrorPage from "../../ErrorPage";
-import CategoryApi from "../../APIs/CategoryApi";
+import CategoryApi from "../../Service/CategoryApi";
 import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import TextareaComponent from "../../Components/Inputs/TextareaComponent";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
+import LabelComponent from "../../Components/LabelComponent/LabelComponent";
+import H1Component from "../../Components/HeadingComponent/H1component";
+
 
 const AddCategory = () => {
     const verifyRole = localStorage.getItem('userRole');
@@ -105,17 +108,17 @@ else{
         <div className="login3">
             {verifyRole === 'Admin' ? <>
                 <div className="loginData3">
-                    <h1 className="heading3">
-                    {categoryId ? "Update category" : "Add Category"}</h1>
+                    <H1Component className="heading3">
+                    {categoryId ? "Update category" : "Add Category"}</H1Component>
                     <form>
                         <div className="signin3">
-                            <label className="head3">Category Name</label><br></br><br></br>
+                            <LabelComponent className="head3">Category Name</LabelComponent><br></br><br></br>
 
                             <Input className="data3" type="text" name="categoryName" value={categoryData.categoryName} placeholder="Enter category name" onChange={changeData}/><br></br><br></br>
-                            <label className="head3">Category description</label><br></br><br></br>
+                            <LabelComponent className="head3">Category description</LabelComponent><br></br><br></br>
                             <TextareaComponent className="data3" type="text" name="categoryDescription" value={categoryData.categoryDescription} placeholder="Enter category description" onChange={changeData}></TextareaComponent>
                             <ButtonComponent className="btn4" type="button" onClick={handleSubmit} >
-                                {categoryId ? "Update Category" : "Add Category"}
+                                 {categoryId ? "Update Category" : "Add Category"} 
                                 </ButtonComponent>
                             
                             <ButtonComponent className="btn5" type="button" onClick={cancelAddCategory}>Cancel</ButtonComponent>

@@ -3,13 +3,14 @@ import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import './Test.css';
-import QuizApi from "../../APIs/QuizApi";
-import QuestionsApi from "../../APIs/QuestionsApi";
-import ResultApi from "../../APIs/ResultApi";
+import QuizApi from "../../Service/QuizApi";
+import QuestionsApi from "../../Service/QuestionsApi";
+import ResultApi from "../../Service/ResultApi";
 import DisableBackButton from "../../Components/disableBackButton";
 import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import ErrorPage from "../../ErrorPage";
+import H1Component from "../../Components/HeadingComponent/H1component";
 
 
 function Test({ isRefresh, setTrue }) {
@@ -290,7 +291,7 @@ function Test({ isRefresh, setTrue }) {
           {questions.length !== 0 ? (
             <>
               <div className="navbar">
-                <h1 className="navbar-title">Test</h1>
+                <H1Component className="navbar-title">Test</H1Component>
                 <div className="timer">
                   Time Left: {formatTime(timeLeft)}
                 </div>

@@ -4,8 +4,10 @@ import './RegistrationStyles.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Input from "../../Components/Inputs/Input";
-import UserApi from "../../APIs/UserApi";
+import UserApi from "../../Service/UserApi";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
+import LabelComponent from "../../Components/LabelComponent/LabelComponent";
+import H1Component from "../../Components/HeadingComponent/H1component";
 
 const Registration = () => {
   const [showPassword, setShowPassword] = useState("true");
@@ -112,14 +114,14 @@ const Registration = () => {
     <div className="userform">
       <form>
         <div className="signUp">
-          <h1>Registration</h1>
+          <H1Component>Registration</H1Component>
           <div className="details">
-            <label className="side">Name</label><br /><br />
+            <LabelComponent className="side">Name</LabelComponent><br /><br />
             <Input className="values" type="text" placeholder="enter a name" name="userName" value={formData.userName} onChange={changeData} /><br /><br />
-            <label className="side">Email</label><br /><br />
+            <LabelComponent className="side">Email</LabelComponent><br /><br />
             <Input className="values" type="email" placeholder="enter a email" name="email" value={formData.email} onChange={changeData} /><br /><br />
             <div className="password-container2">
-              <label className="side">Password</label><br /><br />
+              <LabelComponent className="side">Password</LabelComponent><br /><br />
               <Input className="values" type={showPassword ? 'password' : 'text'} name="password" placeholder="enter a password" value={formData.password} onChange={changeData} /><br />
               <ButtonComponent className="show-password2" type="button" onClick={togglePassword}>
 
@@ -128,25 +130,25 @@ const Registration = () => {
             </div><br />
            
             <div className="password-container2">
-              <label className="side">Confirm Password</label><br /><br />
+              <LabelComponent className="side">Confirm Password</LabelComponent><br /><br />
               <Input className="values" type={showPassword ? 'password' : 'text'} name="confirmPassword" placeholder="enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
               <ButtonComponent className="show-password2" type="button" onClick={togglePassword}>
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </ButtonComponent>
             </div><br />
-            <label className="side">DateOfBirth</label><br /><br />
+            <LabelComponent className="side">DateOfBirth</LabelComponent><br /><br />
             <Input className="values" type="Date" placeholder="enter a date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} /><br /><br />
-            <label className="side">Phone number</label><br /><br />
+            <LabelComponent className="side">Phone number</LabelComponent><br /><br />
             <Input className="values" type="text" name="phoneNumber" placeholder="enter a phone number" value={formData.phoneNumber} onChange={changeData} /><br /><br />
-            <label className="side">Gender</label><br /><br />
+            <LabelComponent className="side">Gender</LabelComponent><br /><br />
 
             <div className="gen">
               <Input className="gen1" type="radio" name="gender" value={formData.gender} onChange={changeData} />
-              <label className="gender">Male</label>
+              <LabelComponent className="gender">Male</LabelComponent>
               <Input className="gen2" type="radio" name="gender" value={formData.gender} onChange={changeData} />
-              <label className="gender">Female</label>
+              <LabelComponent className="gender">Female</LabelComponent>
               <Input className="gen2" type="radio" name="gender" value={formData.gender} onChange={changeData} />
-              <label className="gender">Other</label><br />
+              <LabelComponent className="gender">Other</LabelComponent><br />
             </div>
             <ButtonComponent className="submit" type="button" onClick={submitData}>Register</ButtonComponent>
             <a href="/" className="anchor1">Already have an account? Login here!!!</a>

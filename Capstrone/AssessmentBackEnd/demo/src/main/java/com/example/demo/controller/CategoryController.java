@@ -53,7 +53,7 @@ public class CategoryController {
             categoryService.saveCategory(c);
             LOGGER.info(Messages.SAVE_CATEGORY);
             String message = Messages.SAVE_CATEGORY;
-            Integer errorCode = HttpStatus.CREATED.value();
+            Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return errorResponse;
     }

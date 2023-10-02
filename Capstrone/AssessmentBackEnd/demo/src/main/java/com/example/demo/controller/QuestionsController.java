@@ -53,7 +53,7 @@ public class QuestionsController {
             questionsService.addQuestion(q);
             LOGGER.info(Messages.SAVE_QUESTION);
             String message = Messages.SAVE_QUESTION;
-            Integer errorCode = HttpStatus.CREATED.value();
+            Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return errorResponse;
     }

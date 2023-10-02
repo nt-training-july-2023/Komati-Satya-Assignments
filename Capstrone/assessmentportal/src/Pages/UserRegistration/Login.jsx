@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import './LoginStyles.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
-import UserApi from "../../APIs/UserApi";
+import UserApi from "../../Service/UserApi";
 import DisableBackButton from "../../Components/disableBackButton";
 import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+import LabelComponent from "../../Components/LabelComponent/LabelComponent";
+import H1Component from "../../Components/HeadingComponent/H1component";
+import H2Component from "../../Components/HeadingComponent/H2component";
 
 
 const Login = () => {
@@ -83,12 +86,12 @@ const Login = () => {
         <div className="login" >
             <DisableBackButton />
             <div className="loginData">
-                <h1 className="ass">Assessment Portal</h1>
-                <h2 className="know">- Come...Test your Knowledge Here!!!</h2>
+                <H1Component className="ass">Assessment Portal</H1Component>
+                <H2Component className="know">- Come...Test your Knowledge Here!!!</H2Component>
                 <form>
                     <div className="signin">
-                        <h1 className="heading">SignIn Here!!</h1>
-                        <label className="head" ><b>Email</b></label><br /><br />
+                        <H1Component className="heading">SignIn Here!!</H1Component>
+                        <LabelComponent className="head" ><b>Email</b></LabelComponent><br /><br />
     
                         <Input
                            className="data"
@@ -99,8 +102,8 @@ const Login = () => {
                         />
                         <br/><br/>
                         <div className="password-container">
-                            <label className="head"><b>Password</b></label><br /><br />
-                            <input className="data" type={showPassword ? 'password' : 'text'} name="password" value={loginData.password} onChange={changeData} /><br />
+                            <LabelComponent className="head"><b>Password</b></LabelComponent><br /><br />
+                            <Input className="data" type={showPassword ? 'password' : 'text'} name="password" value={loginData.password} onChange={changeData} /><br />
                             <ButtonComponent className="show-password" type="button" onClick={togglePassword}>
 
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}

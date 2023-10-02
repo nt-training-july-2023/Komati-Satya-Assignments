@@ -46,9 +46,9 @@ class StudentControllerTest {
        saveDto.setUserName("satya");
        
        when(studentService.saveStudent(student)).thenReturn("registered");
-       Response errorResponse = new Response(HttpStatus.CREATED.value(), "student added successfully");
+       Response errorResponse = new Response(HttpStatus.OK.value(), "student added successfully");
        Response response=studentController.save(student);
-       assertEquals(HttpStatus.CREATED.value(),response.getCode());
+       assertEquals(HttpStatus.OK.value(),response.getCode());
        assertEquals("User register successfully",response.getMessage());
     }
     @Test

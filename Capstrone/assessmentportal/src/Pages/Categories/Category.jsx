@@ -5,10 +5,12 @@ import './CategoryStyles.css'
 import ErrorPage from "../../ErrorPage";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import DisableBackButton from "../../Components/disableBackButton";
-import CategoryApi from "../../APIs/CategoryApi";
+import CategoryApi from "../../Service/CategoryApi";
 import Navbar from "../../Components/Navbar/Navbar";
 import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+import H1Component from "../../Components/HeadingComponent/H1component";
+import { FaPlus, FaPencilAlt,FaTrash ,FaList, FaPlusCircle} from 'react-icons/fa';
 
 function Category() {
   const verifyRole = localStorage.getItem('userRole');
@@ -67,8 +69,8 @@ function Category() {
         <Navbar />
         {(verifyRole === 'Admin' || verifyRole === 'student') ?
           <>
-            <h1 className="addHead">Category Details</h1>
-            {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}>Add category</ButtonComponent>}
+            <H1Component className="addHead">Category Details</H1Component>
+            {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()} ><FaPlusCircle className="delete-icon"/> Add category</ButtonComponent>}
             <div className="searchContainer">
               <Input
                 className="search"
@@ -115,11 +117,11 @@ function Category() {
                           <td>{item.categoryName}</td>
                           <td>{item.categoryDescription}</td>
                           {verifyRole === 'Admin' && <>
-                            <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.categoryId)}>Delete</ButtonComponent></td>
-                            <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData">Update</Link></td></>}
+                            <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.categoryId)}><FaTrash className="delete-icon"/> Delete</ButtonComponent></td>
+                            <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData"><FaPencilAlt className="update-icon" /> Update</Link></td></>}
                           {verifyRole === 'Admin' || verifyRole === 'student' ? (
                             <td><Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={() => handleViewTopic(item.categoryName)}>
-                              Quizes</Link></td>
+                              <FaList className="delete-icon" /> Quizes</Link></td>
                           ) : (
                             <></>
                           )}
@@ -129,7 +131,7 @@ function Category() {
                     </tbody>
                   </table>
                 ) : (
-                  <h1>No Category</h1>
+                  <h1 className="no-category">No Category</h1>
                 )}
               </div>
             )}

@@ -52,7 +52,7 @@ public class QuizController {
             quizSevice.addQuiz(q);
             LOGGER.info(Messages.SAVE_QUIZ);
             String message = Messages.SAVE_QUIZ;
-            Integer errorCode = HttpStatus.CREATED.value();
+            Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return errorResponse;
     }

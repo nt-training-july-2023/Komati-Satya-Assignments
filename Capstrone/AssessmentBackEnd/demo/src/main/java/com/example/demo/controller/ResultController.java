@@ -47,7 +47,7 @@ public class ResultController {
             resultService.addResult(sr);
             LOGGER.info(Messages.SAVE_RESULT);
             String message = Messages.SAVE_RESULT;
-            Integer errorCode = HttpStatus.CREATED.value();
+            Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return errorResponse;
     }

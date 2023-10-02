@@ -3,13 +3,15 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import ErrorPage from "../../ErrorPage";
-import QuizApi from "../../APIs/QuizApi";
+import QuizApi from "../../Service/QuizApi";
 import Navbar from "../../Components/Navbar/Navbar";
 import DisableBackButton from "../../Components/disableBackButton";
 import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Swal from "sweetalert2";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
+import H1Component from "../../Components/HeadingComponent/H1component";
+import { FaTrash,FaPencilAlt ,FaList, FaPlusCircle} from "react-icons/fa";
 
 
 
@@ -109,8 +111,8 @@ function Quiz({ setTrue }) {
       <DisableBackButton />
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
-          <h1 className="addHead">Quiz Details</h1>
-          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}>Add Quiz</ButtonComponent>}
+          <H1Component className="addHead">Quiz Details</H1Component>
+          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}><FaPlusCircle className="delete-icon"/> Add Quiz</ButtonComponent>}
           <div className="searchContainer">
             <Input
               className="search"
@@ -158,9 +160,9 @@ function Quiz({ setTrue }) {
                         <td>{item.topicDescription}</td>
                         <td>{item.timer}</td>
                         {verifyRole === 'Admin' && <>
-                          <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.quizId)}>Delete</ButtonComponent></td>
-                          <td><Link to={`/UpdateQuiz/${item.quizId}`} className="updateData">Update</Link></td>
-                          <td><Link to={`/Questions/${item.quizId}`} className="updateData">Questions</Link></td>
+                          <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.quizId)}><FaTrash className="delete-icon"/> Delete</ButtonComponent></td>
+                          <td><Link to={`/UpdateQuiz/${item.quizId}`} className="updateData"><FaPencilAlt className="update-icon"/> Update</Link></td>
+                          <td><Link to={`/Questions/${item.quizId}`} className="updateData"><FaList className="delete-icon"/> Questions</Link></td>
                         </>}
 
                         {verifyRole === 'student' && <>
@@ -171,7 +173,7 @@ function Quiz({ setTrue }) {
                   </tbody>
                 </table>
               ) : (
-                <h1>No Quiz</h1>
+                <H1Component className="no-questions">No Quiz</H1Component>
               )}
             </div>
           )}

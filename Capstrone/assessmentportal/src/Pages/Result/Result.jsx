@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ErrorPage from "../../ErrorPage";
-import FinalResultApi from "../../APIs/FinalResultApi";
+import FinalResultApi from "../../Service/FinalResultApi";
 
 import Navbar from "../../Components/Navbar/Navbar";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Input from "../../Components/Inputs/Input";
 import DisableBackButton from "../../Components/disableBackButton";
+import H1Component from "../../Components/HeadingComponent/H1component";
 
 const Result = () => {
   const verifyRole = localStorage.getItem('userRole');
@@ -54,7 +55,7 @@ const Result = () => {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
         
-          <h1 className="addHead">Student Result Details</h1>
+          <H1Component className="addHead">Student Result Details</H1Component>
           {(verifyRole === 'Admin' &&<>
           <div className="searchContainer">
             <Input
@@ -109,7 +110,7 @@ const Result = () => {
                   </tbody>
                 </table>
               ) : (
-                <h1>No Result</h1>
+                <H1Component className="no-questions">No Result</H1Component>
               )}
             </div>
           )}
