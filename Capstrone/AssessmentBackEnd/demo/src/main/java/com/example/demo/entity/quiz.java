@@ -51,10 +51,10 @@ public class Quiz {
     }
     /**
      * set quiz id.
-     * @param quizIdd quiz id
+     * @param quizid quiz id
      */
-    public void setQuizId(final int quizIdd) {
-        this.quizId = quizIdd;
+    public void setQuizId(final int quizid) {
+        this.quizId = quizid;
     }
     /**
      * get question.
@@ -65,10 +65,10 @@ public class Quiz {
     }
     /**
      * set topic name.
-     * @param topicNamee topic
+     * @param topicname topic
      */
-    public void setTopicName(final String topicNamee) {
-        this.topicName = topicNamee;
+    public void setTopicName(final String topicname) {
+        this.topicName = topicname;
     }
     /**
      * get question.
@@ -79,10 +79,10 @@ public class Quiz {
     }
     /**
      * get question.
-     * @param topicDescriptionn topic
+     * @param topicdescription topic
      */
-    public void setTopicDescription(final String topicDescriptionn) {
-        this.topicDescription = topicDescriptionn;
+    public void setTopicDescription(final String topicdescription) {
+        this.topicDescription = topicdescription;
     }
     /**
      * get timer.
@@ -93,10 +93,10 @@ public class Quiz {
     }
     /**
      * set time.
-     * @param timerr time
+     * @param timervalue time
      */
-    public void setTimer(final int timerr) {
-        this.timer = timerr;
+    public void setTimer(final int timervalue) {
+        this.timer = timervalue;
     }
     /**
      * get question.

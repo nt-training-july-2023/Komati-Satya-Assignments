@@ -26,7 +26,7 @@ import lombok.Setter;
         /**
          *responseDate entity.
         */
-        private T responseData;
+        private T data;
         /**
          *parameter constructor.
          *@param statusCode statusCodeParam

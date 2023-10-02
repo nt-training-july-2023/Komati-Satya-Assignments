@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
 import './Questions.css';
-import ErrorPage from "../ErrorPage";
-import QuestionsApi from "../APIs/QuestionsApi";
-import Input from "../Inputs/Input";
-import ButtonComponent from "../Inputs/ButtonComponent";
-import SweetAlert from "../SweetAlertComponents/SweetAlert";
+import QuestionsApi from "../../APIs/QuestionsApi";
+import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
+import Input from "../../Components/Inputs/Input";
+import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+import ErrorPage from "../../ErrorPage";
 
 const AddQuestions = () => {
     const verifyRole = localStorage.getItem('userRole');
@@ -34,20 +33,7 @@ const AddQuestions = () => {
         quizId: quizId
 
     });
-    // const requestData = {
-
-    //     question: questionData2.question,
-    //     option1: questionData2.option1,
-    //     option2: questionData2.option2,
-    //     option3: questionData2.option3,
-    //     option4: questionData2.option4,
-    //     correctOption: questionData2.correctOption,
-    //     qui: {
-    //         quizId: quizId
-    //     }
-    // };
-
-
+   
     const navigate = useNavigate();
 
     const changeData = (e) => {
@@ -58,7 +44,7 @@ const AddQuestions = () => {
         if (question) {
             QuestionsApi.getByQuestion(question)
                 .then((response) => {
-                    const questionInformation = response.data;
+                    const questionInformation = response.data.data;
 
                     const { question, option1, option2, option3, option4, correctOption, questionId, quizId } = questionInformation;
                     setQuestionData({

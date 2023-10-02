@@ -47,10 +47,9 @@ class StudentControllerTest {
        
        when(studentService.saveStudent(student)).thenReturn("registered");
        Response errorResponse = new Response(HttpStatus.CREATED.value(), "student added successfully");
-       ResponseEntity<Response> response=studentController.save(student);
-       assertEquals(HttpStatus.CREATED,response.getStatusCode());
-       assertNotNull(response.getBody());
-       assertEquals("student added successfully",errorResponse.getMessage());
+       Response response=studentController.save(student);
+       assertEquals(HttpStatus.CREATED.value(),response.getCode());
+       assertEquals("User register successfully",response.getMessage());
     }
     @Test
     void testUserFindByIdSuccess() {
@@ -61,9 +60,10 @@ class StudentControllerTest {
         saveDto.setUserName("satya");
         
         when(studentService.findById(12)).thenReturn(Optional.of(saveDto));
-        ResponseEntity<Optional<StudentDto>> response=studentController.findById(12);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());      
+        Response response=studentController.findById(12);
+        assertEquals(HttpStatus.OK.value(),response.getCode());
+        assertEquals("find student by id",response.getMessage());
+        assertEquals(Optional.of(saveDto),response.getData());
     }
     @Test
     void testLoginSuccess() {
@@ -74,17 +74,18 @@ class StudentControllerTest {
         saveDto.setUserName("satya");
         
         when(studentService.aunthenticateUser(loginDto)).thenReturn(Optional.of(saveDto));
-        ResponseEntity<Optional<StudentDto>> response=studentController.login(loginDto);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());      
+        Response response=studentController.login(loginDto);
+        assertEquals(HttpStatus.OK.value(),response.getCode());
+        assertEquals("student logged in",response.getMessage());
     }
     @Test
     void testFindAllStudentsSuccess() {
         List<StudentDto> studentDto=new ArrayList<>();
         when(studentService.findAllStudents()).thenReturn(studentDto);
-        ResponseEntity<List<StudentDto>> response=studentController.findAllStu();
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());  
+        Response response=studentController.findAllStu();
+        assertEquals(HttpStatus.OK.value(),response.getCode());
+        assertEquals("find all students",response.getMessage());
+        assertEquals(studentDto,response.getData());
     }
     @Test
     void testUpdateStudentSuccess() {
@@ -95,9 +96,8 @@ class StudentControllerTest {
         
         when(studentService.updateStudent(saveDto, 1)).thenReturn(saveDto);
         Response errorResponse = new Response(HttpStatus.OK.value(), "student updated successfully");
-        ResponseEntity<Response> response=studentController.updateStudent(saveDto, i);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());
+        Response response=studentController.updateStudent(saveDto, i);
+        assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals("student updated successfully",errorResponse.getMessage());
     }
     @Test
@@ -105,9 +105,8 @@ class StudentControllerTest {
         Student student= new Student();
         student.setUserId(1);
         Response errorResponse = new Response(HttpStatus.CREATED.value(), "student deleted successfully");
-        ResponseEntity<Response> response=studentController.deleteStudent(1);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());
+        Response response=studentController.deleteStudent(1);
+        assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals("student deleted successfully",errorResponse.getMessage());
     }
 }

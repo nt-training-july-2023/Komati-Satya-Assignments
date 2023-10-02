@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
 import { useParams } from "react-router-dom";
-import ErrorPage from "../ErrorPage";
-import QuizApi from "../APIs/QuizApi";
-import DisableBackButton from "../APIs/disableBackButton";
-import Navbar from "../Navbar/Navbar";
-import Input from "../Inputs/Input";
-import ButtonComponent from "../Inputs/ButtonComponent";
-import SweetAlert from "../SweetAlertComponents/SweetAlert";
+import ErrorPage from "../../ErrorPage";
+import QuizApi from "../../APIs/QuizApi";
+import Navbar from "../../Components/Navbar/Navbar";
+import DisableBackButton from "../../Components/disableBackButton";
+import Input from "../../Components/Inputs/Input";
+import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+import Swal from "sweetalert2";
+import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
+
+
+
 function Quiz({ setTrue }) {
   const { categoryId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
@@ -24,8 +27,8 @@ function Quiz({ setTrue }) {
   }, [categoryId]);
   const getQuiz = async () => {
     QuizApi.getQuizByCategoryId(categoryId).then(response => {
-      setQuiz(response.data|| []);
-      setOriginalQuiz(response.data || []);
+      setQuiz(response.data.data|| []);
+      setOriginalQuiz(response.data.data || []);
     }).finally(() => {
       setIsLoading(false);
     })

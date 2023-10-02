@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import UserApi from "../APIs/UserApi";
-import Navbar from "../Navbar/Navbar";
-import Input from "../Inputs/Input";
-import ButtonComponent from "../Inputs/ButtonComponent";
+import UserApi from "../../APIs/UserApi";
+
+import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+import Input from "../../Components/Inputs/Input";
+import Navbar from "../../Components/Navbar/Navbar";
+
 function Student() {
   const verifyRole = localStorage.getItem('userRole');
   const [student, setStudent] = useState([]);
@@ -15,8 +17,8 @@ function Student() {
   }, []);
   const getStudents = async () => {
     UserApi.getAllStudents().then(response => {
-      setStudent(response.data || []);
-      setOriginalStudent(response.data || []);
+      setStudent(response.data.data || []);
+      setOriginalStudent(response.data.data || []);
 
     }).catch(error => {
       

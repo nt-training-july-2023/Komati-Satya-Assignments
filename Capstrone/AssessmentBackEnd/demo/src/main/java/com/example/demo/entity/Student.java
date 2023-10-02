@@ -74,10 +74,10 @@ public class Student {
 
     /**
      * set the user id.
-     * @param userIdd stores id
+     * @param userid stores id
      */
-    public void setUserId(final int userIdd) {
-        this.userId = userIdd;
+    public void setUserId(final int userid) {
+        this.userId = userid;
     }
 
     /**
@@ -90,10 +90,10 @@ public class Student {
 
     /**
      * set the user name.
-     * @param userNamee stores name
+     * @param username stores name
      */
-    public void setUserName(final String userNamee) {
-        this.userName = userNamee;
+    public void setUserName(final String username) {
+        this.userName = username;
     }
 
     /**
@@ -106,10 +106,10 @@ public class Student {
 
     /**
      * set the user email.
-     * @param emaill stores email
+     * @param useremail stores email
      */
-    public void setEmail(final String emaill) {
-        this.email = emaill;
+    public void setEmail(final String useremail) {
+        this.email = useremail;
     }
 
     /**
@@ -122,10 +122,10 @@ public class Student {
 
     /**
      * set the user gender.
-     * @param genderr stores gender
+     * @param usergender stores gender
      */
-    public void setGender(final String genderr) {
-        this.gender = genderr;
+    public void setGender(final String usergender) {
+        this.gender = usergender;
     }
 
     /**
@@ -138,10 +138,10 @@ public class Student {
 
     /**
      * set the user phone number.
-     * @param phoneNumberr stores number
+     * @param phonenumber stores number
      */
-    public void setPhoneNumber(final String phoneNumberr) {
-        this.phoneNumber = phoneNumberr;
+    public void setPhoneNumber(final String phonenumber) {
+        this.phoneNumber = phonenumber;
     }
 
     /**
@@ -154,10 +154,10 @@ public class Student {
 
     /**
      * set the user role.
-     * @param rolee stores role
+     * @param userrole stores role
      */
-    public void setRole(final String rolee) {
-        this.role = rolee;
+    public void setRole(final String userrole) {
+        this.role = userrole;
     }
 
     /**
@@ -170,10 +170,10 @@ public class Student {
 
     /**
      * set the user password.
-     * @param passwordd stores password
+     * @param userPassword stores password
      */
-    public void setPassword(final String passwordd) {
-        this.password = passwordd;
+    public void setPassword(final String userPassword) {
+        this.password = userPassword;
     }
 
     /**
@@ -186,10 +186,10 @@ public class Student {
 
     /**
      * set the user date of birth.
-     * @param dateOfBirthh stores DOB
+     * @param dateofBirth stores DOB
      */
-    public void setDateOfBirth(final String dateOfBirthh) {
-        this.dateOfBirth = dateOfBirthh;
+    public void setDateOfBirth(final String dateofBirth) {
+        this.dateOfBirth = dateofBirth;
     }
 
     /**

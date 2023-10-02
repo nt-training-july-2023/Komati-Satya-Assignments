@@ -9,7 +9,7 @@ const Input=(props)=>{
              placeholder={props.placeholder}
              value={props.value}
              onChange={props.onChange}
-             defaultValue={props.defaultValue}
+              disabled={props.disabled}
            checked={props.checked}
              />
              

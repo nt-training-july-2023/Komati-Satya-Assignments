@@ -45,8 +45,8 @@ class CategoryControllerTest {
         
         when(categoryService.saveCategory(category)).thenReturn(categoryDto);
         Response errorResponse = new Response(HttpStatus.CREATED.value(), "added");
-        ResponseEntity<Response> response=categoryController.saveCategory(category);
-        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        Response response=categoryController.saveCategory(category);
+        assertEquals(HttpStatus.CREATED.value(), response.getCode());
         assertEquals("added", errorResponse.getMessage());
     }
 
@@ -59,8 +59,9 @@ class CategoryControllerTest {
         categoryDto.setCategoryName("java");
         
         when(categoryService.findById(1)).thenReturn(Optional.of(categoryDto));
-        ResponseEntity<Response> response=categoryController.findById(1);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
+        Response response=categoryController.findById(1);
+        assertEquals(HttpStatus.OK.value(),response.getCode());
+        assertEquals(Optional.of(categoryDto),response.getData());
        
     }
 
@@ -68,8 +69,9 @@ class CategoryControllerTest {
     void testFindAllCategoriesSuccess() {
         List<CategoryDto> categoryDto=new ArrayList<>();
         when(categoryService.findAll()).thenReturn(categoryDto);
-        ResponseEntity<List<CategoryDto>> response=categoryController.findAll();
-        assertEquals(HttpStatus.OK,response.getStatusCode());   
+        Response response=categoryController.findAll();
+        assertEquals(HttpStatus.OK.value(),response.getCode()); 
+        assertEquals(categoryDto,response.getData());
     }
     @Test
     void testUpdateCategorySuccess() {
@@ -80,8 +82,8 @@ class CategoryControllerTest {
         
         Response errorResponse = new Response(HttpStatus.OK.value(), "updated category");;
         when(categoryService.updateCategory(categoryDto, i)).thenReturn(categoryDto);
-        ResponseEntity<Response> response=categoryController.updateCategory(categoryDto, i);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
+        Response response=categoryController.updateCategory(categoryDto, i);
+        assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals("updated category", errorResponse.getMessage());
         
           
@@ -91,9 +93,8 @@ class CategoryControllerTest {
         Category c=new Category();
         c.setCategoryId(1);
         Response errorResponse = new Response(HttpStatus.OK.value(), "deleted category");
-        ResponseEntity<Response> response=categoryController.deleteCategory(1);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());   
+        Response response=categoryController.deleteCategory(1);
+        assertEquals(HttpStatus.OK.value(),response.getCode());  
         assertEquals("deleted category", errorResponse.getMessage());
     }
    
@@ -102,8 +103,9 @@ class CategoryControllerTest {
          CategoryDto categoryDto=new CategoryDto();
          categoryDto.setCategoryName("java");
          when(categoryService.findByName("java")).thenReturn(Optional.of(categoryDto));
-         ResponseEntity<Optional<CategoryDto>> response=categoryController.findByName("java");
-         assertEquals(HttpStatus.OK,response.getStatusCode());
+         Response response=categoryController.findByName("java");
+         assertEquals(HttpStatus.OK.value(),response.getCode());
+         assertEquals(Optional.of(categoryDto),response.getData());
     }
 }
 

@@ -48,15 +48,14 @@ public class StudentController {
      * @return response.
      */
     @PostMapping("/student")
-    public final ResponseEntity<Response> save(
+    public final Response save(
             @RequestBody @Valid final StudentSaveDto s) {
             studentSevice.saveStudent(s);
             LOGGER.info(Messages.SAVE_STUDENT);
             String message = Messages.SAVE_STUDENT;
             Integer errorCode = HttpStatus.CREATED.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.CREATED);
+       return errorResponse;
     }
 
     /**
@@ -65,11 +64,14 @@ public class StudentController {
      * @return response
      */
     @GetMapping("/student/{id}")
-    public final ResponseEntity<Optional<StudentDto>> findById(
+    public final Response findById(
             @PathVariable final int id) {
             Optional<StudentDto> studentDto = studentSevice.findById(id);
             LOGGER.info(Messages.FIND_STUDENTBYID);
-            return ResponseEntity.ok(studentDto);
+            String message = Messages.FIND_STUDENTBYID;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message, studentDto);
+       return errorResponse;
     }
 
     /**
@@ -78,12 +80,15 @@ public class StudentController {
      * @return response
      */
     @PostMapping("/student/login")
-    public final ResponseEntity<Optional<StudentDto>> login(
+    public final Response login(
             @RequestBody @Valid final LoginDto l) {
             Optional<StudentDto> studentDto = studentSevice.
                     aunthenticateUser(l);
             LOGGER.info(Messages.LOGIN_STUDENT);
-            return ResponseEntity.ok(studentDto);
+            String message = Messages.LOGIN_STUDENT;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message, studentDto);
+       return errorResponse;
     }
 
     /**
@@ -91,10 +96,13 @@ public class StudentController {
      * @return response
      */
     @GetMapping("/student/students")
-    public final ResponseEntity<List<StudentDto>> findAllStu() {
+    public final Response findAllStu() {
             List<StudentDto> studentDto = studentSevice.findAllStudents();
             LOGGER.info(Messages.FIND_ALLSTUDENT);
-            return ResponseEntity.ok(studentDto);
+            String message = Messages.FIND_ALLSTUDENT;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message, studentDto);
+       return errorResponse;
     }
 
     /**
@@ -104,7 +112,7 @@ public class StudentController {
      * @return response
      */
     @PutMapping("/student/{id}")
-    public final ResponseEntity<Response> updateStudent(
+    public final Response updateStudent(
             @RequestBody @Valid final StudentDto s,
             @PathVariable final int id) {
             studentSevice.updateStudent(s, id);
@@ -112,8 +120,7 @@ public class StudentController {
             String message = Messages.UPDATE_STUDENT;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.OK);
+       return errorResponse;
     }
     /**
      * delete student method.
@@ -121,14 +128,13 @@ public class StudentController {
      * @return response
      */
     @DeleteMapping("/student/{id}")
-    public final ResponseEntity<Response> deleteStudent(
+    public final Response deleteStudent(
             @PathVariable final int id) {
             studentSevice.deleteStudent(id);
             LOGGER.info(Messages.DELETE_STUDENT);
             String message = Messages.DELETE_STUDENT;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.OK);
+       return errorResponse;
     }
 }

@@ -47,15 +47,14 @@ public class QuizController {
      * @return response
      */
     @PostMapping("/quiz")
-    public final ResponseEntity<Response> saveQuiz(
+    public final Response saveQuiz(
             @RequestBody @Valid final QuizDto q) {
             quizSevice.addQuiz(q);
             LOGGER.info(Messages.SAVE_QUIZ);
             String message = Messages.SAVE_QUIZ;
             Integer errorCode = HttpStatus.CREATED.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.CREATED);
+       return errorResponse;
     }
 
     /**
@@ -64,11 +63,14 @@ public class QuizController {
      * @return response
      */
     @GetMapping("/quiz/id/{id}")
-    public final ResponseEntity<Optional<QuizDto>> getQuiz(
+    public final Response getQuiz(
             @PathVariable final int id) {
             Optional<QuizDto> quizDto = quizSevice.getQuiz(id);
             LOGGER.info(Messages.FIND_QUIZ);
-            return ResponseEntity.ok(quizDto);
+            String message = Messages.FIND_QUIZ;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message,quizDto);
+       return errorResponse;
     }
 
     /**
@@ -76,10 +78,13 @@ public class QuizController {
      * @return response
      */
     @GetMapping("/quiz")
-    public final ResponseEntity<List<QuizDto>> findAll() {
+    public final Response findAll() {
             List<QuizDto> quizDto = quizSevice.findAll();
             LOGGER.info(Messages.FIND_ALLQUIZES);
-            return ResponseEntity.ok(quizDto);
+            String message = Messages.FIND_ALLQUIZES;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message,quizDto);
+       return errorResponse;
     }
 
     /**
@@ -88,15 +93,14 @@ public class QuizController {
      * @return response
      */
     @DeleteMapping("/quiz/{id}")
-    public final ResponseEntity<Response> deleteQuiz(
+    public final Response deleteQuiz(
             @PathVariable final int id) {
             quizSevice.deleteQuiz(id);
             LOGGER.info(Messages.DELETE_QUIZ);
             String message = Messages.DELETE_QUIZ;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.OK);
+       return errorResponse;
     }
 
     /**
@@ -106,7 +110,7 @@ public class QuizController {
      * @return response
      */
     @PutMapping("/quiz/{id}")
-    public final ResponseEntity<Response> updateQuiz(
+    public final Response updateQuiz(
             @RequestBody @Valid final QuizUpdateDto q,
             @PathVariable final int id) {
             quizSevice.updateQuiz(q, id);
@@ -115,8 +119,7 @@ public class QuizController {
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode,
                     message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.OK);
+       return errorResponse;
     }
 
     /**
@@ -125,11 +128,14 @@ public class QuizController {
      * @return response
      */
     @GetMapping("quiz/quizz/{id}")
-    public final ResponseEntity<List<QuizDto>> findQuizById(
+    public final Response findQuizById(
             @PathVariable final int id) {
             List<QuizDto> quizDto = quizSevice.findQuizById(id);
             LOGGER.info(Messages.FIND_QUIZBYCATEGORYID);
-            return ResponseEntity.ok(quizDto);
+            String message = Messages.FIND_QUIZBYCATEGORYID;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message,quizDto);
+       return errorResponse;
     }
 
     /**
@@ -138,10 +144,13 @@ public class QuizController {
      * @return response
      */
     @GetMapping("/quiz/quizByName/{name}")
-    public final ResponseEntity<Optional<QuizDto>> findQuizByName(
+    public final Response findQuizByName(
             @PathVariable final String name) {
             Optional<QuizDto> quizDto = quizSevice.findQuizByName(name);
             LOGGER.info(Messages.FIND_QUIZ);
-            return ResponseEntity.ok(quizDto);
+            String message = Messages.FIND_QUIZ;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message,quizDto);
+       return errorResponse;
     }
 }

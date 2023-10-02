@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ErrorPage from "../ErrorPage";
-import FinalResultApi from "../APIs/FinalResultApi";
-import DisableBackButton from "../APIs/disableBackButton";
-import Navbar from "../Navbar/Navbar";
-import Input from "../Inputs/Input";
-import ButtonComponent from "../Inputs/ButtonComponent";
+import ErrorPage from "../../ErrorPage";
+import FinalResultApi from "../../APIs/FinalResultApi";
+
+import Navbar from "../../Components/Navbar/Navbar";
+import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+import Input from "../../Components/Inputs/Input";
+import DisableBackButton from "../../Components/disableBackButton";
+
 const Result = () => {
   const verifyRole = localStorage.getItem('userRole');
   const [result, setResult] = useState([]);
@@ -20,24 +22,17 @@ const Result = () => {
   }, []);
   const getAllResultss = () => {
     FinalResultApi.getAllResult().then(response => {
-      setResult(response.data || []);
-      setOriginalResult(response.data || []);
-    }).catch((error)=>{
-      if(error.data.code===409){
-        console.log(error)
-      }
+      setResult(response.data.data || []);
+      setOriginalResult(response.data.data || []);
     }).finally(() => {
       setIsLoading(false);
     })
   };
   const getResultt = () => {
     FinalResultApi.getResultByStudentId(userId).then(response => {
-      setResult(response.data || []);
-      setOriginalResult(response.data || []);
-    }).catch((error)=>{
-      if(error.data.code===409){
-        console.log(error)
-      }}).finally(() => {
+      setResult(response.data.data || []);
+      setOriginalResult(response.data.data || []);
+    }).finally(() => {
       setIsLoading(false);
     })
   };

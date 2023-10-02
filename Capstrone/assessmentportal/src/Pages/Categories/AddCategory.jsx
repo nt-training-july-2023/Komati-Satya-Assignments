@@ -1,12 +1,13 @@
 import React, { useState ,useEffect} from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import './AddCategoryStyles.css';
-import ErrorPage from "../ErrorPage";
-import CategoryApi from "../APIs/CategoryApi";
-import Input from "../Inputs/Input";
-import ButtonComponent from "../Inputs/ButtonComponent";
-import TextareaComponent from "../Inputs/TextareaComponent";
-import SweetAlert from "../SweetAlertComponents/SweetAlert";
+import ErrorPage from "../../ErrorPage";
+import CategoryApi from "../../APIs/CategoryApi";
+import Input from "../../Components/Inputs/Input";
+import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+import TextareaComponent from "../../Components/Inputs/TextareaComponent";
+import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
+
 const AddCategory = () => {
     const verifyRole = localStorage.getItem('userRole');
     const { categoryId } = useParams();
@@ -24,8 +25,8 @@ const AddCategory = () => {
         if(categoryId){
              CategoryApi.getCategoryById(categoryId)
           .then((response) => {
-    
-            const userInformation = response.data;
+            console.log(response)
+            const userInformation = response.data.data;
             const { categoryName, categoryDescription } = userInformation;
             setCategoryData({
               categoryName,

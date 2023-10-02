@@ -53,15 +53,12 @@ public class FinalResultServiceImp implements FinalResService {
     @Override
     public final List<ResultDto> getById(final int id) {
         if (finalResultRepo.findAll().size() != 0) {
-            if (finalResultRepo.getByUserId(id).size() != 0) {
+           
                 List<FinalRes> finalRes = finalResultRepo.getByUserId(id);
                 List<ResultDto> resultDto = convertToDto(finalRes);
                 LOGGER.info(Messages.FIND_RESULT);
                 return resultDto;
-            } else {
-                LOGGER.error(ErrorMessages.USER_NOTTAKE);
-                throw new NotFoundException(ErrorMessages.USER_NOTTAKE);
-            }
+          
         } else {
             LOGGER.error(ErrorMessages.NO_USER);
             throw new AllNotFoundException(ErrorMessages.NO_USER);

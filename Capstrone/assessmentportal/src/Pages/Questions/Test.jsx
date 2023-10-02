@@ -1,17 +1,16 @@
-
-
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import ErrorPage from "../ErrorPage";
+import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import './Test.css';
-import QuizApi from "../APIs/QuizApi";
-import QuestionsApi from "../APIs/QuestionsApi";
-import ResultApi from "../APIs/ResultApi";
-import DisableBackButton from "../APIs/disableBackButton";
-import Input from "../Inputs/Input";
-import ButtonComponent from "../Inputs/ButtonComponent";
-import SweetAlert from "../SweetAlertComponents/SweetAlert";
+import QuizApi from "../../APIs/QuizApi";
+import QuestionsApi from "../../APIs/QuestionsApi";
+import ResultApi from "../../APIs/ResultApi";
+import DisableBackButton from "../../Components/disableBackButton";
+import Input from "../../Components/Inputs/Input";
+import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+import ErrorPage from "../../ErrorPage";
+
 
 function Test({ isRefresh, setTrue }) {
   const navigate = useNavigate();
@@ -60,7 +59,7 @@ function Test({ isRefresh, setTrue }) {
 
   const getQuiz = async () => {
     QuizApi.getQuiz(quizId).then(response => {
-      setQuiz(response.data || []);
+      setQuiz(response.data.data || []);
     }).finally(() => {
       setIsLoading(false);
     })
@@ -72,8 +71,10 @@ function Test({ isRefresh, setTrue }) {
 
   const getQuestions = async () => {
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
-      setQuestions(response.data || []);
-      setNumberOfQuestions(response.data.length)
+      setQuestions(response.data.data || []);
+      if(response.data.data)
+      setNumberOfQuestions(response.data.data.length)
+      
     }).finally(() => {
       setIsLoading(false);
     })

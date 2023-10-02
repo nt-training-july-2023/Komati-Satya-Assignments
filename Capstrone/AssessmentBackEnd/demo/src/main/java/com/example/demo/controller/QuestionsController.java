@@ -48,25 +48,27 @@ public class QuestionsController {
      * @return response
      */
     @PostMapping("/questions")
-    public final ResponseEntity<Response> addQuestion(
+    public final Response addQuestion(
             @RequestBody @Valid final QuestionsDto q) {
             questionsService.addQuestion(q);
             LOGGER.info(Messages.SAVE_QUESTION);
             String message = Messages.SAVE_QUESTION;
             Integer errorCode = HttpStatus.CREATED.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.CREATED);
+       return errorResponse;
     }
     /**
      * getting all the questions method.
      * @return response
      */
     @GetMapping("/questions")
-    public final ResponseEntity<List<QuestionsDto>> getQuestions() {
+    public final Response getQuestions() {
             LOGGER.info(Messages.FIND_ALLQUESTION);
             List<QuestionsDto> questionsDto = questionsService.getQuestions();
-            return ResponseEntity.ok(questionsDto);
+            String message = Messages.FIND_ALLQUESTION;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message, questionsDto);
+       return errorResponse;
     }
 
     /**
@@ -75,14 +77,13 @@ public class QuestionsController {
      * @return response
      */
     @DeleteMapping("/questions/{id}")
-    public final ResponseEntity<Response> delete(@PathVariable final int id) {
+    public final Response delete(@PathVariable final int id) {
             questionsService.delete(id);
             LOGGER.info(Messages.DELETE_QUESTION);
             String message = Messages.DELETE_QUESTION;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.OK);
+       return errorResponse;
     }
 
     /**
@@ -92,7 +93,7 @@ public class QuestionsController {
      * @return response
      */
     @PutMapping("/questions/que/{id}")
-    public final ResponseEntity<Response> updateQue(
+    public final Response updateQue(
             @RequestBody @Valid final QuestionsUpdateDto q,
             @PathVariable final int id) {
             questionsService.updateQuestion(q, id);
@@ -100,8 +101,7 @@ public class QuestionsController {
             String message = Messages.UPDATE_QUESTION;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.OK);
+       return errorResponse;
     }
 
     /**
@@ -110,12 +110,15 @@ public class QuestionsController {
      * @return response
      */
     @GetMapping("/questions/{id}")
-    public final ResponseEntity<List<QuestionsDto>> findQueById(
+    public final Response findQueById(
             @PathVariable final int id) {
             List<QuestionsDto> questionsDto = questionsService.
                     findQuestionById(id);
             LOGGER.info(Messages.FIND_QUESTIONBYQUIZID);
-            return ResponseEntity.ok(questionsDto);
+            String message = Messages.FIND_QUESTIONBYQUIZID;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message, questionsDto);
+       return errorResponse;
     }
 
     /**
@@ -124,11 +127,14 @@ public class QuestionsController {
      * @return response
      */
     @GetMapping("/questions/questionByName/{name}")
-    public final ResponseEntity<Optional<QuestionsDto>> findByQuestion(
+    public final Response findByQuestion(
             @PathVariable final String name) {
             Optional<QuestionsDto> questionsDto = questionsService.
                     findByQuestion(name);
             LOGGER.info(Messages.FIND_QUESTION);
-          return ResponseEntity.ok(questionsDto);
+            String message = Messages.FIND_QUESTION;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message, questionsDto);
+       return errorResponse;
     }
 }

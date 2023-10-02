@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './RegistrationStyles.css'
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import UserApi from "../APIs/UserApi";
-import Input from "../Inputs/Input";
-import ButtonComponent from "../Inputs/ButtonComponent";
-import SweetAlert from "../SweetAlertComponents/SweetAlert";
+import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+import Input from "../../Components/Inputs/Input";
+import UserApi from "../../APIs/UserApi";
+import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
+
 const Registration = () => {
   const [showPassword, setShowPassword] = useState("true");
   const [formData, setFormData] = useState({

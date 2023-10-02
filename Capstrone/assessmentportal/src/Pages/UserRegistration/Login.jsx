@@ -2,11 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './LoginStyles.css';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import UserApi from "../APIs/UserApi";
-import DisableBackButton from "../APIs/disableBackButton";
-import Input from "../Inputs/Input";
-import ButtonComponent from "../Inputs/ButtonComponent";
-import SweetAlert from "../SweetAlertComponents/SweetAlert";
+import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
+import UserApi from "../../APIs/UserApi";
+import DisableBackButton from "../../Components/disableBackButton";
+import Input from "../../Components/Inputs/Input";
+import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 
 
 const Login = () => {
@@ -51,17 +51,17 @@ const Login = () => {
             setErrors({});
            
             UserApi.loginUser(loginData).then(response => {
-                    if (response?.data.role === "Admin") {
-                        localStorage.setItem("userRole", response.data.role);
-                        localStorage.setItem("userId", response.data.userId);
+                    if (response?.data.data.role === "Admin") {
+                        localStorage.setItem("userRole", response.data.data.role);
+                        localStorage.setItem("userId", response.data.data.userId);
                         SweetAlert.success("login success")
                         navigate('/UserDashBoard')
 
-                    } else if (response?.data.role === "student") {
-                        localStorage.setItem("userRole", response.data.role);
-                        localStorage.setItem("userEmail", response.data.email);
-                        localStorage.setItem("userName", response.data.userName);
-                        localStorage.setItem("userId", response.data.userId);
+                    } else if (response?.data.data.role === "student") {
+                        localStorage.setItem("userRole", response.data.data.role);
+                        localStorage.setItem("userEmail", response.data.data.email);
+                        localStorage.setItem("userName", response.data.data.userName);
+                        localStorage.setItem("userId", response.data.data.userId);
                         SweetAlert.success("login success")
                         navigate('/UserDashBoard');
                     

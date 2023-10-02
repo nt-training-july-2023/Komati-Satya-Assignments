@@ -1,8 +1,8 @@
 import React from "react";
 import Swal from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
-import ErrorPage from "../ErrorPage";
-import DisableBackButton from "../APIs/disableBackButton";
+import ErrorPage from "../../ErrorPage";
+import DisableBackButton from "../disableBackButton";
 
 const Navbar = () => {
     const location = useLocation();

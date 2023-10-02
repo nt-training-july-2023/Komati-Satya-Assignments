@@ -59,7 +59,6 @@ public class StudentResult {
     /**
      * categoryId.
      */
-    //@NotEmpty(message = ValidationMessages.CATEGORY_NOTNULL)
     private int categoryId;
     /**
      * stores the result id.
@@ -91,10 +90,10 @@ public class StudentResult {
     }
     /**
      * set marks.
-     * @param maxMarkss marks
+     * @param maxmarks marks
      */
-    public void setMaxMarks(final int maxMarkss) {
-        this.maxMarks = maxMarkss;
+    public void setMaxMarks(final int maxmarks) {
+        this.maxMarks = maxmarks;
     }
     /**
      * get result.
@@ -105,10 +104,10 @@ public class StudentResult {
     }
     /**
      * set result.
-     * @param resultt result
+     * @param userresult result
      */
-    public void setResult(final String resultt) {
-        this.result = resultt;
+    public void setResult(final String userresult) {
+        this.result = userresult;
     }
     /**
      * get.
@@ -119,10 +118,10 @@ public class StudentResult {
     }
     /**
      * set question.
-     * @param attemptedQuestionss questions
+     * @param attemptedquestions questions
      */
-    public void setAttemptedQuestions(final int attemptedQuestionss) {
-        this.attemptedQuestions = attemptedQuestionss;
+    public void setAttemptedQuestions(final int attemptedquestions) {
+        this.attemptedQuestions = attemptedquestions;
     }
     /**
      * quiz.
@@ -169,10 +168,10 @@ public class StudentResult {
     }
     /**
      * set.
-     * @param dateAndTimee date
+     * @param dateAndtime date
      */
-    public void setDateAndTime(final String dateAndTimee) {
-        this.dateAndTime = dateAndTimee;
+    public void setDateAndTime(final String dateAndtime) {
+        this.dateAndTime = dateAndtime;
     }
     /**
      * get category id.

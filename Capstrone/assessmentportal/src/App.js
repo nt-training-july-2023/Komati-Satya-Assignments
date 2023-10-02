@@ -1,20 +1,21 @@
 import './App.css';
 import { BrowserRouter,Routes,Route } from 'react-router-dom';
-import Login from './UserRegistration/Login';
-import UserDashBoard from './User/UserDashBoard';
-import Registration from './UserRegistration/Registration';
-import Category from './Categories/Category';
-import AddCategory from './Categories/AddCategory';
-import UserUpdate from './User/UserUpdate';
-import ErrorPage from './ErrorPage';
-import Quiz from './Quiz/Quiz';
-import AddQuiz from './Quiz/AddQuiz';
-import Student from './User/Students';
-import Result from './Result/Result';
-import Questions from './Questions/Questions';
-import AddQuestions from './Questions/AddQuestions';
-import Test from './Questions/Test';
+import UserDashBoard from '../src/Pages/User/UserDashBoard';
+import Registration from  '../src/Pages/UserRegistration/Registration';
+import UserUpdate from './Pages/User/UserUpdate';
+import Category from './Pages/Categories/Category';
+import AddCategory from '../src/Pages/Categories/AddCategory';
+import Quiz from './Pages/Quiz/Quiz';
 import { useState } from 'react';
+import ErrorPage from './ErrorPage';
+import Result from './Pages/Result/Result';
+import AddQuiz from './Pages/Quiz/AddQuiz';
+import Questions from './Pages/Questions/Questions';
+import AddQuestions from './Pages/Questions/AddQuestions';
+import Login from './Pages/UserRegistration/Login';
+import Student from './Pages/User/Students';
+import Test from './Pages/Questions/Test';
+
 function App() {
  const[isRefresh,setIsRefresh]=useState(false)
  function setTrue() {

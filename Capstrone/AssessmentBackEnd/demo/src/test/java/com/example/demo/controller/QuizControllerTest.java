@@ -42,10 +42,10 @@ class QuizControllerTest {
         
         when(quizService.addQuiz(quiz)).thenReturn(quizDto);
         Response errorResponse = new Response(HttpStatus.CREATED.value(), "quiz added successfully");
-        ResponseEntity<Response> response=quizController.saveQuiz(quiz);
-        assertEquals(HttpStatus.CREATED,response.getStatusCode());
+        Response response=quizController.saveQuiz(quiz);
+        assertEquals(HttpStatus.CREATED.value(),response.getCode());
         assertEquals("quiz added successfully",errorResponse.getMessage());
-        assertNotNull(response.getBody());
+        
     }
     @Test
     void testGetQuizByIdSuccess() {
@@ -56,26 +56,28 @@ class QuizControllerTest {
         quizDto.setTopicName("arrays");
         
         when(quizService.getQuiz(1)).thenReturn(Optional.of(quizDto));
-        ResponseEntity<Optional<QuizDto>> response=quizController.getQuiz(1);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());
+        Response response=quizController.getQuiz(1);
+        assertEquals(HttpStatus.OK.value(),response.getCode());
+        assertEquals("find quiz",response.getMessage());
+        assertEquals(Optional.of(quizDto),response.getData());
+        
     }
     @Test
     void testFindAllQuizSuccess() {
         List<QuizDto> quizDto=new ArrayList<>();
         when(quizService.findAll()).thenReturn(quizDto);
-        ResponseEntity<List<QuizDto>> response=quizController.findAll();
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());
+        Response response=quizController.findAll();
+        assertEquals(HttpStatus.OK.value(),response.getCode());
+        assertEquals(quizDto,response.getData());
+        assertEquals("find all quizes",response.getMessage());
     }
     @Test
     void testDeleteQuizSuccess() {
         Quiz quiz=new Quiz();
         quiz.setQuizId(1);
         Response errorResponse = new Response(HttpStatus.CREATED.value(), "quiz deleted successfully");
-        ResponseEntity<Response> response=quizController.deleteQuiz(1);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());
+        Response response=quizController.deleteQuiz(1);
+        assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals("quiz deleted successfully",errorResponse.getMessage());
     }
     @Test
@@ -87,9 +89,8 @@ class QuizControllerTest {
         
         when(quizService.updateQuiz(quizDto, i)).thenReturn(quizDto);
         Response errorResponse = new Response(HttpStatus.CREATED.value(), "quiz updated successfully");
-        ResponseEntity<Response> response=quizController.updateQuiz(quizDto, i);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());
+        Response response=quizController.updateQuiz(quizDto, i);
+        assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals("quiz updated successfully",errorResponse.getMessage());
     }
     @Test
@@ -104,9 +105,10 @@ class QuizControllerTest {
         
         List<QuizDto> q=new ArrayList<>();
         when(quizService.findQuizById(2)).thenReturn(q);
-        ResponseEntity<List<QuizDto>> response=quizController.findQuizById(2);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());
+        Response response=quizController.findQuizById(2);
+        assertEquals(HttpStatus.OK.value(),response.getCode());
+        assertEquals(q,response.getData());
+        assertEquals("find quiz category id",response.getMessage());
     }
     @Test
     void testQuizByNameSuccess() {
@@ -117,8 +119,10 @@ class QuizControllerTest {
         
         quizDto.setTopicName("arrays");
         when(quizService.findQuizByName("arrays")).thenReturn(Optional.of(quizDto));
-        ResponseEntity<Optional<QuizDto>> response=quizController.findQuizByName("arrays");
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());   
+        Response response=quizController.findQuizByName("arrays");
+        assertEquals(HttpStatus.OK.value(),response.getCode());
+        assertEquals(Optional.of(quizDto),response.getData());
+        assertEquals("find quiz",response.getMessage());
+         
     }
 }

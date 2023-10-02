@@ -1,12 +1,16 @@
 import React from "react";
 import './AdminStyles.css';
 import { useNavigate} from "react-router-dom";
-import ErrorPage from "../ErrorPage";
+
 import { useEffect, useState } from "react";
-import UserApi from "../APIs/UserApi";
-import DisableBackButton from "../APIs/disableBackButton";
-import Navbar from "../Navbar/Navbar";
-import ButtonComponent from "../Inputs/ButtonComponent";
+
+
+import Navbar from "../../Components/Navbar/Navbar";
+import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+import ErrorPage from "../../ErrorPage";
+import UserApi from "../../APIs/UserApi";
+import DisableBackButton from "../../Components/disableBackButton";
+
 
 const UserDashBoard = () => {
 
@@ -19,9 +23,11 @@ const UserDashBoard = () => {
   }, []);
 
   const getStudent = async () => {
+   if(verifyUserId){
     UserApi.getUserById(verifyUserId).then(response => {
-      setData(response.data || []);
+      setData(response.data.data || []);
     })
+  }
   };
 
   const verifyRole = localStorage.getItem('userRole');
@@ -80,7 +86,7 @@ const UserDashBoard = () => {
         </table>
         <ButtonComponent className="btn2" type="button" onClick={UpdateData}>Update Details</ButtonComponent>
       </div>
-      </> : <ErrorPage />}
+      </> : <ErrorPage/>}
     </div>
   )
 }

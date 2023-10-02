@@ -36,7 +36,7 @@ public class CategoryController {
      */
     private static final Logger LOGGER = LoggerFactory
             .getLogger(CategoryController.class);
-    /**
+    /*
      * auto wiring category service class.
      */
     @Autowired
@@ -48,15 +48,14 @@ public class CategoryController {
      * @return response
      */
     @PostMapping("/category")
-    public final ResponseEntity<Response> saveCategory(
+    public final Response saveCategory(
             @RequestBody @Valid final CategoryDto c) {
             categoryService.saveCategory(c);
             LOGGER.info(Messages.SAVE_CATEGORY);
             String message = Messages.SAVE_CATEGORY;
             Integer errorCode = HttpStatus.CREATED.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.CREATED);
+       return errorResponse;
     }
     /**
      * Category find by id method.
@@ -64,7 +63,7 @@ public class CategoryController {
      * @return response
      */
     @GetMapping("/category/category/{id}")
-    public final ResponseEntity<Response>
+    public final Response
                  findById(@PathVariable final int id) {
             Optional<CategoryDto> categoryDto = categoryService.findById(id);
             LOGGER.info(Messages.FIND_CATEGORY);
@@ -73,18 +72,22 @@ public class CategoryController {
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode,
                     message, categoryDto);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.OK);
+       return errorResponse;
     }
     /**
      * Category find all method.
      * @return response.
      */
     @GetMapping("/category")
-    public final ResponseEntity<List<CategoryDto>> findAll() {
+    public final Response findAll() {
             List<CategoryDto> categoryDto = categoryService.findAll();
             LOGGER.info(Messages.FIND_ALLCATEGORY);
-            return ResponseEntity.ok(categoryDto);
+//            return ResponseEntity.ok(categoryDto);
+            String message = Messages.FIND_CATEGORY;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode,
+                    message, categoryDto);
+       return errorResponse;
     }
 
     /**
@@ -94,7 +97,7 @@ public class CategoryController {
      * @return response.
      */
     @PutMapping("/category/{id}")
-    public final ResponseEntity<Response> updateCategory(
+    public final Response updateCategory(
             @RequestBody @Valid final CategoryDto c,
             @PathVariable final int id) {
             categoryService.updateCategory(c, id);
@@ -102,8 +105,7 @@ public class CategoryController {
             String message = Messages.UPDATE_CATEGORY;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.OK);
+       return errorResponse;
     }
 
     /**
@@ -111,16 +113,16 @@ public class CategoryController {
      * @param id category id.
      * @return response.
      */
+    @SuppressWarnings("rawtypes")
     @DeleteMapping("/category/{id}")
-    public final ResponseEntity<Response> deleteCategory(
+    public final Response deleteCategory(
             @PathVariable final int id) {
             categoryService.deleteCategory(id);
             LOGGER.info(Messages.DELETE_CATEGORY);
             String message = Messages.DELETE_CATEGORY;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.OK);
+       return errorResponse;
     }
 
     /**
@@ -129,10 +131,14 @@ public class CategoryController {
      * @return response.
      */
     @GetMapping("/category/{s}")
-    public final ResponseEntity<Optional<CategoryDto>> findByName(
+    public final Response findByName(
             @PathVariable final String s) {
             Optional<CategoryDto> categoryDto = categoryService.findByName(s);
             LOGGER.info(Messages.FIND_CATEGORY);
-            return ResponseEntity.ok(categoryDto);
+           // return ResponseEntity.ok(categoryDto);
+            String message = Messages.FIND_CATEGORY;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message,categoryDto);
+       return errorResponse;
     }
 }

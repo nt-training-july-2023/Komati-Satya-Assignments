@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import com.example.demo.dto.ResultDto;
 import com.example.demo.entity.FinalRes;
 import com.example.demo.exceptions.AllNotFoundException;
+import com.example.demo.response.Response;
 import com.example.demo.serviceImp.FinalResultServiceImp;
 
 
@@ -36,16 +37,18 @@ class FinalResultControllerTest {
         
         List<ResultDto> resultDto=new ArrayList<>();
         when(resultService.getById(1)).thenReturn(resultDto);
-        ResponseEntity<List<ResultDto>> response=resultController.getById(1);
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());
+        Response response=resultController.getById(1);
+        assertEquals(HttpStatus.OK.value(),response.getCode());
+        assertEquals(resultDto,response.getData());
+        assertEquals("find results",response.getMessage());
     }
     @Test
     void testAllResultSuccess() {
         List<ResultDto> resultDto=new ArrayList<>();
         when(resultService.findAll()).thenReturn(resultDto);
-        ResponseEntity<List<ResultDto>> response=resultController.findAllResult();
-        assertEquals(HttpStatus.OK,response.getStatusCode());
-        assertNotNull(response.getBody());
+        Response response=resultController.findAllResult();
+        assertEquals(HttpStatus.OK.value(),response.getCode());
+        assertEquals(resultDto,response.getData());
+        assertEquals("find all results",response.getMessage());
     }
 }

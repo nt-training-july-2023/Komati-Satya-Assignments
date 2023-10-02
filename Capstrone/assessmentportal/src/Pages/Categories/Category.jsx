@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import './CategoryStyles.css'
-import ErrorPage from "../ErrorPage";
-import CategoryApi from "../APIs/CategoryApi";
-import DisableBackButton from "../APIs/disableBackButton";
-import Navbar from "../Navbar/Navbar";
-import Input from "../Inputs/Input";
-import ButtonComponent from "../Inputs/ButtonComponent";
-import SweetAlert from "../SweetAlertComponents/SweetAlert";
+import ErrorPage from "../../ErrorPage";
+import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
+import DisableBackButton from "../../Components/disableBackButton";
+import CategoryApi from "../../APIs/CategoryApi";
+import Navbar from "../../Components/Navbar/Navbar";
+import Input from "../../Components/Inputs/Input";
+import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+
 function Category() {
   const verifyRole = localStorage.getItem('userRole');
   const [category, setCategory] = useState([]);
@@ -21,8 +22,8 @@ function Category() {
   const getCategories = async () => {
     CategoryApi.getAllCategories().then(
       response => {
-        setCategory(response.data || []);
-        setOriginalCategory(response.data || []);
+        setCategory(response.data.data || []);
+        setOriginalCategory(response.data.data || []);
       }).finally(() => {
         setIsLoading(false);
       })
@@ -32,8 +33,7 @@ function Category() {
   }
   const deleteCategory=(id)=>{
     CategoryApi.deleteCategory(id).then(response => {
-
-      if (response.data.message === "Deleted successfully") {
+      if (response.data.message === "deleted category") {
        SweetAlert.success("Deleted successfully")
       }
       getCategories();

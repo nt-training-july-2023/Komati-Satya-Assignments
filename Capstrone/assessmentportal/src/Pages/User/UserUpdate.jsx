@@ -1,12 +1,12 @@
 import './UserUpdate.css';
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Swal from "sweetalert2";
-import ErrorPage from "../ErrorPage";
-import UserApi from '../APIs/UserApi';
-import Input from '../Inputs/Input';
-import ButtonComponent from '../Inputs/ButtonComponent';
-import SweetAlert from '../SweetAlertComponents/SweetAlert';
+
+import UserApi from '../../APIs/UserApi';
+import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
+import Input from '../../Components/Inputs/Input';
+import ButtonComponent from '../../Components/Inputs/ButtonComponent';
+import ErrorPage from '../../ErrorPage';
 
 const UserUpdate = () => {
   const verifyRole = localStorage.getItem('userRole');
@@ -27,7 +27,7 @@ const UserUpdate = () => {
     UserApi.getUserById(userId)
       .then((response) => {
         setSendData(response);
-        const userInformation = response.data;
+        const userInformation = response.data.data;
         setUserData((previousData) => ({
           ...previousData,
           userName: userInformation.userName,

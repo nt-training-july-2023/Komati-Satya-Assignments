@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Swal from "sweetalert2";
-import ErrorPage from "../ErrorPage";
-import QuizApi from "../APIs/QuizApi";
-import Input from "../Inputs/Input";
-import ButtonComponent from "../Inputs/ButtonComponent";
-import TextareaComponent from "../Inputs/TextareaComponent";
-import SweetAlert from "../SweetAlertComponents/SweetAlert";
+import QuizApi from "../../APIs/QuizApi";
+import Input from "../../Components/Inputs/Input";
+import ButtonComponent from "../../Components/Inputs/ButtonComponent";
+import TextareaComponent from "../../Components/Inputs/TextareaComponent";
+import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
+import ErrorPage from "../../ErrorPage";
+
 
 const AddQuiz = () => {
     const verifyRole = localStorage.getItem('userRole');
@@ -19,14 +19,6 @@ const AddQuiz = () => {
         timer: "",
         categoryId: parseInt(categoryId, 10)
     });
-    // const requestData = {
-    //     topicName: quizData.topicName,
-    //     topicDescription: quizData.topicDescription,
-    //     timer: quizData.timer,
-    //     cate: {
-    //         categoryId: quizData.categoryId
-    //     }
-    // };
     const navigate = useNavigate();
     const changeData = (e) => {
         setQuizData({ ...quizData, [e.target.name]: e.target.value });
@@ -35,7 +27,7 @@ const AddQuiz = () => {
         if (quizId) {
             QuizApi.getQuiz(quizId)
                 .then((response) => {
-                    const quizInformation = response.data;
+                    const quizInformation = response.data.data;
                     const { topicName, topicDescription, timer, categoryId } = quizInformation;
                     setQuizData({
                         topicName,

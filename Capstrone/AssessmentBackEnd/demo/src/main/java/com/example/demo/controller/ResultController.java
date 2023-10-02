@@ -42,15 +42,14 @@ public class ResultController {
      * @return response
      */
     @PostMapping("/result")
-    public final ResponseEntity<Response> addRes(
+    public final Response addRes(
             @RequestBody final ResultDto sr) {
             resultService.addResult(sr);
             LOGGER.info(Messages.SAVE_RESULT);
             String message = Messages.SAVE_RESULT;
             Integer errorCode = HttpStatus.CREATED.value();
             Response errorResponse = new Response(errorCode, message);
-       return new ResponseEntity<Response>(errorResponse,
-              HttpStatus.CREATED);
+       return errorResponse;
     }
 
     /**
@@ -59,11 +58,14 @@ public class ResultController {
      * @return response
      */
     @GetMapping("/result/{id}")
-    public final ResponseEntity<Optional<ResultDto>> getRes(
+    public final Response getRes(
             @PathVariable final int id) {
             Optional<ResultDto> resultDto = resultService.getResult(id);
             LOGGER.info(Messages.FIND_RESULT);
-            return ResponseEntity.ok(resultDto);
+            String message = Messages.FIND_RESULT;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message,resultDto);
+       return errorResponse;
     }
 
     /**
@@ -71,9 +73,12 @@ public class ResultController {
      * @return response
      */
     @GetMapping("/result")
-    public final ResponseEntity<List<ResultDto>> getAllRes() {
+    public final Response getAllRes() {
             List<ResultDto> resultDto = resultService.getResults();
             LOGGER.info(Messages.FIND_ALLRESULT);
-            return ResponseEntity.ok(resultDto);
+            String message = Messages.FIND_ALLRESULT;
+            Integer errorCode = HttpStatus.OK.value();
+            Response errorResponse = new Response(errorCode, message,resultDto);
+       return errorResponse;
     }
 }
