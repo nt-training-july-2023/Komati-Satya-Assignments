@@ -56,13 +56,8 @@ const Table = ({ columns, data, rows, category,deleteData,viewQuizes,role,quiz,q
                          <td><Link to={`/UpdateQuestion/${item.question}`} className="updateData"><FaList className="add-icon"/> Update</Link></td>
                    </>)}
                    </>)}
-
-              
             </tr>
           ))}
-           
-               
-           
         </tbody>
       </table>
   
