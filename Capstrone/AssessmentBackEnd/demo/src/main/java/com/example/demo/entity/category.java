@@ -90,14 +90,14 @@ public class Category {
      * get category Name.
      * @return quiz quiz
      */
-    public List<Quiz> getQu() {
+    public List<Quiz> getQuiz() {
         return new ArrayList<>(quiz);
     }
     /**
      * set method.
      * @param quizz quiz
      */
-    public void setQu(final List<Quiz> quizz) {
+    public void setQuiz(final List<Quiz> quizz) {
         this.quiz = new ArrayList<>(quizz);
     }
     /**

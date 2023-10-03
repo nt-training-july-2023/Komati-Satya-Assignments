@@ -24,7 +24,6 @@ const Registration = () => {
   });
   const navigate = useNavigate();
   const [errors, setErrors] = useState({});
-
   const changeData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -43,7 +42,6 @@ const Registration = () => {
     if (!formData.password) {
       validationErrors.password = 'Password Required';
     }
-
     if (!formData.confirmPassword) {
       validationErrors.confirmPassword = 'Confirm Password Required';
     }
@@ -83,7 +81,6 @@ const Registration = () => {
         !re.length.test(formData.password) ||
         !re.digit.test(formData.password)) {
         SweetAlert.fieldsRequired("Password must contain at least a Capital, Special character, Number, and minimum 8 characters");
-
       }
       else if (formData.password !== formData.confirmPassword) {
         SweetAlert.fieldsRequired("Password must be same");
@@ -95,12 +92,10 @@ const Registration = () => {
       else {
         UserApi.addUser(formData)
           .then((response) => {
-            
             if (response.data.message === "User register successfully") {
-             SweetAlert.success("User Register successfully");
+              SweetAlert.success("User Register successfully");
               navigate('/');
             }
-           
           })
           .catch((error) => {
             if (error.response.data.message === "Email already exist") {
@@ -128,11 +123,9 @@ const Registration = () => {
               <LabelComponent className="side">Password</LabelComponent><br /><br />
               <Input className="values" type={showPassword ? 'password' : 'text'} name="password" placeholder="enter a password" value={formData.password} onChange={changeData} /><br />
               <ButtonComponent className="show-password2" type="button" onClick={togglePassword}>
-
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </ButtonComponent>
             </div><br />
-           
             <div className="password-container2">
               <LabelComponent className="side">Confirm Password</LabelComponent><br /><br />
               <Input className="values" type={showConfirmPassword ? 'password' : 'text'} name="confirmPassword" placeholder="enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
@@ -146,7 +139,7 @@ const Registration = () => {
             <Input className="values" type="text" name="phoneNumber" placeholder="enter a phone number" value={formData.phoneNumber} onChange={changeData} /><br /><br />
             <LabelComponent className="side">Gender</LabelComponent><br /><br />
 
-            <div className="gen">
+            <div className="gender">
               <Input className="gen1" type="radio" name="gender" value={formData.gender} onChange={changeData} />
               <LabelComponent className="gender">Male</LabelComponent>
               <Input className="gen2" type="radio" name="gender" value={formData.gender} onChange={changeData} />

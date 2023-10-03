@@ -7,7 +7,7 @@ import Category from './Pages/Categories/Category';
 import AddCategory from '../src/Pages/Categories/AddCategory';
 import Quiz from './Pages/Quiz/Quiz';
 import { useState } from 'react';
-import ErrorPage from './ErrorPage';
+
 import Result from './Pages/Result/Result';
 import AddQuiz from './Pages/Quiz/AddQuiz';
 import Questions from './Pages/Questions/Questions';
@@ -15,6 +15,7 @@ import AddQuestions from './Pages/Questions/AddQuestions';
 import Login from './Pages/UserRegistration/Login';
 import Student from './Pages/User/Students';
 import Test from './Pages/Questions/Test';
+import ErrorPage from './Components/ErrorPage';
 
 function App() {
  const[isRefresh,setIsRefresh]=useState(false)

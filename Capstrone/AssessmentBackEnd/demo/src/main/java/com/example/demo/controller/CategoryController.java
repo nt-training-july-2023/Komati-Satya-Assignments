@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,12 +35,11 @@ public class CategoryController {
      */
     private static final Logger LOGGER = LoggerFactory
             .getLogger(CategoryController.class);
-    /*
+    /**
      * auto wiring category service class.
      */
     @Autowired
     private CategoryService categoryService;
-
     /**
      * Category save method.
      * @param c category.
@@ -138,7 +136,8 @@ public class CategoryController {
            // return ResponseEntity.ok(categoryDto);
             String message = Messages.FIND_CATEGORY;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message,categoryDto);
+            Response errorResponse = new Response(errorCode,
+                    message, categoryDto);
        return errorResponse;
     }
 }

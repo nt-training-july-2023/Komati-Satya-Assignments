@@ -12,10 +12,10 @@ class StudentResultTest {
         studentResult.setResultId(1);
         Quiz q=new Quiz();
         q.setTopicName("variables");
-        studentResult.setQe(q);
+        studentResult.setQuiz(q);
         Student student=new Student();
         student.setUserId(18);
-        studentResult.setSs(student);
+        studentResult.setStudentResult(student);
         Category c=new Category();
         c.setCategoryName("java");
         c.setCategoryId(13);

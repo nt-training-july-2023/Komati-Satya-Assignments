@@ -28,9 +28,7 @@ const Login = () => {
     }
     const login = async (e) => {
         e.preventDefault();
-
         const validationErrors = {};
-
         if (!loginData.email) {
             validationErrors.email = 'Email Required';
         }
@@ -52,7 +50,6 @@ const Login = () => {
         } else {
 
             setErrors({});
-           
             UserApi.loginUser(loginData).then(response => {
                     if (response?.data.data.role === "Admin") {
                         localStorage.setItem("userRole", response.data.data.role);
@@ -81,7 +78,6 @@ const Login = () => {
 
         }
     }
-
     return (
         <div className="login" >
             <DisableBackButton />
@@ -92,7 +88,6 @@ const Login = () => {
                     <div className="signin">
                         <H1Component className="heading">SignIn Here!!</H1Component>
                         <LabelComponent className="head" ><b>Email</b></LabelComponent><br /><br />
-    
                         <Input
                            className="data"
                            type="email" 
@@ -105,7 +100,6 @@ const Login = () => {
                             <LabelComponent className="head"><b>Password</b></LabelComponent><br /><br />
                             <Input className="data" type={showPassword ? 'password' : 'text'} name="password" value={loginData.password} onChange={changeData} /><br />
                             <ButtonComponent className="show-password" type="button" onClick={togglePassword}>
-
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </ButtonComponent>
                         </div>

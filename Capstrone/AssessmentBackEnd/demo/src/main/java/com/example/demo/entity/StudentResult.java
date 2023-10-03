@@ -54,8 +54,8 @@ public class StudentResult {
      */
     @ManyToOne
     @JoinColumn(name = "qz_Id")
-    @JsonIgnoreProperties("se")
-    private Quiz qe;
+    @JsonIgnoreProperties("studentResult")
+    private Quiz quiz;
     /**
      * categoryId.
      */
@@ -65,8 +65,8 @@ public class StudentResult {
      */
     @ManyToOne
     @JoinColumn(name = "stu_id")
-    @JsonIgnoreProperties("rs")
-    private Student ss;
+    @JsonIgnoreProperties("studentResult")
+    private Student studentResult;
     /**
      * get result.
      * @return result
@@ -127,37 +127,41 @@ public class StudentResult {
      * quiz.
      * @return quiz
      */
-    public Quiz getQe() {
-        return new Quiz(qe.getQuizId(), qe.getTopicName(),
-                qe.getTopicDescription(), qe.getTimer()
+    public Quiz getQuiz() {
+        return new Quiz(quiz.getQuizId(), quiz.getTopicName(),
+                quiz.getTopicDescription(), quiz.getTimer()
                 );
     }
     /**
      * set question.
-     * @param qee question
+     * @param quizParam question
      */
-    public void setQe(final Quiz qee) {
-        this.qe = new Quiz(qee.getQuizId(), qee.getTopicName(),
-                qee.getTopicDescription(), qee.getTimer()
+    public void setQuiz(final Quiz quizParam) {
+        this.quiz = new Quiz(quizParam.getQuizId(), quizParam.getTopicName(),
+                quizParam.getTopicDescription(), quizParam.getTimer()
                 );
     }
     /**
      * student.
      * @return student
      */
-    public Student getSs() {
-        return new Student(ss.getUserId(), ss.getUserName(),
-                ss.getEmail(), ss.getGender(),
-                 ss.getPhoneNumber(), ss.getRole(), ss.getDateOfBirth());
+    public Student getStudentResult() {
+        return new Student(studentResult.getUserId(),
+                studentResult.getUserName(),
+                studentResult.getEmail(), studentResult.getGender(),
+                studentResult.getPhoneNumber(), studentResult.getRole(),
+                studentResult.getDateOfBirth());
     }
     /**
      * set student.
-     * @param sss student
+     * @param student student
      */
-    public void setSs(final Student sss) {
-        this.ss = new Student(sss.getUserId(), sss.getUserName(),
-                sss.getEmail(), sss.getGender(),
-                sss.getPhoneNumber(), sss.getRole(), sss.getDateOfBirth());
+    public void setStudentResult(final Student student) {
+        this.studentResult = new Student(student.getUserId(),
+                student.getUserName(),
+                student.getEmail(), student.getGender(),
+                student.getPhoneNumber(), student.getRole(),
+                student.getDateOfBirth());
     }
     /**
      * get.

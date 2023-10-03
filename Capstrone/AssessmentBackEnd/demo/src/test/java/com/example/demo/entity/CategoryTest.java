@@ -24,8 +24,8 @@ class CategoryTest {
         List<Quiz> quizzes=new ArrayList<>();
         quizzes.add(q1);
         quizzes.add(q2);
-        c.setQu(quizzes);
-        assertEquals(2,c.getQu().size());
+        c.setQuiz(quizzes);
+        assertEquals(2,c.getQuiz().size());
       
    }
    @Test

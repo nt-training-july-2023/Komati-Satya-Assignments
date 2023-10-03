@@ -75,7 +75,7 @@ public class QuestionServiceImp implements QuestionsService {
                            questionsDto.getOption4())) {
                 Questions question = new Questions();
                 question.setQid(questionsDto.getQuizId());
-                question.setQui(quizRepo.findById(
+                question.setQuiz(quizRepo.findById(
                         questionsDto.getQuizId()).get());
                 question.setCorrectOption(questionsDto.getCorrectOption());
                 question.setOption1(questionsDto.getOption1());
@@ -124,7 +124,7 @@ public class QuestionServiceImp implements QuestionsService {
         List<QuestionsDto> qd = new ArrayList<>();
         for (Questions questions : q) {
             QuestionsDto qu = new QuestionsDto();
-            qu.setQuizId(questions.getQui().getQuizId());
+            qu.setQuizId(questions.getQuiz().getQuizId());
             qu.setCorrectOption(questions.getCorrectOption());
             qu.setOption1(questions.getOption1());
             qu.setOption2(questions.getOption2());
@@ -243,7 +243,7 @@ public class QuestionServiceImp implements QuestionsService {
                 QuestionsDto questionsDto = new QuestionsDto();
                 Optional<Questions> q = questionsRepo.findByQuestion(name);
                 Questions questions = q.get();
-                questionsDto.setQuizId(questions.getQui().getQuizId());
+                questionsDto.setQuizId(questions.getQuiz().getQuizId());
                 questionsDto.setCorrectOption(questions.getCorrectOption());
                 questionsDto.setOption1(questions.getOption1());
                 questionsDto.setOption2(questions.getOption2());

@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import ErrorPage from "../../ErrorPage";
+import ErrorPage from "../../Components/ErrorPage";
 import QuizApi from "../../Service/QuizApi";
 import Navbar from "../../Components/Navbar/Navbar";
 import DisableBackButton from "../../Components/disableBackButton";
@@ -11,10 +10,8 @@ import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Swal from "sweetalert2";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import H1Component from "../../Components/HeadingComponent/H1component";
-import { FaTrash,FaPencilAlt ,FaList, FaPlusCircle} from "react-icons/fa";
+import { FaPlusCircle} from "react-icons/fa";
 import Table from "../../Components/TableComponent/Table";
-
-
 
 function Quiz({ setTrue }) {
   const { categoryId } = useParams();
@@ -45,9 +42,8 @@ function Quiz({ setTrue }) {
         SweetAlert.success("Successfully deleted data")
       }
       getQuiz();
-    }).
-      catch(error => {
-       
+    }).catch(error => {
+       console.log(error);
       })
   }
   const navigate = useNavigate();

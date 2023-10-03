@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,7 +68,8 @@ public class QuizController {
             LOGGER.info(Messages.FIND_QUIZ);
             String message = Messages.FIND_QUIZ;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message,quizDto);
+            Response errorResponse = new Response(errorCode,
+                    message, quizDto);
        return errorResponse;
     }
 
@@ -83,7 +83,8 @@ public class QuizController {
             LOGGER.info(Messages.FIND_ALLQUIZES);
             String message = Messages.FIND_ALLQUIZES;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message,quizDto);
+            Response errorResponse = new Response(errorCode,
+                    message, quizDto);
        return errorResponse;
     }
 
@@ -134,7 +135,8 @@ public class QuizController {
             LOGGER.info(Messages.FIND_QUIZBYCATEGORYID);
             String message = Messages.FIND_QUIZBYCATEGORYID;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message,quizDto);
+            Response errorResponse = new Response(errorCode,
+                    message, quizDto);
        return errorResponse;
     }
 
@@ -150,7 +152,8 @@ public class QuizController {
             LOGGER.info(Messages.FIND_QUIZ);
             String message = Messages.FIND_QUIZ;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message,quizDto);
+            Response errorResponse = new Response(errorCode,
+                    message, quizDto);
        return errorResponse;
     }
 }

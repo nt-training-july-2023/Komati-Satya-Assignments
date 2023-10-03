@@ -110,11 +110,11 @@ public class ResultServiceImp implements ResultService {
             studentResult.setDateAndTime(resultDto.getDateAndTime());
             Optional<Quiz> q = quizRepo.findQuizByName(resultDto.getQuizName());
             Quiz q1 = q.get();
-            studentResult.setQe(q1);
+            studentResult.setQuiz(q1);
             Optional<Student> student = studentRepo
                     .findByEmail(resultDto.getEmail());
             Student s = student.get();
-            studentResult.setSs(s);
+            studentResult.setStudentResult(s);
             studentResult.setResult(resultDto.getResult());
             studentResult.setMaxMarks(resultDto.getObtainMarks());
             studentResult.setResultId(resultDto.getResultId());
@@ -137,13 +137,13 @@ public class ResultServiceImp implements ResultService {
             if (r.isPresent()) {
                 ResultDto resultDto = new ResultDto();
                 StudentResult fr = r.get();
-                resultDto.setUserName(fr.getSs().getUserName());
-                resultDto.setEmail(fr.getSs().getEmail());
+                resultDto.setUserName(fr.getStudentResult().getUserName());
+                resultDto.setEmail(fr.getStudentResult().getEmail());
                 Optional<Category> cc = categoryRepo
                         .findById(fr.getCategoryId());
                 Category c = cc.get();
                 resultDto.setCategoryName(c.getCategoryName());
-                resultDto.setQuizName(fr.getQe().getTopicName());
+                resultDto.setQuizName(fr.getQuiz().getTopicName());
                 resultDto.setResult(fr.getResult());
                 resultDto.setDateAndTime(fr.getDateAndTime());
                 resultDto.setObtainMarks(fr.getMaxMarks());
@@ -188,10 +188,11 @@ public class ResultServiceImp implements ResultService {
             int n = sr.get(i).getCategoryId();
             Optional<Category> c = categoryRepo.findById(n);
             ResultDto resultDto = new ResultDto();
-            resultDto.setUserName(studentResult.getSs().getUserName());
-            resultDto.setEmail(studentResult.getSs().getEmail());
+            resultDto.setUserName(studentResult.getStudentResult().
+                    getUserName());
+            resultDto.setEmail(studentResult.getStudentResult().getEmail());
             resultDto.setCategoryName(c.get().getCategoryName());
-            resultDto.setQuizName(studentResult.getQe().getTopicName());
+            resultDto.setQuizName(studentResult.getQuiz().getTopicName());
             resultDto.setResult(studentResult.getResult());
             resultDto.setDateAndTime(studentResult.getDateAndTime());
             resultDto.setObtainMarks(studentResult.getMaxMarks());

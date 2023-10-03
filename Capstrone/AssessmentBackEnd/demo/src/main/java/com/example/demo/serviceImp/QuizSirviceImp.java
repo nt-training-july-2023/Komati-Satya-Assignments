@@ -58,7 +58,7 @@ public class QuizSirviceImp implements QuizService {
                 quiz.setTopicName(quizDto.getTopicName());
                 Category category = categoryRepo.
                         findById(quizDto.getCategoryId()).get();
-                quiz.setCate(category);
+                quiz.setCategory(category);
                 quiz.setTimer(quizDto.getTimer());
                 quizRepo.save(quiz);
                 LOGGER.info(Messages.SAVE_QUIZ);
@@ -87,7 +87,7 @@ public class QuizSirviceImp implements QuizService {
                 quizDto.setQuizId(quiz.getQuizId());
                 quizDto.setTopicDescription(quiz.getTopicDescription());
                 quizDto.setTopicName(quiz.getTopicName());
-                quizDto.setCategoryId(quiz.getCate().getCategoryId());
+                quizDto.setCategoryId(quiz.getCategory().getCategoryId());
                 quizDto.setTimer(quiz.getTimer());
                 LOGGER.info(Messages.FIND_QUIZ);
                 return Optional.of(quizDto);
@@ -127,7 +127,7 @@ public class QuizSirviceImp implements QuizService {
             qd.setQuizId(quiz.getQuizId());
             qd.setTopicDescription(quiz.getTopicDescription());
             qd.setTopicName(quiz.getTopicName());
-            qd.setCategoryId(quiz.getCate().getCategoryId());
+            qd.setCategoryId(quiz.getCategory().getCategoryId());
             qd.setTimer(quiz.getTimer());
             quizDto.add(qd);
         }
@@ -218,7 +218,7 @@ public class QuizSirviceImp implements QuizService {
                 quizDto.setQuizId(quiz.getQuizId());
                 quizDto.setTopicDescription(quiz.getTopicDescription());
                 quizDto.setTopicName(quiz.getTopicName());
-                quizDto.setCategoryId(quiz.getCate().getCategoryId());
+                quizDto.setCategoryId(quiz.getCategory().getCategoryId());
                 quizDto.setTimer(quiz.getTimer());
                 LOGGER.info(Messages.FIND_QUIZ);
                 return Optional.of(quizDto);

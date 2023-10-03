@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import './CategoryStyles.css'
-import ErrorPage from "../../ErrorPage";
+import ErrorPage from "../../Components/ErrorPage";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import DisableBackButton from "../../Components/disableBackButton";
 import CategoryApi from "../../Service/CategoryApi";
@@ -10,7 +9,7 @@ import Navbar from "../../Components/Navbar/Navbar";
 import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import H1Component from "../../Components/HeadingComponent/H1component";
-import { FaPlus, FaPencilAlt,FaTrash ,FaList, FaPlusCircle} from 'react-icons/fa';
+import { FaPlusCircle } from 'react-icons/fa';
 import Table from "../../Components/TableComponent/Table";
 
 function Category() {
@@ -32,12 +31,12 @@ function Category() {
       })
   };
   const deleteData = async (id) => {
-          SweetAlert.deleteData("category",deleteCategory,id)
+    SweetAlert.deleteData("category", deleteCategory, id)
   }
-  const deleteCategory=(id)=>{
+  const deleteCategory = (id) => {
     CategoryApi.deleteCategory(id).then(response => {
       if (response.data.message === "deleted category") {
-       SweetAlert.success("Deleted successfully")
+        SweetAlert.success("Deleted successfully")
       }
       getCategories();
     }).catch(error => {
@@ -62,11 +61,11 @@ function Category() {
   const handleViewTopic = (categoryName) => {
     { localStorage.setItem('categoryName', categoryName) }
   }
-  const rows=[
+  const rows = [
     'categoryName',
     'categoryDescription'
   ];
-  const columns=[
+  const columns = [
     'Category Name',
     'Category Description'
   ]
@@ -79,7 +78,7 @@ function Category() {
         {(verifyRole === 'Admin' || verifyRole === 'student') ?
           <>
             <H1Component className="addHead">Category Details</H1Component>
-            {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()} ><FaPlusCircle className="delete-icon"/> Add category</ButtonComponent>}
+            {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()} ><FaPlusCircle className="delete-icon" /> Add category</ButtonComponent>}
             <div className="searchContainer">
               <Input
                 className="search"
@@ -90,18 +89,17 @@ function Category() {
               />
               <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
               <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
-
             </div>
             {isLoading ? (
               <p>Loading...</p>
             ) : (
               <div className="tableContainer">
                 {category.length !== 0 ? (
-                    <Table columns={columns} data={category} rows={rows} category={true}
-                    deleteData ={deleteData}
+                  <Table columns={columns} data={category} rows={rows} category={true}
+                    deleteData={deleteData}
                     viewQuizes={handleViewTopic}
                     role={verifyRole}
-                    isTrue={true}/>
+                    isTrue={true} />
                 ) : (
                   <h1 className="no-category">No Category</h1>
                 )}
@@ -109,7 +107,6 @@ function Category() {
             )}
           </> : <ErrorPage />}
       </div>
-
     </div>
   );
 }

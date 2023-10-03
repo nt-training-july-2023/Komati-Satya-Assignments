@@ -7,7 +7,7 @@
   font-size: 20px;
   cursor: pointer;
   margin-bottom: 10px; 
-
+  width: auto;
 }
 
 .tableContainer {
@@ -122,14 +122,16 @@
 }
 .delete-icon{
   font-Size: 12px;
+ 
 }
 .update-icon{
-  font-Size: 12px
+  font-Size: 12px;
+  vertical-align: middle;
 }
 
 @media (max-width: 1000px) {
   .addButton {
-    width: 100%;
+  
     float: none;
     margin-right: 0;
     margin-bottom: 10px;

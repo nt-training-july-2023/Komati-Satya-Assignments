@@ -1,9 +1,9 @@
 import React from "react";
 import Swal from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
-import ErrorPage from "../../ErrorPage";
+import ErrorPage from "../ErrorPage";
 import DisableBackButton from "../disableBackButton";
-import { FaSignOutAlt } from "react-icons/fa";
+import { FaChartBar, FaList, FaPoll, FaSignOutAlt, FaUser, FaUserGraduate, FaUsers } from "react-icons/fa";
 
 const Navbar = () => {
     const location = useLocation();
@@ -49,16 +49,16 @@ const Navbar = () => {
             {(verifyRole === 'Admin' || verifyRole === 'student') ?
                 <>
                     <ul className="nav-bar">
-                        <li className="aa"><a className={location.pathname === '/UserDashBoard' ? 'active' : ''} href="/UserDashBoard">Profile</a></li>
-                        <li className="aa"><a className={location.pathname === '/Category' ? 'active' : ''} href="/Category">Categories</a></li>
+                        <li className="aa"><a className={location.pathname === '/UserDashBoard' ? 'active' : ''} href="/UserDashBoard">Profile <FaUser className="profile-icon"/></a></li>
+                        <li className="aa"><a className={location.pathname === '/Category' ? 'active' : ''} href="/Category">Categories <FaList className="category-icon"/></a></li>
                         {verifyRole === 'Admin' && <>
-                            <li className="aa"><a className={location.pathname === '/Students' ? 'active' : ''} href="/Students">Students</a></li>
+                            <li className="aa"><a className={location.pathname === '/Students' ? 'active' : ''} href="/Students">Students <FaUsers className="users-icon"/></a></li>
                         </>}
                         {verifyRole == 'Admin' && <>
-                            <li className="aa"><a className={location.pathname === '/Result' ? 'active' : ''} href="/Result">Result</a></li>
+                            <li className="aa"><a className={location.pathname === '/Result' ? 'active' : ''} href="/Result">Result <FaChartBar className="users-icon"/></a></li>
                         </>}
                         {verifyRole == 'student' && <>
-                            <li className="aa"><a className={location.pathname === `/Result/${verifyUserId}` ? 'active' : ''} href={`/Result/${verifyUserId}`}>Result</a></li>
+                            <li className="aa"><a className={location.pathname === `/Result/${verifyUserId}` ? 'active' : ''} href={`/Result/${verifyUserId}`}>Result <FaChartBar className="users-icon"/></a></li>
                         </>}
                         <li><a className="logout" href="#" onClick={logoutPage}>Logout <FaSignOutAlt className="logout-icon"/></a></li>
                     </ul>

@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,7 +66,8 @@ public class QuestionsController {
             List<QuestionsDto> questionsDto = questionsService.getQuestions();
             String message = Messages.FIND_ALLQUESTION;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message, questionsDto);
+            Response errorResponse = new Response(errorCode,
+                    message, questionsDto);
        return errorResponse;
     }
 
@@ -117,7 +117,8 @@ public class QuestionsController {
             LOGGER.info(Messages.FIND_QUESTIONBYQUIZID);
             String message = Messages.FIND_QUESTIONBYQUIZID;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message, questionsDto);
+            Response errorResponse = new Response(errorCode,
+                    message, questionsDto);
        return errorResponse;
     }
 
@@ -134,7 +135,8 @@ public class QuestionsController {
             LOGGER.info(Messages.FIND_QUESTION);
             String message = Messages.FIND_QUESTION;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message, questionsDto);
+            Response errorResponse = new Response(errorCode,
+                    message, questionsDto);
        return errorResponse;
     }
 }

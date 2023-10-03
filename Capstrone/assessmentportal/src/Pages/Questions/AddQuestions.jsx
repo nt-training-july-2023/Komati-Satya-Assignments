@@ -5,9 +5,10 @@ import QuestionsApi from "../../Service/QuestionsApi";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
-import ErrorPage from "../../ErrorPage";
+import ErrorPage from "../../Components/ErrorPage";
 import LabelComponent from "../../Components/LabelComponent/LabelComponent";
 import H1Component from "../../Components/HeadingComponent/H1component";
+import TextareaComponent from "../../Components/Inputs/TextareaComponent";
 
 const AddQuestions = () => {
     const verifyRole = localStorage.getItem('userRole');
@@ -23,7 +24,6 @@ const AddQuestions = () => {
         correctOption: "",
         questionId: "",
         quizId: ""
-
     });
     const [questionData2, setQuestionData2] = useState({
         question: "",
@@ -33,14 +33,12 @@ const AddQuestions = () => {
         option4: "",
         correctOption: "",
         quizId: quizId
-
     });
-   
+
     const navigate = useNavigate();
 
     const changeData = (e) => {
         setQuestionData2({ ...questionData2, [e.target.name]: e.target.value });
-
     }
     useEffect(() => {
         if (question) {
@@ -68,91 +66,85 @@ const AddQuestions = () => {
                         correctOption
                     });
                 })
-               
+
         }
     }, [quizId]);
-    const showErrors=(e)=>{
+    const showErrors = (e) => {
         e.preventDefault();
-            const validationErrors = {};
+        const validationErrors = {};
 
-            if (!questionData2.question) {
-                validationErrors.question = 'queation name Required';
-            }
-            if (!questionData2.option1) {
-                validationErrors.option1 = 'option1 Required';
-            }
-            if (!questionData2.option2) {
-                validationErrors.option2 = 'option2 Required';
-            }
-            if (!questionData2.option3) {
-                validationErrors.option3 = 'option3 Required';
-            }
-            if (!questionData2.option4) {
-                validationErrors.option4 = 'option4 Required';
-            }
-            if (!questionData2.correctOption) {
-                validationErrors.correctOption = 'correctOption Required';
+        if (!questionData2.question) {
+            validationErrors.question = 'queation name Required';
+        }
+        if (!questionData2.option1) {
+            validationErrors.option1 = 'option1 Required';
+        }
+        if (!questionData2.option2) {
+            validationErrors.option2 = 'option2 Required';
+        }
+        if (!questionData2.option3) {
+            validationErrors.option3 = 'option3 Required';
+        }
+        if (!questionData2.option4) {
+            validationErrors.option4 = 'option4 Required';
+        }
+        if (!questionData2.correctOption) {
+            validationErrors.correctOption = 'correctOption Required';
+        }
+
+        if (Object.keys(validationErrors).length > 0) {
+            setErrors(validationErrors)
+            if (validationErrors) {
+                SweetAlert.fieldsRequired("all data required")
             }
 
-            if (Object.keys(validationErrors).length > 0) {
-                setErrors(validationErrors)
-                if (validationErrors) {
-                    SweetAlert.fieldsRequired("all data required")
-                }
-
-            }
+        }
     }
     const addQuestionData = async (e) => {
         if (question) {
-                showErrors(e)
-                setErrors({});
-                QuestionsApi.updateQuestion(questionData.questionId, questionData2)
-                    .then((response) => {
-                      
-                        if (response.data.message=== "question updated successfully") {
-                           SweetAlert.success("Question updated successfully")
-                            navigate(`/Questions/${questionData.quizId}`);
-                        }
-                    }).catch((error)=>{
-                        if (error.response.data.message=="Question already exists") {
-                           SweetAlert.fieldsRequired("Question already present")
-                        }
-                        if(error.response.data.message === "Options must be unique"){
-                            SweetAlert.fieldsRequired("Options must be unique");
-                        }
-                    })
+            showErrors(e)
+            setErrors({});
+            QuestionsApi.updateQuestion(questionData.questionId, questionData2)
+                .then((response) => {
 
-            }
-        
-        else {
-               showErrors(e)
-                setErrors({});
-                QuestionsApi.addQuestion(questionData2).then(response => {
-                    if (response.data.message === "question added successfully") {
-                        SweetAlert.success("Question added successfully");
-                        navigate(`/Questions/${quizId}`);
-
-                    } 
-                }).catch(error => {
-                    console.log(error)
-                    if (error.response.message === "Question already exists") {
-                        SweetAlert.fieldsRequired("Question already exist");
+                    if (response.data.message === "question updated successfully") {
+                        SweetAlert.success("Question updated successfully")
+                        navigate(`/Questions/${questionData.quizId}`);
                     }
-                    if(error.response.data.message === "Options must be unique"){
+                }).catch((error) => {
+                    if (error.response.data.message == "Question already exists") {
+                        SweetAlert.fieldsRequired("Question already present")
+                    }
+                    if (error.response.data.message === "Options must be unique") {
                         SweetAlert.fieldsRequired("Options must be unique");
                     }
                 })
-            
+        }
+        else {
+            showErrors(e)
+            setErrors({});
+            QuestionsApi.addQuestion(questionData2).then(response => {
+                if (response.data.message === "question added successfully") {
+                    SweetAlert.success("Question added successfully");
+                    navigate(`/Questions/${quizId}`);
+                }
+            }).catch(error => {
+                if (error.response.message === "Question already exists") {
+                    SweetAlert.fieldsRequired("Question already exist");
+                }
+                if (error.response.data.message === "Options must be unique") {
+                    SweetAlert.fieldsRequired("Options must be unique");
+                }
+            })
+
         }
     }
-
     const cancelAddQuestion = () => {
-        if(question)
-        SweetAlert.cancel("Question?",navigate,`/Questions/${questionData.quizId}`)
+        if (question)
+            SweetAlert.cancel("Question?", navigate, `/Questions/${questionData.quizId}`)
         else
-        SweetAlert.cancel("Question?",navigate,`/Questions/${quizId}`)
+            SweetAlert.cancel("Question?", navigate, `/Questions/${quizId}`)
     }
-
     return (
         <div className="login3">
 
@@ -163,7 +155,7 @@ const AddQuestions = () => {
                     <form>
                         <div className="signin4">
                             <LabelComponent className="head3">Question</LabelComponent><br /><br />
-                            <Input
+                            <TextareaComponent
                                 className="data3"
                                 type="text"
                                 name="question"

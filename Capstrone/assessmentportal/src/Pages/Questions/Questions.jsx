@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
-import ErrorPage from "../../ErrorPage";
+import ErrorPage from "../../Components/ErrorPage";
 import QuestionsApi from "../../Service/QuestionsApi";
 import Navbar from "../../Components/Navbar/Navbar";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
@@ -10,6 +10,7 @@ import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import H1Component from "../../Components/HeadingComponent/H1component";
 import { FaPlusCircle } from "react-icons/fa";
 import Table from "../../Components/TableComponent/Table";
+
 const Questions = () => {
   const { quizId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
@@ -24,27 +25,22 @@ const Questions = () => {
   }, [quizId]);
   const getQuestions = async () => {
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
-      setQuestions(response.data.data|| []);
+      setQuestions(response.data.data || []);
       setOriginalQuestions(response.data.data || []);
     }).finally(() => {
       setIsLoading(false);
     })
   };
-
   const deleteData = async (id) => {
-    SweetAlert.deleteData("Question",deleteQuestion,id)
+    SweetAlert.deleteData("Question", deleteQuestion, id)
   };
-  const deleteQuestion=(id)=>{
+  const deleteQuestion = (id) => {
     QuestionsApi.deleteQuestion(id).then(response => {
       if (response.data.message === "question deleted successfully") {
         SweetAlert.success("Question deleted successfully")
       }
       getQuestions();
     })
-      .catch(error => {
-       
-        getQuestions();
-      })
   }
   const navigate = useNavigate();
   const addData = () => {
@@ -60,7 +56,7 @@ const Questions = () => {
     setQuestions(originalQuestions);
     setText("");
   }
-  const rows =[
+  const rows = [
     'question',
     'option1',
     'option2',
@@ -68,14 +64,14 @@ const Questions = () => {
     'option4',
     'correctOption'
   ]
-  const columns =[
+  const columns = [
     'Question',
     'Option1',
     'Option2',
     'Option3',
     'Option4',
     'Correct Option',
-    
+
   ]
   return (
     <div className="categoryData">
@@ -83,7 +79,7 @@ const Questions = () => {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <H1Component className="addHead">Questions Details</H1Component>
-          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}><FaPlusCircle className="add-icon"/> Add Question</ButtonComponent>}
+          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}><FaPlusCircle className="add-icon" /> Add Question</ButtonComponent>}
           <div className="searchContainer">
             <Input
               className="search"
@@ -101,10 +97,10 @@ const Questions = () => {
           ) : (
             <div className="tableContainer">
               {questions.length !== 0 ? (
-              <Table columns={columns} data={questions} rows={rows} question={true}
-                deleteData ={deleteData}
-                role={verifyRole}
-                isTrue={true}/>
+                <Table columns={columns} data={questions} rows={rows} question={true}
+                  deleteData={deleteData}
+                  role={verifyRole}
+                  isTrue={true} />
               ) : (
                 <H1Component className="no-questions">No Questions</H1Component>
               )}

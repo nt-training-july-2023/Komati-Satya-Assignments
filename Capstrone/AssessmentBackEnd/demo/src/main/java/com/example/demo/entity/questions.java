@@ -88,24 +88,24 @@ public class Questions {
      */
     @ManyToOne
     @JoinColumn(name = "qz_fk")
-    @JsonIgnoreProperties("que")
-    private Quiz qui;
+    @JsonIgnoreProperties("questions")
+    private Quiz quiz;
     /**
      * get.
      * @return quiz
      */
-    public Quiz getQui() {
-        return new Quiz(qui.getQuizId(), qui.getTopicName(),
-                qui.getTopicDescription(), qui.getTimer()
+    public Quiz getQuiz() {
+        return new Quiz(quiz.getQuizId(), quiz.getTopicName(),
+                quiz.getTopicDescription(), quiz.getTimer()
                 );
     }
     /**
      * set.
-     * @param quii quiz
+     * @param quizParam quiz
      */
-    public void setQui(final Quiz quii) {
-        this.qui = new Quiz(quii.getQuizId(), quii.getTopicName(),
-                quii.getTopicDescription(), quii.getTimer()
+    public void setQuiz(final Quiz quizParam) {
+        this.quiz = new Quiz(quizParam.getQuizId(), quizParam.getTopicName(),
+                quizParam.getTopicDescription(), quizParam.getTimer()
                 );
     }
 }

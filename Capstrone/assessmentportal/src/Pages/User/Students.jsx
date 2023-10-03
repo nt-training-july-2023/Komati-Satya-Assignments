@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
 import UserApi from "../../Service/UserApi";
-
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Input from "../../Components/Inputs/Input";
 import Navbar from "../../Components/Navbar/Navbar";
 import H1Component from "../../Components/HeadingComponent/H1component";
 import Table from "../../Components/TableComponent/Table";
+import ErrorPage from "../../Components/ErrorPage";
 
 function Student() {
   const verifyRole = localStorage.getItem('userRole');
@@ -23,7 +22,7 @@ function Student() {
       setOriginalStudent(response.data.data || []);
 
     }).catch(error => {
-      
+      console.log(error);
     }).finally(() => {
       setIsLoading(false);
     })
@@ -39,7 +38,6 @@ function Student() {
     setSearchText("");
   }
   const rows=[
-   
     'userName',
     'userId',
     'email',
@@ -48,7 +46,6 @@ function Student() {
     'dateOfBirth'
   ]
   const columns=[
-   
     'User Name',
     'User Id',
     'Email',
@@ -60,8 +57,8 @@ function Student() {
   return (
     <div className="categoryData">
       <Navbar />
-      {verifyRole === 'Admin' &&
-        <>
+      {verifyRole === 'Admin' ?
+        (<>
           <H1Component className="addHead">Students Details</H1Component>
           <div className="searchContainer">
             <Input
@@ -87,7 +84,7 @@ function Student() {
               )}
             </div>
           )}
-        </>}
+        </>):(<ErrorPage/>)}
     </div>
   );
 }

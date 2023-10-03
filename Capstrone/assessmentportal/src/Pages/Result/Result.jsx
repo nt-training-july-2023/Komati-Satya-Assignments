@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import ErrorPage from "../../ErrorPage";
+import ErrorPage from "../../Components/ErrorPage";
 import FinalResultApi from "../../Service/FinalResultApi";
-
 import Navbar from "../../Components/Navbar/Navbar";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Input from "../../Components/Inputs/Input";
 import DisableBackButton from "../../Components/disableBackButton";
 import H1Component from "../../Components/HeadingComponent/H1component";
 import Table from "../../Components/TableComponent/Table";
-import Questions from "../Questions/Questions";
 
 const Result = () => {
   const verifyRole = localStorage.getItem('userRole');

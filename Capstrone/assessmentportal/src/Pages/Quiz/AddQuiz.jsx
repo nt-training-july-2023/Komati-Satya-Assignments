@@ -5,10 +5,9 @@ import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import TextareaComponent from "../../Components/Inputs/TextareaComponent";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
-import ErrorPage from "../../ErrorPage";
+import ErrorPage from "../../Components/ErrorPage";
 import LabelComponent from "../../Components/LabelComponent/LabelComponent";
 import H1Component from "../../Components/HeadingComponent/H1component";
-
 
 const AddQuiz = () => {
     const verifyRole = localStorage.getItem('userRole');
@@ -38,12 +37,12 @@ const AddQuiz = () => {
                         categoryId
                     });
                 })
-               
+
         }
     }, [quizId]);
-    const showErrors=(e)=>{
+    const showErrors = (e) => {
         e.preventDefault();
-         const validationErrors = {};
+        const validationErrors = {};
 
         if (!quizData.topicName) {
             validationErrors.topicName = 'quiz name Required';
@@ -65,51 +64,51 @@ const AddQuiz = () => {
     }
     const addQuizData = async (e) => {
         if (quizId) {
-                showErrors(e)
-                setErrors({});
-                QuizApi.updateQuiz(quizId, quizData)
-                    .then((response) => {
-                      
-                        if (response.data.message === "quiz updated successfully") {
-                            SweetAlert.success("Successfully updated data")
-                            navigate(`/Quiz/${quizData.categoryId}`)
-                        }
-                    }).catch((error)=>{
-                       
-                        if (error.response.data.message === "Quiz already exist") {
-                           SweetAlert.fieldsRequired("Quiz already present")
-                        }
-                        if(error.response.status === 400){
-                            SweetAlert.fieldsRequired("Time limit greaterthan 0")
-                        }
-                    })
-            }
-        
-        else {
-        
-               showErrors(e);
-                setErrors({});
-                QuizApi.addQuiz(quizData).then(response => {
-                    if (response.data.message === "succcessfully add the data") {
-                        SweetAlert.success("Quiz added successfully");
-                        navigate(`/Quiz/${quizData.categoryId}`);
+            showErrors(e)
+            setErrors({});
+            QuizApi.updateQuiz(quizId, quizData)
+                .then((response) => {
 
-                    } 
-                }).catch(error => {
-                    console.log(error)
-                    if (error.response.status === 302) {
-                        SweetAlert.fieldsRequired("Quiz already exist")
+                    if (response.data.message === "quiz updated successfully") {
+                        SweetAlert.success("Successfully updated data")
+                        navigate(`/Quiz/${quizData.categoryId}`)
                     }
-                    if(error.response.status === 400){
-                        SweetAlert.fieldsRequired(error.response.data.message)
+                }).catch((error) => {
+
+                    if (error.response.data.message === "Quiz already exist") {
+                        SweetAlert.fieldsRequired("Quiz already present")
+                    }
+                    if (error.response.status === 400) {
+                        SweetAlert.fieldsRequired("Time limit greaterthan 0")
                     }
                 })
-            }
-        
+        }
+
+        else {
+
+            showErrors(e);
+            setErrors({});
+            QuizApi.addQuiz(quizData).then(response => {
+                if (response.data.message === "succcessfully add the data") {
+                    SweetAlert.success("Quiz added successfully");
+                    navigate(`/Quiz/${quizData.categoryId}`);
+
+                }
+            }).catch(error => {
+                console.log(error)
+                if (error.response.status === 302) {
+                    SweetAlert.fieldsRequired("Quiz already exist")
+                }
+                if (error.response.status === 400) {
+                    SweetAlert.fieldsRequired(error.response.data.message)
+                }
+            })
+        }
+
     }
 
     const cancelAddQuiz = () => {
-        SweetAlert.cancel("quiz",navigate,`/Quiz/${quizData.categoryId}`)
+        SweetAlert.cancel("quiz", navigate, `/Quiz/${quizData.categoryId}`)
     }
 
     return (

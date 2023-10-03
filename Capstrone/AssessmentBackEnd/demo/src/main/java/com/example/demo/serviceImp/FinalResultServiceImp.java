@@ -12,7 +12,6 @@ import com.example.demo.dto.ResultDto;
 import com.example.demo.entity.FinalRes;
 
 import com.example.demo.exceptions.AllNotFoundException;
-import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.CategoryRepo;
 import com.example.demo.repository.FinalResultRepo;
 import com.example.demo.repository.StudentResultRepo;
@@ -53,12 +52,10 @@ public class FinalResultServiceImp implements FinalResService {
     @Override
     public final List<ResultDto> getById(final int id) {
         if (finalResultRepo.findAll().size() != 0) {
-           
                 List<FinalRes> finalRes = finalResultRepo.getByUserId(id);
                 List<ResultDto> resultDto = convertToDto(finalRes);
                 LOGGER.info(Messages.FIND_RESULT);
                 return resultDto;
-          
         } else {
             LOGGER.error(ErrorMessages.NO_USER);
             throw new AllNotFoundException(ErrorMessages.NO_USER);

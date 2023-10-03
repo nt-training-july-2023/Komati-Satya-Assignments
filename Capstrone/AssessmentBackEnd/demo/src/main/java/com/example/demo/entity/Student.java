@@ -198,7 +198,7 @@ public class Student {
     @OneToMany(targetEntity = StudentResult.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "stu_id", referencedColumnName = "userId")
     @JsonIgnoreProperties("Student")
-    private List<StudentResult> rs;
+    private List<StudentResult> studentResult;
     /**
      * Constructor.
      * @param userid userId

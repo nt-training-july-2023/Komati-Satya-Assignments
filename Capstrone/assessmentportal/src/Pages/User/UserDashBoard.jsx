@@ -1,23 +1,17 @@
 import React from "react";
 import './AdminStyles.css';
 import { useNavigate} from "react-router-dom";
-
 import { useEffect, useState } from "react";
-
-
 import Navbar from "../../Components/Navbar/Navbar";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
-import ErrorPage from "../../ErrorPage";
+import ErrorPage from "../../Components/ErrorPage";
 import UserApi from "../../Service/UserApi";
 import DisableBackButton from "../../Components/disableBackButton";
 import H2Component from "../../Components/HeadingComponent/H2component";
-import Table from "../../Components/TableComponent/Table";
 import LabelComponent from "../../Components/LabelComponent/LabelComponent";
 import userImage from "../../assets/Profile/userImage.png";
 
-
 const UserDashBoard = () => {
-
   const navigate = useNavigate();
   const [student, setStudent] = useState([]);
   const verifyUserId = localStorage.getItem('userId');
@@ -30,12 +24,9 @@ const UserDashBoard = () => {
    if(verifyUserId){
     UserApi.getUserById(verifyUserId).then(response => {
       setStudent(response.data.data || []);
-      console.log(response)
     })
   }
   };
-  console.log(student)
-
   const verifyRole = localStorage.getItem('userRole');
   const UpdateData = () => {
     navigate(`/UserUpdate/${verifyUserId}`)

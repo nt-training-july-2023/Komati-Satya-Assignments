@@ -5,7 +5,7 @@ import UserApi from '../../Service/UserApi';
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import Input from '../../Components/Inputs/Input';
 import ButtonComponent from '../../Components/Inputs/ButtonComponent';
-import ErrorPage from '../../ErrorPage';
+import ErrorPage from "../../Components/ErrorPage";
 import LabelComponent from '../../Components/LabelComponent/LabelComponent';
 import H1Component from '../../Components/HeadingComponent/H1component';
 
@@ -50,7 +50,7 @@ const UserUpdate = () => {
         }
       }).catch((error)=>{
         if(error.response.status === 400){
-          SweetAlert.fieldsRequired("Correct Data required")
+          SweetAlert.fieldsRequired(error.response.data.message)
       }
       })
   };
@@ -96,7 +96,6 @@ const UserUpdate = () => {
                     disabled
                   />
                 </div>
-
                 <div>
                   <LabelComponent className="head2">User Name:</LabelComponent>
                   <Input
@@ -153,7 +152,6 @@ const UserUpdate = () => {
                     }
                   />
                 </div>
-
                 <ButtonComponent className="btn2" type="button" onClick={handleUpdateCategory}>
                   Update 
                 </ButtonComponent>

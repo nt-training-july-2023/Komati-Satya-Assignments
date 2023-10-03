@@ -147,10 +147,10 @@ class ResultServiceImpTest {
         s.setResultId(1);
         Quiz q=new Quiz();
         q.setTopicName("variables");
-        s.setQe(q);
+        s.setQuiz(q);
         Student ss=new Student();
         ss.setUserId(18);
-        s.setSs(ss);
+        s.setStudentResult(ss);
         Category c=new Category();
         c.setCategoryId(13);
         
@@ -159,7 +159,7 @@ class ResultServiceImpTest {
         when(categoryRepo.findById(13)).thenReturn(Optional.of(c));
         s.setCategoryId(13);
         Optional<ResultDto> resultDto=resultService.getResult(s.getResultId());
-       assertEquals(resultDto.get().getQuizName(),s.getQe().getTopicName());    
+       assertEquals(resultDto.get().getQuizName(),s.getQuiz().getTopicName());    
     }
     @Test
    void testGetAllResultNoUserFound() {
@@ -178,10 +178,10 @@ class ResultServiceImpTest {
         s.setResultId(1);
         Quiz q=new Quiz();
         q.setTopicName("variables");
-        s.setQe(q);
+        s.setQuiz(q);
         Student ss=new Student();
         ss.setUserId(18);
-        s.setSs(ss);
+        s.setStudentResult(ss);
         Category c=new Category();
         c.setCategoryName("java");
         c.setCategoryId(13);

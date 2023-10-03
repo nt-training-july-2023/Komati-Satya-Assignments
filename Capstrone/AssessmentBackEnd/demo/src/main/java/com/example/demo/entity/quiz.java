@@ -102,7 +102,7 @@ public class Quiz {
      * get question.
      * @return category
      */
-    public Category getCate() {
+    public Category getCategory() {
         return new Category(category.getCategoryId(),
                 category.getCategoryName(),
                 category.getCategoryDescription());
@@ -111,7 +111,7 @@ public class Quiz {
      * get question.
      * @param categoryy category
      */
-    public void setCate(final Category categoryy) {
+    public void setCategory(final Category categoryy) {
         this.category = new Category(categoryy.getCategoryId(),
                 categoryy.getCategoryName(),
                 categoryy.getCategoryDescription());
@@ -120,28 +120,28 @@ public class Quiz {
      * get question.
      * @return list
      */
-    public List<StudentResult> getSe() {
+    public List<StudentResult> getStudentResult() {
         return new ArrayList<>(studentResult);
     }
     /**
      * get question.
      * @param student student result
      */
-    public void setSe(final List<StudentResult> student) {
+    public void setStudentResult(final List<StudentResult> student) {
         this.studentResult = new ArrayList<>(student);
     }
     /**
      * get question.
      * @return question question
      */
-    public List<Questions> getQue() {
+    public List<Questions> getQuestions() {
         return new ArrayList<>(questions);
     }
     /**
      * set question.
      * @param question question
      */
-    public void setQue(final List<Questions> question) {
+    public void setQuestions(final List<Questions> question) {
         this.questions = new ArrayList<>(question);
     }
     /**
@@ -164,7 +164,7 @@ public class Quiz {
      */
     @ManyToOne
     @JoinColumn(name = "c_fk")
-    @JsonIgnoreProperties("qu")
+    @JsonIgnoreProperties("quiz")
     private Category category;
     /**
      * one to many relationship with quiz.

@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -70,7 +69,8 @@ public class StudentController {
             LOGGER.info(Messages.FIND_STUDENTBYID);
             String message = Messages.FIND_STUDENTBYID;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message, studentDto);
+            Response errorResponse = new Response(errorCode,
+                    message, studentDto);
        return errorResponse;
     }
 
@@ -87,7 +87,8 @@ public class StudentController {
             LOGGER.info(Messages.LOGIN_STUDENT);
             String message = Messages.LOGIN_STUDENT;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message, studentDto);
+            Response errorResponse = new Response(errorCode,
+                    message, studentDto);
        return errorResponse;
     }
 
@@ -101,7 +102,8 @@ public class StudentController {
             LOGGER.info(Messages.FIND_ALLSTUDENT);
             String message = Messages.FIND_ALLSTUDENT;
             Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message, studentDto);
+            Response errorResponse = new Response(errorCode,
+                    message, studentDto);
        return errorResponse;
     }
 

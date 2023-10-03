@@ -1,7 +1,9 @@
 import React from "react";
 const ErrorPage=()=>{
     return(
-    <h2>Page Not Found</h2>
+    <div className="error">
+    <h2 className="errorpage">Page Not Found</h2>
+    </div>
     );
 }
 

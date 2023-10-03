@@ -48,7 +48,7 @@ class QuizSirviceImpTest {
         when(categoryRepo.findById(quizDto.getCategoryId())).thenReturn(Optional.of(c));
         when(quizRepo.findQuizByName(quizDto.getTopicName())).thenReturn(Optional.empty());
         Quiz quiz=new Quiz();
-        quiz.setCate(c);
+        quiz.setCategory(c);
         quiz.setQuizId(quizDto.getQuizId());
         quiz.setTopicDescription(quizDto.getTopicDescription());
         quiz.setTopicName(quizDto.getTopicName());
@@ -79,12 +79,12 @@ class QuizSirviceImpTest {
     public void testGetQuizById() {
         Quiz q=new Quiz(1,"variables","java variables",60);   
         Category c=new Category(10,"java","java basics");
-        q.setCate(c);
+        q.setCategory(c);
         
         when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
         when(quizRepo.findById(q.getQuizId())).thenReturn(Optional.of(q));
         Optional<QuizDto> quizDto=quizService.getQuiz(q.getQuizId());
-        assertEquals(q.getCate().getCategoryId(),quizDto.get().getCategoryId());
+        assertEquals(q.getCategory().getCategoryId(),quizDto.get().getCategoryId());
         assertEquals(q.getTopicName(),quizDto.get().getTopicName());
         assertEquals(q.getTopicDescription(),quizDto.get().getTopicDescription());
  
@@ -113,7 +113,7 @@ class QuizSirviceImpTest {
         List<Quiz> quiz=new ArrayList<>();
         Quiz q=new Quiz(1,"variables","java variables",60);   
         Category c=new Category(10,"java","java basics");
-        q.setCate(c);
+        q.setCategory(c);
         quiz.add(q);
         
         when(quizRepo.findAll()).thenReturn(quiz);
@@ -136,10 +136,10 @@ class QuizSirviceImpTest {
     public void testUpdateQuiz() {
         Quiz q=new Quiz(1,"variables","java variables",60);   
         Category c=new Category(10,"java","java basics");
-        q.setCate(c);
+        q.setCategory(c);
         quizRepo.save(q);
         QuizDto quizDto=new QuizDto();
-        quizDto.setCategoryId(q.getCate().getCategoryId());
+        quizDto.setCategoryId(q.getCategory().getCategoryId());
         quizDto.setQuizId(q.getQuizId());
         quizDto.setTopicName(q.getTopicName());
         quizDto.setTopicDescription(q.getTopicDescription());
@@ -178,7 +178,7 @@ class QuizSirviceImpTest {
     public void testDeleteQuiz() {
         Quiz q=new Quiz(1,"variables","java variables",60);   
         Category c=new Category(10,"java","java basics");
-        q.setCate(c);
+        q.setCategory(c);
         quizRepo.save(q);
         
         when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
@@ -206,9 +206,9 @@ class QuizSirviceImpTest {
     public void testQuizByCategoryId() {
         Quiz q1=new Quiz(1,"variables","java variables",60);   
         Category c=new Category(10,"java","java basics");
-        q1.setCate(c);
+        q1.setCategory(c);
         Quiz q2=new Quiz(2,"arrays","java arrays",60);
-        q2.setCate(c);
+        q2.setCategory(c);
         List<Quiz> quiz=new ArrayList<>();
         quiz.add(q1);
         quiz.add(q2);
@@ -234,13 +234,13 @@ class QuizSirviceImpTest {
      void testFindQuizByQuizName() {
          Quiz q=new Quiz(1,"variables","java variables",60);   
          Category c=new Category(10,"java","java basics");
-         q.setCate(c);
+         q.setCategory(c);
          
          when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
          when(quizRepo.findQuizByName(q.getTopicName())).thenReturn(Optional.of(q));
          Optional<QuizDto> quizDto=quizService.findQuizByName(q.getTopicName());
          assertTrue(quizDto.isPresent());    
-         assertEquals(q.getCate().getCategoryId(),quizDto.get().getCategoryId());
+         assertEquals(q.getCategory().getCategoryId(),quizDto.get().getCategoryId());
          assertEquals(q.getTopicName(),quizDto.get().getTopicName());
          assertEquals(q.getTopicDescription(),quizDto.get().getTopicDescription());
          assertEquals(q.getQuizId(),quizDto.get().getQuizId());

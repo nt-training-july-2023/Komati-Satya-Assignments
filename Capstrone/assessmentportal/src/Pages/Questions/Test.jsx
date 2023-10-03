@@ -9,9 +9,8 @@ import ResultApi from "../../Service/ResultApi";
 import DisableBackButton from "../../Components/disableBackButton";
 import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
-import ErrorPage from "../../ErrorPage";
+import ErrorPage from "../../Components/ErrorPage";
 import H1Component from "../../Components/HeadingComponent/H1component";
-
 
 function Test({ isRefresh, setTrue }) {
   const navigate = useNavigate();
@@ -20,12 +19,10 @@ function Test({ isRefresh, setTrue }) {
   const [questionCounter, setQuestionCounter] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [quiz, setQuiz] = useState([]);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [questions, setQuestions] = useState([]);
   const [userScore, setUserScore] = useState(0);
   const { quizId } = useParams();
   const [selectedOptions, setSelectedOptions] = useState({})
-    
   const [quizSubmitted, setQuizSubmitted] = useState(false);
   const [resultt, setResult] = useState("");
   const verifyEmail = localStorage.getItem('userEmail');
@@ -65,7 +62,7 @@ function Test({ isRefresh, setTrue }) {
       setIsLoading(false);
     })
   }
-
+  
   useEffect(() => {
     getQuestions();
   }, [quizId]);
