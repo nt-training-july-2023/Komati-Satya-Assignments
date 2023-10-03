@@ -1,7 +1,6 @@
 import './UserUpdate.css';
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-
 import UserApi from '../../Service/UserApi';
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import Input from '../../Components/Inputs/Input';

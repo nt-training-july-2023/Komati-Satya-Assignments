@@ -96,12 +96,12 @@ const AddQuiz = () => {
 
                     } 
                 }).catch(error => {
-                  
+                    console.log(error)
                     if (error.response.status === 302) {
                         SweetAlert.fieldsRequired("Quiz already exist")
                     }
                     if(error.response.status === 400){
-                        SweetAlert.fieldsRequired("Time limit greaterthan 0")
+                        SweetAlert.fieldsRequired(error.response.data.message)
                     }
                 })
             }

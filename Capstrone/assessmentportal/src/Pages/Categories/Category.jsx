@@ -11,6 +11,7 @@ import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import H1Component from "../../Components/HeadingComponent/H1component";
 import { FaPlus, FaPencilAlt,FaTrash ,FaList, FaPlusCircle} from 'react-icons/fa';
+import Table from "../../Components/TableComponent/Table";
 
 function Category() {
   const verifyRole = localStorage.getItem('userRole');
@@ -61,6 +62,14 @@ function Category() {
   const handleViewTopic = (categoryName) => {
     { localStorage.setItem('categoryName', categoryName) }
   }
+  const rows=[
+    'categoryName',
+    'categoryDescription'
+  ];
+  const columns=[
+    'Category Name',
+    'Category Description'
+  ]
   return (
     <div className="App">
 
@@ -88,48 +97,11 @@ function Category() {
             ) : (
               <div className="tableContainer">
                 {category.length !== 0 ? (
-                  <table className="tableData">
-                    <thead className="headData">
-                      <tr className="rowData">
-                        <th >Category Name</th>
-                        <th>Category Description</th>
-                        {(verifyRole==="Admin" &&
-                        <>
-                        <th></th>
-                        <th>Actions</th>
-                        <th></th>
-                        </>
-                        )}
-                        {(verifyRole==="student" &&
-                        <>
-                        
-                        <th>Actions</th>
-                        <th></th>
-                        </>
-                        )}
-
-                      </tr>
-                    </thead>
-                    <tbody className="bodyData">
-                      {category.map(item => (
-
-                        <tr key={item.categoryId}>
-                          <td>{item.categoryName}</td>
-                          <td>{item.categoryDescription}</td>
-                          {verifyRole === 'Admin' && <>
-                            <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.categoryId)}><FaTrash className="delete-icon"/> Delete</ButtonComponent></td>
-                            <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData"><FaPencilAlt className="update-icon" /> Update</Link></td></>}
-                          {verifyRole === 'Admin' || verifyRole === 'student' ? (
-                            <td><Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={() => handleViewTopic(item.categoryName)}>
-                              <FaList className="delete-icon" /> Quizes</Link></td>
-                          ) : (
-                            <></>
-                          )}
-
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                    <Table columns={columns} data={category} rows={rows} category={true}
+                    deleteData ={deleteData}
+                    viewQuizes={handleViewTopic}
+                    role={verifyRole}
+                    isTrue={true}/>
                 ) : (
                   <h1 className="no-category">No Category</h1>
                 )}

@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
 import ErrorPage from "../../ErrorPage";
 import DisableBackButton from "../disableBackButton";
+import { FaSignOutAlt } from "react-icons/fa";
 
 const Navbar = () => {
     const location = useLocation();
@@ -59,7 +60,7 @@ const Navbar = () => {
                         {verifyRole == 'student' && <>
                             <li className="aa"><a className={location.pathname === `/Result/${verifyUserId}` ? 'active' : ''} href={`/Result/${verifyUserId}`}>Result</a></li>
                         </>}
-                        <li><a className="logout" href="#" onClick={logoutPage}>Logout</a></li>
+                        <li><a className="logout" href="#" onClick={logoutPage}>Logout <FaSignOutAlt className="logout-icon"/></a></li>
                     </ul>
                 </> : <ErrorPage />}
         </div>

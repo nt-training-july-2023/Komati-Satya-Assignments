@@ -112,9 +112,9 @@
   }
   .show-password {
    
-      margin-right: -19px;
+      margin-right: -10px;
       font-size: 0.8rem; 
-      margin-top: -10px;
+      margin-top: 0px;
     }
  
   
@@ -148,7 +148,7 @@
   .show-password {
     margin-right: -15px;
     font-size: 0.8rem; 
-    margin-top:-10px;
+    margin-top:0px;
   }
 
   .loginData {

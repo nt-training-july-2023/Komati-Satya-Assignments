@@ -8,6 +8,8 @@ import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Input from "../../Components/Inputs/Input";
 import DisableBackButton from "../../Components/disableBackButton";
 import H1Component from "../../Components/HeadingComponent/H1component";
+import Table from "../../Components/TableComponent/Table";
+import Questions from "../Questions/Questions";
 
 const Result = () => {
   const verifyRole = localStorage.getItem('userRole');
@@ -48,6 +50,29 @@ const Result = () => {
     setSearchName("");
   }
   const sortedResults = [...result].sort((a, b) => new Date(b.dateAndTime) - new Date(a.dateAndTime));
+  const rows = [
+    'userName',
+      'email',
+     'dateAndTime',
+       'categoryName',
+       'quizName',
+      'totalQuestions',
+    'attemptedQuestions',
+   'maxMarks',
+    'obtainMarks'
+  ];
+  const columns = [
+    'User Name',
+      'Email',
+     'DateAndTime',
+       'Category Name',
+       'Quiz Name',
+      'Total Questions',
+    'Attempted Questions',
+   'Max Marks',
+    'Obtain Marks'
+  ];
+
   return (
     <div className="categoryData">
       <DisableBackButton />
@@ -76,39 +101,7 @@ const Result = () => {
           ) : (
             <div className="tableContainer">
               {sortedResults.length !== 0 ? (
-                <table className="tableData">
-                  <thead className="headData">
-                    <tr className="rowData">
-                      <th>User Name</th>
-                      <th>User Email</th>
-                      <th>Date and Time</th>
-                      <th>Category Name</th>
-                      <th>Quiz Name</th>
-                      <th>Total No Of Questions</th>
-                      <th>AttemptedQuestions</th>
-                      <th>Maximum Marks</th>
-                      <th>Obtained Marks</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bodyData">
-                    {sortedResults.map(item => (
-
-                      <tr key={item.resultId}>
-                        <td>{item.userName}</td>
-                        <td>{item.email}</td>
-                        <td>{item.dateAndTime}</td>
-                        <td>{item.categoryName}</td>
-                        <td>{item.quizName}</td>
-                        <td>{item.totalQuestions}</td>
-                        <td>{item.attemptedQuestions}</td>
-                        <td>{item.maxMarks}</td>
-                        <td>{item.obtainMarks}</td>
-
-
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <Table columns={columns} data={sortedResults} rows={rows} />
               ) : (
                 <H1Component className="no-questions">No Result</H1Component>
               )}

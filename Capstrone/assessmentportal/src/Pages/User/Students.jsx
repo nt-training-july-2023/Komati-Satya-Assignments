@@ -6,6 +6,7 @@ import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Input from "../../Components/Inputs/Input";
 import Navbar from "../../Components/Navbar/Navbar";
 import H1Component from "../../Components/HeadingComponent/H1component";
+import Table from "../../Components/TableComponent/Table";
 
 function Student() {
   const verifyRole = localStorage.getItem('userRole');
@@ -37,6 +38,24 @@ function Student() {
     setStudent(originalStudent);
     setSearchText("");
   }
+  const rows=[
+   
+    'userName',
+    'userId',
+    'email',
+    'gender',
+    'phoneNumber',
+    'dateOfBirth'
+  ]
+  const columns=[
+   
+    'User Name',
+    'User Id',
+    'Email',
+    'Gender',
+    'Phone Number',
+    'Date Of Birth'
+  ]
   
   return (
     <div className="categoryData">
@@ -61,32 +80,8 @@ function Student() {
           ) : (
             <div className="tableContainer">
               {student.length !== 0 ? (
-                <table className="tableData">
-                  <thead className="headData">
-                    <tr className="rowData">
-                      <th>Student Name</th>
-                      <th>User Id</th>
-                      <th>Email</th>
-                      <th>Gender</th>
-                      <th>Phone Number</th>
-                      <th>Date of Birth</th>
-                    </tr>
-                  </thead>
-                  <tbody className="bodyData">
-                    {student
-                      .filter(item => item.role === 'student')
-                      .map(item => (
-                        <tr key={item.userId}>
-                          <td>{item.userName}</td>
-                          <td>{item.userId}</td>
-                          <td>{item.email}</td>
-                          <td>{item.gender}</td>
-                          <td>{item.phoneNumber}</td>
-                          <td>{item.dateOfBirth}</td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
+                <Table columns={columns} data={student
+                        .filter(item => item.role === 'student')} rows={rows}/>
               ) : (
                 <H1Component className="no-questions">No Students</H1Component>
               )}

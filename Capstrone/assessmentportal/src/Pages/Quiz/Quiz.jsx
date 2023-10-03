@@ -12,6 +12,7 @@ import Swal from "sweetalert2";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import H1Component from "../../Components/HeadingComponent/H1component";
 import { FaTrash,FaPencilAlt ,FaList, FaPlusCircle} from "react-icons/fa";
+import Table from "../../Components/TableComponent/Table";
 
 
 
@@ -105,6 +106,16 @@ function Quiz({ setTrue }) {
       }
     });
   }
+  const rows=[
+    'topicName',
+     'topicDescription',
+    'timer'
+  ]
+  const columns=[
+    'Quiz Name',
+     'Quiz Description',
+    'Time(Min)'
+  ]
   return (
     <div className="categoryData">
       <Navbar />
@@ -130,48 +141,11 @@ function Quiz({ setTrue }) {
           ) : (
             <div className="tableContainer">
               {quiz.length !== 0 ? (
-                <table className="tableData">
-                  <thead className="headData">
-                    <tr className="rowData">
-                      <th>Quiz Name</th>
-                      <th>Quiz Description</th>
-                      <th>Time(in Min)</th>
-                      {(verifyRole==="Admin" &&
-                        <>
-                        <th></th>
-                        <th>Actions</th>
-                        <th></th>
-                        </>
-                        )}
-                        {(verifyRole==="student" &&
-                        <>
-                      
-                        <th>Actions</th>
-                        <th></th>
-                        </>
-                        )}
-                    </tr>
-                  </thead>
-                  <tbody className="bodyData">
-                    {quiz.map(item => (
-
-                      <tr key={item.quizId}>
-                        <td>{item.topicName}</td>
-                        <td>{item.topicDescription}</td>
-                        <td>{item.timer}</td>
-                        {verifyRole === 'Admin' && <>
-                          <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.quizId)}><FaTrash className="delete-icon"/> Delete</ButtonComponent></td>
-                          <td><Link to={`/UpdateQuiz/${item.quizId}`} className="updateData"><FaPencilAlt className="update-icon"/> Update</Link></td>
-                          <td><Link to={`/Questions/${item.quizId}`} className="updateData"><FaList className="delete-icon"/> Questions</Link></td>
-                        </>}
-
-                        {verifyRole === 'student' && <>
-                          <td><Link to="#" className="updateData" onClick={() => handleTakeTest(item.topicName, item.quizId, item.timer, item.categoryId)}>Take Test</Link></td></>}
-
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+                <Table columns={columns} data={quiz} rows={rows} quiz={true}
+                deleteData ={deleteData}
+                viewQuizes={handleTakeTest}
+                role={verifyRole}
+                isTrue={true}/>
               ) : (
                 <H1Component className="no-questions">No Quiz</H1Component>
               )}

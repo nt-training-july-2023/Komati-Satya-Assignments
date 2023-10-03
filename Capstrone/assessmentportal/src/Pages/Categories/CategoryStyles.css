@@ -11,8 +11,8 @@
 }
 
 .tableContainer {
-  max-height: 400px;
-  overflow-y: auto;
+  height: 370px; 
+  overflow-y: auto; 
   margin-top: 20px;
 }
 .no-category{
@@ -22,8 +22,8 @@
   width: 100%;
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  max-height: 400px;
-  overflow-y: auto;
+  max-height: 400px; 
+  /* overflow-y: auto; */
 }
 
 .headData {
@@ -37,6 +37,10 @@
   text-align: middle;
   border-bottom: 1px solid black;
 }
+.action-style{
+  width:100px
+}
+
 
 .bodyData tr:nth-child(even) {
   background-color: #f2f2f2;
@@ -46,7 +50,7 @@
    background-color: #ff5959;
    margin-top: 10px;
   font-family:  'Times New Roman';
-  font-size: 200px;
+
 }
 
 .deleteData:hover {
@@ -157,4 +161,9 @@
     width: auto;
   }
 }
+/* @media (max-width:694px){
+  .categoryData button{
+    font-size: 14px;
+  }
+} */
 

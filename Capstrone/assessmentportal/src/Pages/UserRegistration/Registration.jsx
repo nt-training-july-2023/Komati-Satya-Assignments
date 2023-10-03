@@ -10,7 +10,8 @@ import LabelComponent from "../../Components/LabelComponent/LabelComponent";
 import H1Component from "../../Components/HeadingComponent/H1component";
 
 const Registration = () => {
-  const [showPassword, setShowPassword] = useState("true");
+  const [showPassword, setShowPassword] = useState("false");
+  const [showConfirmPassword, setShowConfirmPassword] = useState("false");
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
@@ -29,6 +30,9 @@ const Registration = () => {
   };
   const togglePassword = () => {
     setShowPassword(!showPassword);
+  }
+  const toggleConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
   }
   const validateForm = () => {
     const validationErrors = {};
@@ -131,9 +135,9 @@ const Registration = () => {
            
             <div className="password-container2">
               <LabelComponent className="side">Confirm Password</LabelComponent><br /><br />
-              <Input className="values" type={showPassword ? 'password' : 'text'} name="confirmPassword" placeholder="enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
-              <ButtonComponent className="show-password2" type="button" onClick={togglePassword}>
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              <Input className="values" type={showConfirmPassword ? 'password' : 'text'} name="confirmPassword" placeholder="enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
+              <ButtonComponent className="show-password2" type="button" onClick={toggleConfirmPassword}>
+                {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </ButtonComponent>
             </div><br />
             <LabelComponent className="side">DateOfBirth</LabelComponent><br /><br />

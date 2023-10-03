@@ -30,12 +30,6 @@ li a {
   font-size: 20px;
 }
 
-.adminBackground {
-  background-size: cover;
-  background-repeat: no-repeat;
-  width: 100%;
-  min-height: 100vh;
-}
 
 .image {
   height: 13vh;
@@ -51,7 +45,11 @@ li a {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin: 20px auto;
   max-width: 320px;
-  min-height: 40vh;
+  height: 500px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+
 }
 
 .adminBackground h2 {
@@ -65,11 +63,14 @@ li a {
 
 .details {
   font-size: 16px;
+  padding: 10px;
+  margin-left: 7px;
+}
+.details-item{
+  margin: 13px 0px;
+  display: flex;
 }
 
-.details td {
-  padding: 5px 0;
-}
 
 .details strong {
   font-weight: bold;
@@ -93,7 +94,10 @@ li a.active {
    background-color: #5dcc5d; 
    
 }
+.logout-icon{
+  font-size: 14px;
 
+}
 
 @media (max-width: 668px) {
   ul {

@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import ErrorPage from "../../ErrorPage";
@@ -9,7 +8,8 @@ import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Input from "../../Components/Inputs/Input";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import H1Component from "../../Components/HeadingComponent/H1component";
-import { FaCartPlus, FaList, FaPlus, FaPlusCircle, FaPlusSquare, FaTrash } from "react-icons/fa";
+import { FaPlusCircle } from "react-icons/fa";
+import Table from "../../Components/TableComponent/Table";
 const Questions = () => {
   const { quizId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
@@ -60,7 +60,23 @@ const Questions = () => {
     setQuestions(originalQuestions);
     setText("");
   }
- 
+  const rows =[
+    'question',
+    'option1',
+    'option2',
+    'option3',
+    'option4',
+    'correctOption'
+  ]
+  const columns =[
+    'Question',
+    'Option1',
+    'Option2',
+    'Option3',
+    'Option4',
+    'Correct Option',
+    
+  ]
   return (
     <div className="categoryData">
       <Navbar />
@@ -85,41 +101,10 @@ const Questions = () => {
           ) : (
             <div className="tableContainer">
               {questions.length !== 0 ? (
-                <table className="tableData">
-                  <thead className="headData">
-                    <tr className="rowData">
-                      <th>Question</th>
-                      <th>Option1</th>
-                      <th>Option2</th>
-                      <th>Option3</th>
-                      <th>Option4</th>
-                      <th>Correct Answer</th>
-                        <th>Actions</th>
-                        <th></th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody className="bodyData">
-                    {questions.map(item => (
-
-                      <tr key={item.questionId}>
-                        <td>{item.question}</td>
-                        <td>{item.option1}</td>
-                        <td>{item.option2}</td>
-                        <td>{item.option3}</td>
-                        <td>{item.option4}</td>
-                        <td>{item.correctOption}</td>
-
-                        {verifyRole === 'Admin' && <>
-                          <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.questionId)}><FaTrash className="add-icon"/> Delete</ButtonComponent></td>
-                          <td><Link to={`/UpdateQuestion/${item.question}`} className="updateData"><FaList className="add-icon"/> Update</Link></td>
-
-                        </>}
-
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+              <Table columns={columns} data={questions} rows={rows} question={true}
+                deleteData ={deleteData}
+                role={verifyRole}
+                isTrue={true}/>
               ) : (
                 <H1Component className="no-questions">No Questions</H1Component>
               )}

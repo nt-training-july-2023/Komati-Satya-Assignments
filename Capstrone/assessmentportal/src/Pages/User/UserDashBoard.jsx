@@ -11,12 +11,14 @@ import ErrorPage from "../../ErrorPage";
 import UserApi from "../../Service/UserApi";
 import DisableBackButton from "../../Components/disableBackButton";
 import H2Component from "../../Components/HeadingComponent/H2component";
+import Table from "../../Components/TableComponent/Table";
+import LabelComponent from "../../Components/LabelComponent/LabelComponent";
 
 
 const UserDashBoard = () => {
 
   const navigate = useNavigate();
-  const [data, setData] = useState([]);
+  const [student, setStudent] = useState([]);
   const verifyUserId = localStorage.getItem('userId');
   
   useEffect(() => {
@@ -26,16 +28,17 @@ const UserDashBoard = () => {
   const getStudent = async () => {
    if(verifyUserId){
     UserApi.getUserById(verifyUserId).then(response => {
-      setData(response.data.data || []);
+      setStudent(response.data.data || []);
+      console.log(response)
     })
   }
   };
+  console.log(student)
 
   const verifyRole = localStorage.getItem('userRole');
   const UpdateData = () => {
     navigate(`/UserUpdate/${verifyUserId}`)
   }
-
   return (
     <div>
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
@@ -61,30 +64,42 @@ const UserDashBoard = () => {
             <H2Component>Admin information</H2Component>
           </>}
         </div>
-        <table className="information">
-          <tbody className="details">
-            <tr>
-              <td> <strong>Name:</strong> {data.userName}<br /></td>
-            </tr>
-
-            <tr>
-              <td><strong>UserId:</strong> {data.userId}<br /></td>
-            </tr>
-            <tr>
-              <td> <strong>Email:</strong> {data.email}<br /></td>
-            </tr>
-            <tr>
-              <td> <strong>Gender:</strong> {data.gender}<br /></td>
-            </tr>
-            <tr>
-              <td><strong>PhoneNumber:</strong> {data.phoneNumber}<br /></td>
-            </tr>
-
-            <tr>
-              <td><strong>Date Of Birth:</strong> {data.dateOfBirth}<br /></td>
-            </tr>
-          </tbody>
-        </table>
+        <div className="information">
+          <div className="details">
+            <div className="details-item">
+              <div>
+              <LabelComponent><strong>Name:</strong></LabelComponent>  {student.userName}
+              
+              </div>
+            </div>
+            <div className="details-item">
+              <div>
+              <LabelComponent><strong>UserId:</strong></LabelComponent>  {student.userId}  
+              </div>
+            </div>
+            <div className="details-item">
+              <div>
+              <LabelComponent><strong>Email:</strong></LabelComponent>  {student.email}
+              </div>
+            </div>
+            <div className="details-item">
+              <div>
+              <LabelComponent><strong>Gender:</strong></LabelComponent> {student.gender}
+              </div>
+            </div>
+            <div className="details-item">
+              <div>
+              <LabelComponent><strong>PhoneNumber:</strong> </LabelComponent> {student.phoneNumber}
+              </div>
+            </div>
+            <div className="details-item">
+              <div>
+              <LabelComponent><strong>Date Of Birth:</strong></LabelComponent>  {student.dateOfBirth}
+              </div>
+            </div>
+          </div>
+         
+        </div>
         <ButtonComponent className="btn2" type="button" onClick={UpdateData}>Update Details</ButtonComponent>
       </div>
       </> : <ErrorPage/>}
