@@ -13,7 +13,6 @@ const UserUpdate = () => {
   const verifyRole = localStorage.getItem('userRole');
   const { userId } = useParams();
   const navigate = useNavigate();
-  const [sendData, setSendData] = useState(null);
   const [userData, setUserData] = useState({
     userName: "",
     phoneNumber: "",
@@ -27,17 +26,15 @@ const UserUpdate = () => {
   useEffect(() => {
     UserApi.getUserById(userId)
       .then((response) => {
-        setSendData(response);
         const userInformation = response.data.data;
-        setUserData((previousData) => ({
-          ...previousData,
+        setUserData({
           userName: userInformation.userName,
           phoneNumber: userInformation.phoneNumber,
           dateOfBirth: userInformation.dateOfBirth,
           gender: userInformation.gender,
           email: userInformation.email,
           userId: userInformation.userId
-        }));
+         } );
       })
       
   }, [userId]);
@@ -55,9 +52,11 @@ const UserUpdate = () => {
       })
   };
   const cancelUpdate = () => {
-    SweetAlert.cancel('Update', navigate, '/UserDashBoard')
+    // SweetAlert.cancel('Update', navigate, '/UserDashBoard')
+    navigate('/UserDashBoard')
   }
-  
+  const genderOptions = ["male", "female", "other"];
+ 
   return (
     <div className="login2">
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
@@ -128,7 +127,7 @@ const UserUpdate = () => {
                   <LabelComponent className="head2">Date of Birth:</LabelComponent>
                   <Input
                     className="data2"
-                    type="text"
+                    type="date"
                     value={userData.dateOfBirth}
                     onChange={(e) =>
                       setUserData({
@@ -140,7 +139,7 @@ const UserUpdate = () => {
                 </div>
                 <div>
                   <LabelComponent className="head2">Gender:</LabelComponent>
-                  <Input
+                  {/* <Input
                     className="data2"
                     type="text"
                     value={userData.gender}
@@ -150,7 +149,23 @@ const UserUpdate = () => {
                         gender: e.target.value,
                       })
                     }
-                  />
+                  /> */}
+                   <select
+                    className="data2"
+                    value={userData.gender}
+                    onChange={ (e) =>
+                      setUserData({
+                      ...userData,
+                      gender: e.target.value,})
+                    }
+                  >
+                    {genderOptions.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                  
                 </div>
                 <ButtonComponent className="btn2" type="button" onClick={handleUpdateCategory}>
                   Update 

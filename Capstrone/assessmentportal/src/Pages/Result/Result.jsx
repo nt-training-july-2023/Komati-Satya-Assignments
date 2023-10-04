@@ -37,16 +37,16 @@ const Result = () => {
       setIsLoading(false);
     })
   };
-  const handleSearch = async () => {
-    const filteredResult = result.filter(item =>
-      (item.userName || '').toLowerCase().includes((searchName || '').toLowerCase())
+ 
+  const handleSearchChange = (e) => {
+    const search = e.target.value.toLowerCase();
+    setSearchName(search); 
+    const filteredResult = originalResult.filter(item =>
+      (item.email || '').toLowerCase().includes(search)
     );
+
     setResult(filteredResult);
   };
-  const clearSearch = () => {
-    setResult(originalResult);
-    setSearchName("");
-  }
   const sortedResults = [...result].sort((a, b) => new Date(b.dateAndTime) - new Date(a.dateAndTime));
   const rows = [
     'userName',
@@ -84,12 +84,11 @@ const Result = () => {
             <Input
               className="search"
               type="text"
-              placeholder="Search by User Name"
+              placeholder="Search by User Email"
               value={searchName}
-              onChange={(e) => setSearchName(e.target.value)}
+              onChange={handleSearchChange}
             />
-            <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
-            <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
+
         
           </div>
          

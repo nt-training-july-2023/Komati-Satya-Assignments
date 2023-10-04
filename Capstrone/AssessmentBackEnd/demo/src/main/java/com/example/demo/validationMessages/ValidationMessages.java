@@ -63,19 +63,19 @@ public final class ValidationMessages {
     /**
      *optionA is blank.
     */
-    public static final String OPTION1_NOTBLANK = "OptionA is required";
+    public static final String OPTION1_NOTBLANK = "Option1 is required";
     /**
      *optionB is blank.
     */
-    public static final String OPTION2_NOTBLANK = "OptionB is required";
+    public static final String OPTION2_NOTBLANK = "Option2 is required";
     /**
      *optionC is blank.
     */
-    public static final String OPTION3_NOTBLANK = "OptionC is required";
+    public static final String OPTION3_NOTBLANK = "Option3 is required";
     /**
      *optionD is blank.
     */
-    public static final String OPTION4_NOTBLANK = "OptionD is required";
+    public static final String OPTION4_NOTBLANK = "Option4 is required";
     /**
      *correct answer is blank.
     */
@@ -107,7 +107,7 @@ public final class ValidationMessages {
     /**
      *first name is blank.
     */
-    public static final String NAME_NOTBLANK = "First Name is required";
+    public static final String NAME_NOTBLANK = "Name is required";
     /**
      *date of birth is blank.
     */

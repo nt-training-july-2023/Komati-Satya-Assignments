@@ -6,6 +6,7 @@ package com.example.demo.dto;
 import com.example.demo.validationMessages.ValidationMessages;
 
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -23,12 +24,12 @@ public class CategoryDto {
     /**
      * store the category Name.
      */
-    @NotEmpty(message = ValidationMessages.CATEGORY_NOTBLANK)
+    @NotBlank(message = ValidationMessages.CATEGORY_NOTBLANK)
     private String categoryName;
     /**
      * store category description.
      */
-    @NotEmpty(message = ValidationMessages.CATEGORYDESCRIPTION_NOTBLANK)
+    @NotBlank(message = ValidationMessages.CATEGORYDESCRIPTION_NOTBLANK)
     private String categoryDescription;
     /**
      * store the category id.

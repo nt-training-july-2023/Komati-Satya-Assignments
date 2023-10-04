@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './LoginStyles.css';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { FaEye, FaEyeSlash, FaVoicemail } from 'react-icons/fa';
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import UserApi from "../../Service/UserApi";
 import DisableBackButton from "../../Components/disableBackButton";
@@ -69,10 +69,10 @@ const Login = () => {
             }).catch(error => {
 
                 if (error.response.data.message === "wrong password") {
-                    SweetAlert.fieldsRequired("Wrong password");
+                    SweetAlert.fieldsRequired("Invalid password");
                 
                 } else if (error.response.data.message === "Email not exist") {
-                    SweetAlert.fieldsRequired("Wrong Email");
+                    SweetAlert.fieldsRequired("Invalid Email");
                 } 
             })
 
@@ -87,18 +87,21 @@ const Login = () => {
                 <form>
                     <div className="signin">
                         <H1Component className="heading">SignIn Here!!</H1Component>
-                        <LabelComponent className="head" ><b>Email</b></LabelComponent><br /><br />
+                        {/* <LabelComponent className="head" ><b>Email</b></LabelComponent><br /><br /> */}
+                        
                         <Input
-                           className="data"
+                          
+                           className="data-email"
                            type="email" 
                            name="email" 
                            value={loginData.email}
                             onChange={changeData} 
+                            placeholder="Enter email"
                         />
                         <br/><br/>
                         <div className="password-container">
-                            <LabelComponent className="head"><b>Password</b></LabelComponent><br /><br />
-                            <Input className="data" type={showPassword ? 'password' : 'text'} name="password" value={loginData.password} onChange={changeData} /><br />
+                            {/* <LabelComponent className="head"><b>Password</b></LabelComponent><br /><br /> */}
+                            <Input className="data-password" type={showPassword ? 'password' : 'text'} name="password" value={loginData.password} onChange={changeData} placeholder="Enter password" /><br />
                             <ButtonComponent className="show-password" type="button" onClick={togglePassword}>
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}
                             </ButtonComponent>

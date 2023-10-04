@@ -7,6 +7,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
@@ -30,13 +31,13 @@ public class StudentSaveDto {
      * stores the user name.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.NAME_NOTBLANK)
+    @NotBlank(message = ValidationMessages.NAME_NOTBLANK)
     private String userName;
     /**
      * stores the user email.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.EMAIL_NOTBLANK)
+    @NotBlank(message = ValidationMessages.EMAIL_NOTBLANK)
     @Pattern(regexp = "^[a-z][a-zA-Z0-9.]*@nucleusteq\\.com",
     message = ValidationMessages.EMAIL_PATTERN)
     private String email;
@@ -44,13 +45,13 @@ public class StudentSaveDto {
      * stores the user gender.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.GENDER_NOTBLANK)
+    @NotBlank(message = ValidationMessages.GENDER_NOTBLANK)
     private String gender;
     /**
      * stores the user phone number.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.PHONENUMBER_NOTBLANK)
+    @NotBlank(message = ValidationMessages.PHONENUMBER_NOTBLANK)
     @Pattern(regexp = "^[0-9]{10}$",
     message = ValidationMessages.PASSWORD_PATTERN)
     private String phoneNumber;
@@ -58,7 +59,7 @@ public class StudentSaveDto {
      * stores the user role.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.ROLE_NOTBLANK)
+    @NotBlank(message = ValidationMessages.ROLE_NOTBLANK)
     private String role;
     /**
      * stores the user password.
@@ -67,12 +68,12 @@ public class StudentSaveDto {
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
             + "(?=.*[@#$%^&-+=])(?=\\S+$).{8,}$",
     message = ValidationMessages.PASSWORD_PATTERN)
-    @NotEmpty(message = ValidationMessages.PASSWORD_NOTBLANK)
+    @NotBlank(message = ValidationMessages.PASSWORD_NOTBLANK)
     private String password;
     /**
      * stores the user date of birth.
      */
-    @NotEmpty(message = ValidationMessages.DOB_NOTBLANK)
+    @NotBlank(message = ValidationMessages.DOB_NOTBLANK)
     @Column(nullable = false)
     private String dateOfBirth;
 }

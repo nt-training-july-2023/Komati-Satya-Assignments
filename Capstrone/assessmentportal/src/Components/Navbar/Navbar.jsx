@@ -1,9 +1,9 @@
 import React from "react";
-import Swal from "sweetalert2";
 import { useNavigate, useLocation } from "react-router-dom";
 import ErrorPage from "../ErrorPage";
 import DisableBackButton from "../disableBackButton";
-import { FaChartBar, FaList, FaPoll, FaSignOutAlt, FaUser, FaUserGraduate, FaUsers } from "react-icons/fa";
+import { FaChartBar, FaList, FaSignOutAlt, FaUser, FaUsers } from "react-icons/fa";
+import SweetAlert from "../SweetAlertComponents/SweetAlert";
 
 const Navbar = () => {
     const location = useLocation();
@@ -11,37 +11,7 @@ const Navbar = () => {
     const verifyUserId = localStorage.getItem('userId')
     const verifyRole = localStorage.getItem('userRole');
     const logoutPage = () => {
-        Swal.fire({
-            title: 'Do you want to logout page??',
-            showDenyButton: true,
-            confirmButtonText: 'Yes',
-            denyButtonText: 'No',
-            customClass: {
-                actions: 'my-actions',
-                cancelButton: 'order-1 right-gap',
-                confirmButton: 'order-2',
-                denyButton: 'order-3',
-            }
-        }).then((result) => {
-            if (result.isConfirmed) {
-                localStorage.removeItem('userRole');
-                localStorage.removeItem('userEmail')
-                localStorage.removeItem('userName')
-                localStorage.removeItem('userId')
-                localStorage.removeItem('categoryName')
-                localStorage.removeItem('quizName')
-                localStorage.removeItem('timerValue');  
-                localStorage.removeItem('user');
-                localStorage.removeItem('timer');
-                localStorage.removeItem('categoryId');  
-              
-                navigate('/')
-
-            } else if (result.isDenied) {
-
-            }
-        })
-
+        SweetAlert.logout(navigate)
     }
     return (
        <div className="admin">
@@ -54,10 +24,10 @@ const Navbar = () => {
                         {verifyRole === 'Admin' && <>
                             <li className="aa"><a className={location.pathname === '/Students' ? 'active' : ''} href="/Students">Students <FaUsers className="users-icon"/></a></li>
                         </>}
-                        {verifyRole == 'Admin' && <>
+                        {verifyRole === 'Admin' && <>
                             <li className="aa"><a className={location.pathname === '/Result' ? 'active' : ''} href="/Result">Result <FaChartBar className="users-icon"/></a></li>
                         </>}
-                        {verifyRole == 'student' && <>
+                        {verifyRole === 'student' && <>
                             <li className="aa"><a className={location.pathname === `/Result/${verifyUserId}` ? 'active' : ''} href={`/Result/${verifyUserId}`}>Result <FaChartBar className="users-icon"/></a></li>
                         </>}
                         <li><a className="logout" href="#" onClick={logoutPage}>Logout <FaSignOutAlt className="logout-icon"/></a></li>

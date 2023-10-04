@@ -79,7 +79,7 @@ const AddQuiz = () => {
                         SweetAlert.fieldsRequired("Quiz already present")
                     }
                     if (error.response.status === 400) {
-                        SweetAlert.fieldsRequired("Time limit greaterthan 0")
+                        SweetAlert.fieldsRequired(error.response.data.message)
                     }
                 })
         }
@@ -108,7 +108,7 @@ const AddQuiz = () => {
     }
 
     const cancelAddQuiz = () => {
-        SweetAlert.cancel("quiz", navigate, `/Quiz/${quizData.categoryId}`)
+        navigate(`/Quiz/${quizData.categoryId}`);
     }
 
     return (

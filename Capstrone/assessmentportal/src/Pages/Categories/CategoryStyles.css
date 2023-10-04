@@ -1,13 +1,12 @@
 
 .categoryData button {
   color: white;
-  padding: 6px 20px;
+  width:auto;
   border: none;
   border-radius: 5px;
   font-size: 20px;
   cursor: pointer;
   margin-bottom: 10px; 
-  width: auto;
 }
 
 .tableContainer {
@@ -23,12 +22,19 @@
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-height: 400px; 
-  /* overflow-y: auto; */
+ 
 }
+table {
+  overflow: auto;
+  white-space:pre;
 
+} 
 .headData {
   background-color: #5dcc5d;
   color: white;
+  position: sticky;
+  top:0;
+  z-index: 0;
 }
 
 .rowData th,
@@ -36,6 +42,7 @@
   padding: 15px;
   text-align: middle;
   border-bottom: 1px solid black;
+
 }
 .action-style{
   width:100px
@@ -50,6 +57,7 @@
    background-color: #ff5959;
    margin-top: 10px;
   font-family:  'Times New Roman';
+  padding: 6px 12px;
 
 }
 
@@ -76,7 +84,7 @@
 .addButton {
   background-color: #5dcc5d;
   color: white;
-  padding: 10px 20px;
+  padding: 6px 18px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;
@@ -84,20 +92,13 @@
   float: left;
   margin-right: 10px;
 }
-
-.searchButton {
-  background-color: rgb(93, 204, 93);
+.back-Button{
+  background-color: #5dcc5d;
   color: white;
-  border-radius: 5px;
-  padding: 5px 10px;
-  margin-left: 10px;
-  cursor: pointer;
+  float: left;
+  margin-right: 10px;
+  padding: 6px 40px;
 }
-
-.searchButton:hover {
-  background-color: rgb(72, 166, 72);
-}
-
 .searchContainer {
   display: flex;
   justify-content: flex-end;
@@ -128,10 +129,14 @@
   font-Size: 12px;
   vertical-align: middle;
 }
+.back-icon{
+  font-Size: 14px;
+  margin-left: -10px;
+}
+
 
 @media (max-width: 1000px) {
   .addButton {
-  
     float: none;
     margin-right: 0;
     margin-bottom: 10px;
@@ -146,13 +151,7 @@
     width: auto;
     margin-bottom: 3px;
   }
-
-  .searchButton {
-    width: 100%;
-    margin-bottom: 7px;
-  }
 }
-
 
 @media (max-width: 768px) {
   .searchContainer {
@@ -163,9 +162,18 @@
     width: auto;
   }
 }
-/* @media (max-width:694px){
-  .categoryData button{
-    font-size: 14px;
+@media (max-width:329px) {
+  .back-Button{
+   color: black;
+   margin-top: -10px;
+  margin-right: -10px;
   }
-} */
+  .searchContainer {
+    align-items: center;
+  }
+  .search {
+   margin-top: 50px;
+   margin-left: -60px;
+  }
+}
 

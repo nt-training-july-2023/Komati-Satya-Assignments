@@ -27,16 +27,15 @@ function Student() {
       setIsLoading(false);
     })
   };
-  const handleSearch = async () => {
-    const filteredStudent = student.filter(item =>
-      item.userName.toLowerCase().includes(searchText.toLowerCase())
+  const handleSearchChange = (e) => {
+    const search = e.target.value.toLowerCase();
+    setSearchText(search); 
+    const filteredStudent = originalStudent.filter(item =>
+      (item.email || '').toLowerCase().includes(search)
     );
+
     setStudent(filteredStudent);
   };
-  const clearSearch = () => {
-    setStudent(originalStudent);
-    setSearchText("");
-  }
   const rows=[
     'userName',
     'userId',
@@ -64,13 +63,10 @@ function Student() {
             <Input
               className="search"
               type="text"
-              placeholder="Search by Student Name"
+              placeholder="Search by Student Email"
               value={searchText}
-              onChange={(e) => setSearchText(e.target.value)}
+              onChange={handleSearchChange}
             />
-            <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
-            <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
-
           </div>
           {isLoading ? (
             <p>Loading...</p>

@@ -77,6 +77,8 @@ const AddCategory = () => {
           if (error.response.data.message == "Category already exists") {
             SweetAlert.fieldsRequired("Category already present");
           }
+          else if(error.response.status === 400)
+        SweetAlert.fieldsRequired(error.response.data.message);
         })
     }
 
@@ -88,19 +90,20 @@ const AddCategory = () => {
         if (response.data.message === "category added successfully") {
           SweetAlert.success("Category added successfully");
           navigate('/Category');
-
         }
-
       }).catch((error) => {
+        console.log(error)
         if (error.response.status === 302) {
           SweetAlert.fieldsRequired("Category already present");
         }
+        else if(error.response.status === 400)
+        SweetAlert.fieldsRequired(error.response.data.message);
       })
 
     }
   }
   const cancelAddCategory = () => {
-    SweetAlert.cancel("category", navigate, '/Category')
+   navigate('/Category');
   }
   return (
     <div className="login3">
@@ -111,14 +114,12 @@ const AddCategory = () => {
           <form>
             <div className="signin3">
               <LabelComponent className="head3">Category Name</LabelComponent><br></br><br></br>
-
               <Input className="data3" type="text" name="categoryName" value={categoryData.categoryName} placeholder="Enter category name" onChange={changeData} /><br></br><br></br>
               <LabelComponent className="head3">Category description</LabelComponent><br></br><br></br>
               <TextareaComponent className="data3" type="text" name="categoryDescription" value={categoryData.categoryDescription} placeholder="Enter category description" onChange={changeData}></TextareaComponent>
               <ButtonComponent className="btn4" type="button" onClick={handleSubmit} >
                 {categoryId ? "Update Category" : "Add Category"}
               </ButtonComponent>
-
               <ButtonComponent className="btn5" type="button" onClick={cancelAddCategory}>Cancel</ButtonComponent>
             </div>
           </form>
@@ -126,7 +127,6 @@ const AddCategory = () => {
       </> : <ErrorPage />}
     </div>
   );
-
 }
 
 export default AddCategory;

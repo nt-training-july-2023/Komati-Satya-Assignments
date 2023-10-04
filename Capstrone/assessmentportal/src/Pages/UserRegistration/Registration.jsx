@@ -17,7 +17,7 @@ const Registration = () => {
     email: "",
     password: "",
     confirmPassword: "",
-    gender: "male",
+    gender: "",
     role: "student",
     dateOfBirth: "",
     phoneNumber: ""
@@ -26,6 +26,9 @@ const Registration = () => {
   const [errors, setErrors] = useState({});
   const changeData = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+  const changeDataForRadioButton = (e) => {
+    setFormData({ ...formData, gender: e.target.value });
   };
   const togglePassword = () => {
     setShowPassword(!showPassword);
@@ -83,7 +86,7 @@ const Registration = () => {
         SweetAlert.fieldsRequired("Password must contain at least a Capital, Special character, Number, and minimum 8 characters");
       }
       else if (formData.password !== formData.confirmPassword) {
-        SweetAlert.fieldsRequired("Password must be same");
+        SweetAlert.fieldsRequired("Password and Confirm Password must be same");
       }
       else if (formData.email && (!/^[a-z][a-zA-Z0-9.]*@nucleusteq\.com$/.test(formData.email))) {
         SweetAlert.fieldsRequired("Email must contain domain @nucleusteq");
@@ -98,8 +101,12 @@ const Registration = () => {
             }
           })
           .catch((error) => {
+            console.log(error)
             if (error.response.data.message === "Email already exist") {
               SweetAlert.fieldsRequired("Email already exist");
+            }
+            if(error.response.data.StatusCode === "400"){
+              SweetAlert.fieldsRequired(error.response.data.message);
             }
           });
       }
@@ -115,36 +122,36 @@ const Registration = () => {
         <div className="signUp">
           <H1Component>Registration</H1Component>
           <div className="details">
-            <LabelComponent className="side">Name</LabelComponent><br /><br />
-            <Input className="values" type="text" placeholder="enter a name" name="userName" value={formData.userName} onChange={changeData} /><br /><br />
-            <LabelComponent className="side">Email</LabelComponent><br /><br />
-            <Input className="values" type="email" placeholder="enter a email" name="email" value={formData.email} onChange={changeData} /><br /><br />
+            {/* <LabelComponent className="side">Name</LabelComponent><br /><br /> */}
+            <Input className="values" type="text" placeholder="Enter name" name="userName" value={formData.userName} onChange={changeData} /><br /><br />
+            {/* <LabelComponent className="side">Email</LabelComponent><br /><br /> */}
+            <Input className="values" type="email" placeholder="Enter email" name="email" value={formData.email} onChange={changeData} /><br /><br />
             <div className="password-container2">
-              <LabelComponent className="side">Password</LabelComponent><br /><br />
-              <Input className="values" type={showPassword ? 'password' : 'text'} name="password" placeholder="enter a password" value={formData.password} onChange={changeData} /><br />
+              {/* <LabelComponent className="side">Password</LabelComponent><br /><br /> */}
+              <Input className="values" type={showPassword ? 'password' : 'text'} name="password" placeholder="Enter password" value={formData.password} onChange={changeData} /><br />
               <ButtonComponent className="show-password2" type="button" onClick={togglePassword}>
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
               </ButtonComponent>
             </div><br />
             <div className="password-container2">
-              <LabelComponent className="side">Confirm Password</LabelComponent><br /><br />
-              <Input className="values" type={showConfirmPassword ? 'password' : 'text'} name="confirmPassword" placeholder="enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
+              {/* <LabelComponent className="side">Confirm Password</LabelComponent><br /><br /> */}
+              <Input className="values" type={showConfirmPassword ? 'password' : 'text'} name="confirmPassword" placeholder="Enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
               <ButtonComponent className="show-password2" type="button" onClick={toggleConfirmPassword}>
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </ButtonComponent>
             </div><br />
-            <LabelComponent className="side">DateOfBirth</LabelComponent><br /><br />
-            <Input className="values" type="Date" placeholder="enter a date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} /><br /><br />
-            <LabelComponent className="side">Phone number</LabelComponent><br /><br />
-            <Input className="values" type="text" name="phoneNumber" placeholder="enter a phone number" value={formData.phoneNumber} onChange={changeData} /><br /><br />
-            <LabelComponent className="side">Gender</LabelComponent><br /><br />
+            {/* <LabelComponent className="side">DateOfBirth</LabelComponent><br /><br /> */}
+            <Input className="values" type="Date" placeholder="Enter date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} /><br /><br />
+            {/* <LabelComponent className="side">Phone number</LabelComponent><br /><br /> */}
+            <Input className="values" type="number" name="phoneNumber" placeholder="Enter phone number" value={formData.phoneNumber} onChange={changeData} /><br /><br />
+            {/* <LabelComponent className="side">Gender</LabelComponent><br /><br /> */}
 
             <div className="gender">
-              <Input className="gen1" type="radio" name="gender" value={formData.gender} onChange={changeData} />
-              <LabelComponent className="gender">Male</LabelComponent>
-              <Input className="gen2" type="radio" name="gender" value={formData.gender} onChange={changeData} />
+              <Input className="gen1" type="radio" name="gender" value="male" onChange={changeDataForRadioButton }/>
+              <LabelComponent className="gender">Male </LabelComponent>
+              <Input className="gen2" type="radio" name="gender" value="female" onChange={changeDataForRadioButton } />
               <LabelComponent className="gender">Female</LabelComponent>
-              <Input className="gen2" type="radio" name="gender" value={formData.gender} onChange={changeData} />
+              <Input className="gen2" type="radio" name="gender" value="other" onChange={changeDataForRadioButton } />
               <LabelComponent className="gender">Other</LabelComponent><br />
             </div>
             <ButtonComponent className="submit" type="button" onClick={submitData}>Register</ButtonComponent>
@@ -155,5 +162,4 @@ const Registration = () => {
     </div>
   );
 }
-
 export default Registration;

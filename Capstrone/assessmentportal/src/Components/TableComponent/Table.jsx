@@ -26,18 +26,18 @@ const Table = ({ columns, data, rows, category, deleteData, viewQuizes, role, qu
             ))}
 
             {category && (<>
-              {role == "Admin" && (<>
+              {role === "Admin" && (<>
                 <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.categoryId)}><FaTrash className="delete-icon" /> Delete</ButtonComponent></td>
                 <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData"><FaPencilAlt className="update-icon" /> Update</Link></td>
               </>)}
               {role === "Admin" || role === "student" ? (
-                <td> <Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={() => viewQuizes(item.categoryName)}>
+                <td> <Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={() => viewQuizes(item.categoryName,item.categoryId)}>
                   <FaList className="delete-icon" /> Quizes</Link></td>) : (<></>)}
             </>
             )
             }
             {quiz && (<>
-              {role == "Admin" && (<>
+              {role === "Admin" && (<>
                 <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.quizId)}><FaTrash className="delete-icon" /> Delete</ButtonComponent></td>
                 <td><Link to={`/UpdateQuiz/${item.quizId}`} className="updateData"><FaPencilAlt className="update-icon" /> Update</Link></td>
                 <td><Link to={`/Questions/${item.quizId}`} className="updateData"><FaList className="delete-icon" /> Questions</Link></td>
@@ -48,7 +48,7 @@ const Table = ({ columns, data, rows, category, deleteData, viewQuizes, role, qu
             )
             }
             {question && (<>
-              {role == "Admin" && (<>
+              {role === "Admin" && (<>
                 <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.questionId)}><FaTrash className="add-icon" /> Delete</ButtonComponent></td>
                 <td><Link to={`/UpdateQuestion/${item.question}`} className="updateData"><FaList className="add-icon" /> Update</Link></td>
               </>)}

@@ -23,29 +23,18 @@ const AddQuestions = () => {
         option4: "",
         correctOption: "",
         questionId: "",
-        quizId: ""
-    });
-    const [questionData2, setQuestionData2] = useState({
-        question: "",
-        option1: "",
-        option2: "",
-        option3: "",
-        option4: "",
-        correctOption: "",
         quizId: quizId
     });
 
     const navigate = useNavigate();
-
     const changeData = (e) => {
-        setQuestionData2({ ...questionData2, [e.target.name]: e.target.value });
+        setQuestionData({ ...questionData, [e.target.name]: e.target.value });
     }
     useEffect(() => {
         if (question) {
             QuestionsApi.getByQuestion(question)
                 .then((response) => {
                     const questionInformation = response.data.data;
-
                     const { question, option1, option2, option3, option4, correctOption, questionId, quizId } = questionInformation;
                     setQuestionData({
                         question,
@@ -57,14 +46,6 @@ const AddQuestions = () => {
                         questionId,
                         quizId
                     });
-                    setQuestionData2({
-                        question,
-                        option1,
-                        option2,
-                        option3,
-                        option4,
-                        correctOption
-                    });
                 })
 
         }
@@ -73,22 +54,22 @@ const AddQuestions = () => {
         e.preventDefault();
         const validationErrors = {};
 
-        if (!questionData2.question) {
+        if (!questionData.question) {
             validationErrors.question = 'queation name Required';
         }
-        if (!questionData2.option1) {
+        if (!questionData.option1) {
             validationErrors.option1 = 'option1 Required';
         }
-        if (!questionData2.option2) {
+        if (!questionData.option2) {
             validationErrors.option2 = 'option2 Required';
         }
-        if (!questionData2.option3) {
+        if (!questionData.option3) {
             validationErrors.option3 = 'option3 Required';
         }
-        if (!questionData2.option4) {
+        if (!questionData.option4) {
             validationErrors.option4 = 'option4 Required';
         }
-        if (!questionData2.correctOption) {
+        if (!questionData.correctOption) {
             validationErrors.correctOption = 'correctOption Required';
         }
 
@@ -104,7 +85,7 @@ const AddQuestions = () => {
         if (question) {
             showErrors(e)
             setErrors({});
-            QuestionsApi.updateQuestion(questionData.questionId, questionData2)
+            QuestionsApi.updateQuestion(questionData.questionId, questionData)
                 .then((response) => {
 
                     if (response.data.message === "question updated successfully") {
@@ -115,25 +96,37 @@ const AddQuestions = () => {
                     if (error.response.data.message == "Question already exists") {
                         SweetAlert.fieldsRequired("Question already present")
                     }
-                    if (error.response.data.message === "Options must be unique") {
+                   else if (error.response.data.message === "Options must be unique") {
                         SweetAlert.fieldsRequired("Options must be unique");
+                    }
+                    else if(error.response.data.StatusCode === "400"){
+                        SweetAlert.fieldsRequired(error.response.data.message);
+                    }
+                    else if(error.response.data.message === "coorect option must same with one of four options"){
+                        SweetAlert.fieldsRequired("coorect option must same with one of four options")
                     }
                 })
         }
         else {
             showErrors(e)
             setErrors({});
-            QuestionsApi.addQuestion(questionData2).then(response => {
+            QuestionsApi.addQuestion(questionData).then(response => {
                 if (response.data.message === "question added successfully") {
                     SweetAlert.success("Question added successfully");
                     navigate(`/Questions/${quizId}`);
                 }
             }).catch(error => {
-                if (error.response.message === "Question already exists") {
+                if (error.response.data.message === "Question already exists") {
                     SweetAlert.fieldsRequired("Question already exist");
                 }
-                if (error.response.data.message === "Options must be unique") {
+                else if (error.response.data.message === "Options must be unique") {
                     SweetAlert.fieldsRequired("Options must be unique");
+                }
+               else if(error.response.data.StatusCode === "400"){
+                    SweetAlert.fieldsRequired(error.response.data.message);
+                }
+                else if(error.response.data.message === "coorect option must same with one of four options"){
+                    SweetAlert.fieldsRequired("coorect option must same with one of four options")
                 }
             })
 
@@ -141,9 +134,9 @@ const AddQuestions = () => {
     }
     const cancelAddQuestion = () => {
         if (question)
-            SweetAlert.cancel("Question?", navigate, `/Questions/${questionData.quizId}`)
+            navigate(`/Questions/${questionData.quizId}`)
         else
-            SweetAlert.cancel("Question?", navigate, `/Questions/${quizId}`)
+            navigate(`/Questions/${quizId}`)
     }
     return (
         <div className="login3">
@@ -159,7 +152,7 @@ const AddQuestions = () => {
                                 className="data3"
                                 type="text"
                                 name="question"
-                                value={questionData2.question}
+                                value={questionData.question}
                                 placeholder="Enter question"
                                 onChange={changeData}
                             /><br /><br />
@@ -168,7 +161,7 @@ const AddQuestions = () => {
                                 className="data3"
                                 type="text"
                                 name="option1"
-                                value={questionData2.option1}
+                                value={questionData.option1}
                                 placeholder="Enter option1"
                                 onChange={changeData}
                             /><br /><br />
@@ -177,7 +170,7 @@ const AddQuestions = () => {
                                 className="data3"
                                 type="text"
                                 name="option2"
-                                value={questionData2.option2}
+                                value={questionData.option2}
                                 placeholder="Enter option2"
                                 onChange={changeData}
                             /><br /><br />
@@ -186,7 +179,7 @@ const AddQuestions = () => {
                                 className="data3"
                                 type="text"
                                 name="option3"
-                                value={questionData2.option3}
+                                value={questionData.option3}
                                 placeholder="Enter option3"
                                 onChange={changeData}
                             /><br /><br />
@@ -195,7 +188,7 @@ const AddQuestions = () => {
                                 className="data3"
                                 type="text"
                                 name="option4"
-                                value={questionData2.option4}
+                                value={questionData.option4}
                                 placeholder="Enter option4"
                                 onChange={changeData}
                             /><br /><br />
@@ -203,14 +196,14 @@ const AddQuestions = () => {
                             <select
                                 className="data3"
                                 name="correctOption"
-                                value={questionData2.correctOption}
+                                value={questionData.correctOption}
                                 onChange={changeData}
                             >
                                 <option value="">Select Option</option>
-                                <option value={questionData2.option1}>{questionData2.option1}</option>
-                                <option value={questionData2.option2}>{questionData2.option2}</option>
-                                <option value={questionData2.option3}>{questionData2.option3}</option>
-                                <option value={questionData2.option4}>{questionData2.option4}</option>
+                                <option value={questionData.option1}>{questionData.option1}</option>
+                                <option value={questionData.option2}>{questionData.option2}</option>
+                                <option value={questionData.option3}>{questionData.option3}</option>
+                                <option value={questionData.option4}>{questionData.option4}</option>
                             </select>
 
                             <br /><br />

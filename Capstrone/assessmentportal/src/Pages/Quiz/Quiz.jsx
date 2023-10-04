@@ -10,7 +10,7 @@ import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Swal from "sweetalert2";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import H1Component from "../../Components/HeadingComponent/H1component";
-import { FaPlusCircle} from "react-icons/fa";
+import { FaBackward, FaPlusCircle} from "react-icons/fa";
 import Table from "../../Components/TableComponent/Table";
 
 function Quiz({ setTrue }) {
@@ -50,16 +50,16 @@ function Quiz({ setTrue }) {
   const addData = () => {
     navigate(`/AddQuiz/${categoryId}`);
   }
-  const handleSearch = async () => {
-    const filteredQuiz = quiz.filter(item =>
-      (item.topicName || '').toLowerCase().includes((text || '').toLowerCase())
+  
+  const handleSearchChange = (e) => {
+    const search = e.target.value.toLowerCase();
+    setText(search); 
+    const filteredQuiz = originalQuiz.filter(item =>
+      (item.topicName || '').toLowerCase().includes(search)
     );
+
     setQuiz(filteredQuiz);
   };
-  const clearSearch = () => {
-    setQuiz(originalQuiz);
-    setText("");
-  }
   const handleTakeTest = async (topicName, quizId, timer, categoryId) => {
     { localStorage.setItem('quizName', topicName) }
     { localStorage.setItem('timer', timer) }
@@ -112,6 +112,9 @@ function Quiz({ setTrue }) {
      'Quiz Description',
     'Time(Min)'
   ]
+  const handleBackButton=()=>{
+    navigate('/Category')
+  }
   return (
     <div className="categoryData">
       <Navbar />
@@ -119,18 +122,17 @@ function Quiz({ setTrue }) {
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <H1Component className="addHead">Quiz Details</H1Component>
+          <ButtonComponent className="back-Button" onClick={handleBackButton}><FaBackward className="back-icon" /> Back</ButtonComponent>
           {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}><FaPlusCircle className="delete-icon"/> Add Quiz</ButtonComponent>}
+          
           <div className="searchContainer">
             <Input
               className="search"
               type="text"
               placeholder="Search by Quiz Name"
               value={text}
-              onChange={(e) => setText(e.target.value)}
+              onChange={handleSearchChange}
             />
-            <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
-            <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
-
           </div>
           {isLoading ? (
             <p>Loading...</p>

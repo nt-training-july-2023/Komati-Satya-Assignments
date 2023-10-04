@@ -9,7 +9,7 @@ import UserApi from "../../Service/UserApi";
 import DisableBackButton from "../../Components/disableBackButton";
 import H2Component from "../../Components/HeadingComponent/H2component";
 import LabelComponent from "../../Components/LabelComponent/LabelComponent";
-import userImage from "../../assets/Profile/userImage.png";
+import userImage from "../../assets/images/Profile/userImage.png";
 
 const UserDashBoard = () => {
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ const UserDashBoard = () => {
       <div className="adminBackground">
 
         {verifyRole === 'student' && <>
-          <H2Component>Welcome to Student Dashboard</H2Component>
+          <H2Component>Welcome to User Dashboard</H2Component>
         </>}
         {verifyRole === 'Admin' && <>
           <H2Component>Welcome to Admin Dashboard</H2Component>
@@ -50,7 +50,7 @@ const UserDashBoard = () => {
         
           <img className="image" src= {userImage} />
           {verifyRole === 'student' && <>
-            <H2Component>Student information</H2Component>
+            <H2Component>User information</H2Component>
           </>}
           {verifyRole === 'Admin' && <>
             <H2Component>Admin information</H2Component>

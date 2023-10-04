@@ -40,26 +40,27 @@ function Category() {
       }
       getCategories();
     }).catch(error => {
-
+         
     })
   }
   const navigate = useNavigate();
   const addData = () => {
     navigate('/AddCategory');
   }
-  const handleSearch = async () => {
-
-    const filteredCategory = category.filter(item =>
-      item.categoryName.toLowerCase().includes(searchText.toLowerCase())
+ 
+  const handleSearchChange = (e) => {
+    const search = e.target.value.toLowerCase();
+    setSearchText(search); 
+    const filteredCategory = originalCategory.filter(item =>
+      (item.categoryName || '').toLowerCase().includes(search)
     );
+
     setCategory(filteredCategory);
   };
-  const clearSearch = () => {
-    setCategory(originalCategory);
-    setSearchText("");
-  }
-  const handleViewTopic = (categoryName) => {
-    { localStorage.setItem('categoryName', categoryName) }
+
+  const handleViewTopic = (categoryName,categoryId) => {
+     localStorage.setItem('categoryName', categoryName) 
+     localStorage.setItem('categoryId', categoryId) 
   }
   const rows = [
     'categoryName',
@@ -85,10 +86,10 @@ function Category() {
                 type="text"
                 placeholder="Search by Category Name"
                 value={searchText}
-                onChange={(e) => setSearchText(e.target.value)}
+                onChange={handleSearchChange}
               />
-              <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
-              <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
+              {/* <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent> */}
+              {/* <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent> */}
             </div>
             {isLoading ? (
               <p>Loading...</p>
@@ -101,7 +102,7 @@ function Category() {
                     role={verifyRole}
                     isTrue={true} />
                 ) : (
-                  <h1 className="no-category">No Category</h1>
+                  <H1Component className="no-category">No Category</H1Component>
                 )}
               </div>
             )}

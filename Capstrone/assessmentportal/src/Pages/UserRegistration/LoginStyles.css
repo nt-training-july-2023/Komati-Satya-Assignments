@@ -4,6 +4,7 @@
   justify-content: center;
   position: absolute;
   opacity: 0;
+  
 }
 
 .loginData {
@@ -14,18 +15,19 @@
   height: 100vh;
   flex-direction: column;
   float: right;
+  
  
 }
 
 .signin {
-  width: 400px;
+  width: 450px;
   box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
    padding-top: 30px;
  padding-bottom: 20px; 
   border-radius: 8px;
   margin-top: 40px;
   background-color: rgb(131, 179, 131);
-  height: 390px;
+  height: 340px;
 }
 
 .heading {
@@ -37,10 +39,19 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.data {
+.data-password {
+  margin-top: 0px;
   width: 85%;
-  padding: 6px;
+  padding: 8px;
   border-radius: 5px;
+ outline: 0px;
+}
+.data-email {
+  margin-top: 35px;
+  width: 85%;
+  padding: 8px;
+  border-radius: 5px;
+  outline: 0px;
 }
 .errors{
   font-size: 15px;
@@ -49,7 +60,7 @@
 }
 
 .btn {
-  width: 30%;
+  width: 85%;
   padding: 6px;
   margin-top: 10px;
   border: 0.4px solid black;
@@ -63,8 +74,7 @@
 
 .anchor {
   text-decoration: none;
-  color: rgb(228, 33, 33);
-  margin-left: 15px;
+  margin-left: 11px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
 }
@@ -85,7 +95,7 @@
 }
 .show-password{
   position:absolute;
-  top:65%;
+  top:40%;
   right: 40px;
   transform: translateY(-50%);
   background: none;

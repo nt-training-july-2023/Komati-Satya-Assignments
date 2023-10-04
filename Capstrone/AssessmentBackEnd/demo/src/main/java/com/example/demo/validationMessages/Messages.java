@@ -13,11 +13,13 @@ public final class Messages {
     /**
      * find category.
      */
-    public static final String FIND_CATEGORY = "find category";
+    public static final String FIND_CATEGORY = "successfully retrieve the"
+            + " category data";
     /**
      * find category.
      */
-    public static final String FIND_ALLCATEGORY = "find all category";
+    public static final String FIND_ALLCATEGORY = "successfully retrieve the"
+            + "category data";
     /**
      * update category.
      */
@@ -29,11 +31,13 @@ public final class Messages {
     /**
      * find results.
      */
-    public static final String FIND_RESULT = "find results";
+    public static final String FIND_RESULT = "successfully retrieve the"
+            + " student result";
     /**
      * find results.
      */
-    public static final String FIND_ALLRESULT = "find all results";
+    public static final String FIND_ALLRESULT = "successfully retrieve the"
+            + "student results";
     /**
      *Save question.
     */
@@ -41,7 +45,8 @@ public final class Messages {
     /**
      * find questions.
      */
-    public static final String FIND_ALLQUESTION = "find all questions";
+    public static final String FIND_ALLQUESTION = "successfully retrieve"
+            + " all questions";
     /**
      * delete question.
      */
@@ -56,11 +61,11 @@ public final class Messages {
      * find question by quiz id.
      */
     public static final String FIND_QUESTIONBYQUIZID =
-            "find question by quiz id";
+            "successfully retrieve question by quiz id";
     /**
      * find question.
      */
-    public static final String FIND_QUESTION = "find question";
+    public static final String FIND_QUESTION = "successfully retrieve the data";
     /**
      *Save quiz.
     */
@@ -68,7 +73,8 @@ public final class Messages {
     /**
      * find quizes.
      */
-    public static final String FIND_ALLQUIZES = "find all quizes";
+    public static final String FIND_ALLQUIZES = "successfully "
+            + "find all quizes";
     /**
      * delete question.
      */
@@ -80,15 +86,17 @@ public final class Messages {
     /**
      * find quiz category id.
      */
-    public static final String FIND_QUIZBYCATEGORYID = "find quiz category id";
+    public static final String FIND_QUIZBYCATEGORYID = "successfully retrieve"
+            + " the quiz by category id";
     /**
      * find quiz.
      */
-    public static final String FIND_QUIZ = "find quiz";
+    public static final String FIND_QUIZ = "successfully retrieve the"
+            + "quiz detaills";
     /**
      *Save result.
     */
-    public static final String SAVE_RESULT = "result added successfully";
+    public static final String SAVE_RESULT = "result saved successfully";
     /**
      *save student.
     */
@@ -96,7 +104,8 @@ public final class Messages {
     /**
      * find student by id.
      */
-    public static final String FIND_STUDENTBYID = "find student by id";
+    public static final String FIND_STUDENTBYID = "successfully retrieve the"
+            + " student by id";
     /**
      *student logged in.
      */
@@ -104,7 +113,8 @@ public final class Messages {
     /**
      * find all students.
      */
-    public static final String FIND_ALLSTUDENT = "find all students";
+    public static final String FIND_ALLSTUDENT = "successfully retrieve the"
+            + " all stpudnet details";
     /**
      * update student.
      */

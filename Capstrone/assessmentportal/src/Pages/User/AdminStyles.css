@@ -14,6 +14,7 @@ ul {
   overflow: hidden;
   background-color: rgb(95, 236, 95);
   height: 56px;
+
 }
 
 li {
@@ -127,6 +128,7 @@ font-size: 15px;
   }
   .adminBackground {
     height: 500px;
+   
   }
  
   .nav-bar{
@@ -142,9 +144,12 @@ font-size: 15px;
  }
  .adminBackground {
   height: 500px;
+  width: 80%;
 }
  
 }
-@media (max-width: 512px){
-
+@media (min-width: 700px){
+  .adminBackground {
+    height: 450px;
+  }
 }

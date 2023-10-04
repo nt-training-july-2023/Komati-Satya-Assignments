@@ -8,7 +8,9 @@ fieldsRequired(data){
         title: 'Error!',
         text: data,
         icon: 'error',
-        confirmButtonText: 'Ok'
+        showConfirmButton: false,
+        timer:1500,
+        // confirmButtonColor: 'rgb(226, 91, 91)',
     });
 }
 success(data){
@@ -16,7 +18,8 @@ success(data){
         title: 'Success',
         text: data,
         icon: 'success',
-        confirmButtonText: 'Ok'
+        showConfirmButton: false,
+        timer:1500,
     });
 }
 cancel(data,nav,path){
@@ -25,10 +28,11 @@ cancel(data,nav,path){
         showDenyButton: true,
         confirmButtonText: 'Yes',
         denyButtonText: 'No',
+        confirmButtonColor: '#5dcc5d',
         customClass: {
           actions: 'my-actions',
           cancelButton: 'order-1 right-gap',
-          confirmButton: 'order-2',
+          confirmButton: 'order-2 confirm',
           denyButton: 'order-3',
         }
       }).then((result) => {
@@ -44,6 +48,7 @@ deleteData(data,deleteFunction,id){
       showDenyButton: true,
       confirmButtonText: 'Yes',
       denyButtonText: 'No',
+      confirmButtonColor: '#5dcc5d',
       customClass: {
         actions: 'my-actions',
         cancelButton: 'order-1 right-gap',
@@ -61,8 +66,43 @@ timeOut(){
     title: 'Time Out',
     text: 'All answers are saved',
     icon: 'warning',
-    confirmButtonText: 'Ok'
+    showConfirmButton: false,
+        timer:1500,
   })
+}
+
+logout(nav){
+  Swal.fire({
+    title: 'Do you want to logout page??',
+    showDenyButton: true,
+    confirmButtonText: 'Yes',
+    denyButtonText: 'No',
+    confirmButtonColor:'#5dcc5d',
+    customClass: {
+        actions: 'my-actions',
+        cancelButton: 'order-1 right-gap',
+        confirmButton: 'order-2',
+        denyButton: 'order-3',
+    }
+}).then((result) => {
+    if (result.isConfirmed) {
+        localStorage.removeItem('userRole');
+        localStorage.removeItem('userEmail')
+        localStorage.removeItem('userName')
+        localStorage.removeItem('userId')
+        localStorage.removeItem('categoryName')
+        localStorage.removeItem('quizName')
+        localStorage.removeItem('timerValue');  
+        localStorage.removeItem('user');
+        localStorage.removeItem('timer');
+        localStorage.removeItem('categoryId');  
+      
+        nav('/')
+
+    } else if (result.isDenied) {
+
+    }
+})
 }
   
 }

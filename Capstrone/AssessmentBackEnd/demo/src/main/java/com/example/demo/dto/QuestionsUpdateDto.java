@@ -3,6 +3,7 @@ package com.example.demo.dto;
 import com.example.demo.validationMessages.ValidationMessages;
 
 import jakarta.persistence.Column;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,37 +22,37 @@ public class QuestionsUpdateDto {
      * stores the question.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.QUESTION_NOTBLANK)
+    @NotBlank(message = ValidationMessages.QUESTION_NOTBLANK)
     private String question;
     /**
      * stores the option1.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.OPTION1_NOTBLANK)
+    @NotBlank(message = ValidationMessages.OPTION1_NOTBLANK)
     private String option1;
     /**
      * stores the option2.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.OPTION2_NOTBLANK)
+    @NotBlank(message = ValidationMessages.OPTION2_NOTBLANK)
     private String option2;
     /**
      * stores the option3.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.OPTION3_NOTBLANK)
+    @NotBlank(message = ValidationMessages.OPTION3_NOTBLANK)
     private String option3;
     /**
      * stores the option4.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.OPTION4_NOTBLANK)
+    @NotBlank(message = ValidationMessages.OPTION4_NOTBLANK)
     private String option4;
     /**
      * stores the correct option.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.CORRECTANSWER_NOTBLANK)
+    @NotBlank(message = ValidationMessages.CORRECTANSWER_NOTBLANK)
     private String correctOption;
 
 }

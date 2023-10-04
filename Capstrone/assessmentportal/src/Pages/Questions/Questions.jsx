@@ -8,12 +8,13 @@ import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Input from "../../Components/Inputs/Input";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import H1Component from "../../Components/HeadingComponent/H1component";
-import { FaPlusCircle } from "react-icons/fa";
+import { FaBackward, FaPlusCircle } from "react-icons/fa";
 import Table from "../../Components/TableComponent/Table";
 
 const Questions = () => {
   const { quizId } = useParams();
   const verifyRole = localStorage.getItem('userRole');
+  const categoryId = localStorage.getItem('categoryId')
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [text, setText] = useState("");
@@ -46,16 +47,7 @@ const Questions = () => {
   const addData = () => {
     navigate(`/AddQuestion/${quizId}`);
   }
-  const handleSearch = async () => {
-    const filteredQuestions = questions.filter(item =>
-      (item.question || '').toLowerCase().includes((text || '').toLowerCase())
-    );
-    setQuestions(filteredQuestions);
-  };
-  const clearSearch = () => {
-    setQuestions(originalQuestions);
-    setText("");
-  }
+ 
   const rows = [
     'question',
     'option1',
@@ -73,23 +65,38 @@ const Questions = () => {
     'Correct Option',
 
   ]
+  const handleBackButton=()=>{
+    navigate(`/Quiz/${categoryId}`)
+  }
+  const handleSearchChange = (e) => {
+    const searchText = e.target.value.toLowerCase();
+    setText(searchText); 
+    const filteredQuestions = originalQuestions.filter(item =>
+      (item.question || '').toLowerCase().includes(searchText)
+    );
+
+    setQuestions(filteredQuestions);
+  };
+
   return (
     <div className="categoryData">
       <Navbar />
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
           <H1Component className="addHead">Questions Details</H1Component>
+          <ButtonComponent className="back-Button" onClick={handleBackButton}><FaBackward className="back-icon" /> Back</ButtonComponent>
           {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}><FaPlusCircle className="add-icon" /> Add Question</ButtonComponent>}
+
           <div className="searchContainer">
             <Input
               className="search"
               type="text"
               placeholder="Search by Question"
               value={text}
-              onChange={(e) => setText(e.target.value)}
+             
+              onChange={handleSearchChange}
             />
-            <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent>
-            <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent>
+           
 
           </div>
           {isLoading ? (

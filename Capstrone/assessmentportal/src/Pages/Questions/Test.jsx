@@ -11,6 +11,7 @@ import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import ErrorPage from "../../Components/ErrorPage";
 import H1Component from "../../Components/HeadingComponent/H1component";
+import LabelComponent from "../../Components/LabelComponent/LabelComponent";
 
 function Test({ isRefresh, setTrue }) {
   const navigate = useNavigate();
@@ -168,7 +169,7 @@ function Test({ isRefresh, setTrue }) {
       customClass: {
         actions: 'my-actions',
         cancelButton: 'order-1 right-gap',
-        confirmButton: 'order-2',
+        confirmButton: 'order-2 confirm',
         denyButton: 'order-3',
       }
     }).then((result) => {
@@ -309,7 +310,7 @@ function Test({ isRefresh, setTrue }) {
                               onChange={() => handleOptionChange(item.questionId, item.option1)}
                               checked={selectedOptions[item.questionId] === item.option1}
                             />
-                            <label htmlFor={`option1_${item.questionId}`}>{item.option1}</label>
+                            <LabelComponent htmlFor={`option1_${item.questionId}`}>{item.option1}</LabelComponent>
                           </div>
                           <div className="option">
                             <Input
@@ -320,7 +321,7 @@ function Test({ isRefresh, setTrue }) {
                               onChange={() => handleOptionChange(item.questionId, item.option2)}
                               checked={selectedOptions[item.questionId] === item.option2}
                             />
-                            <label htmlFor={`option2_${item.questionId}`}>{item.option2}</label>
+                            <LabelComponent htmlFor={`option2_${item.questionId}`}>{item.option2}</LabelComponent>
                           </div>
                           <div className="option">
                             <Input
@@ -331,7 +332,7 @@ function Test({ isRefresh, setTrue }) {
                               onChange={() => handleOptionChange(item.questionId, item.option3)}
                               checked={selectedOptions[item.questionId] === item.option3}
                             />
-                            <label htmlFor={`option3_${item.questionId}`}>{item.option3}</label>
+                            <LabelComponent htmlFor={`option3_${item.questionId}`}>{item.option3}</LabelComponent>
                           </div>
                           <div className="option">
                             <Input
@@ -342,7 +343,7 @@ function Test({ isRefresh, setTrue }) {
                               onChange={() => handleOptionChange(item.questionId, item.option4)}
                               checked={selectedOptions[item.questionId] === item.option4}
                             />
-                            <label htmlFor={`option4_${item.questionId}`}>{item.option4}</label>
+                            <LabelComponent htmlFor={`option4_${item.questionId}`}>{item.option4}</LabelComponent>
                           </div>
                         </div>
                       </div>
@@ -358,7 +359,7 @@ function Test({ isRefresh, setTrue }) {
             </>
           ) : (
             <div>
-              <h1>No questions</h1>
+              <H1Component>No questions</H1Component>
               <ButtonComponent className="back" onClick={() => backTo()}>Back</ButtonComponent>
             </div>
           )}

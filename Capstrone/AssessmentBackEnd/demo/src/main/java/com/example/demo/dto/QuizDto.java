@@ -4,6 +4,7 @@ import com.example.demo.validationMessages.ValidationMessages;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -28,13 +29,13 @@ public class QuizDto {
      * stores the topic name.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.QUIZNAME_NOTBLANK)
+    @NotBlank(message = ValidationMessages.QUIZNAME_NOTBLANK)
     private String topicName;
     /**
      * stores the topic description.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.QUIZDESCRIPTION_NOTBLANK)
+    @NotBlank(message = ValidationMessages.QUIZDESCRIPTION_NOTBLANK)
     private String topicDescription;
     /**
      * category id.
