@@ -25,7 +25,6 @@ const AddQuestions = () => {
         questionId: "",
         quizId: quizId
     });
-
     const navigate = useNavigate();
     const changeData = (e) => {
         setQuestionData({ ...questionData, [e.target.name]: e.target.value });
@@ -47,13 +46,11 @@ const AddQuestions = () => {
                         quizId
                     });
                 })
-
         }
     }, [quizId]);
     const showErrors = (e) => {
         e.preventDefault();
         const validationErrors = {};
-
         if (!questionData.question) {
             validationErrors.question = 'queation name Required';
         }
@@ -72,13 +69,11 @@ const AddQuestions = () => {
         if (!questionData.correctOption) {
             validationErrors.correctOption = 'correctOption Required';
         }
-
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors)
             if (validationErrors) {
                 SweetAlert.fieldsRequired("all data required")
             }
-
         }
     }
     const addQuestionData = async (e) => {
@@ -87,7 +82,6 @@ const AddQuestions = () => {
             setErrors({});
             QuestionsApi.updateQuestion(questionData.questionId, questionData)
                 .then((response) => {
-
                     if (response.data.message === "question updated successfully") {
                         SweetAlert.success("Question updated successfully")
                         navigate(`/Questions/${questionData.quizId}`);
@@ -129,7 +123,6 @@ const AddQuestions = () => {
                     SweetAlert.fieldsRequired("coorect option must same with one of four options")
                 }
             })
-
         }
     }
     const cancelAddQuestion = () => {
@@ -140,14 +133,13 @@ const AddQuestions = () => {
     }
     return (
         <div className="login3">
-
             {verifyRole === 'Admin' ? (
                 <div className="loginData3">
                     <H1Component className="heading3">
                         {quizId ? "Add Question" : "Update Question"}</H1Component>
                     <form>
                         <div className="signin4">
-                            <LabelComponent className="head3">Question</LabelComponent><br /><br />
+                            <LabelComponent className="label-data">Question</LabelComponent><br /><br />
                             <TextareaComponent
                                 className="data3"
                                 type="text"
@@ -156,7 +148,7 @@ const AddQuestions = () => {
                                 placeholder="Enter question"
                                 onChange={changeData}
                             /><br /><br />
-                            <LabelComponent className="head3">Option1</LabelComponent><br /><br />
+                            <LabelComponent className="label-data">Option1</LabelComponent><br /><br />
                             <Input
                                 className="data3"
                                 type="text"
@@ -165,7 +157,7 @@ const AddQuestions = () => {
                                 placeholder="Enter option1"
                                 onChange={changeData}
                             /><br /><br />
-                            <LabelComponent className="head3">Option2</LabelComponent><br /><br />
+                            <LabelComponent className="label-data">Option2</LabelComponent><br /><br />
                             <Input
                                 className="data3"
                                 type="text"
@@ -174,7 +166,7 @@ const AddQuestions = () => {
                                 placeholder="Enter option2"
                                 onChange={changeData}
                             /><br /><br />
-                            <LabelComponent className="head3">Option3</LabelComponent><br /><br />
+                            <LabelComponent className="label-data">Option3</LabelComponent><br /><br />
                             <Input
                                 className="data3"
                                 type="text"
@@ -183,7 +175,7 @@ const AddQuestions = () => {
                                 placeholder="Enter option3"
                                 onChange={changeData}
                             /><br /><br />
-                            <LabelComponent className="head3">Option4</LabelComponent><br /><br />
+                            <LabelComponent className="label-data">Option4</LabelComponent><br /><br />
                             <Input
                                 className="data3"
                                 type="text"
@@ -192,7 +184,7 @@ const AddQuestions = () => {
                                 placeholder="Enter option4"
                                 onChange={changeData}
                             /><br /><br />
-                            <LabelComponent className="head3">Correct Answer</LabelComponent><br /><br />
+                            <LabelComponent className="label-data">Correct Answer</LabelComponent><br /><br />
                             <select
                                 className="data3"
                                 name="correctOption"

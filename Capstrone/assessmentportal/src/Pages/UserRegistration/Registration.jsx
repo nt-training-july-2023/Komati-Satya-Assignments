@@ -38,7 +38,6 @@ const Registration = () => {
   }
   const validateForm = () => {
     const validationErrors = {};
-
     if (!formData.email) {
       validationErrors.email = 'Email Required';
     }
@@ -55,7 +54,6 @@ const Registration = () => {
     if (!formData.dateOfBirth) {
       validationErrors.dateOfBirth = 'Date of Birth Required';
     }
-
     if (!formData.phoneNumber) {
       validationErrors.phoneNumber = 'Phone Number Required';
     }
@@ -78,7 +76,6 @@ const Registration = () => {
       else if (formData.phoneNumber.length > 10) {
         SweetAlert.fieldsRequired("Phone number must be 10 digits");
       }
-
       else if (formData.password && !re.capital.test(formData.password) ||
         !re.specialChar.test(formData.password) ||
         !re.length.test(formData.password) ||
@@ -90,7 +87,6 @@ const Registration = () => {
       }
       else if (formData.email && (!/^[a-z][a-zA-Z0-9.]*@nucleusteq\.com$/.test(formData.email))) {
         SweetAlert.fieldsRequired("Email must contain domain @nucleusteq");
-
       }
       else {
         UserApi.addUser(formData)
@@ -101,11 +97,10 @@ const Registration = () => {
             }
           })
           .catch((error) => {
-            console.log(error)
             if (error.response.data.message === "Email already exist") {
               SweetAlert.fieldsRequired("Email already exist");
             }
-            if(error.response.data.StatusCode === "400"){
+            if (error.response.data.StatusCode === "400") {
               SweetAlert.fieldsRequired(error.response.data.message);
             }
           });
@@ -117,17 +112,15 @@ const Registration = () => {
   }
 
   return (
-    <div className="userform">
-      <form>
-        <div className="signUp">
+    <div className="user">
+        <div className="userData">
+        <form>
+        <div  className="signUp" >
           <H1Component>Registration</H1Component>
           <div className="details">
-            {/* <LabelComponent className="side">Name</LabelComponent><br /><br /> */}
             <Input className="values" type="text" placeholder="Enter name" name="userName" value={formData.userName} onChange={changeData} /><br /><br />
-            {/* <LabelComponent className="side">Email</LabelComponent><br /><br /> */}
             <Input className="values" type="email" placeholder="Enter email" name="email" value={formData.email} onChange={changeData} /><br /><br />
             <div className="password-container2">
-              {/* <LabelComponent className="side">Password</LabelComponent><br /><br /> */}
               <Input className="values" type={showPassword ? 'password' : 'text'} name="password" placeholder="Enter password" value={formData.password} onChange={changeData} /><br />
               <ButtonComponent className="show-password2" type="button" onClick={togglePassword}>
                 {showPassword ? <FaEyeSlash /> : <FaEye />}
@@ -140,23 +133,24 @@ const Registration = () => {
               </ButtonComponent>
             </div><br />
             <Input className="values" type="Date" placeholder="Enter date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} /><br /><br />
-           
             <Input className="values" type="number" name="phoneNumber" placeholder="Enter phone number" value={formData.phoneNumber} onChange={changeData} /><br /><br />
-           
             <div className="gender">
-              <Input className="gen1" type="radio" name="gender" value="male" onChange={changeDataForRadioButton }/>
+              <Input className="gen1" type="radio" name="gender" value="male" onChange={changeDataForRadioButton} />
               <LabelComponent className="gender">Male </LabelComponent>
-              <Input className="gen2" type="radio" name="gender" value="female" onChange={changeDataForRadioButton } />
+              <Input className="gen2" type="radio" name="gender" value="female" onChange={changeDataForRadioButton} />
               <LabelComponent className="gender">Female</LabelComponent>
-              <Input className="gen2" type="radio" name="gender" value="other" onChange={changeDataForRadioButton } />
+              <Input className="gen2" type="radio" name="gender" value="other" onChange={changeDataForRadioButton} />
               <LabelComponent className="gender">Other</LabelComponent><br />
             </div>
             <ButtonComponent className="submit" type="button" onClick={submitData}>Register</ButtonComponent>
             <a href="/" className="anchor1">Already have an account? Login here!!!</a>
           </div>
+          </div>
+          </form>
         </div>
-      </form>
-    </div>
+      
+      </div>
+   
   );
 }
 export default Registration;

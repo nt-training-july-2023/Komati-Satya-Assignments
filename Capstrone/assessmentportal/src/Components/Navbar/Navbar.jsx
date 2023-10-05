@@ -14,23 +14,23 @@ const Navbar = () => {
         SweetAlert.logout(navigate)
     }
     return (
-       <div className="admin">
+        <div className="admin">
             <DisableBackButton />
             {(verifyRole === 'Admin' || verifyRole === 'student') ?
                 <>
                     <ul className="nav-bar">
-                        <li className="aa"><a className={location.pathname === '/UserDashBoard' ? 'active' : ''} href="/UserDashBoard">Profile <FaUser className="profile-icon"/></a></li>
-                        <li className="aa"><a className={location.pathname === '/Category' ? 'active' : ''} href="/Category">Categories <FaList className="category-icon"/></a></li>
+                        <li className="aa"><a className={location.pathname === '/UserDashBoard' ? 'active' : ''} href="/UserDashBoard">Profile <FaUser className="profile-icon" /></a></li>
+                        <li className="aa"><a className={location.pathname === '/Category' ? 'active' : ''} href="/Category">Categories <FaList className="category-icon" /></a></li>
                         {verifyRole === 'Admin' && <>
-                            <li className="aa"><a className={location.pathname === '/Students' ? 'active' : ''} href="/Students">Students <FaUsers className="users-icon"/></a></li>
+                            <li className="aa"><a className={location.pathname === '/Students' ? 'active' : ''} href="/Students">Students <FaUsers className="users-icon" /></a></li>
                         </>}
                         {verifyRole === 'Admin' && <>
-                            <li className="aa"><a className={location.pathname === '/Result' ? 'active' : ''} href="/Result">Result <FaChartBar className="users-icon"/></a></li>
+                            <li className="aa"><a className={location.pathname === '/Result' ? 'active' : ''} href="/Result">Result <FaChartBar className="users-icon" /></a></li>
                         </>}
                         {verifyRole === 'student' && <>
-                            <li className="aa"><a className={location.pathname === `/Result/${verifyUserId}` ? 'active' : ''} href={`/Result/${verifyUserId}`}>Result <FaChartBar className="users-icon"/></a></li>
+                            <li className="aa"><a className={location.pathname === `/Result/${verifyUserId}` ? 'active' : ''} href={`/Result/${verifyUserId}`}>Result <FaChartBar className="users-icon" /></a></li>
                         </>}
-                        <li><a className="logout" href="#" onClick={logoutPage}>Logout <FaSignOutAlt className="logout-icon"/></a></li>
+                        <li><a className="logout" href="#" onClick={logoutPage}>Logout <FaSignOutAlt className="logout-icon" /></a></li>
                     </ul>
                 </> : <ErrorPage />}
         </div>

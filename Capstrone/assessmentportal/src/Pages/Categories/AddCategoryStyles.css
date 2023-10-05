@@ -13,18 +13,21 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   flex-direction: column;
-
+  float: right;
+  background-color:#A8DF8E 
 }
 
 .signin3 {
   width: 420px;
-  padding: 30px 20px;
+  box-shadow: rgb(0 0 0 / 16%) 1px 1px 10px;
+   padding: 30px;
   border-radius: 8px;
-  background-color: rgb(131, 179, 131);
-  margin: 0 auto;
+  margin-top: px;
+  background-color: white;
+  height: 380px;
 }
 
 .heading3 {
@@ -39,7 +42,7 @@
 .data3 {
   width: 90%;
   padding: 12px;
-  border: 1px solid #ccc;
+  border: 1px solid black;
   border-radius: 5px;
   margin-top: 5px;
   outline: none;

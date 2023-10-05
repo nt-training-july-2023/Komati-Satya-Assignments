@@ -6,11 +6,11 @@ import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import DisableBackButton from "../../Components/disableBackButton";
 import CategoryApi from "../../Service/CategoryApi";
 import Navbar from "../../Components/Navbar/Navbar";
-import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import H1Component from "../../Components/HeadingComponent/H1component";
 import { FaPlusCircle } from 'react-icons/fa';
 import Table from "../../Components/TableComponent/Table";
+import SearchButton from "../../Components/SearchButton/SearchButton";
 
 function Category() {
   const verifyRole = localStorage.getItem('userRole');
@@ -47,17 +47,6 @@ function Category() {
   const addData = () => {
     navigate('/AddCategory');
   }
- 
-  const handleSearchChange = (e) => {
-    const search = e.target.value.toLowerCase();
-    setSearchText(search); 
-    const filteredCategory = originalCategory.filter(item =>
-      (item.categoryName || '').toLowerCase().includes(search)
-    );
-
-    setCategory(filteredCategory);
-  };
-
   const handleViewTopic = (categoryName,categoryId) => {
      localStorage.setItem('categoryName', categoryName) 
      localStorage.setItem('categoryId', categoryId) 
@@ -81,15 +70,13 @@ function Category() {
             <H1Component className="addHead">Category Details</H1Component>
             {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()} ><FaPlusCircle className="delete-icon" /> Add category</ButtonComponent>}
             <div className="searchContainer">
-              <Input
-                className="search"
-                type="text"
-                placeholder="Search by Category Name"
-                value={searchText}
-                onChange={handleSearchChange}
-              />
-              {/* <ButtonComponent className="searchButton" onClick={handleSearch}>Search</ButtonComponent> */}
-              {/* <ButtonComponent className="searchButton" onClick={clearSearch}>Clear Search</ButtonComponent> */}
+                <SearchButton
+                originalData={originalCategory}
+                setItem={setCategory}
+                setText={setSearchText}
+                placeholder="serach by category name"
+                category={true}
+              />    
             </div>
             {isLoading ? (
               <p>Loading...</p>

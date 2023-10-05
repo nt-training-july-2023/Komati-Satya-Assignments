@@ -1752,3 +1752,349 @@
 2023-10-05T12:59:45.502+05:30  INFO 11740 --- [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
 2023-10-05T12:59:45.504+05:30  INFO 11740 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown initiated...
 2023-10-05T12:59:45.518+05:30  INFO 11740 --- [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-2 - Shutdown completed.
+2023-10-05T13:07:34.937+05:30  INFO 20420 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.8 with PID 20420 (D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo\target\classes started by Komati Satya in D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo)
+2023-10-05T13:07:34.942+05:30  INFO 20420 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-10-05T13:07:35.066+05:30  INFO 20420 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-05T13:07:35.066+05:30  INFO 20420 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-05T13:07:36.497+05:30  INFO 20420 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-05T13:07:36.664+05:30  INFO 20420 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 144 ms. Found 6 JPA repository interfaces.
+2023-10-05T13:07:38.085+05:30  INFO 20420 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6002 (http)
+2023-10-05T13:07:38.110+05:30  INFO 20420 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-05T13:07:38.112+05:30  INFO 20420 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-10-05T13:07:38.275+05:30  INFO 20420 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-05T13:07:38.276+05:30  INFO 20420 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3209 ms
+2023-10-05T13:07:38.592+05:30  INFO 20420 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-05T13:07:38.709+05:30  INFO 20420 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.6.Final
+2023-10-05T13:07:38.716+05:30  INFO 20420 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-10-05T13:07:38.980+05:30  INFO 20420 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-05T13:07:39.247+05:30  INFO 20420 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-05T13:07:39.284+05:30  INFO 20420 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-05T13:07:39.626+05:30  INFO 20420 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@54662ad2
+2023-10-05T13:07:39.629+05:30  INFO 20420 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-05T13:07:40.248+05:30  INFO 20420 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-05T13:07:41.566+05:30  INFO 20420 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-05T13:07:41.739+05:30  INFO 20420 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-05T13:07:42.279+05:30  INFO 20420 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-10-05T13:07:43.330+05:30  WARN 20420 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-05T13:07:43.970+05:30  INFO 20420 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-05T13:07:44.033+05:30  INFO 20420 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6002 (http) with context path ''
+2023-10-05T13:07:44.060+05:30  INFO 20420 --- [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 9.875 seconds (process running for 10.939)
+2023-10-05T13:07:50.946+05:30  INFO 20420 --- [http-nio-6002-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-05T13:07:50.947+05:30  INFO 20420 --- [http-nio-6002-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-05T13:07:50.951+05:30  INFO 20420 --- [http-nio-6002-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 3 ms
+2023-10-05T13:07:51.297+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve the data
+2023-10-05T13:07:51.297+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : successfully retrieve the data
+2023-10-05T13:07:51.434+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve the data
+2023-10-05T13:07:51.435+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : successfully retrieve the data
+2023-10-05T13:07:53.832+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:07:53.832+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:07:53.856+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:07:53.856+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:07:59.903+05:30  WARN 20420 --- [http-nio-6002-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "undefined"]
+2023-10-05T13:07:59.975+05:30  WARN 20420 --- [http-nio-6002-exec-6] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Failed to convert value of type 'java.lang.String' to required type 'int'; For input string: "undefined"]
+2023-10-05T13:08:05.401+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T13:08:05.403+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T13:08:05.425+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T13:08:05.425+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T13:08:07.704+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:08:07.704+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:08:07.745+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:08:07.745+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:08:09.420+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:08:09.420+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:08:09.441+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:08:09.441+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:08:10.324+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve the data
+2023-10-05T13:08:10.324+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : successfully retrieve the data
+2023-10-05T13:08:10.348+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve the data
+2023-10-05T13:08:10.348+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.QuestionsController  : successfully retrieve the data
+2023-10-05T13:08:12.615+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:08:12.615+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:08:12.632+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:08:12.632+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:08:15.714+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve the data
+2023-10-05T13:08:15.714+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuestionsController  : successfully retrieve the data
+2023-10-05T13:08:15.737+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve the data
+2023-10-05T13:08:15.737+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuestionsController  : successfully retrieve the data
+2023-10-05T13:08:20.490+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuestionServiceImp   : question updated successfully
+2023-10-05T13:08:20.490+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.QuestionsController  : question updated successfully
+2023-10-05T13:08:20.553+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:08:20.553+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:08:20.577+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:08:20.577+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:08:22.799+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve the data
+2023-10-05T13:08:22.799+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : successfully retrieve the data
+2023-10-05T13:08:22.824+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve the data
+2023-10-05T13:08:22.824+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.QuestionsController  : successfully retrieve the data
+2023-10-05T13:08:24.953+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:08:24.960+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:08:24.983+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:08:24.983+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:08:26.849+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:08:26.849+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:08:26.866+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:08:26.866+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:08:34.493+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizSirviceImp       : succcessfully add the data
+2023-10-05T13:08:34.493+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.QuizController       : succcessfully add the data
+2023-10-05T13:08:34.533+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:08:34.537+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:08:34.557+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:08:34.557+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:08:36.696+05:30 ERROR 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : No question is there
+2023-10-05T13:08:36.703+05:30  WARN 20420 --- [http-nio-6002-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No question is there]
+2023-10-05T13:08:36.709+05:30 ERROR 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : No question is there
+2023-10-05T13:08:36.716+05:30  WARN 20420 --- [http-nio-6002-exec-3] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.AllNotFoundException: No question is there]
+2023-10-05T13:08:51.296+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : question added successfully
+2023-10-05T13:08:51.296+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : question added successfully
+2023-10-05T13:08:51.330+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:08:51.330+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:08:51.359+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:08:51.359+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:08:54.075+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve the data
+2023-10-05T13:08:54.075+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.QuestionsController  : successfully retrieve the data
+2023-10-05T13:08:54.102+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve the data
+2023-10-05T13:08:54.102+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.QuestionsController  : successfully retrieve the data
+2023-10-05T13:09:06.454+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : question updated successfully
+2023-10-05T13:09:06.454+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : question updated successfully
+2023-10-05T13:09:06.489+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:09:06.489+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:09:06.524+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:09:06.524+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:14:37.377+05:30  WARN 20420 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m57s556ms166µs900ns).
+2023-10-05T13:15:54.514+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.StudentServiceImp    : student logged in
+2023-10-05T13:15:54.514+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.StudentController    : student logged in
+2023-10-05T13:15:54.583+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.StudentServiceImp    : successfully retrieve the student by id
+2023-10-05T13:15:54.583+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.StudentController    : successfully retrieve the student by id
+2023-10-05T13:15:54.599+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.StudentServiceImp    : successfully retrieve the student by id
+2023-10-05T13:15:54.599+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.StudentController    : successfully retrieve the student by id
+2023-10-05T13:15:57.834+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T13:15:57.834+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T13:15:57.857+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T13:15:57.857+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T13:16:01.630+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:16:01.630+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:16:01.652+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:16:01.652+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:16:04.429+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:16:04.429+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:16:04.446+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:16:04.446+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:16:04.460+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:16:04.463+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:16:04.469+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:16:04.470+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:16:15.354+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.ResultServiceImp     : result saved successfully
+2023-10-05T13:16:15.381+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.ResultController     : result saved successfully
+2023-10-05T13:16:15.418+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-05T13:16:15.451+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-05T13:16:27.054+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T13:16:27.054+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T13:16:27.078+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T13:16:27.078+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T13:16:28.554+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:16:28.554+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:16:28.581+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:16:28.581+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:16:34.077+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:16:34.078+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:16:34.084+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:16:34.084+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:16:34.101+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:16:34.101+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:16:34.117+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:16:34.117+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:16:39.009+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:16:39.011+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:16:39.012+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:16:39.012+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:16:39.028+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:16:39.028+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:16:39.039+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:16:39.041+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:16:42.951+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:16:42.951+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:16:42.952+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:16:42.952+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:16:42.971+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:16:42.971+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:16:42.971+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:16:42.971+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:16:44.445+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.ResultServiceImp     : result saved successfully
+2023-10-05T13:16:44.466+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.ResultController     : result saved successfully
+2023-10-05T13:16:44.516+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-05T13:16:44.550+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-05T13:16:48.034+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T13:16:48.034+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T13:16:48.050+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T13:16:48.050+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T13:16:49.988+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:16:49.988+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:16:50.006+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:16:50.006+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:16:52.085+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:16:52.085+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:16:52.093+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:16:52.093+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:16:52.107+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:16:52.108+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:16:52.118+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:16:52.118+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:18:22.555+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.ResultServiceImp     : result saved successfully
+2023-10-05T13:18:22.587+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.ResultController     : result saved successfully
+2023-10-05T13:18:22.618+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-05T13:18:22.642+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-05T13:18:46.071+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T13:18:46.071+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T13:18:46.087+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T13:18:46.087+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T13:18:49.348+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:18:49.348+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:18:49.365+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T13:18:49.365+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T13:18:52.730+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:18:52.730+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:18:52.730+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:18:52.730+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:18:52.747+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:18:52.747+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:18:52.759+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:18:52.759+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:18:54.574+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:18:54.574+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:18:54.579+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:18:54.579+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:18:54.600+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:18:54.600+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:18:54.605+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:18:54.605+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:18:58.957+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:18:58.957+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:18:58.966+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:18:58.966+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:18:58.980+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T13:18:58.980+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T13:18:58.982+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz detaills
+2023-10-05T13:18:58.983+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-05T13:19:10.411+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.ResultServiceImp     : result saved successfully
+2023-10-05T13:19:10.440+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.ResultController     : result saved successfully
+2023-10-05T13:19:10.474+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-05T13:19:10.491+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-05T14:05:28.891+05:30  WARN 20420 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=42m21s371ms23µs900ns).
+2023-10-05T14:13:43.827+05:30  WARN 20420 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=2m14s818ms64µs800ns).
+2023-10-05T14:21:33.936+05:30  WARN 20420 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3m50s45ms518µs100ns).
+2023-10-05T14:45:32.761+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T14:45:32.761+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T14:45:32.785+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T14:45:32.785+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T14:45:36.135+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T14:45:36.135+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T14:45:36.152+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T14:45:36.156+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T14:45:51.969+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T14:45:51.969+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T14:45:51.986+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T14:45:51.986+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T14:51:53.787+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T14:51:53.787+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T14:51:53.812+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T14:51:53.812+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T14:52:02.889+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T14:52:02.890+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T14:52:02.906+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T14:52:02.906+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T14:52:04.711+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T14:52:04.711+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T14:52:04.733+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T14:52:04.733+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T14:52:06.756+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T14:52:06.756+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T14:52:06.774+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T14:52:06.775+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T14:52:08.106+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T14:52:08.106+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T14:52:08.126+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T14:52:08.126+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T14:53:27.940+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T14:53:27.940+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T14:53:27.947+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T14:53:27.947+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T14:56:06.717+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T14:56:06.717+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T15:00:25.106+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T15:00:25.106+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T15:00:25.122+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T15:00:25.122+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T15:12:32.126+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T15:12:32.126+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T15:12:32.146+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T15:12:32.146+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T15:12:34.091+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T15:12:34.091+05:30  INFO 20420 --- [http-nio-6002-exec-9] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T15:12:34.119+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T15:12:34.119+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T15:12:39.876+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T15:12:39.876+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T15:12:39.897+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T15:12:39.899+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T15:12:41.599+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T15:12:41.599+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T15:12:41.619+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T15:12:41.619+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T15:13:21.320+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T15:13:21.320+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T15:13:21.339+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T15:13:21.339+05:30  INFO 20420 --- [http-nio-6002-exec-6] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T15:13:46.868+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T15:13:46.868+05:30  INFO 20420 --- [http-nio-6002-exec-4] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T15:15:50.790+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T15:15:50.790+05:30  INFO 20420 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T15:15:50.809+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizSirviceImp       : successfully retrieve the quiz by category id
+2023-10-05T15:15:50.809+05:30  INFO 20420 --- [http-nio-6002-exec-10] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-05T15:15:55.775+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T15:15:55.775+05:30  INFO 20420 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T15:15:55.792+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-05T15:15:55.792+05:30  INFO 20420 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-05T15:16:06.509+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve thestudent results
+2023-10-05T15:16:06.509+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.d.controller.FinalResultController   : successfully retrieve thestudent results
+2023-10-05T15:16:06.525+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve thestudent results
+2023-10-05T15:16:06.525+05:30  INFO 20420 --- [http-nio-6002-exec-5] c.e.d.controller.FinalResultController   : successfully retrieve thestudent results
+2023-10-05T15:19:23.920+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve thestudent results
+2023-10-05T15:19:23.925+05:30  INFO 20420 --- [http-nio-6002-exec-8] c.e.d.controller.FinalResultController   : successfully retrieve thestudent results
+2023-10-05T15:20:08.104+05:30 ERROR 20420 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizSirviceImp       : Wrong quiz id
+2023-10-05T15:20:08.108+05:30  WARN 20420 --- [http-nio-6002-exec-7] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [com.example.demo.exceptions.NotFoundException: Wrong quiz id]
+2023-10-05T15:20:24.405+05:30  WARN 20420 --- [http-nio-6002-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public final com.example.demo.response.Response com.example.demo.controller.QuizController.saveQuiz(com.example.demo.dto.QuizDto) with 2 errors: [Field error in object 'quizDto' on field 'topicName': rejected value []; codes [NotBlank.quizDto.topicName,NotBlank.topicName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [quizDto.topicName,topicName]; arguments []; default message [topicName]]; default message [Quiz Name is required]] [Field error in object 'quizDto' on field 'topicDescription': rejected value []; codes [NotBlank.quizDto.topicDescription,NotBlank.topicDescription,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [quizDto.topicDescription,topicDescription]; arguments []; default message [topicDescription]]; default message [Quiz Description is required]] ]
+2023-10-05T15:24:42.485+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-05T15:24:42.485+05:30  INFO 20420 --- [http-nio-6002-exec-1] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-05T15:27:57.653+05:30  INFO 11912 --- [restartedMain] com.example.demo.DemoApplication         : Starting DemoApplication using Java 17.0.8 with PID 11912 (D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo\target\classes started by Komati Satya in D:\Assignment-repo\Capstrone\AssessmentBackEnd\demo)
+2023-10-05T15:27:57.658+05:30  INFO 11912 --- [restartedMain] com.example.demo.DemoApplication         : No active profile set, falling back to 1 default profile: "default"
+2023-10-05T15:27:57.789+05:30  INFO 11912 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2023-10-05T15:27:57.789+05:30  INFO 11912 --- [restartedMain] .e.DevToolsPropertyDefaultsPostProcessor : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2023-10-05T15:27:59.196+05:30  INFO 11912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2023-10-05T15:27:59.372+05:30  INFO 11912 --- [restartedMain] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 155 ms. Found 6 JPA repository interfaces.
+2023-10-05T15:28:00.778+05:30  INFO 11912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 6002 (http)
+2023-10-05T15:28:00.805+05:30  INFO 11912 --- [restartedMain] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2023-10-05T15:28:00.805+05:30  INFO 11912 --- [restartedMain] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.11]
+2023-10-05T15:28:00.955+05:30  INFO 11912 --- [restartedMain] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2023-10-05T15:28:00.956+05:30  INFO 11912 --- [restartedMain] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 3165 ms
+2023-10-05T15:28:01.254+05:30  INFO 11912 --- [restartedMain] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2023-10-05T15:28:01.359+05:30  INFO 11912 --- [restartedMain] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.2.6.Final
+2023-10-05T15:28:01.362+05:30  INFO 11912 --- [restartedMain] org.hibernate.cfg.Environment            : HHH000406: Using bytecode reflection optimizer
+2023-10-05T15:28:01.569+05:30  INFO 11912 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-05T15:28:01.858+05:30  INFO 11912 --- [restartedMain] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2023-10-05T15:28:01.894+05:30  INFO 11912 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2023-10-05T15:28:02.245+05:30  INFO 11912 --- [restartedMain] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1b599cb8
+2023-10-05T15:28:02.249+05:30  INFO 11912 --- [restartedMain] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2023-10-05T15:28:02.941+05:30  INFO 11912 --- [restartedMain] o.h.b.i.BytecodeProviderInitiator        : HHH000021: Bytecode provider name : bytebuddy
+2023-10-05T15:28:04.372+05:30  INFO 11912 --- [restartedMain] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2023-10-05T15:28:04.559+05:30  INFO 11912 --- [restartedMain] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2023-10-05T15:28:05.160+05:30  INFO 11912 --- [restartedMain] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2023-10-05T15:28:06.351+05:30  WARN 11912 --- [restartedMain] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2023-10-05T15:28:06.992+05:30  INFO 11912 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : LiveReload server is running on port 35729
+2023-10-05T15:28:07.061+05:30  INFO 11912 --- [restartedMain] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 6002 (http) with context path ''
+2023-10-05T15:28:07.089+05:30  INFO 11912 --- [restartedMain] com.example.demo.DemoApplication         : Started DemoApplication in 10.195 seconds (process running for 11.054)
+2023-10-05T15:28:35.255+05:30  INFO 11912 --- [http-nio-6002-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2023-10-05T15:28:35.255+05:30  INFO 11912 --- [http-nio-6002-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2023-10-05T15:28:35.261+05:30  INFO 11912 --- [http-nio-6002-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2023-10-05T15:28:35.676+05:30  WARN 11912 --- [http-nio-6002-exec-2] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public final com.example.demo.response.Response com.example.demo.controller.CategoryController.saveCategory(com.example.demo.dto.CategoryDto): [Field error in object 'categoryDto' on field 'categoryDescription': rejected value []; codes [NotBlank.categoryDto.categoryDescription,NotBlank.categoryDescription,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [categoryDto.categoryDescription,categoryDescription]; arguments []; default message [categoryDescription]]; default message [Category description is required]] ]
+2023-10-05T15:28:41.261+05:30  WARN 11912 --- [http-nio-6002-exec-4] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public final com.example.demo.response.Response com.example.demo.controller.CategoryController.saveCategory(com.example.demo.dto.CategoryDto) with 2 errors: [Field error in object 'categoryDto' on field 'categoryDescription': rejected value []; codes [NotBlank.categoryDto.categoryDescription,NotBlank.categoryDescription,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [categoryDto.categoryDescription,categoryDescription]; arguments []; default message [categoryDescription]]; default message [Category description is required]] [Field error in object 'categoryDto' on field 'categoryName': rejected value []; codes [NotBlank.categoryDto.categoryName,NotBlank.categoryName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [categoryDto.categoryName,categoryName]; arguments []; default message [categoryName]]; default message [Category name is required]] ]
+2023-10-05T15:30:28.334+05:30  WARN 11912 --- [http-nio-6002-exec-6] .m.m.a.ExceptionHandlerExceptionResolver : Resolved [org.springframework.web.bind.MethodArgumentNotValidException: Validation failed for argument [0] in public final com.example.demo.response.Response com.example.demo.controller.CategoryController.saveCategory(com.example.demo.dto.CategoryDto) with 2 errors: [Field error in object 'categoryDto' on field 'categoryName': rejected value []; codes [NotBlank.categoryDto.categoryName,NotBlank.categoryName,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [categoryDto.categoryName,categoryName]; arguments []; default message [categoryName]]; default message [Category name is required]] [Field error in object 'categoryDto' on field 'categoryDescription': rejected value []; codes [NotBlank.categoryDto.categoryDescription,NotBlank.categoryDescription,NotBlank.java.lang.String,NotBlank]; arguments [org.springframework.context.support.DefaultMessageSourceResolvable: codes [categoryDto.categoryDescription,categoryDescription]; arguments []; default message [categoryDescription]]; default message [Category description is required]] ]

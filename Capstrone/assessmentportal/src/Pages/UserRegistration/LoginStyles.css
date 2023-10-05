@@ -15,7 +15,7 @@
   height: 100vh;
   flex-direction: column;
   float: right;
-  
+  background-color:#A8DF8E 
  
 }
 
@@ -26,7 +26,7 @@
  padding-bottom: 20px; 
   border-radius: 8px;
   margin-top: 40px;
-  background-color: rgb(131, 179, 131);
+  background-color: white;
   height: 340px;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .btn {
-  width: 85%;
+  width: 89%;
   padding: 6px;
   margin-top: 10px;
   border: 0.4px solid black;

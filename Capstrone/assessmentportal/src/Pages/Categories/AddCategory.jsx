@@ -34,21 +34,18 @@ const AddCategory = () => {
             categoryDescription,
           });
         })
-
     }
   }, [categoryId]);
+
   const showErrors = (e) => {
     e.preventDefault();
-
     const validationErrors = {};
-
     if (!categoryData.categoryName) {
       validationErrors.categoryName = 'category name Required';
     }
     if (!categoryData.categoryDescription) {
       validationErrors.categoryDescription = 'category description Required';
     }
-
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       if (validationErrors.categoryName && validationErrors.categoryDescription) {
@@ -64,7 +61,6 @@ const AddCategory = () => {
   }
   const handleSubmit = async (e) => {
     if (categoryId) {
-
       showErrors(e);
       setErrors({});
       CategoryApi.updateCategory(categoryId, categoryData)
@@ -81,25 +77,22 @@ const AddCategory = () => {
         SweetAlert.fieldsRequired(error.response.data.message);
         })
     }
-
     else {
       showErrors(e);
       setErrors({});
       CategoryApi.addCategory(categoryData).then(response => {
-
         if (response.data.message === "category added successfully") {
           SweetAlert.success("Category added successfully");
           navigate('/Category');
         }
       }).catch((error) => {
-        console.log(error)
+        console.error(error)
         if (error.response.status === 302) {
           SweetAlert.fieldsRequired("Category already present");
         }
         else if(error.response.status === 400)
         SweetAlert.fieldsRequired(error.response.data.message);
       })
-
     }
   }
   const cancelAddCategory = () => {
@@ -108,7 +101,7 @@ const AddCategory = () => {
   return (
     <div className="login3">
       {verifyRole === 'Admin' ? <>
-        <div className="loginData3">
+        <div className="loginData">
           <H1Component className="heading3">
             {categoryId ? "Update category" : "Add Category"}</H1Component>
           <form>
@@ -128,5 +121,4 @@ const AddCategory = () => {
     </div>
   );
 }
-
 export default AddCategory;

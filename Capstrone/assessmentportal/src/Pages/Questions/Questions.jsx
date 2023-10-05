@@ -5,11 +5,11 @@ import ErrorPage from "../../Components/ErrorPage";
 import QuestionsApi from "../../Service/QuestionsApi";
 import Navbar from "../../Components/Navbar/Navbar";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
-import Input from "../../Components/Inputs/Input";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import H1Component from "../../Components/HeadingComponent/H1component";
 import { FaBackward, FaPlusCircle } from "react-icons/fa";
 import Table from "../../Components/TableComponent/Table";
+import SearchButton from "../../Components/SearchButton/SearchButton";
 
 const Questions = () => {
   const { quizId } = useParams();
@@ -47,7 +47,6 @@ const Questions = () => {
   const addData = () => {
     navigate(`/AddQuestion/${quizId}`);
   }
- 
   const rows = [
     'question',
     'option1',
@@ -68,16 +67,6 @@ const Questions = () => {
   const handleBackButton=()=>{
     navigate(`/Quiz/${categoryId}`)
   }
-  const handleSearchChange = (e) => {
-    const searchText = e.target.value.toLowerCase();
-    setText(searchText); 
-    const filteredQuestions = originalQuestions.filter(item =>
-      (item.question || '').toLowerCase().includes(searchText)
-    );
-
-    setQuestions(filteredQuestions);
-  };
-
   return (
     <div className="categoryData">
       <Navbar />
@@ -86,18 +75,14 @@ const Questions = () => {
           <H1Component className="addHead">Questions Details</H1Component>
           <ButtonComponent className="back-Button" onClick={handleBackButton}><FaBackward className="back-icon" /> Back</ButtonComponent>
           {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}><FaPlusCircle className="add-icon" /> Add Question</ButtonComponent>}
-
           <div className="searchContainer">
-            <Input
-              className="search"
-              type="text"
-              placeholder="Search by Question"
-              value={text}
-             
-              onChange={handleSearchChange}
-            />
-           
-
+             <SearchButton
+                originalData={originalQuestions}
+                setItem={setQuestions}
+                setText={setText}
+                placeholder="serach by question"
+                question={true}
+              />
           </div>
           {isLoading ? (
             <p>Loading...</p>
@@ -117,6 +102,4 @@ const Questions = () => {
     </div>
   );
 }
-
-
 export default Questions

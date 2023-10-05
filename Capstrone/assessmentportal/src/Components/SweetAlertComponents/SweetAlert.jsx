@@ -10,7 +10,6 @@ fieldsRequired(data){
         icon: 'error',
         showConfirmButton: false,
         timer:1500,
-        // confirmButtonColor: 'rgb(226, 91, 91)',
     });
 }
 success(data){
@@ -21,26 +20,6 @@ success(data){
         showConfirmButton: false,
         timer:1500,
     });
-}
-cancel(data,nav,path){
-    Swal.fire({
-        title: 'Do you want to cancel the '+data,
-        showDenyButton: true,
-        confirmButtonText: 'Yes',
-        denyButtonText: 'No',
-        confirmButtonColor: '#5dcc5d',
-        customClass: {
-          actions: 'my-actions',
-          cancelButton: 'order-1 right-gap',
-          confirmButton: 'order-2 confirm',
-          denyButton: 'order-3',
-        }
-      }).then((result) => {
-        if (result.isConfirmed) {
-          Swal.fire('Changes are not saved', '', 'info')
-          nav(path);
-        }
-      })
 }
 deleteData(data,deleteFunction,id){
     Swal.fire({

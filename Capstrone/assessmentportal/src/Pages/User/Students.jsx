@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import UserApi from "../../Service/UserApi";
-import ButtonComponent from "../../Components/Inputs/ButtonComponent";
-import Input from "../../Components/Inputs/Input";
 import Navbar from "../../Components/Navbar/Navbar";
 import H1Component from "../../Components/HeadingComponent/H1component";
 import Table from "../../Components/TableComponent/Table";
 import ErrorPage from "../../Components/ErrorPage";
+import SearchButton from "../../Components/SearchButton/SearchButton";
 
 function Student() {
   const verifyRole = localStorage.getItem('userRole');
@@ -20,23 +19,14 @@ function Student() {
     UserApi.getAllStudents().then(response => {
       setStudent(response.data.data || []);
       setOriginalStudent(response.data.data || []);
-
     }).catch(error => {
-      console.log(error);
+      console.error(error);
     }).finally(() => {
       setIsLoading(false);
     })
   };
-  const handleSearchChange = (e) => {
-    const search = e.target.value.toLowerCase();
-    setSearchText(search); 
-    const filteredStudent = originalStudent.filter(item =>
-      (item.email || '').toLowerCase().includes(search)
-    );
 
-    setStudent(filteredStudent);
-  };
-  const rows=[
+  const rows = [
     'userName',
     'userId',
     'email',
@@ -44,7 +34,7 @@ function Student() {
     'phoneNumber',
     'dateOfBirth'
   ]
-  const columns=[
+  const columns = [
     'User Name',
     'User Id',
     'Email',
@@ -52,7 +42,7 @@ function Student() {
     'Phone Number',
     'Date Of Birth'
   ]
-  
+
   return (
     <div className="categoryData">
       <Navbar />
@@ -60,12 +50,12 @@ function Student() {
         (<>
           <H1Component className="addHead">Students Details</H1Component>
           <div className="searchContainer">
-            <Input
-              className="search"
-              type="text"
-              placeholder="Search by Student Email"
-              value={searchText}
-              onChange={handleSearchChange}
+            <SearchButton
+              originalData={originalStudent}
+              setItem={setStudent}
+              setText={setSearchText}
+              placeholder="serach by user name"
+              student={true}
             />
           </div>
           {isLoading ? (
@@ -74,13 +64,13 @@ function Student() {
             <div className="tableContainer">
               {student.length !== 0 ? (
                 <Table columns={columns} data={student
-                        .filter(item => item.role === 'student')} rows={rows}/>
+                  .filter(item => item.role === 'student')} rows={rows} />
               ) : (
                 <H1Component className="no-questions">No Students</H1Component>
               )}
             </div>
           )}
-        </>):(<ErrorPage/>)}
+        </>) : (<ErrorPage />)}
     </div>
   );
 }

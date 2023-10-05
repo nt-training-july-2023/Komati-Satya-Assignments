@@ -3,11 +3,10 @@ import { useParams } from "react-router-dom";
 import ErrorPage from "../../Components/ErrorPage";
 import FinalResultApi from "../../Service/FinalResultApi";
 import Navbar from "../../Components/Navbar/Navbar";
-import ButtonComponent from "../../Components/Inputs/ButtonComponent";
-import Input from "../../Components/Inputs/Input";
 import DisableBackButton from "../../Components/disableBackButton";
 import H1Component from "../../Components/HeadingComponent/H1component";
 import Table from "../../Components/TableComponent/Table";
+import SearchButton from "../../Components/SearchButton/SearchButton";
 
 const Result = () => {
   const verifyRole = localStorage.getItem('userRole');
@@ -17,9 +16,7 @@ const Result = () => {
   const [originalResult, setOriginalResult] = useState([]);
   const { userId } = useParams();
   useEffect(() => {
-
     { verifyRole === 'Admin' ? getAllResultss() : getResultt() }
-
   }, []);
   const getAllResultss = () => {
     FinalResultApi.getAllResult().then(response => {
@@ -37,37 +34,28 @@ const Result = () => {
       setIsLoading(false);
     })
   };
- 
-  const handleSearchChange = (e) => {
-    const search = e.target.value.toLowerCase();
-    setSearchName(search); 
-    const filteredResult = originalResult.filter(item =>
-      (item.email || '').toLowerCase().includes(search)
-    );
 
-    setResult(filteredResult);
-  };
   const sortedResults = [...result].sort((a, b) => new Date(b.dateAndTime) - new Date(a.dateAndTime));
   const rows = [
     'userName',
-      'email',
-     'dateAndTime',
-       'categoryName',
-       'quizName',
-      'totalQuestions',
+    'email',
+    'dateAndTime',
+    'categoryName',
+    'quizName',
+    'totalQuestions',
     'attemptedQuestions',
-   'maxMarks',
+    'maxMarks',
     'obtainMarks'
   ];
   const columns = [
     'User Name',
-      'Email',
-     'DateAndTime',
-       'Category Name',
-       'Quiz Name',
-      'Total Questions',
+    'Email',
+    'DateAndTime',
+    'Category Name',
+    'Quiz Name',
+    'Total Questions',
     'Attempted Questions',
-   'Max Marks',
+    'Max Marks',
     'Obtain Marks'
   ];
 
@@ -77,22 +65,18 @@ const Result = () => {
       <Navbar />
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
         <>
-        
           <H1Component className="addHead">Student Result Details</H1Component>
-          {(verifyRole === 'Admin' &&<>
-          <div className="searchContainer">
-            <Input
-              className="search"
-              type="text"
-              placeholder="Search by User Email"
-              value={searchName}
-              onChange={handleSearchChange}
-            />
-
-        
-          </div>
-         
-           </>)}
+          {(verifyRole === 'Admin' && <>
+            <div className="searchContainer">
+              <SearchButton
+                originalData={originalResult}
+                setItem={setResult}
+                setText={setSearchName}
+                placeholder="serach by user email"
+                result={true}
+              />
+            </div>
+          </>)}
           {isLoading ? (
             <p>Loading...</p>
           ) : (

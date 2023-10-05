@@ -38,16 +38,13 @@ const UserDashBoard = () => {
       <Navbar />
       <DisableBackButton/>
       <div className="adminBackground">
-
         {verifyRole === 'student' && <>
           <H2Component>Welcome to User Dashboard</H2Component>
         </>}
         {verifyRole === 'Admin' && <>
           <H2Component>Welcome to Admin Dashboard</H2Component>
         </>}
-        
         <div>
-        
           <img className="image" src= {userImage} />
           {verifyRole === 'student' && <>
             <H2Component>User information</H2Component>
@@ -60,8 +57,7 @@ const UserDashBoard = () => {
           <div className="details">
             <div className="details-item">
               <div>
-              <LabelComponent><strong>Name:</strong></LabelComponent>  {student.userName}
-              
+              <LabelComponent><strong>Name:</strong></LabelComponent>  {student.userName} 
               </div>
             </div>
             <div className="details-item">
@@ -90,7 +86,6 @@ const UserDashBoard = () => {
               </div>
             </div>
           </div>
-         
         </div>
         <ButtonComponent className="btn2" type="button" onClick={UpdateData}>Update Details</ButtonComponent>
       </div>

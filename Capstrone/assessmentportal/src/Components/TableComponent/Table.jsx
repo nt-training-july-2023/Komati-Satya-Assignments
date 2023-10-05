@@ -31,7 +31,7 @@ const Table = ({ columns, data, rows, category, deleteData, viewQuizes, role, qu
                 <td><Link to={`/UpdateCategory/${item.categoryId}`} className="updateData"><FaPencilAlt className="update-icon" /> Update</Link></td>
               </>)}
               {role === "Admin" || role === "student" ? (
-                <td> <Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={() => viewQuizes(item.categoryName,item.categoryId)}>
+                <td> <Link to={`/Quiz/${item.categoryId}`} className="updateData" onClick={() => viewQuizes(item.categoryName, item.categoryId)}>
                   <FaList className="delete-icon" /> Quizes</Link></td>) : (<></>)}
             </>
             )

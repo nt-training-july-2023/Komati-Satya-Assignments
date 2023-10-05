@@ -1,13 +1,13 @@
 import React from "react";
-const ButtonComponent=(props)=>{
-    return(
+const ButtonComponent = (props) => {
+    return (
         <div>
             <button className={props.className}
-             type={props.type}
-             onClick={props.onClick}
-             >
+                type={props.type}
+                onClick={props.onClick}
+            >
                 {props.children}
-                </button>
+            </button>
         </div>
     )
 }

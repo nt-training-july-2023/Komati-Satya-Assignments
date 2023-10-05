@@ -34,29 +34,28 @@ const UserUpdate = () => {
           gender: userInformation.gender,
           email: userInformation.email,
           userId: userInformation.userId
-         } );
+        });
       })
-      
+
   }, [userId]);
   const handleUpdateCategory = () => {
     UserApi.updateUser(userId, userData)
       .then((response) => {
         if (response.data.message === "user updated successfully") {
           SweetAlert.success("Successfully updated data")
-            navigate("/UserDashBoard")
+          navigate("/UserDashBoard")
         }
-      }).catch((error)=>{
-        if(error.response.status === 400){
+      }).catch((error) => {
+        if (error.response.status === 400) {
           SweetAlert.fieldsRequired(error.response.data.message)
-      }
+        }
       })
   };
   const cancelUpdate = () => {
-    // SweetAlert.cancel('Update', navigate, '/UserDashBoard')
     navigate('/UserDashBoard')
   }
   const genderOptions = ["male", "female", "other"];
- 
+
   return (
     <div className="login2">
       {(verifyRole === 'Admin' || verifyRole === 'student') ?
@@ -139,24 +138,14 @@ const UserUpdate = () => {
                 </div>
                 <div>
                   <LabelComponent className="head2">Gender:</LabelComponent>
-                  {/* <Input
+                  <select
                     className="data2"
-                    type="text"
                     value={userData.gender}
                     onChange={(e) =>
                       setUserData({
                         ...userData,
                         gender: e.target.value,
                       })
-                    }
-                  /> */}
-                   <select
-                    className="data2"
-                    value={userData.gender}
-                    onChange={ (e) =>
-                      setUserData({
-                      ...userData,
-                      gender: e.target.value,})
                     }
                   >
                     {genderOptions.map((option) => (
@@ -165,10 +154,10 @@ const UserUpdate = () => {
                       </option>
                     ))}
                   </select>
-                  
+
                 </div>
                 <ButtonComponent className="btn2" type="button" onClick={handleUpdateCategory}>
-                  Update 
+                  Update
                 </ButtonComponent>
                 <ButtonComponent className="btn3" type="button" onClick={cancelUpdate}>
                   Cancel

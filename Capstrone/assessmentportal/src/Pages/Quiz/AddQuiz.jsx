@@ -8,7 +8,7 @@ import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import ErrorPage from "../../Components/ErrorPage";
 import LabelComponent from "../../Components/LabelComponent/LabelComponent";
 import H1Component from "../../Components/HeadingComponent/H1component";
-
+import './Quiz.css'
 const AddQuiz = () => {
     const verifyRole = localStorage.getItem('userRole');
     const [errors, setErrors] = useState({});
@@ -37,13 +37,11 @@ const AddQuiz = () => {
                         categoryId
                     });
                 })
-
         }
     }, [quizId]);
     const showErrors = (e) => {
         e.preventDefault();
         const validationErrors = {};
-
         if (!quizData.topicName) {
             validationErrors.topicName = 'quiz name Required';
         }
@@ -53,13 +51,11 @@ const AddQuiz = () => {
         if (!quizData.timer) {
             validationErrors.timer = 'timer Required';
         }
-
         if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             if (validationErrors) {
                 SweetAlert.fieldsRequired("All quiz data required")
             }
-
         }
     }
     const addQuizData = async (e) => {
@@ -68,13 +64,11 @@ const AddQuiz = () => {
             setErrors({});
             QuizApi.updateQuiz(quizId, quizData)
                 .then((response) => {
-
                     if (response.data.message === "quiz updated successfully") {
                         SweetAlert.success("Successfully updated data")
                         navigate(`/Quiz/${quizData.categoryId}`)
                     }
                 }).catch((error) => {
-
                     if (error.response.data.message === "Quiz already exist") {
                         SweetAlert.fieldsRequired("Quiz already present")
                     }
@@ -83,19 +77,15 @@ const AddQuiz = () => {
                     }
                 })
         }
-
         else {
-
             showErrors(e);
             setErrors({});
             QuizApi.addQuiz(quizData).then(response => {
                 if (response.data.message === "succcessfully add the data") {
                     SweetAlert.success("Quiz added successfully");
                     navigate(`/Quiz/${quizData.categoryId}`);
-
                 }
             }).catch(error => {
-                console.log(error)
                 if (error.response.status === 302) {
                     SweetAlert.fieldsRequired("Quiz already exist")
                 }
@@ -104,9 +94,7 @@ const AddQuiz = () => {
                 }
             })
         }
-
     }
-
     const cancelAddQuiz = () => {
         navigate(`/Quiz/${quizData.categoryId}`);
     }
@@ -114,14 +102,14 @@ const AddQuiz = () => {
     return (
         <div className="login3">
             {verifyRole === 'Admin' ? (
-                <div className="loginData3">
+                <div className="loginData">
                     <H1Component className="heading3">
                         {quizId ? "Update Quiz" : "Add Quiz"}</H1Component>
                     <form>
-                        <div className="signin3">
+                        <div className="quiz-data">
                             <LabelComponent className="head3">Topic Name</LabelComponent><br /><br />
                             <Input
-                                className="data3"
+                                className="quiz-input"
                                 type="text"
                                 name="topicName"
                                 value={quizData.topicName}
@@ -130,7 +118,7 @@ const AddQuiz = () => {
                             /><br /><br />
                             <LabelComponent className="head3">Topic Description</LabelComponent><br /><br />
                             <TextareaComponent
-                                className="data3"
+                                className="quiz-input"
                                 type="text"
                                 name="topicDescription"
                                 value={quizData.topicDescription}
@@ -140,7 +128,7 @@ const AddQuiz = () => {
                             <div>
                                 <LabelComponent className="head3">Time</LabelComponent><br /><br />
                                 <Input
-                                    className="data3"
+                                    className="quiz-input"
                                     type="number"
                                     name="timer"
                                     value={quizData.timer}
@@ -148,10 +136,10 @@ const AddQuiz = () => {
                                     onChange={changeData}
                                 /><br /><br />
                             </div>
-                            <ButtonComponent className="btn4" type="button" onClick={addQuizData}>
+                            <ButtonComponent className="btn-quiz" type="button" onClick={addQuizData}>
                                 {quizId ? "update Quiz" : "Add Quiz"}
                             </ButtonComponent>
-                            <ButtonComponent className="btn5" type="button" onClick={cancelAddQuiz}>Cancel</ButtonComponent>
+                            <ButtonComponent className="btn-quiz-cancel" type="button" onClick={cancelAddQuiz}>Cancel</ButtonComponent>
                         </div>
                     </form>
                 </div>

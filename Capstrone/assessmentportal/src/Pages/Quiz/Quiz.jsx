@@ -5,13 +5,13 @@ import ErrorPage from "../../Components/ErrorPage";
 import QuizApi from "../../Service/QuizApi";
 import Navbar from "../../Components/Navbar/Navbar";
 import DisableBackButton from "../../Components/disableBackButton";
-import Input from "../../Components/Inputs/Input";
 import ButtonComponent from "../../Components/Inputs/ButtonComponent";
 import Swal from "sweetalert2";
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import H1Component from "../../Components/HeadingComponent/H1component";
 import { FaBackward, FaPlusCircle} from "react-icons/fa";
 import Table from "../../Components/TableComponent/Table";
+import SearchButton from "../../Components/SearchButton/SearchButton";
 
 function Quiz({ setTrue }) {
   const { categoryId } = useParams();
@@ -43,7 +43,7 @@ function Quiz({ setTrue }) {
       }
       getQuiz();
     }).catch(error => {
-       console.log(error);
+       console.error(error);
       })
   }
   const navigate = useNavigate();
@@ -51,15 +51,6 @@ function Quiz({ setTrue }) {
     navigate(`/AddQuiz/${categoryId}`);
   }
   
-  const handleSearchChange = (e) => {
-    const search = e.target.value.toLowerCase();
-    setText(search); 
-    const filteredQuiz = originalQuiz.filter(item =>
-      (item.topicName || '').toLowerCase().includes(search)
-    );
-
-    setQuiz(filteredQuiz);
-  };
   const handleTakeTest = async (topicName, quizId, timer, categoryId) => {
     { localStorage.setItem('quizName', topicName) }
     { localStorage.setItem('timer', timer) }
@@ -127,13 +118,13 @@ function Quiz({ setTrue }) {
           {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}><FaPlusCircle className="delete-icon"/> Add Quiz</ButtonComponent>}
           
           <div className="searchContainer">
-            <Input
-              className="search"
-              type="text"
-              placeholder="Search by Quiz Name"
-              value={text}
-              onChange={handleSearchChange}
-            />
+            <SearchButton
+                originalData={originalQuiz}
+                setItem={setQuiz}
+                setText={setText}
+                placeholder="serach by quiz name"
+                quiz={true}
+              />
           </div>
           {isLoading ? (
             <p>Loading...</p>

@@ -72,8 +72,7 @@ function Test({ isRefresh, setTrue }) {
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
       setQuestions(response.data.data || []);
       if(response.data.data)
-      setNumberOfQuestions(response.data.data.length)
-      
+      setNumberOfQuestions(response.data.data.length)   
     }).finally(() => {
       setIsLoading(false);
     })
@@ -118,7 +117,6 @@ function Test({ isRefresh, setTrue }) {
         timeOutSubmit()
       }
     }, 1000);
-
     return () => clearTimeout(timer);
   }, [timeLeft]);
 
@@ -370,5 +368,4 @@ function Test({ isRefresh, setTrue }) {
     </div>
   );
 }
-
 export default Test;
