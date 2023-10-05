@@ -233,16 +233,15 @@ public class QuestionServiceImp implements QuestionsService {
     }
     /**
      * find by question method.
-     * @param name question name
+     * @param question question name
      * @return questions
      */
     @Override
-    public final Optional<QuestionsDto> findByQuestion(final String name) {
-        if (questionsRepo.findAll().size() != 0) {
-            if (questionsRepo.findByQuestion(name).isPresent()) {
+    public final Optional<QuestionsDto> findByQuestion(final String question) {
+        List<Questions> questionsList = questionsRepo.findAll();
+        for (Questions questions : questionsList) {
+            if (questions.getQuestion().contains(question)) {
                 QuestionsDto questionsDto = new QuestionsDto();
-                Optional<Questions> q = questionsRepo.findByQuestion(name);
-                Questions questions = q.get();
                 questionsDto.setQuizId(questions.getQuiz().getQuizId());
                 questionsDto.setCorrectOption(questions.getCorrectOption());
                 questionsDto.setOption1(questions.getOption1());
@@ -253,14 +252,9 @@ public class QuestionServiceImp implements QuestionsService {
                 questionsDto.setQuestionId(questions.getQid());
                 LOGGER.info(Messages.FIND_QUESTION);
                 return Optional.of(questionsDto);
-            } else {
-                LOGGER.error(ErrorMessages.NO_QUESTION);
-                throw new NotFoundException(ErrorMessages.NO_QUESTION);
             }
-        } else {
-            LOGGER.error(ErrorMessages.NO_QUESTION);
-            throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
         }
+        LOGGER.error(ErrorMessages.NO_QUESTION);
+        throw new NotFoundException(ErrorMessages.NO_QUESTION);
     }
-
 }

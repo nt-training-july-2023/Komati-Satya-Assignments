@@ -1,8 +1,7 @@
 package com.example.demo.dto;
-import com.example.demo.validationMessages.ValidationMessages;
 
+import com.example.demo.validationMessages.ValidationMessages;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

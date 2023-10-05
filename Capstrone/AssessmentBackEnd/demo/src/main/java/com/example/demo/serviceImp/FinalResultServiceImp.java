@@ -22,6 +22,7 @@ import com.example.demo.validationMessages.Messages;
 /**
  * Final result service interface.
  */
+@SuppressWarnings("unused")
 @Service
 public class FinalResultServiceImp implements FinalResService {
     /**

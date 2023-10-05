@@ -96,7 +96,7 @@ const Registration = () => {
         UserApi.addUser(formData)
           .then((response) => {
             if (response.data.message === "User register successfully") {
-              SweetAlert.success("User Register successfully");
+              SweetAlert.success("User Registered successfully");
               navigate('/');
             }
           })
@@ -134,18 +134,15 @@ const Registration = () => {
               </ButtonComponent>
             </div><br />
             <div className="password-container2">
-              {/* <LabelComponent className="side">Confirm Password</LabelComponent><br /><br /> */}
               <Input className="values" type={showConfirmPassword ? 'password' : 'text'} name="confirmPassword" placeholder="Enter confirm password" value={formData.confirmPassword} onChange={changeData} /><br />
               <ButtonComponent className="show-password2" type="button" onClick={toggleConfirmPassword}>
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </ButtonComponent>
             </div><br />
-            {/* <LabelComponent className="side">DateOfBirth</LabelComponent><br /><br /> */}
             <Input className="values" type="Date" placeholder="Enter date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} /><br /><br />
-            {/* <LabelComponent className="side">Phone number</LabelComponent><br /><br /> */}
+           
             <Input className="values" type="number" name="phoneNumber" placeholder="Enter phone number" value={formData.phoneNumber} onChange={changeData} /><br /><br />
-            {/* <LabelComponent className="side">Gender</LabelComponent><br /><br /> */}
-
+           
             <div className="gender">
               <Input className="gen1" type="radio" name="gender" value="male" onChange={changeDataForRadioButton }/>
               <LabelComponent className="gender">Male </LabelComponent>

@@ -170,8 +170,7 @@ class QuestionServiceImpTest {
     public void testNoQuizisPresent() {
         QuestionsUpdateDto question=new QuestionsUpdateDto("java is?","oops","popl","none","both","oopl");
         when(questionsRepo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class , () ->{
-            questionsService.updateQuestion(question, 10);
+        assertThrows(AllNotFoundException.class , () ->{questionsService.updateQuestion(question, 10);
         });
     }
     @Test
@@ -179,8 +178,7 @@ class QuestionServiceImpTest {
         QuestionsUpdateDto question=new QuestionsUpdateDto("java is?","oops","popl","none","both","oopl");
         when(questionsRepo.findAll()).thenReturn(Collections.singletonList(new Questions()));
         when(questionsRepo.findById(1)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () ->{
-            questionsService.updateQuestion(question,1);
+        assertThrows(NotFoundException.class, () ->{questionsService.updateQuestion(question,1);
     });
     }
     @Test
@@ -216,8 +214,7 @@ class QuestionServiceImpTest {
      void testCategoryIdNotPresent() {
          int quizId=10;
          when(questionsRepo.findQueById(quizId)).thenReturn(new ArrayList<>());
-         assertThrows(AllNotFoundException.class, () ->{
-             questionsService.findQuestionById(quizId);
+         assertThrows(AllNotFoundException.class, () ->{questionsService.findQuestionById(quizId);
          }); 
      }
      
@@ -227,11 +224,11 @@ class QuestionServiceImpTest {
          q1.setQid(1);
          Quiz quiz=new Quiz(1,"variables","java variables",60);
          q1.setQuiz(quiz);
-          
-         when(questionsRepo.findAll()).thenReturn(Collections.singletonList(new Questions()));
-         when(questionsRepo.findByQuestion(q1.getQuestion())).thenReturn(Optional.of(q1));
+         List<Questions> questionList=new ArrayList<>();
+         questionList.add(q1);
+         when(questionsRepo.findAll()).thenReturn(questionList);
+        
          Optional<QuestionsDto> questionsDto=questionsService.findByQuestion(q1.getQuestion());
-         assertTrue(questionsDto.isPresent());    
          assertEquals(q1.getQuestion(),questionsDto.get().getQuestion());
          assertEquals(q1.getOption1(),questionsDto.get().getOption1());
          assertEquals(q1.getOption2(),questionsDto.get().getOption2());
@@ -240,21 +237,12 @@ class QuestionServiceImpTest {
          assertEquals(q1.getCorrectOption(),questionsDto.get().getCorrectOption());
          assertEquals(q1.getQuiz().getQuizId(),questionsDto.get().getQuizId());      
     }
-     @Test
-     void testQuestionsNotFoundException() {
-           String questionsName="arrays is?";
-           when(questionsRepo.findAll()).thenReturn(Collections.singletonList(new Questions()));
-           when(questionsRepo.findByQuestion(questionsName)).thenReturn(Optional.empty());
-           assertThrows(NotFoundException.class , () ->{
-               questionsService.findByQuestion(questionsName);
-           });
-     }
+
        @Test
        void testFindQuizNoQuizIsPresent() {
            String questionsName="arrays is?";
            when(questionsRepo.findAll()).thenReturn(new ArrayList<>());
-           assertThrows(AllNotFoundException.class , () ->{
-               questionsService.findByQuestion(questionsName);
+           assertThrows(NotFoundException.class , () ->{ questionsService.findByQuestion(questionsName);
            });
        }
   

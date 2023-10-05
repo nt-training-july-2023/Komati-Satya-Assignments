@@ -86,6 +86,7 @@ logout(nav){
     }
 }).then((result) => {
     if (result.isConfirmed) {
+      // this.success("logged out..")
         localStorage.removeItem('userRole');
         localStorage.removeItem('userEmail')
         localStorage.removeItem('userName')
@@ -96,7 +97,6 @@ logout(nav){
         localStorage.removeItem('user');
         localStorage.removeItem('timer');
         localStorage.removeItem('categoryId');  
-      
         nav('/')
 
     } else if (result.isDenied) {

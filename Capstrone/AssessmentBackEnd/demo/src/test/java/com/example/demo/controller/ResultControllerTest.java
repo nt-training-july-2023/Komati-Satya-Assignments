@@ -43,7 +43,7 @@ class ResultControllerTest {
       Response errorResponse = new Response(HttpStatus.OK.value(), "result added successfully");
       Response response=resultController.addRes(resultDto);
       assertEquals(HttpStatus.OK.value(),response.getCode());
-      assertEquals("result added successfully",response.getMessage());
+      assertEquals("result saved successfully",response.getMessage());
     }
    @Test
     void testGetResultSuccess() {

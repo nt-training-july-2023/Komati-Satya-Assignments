@@ -40,7 +40,7 @@ class FinalResultControllerTest {
         Response response=resultController.getById(1);
         assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals(resultDto,response.getData());
-        assertEquals("find results",response.getMessage());
+        assertEquals("successfully retrieve the student result",response.getMessage());
     }
     @Test
     void testAllResultSuccess() {
@@ -49,6 +49,7 @@ class FinalResultControllerTest {
         Response response=resultController.findAllResult();
         assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals(resultDto,response.getData());
-        assertEquals("find all results",response.getMessage());
+        assertEquals("successfully retrieve the"
+                + "student results",response.getMessage());
     }
 }

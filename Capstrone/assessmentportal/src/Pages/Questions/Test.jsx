@@ -166,6 +166,7 @@ function Test({ isRefresh, setTrue }) {
       showDenyButton: true,
       confirmButtonText: 'Yes',
       denyButtonText: 'No',
+      confirmButtonColor: '#5dcc5d',
       customClass: {
         actions: 'my-actions',
         cancelButton: 'order-1 right-gap',
@@ -227,6 +228,7 @@ function Test({ isRefresh, setTrue }) {
           showDenyButton: true,
           confirmButtonText: 'Go ahead',
           denyButtonText: 'Cancel',
+          confirmButtonColor: '#5dcc5d',
           customClass: {
             actions: 'my-actions',
             cancelButton: 'order-1 right-gap',

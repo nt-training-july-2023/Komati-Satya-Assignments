@@ -80,7 +80,6 @@ public class CategoryController {
     public final Response findAll() {
             List<CategoryDto> categoryDto = categoryService.findAll();
             LOGGER.info(Messages.FIND_ALLCATEGORY);
-//            return ResponseEntity.ok(categoryDto);
             String message = Messages.FIND_CATEGORY;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode,

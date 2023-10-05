@@ -59,7 +59,7 @@ class QuestionsControllerTest {
         Response response=questionController.getQuestions();
         assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals(questionsDto,response.getData());
-        assertEquals("find all questions",response.getMessage());
+        assertEquals("successfully retrieve all questions",response.getMessage());
     }
     @Test
     void testDeleteSuccess() {
@@ -94,7 +94,7 @@ class QuestionsControllerTest {
         when(questionService.findQuestionById(i)).thenReturn(q);
         Response response=questionController.findQueById(i);
         assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("find question by quiz id",response.getMessage());  
+        assertEquals("successfully retrieve question by quiz id",response.getMessage());  
         
     }
     @Test

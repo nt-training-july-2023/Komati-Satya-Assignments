@@ -35,8 +35,10 @@ const Login = () => {
         if (!loginData.password) {
             validationErrors.password = 'Password Required';
         }
-
-        if (Object.keys(validationErrors).length > 0) {
+       else if(loginData.email && (!/^[a-z][a-zA-Z0-9.]*@nucleusteq\.com$/.test(loginData.email))) {
+            SweetAlert.fieldsRequired("Email must contain domain @nucleusteq");
+        }
+      else if (Object.keys(validationErrors).length > 0) {
             setErrors(validationErrors);
             if (validationErrors.email && validationErrors.password) {
               SweetAlert.fieldsRequired("credentials required")
@@ -87,10 +89,7 @@ const Login = () => {
                 <form>
                     <div className="signin">
                         <H1Component className="heading">SignIn Here!!</H1Component>
-                        {/* <LabelComponent className="head" ><b>Email</b></LabelComponent><br /><br /> */}
-                        
                         <Input
-                          
                            className="data-email"
                            type="email" 
                            name="email" 
@@ -100,7 +99,6 @@ const Login = () => {
                         />
                         <br/><br/>
                         <div className="password-container">
-                            {/* <LabelComponent className="head"><b>Password</b></LabelComponent><br /><br /> */}
                             <Input className="data-password" type={showPassword ? 'password' : 'text'} name="password" value={loginData.password} onChange={changeData} placeholder="Enter password" /><br />
                             <ButtonComponent className="show-password" type="button" onClick={togglePassword}>
                                 {showPassword ? <FaEyeSlash /> : <FaEye />}

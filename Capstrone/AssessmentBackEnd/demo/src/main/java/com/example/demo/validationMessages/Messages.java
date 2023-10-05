@@ -92,7 +92,7 @@ public final class Messages {
      * find quiz.
      */
     public static final String FIND_QUIZ = "successfully retrieve the"
-            + "quiz detaills";
+            + " quiz detaills";
     /**
      *Save result.
     */
@@ -114,7 +114,7 @@ public final class Messages {
      * find all students.
      */
     public static final String FIND_ALLSTUDENT = "successfully retrieve the"
-            + " all stpudnet details";
+            + " all studnet details";
     /**
      * update student.
      */

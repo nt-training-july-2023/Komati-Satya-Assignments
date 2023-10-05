@@ -62,7 +62,7 @@ class StudentControllerTest {
         when(studentService.findById(12)).thenReturn(Optional.of(saveDto));
         Response response=studentController.findById(12);
         assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("find student by id",response.getMessage());
+        assertEquals("successfully retrieve the student by id",response.getMessage());
         assertEquals(Optional.of(saveDto),response.getData());
     }
     @Test
@@ -84,7 +84,7 @@ class StudentControllerTest {
         when(studentService.findAllStudents()).thenReturn(studentDto);
         Response response=studentController.findAllStu();
         assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("find all students",response.getMessage());
+        assertEquals("successfully retrieve the all studnet details",response.getMessage());
         assertEquals(studentDto,response.getData());
     }
     @Test

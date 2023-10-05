@@ -58,7 +58,7 @@ class QuizControllerTest {
         when(quizService.getQuiz(1)).thenReturn(Optional.of(quizDto));
         Response response=quizController.getQuiz(1);
         assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("find quiz",response.getMessage());
+        assertEquals("successfully retrieve the quiz detaills",response.getMessage());
         assertEquals(Optional.of(quizDto),response.getData());
         
     }
@@ -69,7 +69,7 @@ class QuizControllerTest {
         Response response=quizController.findAll();
         assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals(quizDto,response.getData());
-        assertEquals("find all quizes",response.getMessage());
+        assertEquals("successfully find all quizes",response.getMessage());
     }
     @Test
     void testDeleteQuizSuccess() {
@@ -108,7 +108,7 @@ class QuizControllerTest {
         Response response=quizController.findQuizById(2);
         assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals(q,response.getData());
-        assertEquals("find quiz category id",response.getMessage());
+        assertEquals("successfully retrieve the quiz by category id",response.getMessage());
     }
     @Test
     void testQuizByNameSuccess() {
@@ -122,7 +122,6 @@ class QuizControllerTest {
         Response response=quizController.findQuizByName("arrays");
         assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals(Optional.of(quizDto),response.getData());
-        assertEquals("find quiz",response.getMessage());
-         
+        assertEquals("successfully retrieve the quiz detaills",response.getMessage());
     }
 }

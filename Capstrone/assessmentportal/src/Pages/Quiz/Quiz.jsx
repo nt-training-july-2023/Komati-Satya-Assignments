@@ -71,6 +71,7 @@ function Quiz({ setTrue }) {
       confirmButtonText: 'Yes',
       denyButtonText: 'No',
       heightAuto: false,
+      confirmButtonColor: '#5dcc5d',
       customClass: {
         actions: 'my-actions',
         cancelButton: 'order-1 right-gap',
