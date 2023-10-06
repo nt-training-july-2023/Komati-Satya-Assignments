@@ -12,10 +12,10 @@ import com.example.demo.dto.CategoryDto;
 public interface CategoryService {
     /**
      * saveCat method.
-     * @param c category
+     * @param categoryDto category
      * @return category
      */
-    CategoryDto saveCategory(CategoryDto c);
+    CategoryDto saveCategory(CategoryDto categoryDto);
 
     /**
      * findBymethod method.
@@ -32,11 +32,12 @@ public interface CategoryService {
 
     /**
      * update category method.
-     * @param c  category
+     * @param categoryDto  category
      * @param id id
      * @return category
      */
-    CategoryDto updateCategory(CategoryDto c, int id);
+    CategoryDto updateCategory(CategoryDto categoryDto,
+            int id);
 
     /**
      * delete category method.

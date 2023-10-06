@@ -22,11 +22,11 @@ import com.example.demo.entity.Quiz;
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.response.Response;
-import com.example.demo.serviceImp.QuizSirviceImp;
+import com.example.demo.serviceImp.QuizServiceImp;
 
 class QuizControllerTest {
     @Mock
-    private QuizSirviceImp quizService;
+    private QuizServiceImp quizService;
     @InjectMocks
     private QuizController quizController;
     @BeforeEach

@@ -13,10 +13,10 @@ import com.example.demo.dto.QuizUpdateDto;
 public interface QuizService {
     /**
      * add quiz method.
-     * @param q quiz
+     * @param quizDto quiz
      * @return quiz
      */
-    QuizDto addQuiz(QuizDto q);
+    QuizDto addQuiz(QuizDto quizDto);
 
     /**
      * get quiz method.
@@ -39,11 +39,12 @@ public interface QuizService {
 
     /**
      * update quiz method.
-     * @param q  quiz
+     * @param quizUpdateDto  quiz
      * @param id quiz id
      * @return quiz
      */
-    QuizUpdateDto updateQuiz(QuizUpdateDto q, int id);
+    QuizUpdateDto updateQuiz(QuizUpdateDto
+            quizUpdateDto, int id);
 
     /**
      * find by id method.

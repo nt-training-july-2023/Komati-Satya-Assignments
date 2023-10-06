@@ -66,8 +66,8 @@ public class CategoryServiceImp implements CategoryService {
         if (categoryRepo.findAll().size() != 0) {
             if (categoryRepo.findById(id).isPresent()) {
                 CategoryDto categoryDto = new CategoryDto();
-                Optional<Category> c = categoryRepo.findById(id);
-                Category ca = c.get();
+                Optional<Category> category = categoryRepo.findById(id);
+                Category ca = category.get();
                 categoryDto.setCategoryDescription(ca.getCategoryDescription());
                 categoryDto.setCategoryName(ca.getCategoryName());
                 categoryDto.setCategoryId(ca.getCategoryId());
@@ -89,10 +89,10 @@ public class CategoryServiceImp implements CategoryService {
     @Override
     public final List<CategoryDto> findAll() {
         if (categoryRepo.findAll().size() != 0) {
-            List<Category> c = categoryRepo.findAll();
-            List<CategoryDto> cd = convertToDto(c);
+            List<Category> category = categoryRepo.findAll();
+            List<CategoryDto> categoryDto = convertToDto(category);
             LOGGER.info(Messages.FIND_ALLCATEGORY);
-            return cd;
+            return categoryDto;
         } else {
             LOGGER.error(ErrorMessages.NO_CATEGORY);
             throw new AllNotFoundException(ErrorMessages.NO_CATEGORY);
@@ -104,15 +104,15 @@ public class CategoryServiceImp implements CategoryService {
      * @return list category
      */
     private List<CategoryDto> convertToDto(final List<Category> c) {
-        List<CategoryDto> cd = new ArrayList<>();
+        List<CategoryDto> categoryDto = new ArrayList<>();
         for (Category ca : c) {
-            CategoryDto cad = new CategoryDto();
-            cad.setCategoryDescription(ca.getCategoryDescription());
-            cad.setCategoryName(ca.getCategoryName());
-            cad.setCategoryId(ca.getCategoryId());
-            cd.add(cad);
+            CategoryDto category = new CategoryDto();
+            category.setCategoryDescription(ca.getCategoryDescription());
+            category.setCategoryName(ca.getCategoryName());
+            category.setCategoryId(ca.getCategoryId());
+            categoryDto.add(category);
         }
-        return cd;
+        return categoryDto;
 
     }
     /**
@@ -171,10 +171,11 @@ public class CategoryServiceImp implements CategoryService {
         if (categoryRepo.findAll().size() != 0) {
             if (categoryRepo.findByCategoryName(s).isPresent()) {
                 CategoryDto categoryDto = new CategoryDto();
-                Optional<Category> c = categoryRepo.findByCategoryName(s);
+                Optional<Category> category = categoryRepo.
+                        findByCategoryName(s);
                 categoryDto.setCategoryDescription(
-                        c.get().getCategoryDescription());
-                categoryDto.setCategoryName(c.get().getCategoryName());
+                        category.get().getCategoryDescription());
+                categoryDto.setCategoryName(category.get().getCategoryName());
                 LOGGER.info(Messages.FIND_CATEGORY);
                 return Optional.of(categoryDto);
             } else {

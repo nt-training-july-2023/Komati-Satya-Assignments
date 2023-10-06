@@ -42,13 +42,13 @@ public class CategoryController {
     private CategoryService categoryService;
     /**
      * Category save method.
-     * @param c category.
+     * @param categoryDto category.
      * @return response
      */
     @PostMapping("/category")
     public final Response saveCategory(
-            @RequestBody @Valid final CategoryDto c) {
-            categoryService.saveCategory(c);
+            @RequestBody @Valid final CategoryDto categoryDto) {
+            categoryService.saveCategory(categoryDto);
             LOGGER.info(Messages.SAVE_CATEGORY);
             String message = Messages.SAVE_CATEGORY;
             Integer errorCode = HttpStatus.OK.value();
@@ -65,7 +65,6 @@ public class CategoryController {
                  findById(@PathVariable final int id) {
             Optional<CategoryDto> categoryDto = categoryService.findById(id);
             LOGGER.info(Messages.FIND_CATEGORY);
-            //return new ResponseEntity<>(categoryDto,HttpStatus.OK);
             String message = Messages.FIND_CATEGORY;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode,
@@ -89,28 +88,26 @@ public class CategoryController {
 
     /**
      * Category update method.
-     * @param c  category.
+     * @param categoryDto  category.
      * @param id category id.
      * @return response.
      */
     @PutMapping("/category/{id}")
     public final Response updateCategory(
-            @RequestBody @Valid final CategoryDto c,
+            @RequestBody @Valid final CategoryDto categoryDto,
             @PathVariable final int id) {
-            categoryService.updateCategory(c, id);
+            categoryService.updateCategory(categoryDto, id);
             LOGGER.info(Messages.UPDATE_CATEGORY);
             String message = Messages.UPDATE_CATEGORY;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode, message);
        return errorResponse;
     }
-
     /**
      * Category delete method.
      * @param id category id.
      * @return response.
      */
-    @SuppressWarnings("rawtypes")
     @DeleteMapping("/category/{id}")
     public final Response deleteCategory(
             @PathVariable final int id) {
@@ -132,7 +129,6 @@ public class CategoryController {
             @PathVariable final String s) {
             Optional<CategoryDto> categoryDto = categoryService.findByName(s);
             LOGGER.info(Messages.FIND_CATEGORY);
-           // return ResponseEntity.ok(categoryDto);
             String message = Messages.FIND_CATEGORY;
             Integer errorCode = HttpStatus.OK.value();
             Response errorResponse = new Response(errorCode,

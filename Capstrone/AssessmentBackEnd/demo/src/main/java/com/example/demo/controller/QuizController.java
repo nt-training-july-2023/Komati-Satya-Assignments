@@ -42,13 +42,13 @@ public class QuizController {
             .getLogger(QuizController.class);
     /**
      * save quiz method.
-     * @param q quiz
+     * @param quizDto quiz
      * @return response
      */
     @PostMapping("/quiz")
     public final Response saveQuiz(
-            @RequestBody @Valid final QuizDto q) {
-            quizSevice.addQuiz(q);
+            @RequestBody @Valid final QuizDto quizDto) {
+            quizSevice.addQuiz(quizDto);
             LOGGER.info(Messages.SAVE_QUIZ);
             String message = Messages.SAVE_QUIZ;
             Integer errorCode = HttpStatus.OK.value();
@@ -106,15 +106,15 @@ public class QuizController {
 
     /**
      * update quiz method.
-     * @param q  quiz
+     * @param quizUpdateDto  quiz
      * @param id quiz id
      * @return response
      */
     @PutMapping("/quiz/{id}")
     public final Response updateQuiz(
-            @RequestBody @Valid final QuizUpdateDto q,
+            @RequestBody @Valid final QuizUpdateDto quizUpdateDto,
             @PathVariable final int id) {
-            quizSevice.updateQuiz(q, id);
+            quizSevice.updateQuiz(quizUpdateDto, id);
             LOGGER.info(Messages.UPDATE_QUIZ);
             String message = Messages.UPDATE_QUIZ;
             Integer errorCode = HttpStatus.OK.value();

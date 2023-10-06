@@ -37,13 +37,13 @@ public class ResultController {
             .getLogger(ResultController.class);
     /**
      * adding result method.
-     * @param sr student result
+     * @param resultDto student result
      * @return response
      */
     @PostMapping("/result")
     public final Response addRes(
-            @RequestBody final ResultDto sr) {
-            resultService.addResult(sr);
+            @RequestBody final ResultDto resultDto) {
+            resultService.addResult(resultDto);
             LOGGER.info(Messages.SAVE_RESULT);
             String message = Messages.SAVE_RESULT;
             Integer errorCode = HttpStatus.OK.value();

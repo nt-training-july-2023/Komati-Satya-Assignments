@@ -108,13 +108,14 @@ public class ResultServiceImp implements ResultService {
                     .setAttemptedQuestions(resultDto.getAttemptedQuestions());
             studentResult.setCategoryId(resultDto.getCategoryId());
             studentResult.setDateAndTime(resultDto.getDateAndTime());
-            Optional<Quiz> q = quizRepo.findQuizByName(resultDto.getQuizName());
-            Quiz q1 = q.get();
-            studentResult.setQuiz(q1);
-            Optional<Student> student = studentRepo
+            Optional<Quiz> optionalQuiz = quizRepo.
+                    findQuizByName(resultDto.getQuizName());
+            Quiz quiz = optionalQuiz.get();
+            studentResult.setQuiz(quiz);
+            Optional<Student> optionalStudent = studentRepo
                     .findByEmail(resultDto.getEmail());
-            Student s = student.get();
-            studentResult.setStudentResult(s);
+            Student student = optionalStudent.get();
+            studentResult.setStudentResult(student);
             studentResult.setResult(resultDto.getResult());
             studentResult.setMaxMarks(resultDto.getObtainMarks());
             studentResult.setResultId(resultDto.getResultId());
@@ -133,22 +134,27 @@ public class ResultServiceImp implements ResultService {
     @Override
     public final Optional<ResultDto> getResult(final int id) {
         if (studentResultRepo.findAll().size() != 0) {
-            Optional<StudentResult> r = studentResultRepo.findById(id);
-            if (r.isPresent()) {
+            Optional<StudentResult> studentResult =
+                    studentResultRepo.findById(id);
+            if (studentResult.isPresent()) {
                 ResultDto resultDto = new ResultDto();
-                StudentResult fr = r.get();
-                resultDto.setUserName(fr.getStudentResult().getUserName());
-                resultDto.setEmail(fr.getStudentResult().getEmail());
-                Optional<Category> cc = categoryRepo
-                        .findById(fr.getCategoryId());
-                Category c = cc.get();
-                resultDto.setCategoryName(c.getCategoryName());
-                resultDto.setQuizName(fr.getQuiz().getTopicName());
-                resultDto.setResult(fr.getResult());
-                resultDto.setDateAndTime(fr.getDateAndTime());
-                resultDto.setObtainMarks(fr.getMaxMarks());
-                resultDto.setAttemptedQuestions(fr.getAttemptedQuestions());
-                resultDto.setCategoryId(c.getCategoryId());
+                StudentResult studentResults = studentResult.get();
+                resultDto.setUserName(studentResults.getStudentResult().
+                        getUserName());
+                resultDto.setEmail(studentResults.getStudentResult().
+                        getEmail());
+                Optional<Category> optionalCategory = categoryRepo
+                        .findById(studentResults.getCategoryId());
+                Category category = optionalCategory.get();
+                resultDto.setCategoryName(category.getCategoryName());
+                resultDto.setQuizName(studentResults.getQuiz().
+                        getTopicName());
+                resultDto.setResult(studentResults.getResult());
+                resultDto.setDateAndTime(studentResults.getDateAndTime());
+                resultDto.setObtainMarks(studentResults.getMaxMarks());
+                resultDto.setAttemptedQuestions(studentResults.
+                        getAttemptedQuestions());
+                resultDto.setCategoryId(category.getCategoryId());
                 LOGGER.info(Messages.FIND_RESULT);
                 return Optional.of(resultDto);
             } else {
@@ -178,32 +184,33 @@ public class ResultServiceImp implements ResultService {
     }
     /**
      * convert to dto method.
-     * @param sr student result
+     * @param studentResultList student result
      * @return list of result
      */
-    private List<ResultDto> convertToDto(final List<StudentResult> sr) {
-        List<ResultDto> rd = new ArrayList<>();
+    private List<ResultDto> convertToDto(final List<StudentResult>
+    studentResultList) {
+        List<ResultDto> resultDtoList = new ArrayList<>();
         int i = 0;
-        for (StudentResult studentResult : sr) {
-            int n = sr.get(i).getCategoryId();
-            Optional<Category> c = categoryRepo.findById(n);
+        for (StudentResult studentResult : studentResultList) {
+            int n = studentResultList.get(i).getCategoryId();
+            Optional<Category> category = categoryRepo.findById(n);
             ResultDto resultDto = new ResultDto();
             resultDto.setUserName(studentResult.getStudentResult().
                     getUserName());
             resultDto.setEmail(studentResult.getStudentResult().getEmail());
-            resultDto.setCategoryName(c.get().getCategoryName());
+            resultDto.setCategoryName(category.get().getCategoryName());
             resultDto.setQuizName(studentResult.getQuiz().getTopicName());
             resultDto.setResult(studentResult.getResult());
             resultDto.setDateAndTime(studentResult.getDateAndTime());
             resultDto.setObtainMarks(studentResult.getMaxMarks());
-            resultDto.setCategoryId(c.get().getCategoryId());
+            resultDto.setCategoryId(category.get().getCategoryId());
             resultDto.setAttemptedQuestions(
                     studentResult.getAttemptedQuestions());
             resultDto.setMaxMarks(studentResult.getMaxMarks());
-            rd.add(resultDto);
+            resultDtoList.add(resultDto);
             i++;
         }
-        return rd;
+        return resultDtoList;
     }
 
 }

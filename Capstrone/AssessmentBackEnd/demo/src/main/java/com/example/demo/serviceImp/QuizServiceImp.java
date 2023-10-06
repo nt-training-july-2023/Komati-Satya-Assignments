@@ -26,7 +26,7 @@ import com.example.demo.validationMessages.Messages;
  * quiz service interface.
  */
 @Service
-public class QuizSirviceImp implements QuizService {
+public class QuizServiceImp implements QuizService {
     /**
      * auto wiring quiz repository.
      */
@@ -41,7 +41,7 @@ public class QuizSirviceImp implements QuizService {
      * Creating a instance of Logger Class.
      */
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(QuizSirviceImp.class);
+            .getLogger(QuizServiceImp.class);
 
     /**
      * add quiz method.
@@ -82,8 +82,8 @@ public class QuizSirviceImp implements QuizService {
         if (quizRepo.findAll().size() != 0) {
             if (quizRepo.findById(id).isPresent()) {
                 QuizDto quizDto = new QuizDto();
-                Optional<Quiz> q = quizRepo.findById(id);
-                Quiz quiz = q.get();
+                Optional<Quiz> quizOptional = quizRepo.findById(id);
+                Quiz quiz = quizOptional.get();
                 quizDto.setQuizId(quiz.getQuizId());
                 quizDto.setTopicDescription(quiz.getTopicDescription());
                 quizDto.setTopicName(quiz.getTopicName());
@@ -117,12 +117,12 @@ public class QuizSirviceImp implements QuizService {
     }
     /**
      * converToDto method.
-     * @param l quiz list
+     * @param quizList quiz list
      * @return quizDto
      */
-    private List<QuizDto> convertToDto(final List<Quiz> l) {
+    private List<QuizDto> convertToDto(final List<Quiz> quizList) {
         List<QuizDto> quizDto = new ArrayList<>();
-        for (Quiz quiz : l) {
+        for (Quiz quiz : quizList) {
             QuizDto qd = new QuizDto();
             qd.setQuizId(quiz.getQuizId());
             qd.setTopicDescription(quiz.getTopicDescription());
@@ -155,27 +155,29 @@ public class QuizSirviceImp implements QuizService {
     /**
      * update quiz method.
      * @param id quiz id
-     * @param q  quiz
+     * @param quizUpdateDto  quiz
      * @result quiz
      */
     @Override
-    public final QuizUpdateDto updateQuiz(final QuizUpdateDto q, final int id) {
+    public final QuizUpdateDto updateQuiz(final QuizUpdateDto
+            quizUpdateDto, final int id) {
         if (quizRepo.findAll().size() != 0) {
             Optional<Quiz> existingQuiz = quizRepo.findById(id);
             if (existingQuiz.isPresent()) {
                 Quiz exiQuiz = existingQuiz.get();
                 Optional<Quiz> quiz = quizRepo
-                        .findQuizByName(q.getTopicName());
+                        .findQuizByName(quizUpdateDto.getTopicName());
                 if (quiz.isPresent()
                         && !(quiz.get().getQuizId() == id)) {
                     throw new AlreadyExistException(ErrorMessages.QUIZ_EXIST);
                 }
-                exiQuiz.setTopicName(q.getTopicName());
-                exiQuiz.setTopicDescription(q.getTopicDescription());
-                exiQuiz.setTimer(q.getTimer());
+                exiQuiz.setTopicName(quizUpdateDto.getTopicName());
+                exiQuiz.setTopicDescription(quizUpdateDto.
+                        getTopicDescription());
+                exiQuiz.setTimer(quizUpdateDto.getTimer());
                 quizRepo.save(exiQuiz);
                 LOGGER.info(Messages.UPDATE_QUIZ);
-                return q;
+                return quizUpdateDto;
             } else {
                 LOGGER.error(ErrorMessages.WRONG_QUIZID);
                 throw new NotFoundException(ErrorMessages.WRONG_QUIZID);

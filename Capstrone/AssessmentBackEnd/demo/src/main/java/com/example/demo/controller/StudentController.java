@@ -43,13 +43,13 @@ public class StudentController {
             .getLogger(StudentController.class);
     /**
      * student save method.
-     * @param s student
+     * @param studentSaveDto student
      * @return response.
      */
     @PostMapping("/student")
     public final Response save(
-            @RequestBody @Valid final StudentSaveDto s) {
-            studentSevice.saveStudent(s);
+            @RequestBody @Valid final StudentSaveDto studentSaveDto) {
+            studentSevice.saveStudent(studentSaveDto);
             LOGGER.info(Messages.SAVE_STUDENT);
             String message = Messages.SAVE_STUDENT;
             Integer errorCode = HttpStatus.OK.value();
@@ -76,14 +76,14 @@ public class StudentController {
 
     /**
      * login method.
-     * @param l loginDto
+     * @param loginDto loginDto
      * @return response
      */
     @PostMapping("/student/login")
     public final Response login(
-            @RequestBody @Valid final LoginDto l) {
+            @RequestBody @Valid final LoginDto loginDto) {
             Optional<StudentDto> studentDto = studentSevice.
-                    aunthenticateUser(l);
+                    aunthenticateUser(loginDto);
             LOGGER.info(Messages.LOGIN_STUDENT);
             String message = Messages.LOGIN_STUDENT;
             Integer errorCode = HttpStatus.OK.value();
@@ -109,15 +109,15 @@ public class StudentController {
 
     /**
      * update student method.
-     * @param s  student
+     * @param studentDto student
      * @param id student id
      * @return response
      */
     @PutMapping("/student/{id}")
     public final Response updateStudent(
-            @RequestBody @Valid final StudentDto s,
+            @RequestBody @Valid final StudentDto studentDto,
             @PathVariable final int id) {
-            studentSevice.updateStudent(s, id);
+            studentSevice.updateStudent(studentDto, id);
             LOGGER.info(Messages.UPDATE_STUDENT);
             String message = Messages.UPDATE_STUDENT;
             Integer errorCode = HttpStatus.OK.value();

@@ -12,10 +12,10 @@ import com.example.demo.dto.ResultDto;
 public interface ResultService {
     /**
      * add result.
-     * @param sr student result
+     * @param resultDto student result
      * @return student result
      */
-    ResultDto addResult(ResultDto sr);
+    ResultDto addResult(ResultDto resultDto);
 
     /**
      * get result method.

@@ -13,10 +13,10 @@ import com.example.demo.dto.StudentSaveDto;
 public interface StudentService {
     /**
      * save student method.
-     * @param s student
+     * @param studentSaveDto student
      * @return student
      */
-    String saveStudent(StudentSaveDto s);
+    String saveStudent(StudentSaveDto studentSaveDto);
 
     /**
      * find by id method.
@@ -27,10 +27,10 @@ public interface StudentService {
 
     /**
      * authenticateUser method.
-     * @param l loginDto
+     * @param loginDto loginDto
      * @return student
      */
-    Optional<StudentDto> aunthenticateUser(LoginDto l);
+    Optional<StudentDto> aunthenticateUser(LoginDto loginDto);
 
     /**
      * find all student method.
@@ -40,11 +40,11 @@ public interface StudentService {
 
     /**
      * update student method.
-     * @param s  student
+     * @param studentDto  student
      * @param id student id
      * @return student
      */
-    StudentDto updateStudent(StudentDto s, int id);
+    StudentDto updateStudent(StudentDto studentDto, int id);
 
     /**
      * delete student method.

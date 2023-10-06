@@ -47,19 +47,19 @@ public class StudentServiceImp implements StudentService {
     public final Optional<StudentDto> aunthenticateUser(
             final LoginDto loginDto) {
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-        Optional<Student> student = studentRepo
+        Optional<Student> optionalStudent = studentRepo
                 .findByEmail(loginDto.getEmail());
-        if (student.isPresent()) {
-            Student st1 = student.get();
-            if (bcrypt.matches(loginDto.getPassword(), st1.getPassword())) {
+        if (optionalStudent.isPresent()) {
+            Student student = optionalStudent.get();
+            if (bcrypt.matches(loginDto.getPassword(), student.getPassword())) {
                 StudentDto studentDto = new StudentDto();
-                studentDto.setUserName(st1.getUserName());
-                studentDto.setUserId(st1.getUserId());
-                studentDto.setPhoneNumber(st1.getPhoneNumber());
-                studentDto.setGender(st1.getGender());
-                studentDto.setDateOfBirth(st1.getDateOfBirth());
-                studentDto.setEmail(st1.getEmail());
-                studentDto.setRole(st1.getRole());
+                studentDto.setUserName(student.getUserName());
+                studentDto.setUserId(student.getUserId());
+                studentDto.setPhoneNumber(student.getPhoneNumber());
+                studentDto.setGender(student.getGender());
+                studentDto.setDateOfBirth(student.getDateOfBirth());
+                studentDto.setEmail(student.getEmail());
+                studentDto.setRole(student.getRole());
                 LOGGER.info(Messages.LOGIN_STUDENT);
                 return Optional.of(studentDto);
             } else {
@@ -93,7 +93,7 @@ public class StudentServiceImp implements StudentService {
             studentDto.setPassword(encrypted);
             LOGGER.info(Messages.SAVE_STUDENT);
             studentRepo.save(studentDto);
-            return "regiater";
+            return "register";
         } else {
             LOGGER.error(ErrorMessages.EMAIL_EXIST);
             throw new DuplicateEmailException(ErrorMessages.EMAIL_EXIST);
@@ -108,8 +108,8 @@ public class StudentServiceImp implements StudentService {
     public final Optional<StudentDto> findById(final int id) {
         if (studentRepo.findById(id).isPresent()) {
             StudentDto studentDto = new StudentDto();
-            Optional<Student> s = studentRepo.findById(id);
-            Student student = s.get();
+            Optional<Student> optionalStudent = studentRepo.findById(id);
+            Student student = optionalStudent.get();
             studentDto.setUserName(student.getUserName());
             studentDto.setUserId(student.getUserId());
             studentDto.setPhoneNumber(student.getPhoneNumber());
@@ -146,7 +146,7 @@ public class StudentServiceImp implements StudentService {
      * @return list of students
      */
     private List<StudentDto> convertToDto(final List<Student> s) {
-        List<StudentDto> sd = new ArrayList<>();
+        List<StudentDto> studentDtoList = new ArrayList<>();
         for (Student student : s) {
             StudentDto studentDto = new StudentDto();
             studentDto.setUserName(student.getUserName());
@@ -156,9 +156,9 @@ public class StudentServiceImp implements StudentService {
             studentDto.setDateOfBirth(student.getDateOfBirth());
             studentDto.setEmail(student.getEmail());
             studentDto.setRole(student.getRole());
-            sd.add(studentDto);
+            studentDtoList.add(studentDto);
         }
-        return sd;
+        return studentDtoList;
     }
     /**
      * update student method.

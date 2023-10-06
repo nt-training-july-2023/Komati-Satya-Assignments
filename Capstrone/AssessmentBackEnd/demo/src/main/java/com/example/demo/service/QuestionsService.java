@@ -13,10 +13,10 @@ import com.example.demo.dto.QuestionsUpdateDto;
 public interface QuestionsService {
     /**
      * add question question.
-     * @param q question q
+     * @param questionDto question
      * @return question
      */
-    QuestionsDto addQuestion(QuestionsDto q);
+    QuestionsDto addQuestion(QuestionsDto questionDto);
 
     /**
      * get question method.
@@ -32,11 +32,12 @@ public interface QuestionsService {
 
     /**
      * update question method.
-     * @param q  question
+     * @param questionUpdateDto question
      * @param id question id
      * @return question
      */
-    QuestionsUpdateDto updateQuestion(QuestionsUpdateDto q, int id);
+    QuestionsUpdateDto updateQuestion(QuestionsUpdateDto
+            questionUpdateDto, int id);
 
     /**
      * find by id method.

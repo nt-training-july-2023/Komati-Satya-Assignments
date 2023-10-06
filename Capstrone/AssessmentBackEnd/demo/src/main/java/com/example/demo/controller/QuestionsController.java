@@ -43,13 +43,13 @@ public class QuestionsController {
 
     /**
      * Questions add method.
-     * @param q question
+     * @param questionDto question
      * @return response
      */
     @PostMapping("/questions")
     public final Response addQuestion(
-            @RequestBody @Valid final QuestionsDto q) {
-            questionsService.addQuestion(q);
+            @RequestBody @Valid final QuestionsDto questionDto) {
+            questionsService.addQuestion(questionDto);
             LOGGER.info(Messages.SAVE_QUESTION);
             String message = Messages.SAVE_QUESTION;
             Integer errorCode = HttpStatus.OK.value();
@@ -89,14 +89,14 @@ public class QuestionsController {
     /**
      * update question method.
      * @param id question id
-     * @param q  question
+     * @param questionUpdateDto  question
      * @return response
      */
     @PutMapping("/questions/que/{id}")
     public final Response updateQue(
-            @RequestBody @Valid final QuestionsUpdateDto q,
+            @RequestBody @Valid final QuestionsUpdateDto questionUpdateDto,
             @PathVariable final int id) {
-            questionsService.updateQuestion(q, id);
+            questionsService.updateQuestion(questionUpdateDto, id);
             LOGGER.info(Messages.UPDATE_QUESTION);
             String message = Messages.UPDATE_QUESTION;
             Integer errorCode = HttpStatus.OK.value();

@@ -107,9 +107,9 @@ public class QuestionServiceImp implements QuestionsService {
     public final List<QuestionsDto> getQuestions() {
         if (questionsRepo.findAll().size() != 0) {
             List<Questions> questions = questionsRepo.findAll();
-            List<QuestionsDto> qd = convertToDto(questions);
+            List<QuestionsDto> questionDto = convertToDto(questions);
             LOGGER.info(Messages.FIND_ALLQUESTION);
-            return qd;
+            return questionDto;
         } else {
             LOGGER.error(ErrorMessages.NO_QUESTION);
             throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
@@ -121,20 +121,20 @@ public class QuestionServiceImp implements QuestionsService {
      * @return list of questions
      */
     private List<QuestionsDto> convertToDto(final List<Questions> q) {
-        List<QuestionsDto> qd = new ArrayList<>();
+        List<QuestionsDto> quesDto = new ArrayList<>();
         for (Questions questions : q) {
-            QuestionsDto qu = new QuestionsDto();
-            qu.setQuizId(questions.getQuiz().getQuizId());
-            qu.setCorrectOption(questions.getCorrectOption());
-            qu.setOption1(questions.getOption1());
-            qu.setOption2(questions.getOption2());
-            qu.setOption4(questions.getOption4());
-            qu.setOption3(questions.getOption3());
-            qu.setQuestion(questions.getQuestion());
-            qu.setQuestionId(questions.getQid());
-            qd.add(qu);
+            QuestionsDto questionDto = new QuestionsDto();
+            questionDto.setQuizId(questions.getQuiz().getQuizId());
+            questionDto.setCorrectOption(questions.getCorrectOption());
+            questionDto.setOption1(questions.getOption1());
+            questionDto.setOption2(questions.getOption2());
+            questionDto.setOption4(questions.getOption4());
+            questionDto.setOption3(questions.getOption3());
+            questionDto.setQuestion(questions.getQuestion());
+            questionDto.setQuestionId(questions.getQid());
+            quesDto.add(questionDto);
         }
-        return qd;
+        return quesDto;
     }
     /**
      * delete method.
@@ -157,50 +157,51 @@ public class QuestionServiceImp implements QuestionsService {
     }
     /**
      * update question method.
-     * @param q  questions.
+     * @param questionDto questions.
      * @param id question id
      * @return questions
      */
     @Override
-    public final QuestionsUpdateDto updateQuestion(final QuestionsUpdateDto q,
+    public final QuestionsUpdateDto updateQuestion(final QuestionsUpdateDto
+            questionDto,
             final int id) {
         if (questionsRepo.findAll().size() != 0) {
             Optional<Questions> existingQue = questionsRepo.findById(id);
             if (existingQue.isPresent()) {
                 Questions exiQue = existingQue.get();
                 Optional<Questions> question = questionsRepo
-                        .findByQuestion(q.getQuestion());
+                        .findByQuestion(questionDto.getQuestion());
                 if (question.isPresent()
                         && !(question.get().getQid() == id)) {
                 throw new AlreadyExistException(ErrorMessages.QUESTION_EXIST);
                 }
                 Set<String> options = new HashSet<>();
-                options.add(q.getOption1());
-                options.add(q.getOption2());
-                options.add(q.getOption3());
-                options.add(q.getOption4());
+                options.add(questionDto.getOption1());
+                options.add(questionDto.getOption2());
+                options.add(questionDto.getOption3());
+                options.add(questionDto.getOption4());
                 final int number = 4;
                 if (options.size() < number) {
                     throw new AlreadyExistException(ErrorMessages
                            .OPTION_EXIST);
                 }
-                if (q.getCorrectOption().equals(
-                        q.getOption1())
-                   || q.getCorrectOption().equals(
-                           q.getOption2())
-                   || q.getCorrectOption().equals(
-                           q.getOption3())
-                   || q.getCorrectOption().equals(
-                           q.getOption4())) {
-                exiQue.setOption1(q.getOption1());
-                exiQue.setOption2(q.getOption2());
-                exiQue.setOption3(q.getOption3());
-                exiQue.setOption4(q.getOption4());
-                exiQue.setCorrectOption(q.getCorrectOption());
-                exiQue.setQuestion(q.getQuestion());
+                if (questionDto.getCorrectOption().equals(
+                        questionDto.getOption1())
+                   || questionDto.getCorrectOption().equals(
+                           questionDto.getOption2())
+                   || questionDto.getCorrectOption().equals(
+                           questionDto.getOption3())
+                   || questionDto.getCorrectOption().equals(
+                           questionDto.getOption4())) {
+                exiQue.setOption1(questionDto.getOption1());
+                exiQue.setOption2(questionDto.getOption2());
+                exiQue.setOption3(questionDto.getOption3());
+                exiQue.setOption4(questionDto.getOption4());
+                exiQue.setCorrectOption(questionDto.getCorrectOption());
+                exiQue.setQuestion(questionDto.getQuestion());
                 questionsRepo.save(exiQue);
                 LOGGER.info(Messages.UPDATE_QUESTION);
-                return q;
+                return questionDto;
                 } else {
                     LOGGER.error(ErrorMessages.CORRECT_OPTION);
                     throw new NotFoundException(ErrorMessages.CORRECT_OPTION);
@@ -222,10 +223,10 @@ public class QuestionServiceImp implements QuestionsService {
     @Override
     public final List<QuestionsDto> findQuestionById(final int id) {
         if (questionsRepo.findQueById(id).size() != 0) {
-                List<Questions> l = questionsRepo.findQueById(id);
-                List<QuestionsDto> ld = convertToDto(l);
+                List<Questions> questions = questionsRepo.findQueById(id);
+                List<QuestionsDto> questionDto = convertToDto(questions);
                 LOGGER.info(Messages.FIND_QUESTIONBYQUIZID);
-                return ld;
+                return questionDto;
         } else {
             LOGGER.error(ErrorMessages.NO_QUESTION);
             throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
