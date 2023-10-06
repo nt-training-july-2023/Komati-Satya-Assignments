@@ -22,12 +22,10 @@
   border-collapse: collapse;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-height: 400px; 
- 
 }
 table {
   overflow: auto;
   white-space:pre;
-
 } 
 .headData {
   background-color: #5dcc5d;
@@ -36,7 +34,6 @@ table {
   top:0;
   z-index: 0;
 }
-
 .rowData th,
 .rowData td {
   padding: 15px;
@@ -47,8 +44,9 @@ table {
 .action-style{
   width:100px
 }
-
-
+.rowData td{
+  width: 1000px
+}
 .bodyData tr:nth-child(even) {
   background-color: #f2f2f2;
 }
