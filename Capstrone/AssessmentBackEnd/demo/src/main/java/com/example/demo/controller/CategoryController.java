@@ -121,13 +121,14 @@ public class CategoryController {
 
     /**
      * Category find by name method.
-     * @param s name.
+     * @param categoryName name.
      * @return response.
      */
-    @GetMapping("/category/{s}")
+    @GetMapping("/category/{categoryName}")
     public final Response findByName(
-            @PathVariable final String s) {
-            Optional<CategoryDto> categoryDto = categoryService.findByName(s);
+            @PathVariable final String categoryName) {
+            Optional<CategoryDto> categoryDto = categoryService.
+                    findByName(categoryName);
             LOGGER.info(Messages.FIND_CATEGORY);
             String message = Messages.FIND_CATEGORY;
             Integer errorCode = HttpStatus.OK.value();

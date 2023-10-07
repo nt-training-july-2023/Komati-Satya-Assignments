@@ -60,10 +60,10 @@ class FinalResultServiceImpTest {
         finalRess.setMaxMarks(101);
   
         
-        Category c=new Category();
-        c.setCategoryId(1);
-        c.setCategoryName("java");
-        c.setCategoryDescription("javaa");
+        Category category=new Category();
+        category.setCategoryId(1);
+        category.setCategoryName("java");
+        category.setCategoryDescription("javaa");
         
         List<FinalRes> finallist=new ArrayList<>();
         finallist.add(finalRess);
@@ -72,8 +72,7 @@ class FinalResultServiceImpTest {
         when(finalRepo.findAll()).thenReturn(finallist);
         List<ResultDto> resultDtoList=finalService.getById(1);
         System.out.println(finalService.getById(1));
-        //assertEquals(finallist.get(0).getCategoryName(),resultDtoList.get(0).getCategoryName());  
-    }
+        }
     
    
     @Test
@@ -101,10 +100,10 @@ class FinalResultServiceImpTest {
         finalRess.setUserName("satya");
         finalRess.setMaxMarks(101);
         
-        Category c=new Category();
-        c.setCategoryId(1);
-        c.setCategoryName("java");
-        c.setCategoryDescription("javaa");
+        Category category=new Category();
+        category.setCategoryId(1);
+        category.setCategoryName("java");
+        category.setCategoryDescription("javaa");
         List<FinalRes> f=new ArrayList<>();
         f.add(finalRess);
         finalRepo.save(finalRess);

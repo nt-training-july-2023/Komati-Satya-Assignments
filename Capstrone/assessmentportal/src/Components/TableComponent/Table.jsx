@@ -41,7 +41,7 @@ const Table = ({ columns, data, rows, category, deleteData, viewQuizes, role, qu
               {role === "Admin" && (<>
                 <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.quizId)}><FaTrash className="delete-icon" /> Delete</ButtonComponent></td>
                 <td><Link to={`/UpdateQuiz/${item.quizId}`} className="updateData"><FaPencilAlt className="update-icon" /> Update</Link></td>
-                <td><Link to={`/Questions/${item.quizId}`} className="updateData"><FaList className="delete-icon" /> Questions</Link></td>t
+                <td><Link to={`/Questions/${item.quizId}`} className="updateData"><FaList className="delete-icon" /> Questions</Link></td>
               </>)}
               {role === 'student' && <>
                 <td><Link to="#" className="updateData" onClick={() => viewQuizes(item.topicName, item.quizId, item.timer, item.categoryId)}>Take Test</Link></td></>}

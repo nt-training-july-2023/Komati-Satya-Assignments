@@ -68,26 +68,27 @@ public class FinalResultServiceImp implements FinalResService {
      * @return list of result
      */
     private List<ResultDto> convertToDto(final List<FinalRes> finalRes) {
-        List<ResultDto> r = new ArrayList<>();
-        for (FinalRes f : finalRes) {
+        List<ResultDto> resultList = new ArrayList<>();
+        for (FinalRes finalResult : finalRes) {
             ResultDto resultDto = new ResultDto();
-            resultDto.setCategoryName(f.getCategoryName());
-            resultDto.setDateAndTime(f.getDateAndTime());
-            resultDto.setDateAndTime(f.getDateAndTime());
-            resultDto.setQuizName(f.getQuizTopic());
-            resultDto.setUserName(f.getUserName());
-            resultDto.setObtainMarks(f.getMarks());
-            resultDto.setCategoryId(f.getCategoryId());
-            resultDto.setAttemptedQuestions(f.getAttemptedQuestions());
-            resultDto.setEmail(f.getEmail());
-            resultDto.setResultId(f.getResultId());
-            resultDto.setMaxMarks(f.getMaxMarks());
-            resultDto.setUserId(f.getUserId());
-            resultDto.setTotalQuestions(f.getTotalNoOfQuestions());
-            resultDto.setUserId(f.getUserId());
-            r.add(resultDto);
+            resultDto.setCategoryName(finalResult.getCategoryName());
+            resultDto.setDateAndTime(finalResult.getDateAndTime());
+            resultDto.setDateAndTime(finalResult.getDateAndTime());
+            resultDto.setQuizName(finalResult.getQuizTopic());
+            resultDto.setUserName(finalResult.getUserName());
+            resultDto.setObtainMarks(finalResult.getMarks());
+            resultDto.setCategoryId(finalResult.getCategoryId());
+            resultDto.setAttemptedQuestions(finalResult.
+                    getAttemptedQuestions());
+            resultDto.setEmail(finalResult.getEmail());
+            resultDto.setResultId(finalResult.getResultId());
+            resultDto.setMaxMarks(finalResult.getMaxMarks());
+            resultDto.setUserId(finalResult.getUserId());
+            resultDto.setTotalQuestions(finalResult.getTotalNoOfQuestions());
+            resultDto.setUserId(finalResult.getUserId());
+            resultList.add(resultDto);
         }
-        return r;
+        return resultList;
     }
     /**
      * find all methods.
