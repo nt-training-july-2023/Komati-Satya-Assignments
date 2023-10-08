@@ -2,29 +2,23 @@ package com.example.demo.serviceImp;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
-
 import com.example.demo.entity.Questions;
 import com.example.demo.entity.Quiz;
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
 import com.example.demo.exceptions.NotFoundException;
-
 import com.example.demo.repository.QuestionsRepo;
 import com.example.demo.repository.QuizRepo;
 
@@ -43,11 +37,11 @@ class QuestionServiceImpTest {
     
     @Test
     void testAddQuestion() {
-        QuestionsDto questionDto=new QuestionsDto("java is","oops","popl","none","both","oops",7,9);
+       QuestionsDto questionDto=new QuestionsDto("java is","oops","popl","none","both","oops",7,9);
        Quiz quiz=new Quiz(9,"variables","java variables",60);
-      when(quizRepo.findById(questionDto.getQuizId())).thenReturn(Optional.of(quiz));
-        when(questionsRepo.findByQuestion(questionDto.getQuestion())).thenReturn(Optional.empty());
-        assertEquals(questionDto.getCorrectOption(),questionDto.getOption1());
+       when(quizRepo.findById(questionDto.getQuizId())).thenReturn(Optional.of(quiz));
+       when(questionsRepo.findByQuestion(questionDto.getQuestion())).thenReturn(Optional.empty());
+       assertEquals(questionDto.getCorrectOption(),questionDto.getOption1());
        Questions question=new Questions();
        
        question.setQuiz(quiz);
@@ -84,10 +78,10 @@ class QuestionServiceImpTest {
    void testGetAll() {
         Questions questions=new Questions("java is","oops","popl","none","both","oopl");
         Quiz quiz=new Quiz(1,"variables","java variables",60);
-         questions.setQuiz(quiz);
+        questions.setQuiz(quiz);
          
-         List<Questions> q1=new ArrayList<>();
-         q1.add(questions);
+        List<Questions> q1=new ArrayList<>();
+        q1.add(questions);
        when(questionsRepo.findAll()).thenReturn(q1);
        List<QuestionsDto> questionsDto=questionsService.getQuestions();
        assertEquals(questions.getQuestion(),questionsDto.get(0).getQuestion());

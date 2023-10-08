@@ -13,14 +13,14 @@ class StudentSaveDtoTest {
         studentSaveDto.setUserName("Satya");
         studentSaveDto.setEmail("satya1919@nucleusteq.com");
         studentSaveDto.setDateOfBirth("24-02-2001");
-        studentSaveDto.setGender("female");
+        studentSaveDto.setGender(Gender.female);
         studentSaveDto.setPhoneNumber("8639924113");
         studentSaveDto.setPassword("Satya@1919");
         studentSaveDto.setRole("student");
         assertEquals("Satya",studentSaveDto.getUserName());
         assertEquals("satya1919@nucleusteq.com",studentSaveDto.getEmail());
         assertEquals("24-02-2001",studentSaveDto.getDateOfBirth());
-        assertEquals("female",studentSaveDto.getGender());
+        assertEquals(Gender.female,studentSaveDto.getGender());
         assertEquals("8639924113",studentSaveDto.getPhoneNumber());
     }
 

@@ -81,7 +81,6 @@ public class FinalResultServiceImp implements FinalResService {
             resultDto.setAttemptedQuestions(finalResult.
                     getAttemptedQuestions());
             resultDto.setEmail(finalResult.getEmail());
-            //resultDto.setResultId(finalResult.getResultId());
             resultDto.setMaxMarks(finalResult.getMaxMarks());
             resultDto.setUserId(finalResult.getUserId());
             resultDto.setTotalQuestions(finalResult.getTotalNoOfQuestions());

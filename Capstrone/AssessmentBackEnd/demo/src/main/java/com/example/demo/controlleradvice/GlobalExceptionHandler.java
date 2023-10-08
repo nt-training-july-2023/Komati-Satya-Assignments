@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -127,4 +128,19 @@ public class GlobalExceptionHandler {
    return new ResponseEntity<Response>(errorResponse,
           HttpStatus.FOUND);
    }
+    /**
+     * HttpMessageNotReadableException.
+     * @param exception exception
+     * @return response
+     */
+    @ExceptionHandler(HttpMessageNotReadableException.class)
+    public final ResponseEntity<Response<HttpMessageNotReadableException>>
+    handleHttpMessageNotReadableException(final HttpMessageNotReadableException
+            exception) {
+        final int status = 409;
+        Response<HttpMessageNotReadableException> response =
+                new Response<HttpMessageNotReadableException>(status,
+                        "gender should be male,female or other");
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
 }

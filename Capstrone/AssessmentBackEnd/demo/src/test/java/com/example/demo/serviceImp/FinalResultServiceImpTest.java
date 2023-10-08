@@ -70,8 +70,7 @@ class FinalResultServiceImpTest {
         
         when(finalRepo.findAll()).thenReturn(finallist);
         List<ResultDto> resultDtoList=finalService.getById(1);
-        System.out.println(finalService.getById(1));
-        }
+    }
     
    
     @Test
@@ -110,8 +109,6 @@ class FinalResultServiceImpTest {
     }
     @Test
     void testFindAllNotFound() {
-        int userId=19;
-        FinalRes finalRes=new FinalRes();
         when(finalRepo.findAll()).thenReturn(Collections.emptyList());
         assertThrows(AllNotFoundException.class, () ->{ finalService.findAll();
         });

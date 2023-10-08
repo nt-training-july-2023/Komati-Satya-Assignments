@@ -1,28 +1,18 @@
 package com.example.demo.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
 import com.example.demo.dto.CategoryDto;
-
 import com.example.demo.entity.Category;
-
-import com.example.demo.exceptions.AllNotFoundException;
-import com.example.demo.exceptions.AlreadyExistException;
-import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.response.Response;
 import com.example.demo.serviceImp.CategoryServiceImp;
 

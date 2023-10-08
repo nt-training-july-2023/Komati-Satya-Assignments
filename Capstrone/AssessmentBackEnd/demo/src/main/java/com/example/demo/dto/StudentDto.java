@@ -1,6 +1,9 @@
 package com.example.demo.dto;
 
 import com.example.demo.validationMessages.ValidationMessages;
+
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
@@ -38,8 +41,8 @@ public class StudentDto {
     /**
      * stores user gender.
      */
-    @NotBlank(message = ValidationMessages.GENDER_NOTBLANK)
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     /**
      * stores user phone number.
      */

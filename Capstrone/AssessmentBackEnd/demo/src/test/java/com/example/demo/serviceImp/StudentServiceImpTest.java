@@ -18,6 +18,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
+import com.example.demo.dto.Gender;
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
 import com.example.demo.dto.StudentSaveDto;
@@ -46,7 +47,7 @@ class StudentServiceImpTest {
         studentSaveDto.setUserName("Satya");
         studentSaveDto.setEmail("satya1919@nucleusteq.com");
         studentSaveDto.setDateOfBirth("24-02-2001");
-        studentSaveDto.setGender("female");
+        studentSaveDto.setGender(Gender.female);
         studentSaveDto.setPhoneNumber("8639924113");
         studentSaveDto.setPassword("Satya@1919");
         studentSaveDto.setRole("student");
@@ -84,7 +85,7 @@ class StudentServiceImpTest {
         student.setUserName("Satya");
         student.setEmail("satya1919@nucleusteq.com");
         student.setDateOfBirth("24-02-2001");
-        student.setGender("female");
+        student.setGender(Gender.female);
         student.setPhoneNumber("8639924113");
         student.setPassword("Satya@1919");
         student.setRole("student");
@@ -138,7 +139,7 @@ class StudentServiceImpTest {
         student.setUserName("Satya");
         student.setEmail("satya1919@nucleusteq.com");
         student.setDateOfBirth("24-02-2001");
-        student.setGender("female");
+        student.setGender(Gender.female);
         student.setPhoneNumber("8639924113");
         student.setPassword("Satya@1919");
         student.setRole("student");
@@ -157,7 +158,7 @@ class StudentServiceImpTest {
         student.setUserName("Satya");
         student.setEmail("satya1919@nucleusteq.com");
         student.setDateOfBirth("24-02-2001");
-        student.setGender("female");
+        student.setGender(Gender.female);
         student.setPhoneNumber("8639924113");
         student.setPassword("Satya@1919");
         student.setRole("student");
@@ -235,7 +236,7 @@ class StudentServiceImpTest {
             studentDto.setUserName("Satya");
             studentDto.setEmail("satya1919@nucleusteq.com");
             studentDto.setDateOfBirth("24-02-2001");
-            studentDto.setGender("female");
+            studentDto.setGender(Gender.female);
             studentDto.setPhoneNumber("8639924113");
             studentDto.setRole("student");
             
@@ -256,7 +257,7 @@ class StudentServiceImpTest {
             studentDto2.setUserName("SatyaKomati");
             studentDto2.setEmail("satya1919@nucleusteq.com");
             studentDto2.setDateOfBirth("24-02-2001");
-            studentDto2.setGender("female");
+            studentDto2.setGender(Gender.female);
             studentDto2.setPhoneNumber("8639924113");
             studentDto2.setRole("student");
             StudentDto studentDto3= studentService.updateStudent(studentDto2, studentId);

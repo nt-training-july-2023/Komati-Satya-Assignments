@@ -67,10 +67,11 @@ public class CategoryServiceImp implements CategoryService {
             if (categoryRepo.findById(id).isPresent()) {
                 CategoryDto categoryDto = new CategoryDto();
                 Optional<Category> category = categoryRepo.findById(id);
-                Category ca = category.get();
-                categoryDto.setCategoryDescription(ca.getCategoryDescription());
-                categoryDto.setCategoryName(ca.getCategoryName());
-                categoryDto.setCategoryId(ca.getCategoryId());
+                Category categoryy = category.get();
+                categoryDto.setCategoryDescription(categoryy.
+                        getCategoryDescription());
+                categoryDto.setCategoryName(categoryy.getCategoryName());
+                categoryDto.setCategoryId(categoryy.getCategoryId());
                 LOGGER.info(Messages.FIND_CATEGORY);
                 return Optional.of(categoryDto);
             } else {

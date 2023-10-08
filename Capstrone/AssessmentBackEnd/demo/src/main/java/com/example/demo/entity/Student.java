@@ -2,12 +2,14 @@ package com.example.demo.entity;
 
 import java.util.List;
 
-
+import com.example.demo.dto.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,7 +44,8 @@ public class Student {
      * stores the user gender.
      */
     @Column(nullable = false)
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     /**
      * stores the user phone number.
      */
@@ -116,7 +119,7 @@ public class Student {
      * get the user gender.
      * @return gender
      */
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
@@ -124,8 +127,8 @@ public class Student {
      * set the user gender.
      * @param usergender stores gender
      */
-    public void setGender(final String usergender) {
-        this.gender = usergender;
+    public void setGender(final Gender usergender) {
+        gender = usergender;
     }
 
     /**
@@ -211,7 +214,7 @@ public class Student {
      */
     public Student(final int userid, final String username,
          final String useremail,
-           final String usergender,
+           final Gender usergender,
              final String phonenumber,
              final String userrole,
              final String dateofbirth) {

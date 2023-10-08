@@ -78,21 +78,21 @@ public class StudentServiceImp implements StudentService {
      * @return Student
      */
     @Override
-    public final String saveStudent(final StudentSaveDto student) {
-        if (!studentRepo.findByEmail(student.getEmail()).isPresent()) {
+    public final String saveStudent(final StudentSaveDto studentSaveDto) {
+        if (!studentRepo.findByEmail(studentSaveDto.getEmail()).isPresent()) {
             BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
-            String encrypted = bcrypt.encode(student.getPassword());
+            String encrypted = bcrypt.encode(studentSaveDto.getPassword());
+            studentSaveDto.setPassword(encrypted);
+            Student student = new Student();
+            student.setUserName(studentSaveDto.getUserName());
+            student.setPhoneNumber(studentSaveDto.getPhoneNumber());
+            student.setGender(studentSaveDto.getGender());
+            student.setDateOfBirth(studentSaveDto.getDateOfBirth());
+            student.setEmail(studentSaveDto.getEmail());
+            student.setRole(studentSaveDto.getRole());
             student.setPassword(encrypted);
-            Student studentDto = new Student();
-            studentDto.setUserName(student.getUserName());
-            studentDto.setPhoneNumber(student.getPhoneNumber());
-            studentDto.setGender(student.getGender());
-            studentDto.setDateOfBirth(student.getDateOfBirth());
-            studentDto.setEmail(student.getEmail());
-            studentDto.setRole(student.getRole());
-            studentDto.setPassword(encrypted);
             LOGGER.info(Messages.SAVE_STUDENT);
-            studentRepo.save(studentDto);
+            studentRepo.save(student);
             return "register";
         } else {
             LOGGER.error(ErrorMessages.EMAIL_EXIST);

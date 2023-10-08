@@ -31,7 +31,6 @@ class QuizTest {
         c.setCategoryDescription("java basics");
         q.setCategory(c);
         assertNotEquals(c,q.getCategory());
-        StudentResult sr=new StudentResult();
         List<StudentResult> result=new ArrayList<StudentResult>();
         q.setStudentResult(result);
         assertEquals(0,q.getStudentResult().size());
@@ -49,8 +48,6 @@ class QuizTest {
         int id=1;
         String topic="java";
         String topicDescription="java basics";
-        int pass=10;
-        int marks=15;
         Quiz q=new Quiz(id,topic,topicDescription,40);
         assertEquals(id,q.getQuizId());
         assertEquals(topic,q.getTopicName());

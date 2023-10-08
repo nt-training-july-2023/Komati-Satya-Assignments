@@ -2,20 +2,16 @@ package com.example.demo.serviceImp;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
 import com.example.demo.entity.Category;
@@ -39,8 +35,7 @@ class QuizServiceImpTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
     }
-    
-    
+
     @Test
     void testAddQuiz() {
         QuizDto quizDto=new QuizDto(1,"variables","java variables",60,4);
@@ -95,6 +90,7 @@ class QuizServiceImpTest {
         assertThrows(NotFoundException.class, () ->{   quizService.getQuiz(quizId);
     });
     }
+    
     @Test
     public void testNoQuizIsPresent() {
         int quizId=1;

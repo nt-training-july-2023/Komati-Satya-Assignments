@@ -35,7 +35,7 @@ public final class ErrorMessages {
     /**
      *No user is there.
     */
-    public static final String CORRECT_OPTION = "coorect option must "
+    public static final String CORRECT_OPTION = "correct option must "
             + "same with one of four options";
     /**
      * question already exist.

@@ -57,6 +57,9 @@ const Registration = () => {
     if (!formData.phoneNumber) {
       validationErrors.phoneNumber = 'Phone Number Required';
     }
+    if (!formData.gender) {
+      validationErrors.gender = 'Gender Required';
+    }
     setErrors(validationErrors);
 
     return Object.keys(validationErrors).length === 0;

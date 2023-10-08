@@ -26,11 +26,6 @@ public class ResultDto {
      */
     @NotEmpty(message = "date and time is required")
     private String dateAndTime;
-//    /**
-//     * stores the result.
-//     */
-//    @NotEmpty(message = "result is required")
-//    private String result;
     /**
      * stores the attempted questions.
      */

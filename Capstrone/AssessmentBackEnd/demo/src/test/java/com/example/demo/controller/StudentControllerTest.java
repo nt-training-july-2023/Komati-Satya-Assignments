@@ -1,29 +1,20 @@
 package com.example.demo.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
 import com.example.demo.dto.StudentSaveDto;
 import com.example.demo.entity.Student;
-import com.example.demo.exceptions.AllNotFoundException;
-import com.example.demo.exceptions.DuplicateEmailException;
-import com.example.demo.exceptions.EmailDoesNotExistException;
-import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.response.Response;
 import com.example.demo.serviceImp.StudentServiceImp;
 
@@ -46,7 +37,6 @@ class StudentControllerTest {
        saveDto.setUserName("satya");
        
        when(studentService.saveStudent(student)).thenReturn("registered");
-       Response errorResponse = new Response(HttpStatus.OK.value(), "student added successfully");
        Response response=studentController.save(student);
        assertEquals(HttpStatus.OK.value(),response.getCode());
        assertEquals("User register successfully",response.getMessage());
@@ -58,7 +48,7 @@ class StudentControllerTest {
         student.setUserId(12);
         StudentDto saveDto=new StudentDto();
         saveDto.setUserName("satya");
-        
+
         when(studentService.findById(12)).thenReturn(Optional.of(saveDto));
         Response response=studentController.findById(12);
         assertEquals(HttpStatus.OK.value(),response.getCode());
@@ -93,7 +83,7 @@ class StudentControllerTest {
         saveDto.setUserName("satya");
         saveDto.setUserName("Satya");
         int i=1;
-        
+
         when(studentService.updateStudent(saveDto, 1)).thenReturn(saveDto);
         Response errorResponse = new Response(HttpStatus.OK.value(), "student updated successfully");
         Response response=studentController.updateStudent(saveDto, i);

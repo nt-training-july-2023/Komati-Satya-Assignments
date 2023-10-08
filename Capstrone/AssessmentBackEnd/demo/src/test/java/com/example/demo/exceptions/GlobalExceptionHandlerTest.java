@@ -15,6 +15,7 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -102,4 +103,17 @@ class GlobalExceptionHandlerTest {
         assertEquals(HttpStatus.FOUND.value(), errorResponse.getCode());
         assertEquals("duplicate email", errorResponse.getMessage());
     }
+    
+    @Test
+    public void  testHttpMessageNotReadableException() {
+        @SuppressWarnings("deprecation")
+        HttpMessageNotReadableException exception=new HttpMessageNotReadableException("gender should be male,female or other");
+        ResponseEntity<Response<HttpMessageNotReadableException>> responseEntity = globalhandler.handleHttpMessageNotReadableException(exception);
+        assertEquals(HttpStatus.CONFLICT, responseEntity.getStatusCode());
+        Response errorResponse = responseEntity.getBody();
+        assertEquals(HttpStatus.CONFLICT.value(), errorResponse.getCode());
+        assertEquals("gender should be male,female or other", errorResponse.getMessage());
+        
+    }
+
 }

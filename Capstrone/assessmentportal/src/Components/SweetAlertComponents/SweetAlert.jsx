@@ -9,7 +9,7 @@ fieldsRequired(data){
         text: data,
         icon: 'error',
         showConfirmButton: false,
-        timer:1500,
+        timer:2000,
     });
 }
 success(data){

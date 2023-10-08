@@ -34,7 +34,6 @@ class CategoryTest {
        assertEquals(0,c.getCategoryId());
        assertNull(c.getCategoryDescription());
        assertNull(c.getCategoryName());
-       //assertNull(c.getQu());
    }
    @Test
    void testAllArgsConstructor() {

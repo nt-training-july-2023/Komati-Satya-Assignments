@@ -4,6 +4,8 @@ package com.example.demo.entity;
 
     import org.junit.jupiter.api.Test;
 
+import com.example.demo.dto.Gender;
+
     class StudentTest {
 
         @Test
@@ -18,8 +20,8 @@ package com.example.demo.entity;
            assertEquals("satya1919@nucleusteq.com",stu.getEmail());
            stu.setDateOfBirth("24-02-2001");
            assertEquals("24-02-2001",stu.getDateOfBirth());
-           stu.setGender("female");
-           assertEquals("female",stu.getGender());
+           stu.setGender(Gender.female);
+           assertEquals(Gender.female,stu.getGender());
            stu.setPassword("Satya@1919");
            assertEquals("Satya@1919",stu.getPassword());
            stu.setPhoneNumber("8639924113");
@@ -46,14 +48,13 @@ package com.example.demo.entity;
             String email="satya1919@gmail.com";
             String userName="Satya";
             String role="student";
-            String gender="female";
             String phoneNumber="8639924113";
             String dateOfBirth="24-02-2001";
-            Student stu=new Student(id,userName,email,gender,phoneNumber,role,dateOfBirth);
+            Student stu=new Student(id,userName,email,Gender.female,phoneNumber,role,dateOfBirth);
             assertEquals(id,stu.getUserId());
             assertEquals(email,stu.getEmail());
             assertEquals(dateOfBirth,stu.getDateOfBirth());
-            assertEquals(gender,stu.getGender());
+            assertEquals(Gender.female,stu.getGender());
             assertEquals(phoneNumber,stu.getPhoneNumber());
             assertEquals(userName,stu.getUserName());
             assertEquals(role,stu.getRole());
