@@ -49,7 +49,7 @@ class ResultServiceImpTest {
     }
     @Test
     void testAddResult() {
-        ResultDto resultDto = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         Student student=new Student();
         student.setEmail("satya@nucleusteq.com");
@@ -68,7 +68,6 @@ class ResultServiceImpTest {
         finalResult.setDateAndTime(resultDto.getDateAndTime());
         finalResult.setMarks(resultDto.getObtainMarks());
         finalResult.setMaxMarks(resultDto.getMaxMarks());
-        finalResult.setResultId(resultDto.getResultId());
         finalResult.setAttemptedQuestions(resultDto.getAttemptedQuestions());
         finalResult.setCategoryId(resultDto.getCategoryId());
         finalResult.setCategoryName(resultDto.getCategoryName());
@@ -83,13 +82,12 @@ class ResultServiceImpTest {
     void testAddNoEmailFound() {
         ResultDto resultDto = new ResultDto();
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class,   ()->{
-            resultService.addResult(resultDto);
+        assertThrows(NotFoundException.class,   ()->{  resultService.addResult(resultDto);
         });
     }
     @Test
     void testAddQuizNotFoundExcetion() {
-        ResultDto resultDto = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         Student student=new Student();
         student.setEmail("satya@nucleusteq.com");
@@ -104,7 +102,6 @@ class ResultServiceImpTest {
         finalResult.setDateAndTime(resultDto.getDateAndTime());
         finalResult.setMarks(resultDto.getObtainMarks());
         finalResult.setMaxMarks(resultDto.getMaxMarks());
-        finalResult.setResultId(resultDto.getResultId());
         finalResult.setAttemptedQuestions(resultDto.getAttemptedQuestions());
         finalResult.setCategoryId(resultDto.getCategoryId());
         finalResult.setCategoryName(resultDto.getCategoryName());
@@ -115,7 +112,7 @@ class ResultServiceImpTest {
     }
     @Test
     void testAddCategoryNotPresent() {
-        ResultDto resultDto = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         Student student=new Student();
         student.setEmail("satya@nucleusteq.com");
@@ -131,7 +128,6 @@ class ResultServiceImpTest {
         finalResult.setDateAndTime(resultDto.getDateAndTime());
         finalResult.setMarks(resultDto.getObtainMarks());
         finalResult.setMaxMarks(resultDto.getMaxMarks());
-        finalResult.setResultId(resultDto.getResultId());
         finalResult.setAttemptedQuestions(resultDto.getAttemptedQuestions());
         finalResult.setCategoryId(resultDto.getCategoryId());
         finalResult.setCategoryName(resultDto.getCategoryName());

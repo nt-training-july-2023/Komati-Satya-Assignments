@@ -78,7 +78,6 @@ public class ResultServiceImp implements ResultService {
             finalResult.setDateAndTime(resultDto.getDateAndTime());
             finalResult.setMarks(resultDto.getObtainMarks());
             finalResult.setMaxMarks(resultDto.getMaxMarks());
-            finalResult.setResultId(resultDto.getResultId());
             finalResult
                     .setAttemptedQuestions(resultDto.getAttemptedQuestions());
             finalResult.setCategoryId(resultDto.getCategoryId());
@@ -116,7 +115,6 @@ public class ResultServiceImp implements ResultService {
                     .findByEmail(resultDto.getEmail());
             Student student = optionalStudent.get();
             studentResult.setStudentResult(student);
-            studentResult.setResult(resultDto.getResult());
             studentResult.setMaxMarks(resultDto.getObtainMarks());
             studentResult.setResultId(resultDto.getResultId());
             studentResultRepo.save(studentResult);
@@ -149,7 +147,6 @@ public class ResultServiceImp implements ResultService {
                 resultDto.setCategoryName(category.getCategoryName());
                 resultDto.setQuizName(studentResults.getQuiz().
                         getTopicName());
-                resultDto.setResult(studentResults.getResult());
                 resultDto.setDateAndTime(studentResults.getDateAndTime());
                 resultDto.setObtainMarks(studentResults.getMaxMarks());
                 resultDto.setAttemptedQuestions(studentResults.
@@ -200,7 +197,6 @@ public class ResultServiceImp implements ResultService {
             resultDto.setEmail(studentResult.getStudentResult().getEmail());
             resultDto.setCategoryName(category.get().getCategoryName());
             resultDto.setQuizName(studentResult.getQuiz().getTopicName());
-            resultDto.setResult(studentResult.getResult());
             resultDto.setDateAndTime(studentResult.getDateAndTime());
             resultDto.setObtainMarks(studentResult.getMaxMarks());
             resultDto.setCategoryId(category.get().getCategoryId());

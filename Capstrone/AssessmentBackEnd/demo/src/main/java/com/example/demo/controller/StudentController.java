@@ -52,9 +52,9 @@ public class StudentController {
             studentSevice.saveStudent(studentSaveDto);
             LOGGER.info(Messages.SAVE_STUDENT);
             String message = Messages.SAVE_STUDENT;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 
     /**
@@ -68,10 +68,10 @@ public class StudentController {
             Optional<StudentDto> studentDto = studentSevice.findById(id);
             LOGGER.info(Messages.FIND_STUDENTBYID);
             String message = Messages.FIND_STUDENTBYID;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, studentDto);
-       return errorResponse;
+       return response;
     }
 
     /**
@@ -86,10 +86,10 @@ public class StudentController {
                     aunthenticateUser(loginDto);
             LOGGER.info(Messages.LOGIN_STUDENT);
             String message = Messages.LOGIN_STUDENT;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, studentDto);
-       return errorResponse;
+       return response;
     }
 
     /**
@@ -97,14 +97,14 @@ public class StudentController {
      * @return response
      */
     @GetMapping("/student/students")
-    public final Response findAllStu() {
+    public final Response findAllStudents() {
             List<StudentDto> studentDto = studentSevice.findAllStudents();
             LOGGER.info(Messages.FIND_ALLSTUDENT);
             String message = Messages.FIND_ALLSTUDENT;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, studentDto);
-       return errorResponse;
+       return response;
     }
 
     /**
@@ -120,9 +120,9 @@ public class StudentController {
             studentSevice.updateStudent(studentDto, id);
             LOGGER.info(Messages.UPDATE_STUDENT);
             String message = Messages.UPDATE_STUDENT;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
     /**
      * delete student method.
@@ -135,8 +135,8 @@ public class StudentController {
             studentSevice.deleteStudent(id);
             LOGGER.info(Messages.DELETE_STUDENT);
             String message = Messages.DELETE_STUDENT;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 }

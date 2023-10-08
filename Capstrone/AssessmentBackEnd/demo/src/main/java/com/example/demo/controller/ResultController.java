@@ -41,14 +41,14 @@ public class ResultController {
      * @return response
      */
     @PostMapping("/result")
-    public final Response addRes(
+    public final Response addResult(
             @RequestBody final ResultDto resultDto) {
             resultService.addResult(resultDto);
             LOGGER.info(Messages.SAVE_RESULT);
             String message = Messages.SAVE_RESULT;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 
     /**
@@ -57,15 +57,15 @@ public class ResultController {
      * @return response
      */
     @GetMapping("/result/{id}")
-    public final Response getRes(
+    public final Response getResult(
             @PathVariable final int id) {
             Optional<ResultDto> resultDto = resultService.getResult(id);
             LOGGER.info(Messages.FIND_RESULT);
             String message = Messages.FIND_RESULT;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, resultDto);
-       return errorResponse;
+       return response;
     }
 
     /**
@@ -73,13 +73,13 @@ public class ResultController {
      * @return response
      */
     @GetMapping("/result")
-    public final Response getAllRes() {
+    public final Response getAllResults() {
             List<ResultDto> resultDto = resultService.getResults();
             LOGGER.info(Messages.FIND_ALLRESULT);
             String message = Messages.FIND_ALLRESULT;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, resultDto);
-       return errorResponse;
+       return response;
     }
 }

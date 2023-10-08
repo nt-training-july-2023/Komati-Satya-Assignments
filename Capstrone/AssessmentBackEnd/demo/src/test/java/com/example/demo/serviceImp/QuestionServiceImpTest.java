@@ -68,8 +68,7 @@ class QuestionServiceImpTest {
         
         when(quizRepo.findById(questionDto.getQuizId())).thenReturn(Optional.of(quiz));
         when(questionsRepo.findByQuestion(questionDto.getQuestion())).thenReturn(Optional.of(question));
-        assertThrows(AlreadyExistException.class,()->{
-            questionsService.addQuestion(questionDto);
+        assertThrows(AlreadyExistException.class,()->{  questionsService.addQuestion(questionDto);
         });
    }
    @Test
@@ -78,8 +77,7 @@ class QuestionServiceImpTest {
         Quiz quiz=new Quiz(1,"variables","java variables",60);
         
         when(quizRepo.findById(questionDto.getQuizId())).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class,()->{
-            questionsService.addQuestion(questionDto);
+        assertThrows(NotFoundException.class,()->{  questionsService.addQuestion(questionDto);
        });
     }
     @Test
@@ -103,8 +101,7 @@ class QuestionServiceImpTest {
     @Test
     void testNoQuestionIsPresent() {
         when(questionsRepo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class, ()->{
-            questionsService.getQuestions();
+        assertThrows(AllNotFoundException.class, ()->{  questionsService.getQuestions();
         });
     }
     @Test
@@ -124,8 +121,7 @@ class QuestionServiceImpTest {
         int questionsId=1;
         when(questionsRepo.findAll()).thenReturn(Collections.singletonList(new Questions()));
         when(quizRepo.findById(questionsId)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () ->{
-            questionsService.delete(questionsId);
+        assertThrows(NotFoundException.class, () ->{ questionsService.delete(questionsId);
         });  
     }
     

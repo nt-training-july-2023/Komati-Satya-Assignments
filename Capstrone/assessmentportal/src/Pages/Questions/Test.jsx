@@ -16,7 +16,7 @@ import LabelComponent from "../../Components/LabelComponent/LabelComponent";
 function Test({ isRefresh, setTrue }) {
   const navigate = useNavigate();
   const verifyRole = localStorage.getItem("userRole");
-  const cat = localStorage.getItem("categoryId")
+  const categoryId = localStorage.getItem("categoryId")
   const [questionCounter, setQuestionCounter] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [quiz, setQuiz] = useState([]);
@@ -25,7 +25,6 @@ function Test({ isRefresh, setTrue }) {
   const { quizId } = useParams();
   const [selectedOptions, setSelectedOptions] = useState({})
   const [quizSubmitted, setQuizSubmitted] = useState(false);
-  const [resultt, setResult] = useState("");
   const verifyEmail = localStorage.getItem('userEmail');
   const verifyName = localStorage.getItem('userName');
   const verifyCategory = localStorage.getItem('categoryName')
@@ -264,12 +263,11 @@ function Test({ isRefresh, setTrue }) {
       categoryName: verifyCategory,
       quizName: verifyQuizName,
       maxMarks: numberOfQuestions,
-      result: resultt,
       attemptedQuestions: attemptedQuestionss,
       totalQuestions: numberOfQuestions,
       obtainMarks: userScore,
       dateAndTime: date,
-      categoryId: cat
+      categoryId: categoryId
     };
     ResultApi.addResult(postDataa).then(response => {
       navigate(`/Result/${verifyUserId}`)
@@ -277,7 +275,6 @@ function Test({ isRefresh, setTrue }) {
   };
 
   const backTo = () => {
-    const categoryId = localStorage.getItem("categoryId")
     navigate(`/Quiz/${categoryId}`)
   }
 

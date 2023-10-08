@@ -41,10 +41,10 @@ public class FinalResultController {
             @PathVariable final int id) {
             List<ResultDto> resultDto = finalResService.getById(id);
             String message = Messages.FIND_RESULT;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, resultDto);
-       return errorResponse;
+       return response;
     }
     /**
      * find all students result.
@@ -55,9 +55,9 @@ public class FinalResultController {
             List<ResultDto> resultDto = finalResService.findAll();
             LOGGER.info(Messages.FIND_ALLRESULT);
             String message = Messages.FIND_ALLRESULT;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, resultDto);
-       return errorResponse;
+       return response;
     }
 }

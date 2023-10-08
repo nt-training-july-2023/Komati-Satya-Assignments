@@ -41,7 +41,7 @@ class ResultControllerTest {
       
       when(resultService.addResult(resultDto)).thenReturn(resultDto);
       Response errorResponse = new Response(HttpStatus.OK.value(), "result added successfully");
-      Response response=resultController.addRes(resultDto);
+      Response response=resultController.addResult(resultDto);
       assertEquals(HttpStatus.OK.value(),response.getCode());
       assertEquals("result saved successfully",response.getMessage());
     }
@@ -53,7 +53,7 @@ class ResultControllerTest {
        resultDto.setResultId(1);
        
        when(resultService.getResult(1)).thenReturn(Optional.of(resultDto));
-       Response response=resultController.getRes(1);
+       Response response=resultController.getResult(1);
        assertEquals(HttpStatus.OK.value(),response.getCode());
        assertEquals(Optional.of(resultDto),response.getData());
     }
@@ -61,7 +61,7 @@ class ResultControllerTest {
    void testGetAllResultSuccess() {
        List<ResultDto> resultDto=new ArrayList<>();
        when(resultService.getResults()).thenReturn(resultDto);
-       Response response=resultController.getAllRes();
+       Response response=resultController.getAllResults();
        assertEquals(HttpStatus.OK.value(),response.getCode());
        assertEquals(resultDto,response.getData());
    }

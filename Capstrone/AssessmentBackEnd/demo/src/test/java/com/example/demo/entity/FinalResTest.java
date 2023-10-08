@@ -15,7 +15,6 @@ class FinalResTest {
         finalRess.setMarks(97);
         finalRess.setFinalId(12);
         finalRess.setQuizTopic("Array");
-        finalRess.setResultId(13);
         finalRess.setUserId(1);
         finalRess.setUserName("satya");
         finalRess.setMaxMarks(101);

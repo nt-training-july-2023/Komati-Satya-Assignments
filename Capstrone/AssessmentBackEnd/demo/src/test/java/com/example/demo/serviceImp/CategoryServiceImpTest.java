@@ -63,8 +63,7 @@ class CategoryServiceImpTest {
         Category category=new Category();
         
         when(categoryRepo.findByCategoryName(categoryDto.getCategoryName())).thenReturn(Optional.of(category));
-        assertThrows(AlreadyExistException.class, () ->{
-            categoryService.saveCategory(categoryDto);
+        assertThrows(AlreadyExistException.class, () ->{   categoryService.saveCategory(categoryDto);
         });
     }
     
@@ -87,8 +86,7 @@ class CategoryServiceImpTest {
     void testAllCategoryNotFound() {
         int categoryId=1;
         when(categoryRepo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class, ()->{
-            categoryService.findById(categoryId);
+        assertThrows(AllNotFoundException.class, ()->{  categoryService.findById(categoryId);
         });
     }
     @Test
@@ -96,8 +94,7 @@ class CategoryServiceImpTest {
         int categoryId=1;
         when(categoryRepo.findAll()).thenReturn(Collections.singletonList(new Category()));
         when(categoryRepo.findById(categoryId)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () ->{
-            categoryService.findById(categoryId);
+        assertThrows(NotFoundException.class, () ->{  categoryService.findById(categoryId);
         });
     }
     @Test
@@ -115,8 +112,7 @@ class CategoryServiceImpTest {
     @Test
     void testAllCategoriesNotFound() {
         when(categoryRepo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class, ()->{
-            categoryService.findAll();
+        assertThrows(AllNotFoundException.class, ()->{categoryService.findAll();
         });
     }
     @Test
@@ -169,8 +165,7 @@ class CategoryServiceImpTest {
        int categoryId=1;
        when(categoryRepo.findAll()).thenReturn(Collections.singletonList(new Category()));
        when(categoryRepo.findById(categoryId)).thenReturn(Optional.empty());
-       assertThrows(NotFoundException.class, () ->{
-           categoryService.deleteCategory(categoryId);
+       assertThrows(NotFoundException.class, () ->{ categoryService.deleteCategory(categoryId);
        });
    }
    @Test
@@ -188,8 +183,7 @@ class CategoryServiceImpTest {
        String categoryName="java";
        when(categoryRepo.findAll()).thenReturn(Collections.singletonList(new Category()));
        when(categoryRepo.findByCategoryName(categoryName)).thenReturn(Optional.empty());
-       assertThrows(NotFoundException.class , () ->{
-           categoryService.findByName(categoryName);
+       assertThrows(NotFoundException.class , () ->{  categoryService.findByName(categoryName);
        });
    }
    @Test

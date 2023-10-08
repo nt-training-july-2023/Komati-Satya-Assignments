@@ -74,8 +74,7 @@ class StudentServiceImpTest {
         studentDto.setEmail("satya1919@gmail.com");
         Student student=new Student();
         when(studentRepo.findByEmail(studentDto.getEmail())).thenReturn(Optional.of(student));
-        assertThrows(DuplicateEmailException.class, () ->{
-            studentService.saveStudent(studentDto);
+        assertThrows(DuplicateEmailException.class, () ->{   studentService.saveStudent(studentDto);
         });
     }
     @Test
@@ -105,8 +104,7 @@ class StudentServiceImpTest {
     public void testStudentNotFound() {
         int studentId=1;
         when(studentRepo.findById(studentId)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () ->{
-            studentService.findById(studentId);
+        assertThrows(NotFoundException.class, () ->{   studentService.findById(studentId);
     });
     }
     @Test
@@ -129,8 +127,7 @@ class StudentServiceImpTest {
     @Test
     public void testAllStudentsNotFound() {
         when(studentRepo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class, () ->{
-            studentService.findAllStudents();
+        assertThrows(AllNotFoundException.class, () ->{ studentService.findAllStudents();
         });
     }
     
@@ -148,8 +145,7 @@ class StudentServiceImpTest {
         
         when(studentRepo.findAll()).thenReturn(Collections.singletonList(new Student()));
         when(studentRepo.findById(studentId)).thenReturn(Optional.of(new Student()));
-        assertDoesNotThrow(()-> {
-            studentService.deleteStudent(studentId);
+        assertDoesNotThrow(()-> {  studentService.deleteStudent(studentId);
         });
            assertTrue(true);
         verify(studentRepo).deleteById(studentId);
@@ -169,15 +165,13 @@ class StudentServiceImpTest {
         
         when(studentRepo.findAll()).thenReturn(Collections.singletonList(new Student()));
         when(studentRepo.findById(studentId)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () ->{
-            studentService.deleteStudent(studentId);
+        assertThrows(NotFoundException.class, () ->{  studentService.deleteStudent(studentId);
         });
     }
     @Test
     public void testDeleteNoStudentFound() {
         when(studentRepo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class, ()->{
-            studentService.deleteStudent(1);
+        assertThrows(AllNotFoundException.class, ()->{  studentService.deleteStudent(1);
         });
     }
     @Test
@@ -211,8 +205,7 @@ class StudentServiceImpTest {
         student.setPassword(hashCode);
         
         when(studentRepo.findByEmail(email)).thenReturn(Optional.empty());
-        assertThrows(EmailDoesNotExistException.class, () ->{
-          studentService.aunthenticateUser(loginDto);
+        assertThrows(EmailDoesNotExistException.class, () ->{   studentService.aunthenticateUser(loginDto);
       });
     }
         @Test
@@ -230,8 +223,7 @@ class StudentServiceImpTest {
             
             when(studentRepo.findByEmail(email)).thenReturn(Optional.of(student));
            assertFalse(new BCryptPasswordEncoder().matches(loginDto.getPassword(), hashCode));
-            assertThrows(PasswordMissMatchException.class, () ->{
-                studentService.aunthenticateUser(loginDto);
+            assertThrows(PasswordMissMatchException.class, () ->{  studentService.aunthenticateUser(loginDto);
             });
         }
         
@@ -276,8 +268,7 @@ class StudentServiceImpTest {
             int studentId=1;
             StudentDto studentDto=new StudentDto();
             when(studentRepo.findById(studentId)).thenReturn(Optional.empty());
-            assertThrows(NotFoundException.class, () ->{
-                studentService.updateStudent(studentDto, studentId);
+            assertThrows(NotFoundException.class, () ->{    studentService.updateStudent(studentDto, studentId);
             });
         }
    

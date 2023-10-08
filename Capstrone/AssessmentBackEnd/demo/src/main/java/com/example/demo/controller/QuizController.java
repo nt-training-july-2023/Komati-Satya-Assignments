@@ -51,9 +51,9 @@ public class QuizController {
             quizSevice.addQuiz(quizDto);
             LOGGER.info(Messages.SAVE_QUIZ);
             String message = Messages.SAVE_QUIZ;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 
     /**
@@ -67,10 +67,10 @@ public class QuizController {
             Optional<QuizDto> quizDto = quizSevice.getQuiz(id);
             LOGGER.info(Messages.FIND_QUIZ);
             String message = Messages.FIND_QUIZ;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, quizDto);
-       return errorResponse;
+       return response;
     }
 
     /**
@@ -82,10 +82,10 @@ public class QuizController {
             List<QuizDto> quizDto = quizSevice.findAll();
             LOGGER.info(Messages.FIND_ALLQUIZES);
             String message = Messages.FIND_ALLQUIZES;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, quizDto);
-       return errorResponse;
+       return response;
     }
 
     /**
@@ -99,9 +99,9 @@ public class QuizController {
             quizSevice.deleteQuiz(id);
             LOGGER.info(Messages.DELETE_QUIZ);
             String message = Messages.DELETE_QUIZ;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 
     /**
@@ -117,10 +117,10 @@ public class QuizController {
             quizSevice.updateQuiz(quizUpdateDto, id);
             LOGGER.info(Messages.UPDATE_QUIZ);
             String message = Messages.UPDATE_QUIZ;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message);
-       return errorResponse;
+       return response;
     }
 
     /**
@@ -134,10 +134,10 @@ public class QuizController {
             List<QuizDto> quizDto = quizSevice.findQuizById(id);
             LOGGER.info(Messages.FIND_QUIZBYCATEGORYID);
             String message = Messages.FIND_QUIZBYCATEGORYID;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, quizDto);
-       return errorResponse;
+       return response;
     }
 
     /**
@@ -151,9 +151,9 @@ public class QuizController {
             Optional<QuizDto> quizDto = quizSevice.findQuizByName(name);
             LOGGER.info(Messages.FIND_QUIZ);
             String message = Messages.FIND_QUIZ;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, quizDto);
-       return errorResponse;
+       return response;
     }
 }

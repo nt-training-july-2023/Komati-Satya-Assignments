@@ -59,8 +59,7 @@ class QuizServiceImpTest {
         QuizDto quizDto=new QuizDto(1,"variables","java variables",60,3);
         Category category=new Category(3,"java","java basics");
         when(categoryRepo.findById(quizDto.getCategoryId())).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () ->{
-            quizService.addQuiz(quizDto);
+        assertThrows(NotFoundException.class, () ->{  quizService.addQuiz(quizDto);
         });
     }
     @Test 
@@ -71,8 +70,7 @@ class QuizServiceImpTest {
      
      when(categoryRepo.findById(quizDto.getCategoryId())).thenReturn(Optional.of(category));
      when(quizRepo.findQuizByName(quizDto.getTopicName())).thenReturn(Optional.of(quiz));
-     assertThrows(AlreadyExistException.class, () ->{
-         quizService.addQuiz(quizDto);
+     assertThrows(AlreadyExistException.class, () ->{ quizService.addQuiz(quizDto);
      });
     }
     @Test
@@ -87,7 +85,6 @@ class QuizServiceImpTest {
         assertEquals(quiz.getCategory().getCategoryId(),quizDto.get().getCategoryId());
         assertEquals(quiz.getTopicName(),quizDto.get().getTopicName());
         assertEquals(quiz.getTopicDescription(),quizDto.get().getTopicDescription());
- 
         assertEquals(quiz.getQuizId(),quizDto.get().getQuizId());
     }
     @Test
@@ -95,16 +92,14 @@ class QuizServiceImpTest {
         int quizId=1;
         when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
         when(quizRepo.findById(quizId)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () ->{
-            quizService.getQuiz(quizId);
+        assertThrows(NotFoundException.class, () ->{   quizService.getQuiz(quizId);
     });
     }
     @Test
     public void testNoQuizIsPresent() {
         int quizId=1;
         when(quizRepo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class, () ->{
-            quizService.getQuiz(quizId);
+        assertThrows(AllNotFoundException.class, () ->{  quizService.getQuiz(quizId);
     });
     }
     
@@ -122,14 +117,12 @@ class QuizServiceImpTest {
         assertEquals(quiz.getQuizId(),quizDto.get(0).getQuizId());
         assertEquals(quiz.getTopicName(),quizDto.get(0).getTopicName());
         assertEquals(quiz.getTopicDescription(),quizDto.get(0).getTopicDescription());
-
         assertEquals(quiz.getQuizId(),quizDto.get(0).getQuizId());
     }
     @Test
     public void testAllquizNotFound() {
         when(quizRepo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class, ()->{
-            quizService.findAll();
+        assertThrows(AllNotFoundException.class, ()->{ quizService.findAll();
         });
     }
     @Test
@@ -160,8 +153,7 @@ class QuizServiceImpTest {
     public void testNoQuizisPresent() {
         QuizUpdateDto quizUpdateDto=new QuizUpdateDto(1,"variables","java basics",20);
         when(quizRepo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class , () ->{
-            quizService.updateQuiz(quizUpdateDto,1);
+        assertThrows(AllNotFoundException.class , () ->{  quizService.updateQuiz(quizUpdateDto,1);
         });
     }
     @Test
@@ -169,8 +161,7 @@ class QuizServiceImpTest {
         QuizUpdateDto quizUpdateDto=new QuizUpdateDto(1,"variables","java basics",20);
         when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
         when(quizRepo.findById(1)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () ->{
-            quizService.updateQuiz(quizUpdateDto,1);
+        assertThrows(NotFoundException.class, () ->{ quizService.updateQuiz(quizUpdateDto,1);
     });
     }
     
@@ -190,16 +181,14 @@ class QuizServiceImpTest {
         int quizId=1;
         when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
         when(quizRepo.findById(quizId)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () ->{
-            quizService.deleteQuiz(quizId);
+        assertThrows(NotFoundException.class, () ->{ quizService.deleteQuiz(quizId);
         });  
     }
     @Test
     public void testDeleteNoQuizNotFind() {
         int quizId=1;
         when(quizRepo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class , () ->{
-            quizService.deleteQuiz(quizId);
+        assertThrows(AllNotFoundException.class , () ->{ quizService.deleteQuiz(quizId);
         });
     }
     @Test
@@ -218,7 +207,6 @@ class QuizServiceImpTest {
         System.out.println(quizDto);
       assertEquals("variables",quizDto.get(0).getTopicName());  
       assertEquals("java variables",quizDto.get(0).getTopicDescription());
-   
       assertEquals(10,quizDto.get(0).getCategoryId());
         
     }
@@ -226,8 +214,7 @@ class QuizServiceImpTest {
     void testFindQuizByCategoryNoQuizException() {
          int categoryId=10;
          when(quizRepo.findQuizById(10)).thenReturn(new ArrayList<>());
-         assertThrows(AllNotFoundException.class , () ->{
-             quizService.findQuizById(categoryId);
+         assertThrows(AllNotFoundException.class , () ->{ quizService.findQuizById(categoryId);
          });
      }
      @Test   
@@ -250,16 +237,14 @@ class QuizServiceImpTest {
          String quizName="arrays";
          when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
          when(quizRepo.findQuizByName(quizName)).thenReturn(Optional.empty());
-         assertThrows(NotFoundException.class , () ->{
-             quizService.findQuizByName(quizName);
+         assertThrows(NotFoundException.class , () ->{  quizService.findQuizByName(quizName);
          });
    }
      @Test
      void testFindQuizNoQuizIsPresent() {
          String quizName="arrays";
          when(quizRepo.findAll()).thenReturn(new ArrayList<>());
-         assertThrows(AllNotFoundException.class , () ->{
-             quizService.findQuizByName(quizName);
+         assertThrows(AllNotFoundException.class , () ->{ quizService.findQuizByName(quizName);
          });
      }
 

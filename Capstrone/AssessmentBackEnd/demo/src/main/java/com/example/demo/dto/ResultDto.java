@@ -26,13 +26,13 @@ public class ResultDto {
      */
     @NotEmpty(message = "date and time is required")
     private String dateAndTime;
+//    /**
+//     * stores the result.
+//     */
+//    @NotEmpty(message = "result is required")
+//    private String result;
     /**
-     * stores the result.
-     */
-    @NotEmpty(message = "result is required")
-    private String result;
-    /**
-     * stores the res.
+     * stores the attempted questions.
      */
     @NotNull(message = ValidationMessages.ATTEMPTEDQUESTIONS_NOTNULL)
     private int attemptedQuestions;

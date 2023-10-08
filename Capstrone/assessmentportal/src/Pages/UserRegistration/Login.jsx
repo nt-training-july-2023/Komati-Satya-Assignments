@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './LoginStyles.css';
-import { FaEye, FaEyeSlash, FaVoicemail } from 'react-icons/fa';
+import { FaEye, FaEyeSlash} from 'react-icons/fa';
 import SweetAlert from "../../Components/SweetAlertComponents/SweetAlert";
 import UserApi from "../../Service/UserApi";
 import DisableBackButton from "../../Components/disableBackButton";

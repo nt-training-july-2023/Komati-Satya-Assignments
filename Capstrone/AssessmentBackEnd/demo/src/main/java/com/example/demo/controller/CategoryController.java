@@ -51,9 +51,9 @@ public class CategoryController {
             categoryService.saveCategory(categoryDto);
             LOGGER.info(Messages.SAVE_CATEGORY);
             String message = Messages.SAVE_CATEGORY;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
     /**
      * Category find by id method.
@@ -66,10 +66,10 @@ public class CategoryController {
             Optional<CategoryDto> categoryDto = categoryService.findById(id);
             LOGGER.info(Messages.FIND_CATEGORY);
             String message = Messages.FIND_CATEGORY;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, categoryDto);
-       return errorResponse;
+       return response;
     }
     /**
      * Category find all method.
@@ -80,10 +80,10 @@ public class CategoryController {
             List<CategoryDto> categoryDto = categoryService.findAll();
             LOGGER.info(Messages.FIND_ALLCATEGORY);
             String message = Messages.FIND_CATEGORY;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, categoryDto);
-       return errorResponse;
+       return response;
     }
 
     /**
@@ -99,9 +99,9 @@ public class CategoryController {
             categoryService.updateCategory(categoryDto, id);
             LOGGER.info(Messages.UPDATE_CATEGORY);
             String message = Messages.UPDATE_CATEGORY;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
     /**
      * Category delete method.
@@ -114,9 +114,9 @@ public class CategoryController {
             categoryService.deleteCategory(id);
             LOGGER.info(Messages.DELETE_CATEGORY);
             String message = Messages.DELETE_CATEGORY;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 
     /**
@@ -131,9 +131,9 @@ public class CategoryController {
                     findByName(categoryName);
             LOGGER.info(Messages.FIND_CATEGORY);
             String message = Messages.FIND_CATEGORY;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, categoryDto);
-       return errorResponse;
+       return response;
     }
 }

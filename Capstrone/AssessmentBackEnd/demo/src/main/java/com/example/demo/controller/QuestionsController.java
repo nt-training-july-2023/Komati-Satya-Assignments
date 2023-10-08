@@ -52,9 +52,9 @@ public class QuestionsController {
             questionsService.addQuestion(questionDto);
             LOGGER.info(Messages.SAVE_QUESTION);
             String message = Messages.SAVE_QUESTION;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
     /**
      * getting all the questions method.
@@ -65,10 +65,10 @@ public class QuestionsController {
             LOGGER.info(Messages.FIND_ALLQUESTION);
             List<QuestionsDto> questionsDto = questionsService.getQuestions();
             String message = Messages.FIND_ALLQUESTION;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, questionsDto);
-       return errorResponse;
+       return response;
     }
 
     /**
@@ -81,9 +81,9 @@ public class QuestionsController {
             questionsService.delete(id);
             LOGGER.info(Messages.DELETE_QUESTION);
             String message = Messages.DELETE_QUESTION;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 
     /**
@@ -99,9 +99,9 @@ public class QuestionsController {
             questionsService.updateQuestion(questionUpdateDto, id);
             LOGGER.info(Messages.UPDATE_QUESTION);
             String message = Messages.UPDATE_QUESTION;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode, message);
-       return errorResponse;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 
     /**
@@ -116,10 +116,10 @@ public class QuestionsController {
                     findQuestionById(id);
             LOGGER.info(Messages.FIND_QUESTIONBYQUIZID);
             String message = Messages.FIND_QUESTIONBYQUIZID;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, questionsDto);
-       return errorResponse;
+       return response;
     }
 
     /**
@@ -134,9 +134,9 @@ public class QuestionsController {
                     findByQuestion(name);
             LOGGER.info(Messages.FIND_QUESTION);
             String message = Messages.FIND_QUESTION;
-            Integer errorCode = HttpStatus.OK.value();
-            Response errorResponse = new Response(errorCode,
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
                     message, questionsDto);
-       return errorResponse;
+       return response;
     }
 }

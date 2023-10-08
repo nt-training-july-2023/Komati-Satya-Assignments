@@ -27,7 +27,7 @@ class ResultDtoTest {
     }
     @Test
     void testAllArgsConstructor() {
-        ResultDto resultDto = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         assertEquals(19,resultDto.getAttemptedQuestions());
         assertEquals(9,resultDto.getCategoryId());

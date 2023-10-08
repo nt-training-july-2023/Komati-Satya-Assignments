@@ -40,11 +40,6 @@ public class StudentResult {
     @Column(nullable = false)
     private String dateAndTime;
     /**
-     * stores the result.
-     */
-    @Column(nullable = false)
-    private String result;
-    /**
      * stores the res.
      */
     @Column(nullable = false)
@@ -94,20 +89,6 @@ public class StudentResult {
      */
     public void setMaxMarks(final int maxmarks) {
         this.maxMarks = maxmarks;
-    }
-    /**
-     * get result.
-     * @return result
-     */
-    public String getResult() {
-        return result;
-    }
-    /**
-     * set result.
-     * @param userresult result
-     */
-    public void setResult(final String userresult) {
-        this.result = userresult;
     }
     /**
      * get.

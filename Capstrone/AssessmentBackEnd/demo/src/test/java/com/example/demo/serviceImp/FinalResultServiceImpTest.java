@@ -45,7 +45,7 @@ class FinalResultServiceImpTest {
     @Test
     void testFindResultByUserId() {        
         int studentId=1;
-        ResultDto finalDto = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto finalDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         FinalRes finalRess=new FinalRes();
         finalRess.setCategoryName("java");
@@ -54,7 +54,6 @@ class FinalResultServiceImpTest {
         finalRess.setMarks(97);
         finalRess.setFinalId(12);
         finalRess.setQuizTopic("Array");
-        finalRess.setResultId(13);
         finalRess.setUserId(1);
         finalRess.setUserName("satya");
         finalRess.setMaxMarks(101);
@@ -79,14 +78,13 @@ class FinalResultServiceImpTest {
     void testFindByUserNoUserFound() {
         int userId=19;
         when(finalRepo.findAll()).thenReturn(Collections.emptyList());
-        assertThrows(AllNotFoundException.class, () ->{
-            finalService.getById(userId);
+        assertThrows(AllNotFoundException.class, () ->{ finalService.getById(userId);
         });
     }
     @Test
     void testFindAllResult() {
         int studentId=1;
-        ResultDto finalDto = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto finalDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         FinalRes finalRess=new FinalRes();
         finalRess.setCategoryName("java");
@@ -95,7 +93,6 @@ class FinalResultServiceImpTest {
         finalRess.setMarks(97);
         finalRess.setFinalId(12);
         finalRess.setQuizTopic("Array");
-        finalRess.setResultId(13);
         finalRess.setUserId(studentId);
         finalRess.setUserName("satya");
         finalRess.setMaxMarks(101);
@@ -116,8 +113,7 @@ class FinalResultServiceImpTest {
         int userId=19;
         FinalRes finalRes=new FinalRes();
         when(finalRepo.findAll()).thenReturn(Collections.emptyList());
-        assertThrows(AllNotFoundException.class, () ->{
-            finalService.findAll();
+        assertThrows(AllNotFoundException.class, () ->{ finalService.findAll();
         });
     }
 

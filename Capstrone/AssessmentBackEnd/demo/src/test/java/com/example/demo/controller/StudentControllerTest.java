@@ -82,7 +82,7 @@ class StudentControllerTest {
     void testFindAllStudentsSuccess() {
         List<StudentDto> studentDto=new ArrayList<>();
         when(studentService.findAllStudents()).thenReturn(studentDto);
-        Response response=studentController.findAllStu();
+        Response response=studentController.findAllStudents();
         assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals("successfully retrieve the all studnet details",response.getMessage());
         assertEquals(studentDto,response.getData());
