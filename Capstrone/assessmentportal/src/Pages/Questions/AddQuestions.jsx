@@ -119,8 +119,8 @@ const AddQuestions = () => {
                else if(error.response.data.StatusCode === "400"){
                     SweetAlert.fieldsRequired(error.response.data.message);
                 }
-                else if(error.response.data.message === "coorect option must same with one of four options"){
-                    SweetAlert.fieldsRequired("coorect option must same with one of four options")
+                else if(error.response.data.message === "correct option must same with one of four options"){
+                    SweetAlert.fieldsRequired("correct option must same with one of four options")
                 }
             })
         }

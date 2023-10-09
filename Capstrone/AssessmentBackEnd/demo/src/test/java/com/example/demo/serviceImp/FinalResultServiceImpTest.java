@@ -3,7 +3,6 @@ package com.example.demo.serviceImp;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -21,9 +20,7 @@ import com.example.demo.dto.ResultDto;
 import com.example.demo.entity.Category;
 import com.example.demo.entity.FinalRes;
 
-import com.example.demo.exceptions.AllNotFoundException;
-import com.example.demo.exceptions.NotFoundException;
-import com.example.demo.repository.CategoryRepo;
+import com.example.demo.exceptions.AllNotFoundException;import com.example.demo.repository.CategoryRepo;
 import com.example.demo.repository.FinalResultRepo;
 import com.example.demo.repository.StudentResultRepo;
 
@@ -44,9 +41,6 @@ class FinalResultServiceImpTest {
     }
     @Test
     void testFindResultByUserId() {        
-        int studentId=1;
-        ResultDto finalDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
-                "Java",97,9,10,1,12);
         FinalRes finalRess=new FinalRes();
         finalRess.setCategoryName("java");
         finalRess.setDateAndTime("23-10-23");
@@ -83,8 +77,6 @@ class FinalResultServiceImpTest {
     @Test
     void testFindAllResult() {
         int studentId=1;
-        ResultDto finalDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
-                "Java",97,9,10,1,12);
         FinalRes finalRess=new FinalRes();
         finalRess.setCategoryName("java");
         finalRess.setDateAndTime("23-10-23");

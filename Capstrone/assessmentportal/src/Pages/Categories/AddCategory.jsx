@@ -86,12 +86,13 @@ const AddCategory = () => {
           navigate('/Category');
         }
       }).catch((error) => {
-        console.error(error)
+       
         if (error.response.status === 302) {
           SweetAlert.fieldsRequired("Category already present");
         }
-        else if(error.response.status === 400)
+        else if(error.response.status === 400){
         SweetAlert.fieldsRequired(error.response.data.message);
+        }
       })
     }
   }

@@ -39,7 +39,7 @@ class QuestionsControllerTest {
         Response errorResponse = new Response(HttpStatus.OK.value(), "question added successfully");
         Response response=questionController.addQuestion(question);
         assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("question added successfully",errorResponse.getMessage());
+        assertEquals("question added successfully",response.getMessage());
     }
     @Test
     void testGetAllQuestionsSuccess() {

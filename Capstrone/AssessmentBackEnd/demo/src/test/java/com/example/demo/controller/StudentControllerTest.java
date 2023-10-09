@@ -85,18 +85,18 @@ class StudentControllerTest {
         int i=1;
 
         when(studentService.updateStudent(saveDto, 1)).thenReturn(saveDto);
-        Response errorResponse = new Response(HttpStatus.OK.value(), "student updated successfully");
+        
         Response response=studentController.updateStudent(saveDto, i);
         assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("student updated successfully",errorResponse.getMessage());
+        assertEquals("user updated successfully",response.getMessage());
     }
     @Test
     void testDeleteSuccess() {
         Student student= new Student();
         student.setUserId(1);
-        Response errorResponse = new Response(HttpStatus.CREATED.value(), "student deleted successfully");
+        
         Response response=studentController.deleteStudent(1);
         assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("student deleted successfully",errorResponse.getMessage());
+        assertEquals("User deleted successfully",response.getMessage());
     }
 }

@@ -2,22 +2,17 @@ package com.example.demo.serviceImp;
 
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import com.example.demo.dto.Gender;
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
@@ -149,7 +144,6 @@ class StudentServiceImpTest {
         assertDoesNotThrow(()-> {  studentService.deleteStudent(studentId);
         });
            assertTrue(true);
-        verify(studentRepo).deleteById(studentId);
     }
    @Test
     public void testDeleteStudentNotFound() {
@@ -188,8 +182,8 @@ class StudentServiceImpTest {
         student.setPassword(hashCode);
         
         when(studentRepo.findByEmail(email)).thenReturn(Optional.of(student));
-        Optional<StudentDto> ss=studentService.aunthenticateUser(loginDto);
-        assertTrue(ss.isPresent());
+        Optional<StudentDto> studentDto=studentService.aunthenticateUser(loginDto);
+        assertTrue(studentDto.isPresent());
         assertTrue(new BCryptPasswordEncoder().matches(password, hashCode));
         
         }

@@ -96,7 +96,6 @@ public class ResultServiceImp implements ResultService {
                     throw new NotFoundException(
                             ErrorMessages.CATEGORY_NOTPRESENT);
                 }
-
             } else {
                 LOGGER.error(ErrorMessages.QUIZ_NOTPRESENT);
                 throw new NotFoundException(ErrorMessages.QUIZ_NOTPRESENT);

@@ -74,7 +74,7 @@ public class StudentServiceImp implements StudentService {
     }
     /**
      * save student method.
-     * @param student student
+     * @param studentSaveDto student
      * @return Student
      */
     @Override

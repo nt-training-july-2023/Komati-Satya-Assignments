@@ -106,11 +106,12 @@ public class CategoryServiceImp implements CategoryService {
      */
     private List<CategoryDto> convertToDto(final List<Category> c) {
         List<CategoryDto> categoryDto = new ArrayList<>();
-        for (Category ca : c) {
+        for (Category categoryy : c) {
             CategoryDto category = new CategoryDto();
-            category.setCategoryDescription(ca.getCategoryDescription());
-            category.setCategoryName(ca.getCategoryName());
-            category.setCategoryId(ca.getCategoryId());
+            category.setCategoryDescription(categoryy.
+                    getCategoryDescription());
+            category.setCategoryName(categoryy.getCategoryName());
+            category.setCategoryId(categoryy.getCategoryId());
             categoryDto.add(category);
         }
         return categoryDto;

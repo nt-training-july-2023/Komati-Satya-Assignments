@@ -75,8 +75,7 @@ class CategoryControllerTest {
         Response response=categoryController.updateCategory(categoryDto, i);
         assertEquals(HttpStatus.OK.value(),response.getCode());
         assertEquals("updated category", errorResponse.getMessage());
-        
-          
+
     }
     @Test
     void testDeleteCategorySuccess() {

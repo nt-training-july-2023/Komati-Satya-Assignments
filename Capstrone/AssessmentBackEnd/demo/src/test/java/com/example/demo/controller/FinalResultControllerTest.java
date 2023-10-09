@@ -29,7 +29,7 @@ class FinalResultControllerTest {
     void testGetByUserIdSuccess() {
         FinalRes finalResult=new FinalRes();
         finalResult.setUserId(1);
-
+        
         List<ResultDto> resultDto=new ArrayList<>();
         when(resultService.getById(1)).thenReturn(resultDto);
         Response response=resultController.getById(1);

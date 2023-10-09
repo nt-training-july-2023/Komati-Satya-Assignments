@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.util.List;
 import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +14,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.response.Response;
 import com.example.demo.service.CategoryService;
 import com.example.demo.validationMessages.Messages;
-
-
 import jakarta.validation.Valid;
 
 /**

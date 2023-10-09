@@ -65,7 +65,6 @@ logout(nav){
     }
 }).then((result) => {
     if (result.isConfirmed) {
-      // this.success("logged out..")
         localStorage.removeItem('userRole');
         localStorage.removeItem('userEmail')
         localStorage.removeItem('userName')

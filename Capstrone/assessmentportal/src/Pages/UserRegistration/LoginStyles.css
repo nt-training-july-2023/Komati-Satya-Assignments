@@ -84,12 +84,12 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.ass {
-  font-size: 50px;
+.assessment {
+  font-size: 45px;
   margin-top: -30px;
 }
 
-.know {
+.knowledge {
   margin-left: 250px;
   margin-top: -19px;
 }
@@ -199,12 +199,12 @@
     margin-right: 0;
   }
 
-  .ass {
+  .assessment {
     font-size: 30px;
     margin-top: -15px;
   }
 
-  .know {
+  .knowledge {
     margin-left: 10px;
     margin-top: -10px;
   }

@@ -43,7 +43,6 @@ class QuestionServiceImpTest {
        when(questionsRepo.findByQuestion(questionDto.getQuestion())).thenReturn(Optional.empty());
        assertEquals(questionDto.getCorrectOption(),questionDto.getOption1());
        Questions question=new Questions();
-       
        question.setQuiz(quiz);
        question.setQuestion(questionDto.getQuestion());
        question.setOption1(questionDto.getOption1());

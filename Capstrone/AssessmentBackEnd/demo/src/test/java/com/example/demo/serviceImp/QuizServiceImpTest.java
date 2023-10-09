@@ -52,7 +52,6 @@ class QuizServiceImpTest {
     @Test
     public void testCategoryNotPresent() {
         QuizDto quizDto=new QuizDto(1,"variables","java variables",60,3);
-        Category category=new Category(3,"java","java basics");
         when(categoryRepo.findById(quizDto.getCategoryId())).thenReturn(Optional.empty());
         assertThrows(NotFoundException.class, () ->{  quizService.addQuiz(quizDto);
         });
@@ -200,7 +199,6 @@ class QuizServiceImpTest {
         
         when(quizRepo.findQuizById(10)).thenReturn(quiz);
         List<QuizDto> quizDto=quizService.findQuizById(10);
-        System.out.println(quizDto);
       assertEquals("variables",quizDto.get(0).getTopicName());  
       assertEquals("java variables",quizDto.get(0).getTopicDescription());
       assertEquals(10,quizDto.get(0).getCategoryId());

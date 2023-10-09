@@ -116,7 +116,7 @@ class CategoryServiceImpTest {
          categoryDto.setCategoryId(category.getCategoryId());
          categoryDto.setCategoryName(category.getCategoryName());
          categoryDto.setCategoryDescription(category.getCategoryDescription());
-         
+
          categoryService.saveCategory(categoryDto);
          when(categoryRepo.findById(categoryDto.getCategoryId())).thenReturn(Optional.of(category));
          assertTrue(Optional.of(category).isPresent());

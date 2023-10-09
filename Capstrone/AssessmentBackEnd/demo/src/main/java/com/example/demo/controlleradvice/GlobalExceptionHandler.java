@@ -22,7 +22,6 @@ import com.example.demo.response.Response;
  * Global exception handler.
  */
 @RestControllerAdvice
-@SuppressWarnings("rawtypes")
 public class GlobalExceptionHandler {
     /**
      * handle empty inputs.

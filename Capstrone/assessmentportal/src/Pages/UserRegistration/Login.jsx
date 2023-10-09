@@ -79,8 +79,8 @@ const Login = () => {
         <div className="login" >
             <DisableBackButton />
             <div className="loginData">
-                <H1Component className="ass">Assessment Portal</H1Component>
-                <H2Component className="know">- Come...Test your Knowledge Here!!!</H2Component>
+                <H1Component className="assessment">Assessment Portal</H1Component>
+                <H2Component className="knowledge">- Come...Test your Knowledge Here!!!</H2Component>
                 <form>
                     <div className="signin">
                         <H1Component className="heading">SignIn Here!!</H1Component>

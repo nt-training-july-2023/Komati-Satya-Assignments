@@ -35,10 +35,9 @@ class QuizControllerTest {
         quizDto.setTopicName("arrays");
         
         when(quizService.addQuiz(quiz)).thenReturn(quizDto);
-        Response errorResponse = new Response(HttpStatus.OK.value(), "quiz added successfully");
         Response response=quizController.saveQuiz(quiz);
         assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("quiz added successfully",errorResponse.getMessage());
+        assertEquals("succcessfully add the data",response.getMessage());
         
     }
     @Test
@@ -69,10 +68,10 @@ class QuizControllerTest {
     void testDeleteQuizSuccess() {
         Quiz quiz=new Quiz();
         quiz.setQuizId(1);
-        Response errorResponse = new Response(HttpStatus.CREATED.value(), "quiz deleted successfully");
+        
         Response response=quizController.deleteQuiz(1);
         assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("quiz deleted successfully",errorResponse.getMessage());
+        assertEquals("quiz deleted successfully",response.getMessage());
     }
     @Test
     void testUpdateQuizSuccess() {
@@ -85,7 +84,7 @@ class QuizControllerTest {
         Response errorResponse = new Response(HttpStatus.CREATED.value(), "quiz updated successfully");
         Response response=quizController.updateQuiz(quizDto, i);
         assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("quiz updated successfully",errorResponse.getMessage());
+        assertEquals("quiz updated successfully",response.getMessage());
     }
     @Test
     void testQuizFindById() {
