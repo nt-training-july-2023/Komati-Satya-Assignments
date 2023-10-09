@@ -23,18 +23,17 @@ class QuizTest {
         List<Questions> questions=new ArrayList<>();
         questions.add(q1);
         questions.add(q2);
-        q.setQue(questions);
-        assertEquals(2,q.getQue().size());
+        q.setQuestions(questions);
+        assertEquals(2,q.getQuestions().size());
         Category c=new Category();
         c.setCategoryId(1);
         c.setCategoryName("java");
         c.setCategoryDescription("java basics");
-        q.setCate(c);
-        assertNotEquals(c,q.getCate());
-        StudentResult sr=new StudentResult();
+        q.setCategory(c);
+        assertNotEquals(c,q.getCategory());
         List<StudentResult> result=new ArrayList<StudentResult>();
-        q.setSe(result);
-        assertEquals(0,q.getSe().size());
+        q.setStudentResult(result);
+        assertEquals(0,q.getStudentResult().size());
     }
     @Test
     public void testNoargsConstructor() {
@@ -49,9 +48,7 @@ class QuizTest {
         int id=1;
         String topic="java";
         String topicDescription="java basics";
-        int pass=10;
-        int marks=15;
-        Quiz q=new Quiz(id,topic,topicDescription);
+        Quiz q=new Quiz(id,topic,topicDescription,40);
         assertEquals(id,q.getQuizId());
         assertEquals(topic,q.getTopicName());
         assertEquals(topicDescription,q.getTopicDescription());

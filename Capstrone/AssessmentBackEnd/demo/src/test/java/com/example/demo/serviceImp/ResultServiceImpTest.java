@@ -1,5 +1,4 @@
 package com.example.demo.serviceImp;
-
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -11,6 +10,9 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
 import com.example.demo.dto.ResultDto;
 import com.example.demo.entity.Category;
@@ -28,171 +30,171 @@ import com.example.demo.repository.StudentResultRepo;
 
 class ResultServiceImpTest {
 
-    
+    @InjectMocks
     private ResultServiceImp resultService;
+    @Mock
     private FinalResultRepo finalRepo;
+    @Mock
     private StudentResultRepo resultRepo;
+    @Mock
     private CategoryRepo categoryRepo;
+    @Mock
     private QuizRepo quizRepo;
+    @Mock
     private StudentRepo studentRepo;
     
     @BeforeEach
     void setUp() {
-        finalRepo=mock(FinalResultRepo.class);
-        categoryRepo=mock(CategoryRepo.class);
-        resultRepo=mock(StudentResultRepo.class);
-        quizRepo=mock(QuizRepo.class);
-        studentRepo=mock(StudentRepo.class);
-        resultService=new ResultServiceImp(resultRepo,finalRepo,categoryRepo,studentRepo,quizRepo);
+        MockitoAnnotations.openMocks(this);
     }
     @Test
     void testAddResult() {
-        ResultDto sr = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         Student student=new Student();
         student.setEmail("satya@nucleusteq.com");
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.of(student));
         Quiz quiz = new Quiz();
         Category category = new Category();
-        FinalRes fr=new FinalRes();
-        Optional<Category> c=categoryRepo.findById(sr.getCategoryId());
-        Optional<Student> ss=studentRepo.findByEmail(sr.getEmail());
-        System.out.println(c);
-         fr.setCategoryName(sr.getCategoryName()); 
-          fr.setUserId(sr.getUserId());
-         fr.setUserName(sr.getUserName());
-         fr.setQuizTopic(sr.getQuizName());
-         fr.setDateAndTime(sr.getDateAndTime());
-         fr.setMarks(sr.getObtainMarks());
-         fr.setMaxMarks(sr.getMaxMarks());
-         fr.setResultId(sr.getResultId());
-         fr.setAttemptedQuestions(sr.getAttemptedQuestions());
-         fr.setCategoryId(sr.getCategoryId());
-         fr.setCategoryName(sr.getCategoryName());
-         fr.setEmail(sr.getEmail());
+        FinalRes finalResult=new FinalRes();
+        
+        Optional<Category> optionalCategory=categoryRepo.findById(resultDto.getCategoryId());
+        Optional<Student> optionalStudent=studentRepo.findByEmail(resultDto.getEmail());
+    
+        finalResult.setCategoryName(resultDto.getCategoryName()); 
+        finalResult.setUserId(resultDto.getUserId());
+        finalResult.setUserName(resultDto.getUserName());
+        finalResult.setQuizTopic(resultDto.getQuizName());
+        finalResult.setDateAndTime(resultDto.getDateAndTime());
+        finalResult.setMarks(resultDto.getObtainMarks());
+        finalResult.setMaxMarks(resultDto.getMaxMarks());
+        finalResult.setAttemptedQuestions(resultDto.getAttemptedQuestions());
+        finalResult.setCategoryId(resultDto.getCategoryId());
+        finalResult.setCategoryName(resultDto.getCategoryName());
+        finalResult.setEmail(resultDto.getEmail());
+         
         when(quizRepo.findQuizByName("Array")).thenReturn(Optional.of(quiz));
         when(categoryRepo.findByCategoryName("Java")).thenReturn(Optional.of(category));
-         ResultDto result= resultService.addRes(sr);
+         ResultDto result= resultService.addResult(resultDto);
         assertEquals("satya@nucleusteq.com",result.getEmail());
     }
     @Test
     void testAddNoEmailFound() {
-        ResultDto sr = new ResultDto();
+        ResultDto resultDto = new ResultDto();
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class,   ()->{
-            resultService.addRes(sr);
+        assertThrows(NotFoundException.class,   ()->{  resultService.addResult(resultDto);
         });
     }
     @Test
     void testAddQuizNotFoundExcetion() {
-        ResultDto sr = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         Student student=new Student();
         student.setEmail("satya@nucleusteq.com");
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.of(student));
-        FinalRes fr=new FinalRes();
-        Optional<Category> c=categoryRepo.findById(sr.getCategoryId());
-        System.out.println(c);
-         fr.setCategoryName(sr.getCategoryName()); 
-          fr.setUserId(sr.getUserId());
-         fr.setUserName(sr.getUserName());
-         fr.setQuizTopic(sr.getQuizName());
-         fr.setDateAndTime(sr.getDateAndTime());
-         fr.setMarks(sr.getObtainMarks());
-         fr.setMaxMarks(sr.getMaxMarks());
-         fr.setResultId(sr.getResultId());
-         fr.setAttemptedQuestions(sr.getAttemptedQuestions());
-         fr.setCategoryId(sr.getCategoryId());
-         fr.setCategoryName(sr.getCategoryName());
-         fr.setEmail(sr.getEmail());
+        FinalRes finalResult=new FinalRes();
+        Optional<Category> optionalCategory=categoryRepo.findById(resultDto.getCategoryId());
+        
+        finalResult.setCategoryName(resultDto.getCategoryName()); 
+        finalResult.setUserId(resultDto.getUserId());
+        finalResult.setUserName(resultDto.getUserName());
+        finalResult.setQuizTopic(resultDto.getQuizName());
+        finalResult.setDateAndTime(resultDto.getDateAndTime());
+        finalResult.setMarks(resultDto.getObtainMarks());
+        finalResult.setMaxMarks(resultDto.getMaxMarks());
+        finalResult.setAttemptedQuestions(resultDto.getAttemptedQuestions());
+        finalResult.setCategoryId(resultDto.getCategoryId());
+        finalResult.setCategoryName(resultDto.getCategoryName());
+        finalResult.setEmail(resultDto.getEmail());;
+         
         when(quizRepo.findQuizByName("Array")).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class,   ()->{ resultService.addRes(sr); });
+        assertThrows(NotFoundException.class,   ()->{ resultService.addResult(resultDto); });
     }
     @Test
     void testAddCategoryNotPresent() {
-        ResultDto sr = new ResultDto(101,"23-10-23","pass",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         Student student=new Student();
         student.setEmail("satya@nucleusteq.com");
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.of(student));
         Quiz quiz = new Quiz();
-        FinalRes fr=new FinalRes();
-        Optional<Category> c=categoryRepo.findById(sr.getCategoryId());
-        System.out.println(c);
-         fr.setCategoryName(sr.getCategoryName()); 
-          fr.setUserId(sr.getUserId());
-         fr.setUserName(sr.getUserName());
-         fr.setQuizTopic(sr.getQuizName());
-         fr.setDateAndTime(sr.getDateAndTime());
-         fr.setMarks(sr.getObtainMarks());
-         fr.setMaxMarks(sr.getMaxMarks());
-         fr.setResultId(sr.getResultId());
-         fr.setAttemptedQuestions(sr.getAttemptedQuestions());
-         fr.setCategoryId(sr.getCategoryId());
-         fr.setCategoryName(sr.getCategoryName());
-         fr.setEmail(sr.getEmail());
+        FinalRes finalResult=new FinalRes();
+        Optional<Category> category=categoryRepo.findById(resultDto.getCategoryId());
+        
+        finalResult.setCategoryName(resultDto.getCategoryName()); 
+        finalResult.setUserId(resultDto.getUserId());
+        finalResult.setUserName(resultDto.getUserName());
+        finalResult.setQuizTopic(resultDto.getQuizName());
+        finalResult.setDateAndTime(resultDto.getDateAndTime());
+        finalResult.setMarks(resultDto.getObtainMarks());
+        finalResult.setMaxMarks(resultDto.getMaxMarks());
+        finalResult.setAttemptedQuestions(resultDto.getAttemptedQuestions());
+        finalResult.setCategoryId(resultDto.getCategoryId());
+        finalResult.setCategoryName(resultDto.getCategoryName());
+        finalResult.setEmail(resultDto.getEmail());
+         
         when(quizRepo.findQuizByName("Array")).thenReturn(Optional.of(quiz));
-
         when(categoryRepo.findByCategoryName("Java")).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class,   ()->{ resultService.addRes(sr);    });
+        assertThrows(NotFoundException.class,   ()->{ resultService.addResult(resultDto);    });
     }
    @Test
     void testGetResult() {
-        StudentResult s=new StudentResult();
-        s.setResultId(1);
-        Quiz q=new Quiz();
-        q.setTopicName("variables");
-        s.setQe(q);
-        Student ss=new Student();
-        ss.setUserId(18);
-        s.setSs(ss);
-        Category c=new Category();
-        c.setCategoryId(13);
+        StudentResult studentResult=new StudentResult();
+        studentResult.setResultId(1);
+        Quiz quiz=new Quiz();
+        quiz.setTopicName("variables");
+        studentResult.setQuiz(quiz);
+        Student student=new Student();
+        student.setUserId(18);
+        studentResult.setStudentResult(student);
+        Category category=new Category();
+        category.setCategoryId(13);
         
         when(resultRepo.findAll()).thenReturn(Collections.singletonList(new StudentResult()));
-        when(resultRepo.findById(1)).thenReturn(Optional.of(s));
-        when(categoryRepo.findById(13)).thenReturn(Optional.of(c));
-        s.setCategoryId(13);
-        Optional<ResultDto> resultDto=resultService.getRes(s.getResultId());
-       assertEquals(resultDto.get().getQuizName(),s.getQe().getTopicName());    
+        when(resultRepo.findById(1)).thenReturn(Optional.of(studentResult));
+        when(categoryRepo.findById(13)).thenReturn(Optional.of(category));
+        studentResult.setCategoryId(13);
+        Optional<ResultDto> resultDto=resultService.getResult(studentResult.getResultId());
+       assertEquals(resultDto.get().getQuizName(),studentResult.getQuiz().getTopicName());    
     }
     @Test
    void testGetAllResultNoUserFound() {
         when(resultRepo.findAll()).thenReturn(Collections.emptyList());
-        assertThrows(AllNotFoundException.class,   ()->{ resultService.getRes(1);    });
+        assertThrows(AllNotFoundException.class,   ()->{ resultService.getResult(1);    });
    }
    @Test 
    void testGetAllStudentNotFound() {
        when(resultRepo.findAll()).thenReturn(Collections.singletonList(new StudentResult()));
        when(resultRepo.findById(1)).thenReturn(Optional.empty());
-       assertThrows(NotFoundException.class,   ()->{ resultService.getRes(1);    });
+       assertThrows(NotFoundException.class,   ()->{ resultService.getResult(1);    });
    }
     @Test
    void testGetAllResult() {
-        StudentResult s=new StudentResult();
-        s.setResultId(1);
-        Quiz q=new Quiz();
-        q.setTopicName("variables");
-        s.setQe(q);
-        Student ss=new Student();
-        ss.setUserId(18);
-        s.setSs(ss);
-        Category c=new Category();
-        c.setCategoryName("java");
-        c.setCategoryId(13);
-        s.setCategoryId(13);
-        List<StudentResult> studentResult=new ArrayList<>();
-        studentResult.add(s);
-        when(resultRepo.findAll()).thenReturn(studentResult);
-       when(resultRepo.findById(1)).thenReturn(Optional.of(s));
-        when(categoryRepo.findById(13)).thenReturn(Optional.of(c));
-        assertTrue(Optional.of(c).isPresent());
-        List<ResultDto> resultDto=resultService.getAllRes();
-        assertEquals(s.getCategoryId(),resultDto.get(0).getCategoryId());       
+        StudentResult studentResult=new StudentResult();
+        studentResult.setResultId(1);
+        Quiz quiz=new Quiz();
+        quiz.setTopicName("variables");
+        studentResult.setQuiz(quiz);
+        Student student=new Student();
+        student.setUserId(18);
+        studentResult.setStudentResult(student);
+        Category category=new Category();
+        category.setCategoryName("java");
+        category.setCategoryId(13);
+        studentResult.setCategoryId(13);
+        List<StudentResult> studentResultList=new ArrayList<>();
+        studentResultList.add(studentResult);
+        
+        when(resultRepo.findAll()).thenReturn(studentResultList);
+       when(resultRepo.findById(1)).thenReturn(Optional.of(studentResult));
+        when(categoryRepo.findById(13)).thenReturn(Optional.of(category));
+        assertTrue(Optional.of(category).isPresent());
+        List<ResultDto> resultDto=resultService.getResults();
+        assertEquals(studentResult.getCategoryId(),resultDto.get(0).getCategoryId());       
    }
     @Test
    void testNoStudentResultIsPresent() {
         when(resultRepo.findAll()).thenReturn(Collections.emptyList());
-        assertThrows(AllNotFoundException.class,   ()->{ resultService.getAllRes();    });
+        assertThrows(AllNotFoundException.class,   ()->{ resultService.getResults();    });
    }
 }

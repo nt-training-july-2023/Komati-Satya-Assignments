@@ -12,8 +12,7 @@ class QuizUpdateDtoTest {
         assertEquals(0,quizDto.getQuizId());
         assertEquals(null,quizDto.getTopicName());
         assertEquals(null,quizDto.getTopicDescription());
-        assertEquals(0,quizDto.getPassMarks());
-        assertEquals(0,quizDto.getMaxMarks());
+       
         
     }
     @Test
@@ -22,13 +21,11 @@ class QuizUpdateDtoTest {
         quizDto.setQuizId(1);
         quizDto.setTopicName("arrays");
         quizDto.setTopicDescription("java");
-        quizDto.setPassMarks(18);
-        quizDto.setMaxMarks(30);
+       
         assertEquals(1,quizDto.getQuizId());
         assertEquals("arrays",quizDto.getTopicName());
         assertEquals("java",quizDto.getTopicDescription());
-        assertEquals(18,quizDto.getPassMarks());
-        assertEquals(30,quizDto.getMaxMarks());
+        
        }
 
 }

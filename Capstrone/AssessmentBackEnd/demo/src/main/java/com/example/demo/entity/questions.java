@@ -1,4 +1,5 @@
 package com.example.demo.entity;
+import com.example.demo.validationMessages.ValidationMessages;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -7,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,69 +39,73 @@ public class Questions {
     private String option1;
     /**
      * Constructor.
-     * @param questionn question
-     * @param option11 question
-     * @param option22 question
-     * @param option33 question
-     * @param option44 question
-     * @param correctOptionn question
+     * @param newquestion question
+     * @param optionA question
+     * @param optionB question
+     * @param optionC question
+     * @param optionD question
+     * @param correctoption question
      */
-    public Questions(final String questionn,
-          final String option11,
-         final String option22,
-        final String option33, final String option44,
-        final String correctOptionn) {
+    public Questions(final String newquestion,
+          final String optionA,
+         final String optionB,
+        final String optionC, final String optionD,
+        final String correctoption) {
         super();
-       this.question = questionn;
-       this.option1 = option11;
-       this.option2 = option22;
-        this.option3 = option33;
-        this.option4 = option44;
-      this.correctOption = correctOptionn;
+       this.question = newquestion;
+       this.option1 = optionA;
+       this.option2 = optionB;
+        this.option3 = optionC;
+        this.option4 = optionD;
+      this.correctOption = correctoption;
    }
     /**
      * stores the option2.
      */
     @Column(nullable = false)
+    @NotEmpty(message = ValidationMessages.OPTION2_NOTBLANK)
     private String option2;
     /**
      * stores the option3.
      */
     @Column(nullable = false)
+    @NotEmpty(message = ValidationMessages.OPTION3_NOTBLANK)
     private String option3;
     /**
      * stores the option4.
      */
     @Column(nullable = false)
+    @NotEmpty(message = ValidationMessages.OPTION4_NOTBLANK)
     private String option4;
     /**
      * stores the correct option.
      */
     @Column(nullable = false)
+    @NotEmpty(message = ValidationMessages.CORRECTANSWER_NOTBLANK)
     private String correctOption;
     /**
      * many to one relationship with quiz.
      */
     @ManyToOne
     @JoinColumn(name = "qz_fk")
-    @JsonIgnoreProperties("que")
-    private Quiz qui;
+    @JsonIgnoreProperties("questions")
+    private Quiz quiz;
     /**
      * get.
      * @return quiz
      */
-    public final Quiz getQui() {
-        return new Quiz(qui.getQuizId(), qui.getTopicName(),
-                qui.getTopicDescription()
+    public Quiz getQuiz() {
+        return new Quiz(quiz.getQuizId(), quiz.getTopicName(),
+                quiz.getTopicDescription(), quiz.getTimer()
                 );
     }
     /**
      * set.
-     * @param quii quiz
+     * @param quizParam quiz
      */
-    public final void setQui(final Quiz quii) {
-        this.qui = new Quiz(quii.getQuizId(), quii.getTopicName(),
-                quii.getTopicDescription()
+    public void setQuiz(final Quiz quizParam) {
+        this.quiz = new Quiz(quizParam.getQuizId(), quizParam.getTopicName(),
+                quizParam.getTopicDescription(), quizParam.getTimer()
                 );
     }
 }

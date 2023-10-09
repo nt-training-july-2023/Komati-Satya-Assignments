@@ -55,11 +55,6 @@ public class FinalRes {
     @Column(nullable = false)
     private int marks;
     /**
-     * stores the student result id.
-     */
-    @Column(nullable = false)
-    private int resultId;
-    /**
      * stores the maximum marks of quiz.
      */
     @Column(nullable = false)

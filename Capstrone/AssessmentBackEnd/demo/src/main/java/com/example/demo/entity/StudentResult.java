@@ -1,3 +1,4 @@
+
 package com.example.demo.entity;
 
 
@@ -39,11 +40,6 @@ public class StudentResult {
     @Column(nullable = false)
     private String dateAndTime;
     /**
-     * stores the result.
-     */
-    @Column(nullable = false)
-    private String result;
-    /**
      * stores the res.
      */
     @Column(nullable = false)
@@ -53,8 +49,8 @@ public class StudentResult {
      */
     @ManyToOne
     @JoinColumn(name = "qz_Id")
-    @JsonIgnoreProperties("se")
-    private Quiz qe;
+    @JsonIgnoreProperties("studentResult")
+    private Quiz quiz;
     /**
      * categoryId.
      */
@@ -64,145 +60,116 @@ public class StudentResult {
      */
     @ManyToOne
     @JoinColumn(name = "stu_id")
-    @JsonIgnoreProperties("rs")
-    private Student ss;
+    @JsonIgnoreProperties("studentResult")
+    private Student studentResult;
     /**
      * get result.
      * @return result
      */
-    public final int getResultId() {
+    public int getResultId() {
         return resultId;
     }
     /**
      * set id.
      * @param resultid id
      */
-    public final void setResultId(final int resultid) {
+    public void setResultId(final int resultid) {
         this.resultId = resultid;
     }
     /**
      * get marks.
      * @return marks
      */
-    public final int getMaxMarks() {
+    public int getMaxMarks() {
         return maxMarks;
     }
     /**
      * set marks.
-     * @param maxMarkss marks
+     * @param maxmarks marks
      */
-    public final void setMaxMarks(final int maxMarkss) {
-        this.maxMarks = maxMarkss;
-    }
-    /**
-     * get result.
-     * @return result
-     */
-    public final String getResult() {
-        return result;
-    }
-    /**
-     * set result.
-     * @param resultt result
-     */
-    public final void setResult(final String resultt) {
-        this.result = resultt;
+    public void setMaxMarks(final int maxmarks) {
+        this.maxMarks = maxmarks;
     }
     /**
      * get.
      * @return questions
      */
-    public final int getAttemptedQuestions() {
+    public int getAttemptedQuestions() {
         return attemptedQuestions;
     }
     /**
      * set question.
-     * @param attemptedQuestionss questions
+     * @param attemptedquestions questions
      */
-    public final void setAttemptedQuestions(final int attemptedQuestionss) {
-        this.attemptedQuestions = attemptedQuestionss;
+    public void setAttemptedQuestions(final int attemptedquestions) {
+        this.attemptedQuestions = attemptedquestions;
     }
     /**
      * quiz.
      * @return quiz
      */
-    public final Quiz getQe() {
-        return new Quiz(qe.getQuizId(), qe.getTopicName(),
-                qe.getTopicDescription()
+    public Quiz getQuiz() {
+        return new Quiz(quiz.getQuizId(), quiz.getTopicName(),
+                quiz.getTopicDescription(), quiz.getTimer()
                 );
     }
     /**
      * set question.
-     * @param qee question
+     * @param quizParam question
      */
-    public final void setQe(final Quiz qee) {
-        this.qe = new Quiz(qee.getQuizId(), qee.getTopicName(),
-                qee.getTopicDescription()
+    public void setQuiz(final Quiz quizParam) {
+        this.quiz = new Quiz(quizParam.getQuizId(), quizParam.getTopicName(),
+                quizParam.getTopicDescription(), quizParam.getTimer()
                 );
     }
     /**
      * student.
      * @return student
      */
-    public final Student getSs() {
-        return new Student(ss.getUserId(), ss.getUserName(),
-                ss.getEmail(), ss.getGender(),
-                 ss.getPhoneNumber(), ss.getRole(), ss.getDateOfBirth());
+    public Student getStudentResult() {
+        return new Student(studentResult.getUserId(),
+                studentResult.getUserName(),
+                studentResult.getEmail(), studentResult.getGender(),
+                studentResult.getPhoneNumber(), studentResult.getRole(),
+                studentResult.getDateOfBirth());
     }
     /**
      * set student.
-     * @param sss student
+     * @param student student
      */
-    public final void setSs(final Student sss) {
-        this.ss = new Student(sss.getUserId(), sss.getUserName(),
-                sss.getEmail(), sss.getGender(),
-                sss.getPhoneNumber(), sss.getRole(), sss.getDateOfBirth());
+    public void setStudentResult(final Student student) {
+        this.studentResult = new Student(student.getUserId(),
+                student.getUserName(),
+                student.getEmail(), student.getGender(),
+                student.getPhoneNumber(), student.getRole(),
+                student.getDateOfBirth());
     }
-//    /**
-//     * constructor.
-//     * @param resultid id
-//     * @param maxmarks marks
-//     * @param dateandTime date
-//     * @param resultt result
-//     * @param attemptedquestions question
-//     */
-//    public StudentResult(final int resultid, final int maxmarks,
-//            final String dateandTime,
-//            final String resultt,
-//            final int attemptedquestions) {
-//        super();
-//        this.resultId = resultid;
-//        this.maxMarks = maxmarks;
-//        this.dateAndTime = dateandTime;
-//        this.result = resultt;
-//        this.attemptedQuestions = attemptedquestions;
-//    }
     /**
      * get.
      * @return date
      */
-    public final String getDateAndTime() {
+    public String getDateAndTime() {
         return dateAndTime;
     }
     /**
      * set.
-     * @param dateAndTimee date
+     * @param dateAndtime date
      */
-    public final void setDateAndTime(final String dateAndTimee) {
-        this.dateAndTime = dateAndTimee;
+    public void setDateAndTime(final String dateAndtime) {
+        this.dateAndTime = dateAndtime;
     }
     /**
      * get category id.
      * @return category id.
      */
-    public final int getCategoryId() {
+    public int getCategoryId() {
         return categoryId;
     }
     /**
      * set category id.
      * @param categoryid category id.
      */
-    public final void setCategoryId(final int categoryid) {
+    public void setCategoryId(final int categoryid) {
         this.categoryId = categoryid;
     }
 }

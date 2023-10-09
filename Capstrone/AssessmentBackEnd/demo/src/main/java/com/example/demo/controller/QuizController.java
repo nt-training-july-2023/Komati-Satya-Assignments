@@ -3,9 +3,10 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +18,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
-import com.example.demo.entity.Quiz;
-import com.example.demo.response.Responsee;
+import com.example.demo.response.Response;
 import com.example.demo.service.QuizService;
+import com.example.demo.validationMessages.Messages;
+
+import jakarta.validation.Valid;
 
 /**
  * Quiz controller class.
@@ -31,23 +34,26 @@ public class QuizController {
      * Auto wiring quiz service class.
      */
     @Autowired
-    private QuizService qs;
-
+    private QuizService quizSevice;
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(QuizController.class);
     /**
      * save quiz method.
-     * @param q quiz
+     * @param quizDto quiz
      * @return response
      */
     @PostMapping("/quiz")
-    public final ResponseEntity<Object> saveQuiz(@RequestBody final Quiz q) {
-        try {
-            QuizDto user = qs.addQuiz(q);
-            return Responsee.generateResponce("succcessfully add the data",
-                    HttpStatus.OK, "Quiz Topic_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz Topic_Information", null);
-        }
+    public final Response saveQuiz(
+            @RequestBody @Valid final QuizDto quizDto) {
+            quizSevice.addQuiz(quizDto);
+            LOGGER.info(Messages.SAVE_QUIZ);
+            String message = Messages.SAVE_QUIZ;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 
     /**
@@ -56,15 +62,15 @@ public class QuizController {
      * @return response
      */
     @GetMapping("/quiz/id/{id}")
-    public final ResponseEntity<Object> getQuiz(@PathVariable final int id) {
-        try {
-            Optional<QuizDto> user = qs.getQuiz(id);
-            return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Quiz_topic_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "QuizTopic_Information", null);
-        }
+    public final Response getQuiz(
+            @PathVariable final int id) {
+            Optional<QuizDto> quizDto = quizSevice.getQuiz(id);
+            LOGGER.info(Messages.FIND_QUIZ);
+            String message = Messages.FIND_QUIZ;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
+                    message, quizDto);
+       return response;
     }
 
     /**
@@ -72,15 +78,14 @@ public class QuizController {
      * @return response
      */
     @GetMapping("/quiz")
-    public final ResponseEntity<Object> findAll() {
-        try {
-            List<QuizDto> user = qs.findAll();
-            return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Quiz_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
-        }
+    public final Response findAll() {
+            List<QuizDto> quizDto = quizSevice.findAll();
+            LOGGER.info(Messages.FIND_ALLQUIZES);
+            String message = Messages.FIND_ALLQUIZES;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
+                    message, quizDto);
+       return response;
     }
 
     /**
@@ -89,35 +94,33 @@ public class QuizController {
      * @return response
      */
     @DeleteMapping("/quiz/{id}")
-    public final ResponseEntity<Object> deleteQuiz(@PathVariable final int id) {
-        try {
-            qs.deleteQuiz(id);
-            return Responsee.generateResponce("succcessfully delete the data",
-                    HttpStatus.OK, "Quiz_Information", null);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
-        }
+    public final Response deleteQuiz(
+            @PathVariable final int id) {
+            quizSevice.deleteQuiz(id);
+            LOGGER.info(Messages.DELETE_QUIZ);
+            String message = Messages.DELETE_QUIZ;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 
     /**
      * update quiz method.
-     * @param q  quiz
+     * @param quizUpdateDto  quiz
      * @param id quiz id
      * @return response
      */
     @PutMapping("/quiz/{id}")
-    public final ResponseEntity<Object> updateQuiz(
-            @RequestBody final QuizUpdateDto q,
+    public final Response updateQuiz(
+            @RequestBody @Valid final QuizUpdateDto quizUpdateDto,
             @PathVariable final int id) {
-        try {
-            QuizUpdateDto user = qs.updateQuiz(q, id);
-            return Responsee.generateResponce("succcessfully update the data",
-                    HttpStatus.OK, "Quiz_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
-        }
+            quizSevice.updateQuiz(quizUpdateDto, id);
+            LOGGER.info(Messages.UPDATE_QUIZ);
+            String message = Messages.UPDATE_QUIZ;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
+                    message);
+       return response;
     }
 
     /**
@@ -126,16 +129,15 @@ public class QuizController {
      * @return response
      */
     @GetMapping("quiz/quizz/{id}")
-    public final ResponseEntity<Object> findQuizById(
+    public final Response findQuizById(
             @PathVariable final int id) {
-        try {
-            List<QuizDto> user = qs.findQuizById(id);
-            return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Quiz_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
-        }
+            List<QuizDto> quizDto = quizSevice.findQuizById(id);
+            LOGGER.info(Messages.FIND_QUIZBYCATEGORYID);
+            String message = Messages.FIND_QUIZBYCATEGORYID;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
+                    message, quizDto);
+       return response;
     }
 
     /**
@@ -144,15 +146,14 @@ public class QuizController {
      * @return response
      */
     @GetMapping("/quiz/quizByName/{name}")
-    public final ResponseEntity<Object> findQuizByName(
+    public final Response findQuizByName(
             @PathVariable final String name) {
-        try {
-            Optional<QuizDto> user = qs.findQuizByName(name);
-            return Responsee.generateResponce("succcessfully update the data",
-                    HttpStatus.OK, "Quiz_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Quiz_Information", null);
-        }
+            Optional<QuizDto> quizDto = quizSevice.findQuizByName(name);
+            LOGGER.info(Messages.FIND_QUIZ);
+            String message = Messages.FIND_QUIZ;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
+                    message, quizDto);
+       return response;
     }
 }

@@ -1,22 +1,19 @@
 package com.example.demo.serviceImp;
 
-import static org.junit.Assert.assertThrows;
+
 import static org.junit.jupiter.api.Assertions.*;
-
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import com.example.demo.dto.CategoryDto;
 import com.example.demo.entity.Category;
-
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.AlreadyExistException;
 import com.example.demo.exceptions.NotFoundException;
@@ -25,75 +22,82 @@ import com.example.demo.repository.CategoryRepo;
 
 class CategoryServiceImpTest {
 
+    @InjectMocks
     private CategoryServiceImp categoryService;
-    private CategoryRepo repo;
+    @Mock
+    private CategoryRepo categoryRepo;
     
     @BeforeEach
     void setUp() {
-        repo=mock(CategoryRepo.class);
-        categoryService=new CategoryServiceImp(repo);
+        MockitoAnnotations.openMocks(this);
     }
     
     @Test
     void testAddCategory() {
-        Category c=new Category();
-        c.setCategoryId(1);
-        c.setCategoryName("java");
-        c.setCategoryDescription("java basics");
-        when(repo.findByCategoryName(c.getCategoryName())).thenReturn(Optional.empty());
-        when(repo.save(c)).thenReturn(c);
-        CategoryDto categoryDto1=categoryService.saveCat(c);
-        assertEquals(c.getCategoryName(),categoryDto1.getCategoryName());
-        assertEquals(c.getCategoryDescription(),categoryDto1.getCategoryDescription());  
+        CategoryDto categoryDto=new CategoryDto();
+        categoryDto.setCategoryId(1);
+        categoryDto.setCategoryName("java");
+        categoryDto.setCategoryDescription("java basics");
+        Category category=new Category();
+        category.setCategoryId(1);
+        category.setCategoryDescription(categoryDto.getCategoryDescription());
+        category.setCategoryName(categoryDto.getCategoryName());
+        
+        when(categoryRepo.findByCategoryName(categoryDto.getCategoryName())).thenReturn(Optional.empty());
+        when(categoryRepo.save(category)).thenReturn(category);
+        CategoryDto categoryDto1=categoryService.saveCategory(categoryDto);
+        assertEquals(categoryDto.getCategoryName(),categoryDto1.getCategoryName());
+        assertEquals(categoryDto.getCategoryDescription(),categoryDto1.getCategoryDescription());
     }
     
     @Test
     void testAlreadyExistException() {
-        Category c=new Category();
-        c.setCategoryName("java");
-        when(repo.findByCategoryName(c.getCategoryName())).thenReturn(Optional.of(c));
-        assertThrows(AlreadyExistException.class, () ->{
-            categoryService.saveCat(c);
+        CategoryDto categoryDto=new CategoryDto();
+        categoryDto.setCategoryName("java");
+        Category category=new Category();
+        
+        when(categoryRepo.findByCategoryName(categoryDto.getCategoryName())).thenReturn(Optional.of(category));
+        assertThrows(AlreadyExistException.class, () ->{   categoryService.saveCategory(categoryDto);
         });
     }
     
     @Test
     void testFindById() {
-        Category c=new Category();
-        c.setCategoryId(1);
-        c.setCategoryName("java");
-        c.setCategoryDescription("java basics");
-        when(repo.findAll()).thenReturn(Collections.singletonList(new Category()));
-        when(repo.findById(c.getCategoryId())).thenReturn(Optional.of(c));
-        Optional<CategoryDto> categoryDto=categoryService.findById(c.getCategoryId());
+        Category category=new Category();
+        category.setCategoryId(1);
+        category.setCategoryName("java");
+        category.setCategoryDescription("java basics");
+        
+        when(categoryRepo.findAll()).thenReturn(Collections.singletonList(new Category()));
+        when(categoryRepo.findById(category.getCategoryId())).thenReturn(Optional.of(category));
+        Optional<CategoryDto> categoryDto=categoryService.findById(category.getCategoryId());
         assertTrue(categoryDto.isPresent());
-        assertEquals(c.getCategoryId(),categoryDto.get().getCategoryId());
-        assertEquals(c.getCategoryName(),categoryDto.get().getCategoryName());
-        assertEquals(c.getCategoryDescription(),categoryDto.get().getCategoryDescription());
+        assertEquals(category.getCategoryId(),categoryDto.get().getCategoryId());
+        assertEquals(category.getCategoryName(),categoryDto.get().getCategoryName());
+        assertEquals(category.getCategoryDescription(),categoryDto.get().getCategoryDescription());
       }
     @Test
     void testAllCategoryNotFound() {
         int categoryId=1;
-        when(repo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class, ()->{
-            categoryService.findById(categoryId);
+        when(categoryRepo.findAll()).thenReturn(new ArrayList<>());
+        assertThrows(AllNotFoundException.class, ()->{  categoryService.findById(categoryId);
         });
     }
     @Test
     void testCategoryNotFound() {
         int categoryId=1;
-        when(repo.findAll()).thenReturn(Collections.singletonList(new Category()));
-        when(repo.findById(categoryId)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () ->{
-            categoryService.findById(categoryId);
+        when(categoryRepo.findAll()).thenReturn(Collections.singletonList(new Category()));
+        when(categoryRepo.findById(categoryId)).thenReturn(Optional.empty());
+        assertThrows(NotFoundException.class, () ->{  categoryService.findById(categoryId);
         });
     }
     @Test
     void testFindAllCategories() {
-        List<Category> c=new ArrayList<Category>();
+        List<Category> categoryList=new ArrayList<Category>();
         Category category =new Category(1,"java","java basics");
-        c.add(category);
-        when(repo.findAll()).thenReturn(c);
+        categoryList.add(category);
+
+        when(categoryRepo.findAll()).thenReturn(categoryList);
         List<CategoryDto> categoryDto=categoryService.findAll();
         assertEquals(1,categoryDto.size());
         assertEquals("java",categoryDto.get(0).getCategoryName());
@@ -101,87 +105,84 @@ class CategoryServiceImpTest {
     }
     @Test
     void testAllCategoriesNotFound() {
-        when(repo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class, ()->{
-            categoryService.findAll();
+        when(categoryRepo.findAll()).thenReturn(new ArrayList<>());
+        assertThrows(AllNotFoundException.class, ()->{categoryService.findAll();
         });
     }
     @Test
    void testUpdateCategory() {
        Category category =new Category(1,"java","java basics");
-       categoryService.saveCat(category);
          CategoryDto categoryDto=new CategoryDto();
          categoryDto.setCategoryId(category.getCategoryId());
          categoryDto.setCategoryName(category.getCategoryName());
          categoryDto.setCategoryDescription(category.getCategoryDescription());
-         when(repo.findById(categoryDto.getCategoryId())).thenReturn(Optional.of(category));
+
+         categoryService.saveCategory(categoryDto);
+         when(categoryRepo.findById(categoryDto.getCategoryId())).thenReturn(Optional.of(category));
          assertTrue(Optional.of(category).isPresent());
          CategoryDto cd=new CategoryDto();
          cd.setCategoryName("Sql");
          cd.setCategoryDescription("java basics");
          cd.setCategoryId(1);
-         CategoryDto c=categoryService.updateCat(cd, 1);
-         assertEquals(category.getCategoryName(),cd.getCategoryName());
-         assertEquals(category.getCategoryDescription(),cd.getCategoryDescription());
+         CategoryDto c=categoryService.updateCategory(cd, 1);
+         assertEquals(category.getCategoryName(),c.getCategoryName());
+         assertEquals(category.getCategoryDescription(),c.getCategoryDescription());
    }
     
     @Test
     void testCategoryNotFoundUpdate() {
         int categoryId=1;
         CategoryDto c=new CategoryDto();
-        when(repo.findById(categoryId)).thenReturn(Optional.empty());
-        assertThrows(NotFoundException.class, () ->{
-            categoryService.updateCat(c, categoryId);
+        when(categoryRepo.findById(categoryId)).thenReturn(Optional.empty());
+        assertThrows(NotFoundException.class, () ->{ categoryService.updateCategory(c, categoryId);
         });
     }
     
     @Test
     public void testDeleteNoCategoriesFound() {
-        when(repo.findAll()).thenReturn(new ArrayList<>());
-        assertThrows(AllNotFoundException.class, ()->{
-            categoryService.deleteCat(1);
+        when(categoryRepo.findAll()).thenReturn(new ArrayList<>());
+        assertThrows(AllNotFoundException.class, ()->{ categoryService.deleteCategory(1);
         });
     }
    @Test
    public void testDeleteById() {
        Category c=new Category(1,"java","java basics");
-       repo.save(c);
-       when(repo.findAll()).thenReturn(Collections.singletonList(new Category()));
-       when(repo.findById(1)).thenReturn(Optional.of(c));
-       categoryService.deleteCat(1);
+       categoryRepo.save(c);
+       when(categoryRepo.findAll()).thenReturn(Collections.singletonList(new Category()));
+       when(categoryRepo.findById(1)).thenReturn(Optional.of(c));
+       categoryService.deleteCategory(1);
    }
    @Test
    public void testDeleteNotFound() {
        int categoryId=1;
-       when(repo.findAll()).thenReturn(Collections.singletonList(new Category()));
-       when(repo.findById(categoryId)).thenReturn(Optional.empty());
-       assertThrows(NotFoundException.class, () ->{
-           categoryService.deleteCat(categoryId);
+       when(categoryRepo.findAll()).thenReturn(Collections.singletonList(new Category()));
+       when(categoryRepo.findById(categoryId)).thenReturn(Optional.empty());
+       assertThrows(NotFoundException.class, () ->{ categoryService.deleteCategory(categoryId);
        });
    }
    @Test
    public void testFindByName() {
-       Category c=new Category(1,"java","java basics");
-       when(repo.findAll()).thenReturn(Collections.singletonList(new Category()));
-       when(repo.findByCategoryName(c.getCategoryName())).thenReturn(Optional.of(c));
-       Optional<CategoryDto> categoryDto=categoryService.findByName(c.getCategoryName());
+       Category category=new Category(1,"java","java basics");
+       
+       when(categoryRepo.findAll()).thenReturn(Collections.singletonList(new Category()));
+       when(categoryRepo.findByCategoryName(category.getCategoryName())).thenReturn(Optional.of(category));
+       Optional<CategoryDto> categoryDto=categoryService.findByName(category.getCategoryName());
        assertTrue(categoryDto.isPresent());
-       assertEquals(c.getCategoryName(),categoryDto.get().getCategoryName());
-       assertEquals(c.getCategoryDescription(),categoryDto.get().getCategoryDescription());
+       assertEquals(category.getCategoryName(),categoryDto.get().getCategoryName());
+       assertEquals(category.getCategoryDescription(),categoryDto.get().getCategoryDescription());
    }
    @Test
    public void testCategoryNameNotPresent() {
        String categoryName="java";
-       when(repo.findAll()).thenReturn(Collections.singletonList(new Category()));
-       when(repo.findByCategoryName(categoryName)).thenReturn(Optional.empty());
-       assertThrows(NotFoundException.class , () ->{
-           categoryService.findByName(categoryName);
+       when(categoryRepo.findAll()).thenReturn(Collections.singletonList(new Category()));
+       when(categoryRepo.findByCategoryName(categoryName)).thenReturn(Optional.empty());
+       assertThrows(NotFoundException.class , () ->{  categoryService.findByName(categoryName);
        });
    }
    @Test
    public void testNoCategoryPresent() {
        String categoryName="java";
-       when(repo.findAll()).thenReturn(new ArrayList<>());
+       when(categoryRepo.findAll()).thenReturn(new ArrayList<>());
        assertThrows(AllNotFoundException.class, ()->{
            categoryService.findByName(categoryName);
        });

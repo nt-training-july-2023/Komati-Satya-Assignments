@@ -24,8 +24,8 @@ class CategoryTest {
         List<Quiz> quizzes=new ArrayList<>();
         quizzes.add(q1);
         quizzes.add(q2);
-        c.setQu(quizzes);
-        assertEquals(2,c.getQu().size());
+        c.setQuiz(quizzes);
+        assertEquals(2,c.getQuiz().size());
       
    }
    @Test
@@ -34,7 +34,6 @@ class CategoryTest {
        assertEquals(0,c.getCategoryId());
        assertNull(c.getCategoryDescription());
        assertNull(c.getCategoryName());
-       //assertNull(c.getQu());
    }
    @Test
    void testAllArgsConstructor() {

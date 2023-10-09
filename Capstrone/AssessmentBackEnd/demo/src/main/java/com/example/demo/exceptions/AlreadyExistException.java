@@ -6,12 +6,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 /**
  * already exist exception.
  */
-@ResponseStatus(HttpStatus.ALREADY_REPORTED)
+@ResponseStatus(HttpStatus.FOUND)
 public class AlreadyExistException extends RuntimeException {
-    /**
-     * serial version id variable.
-     */
-    private static final long serialVersionUID = 1L;
     /**
      * constructor.
      * @param message error message

@@ -2,18 +2,19 @@ package com.example.demo.entity;
 
 import java.util.List;
 
+import com.example.demo.dto.Gender;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
 import lombok.NoArgsConstructor;
 
 /**
@@ -33,49 +34,36 @@ public class Student {
      * stores the user name.
      */
     @Column(nullable = false)
-    @NotEmpty(message = "userName is required")
     private String userName;
     /**
      * stores the user email.
      */
     @Column(nullable = false)
-    @NotEmpty(message = "email is required")
-    @Pattern(regexp = "^[A-Z0-9a-z+_-]+@nucleusteq[.]com$",
-    message = "Email is not valid")
     private String email;
     /**
      * stores the user gender.
      */
     @Column(nullable = false)
-    @NotEmpty(message = "gender is required")
-    private String gender;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     /**
      * stores the user phone number.
      */
     @Column(nullable = false)
-    @NotEmpty(message = "phoneNumber is required")
-    @Pattern(regexp = "^[0-9]{10}$",
-    message = "Phone number must contain 10 digits")
     private String phoneNumber;
     /**
      * stores the user role.
      */
     @Column(nullable = false)
-    @NotEmpty(message = "role is required")
     private String role;
     /**
      * stores the user password.
      */
     @Column(nullable = false)
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
-            + "(?=.*[@#$%^&-+=])(?=\\S+$).{8,}$",
-    message = "Minimum eight and m")
-    @NotEmpty(message = "password is required")
     private String password;
     /**
      * stores the user date of birth.
      */
-    @NotEmpty(message = "dateOfBirth is required")
     @Column(nullable = false)
     private String dateOfBirth;
 
@@ -83,128 +71,128 @@ public class Student {
      * get the user id.
      * @return userId
      */
-    public final int getUserId() {
+    public int getUserId() {
         return userId;
     }
 
     /**
      * set the user id.
-     * @param userIdd stores id
+     * @param userid stores id
      */
-    public final void setUserId(final int userIdd) {
-        this.userId = userIdd;
+    public void setUserId(final int userid) {
+        this.userId = userid;
     }
 
     /**
      * get the user name.
      * @return userName
      */
-    public final String getUserName() {
+    public String getUserName() {
         return userName;
     }
 
     /**
      * set the user name.
-     * @param userNamee stores name
+     * @param username stores name
      */
-    public final void setUserName(final String userNamee) {
-        this.userName = userNamee;
+    public void setUserName(final String username) {
+        this.userName = username;
     }
 
     /**
      * get the user email.
      * @return email
      */
-    public final String getEmail() {
+    public String getEmail() {
         return email;
     }
 
     /**
      * set the user email.
-     * @param emaill stores email
+     * @param useremail stores email
      */
-    public final void setEmail(final String emaill) {
-        this.email = emaill;
+    public void setEmail(final String useremail) {
+        this.email = useremail;
     }
 
     /**
      * get the user gender.
      * @return gender
      */
-    public final String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
     /**
      * set the user gender.
-     * @param genderr stores gender
+     * @param usergender stores gender
      */
-    public final void setGender(final String genderr) {
-        this.gender = genderr;
+    public void setGender(final Gender usergender) {
+        gender = usergender;
     }
 
     /**
      * get the user phone number.
      * @return phoneNumber
      */
-    public final String getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
     /**
      * set the user phone number.
-     * @param phoneNumberr stores number
+     * @param phonenumber stores number
      */
-    public final void setPhoneNumber(final String phoneNumberr) {
-        this.phoneNumber = phoneNumberr;
+    public void setPhoneNumber(final String phonenumber) {
+        this.phoneNumber = phonenumber;
     }
 
     /**
      * get the user role.
      * @return role
      */
-    public final String getRole() {
+    public String getRole() {
         return role;
     }
 
     /**
      * set the user role.
-     * @param rolee stores role
+     * @param userrole stores role
      */
-    public final void setRole(final String rolee) {
-        this.role = rolee;
+    public void setRole(final String userrole) {
+        this.role = userrole;
     }
 
     /**
      * get the user password.
      * @return password
      */
-    public final String getPassword() {
+    public String getPassword() {
         return password;
     }
 
     /**
      * set the user password.
-     * @param passwordd stores password
+     * @param userPassword stores password
      */
-    public final void setPassword(final String passwordd) {
-        this.password = passwordd;
+    public void setPassword(final String userPassword) {
+        this.password = userPassword;
     }
 
     /**
      * get the user date of birth.
      * @return dateOfBirth
      */
-    public final String getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
     /**
      * set the user date of birth.
-     * @param dateOfBirthh stores DOB
+     * @param dateofBirth stores DOB
      */
-    public final void setDateOfBirth(final String dateOfBirthh) {
-        this.dateOfBirth = dateOfBirthh;
+    public void setDateOfBirth(final String dateofBirth) {
+        this.dateOfBirth = dateofBirth;
     }
 
     /**
@@ -213,30 +201,30 @@ public class Student {
     @OneToMany(targetEntity = StudentResult.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "stu_id", referencedColumnName = "userId")
     @JsonIgnoreProperties("Student")
-    private List<StudentResult> rs;
+    private List<StudentResult> studentResult;
     /**
      * Constructor.
-     * @param userIdd userId
-     * @param userNamee user name
-     * @param emaill email
-     * @param genderr gender
-     * @param phoneNumberr phone number
-     * @param rolee role
-     * @param dateofBirth date of birth
+     * @param userid userId
+     * @param username user name
+     * @param useremail email
+     * @param usergender gender
+     * @param phonenumber phone number
+     * @param userrole role
+     * @param dateofbirth date of birth
      */
-    public Student(final int userIdd, final String userNamee,
-         final String emaill,
-           final String genderr,
-             final String phoneNumberr,
-             final String rolee,
-             final String dateofBirth) {
+    public Student(final int userid, final String username,
+         final String useremail,
+           final Gender usergender,
+             final String phonenumber,
+             final String userrole,
+             final String dateofbirth) {
         super();
-        this.userId = userIdd;
-        this.userName = userNamee;
-        this.email = emaill;
-        this.gender = genderr;
-        this.phoneNumber = phoneNumberr;
-        this.role = rolee;
-        this.dateOfBirth = dateofBirth;
+        this.userId = userid;
+        this.userName = username;
+        this.email = useremail;
+        this.gender = usergender;
+        this.phoneNumber = phonenumber;
+        this.role = userrole;
+        this.dateOfBirth = dateofbirth;
     }
 }

@@ -9,11 +9,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.CONFLICT)
 public class EmailDoesNotExistException extends RuntimeException {
     /**
-     * serial version id variable.
-     */
-    private static final long serialVersionUID = 1L;
-
-    /**
      * constructor.
      * @param message error message
      */

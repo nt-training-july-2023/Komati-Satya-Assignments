@@ -3,9 +3,10 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
 import com.example.demo.dto.StudentSaveDto;
-import com.example.demo.entity.Student;
-import com.example.demo.response.Responsee;
+import com.example.demo.response.Response;
 import com.example.demo.service.StudentService;
+import com.example.demo.validationMessages.Messages;
+
+import jakarta.validation.Valid;
 
 /**
  * Student controller class.
@@ -32,23 +35,26 @@ public class StudentController {
      * auto wiring student service class.
      */
     @Autowired
-    private StudentService stu;
-
+    private StudentService studentSevice;
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(StudentController.class);
     /**
      * student save method.
-     * @param s student
+     * @param studentSaveDto student
      * @return response.
      */
     @PostMapping("/student")
-    public final ResponseEntity<Object> save(@RequestBody final Student s) {
-        try {
-            StudentSaveDto user = stu.saveStudent(s);
-            return Responsee.generateResponce("successfully added data",
-                    HttpStatus.OK, "User_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
-        }
+    public final Response save(
+            @RequestBody @Valid final StudentSaveDto studentSaveDto) {
+            studentSevice.saveStudent(studentSaveDto);
+            LOGGER.info(Messages.SAVE_STUDENT);
+            String message = Messages.SAVE_STUDENT;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 
     /**
@@ -57,32 +63,33 @@ public class StudentController {
      * @return response
      */
     @GetMapping("/student/{id}")
-    public final ResponseEntity<Object> findById(@PathVariable final int id) {
-        try {
-            Optional<StudentDto> user = stu.findById(id);
-            return Responsee.generateResponce("successfully get the data",
-                    HttpStatus.OK, "User_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
-        }
+    public final Response findById(
+            @PathVariable final int id) {
+            Optional<StudentDto> studentDto = studentSevice.findById(id);
+            LOGGER.info(Messages.FIND_STUDENTBYID);
+            String message = Messages.FIND_STUDENTBYID;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
+                    message, studentDto);
+       return response;
     }
 
     /**
      * login method.
-     * @param l loginDto
+     * @param loginDto loginDto
      * @return response
      */
     @PostMapping("/student/login")
-    public final ResponseEntity<Object> login(@RequestBody final LoginDto l) {
-        try {
-            Optional<StudentDto> user = stu.aunthenticateUser(l);
-            return Responsee.generateResponce("succcessfully retrieve the data",
-                    HttpStatus.OK, "User_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
-        }
+    public final Response login(
+            @RequestBody @Valid final LoginDto loginDto) {
+            Optional<StudentDto> studentDto = studentSevice.
+                    aunthenticateUser(loginDto);
+            LOGGER.info(Messages.LOGIN_STUDENT);
+            String message = Messages.LOGIN_STUDENT;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
+                    message, studentDto);
+       return response;
     }
 
     /**
@@ -90,52 +97,46 @@ public class StudentController {
      * @return response
      */
     @GetMapping("/student/students")
-    public final ResponseEntity<Object> findAllStu() {
-        try {
-            List<StudentDto> user = stu.findAllStu();
-            return Responsee.generateResponce(
-                    "successfully retrieve all the data", HttpStatus.OK,
-                    "User_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
-        }
+    public final Response findAllStudents() {
+            List<StudentDto> studentDto = studentSevice.findAllStudents();
+            LOGGER.info(Messages.FIND_ALLSTUDENT);
+            String message = Messages.FIND_ALLSTUDENT;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
+                    message, studentDto);
+       return response;
     }
 
     /**
      * update student method.
-     * @param s  student
+     * @param studentDto student
      * @param id student id
      * @return response
      */
     @PutMapping("/student/{id}")
-    public final ResponseEntity<Object> updateStudent(
-            @RequestBody final StudentDto s, @PathVariable final int id) {
-        try {
-            StudentDto user = stu.updateStudent(s, id);
-            return Responsee.generateResponce("successfully update the data",
-                    HttpStatus.OK, "User_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
-        }
+    public final Response updateStudent(
+            @RequestBody @Valid final StudentDto studentDto,
+            @PathVariable final int id) {
+            studentSevice.updateStudent(studentDto, id);
+            LOGGER.info(Messages.UPDATE_STUDENT);
+            String message = Messages.UPDATE_STUDENT;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
-
     /**
      * delete student method.
      * @param id student id
      * @return response
      */
     @DeleteMapping("/student/{id}")
-    public final ResponseEntity<Object> deleteStudent(
+    public final Response deleteStudent(
             @PathVariable final int id) {
-        try {
-            stu.deleteStudent(id);
-            return Responsee.generateResponce("successfully delete the data",
-                    HttpStatus.OK, "User_Information", null);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "User_Information", null);
-        }
+            studentSevice.deleteStudent(id);
+            LOGGER.info(Messages.DELETE_STUDENT);
+            String message = Messages.DELETE_STUDENT;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 }

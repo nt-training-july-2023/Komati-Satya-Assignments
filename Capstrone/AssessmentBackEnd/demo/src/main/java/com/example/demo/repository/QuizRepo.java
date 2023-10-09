@@ -18,7 +18,7 @@ public interface QuizRepo extends JpaRepository<Quiz, Integer> {
      * @param id category id
      * @return quiz
      */
-    @Query("select q from Quiz q where q.cate.categoryId=:id")
+    @Query("select q from Quiz q where q.category.categoryId=:id")
     List<Quiz> findQuizById(int id);
 
     /**

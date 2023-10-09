@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import com.example.demo.dto.CategoryDto;
-import com.example.demo.entity.Category;
+
 
 /**
  * CategoryService interface.
@@ -12,10 +12,10 @@ import com.example.demo.entity.Category;
 public interface CategoryService {
     /**
      * saveCat method.
-     * @param c category
+     * @param categoryDto category
      * @return category
      */
-    CategoryDto saveCat(Category c);
+    CategoryDto saveCategory(CategoryDto categoryDto);
 
     /**
      * findBymethod method.
@@ -32,17 +32,18 @@ public interface CategoryService {
 
     /**
      * update category method.
-     * @param c  category
+     * @param categoryDto  category
      * @param id id
      * @return category
      */
-    CategoryDto updateCat(CategoryDto c, int id);
+    CategoryDto updateCategory(CategoryDto categoryDto,
+            int id);
 
     /**
      * delete category method.
      * @param id category id
      */
-    void deleteCat(int id);
+    void deleteCategory(int id);
 
     /**
      * findByName method.

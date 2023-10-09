@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,9 @@ import com.example.demo.repository.QuizRepo;
 import com.example.demo.repository.StudentRepo;
 import com.example.demo.repository.StudentResultRepo;
 import com.example.demo.service.ResultService;
+import com.example.demo.validationMessages.ErrorMessages;
+import com.example.demo.validationMessages.Messages;
+
 /**
  * result service implementation.
  */
@@ -30,130 +35,131 @@ public class ResultServiceImp implements ResultService {
      * auto wiring student result repository.
      */
     @Autowired
-    private StudentResultRepo s;
+    private StudentResultRepo studentResultRepo;
     /**
      * auto wiring final result repository.
      */
     @Autowired
-    private FinalResultRepo f;
+    private FinalResultRepo finalResultRepo;
     /**
      * auto wiring final quiz repository.
      */
     @Autowired
-    private QuizRepo qr;
+    private QuizRepo quizRepo;
     /**
      * auto wiring final category repository.
      */
     @Autowired
-    private CategoryRepo cr;
+    private CategoryRepo categoryRepo;
     /**
      * auto wiring final student repository.
      */
     @Autowired
-    private StudentRepo srr;
-   /**
-    * constructor.
-    * @param resultRepo result repository
-    * @param finalRepo final repository
-    * @param categoryRepo category repository
-    * @param studentRepo student repository
-    * @param quizRepo quiz repository
-    */
-    public ResultServiceImp(final StudentResultRepo resultRepo,
-           final FinalResultRepo finalRepo,
-           final CategoryRepo categoryRepo,
-            final StudentRepo studentRepo,
-            final QuizRepo quizRepo) {
-       this.cr = categoryRepo;
-       this.f = finalRepo;
-       this.qr = quizRepo;
-       this.s = resultRepo;
-       this.srr = studentRepo;
-    }
+    private StudentRepo studentRepo;
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(ResultServiceImp.class);
 
     /**
      * add result method.
-     * @param sr studentResult
+     * @param resultDto studentResult
      * @return student result
      */
     @Override
-    public final ResultDto addRes(final ResultDto sr) {
-        FinalRes fr = new FinalRes();
-       if (srr.findByEmail(sr.getEmail()).isPresent()) {
-      // Optional<Student> ssss=srr.findByEmail(sr.getEmail());
-        fr.setCategoryName(sr.getCategoryName());
-         fr.setUserId(sr.getUserId());
-        fr.setUserName(sr.getUserName());
-        fr.setQuizTopic(sr.getQuizName());
-        fr.setDateAndTime(sr.getDateAndTime());
-        fr.setMarks(sr.getObtainMarks());
-        fr.setMaxMarks(sr.getMaxMarks());
-        fr.setResultId(sr.getResultId());
-        fr.setAttemptedQuestions(sr.getAttemptedQuestions());
-        fr.setCategoryId(sr.getCategoryId());
-        fr.setCategoryName(sr.getCategoryName());
-        fr.setEmail(sr.getEmail());
-        fr.setTotalNoOfQuestions(sr.getTotalQuestions());
-        if (qr.findQuizByName(fr.getQuizTopic()).isPresent()) {
-            if (cr.findByCategoryName(fr.getCategoryName()).isPresent()) {
-                    f.save(fr);
+    public final ResultDto addResult(final ResultDto resultDto) {
+        FinalRes finalResult = new FinalRes();
+        if (studentRepo.findByEmail(resultDto.getEmail()).isPresent()) {
+            finalResult.setCategoryName(resultDto.getCategoryName());
+            finalResult.setUserId(resultDto.getUserId());
+            finalResult.setUserName(resultDto.getUserName());
+            finalResult.setQuizTopic(resultDto.getQuizName());
+            finalResult.setDateAndTime(resultDto.getDateAndTime());
+            finalResult.setMarks(resultDto.getObtainMarks());
+            finalResult.setMaxMarks(resultDto.getMaxMarks());
+            finalResult
+                    .setAttemptedQuestions(resultDto.getAttemptedQuestions());
+            finalResult.setCategoryId(resultDto.getCategoryId());
+            finalResult.setCategoryName(resultDto.getCategoryName());
+            finalResult.setEmail(resultDto.getEmail());
+            finalResult.setTotalNoOfQuestions(resultDto.getTotalQuestions());
+            if (quizRepo.findQuizByName(finalResult.getQuizTopic())
+                    .isPresent()) {
+                if (categoryRepo
+                        .findByCategoryName(finalResult.getCategoryName())
+                        .isPresent()) {
+                    LOGGER.info(Messages.SAVE_RESULT);
+                    finalResultRepo.save(finalResult);
+                } else {
+                    LOGGER.error(ErrorMessages.CATEGORY_NOTPRESENT);
+                    throw new NotFoundException(
+                            ErrorMessages.CATEGORY_NOTPRESENT);
+                }
             } else {
-                throw new NotFoundException("Category is not present");
+                LOGGER.error(ErrorMessages.QUIZ_NOTPRESENT);
+                throw new NotFoundException(ErrorMessages.QUIZ_NOTPRESENT);
             }
-
+            finalResultRepo.save(finalResult);
+            StudentResult studentResult = new StudentResult();
+            studentResult
+                    .setAttemptedQuestions(resultDto.getAttemptedQuestions());
+            studentResult.setCategoryId(resultDto.getCategoryId());
+            studentResult.setDateAndTime(resultDto.getDateAndTime());
+            Optional<Quiz> optionalQuiz = quizRepo.
+                    findQuizByName(resultDto.getQuizName());
+            Quiz quiz = optionalQuiz.get();
+            studentResult.setQuiz(quiz);
+            Optional<Student> optionalStudent = studentRepo
+                    .findByEmail(resultDto.getEmail());
+            Student student = optionalStudent.get();
+            studentResult.setStudentResult(student);
+            studentResult.setMaxMarks(resultDto.getObtainMarks());
+            studentResult.setResultId(resultDto.getResultId());
+            studentResultRepo.save(studentResult);
         } else {
-            throw new NotFoundException("Quiz is not present");
+            LOGGER.error(ErrorMessages.WRONG_EMAIL);
+            throw new NotFoundException(ErrorMessages.WRONG_EMAIL);
         }
-        f.save(fr);
-        StudentResult ss = new StudentResult();
-        ss.setAttemptedQuestions(sr.getAttemptedQuestions());
-        ss.setCategoryId(sr.getCategoryId());
-        ss.setDateAndTime(sr.getDateAndTime());
-        Optional<Quiz> q = qr.findQuizByName(sr.getQuizName());
-        Quiz q1 = q.get();
-        ss.setQe(q1);
-        Optional<Student> student = srr.findByEmail(sr.getEmail());
-        Student sss = student.get();
-        ss.setSs(sss);
-        ss.setResult(sr.getResult());
-        ss.setMaxMarks(sr.getObtainMarks());
-        ss.setResultId(sr.getResultId());
-        s.save(ss);
-       } else {
-           throw new NotFoundException("wrong email id");
-       }
-        return sr;
+        return resultDto;
     }
-
     /**
      * get result method.
      * @param id student id
      * @return student result
      */
     @Override
-    public final Optional<ResultDto> getRes(final int id) {
-        if (s.findAll().size() != 0) {
-            Optional<StudentResult> r = s.findById(id);
-            if (r.isPresent()) {
+    public final Optional<ResultDto> getResult(final int id) {
+        if (studentResultRepo.findAll().size() != 0) {
+            Optional<StudentResult> studentResult =
+                    studentResultRepo.findById(id);
+            if (studentResult.isPresent()) {
                 ResultDto resultDto = new ResultDto();
-                StudentResult fr = r.get();
-                resultDto.setUserName(fr.getSs().getUserName());
-                resultDto.setEmail(fr.getSs().getEmail());
-                Optional<Category> cc = cr.findById(fr.getCategoryId());
-                Category c = cc.get();
-                resultDto.setCategoryName(c.getCategoryName());
-                resultDto.setQuizName(fr.getQe().getTopicName());
-                resultDto.setResult(fr.getResult());
-                resultDto.setDateAndTime(fr.getDateAndTime());
-                resultDto.setObtainMarks(fr.getMaxMarks());
-                resultDto.setAttemptedQuestions(fr.getAttemptedQuestions());
-                resultDto.setCategoryId(c.getCategoryId());
+                StudentResult studentResults = studentResult.get();
+                resultDto.setUserName(studentResults.getStudentResult().
+                        getUserName());
+                resultDto.setEmail(studentResults.getStudentResult().
+                        getEmail());
+                Optional<Category> optionalCategory = categoryRepo
+                        .findById(studentResults.getCategoryId());
+                Category category = optionalCategory.get();
+                resultDto.setCategoryName(category.getCategoryName());
+                resultDto.setQuizName(studentResults.getQuiz().
+                        getTopicName());
+                resultDto.setDateAndTime(studentResults.getDateAndTime());
+                resultDto.setObtainMarks(studentResults.getMaxMarks());
+                resultDto.setAttemptedQuestions(studentResults.
+                        getAttemptedQuestions());
+                resultDto.setCategoryId(category.getCategoryId());
+                LOGGER.info(Messages.FIND_RESULT);
                 return Optional.of(resultDto);
             } else {
-                throw new NotFoundException("wrong user Id,enter a valid Id");
+                LOGGER.error(ErrorMessages.WRONG_USERID);
+                throw new NotFoundException(ErrorMessages.WRONG_USERID);
             }
         } else {
-            throw new AllNotFoundException("no studentresult is present");
+            LOGGER.error(ErrorMessages.NO_USER);
+            throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }
     /**
@@ -161,42 +167,45 @@ public class ResultServiceImp implements ResultService {
      * @return student result
      */
     @Override
-    public final List<ResultDto> getAllRes() {
-        if (s.findAll().size() != 0) {
-            List<StudentResult> sr  = s.findAll();
-            List<ResultDto> resultDto = convertToDto(sr);
+    public final List<ResultDto> getResults() {
+        if (studentResultRepo.findAll().size() != 0) {
+            List<StudentResult> studentResult = studentResultRepo.findAll();
+            List<ResultDto> resultDto = convertToDto(studentResult);
+            LOGGER.info(Messages.FIND_ALLRESULT);
             return resultDto;
         } else {
-            throw new AllNotFoundException("no studentresult is present");
+            LOGGER.info(ErrorMessages.NO_USER);
+            throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }
     /**
      * convert to dto method.
-     * @param sr student result
+     * @param studentResultList student result
      * @return list of result
      */
-    private List<ResultDto> convertToDto(final List<StudentResult> sr) {
-        List<ResultDto> rd = new ArrayList<>();
-       int i = 0;
-        for (StudentResult fr:sr) {
-            int n = sr.get(i).getCategoryId();
-            Optional<Category> c = cr.findById(n);
-            //Category cc=c.get();
+    private List<ResultDto> convertToDto(final List<StudentResult>
+    studentResultList) {
+        List<ResultDto> resultDtoList = new ArrayList<>();
+        int i = 0;
+        for (StudentResult studentResult : studentResultList) {
+            int n = studentResultList.get(i).getCategoryId();
+            Optional<Category> category = categoryRepo.findById(n);
             ResultDto resultDto = new ResultDto();
-            resultDto.setUserName(fr.getSs().getUserName());
-            resultDto.setEmail(fr.getSs().getEmail());
-            resultDto.setCategoryName(c.get().getCategoryName());
-            resultDto.setQuizName(fr.getQe().getTopicName());
-            resultDto.setResult(fr.getResult());
-            resultDto.setDateAndTime(fr.getDateAndTime());
-            resultDto.setObtainMarks(fr.getMaxMarks());
-            resultDto.setCategoryId(c.get().getCategoryId());
-            resultDto.setAttemptedQuestions(fr.getAttemptedQuestions());
-            resultDto.setMaxMarks(fr.getMaxMarks());
-            rd.add(resultDto);
+            resultDto.setUserName(studentResult.getStudentResult().
+                    getUserName());
+            resultDto.setEmail(studentResult.getStudentResult().getEmail());
+            resultDto.setCategoryName(category.get().getCategoryName());
+            resultDto.setQuizName(studentResult.getQuiz().getTopicName());
+            resultDto.setDateAndTime(studentResult.getDateAndTime());
+            resultDto.setObtainMarks(studentResult.getMaxMarks());
+            resultDto.setCategoryId(category.get().getCategoryId());
+            resultDto.setAttemptedQuestions(
+                    studentResult.getAttemptedQuestions());
+            resultDto.setMaxMarks(studentResult.getMaxMarks());
+            resultDtoList.add(resultDto);
             i++;
         }
-        return rd;
+        return resultDtoList;
     }
 
 }

@@ -3,9 +3,10 @@ package com.example.demo.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,8 +15,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.dto.ResultDto;
-import com.example.demo.response.Responsee;
+import com.example.demo.response.Response;
 import com.example.demo.service.ResultService;
+import com.example.demo.validationMessages.Messages;
 
 /**
  * result controller class.
@@ -27,25 +29,26 @@ public class ResultController {
      * auto wiring result service class.
      */
     @Autowired
-    private ResultService rs;
-
+    private ResultService resultService;
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(ResultController.class);
     /**
      * adding result method.
-     * @param sr student result
+     * @param resultDto student result
      * @return response
      */
     @PostMapping("/result")
-    public final ResponseEntity<Object> addRes(
-            @RequestBody final ResultDto sr) {
-        try {
-            ResultDto user = rs.addRes(sr);
-            return Responsee.generateResponce("succcessfully add the data",
-                    HttpStatus.OK, "Student result_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "Student result_Information",
-                    null);
-        }
+    public final Response addResult(
+            @RequestBody final ResultDto resultDto) {
+            resultService.addResult(resultDto);
+            LOGGER.info(Messages.SAVE_RESULT);
+            String message = Messages.SAVE_RESULT;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
     }
 
     /**
@@ -54,15 +57,15 @@ public class ResultController {
      * @return response
      */
     @GetMapping("/result/{id}")
-    public final ResponseEntity<Object> getRes(@PathVariable final int id) {
-        try {
-            Optional<ResultDto> user = rs.getRes(id);
-            return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Student result_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "result_Information", null);
-        }
+    public final Response getResult(
+            @PathVariable final int id) {
+            Optional<ResultDto> resultDto = resultService.getResult(id);
+            LOGGER.info(Messages.FIND_RESULT);
+            String message = Messages.FIND_RESULT;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
+                    message, resultDto);
+       return response;
     }
 
     /**
@@ -70,14 +73,13 @@ public class ResultController {
      * @return response
      */
     @GetMapping("/result")
-    public final ResponseEntity<Object> getAllRes() {
-        try {
-            List<ResultDto> user = rs.getAllRes();
-            return Responsee.generateResponce("succcessfully retrive the data",
-                    HttpStatus.OK, "Student result_Information", user);
-        } catch (Exception e) {
-            return Responsee.generateResponce(e.getMessage(),
-                    HttpStatus.MULTI_STATUS, "result_Information", null);
-        }
+    public final Response getAllResults() {
+            List<ResultDto> resultDto = resultService.getResults();
+            LOGGER.info(Messages.FIND_ALLRESULT);
+            String message = Messages.FIND_ALLRESULT;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code,
+                    message, resultDto);
+       return response;
     }
 }

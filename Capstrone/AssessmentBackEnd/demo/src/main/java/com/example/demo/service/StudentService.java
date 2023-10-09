@@ -5,7 +5,7 @@ import java.util.Optional;
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
 import com.example.demo.dto.StudentSaveDto;
-import com.example.demo.entity.Student;
+
 
 /**
  * student service method.
@@ -13,10 +13,10 @@ import com.example.demo.entity.Student;
 public interface StudentService {
     /**
      * save student method.
-     * @param s student
+     * @param studentSaveDto student
      * @return student
      */
-    StudentSaveDto saveStudent(Student s);
+    String saveStudent(StudentSaveDto studentSaveDto);
 
     /**
      * find by id method.
@@ -27,24 +27,24 @@ public interface StudentService {
 
     /**
      * authenticateUser method.
-     * @param l loginDto
+     * @param loginDto loginDto
      * @return student
      */
-    Optional<StudentDto> aunthenticateUser(LoginDto l);
+    Optional<StudentDto> aunthenticateUser(LoginDto loginDto);
 
     /**
      * find all student method.
      * @return student
      */
-    List<StudentDto> findAllStu();
+    List<StudentDto> findAllStudents();
 
     /**
      * update student method.
-     * @param s  student
+     * @param studentDto  student
      * @param id student id
      * @return student
      */
-    StudentDto updateStudent(StudentDto s, int id);
+    StudentDto updateStudent(StudentDto studentDto, int id);
 
     /**
      * delete student method.

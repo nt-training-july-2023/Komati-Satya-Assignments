@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
-import com.example.demo.entity.Questions;
+
 
 /**
  * Question service interface.
@@ -13,10 +13,10 @@ import com.example.demo.entity.Questions;
 public interface QuestionsService {
     /**
      * add question question.
-     * @param q question q
+     * @param questionDto question
      * @return question
      */
-    QuestionsDto addQuestion(Questions q);
+    QuestionsDto addQuestion(QuestionsDto questionDto);
 
     /**
      * get question method.
@@ -32,18 +32,19 @@ public interface QuestionsService {
 
     /**
      * update question method.
-     * @param q  question
+     * @param questionUpdateDto question
      * @param id question id
      * @return question
      */
-    QuestionsUpdateDto updateQue(QuestionsUpdateDto q, int id);
+    QuestionsUpdateDto updateQuestion(QuestionsUpdateDto
+            questionUpdateDto, int id);
 
     /**
      * find by id method.
      * @param id quiz id
      * @return list of question
      */
-    List<QuestionsDto> findQueById(int id);
+    List<QuestionsDto> findQuestionById(int id);
 
     /**
      * find by question method.

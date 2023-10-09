@@ -1,6 +1,15 @@
 package com.example.demo.dto;
 
 
+import com.example.demo.validationMessages.ValidationMessages;
+import jakarta.persistence.Column;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,27 +22,58 @@ import lombok.Setter;
 @Setter
 public class StudentSaveDto {
     /**
-     * stores user name.
+     * stores the user id.
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int userId;
+    /**
+     * stores the user name.
+     */
+    @Column(nullable = false)
+    @NotBlank(message = ValidationMessages.NAME_NOTBLANK)
     private String userName;
     /**
-     * stores user email.
+     * stores the user email.
      */
+    @Column(nullable = false)
+    @NotBlank(message = ValidationMessages.EMAIL_NOTBLANK)
+    @Pattern(regexp = "^[a-z][a-zA-Z0-9.]*@nucleusteq\\.com",
+    message = ValidationMessages.EMAIL_PATTERN)
     private String email;
     /**
-     * stores user role..
+     * stores the user gender.
      */
-    private String role;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
     /**
-     * stores user gender.
+     * stores the user phone number.
      */
-    private String gender;
-    /**
-     * stores user phone number.
-     */
+    @Column(nullable = false)
+    @NotBlank(message = ValidationMessages.PHONENUMBER_NOTBLANK)
+    @Pattern(regexp = "^[0-9]{10}$",
+    message = ValidationMessages.PASSWORD_PATTERN)
     private String phoneNumber;
     /**
-     * stores user dateOfBirth.
+     * stores the user role.
      */
+    @Column(nullable = false)
+    @NotBlank(message = ValidationMessages.ROLE_NOTBLANK)
+    private String role;
+    /**
+     * stores the user password.
+     */
+    @Column(nullable = false)
+    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])"
+            + "(?=.*[@#$%^&-+=])(?=\\S+$).{8,}$",
+    message = ValidationMessages.PASSWORD_PATTERN)
+    @NotBlank(message = ValidationMessages.PASSWORD_NOTBLANK)
+    private String password;
+    /**
+     * stores the user date of birth.
+     */
+    @NotBlank(message = ValidationMessages.DOB_NOTBLANK)
+    @Column(nullable = false)
     private String dateOfBirth;
 }

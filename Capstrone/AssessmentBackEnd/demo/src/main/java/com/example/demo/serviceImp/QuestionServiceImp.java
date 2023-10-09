@@ -1,9 +1,13 @@
 package com.example.demo.serviceImp;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +20,9 @@ import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.QuestionsRepo;
 import com.example.demo.repository.QuizRepo;
 import com.example.demo.service.QuestionsService;
+import com.example.demo.validationMessages.ErrorMessages;
+import com.example.demo.validationMessages.Messages;
+
 
 /**
  * Question service interface.
@@ -26,62 +33,86 @@ public class QuestionServiceImp implements QuestionsService {
      * auto wiring question repository.
      */
     @Autowired
-    private QuestionsRepo qr;
+    private QuestionsRepo questionsRepo;
     /**
      * auto wiring question repository.
      */
     @Autowired
-    private QuizRepo qrr;
-   /**
-    * constructor.
-    * @param questionsRepo questions repository
-    * @param quizRepo quiz repository
-    */
-    public QuestionServiceImp(final QuestionsRepo questionsRepo,
-            final QuizRepo quizRepo) {
-       this.qr = questionsRepo;
-       this.qrr = quizRepo;
-    }
+    private QuizRepo quizRepo;
+    /**
+     * Creating a instance of Logger Class.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(QuestionServiceImp.class);
 
     /**
      * add question method.
-     * @param que question
+     * @param questionsDto question
      * @return question
      */
     @Override
-    public final QuestionsDto addQuestion(final Questions que) {
-        if (qrr.findById(que.getQui().getQuizId()).isPresent()) {
-            if (!qr.findByQuestion(que.getQuestion()).isPresent()) {
-                QuestionsDto qu = new QuestionsDto();
-                qu.setQuizId(que.getQui().getQuizId());
-                qu.setCorrectOption(que.getCorrectOption());
-                qu.setOption1(que.getOption1());
-                qu.setOption2(que.getOption2());
-                qu.setOption4(que.getOption4());
-                qu.setOption3(que.getOption3());
-                qu.setQuestion(que.getQuestion());
-                qr.save(que);
-                return qu;
+    public final QuestionsDto addQuestion(final QuestionsDto questionsDto) {
+        if (quizRepo.findById(questionsDto.getQuizId()).isPresent()) {
+            if (!questionsRepo.findByQuestion(questionsDto.getQuestion())
+                    .isPresent()) {
+                Set<String> options = new HashSet<>();
+                options.add(questionsDto.getOption1());
+                options.add(questionsDto.getOption2());
+                options.add(questionsDto.getOption3());
+                options.add(questionsDto.getOption4());
+                final int number = 4;
+                if (options.size() < number) {
+                    throw new AlreadyExistException(ErrorMessages
+                           .OPTION_EXIST);
+                }
+                if (questionsDto.getCorrectOption().equals(
+                        questionsDto.getOption1())
+                   || questionsDto.getCorrectOption().equals(
+                           questionsDto.getOption2())
+                   || questionsDto.getCorrectOption().equals(
+                           questionsDto.getOption3())
+                   || questionsDto.getCorrectOption().equals(
+                           questionsDto.getOption4())) {
+                Questions question = new Questions();
+                question.setQid(questionsDto.getQuizId());
+                question.setQuiz(quizRepo.findById(
+                        questionsDto.getQuizId()).get());
+                question.setCorrectOption(questionsDto.getCorrectOption());
+                question.setOption1(questionsDto.getOption1());
+                question.setOption2(questionsDto.getOption2());
+                question.setOption4(questionsDto.getOption4());
+                question.setOption3(questionsDto.getOption3());
+                question.setQuestion(questionsDto.getQuestion());
+                questionsRepo.save(question);
+                LOGGER.info(Messages.SAVE_QUESTION);
+                return questionsDto;
+                } else {
+                    LOGGER.error(ErrorMessages.CORRECT_OPTION);
+                    throw new NotFoundException(ErrorMessages.CORRECT_OPTION);
+                }
             } else {
-                throw new AlreadyExistException("question already exist");
+                LOGGER.error(ErrorMessages.QUESTION_EXIST);
+                throw new AlreadyExistException(ErrorMessages.QUESTION_EXIST);
             }
         } else {
-            throw new NotFoundException("Quiz topic is not there");
+            LOGGER.error(ErrorMessages.QUIZ_NOTPRESENT);
+            throw new NotFoundException(ErrorMessages.QUIZ_NOTPRESENT);
         }
     }
-
     /**
      * get all questions.
      * @return list of questions.
      */
     @Override
     public final List<QuestionsDto> getQuestions() {
-        if (qr.findAll().size() != 0) {
-            List<Questions> que = qr.findAll();
-            List<QuestionsDto> qd = convertToDto(que);
-            return qd;
+        if (questionsRepo.findAll().size() != 0) {
+            List<Questions> questions = questionsRepo.findAll();
+            List<QuestionsDto> questionDto = convertToDto(questions);
+            LOGGER.info(Messages.FIND_ALLQUESTION);
+            return questionDto;
         } else {
-            throw new AllNotFoundException("no question is present");
+            LOGGER.error(ErrorMessages.NO_QUESTION);
+            throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
         }
     }
     /**
@@ -90,118 +121,141 @@ public class QuestionServiceImp implements QuestionsService {
      * @return list of questions
      */
     private List<QuestionsDto> convertToDto(final List<Questions> q) {
-        List<QuestionsDto> qd = new ArrayList<>();
-        for (Questions que : q) {
-            QuestionsDto qu = new QuestionsDto();
-            qu.setQuizId(que.getQui().getQuizId());
-            qu.setCorrectOption(que.getCorrectOption());
-            qu.setOption1(que.getOption1());
-            qu.setOption2(que.getOption2());
-            qu.setOption4(que.getOption4());
-            qu.setOption3(que.getOption3());
-            qu.setQuestion(que.getQuestion());
-            qu.setQuestionId(que.getQid());
-            qd.add(qu);
+        List<QuestionsDto> quesDto = new ArrayList<>();
+        for (Questions questions : q) {
+            QuestionsDto questionDto = new QuestionsDto();
+            questionDto.setQuizId(questions.getQuiz().getQuizId());
+            questionDto.setCorrectOption(questions.getCorrectOption());
+            questionDto.setOption1(questions.getOption1());
+            questionDto.setOption2(questions.getOption2());
+            questionDto.setOption4(questions.getOption4());
+            questionDto.setOption3(questions.getOption3());
+            questionDto.setQuestion(questions.getQuestion());
+            questionDto.setQuestionId(questions.getQid());
+            quesDto.add(questionDto);
         }
-        return qd;
+        return quesDto;
     }
-
     /**
      * delete method.
      * @param id question id
      */
     @Override
     public final void delete(final int id) {
-        if (qr.findAll().size() != 0) {
-            if (qr.findById(id).isPresent()) {
-                qr.deleteById(id);
+        if (questionsRepo.findAll().size() != 0) {
+            if (questionsRepo.findById(id).isPresent()) {
+                questionsRepo.deleteById(id);
+                LOGGER.info(Messages.DELETE_QUESTION);
             } else {
-                throw new NotFoundException(
-                        "wrong question Id,enter a valid Id");
+                LOGGER.error(ErrorMessages.WRONG_QUESTIONID);
+                throw new NotFoundException(ErrorMessages.WRONG_QUESTIONID);
             }
         } else {
-            throw new AllNotFoundException("no question is present");
+            LOGGER.error(ErrorMessages.NO_QUESTION);
+            throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
         }
     }
-
     /**
      * update question method.
-     * @param q  questions.
+     * @param questionDto questions.
      * @param id question id
      * @return questions
      */
     @Override
-    public final QuestionsUpdateDto updateQue(final QuestionsUpdateDto q,
+    public final QuestionsUpdateDto updateQuestion(final QuestionsUpdateDto
+            questionDto,
             final int id) {
-        if (qr.findAll().size() != 0) {
-        Optional<Questions> existingQue = qr.findById(id);
-        if (existingQue.isPresent()) {
-            Questions exiQue = existingQue.get();
-            exiQue.setOption1(q.getOption1());
-            exiQue.setOption2(q.getOption2());
-            exiQue.setOption3(q.getOption3());
-            exiQue.setOption4(q.getOption4());
-            exiQue.setCorrectOption(q.getCorrectOption());
-            exiQue.setQuestion(q.getQuestion());
-            qr.save(exiQue);
-            return q;
+        if (questionsRepo.findAll().size() != 0) {
+            Optional<Questions> existingQue = questionsRepo.findById(id);
+            if (existingQue.isPresent()) {
+                Questions exiQue = existingQue.get();
+                Optional<Questions> question = questionsRepo
+                        .findByQuestion(questionDto.getQuestion());
+                if (question.isPresent()
+                        && !(question.get().getQid() == id)) {
+                throw new AlreadyExistException(ErrorMessages.QUESTION_EXIST);
+                }
+                Set<String> options = new HashSet<>();
+                options.add(questionDto.getOption1());
+                options.add(questionDto.getOption2());
+                options.add(questionDto.getOption3());
+                options.add(questionDto.getOption4());
+                final int number = 4;
+                if (options.size() < number) {
+                    throw new AlreadyExistException(ErrorMessages
+                           .OPTION_EXIST);
+                }
+                if (questionDto.getCorrectOption().equals(
+                        questionDto.getOption1())
+                   || questionDto.getCorrectOption().equals(
+                           questionDto.getOption2())
+                   || questionDto.getCorrectOption().equals(
+                           questionDto.getOption3())
+                   || questionDto.getCorrectOption().equals(
+                           questionDto.getOption4())) {
+                exiQue.setOption1(questionDto.getOption1());
+                exiQue.setOption2(questionDto.getOption2());
+                exiQue.setOption3(questionDto.getOption3());
+                exiQue.setOption4(questionDto.getOption4());
+                exiQue.setCorrectOption(questionDto.getCorrectOption());
+                exiQue.setQuestion(questionDto.getQuestion());
+                questionsRepo.save(exiQue);
+                LOGGER.info(Messages.UPDATE_QUESTION);
+                return questionDto;
+                } else {
+                    LOGGER.error(ErrorMessages.CORRECT_OPTION);
+                    throw new NotFoundException(ErrorMessages.CORRECT_OPTION);
+                }
+            } else {
+                LOGGER.error(ErrorMessages.WRONG_QUESTIONID);
+                throw new NotFoundException(ErrorMessages.WRONG_QUESTIONID);
+            }
         } else {
-            throw new NotFoundException("wrong question Id,enter a valid Id");
-        }
-        } else {
-            throw new AllNotFoundException("no question is present");
+            LOGGER.error(ErrorMessages.NO_QUESTION);
+            throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
         }
     }
-
     /**
      * find by question id.
      * @param id question id
      * @return questions
      */
     @Override
-    public final List<QuestionsDto> findQueById(final int id) {
-        if (qr.findAll().size() != 0) {
-            if (qr.findQueById(id).size() != 0) {
-                List<Questions> l = qr.findQueById(id);
-                List<QuestionsDto> ld = convertToDto(l);
-                return ld;
-            } else {
-                throw new NotFoundException(
-                        "wrong question Id,enter a valid Id");
-            }
+    public final List<QuestionsDto> findQuestionById(final int id) {
+        if (questionsRepo.findQueById(id).size() != 0) {
+                List<Questions> questions = questionsRepo.findQueById(id);
+                List<QuestionsDto> questionDto = convertToDto(questions);
+                LOGGER.info(Messages.FIND_QUESTIONBYQUIZID);
+                return questionDto;
         } else {
-            throw new AllNotFoundException("no question is present");
+            LOGGER.error(ErrorMessages.NO_QUESTION);
+            throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
         }
     }
-
     /**
      * find by question method.
-     * @param name question name
+     * @param question question name
      * @return questions
      */
     @Override
-    public final Optional<QuestionsDto> findByQuestion(final String name) {
-        if (qr.findAll().size() != 0) {
-            if (qr.findByQuestion(name).isPresent()) {
-                QuestionsDto qu = new QuestionsDto();
-                Optional<Questions> q = qr.findByQuestion(name);
-                Questions que = q.get();
-                qu.setQuizId(que.getQui().getQuizId());
-                qu.setCorrectOption(que.getCorrectOption());
-                qu.setOption1(que.getOption1());
-                qu.setOption2(que.getOption2());
-                qu.setOption4(que.getOption4());
-                qu.setOption3(que.getOption3());
-                qu.setQuestion(que.getQuestion());
-                qu.setQuestionId(que.getQid());
-                return Optional.of(qu);
-            } else {
-                throw new NotFoundException(
-                        "Question is not there, enter a valid question");
+    public final Optional<QuestionsDto> findByQuestion(final String question) {
+        List<Questions> questionsList = questionsRepo.findAll();
+        for (Questions questions : questionsList) {
+            if (questions.getQuestion().contains(question)) {
+                QuestionsDto questionsDto = new QuestionsDto();
+                questionsDto.setQuizId(questions.getQuiz().getQuizId());
+                questionsDto.setCorrectOption(questions.getCorrectOption());
+                questionsDto.setOption1(questions.getOption1());
+                questionsDto.setOption2(questions.getOption2());
+                questionsDto.setOption4(questions.getOption4());
+                questionsDto.setOption3(questions.getOption3());
+                questionsDto.setQuestion(questions.getQuestion());
+                questionsDto.setQuestionId(questions.getQid());
+                LOGGER.info(Messages.FIND_QUESTION);
+                return Optional.of(questionsDto);
             }
-        } else {
-            throw new AllNotFoundException("no question is present");
         }
+        LOGGER.error(ErrorMessages.NO_QUESTION);
+        throw new NotFoundException(ErrorMessages.NO_QUESTION);
     }
-
 }

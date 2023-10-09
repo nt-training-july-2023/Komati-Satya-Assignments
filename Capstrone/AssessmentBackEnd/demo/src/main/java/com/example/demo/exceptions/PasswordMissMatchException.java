@@ -7,10 +7,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.CONFLICT)
 public class PasswordMissMatchException extends RuntimeException {
   /**
-   * serialVersionUID variable.
-   */
-  private static final long serialVersionUID = 1L;
-  /**
    * constructor.
    * @param message error message
    */

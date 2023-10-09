@@ -1,6 +1,8 @@
 package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
+
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
@@ -28,7 +30,7 @@ public class Quiz {
     /**
      * stores the topic name.
      */
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String topicName;
     /**
      * stores the topic description.
@@ -36,111 +38,134 @@ public class Quiz {
     @Column(nullable = false)
     private String topicDescription;
     /**
+     * stores the time.
+     */
+    @Column(nullable = false)
+    private int timer;
+    /**
      * get quiz.
      * @return quiz
      */
-    public final int getQuizId() {
+    public int getQuizId() {
         return quizId;
     }
     /**
      * set quiz id.
-     * @param quizIdd quiz id
+     * @param quizid quiz id
      */
-    public final void setQuizId(final int quizIdd) {
-        this.quizId = quizIdd;
+    public void setQuizId(final int quizid) {
+        this.quizId = quizid;
     }
     /**
      * get question.
      * @return topic
      */
-    public final String getTopicName() {
+    public String getTopicName() {
         return topicName;
     }
     /**
      * set topic name.
-     * @param topicNamee topic
+     * @param topicname topic
      */
-    public final void setTopicName(final String topicNamee) {
-        this.topicName = topicNamee;
+    public void setTopicName(final String topicname) {
+        this.topicName = topicname;
     }
     /**
      * get question.
      * @return topic
      */
-    public final String getTopicDescription() {
+    public String getTopicDescription() {
         return topicDescription;
     }
     /**
      * get question.
-     * @param topicDescriptionn topic
+     * @param topicdescription topic
      */
-    public final void setTopicDescription(final String topicDescriptionn) {
-        this.topicDescription = topicDescriptionn;
+    public void setTopicDescription(final String topicdescription) {
+        this.topicDescription = topicdescription;
+    }
+    /**
+     * get timer.
+     * @return time
+     */
+    public int getTimer() {
+        return timer;
+    }
+    /**
+     * set time.
+     * @param timervalue time
+     */
+    public void setTimer(final int timervalue) {
+        this.timer = timervalue;
     }
     /**
      * get question.
      * @return category
      */
-    public final Category getCate() {
-        return new Category(cate.getCategoryId(), cate.getCategoryName(),
-                cate.getCategoryDescription());
+    public Category getCategory() {
+        return new Category(category.getCategoryId(),
+                category.getCategoryName(),
+                category.getCategoryDescription());
     }
     /**
      * get question.
-     * @param catee category
+     * @param categoryy category
      */
-    public final void setCate(final Category catee) {
-        this.cate = new Category(catee.getCategoryId(), catee.getCategoryName(),
-                catee.getCategoryDescription());
+    public void setCategory(final Category categoryy) {
+        this.category = new Category(categoryy.getCategoryId(),
+                categoryy.getCategoryName(),
+                categoryy.getCategoryDescription());
     }
     /**
      * get question.
      * @return list
      */
-    public final List<StudentResult> getSe() {
-        return new ArrayList<>(se);
+    public List<StudentResult> getStudentResult() {
+        return new ArrayList<>(studentResult);
     }
     /**
      * get question.
-     * @param see student result
+     * @param student student result
      */
-    public final void setSe(final List<StudentResult> see) {
-        this.se = new ArrayList<>(see);
+    public void setStudentResult(final List<StudentResult> student) {
+        this.studentResult = new ArrayList<>(student);
     }
     /**
      * get question.
      * @return question question
      */
-    public final List<Questions> getQue() {
-        return new ArrayList<>(que);
+    public List<Questions> getQuestions() {
+        return new ArrayList<>(questions);
     }
     /**
      * set question.
-     * @param quee question
+     * @param question question
      */
-    public final void setQue(final List<Questions> quee) {
-        this.que = new ArrayList<>(quee);
+    public void setQuestions(final List<Questions> question) {
+        this.questions = new ArrayList<>(question);
     }
     /**
      * Constructor.
      * @param quizid quiz id
      * @param topicname topic name
      * @param topicdescription description
+     * @param timerr time
      */
     public Quiz(final int quizid, final String topicname,
-            final String topicdescription) {
+            final String topicdescription, final int timerr) {
         super();
         this.quizId = quizid;
         this.topicName = topicname;
         this.topicDescription = topicdescription;
+        this.timer = timerr;
     }
     /**
      * Many to one relationship with category.
      */
     @ManyToOne
     @JoinColumn(name = "c_fk")
-    @JsonIgnoreProperties("qu")
-    private Category cate;
+    @JsonIgnoreProperties("quiz")
+    private Category category;
     /**
      * one to many relationship with quiz.
      */
@@ -148,12 +173,12 @@ public class Quiz {
     @JoinColumn(name = "qz_id", referencedColumnName = "quizId")
     @JsonIgnoreProperties("Quiz")
     @JsonIgnore
-    private List<StudentResult> se;
+    private List<StudentResult> studentResult;
     /**
      * one to many relationship with questions.
      */
     @OneToMany(targetEntity = Questions.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "qz_fk", referencedColumnName = "quizId")
     @JsonIgnoreProperties("Quiz")
-    private List<Questions> que;
+    private List<Questions> questions;
 }

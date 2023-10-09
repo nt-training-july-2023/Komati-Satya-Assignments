@@ -2,6 +2,8 @@ package com.example.demo.entity;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -28,7 +30,7 @@ public class Category {
     /**
      * store category name.
      */
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String categoryName;
     /**
      * store category description.
@@ -41,74 +43,74 @@ public class Category {
     @OneToMany(targetEntity = Quiz.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "c_fk", referencedColumnName = "categoryId")
     @JsonIgnoreProperties("Category")
-    private List<Quiz> qu;
+    private List<Quiz> quiz;
     /**
      * get category.
      * @return category id
      */
-    public final int getCategoryId() {
+    public int getCategoryId() {
         return categoryId;
     }
     /**
      * set category.
      * @param categoryid id
      */
-    public final void setCategoryId(final int categoryid) {
+    public void setCategoryId(final int categoryid) {
         this.categoryId = categoryid;
     }
     /**
      * get category Name.
      * @return category name
      */
-    public final String getCategoryName() {
+    public String getCategoryName() {
         return categoryName;
     }
     /**
      * set category name.
      * @param categoryname category name
      */
-    public final void setCategoryName(final String categoryname) {
+    public void setCategoryName(final String categoryname) {
         this.categoryName = categoryname;
     }
     /**
      * get category Name.
      * @return name name
      */
-    public final String getCategoryDescription() {
+    public String getCategoryDescription() {
         return categoryDescription;
     }
     /**
      * set category description.
      * @param categorydescription category
      */
-    public final void setCategoryDescription(final String categorydescription) {
+    public void setCategoryDescription(final String categorydescription) {
         this.categoryDescription = categorydescription;
     }
     /**
      * get category Name.
      * @return quiz quiz
      */
-    public final List<Quiz> getQu() {
-        return new ArrayList<>(qu);
+    public List<Quiz> getQuiz() {
+        return new ArrayList<>(quiz);
     }
     /**
      * set method.
-     * @param quu quiz
+     * @param quizz quiz
      */
-    public final void setQu(final List<Quiz> quu) {
-        this.qu = new ArrayList<>(quu);
+    public void setQuiz(final List<Quiz> quizz) {
+        this.quiz = new ArrayList<>(quizz);
     }
     /**
      * Constructor.
-     * @param categoryIdd id
-     * @param categoryNamee name
-     * @param categoryDescriptionn description
+     * @param categoryid id
+     * @param categoryname name
+     * @param categorydescription description
      */
-    public Category(final int categoryIdd, final String categoryNamee,
-           final String categoryDescriptionn) {
+    public Category(final int categoryid, final String categoryname,
+           final String categorydescription) {
         super();
-        this.categoryId = categoryIdd;
-        this.categoryName = categoryNamee;
-        this.categoryDescription = categoryDescriptionn;
+        this.categoryId = categoryid;
+        this.categoryName = categoryname;
+        this.categoryDescription = categorydescription;
     }
 }

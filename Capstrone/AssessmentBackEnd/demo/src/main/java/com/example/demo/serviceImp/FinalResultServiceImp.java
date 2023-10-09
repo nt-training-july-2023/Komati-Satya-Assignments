@@ -3,7 +3,8 @@ package com.example.demo.serviceImp;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,45 +12,39 @@ import com.example.demo.dto.ResultDto;
 import com.example.demo.entity.FinalRes;
 
 import com.example.demo.exceptions.AllNotFoundException;
-import com.example.demo.exceptions.NotFoundException;
 import com.example.demo.repository.CategoryRepo;
 import com.example.demo.repository.FinalResultRepo;
 import com.example.demo.repository.StudentResultRepo;
 import com.example.demo.service.FinalResService;
+import com.example.demo.validationMessages.ErrorMessages;
+import com.example.demo.validationMessages.Messages;
 
 /**
  * Final result service interface.
  */
+@SuppressWarnings("unused")
 @Service
 public class FinalResultServiceImp implements FinalResService {
     /**
      * auto wiring final result repository.
      */
     @Autowired
-    private FinalResultRepo fs;
+    private FinalResultRepo finalResultRepo;
     /**
      * auto wiring student result repository.
      */
     @Autowired
-    private StudentResultRepo s;
+    private StudentResultRepo studentResultRepo;
     /**
      * auto wiring final category repository.
      */
     @Autowired
-    private CategoryRepo cr;
+    private CategoryRepo categoryRepo;
     /**
-     * constructor.
-     * @param finalRepo final repository
-     * @param categoryRepo category repository
-     * @param resultRepo result repository
+     * Creating a instance of Logger Class.
      */
-    public FinalResultServiceImp(final FinalResultRepo finalRepo,
-           final CategoryRepo categoryRepo,
-           final StudentResultRepo resultRepo) {
-       this.fs = finalRepo;
-       this.cr = categoryRepo;
-       this.s = resultRepo;
-    }
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(FinalResultServiceImp.class);
     /**
      * get by id method.
      * @param id final result id
@@ -57,58 +52,56 @@ public class FinalResultServiceImp implements FinalResService {
      */
     @Override
     public final List<ResultDto> getById(final int id) {
-        if (fs.findAll().size() != 0) {
-            if (fs.getByUserId(id).size() != 0) {
-            List<FinalRes> finalRes = fs.getByUserId(id);
-            List<ResultDto> resultDto = convertToDto(finalRes);
+        if (finalResultRepo.findAll().size() != 0) {
+                List<FinalRes> finalRes = finalResultRepo.getByUserId(id);
+                List<ResultDto> resultDto = convertToDto(finalRes);
+                LOGGER.info(Messages.FIND_RESULT);
                 return resultDto;
-            } else {
-                throw new NotFoundException("User did not take the test");
-            }
         } else {
-            throw new AllNotFoundException("No user is there");
+            LOGGER.error(ErrorMessages.NO_USER);
+            throw new AllNotFoundException(ErrorMessages.NO_USER);
         }
     }
-     /**
-      * convert to dto method.
-      * @param finalRes final result
-      * @return list of result
-      */
-     private List<ResultDto> convertToDto(final List<FinalRes> finalRes) {
-        List<ResultDto> r = new ArrayList<>();
-        for (FinalRes f:finalRes) {
+    /**
+     * convert to dto method.
+     * @param finalRes final result
+     * @return list of result
+     */
+    private List<ResultDto> convertToDto(final List<FinalRes> finalRes) {
+        List<ResultDto> resultList = new ArrayList<>();
+        for (FinalRes finalResult : finalRes) {
             ResultDto resultDto = new ResultDto();
-            resultDto.setCategoryName(f.getCategoryName());
-            resultDto.setDateAndTime(f.getDateAndTime());
-            resultDto.setDateAndTime(f.getDateAndTime());
-            resultDto.setQuizName(f.getQuizTopic());
-            resultDto.setUserName(f.getUserName());
-            resultDto.setObtainMarks(f.getMarks());
-         //   Optional<Category> c=cr.findByCategoryName(f.getCategoryName());
-            resultDto.setCategoryId(f.getCategoryId());
-            resultDto.setAttemptedQuestions(f.getAttemptedQuestions());
-            resultDto.setEmail(f.getEmail());
-            resultDto.setResultId(f.getResultId());
-            resultDto.setMaxMarks(f.getMaxMarks());
-            resultDto.setUserId(f.getUserId());
-            resultDto.setTotalQuestions(f.getTotalNoOfQuestions());
-            resultDto.setUserId(f.getUserId());
-//            resultDto.setTotalQuestions(f.);
-            r.add(resultDto);
+            resultDto.setCategoryName(finalResult.getCategoryName());
+            resultDto.setDateAndTime(finalResult.getDateAndTime());
+            resultDto.setDateAndTime(finalResult.getDateAndTime());
+            resultDto.setQuizName(finalResult.getQuizTopic());
+            resultDto.setUserName(finalResult.getUserName());
+            resultDto.setObtainMarks(finalResult.getMarks());
+            resultDto.setCategoryId(finalResult.getCategoryId());
+            resultDto.setAttemptedQuestions(finalResult.
+                    getAttemptedQuestions());
+            resultDto.setEmail(finalResult.getEmail());
+            resultDto.setMaxMarks(finalResult.getMaxMarks());
+            resultDto.setUserId(finalResult.getUserId());
+            resultDto.setTotalQuestions(finalResult.getTotalNoOfQuestions());
+            resultDto.setUserId(finalResult.getUserId());
+            resultList.add(resultDto);
         }
-      return r;
-}
-     /**
-      * find all methods.
-      */
+        return resultList;
+    }
+    /**
+     * find all methods.
+     */
     @Override
     public final List<ResultDto> findAll() {
-       if (fs.findAll().size() != 0) {
-           List<FinalRes> finalResult = fs.findAll();
-           List<ResultDto> resultDto = convertToDto(finalResult);
-           return resultDto;
-       } else {
-           throw new AllNotFoundException("No results are there");
-       }
+        if (finalResultRepo.findAll().size() != 0) {
+            List<FinalRes> finalResult = finalResultRepo.findAll();
+            List<ResultDto> resultDto = convertToDto(finalResult);
+            LOGGER.info(Messages.FIND_ALLRESULT);
+            return resultDto;
+        } else {
+            LOGGER.error(ErrorMessages.NO_USER);
+            throw new AllNotFoundException(ErrorMessages.NO_USER);
+        }
     }
-  }
+}
