@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,14 +13,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
 import com.example.demo.dto.StudentSaveDto;
 import com.example.demo.response.Response;
 import com.example.demo.service.StudentService;
 import com.example.demo.validationMessages.Messages;
-
 import jakarta.validation.Valid;
 
 /**
@@ -65,7 +61,7 @@ public class StudentController {
     @GetMapping("/student/{id}")
     public final Response findById(
             @PathVariable final int id) {
-            Optional<StudentDto> studentDto = studentSevice.findById(id);
+            StudentDto studentDto = studentSevice.findById(id);
             LOGGER.info(Messages.FIND_STUDENTBYID);
             String message = Messages.FIND_STUDENTBYID;
             Integer code = HttpStatus.OK.value();
@@ -82,7 +78,7 @@ public class StudentController {
     @PostMapping("/student/login")
     public final Response login(
             @RequestBody @Valid final LoginDto loginDto) {
-            Optional<StudentDto> studentDto = studentSevice.
+            StudentDto studentDto = studentSevice.
                     aunthenticateUser(loginDto);
             LOGGER.info(Messages.LOGIN_STUDENT);
             String message = Messages.LOGIN_STUDENT;

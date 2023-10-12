@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import com.example.demo.dto.CategoryDto;
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
 import com.example.demo.entity.Category;
@@ -47,7 +49,8 @@ class QuizServiceImpTest {
         quiz.setQuizId(quizDto.getQuizId());
         quiz.setTopicDescription(quizDto.getTopicDescription());
         quiz.setTopicName(quizDto.getTopicName());
-        quizService.addQuiz(quizDto);
+        QuizDto quizDto2 = quizService.addQuiz(quizDto);
+        assertEquals(quizDto2,quizDto);
     }
     @Test
     public void testCategoryNotPresent() {
@@ -72,14 +75,12 @@ class QuizServiceImpTest {
         Quiz quiz=new Quiz(1,"variables","java variables",60);   
         Category category=new Category(10,"java","java basics");
         quiz.setCategory(category);
+        QuizDto expectedQuizDto=new QuizDto(1,"variables","java variables",10,60);   
         
         when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
         when(quizRepo.findById(quiz.getQuizId())).thenReturn(Optional.of(quiz));
-        Optional<QuizDto> quizDto=quizService.getQuiz(quiz.getQuizId());
-        assertEquals(quiz.getCategory().getCategoryId(),quizDto.get().getCategoryId());
-        assertEquals(quiz.getTopicName(),quizDto.get().getTopicName());
-        assertEquals(quiz.getTopicDescription(),quizDto.get().getTopicDescription());
-        assertEquals(quiz.getQuizId(),quizDto.get().getQuizId());
+        QuizDto quizDto=quizService.getQuiz(quiz.getQuizId());
+        assertEquals(quizDto,expectedQuizDto);
     }
     @Test
     public void testQuizNotPresent() {
@@ -100,19 +101,23 @@ class QuizServiceImpTest {
     
     @Test
     public void testFindAll() {
-        List<Quiz> quizList=new ArrayList<>();
-        Quiz quiz=new Quiz(1,"variables","java variables",60);   
-        Category c=new Category(10,"java","java basics");
-        quiz.setCategory(c);
-        quizList.add(quiz);
+        QuizDto quizDto = new QuizDto();
+        quizDto.setTopicName("arrays");
+        quizDto.setQuizId(1);
+        Category category = new Category(2,"java","java basics");
+        quizDto.setCategoryId(2);
         
-        when(quizRepo.findAll()).thenReturn(quizList);
-        List<QuizDto> quizDto=quizService.findAll();
-        assertEquals(1,quizDto.size());
-        assertEquals(quiz.getQuizId(),quizDto.get(0).getQuizId());
-        assertEquals(quiz.getTopicName(),quizDto.get(0).getTopicName());
-        assertEquals(quiz.getTopicDescription(),quizDto.get(0).getTopicDescription());
-        assertEquals(quiz.getQuizId(),quizDto.get(0).getQuizId());
+        Quiz quiz = new Quiz();
+        quiz.setQuizId(quizDto.getQuizId());
+        quiz.setTopicName(quizDto.getTopicName());
+        quiz.setCategory(category);
+        List<Quiz> listofquiz = new ArrayList<>();
+        listofquiz.add(quiz);
+        
+        quizRepo.save(quiz);
+        when(quizRepo.findAll()).thenReturn(listofquiz);
+        List<QuizDto> quizList = quizService.findAll();
+        assertEquals(Collections.singletonList(quizDto),quizList);
     }
     @Test
     public void testAllquizNotFound() {
@@ -139,9 +144,7 @@ class QuizServiceImpTest {
         quizList.add(quiz);
         when(quizRepo.findAll()).thenReturn(quizList);
         QuizUpdateDto qd=quizService.updateQuiz(quizUpdateDto, 1);
-        assertEquals(quiz.getTopicName(),qd.getTopicName());
-        assertEquals(quiz.getTopicDescription(),qd.getTopicDescription());
-        assertEquals(quiz.getQuizId(),qd.getQuizId());
+        assertEquals(qd,quizUpdateDto);
         
     }
     @Test
@@ -169,7 +172,8 @@ class QuizServiceImpTest {
         
         when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
         when(quizRepo.findById(1)).thenReturn(Optional.of(quiz));
-        quizService.deleteQuiz(1);              
+        quizService.deleteQuiz(1); 
+        assertFalse(quizRepo.existsById(1));
     }
     @Test
     public void testDeleteIdNotFound() {
@@ -188,21 +192,25 @@ class QuizServiceImpTest {
     }
     @Test
     public void testQuizByCategoryId() {
-        Quiz quiz1=new Quiz(1,"variables","java variables",60);   
-        Category category=new Category(10,"java","java basics");
-        quiz1.setCategory(category);
-        Quiz quiz2=new Quiz(2,"arrays","java arrays",60);
-        quiz2.setCategory(category);
-        List<Quiz> quiz=new ArrayList<>();
-        quiz.add(quiz1);
-        quiz.add(quiz2);
+        QuizDto quizDto=new QuizDto(1,"variables","java variables",10,60); 
+        CategoryDto categoryDto=new CategoryDto(10,"java","java basics");
+        Category category = new Category();
+        category.setCategoryDescription(categoryDto.getCategoryDescription());
+        category.setCategoryName(categoryDto.getCategoryName());
+        category.setCategoryId(categoryDto.getCategoryId());
+        Quiz quiz=new Quiz();
+        quiz.setCategory(category);
+        quiz.setQuizId(quizDto.getQuizId());
+        quiz.setTopicName(quizDto.getTopicName());
+        quiz.setTopicDescription(quizDto.getTopicDescription());
+        quiz.setTimer(quizDto.getTimer());
+     
+        List<Quiz> quizList=new ArrayList<>();
+        quizList.add(quiz);
         
-        when(quizRepo.findQuizById(10)).thenReturn(quiz);
-        List<QuizDto> quizDto=quizService.findQuizById(10);
-      assertEquals("variables",quizDto.get(0).getTopicName());  
-      assertEquals("java variables",quizDto.get(0).getTopicDescription());
-      assertEquals(10,quizDto.get(0).getCategoryId());
-        
+        when(quizRepo.findQuizById(1)).thenReturn(quizList);
+        List<QuizDto> quizDtoList=quizService.findQuizById(1);
+       assertEquals(quizDtoList,Collections.singletonList(quizDto));
     }
      @Test
     void testFindQuizByCategoryNoQuizException() {
@@ -216,15 +224,12 @@ class QuizServiceImpTest {
          Quiz quiz=new Quiz(1,"variables","java variables",60);   
          Category category=new Category(10,"java","java basics");
          quiz.setCategory(category);
+         QuizDto quizDto2=new QuizDto(1,"variables","java variables",10,60);
          
          when(quizRepo.findAll()).thenReturn(Collections.singletonList(new Quiz()));
          when(quizRepo.findQuizByName(quiz.getTopicName())).thenReturn(Optional.of(quiz));
-         Optional<QuizDto> quizDto=quizService.findQuizByName(quiz.getTopicName());
-         assertTrue(quizDto.isPresent());    
-         assertEquals(quiz.getCategory().getCategoryId(),quizDto.get().getCategoryId());
-         assertEquals(quiz.getTopicName(),quizDto.get().getTopicName());
-         assertEquals(quiz.getTopicDescription(),quizDto.get().getTopicDescription());
-         assertEquals(quiz.getQuizId(),quizDto.get().getQuizId());
+         QuizDto quizDto=quizService.findQuizByName(quiz.getTopicName());
+         assertEquals(quizDto,quizDto2);
     }
      @Test
    void testQuizNotFoundException() {

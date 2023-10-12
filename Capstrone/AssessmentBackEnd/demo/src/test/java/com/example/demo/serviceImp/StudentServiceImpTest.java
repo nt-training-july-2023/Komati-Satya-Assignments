@@ -56,18 +56,12 @@ class StudentServiceImpTest {
         student.setGender(studentSaveDto.getGender());
         student.setPhoneNumber(studentSaveDto.getPhoneNumber());
         String register=studentService.saveStudent(studentSaveDto);
-     
-        assertEquals(studentSaveDto.getUserName(),student.getUserName());
-        assertEquals(studentSaveDto.getDateOfBirth(),student.getDateOfBirth());
-        assertEquals(studentSaveDto.getEmail(),student.getEmail());
-        assertEquals(studentSaveDto.getRole(),student.getRole());
-        assertEquals(studentSaveDto.getGender(),student.getGender());
-        assertEquals(studentSaveDto.getPhoneNumber(),student.getPhoneNumber());  
+        assertEquals(register,"register");
     }
     @Test
     public void testDuplicateEmai() {
         StudentSaveDto studentDto=new StudentSaveDto();
-        studentDto.setEmail("satya1919@gmail.com");
+        studentDto.setEmail("satya1919@nucleusteq.com");
         Student student=new Student();
         when(studentRepo.findByEmail(studentDto.getEmail())).thenReturn(Optional.of(student));
         assertThrows(DuplicateEmailException.class, () ->{   studentService.saveStudent(studentDto);
@@ -75,8 +69,18 @@ class StudentServiceImpTest {
     }
     @Test
     public void testFindById() {
-        int studentId=1;
+        StudentDto studentDto=new StudentDto();
+        int studentId=1; 
+        studentDto.setUserId(studentId);
+        studentDto.setUserName("Satya");
+        studentDto.setEmail("satya1919@nucleusteq.com");
+        studentDto.setDateOfBirth("24-02-2001");
+        studentDto.setGender(Gender.female);
+        studentDto.setPhoneNumber("8639924113");
+        studentDto.setRole("student");
+        
         Student student=new Student();
+        student.setUserId(studentId);;
         student.setUserName("Satya");
         student.setEmail("satya1919@nucleusteq.com");
         student.setDateOfBirth("24-02-2001");
@@ -86,15 +90,9 @@ class StudentServiceImpTest {
         student.setRole("student");
         
         when(studentRepo.findById(studentId)).thenReturn(Optional.of(student));
-        Optional<StudentDto> studentDto=studentService.findById(studentId);
-        assertTrue(studentDto.isPresent());
-        assertEquals(student.getUserName(),studentDto.get().getUserName());
-        assertEquals(student.getDateOfBirth(),studentDto.get().getDateOfBirth());
-        assertEquals(student.getEmail(),studentDto.get().getEmail());
-        assertEquals(student.getRole(),studentDto.get().getRole());
-        assertEquals(student.getGender(),studentDto.get().getGender());
-        assertEquals(student.getPhoneNumber(),studentDto.get().getPhoneNumber());  
-        assertEquals(student.getUserId(),studentDto.get().getUserId());
+        StudentDto studentDto2=studentService.findById(studentId);
+        assertEquals(studentDto2,studentDto);
+        
     }
     @Test   
     public void testStudentNotFound() {
@@ -105,19 +103,31 @@ class StudentServiceImpTest {
     }
     @Test
     public void testFindAllStudents() {
-        List<Student> student=new ArrayList<>();
-        Student student1=new Student();
-        student1.setUserName("Satya");
-        Student student2=new Student();
-        student2.setUserName("Siddu");
-        student.add(student1);
-        student.add(student2);
+        List<Student> studentList=new ArrayList<>();
+        StudentDto studentDto=new StudentDto();
+        int studentId=1; 
+        studentDto.setUserId(studentId);
+        studentDto.setUserName("Satya");
+        studentDto.setEmail("satya1919@nucleusteq.com");
+        studentDto.setDateOfBirth("24-02-2001");
+        studentDto.setGender(Gender.female);
+        studentDto.setPhoneNumber("8639924113");
+        studentDto.setRole("student");
         
-        when(studentRepo.findAll()).thenReturn(student);
-        List<StudentDto> studentDto=studentService.findAllStudents();
-        assertEquals(2,studentDto.size());
-        assertEquals("Satya",studentDto.get(0).getUserName());
-        assertEquals("Siddu",studentDto.get(1).getUserName());
+        Student student=new Student();
+        student.setUserId(studentId);
+        student.setUserName("Satya");
+        student.setEmail("satya1919@nucleusteq.com");
+        student.setDateOfBirth("24-02-2001");
+        student.setGender(Gender.female);
+        student.setPhoneNumber("8639924113");
+        student.setPassword("Satya@1919");
+        student.setRole("student");
+        studentList.add(student);
+
+        when(studentRepo.findAll()).thenReturn(studentList);
+        List<StudentDto> studentDtoList=studentService.findAllStudents();
+        assertEquals(studentDtoList,Collections.singletonList(studentDto));
     }
    
     @Test
@@ -143,7 +153,6 @@ class StudentServiceImpTest {
         when(studentRepo.findById(studentId)).thenReturn(Optional.of(new Student()));
         assertDoesNotThrow(()-> {  studentService.deleteStudent(studentId);
         });
-           assertTrue(true);
     }
    @Test
     public void testDeleteStudentNotFound() {
@@ -171,20 +180,37 @@ class StudentServiceImpTest {
     }
     @Test
     public void testLogin() {
+        StudentDto studentDto=new StudentDto();
+        int studentId=1; 
+        studentDto.setUserId(studentId);
+        studentDto.setUserName("Satya");
+        studentDto.setEmail("satya1919@nucleusteq.com");
+        studentDto.setDateOfBirth("24-02-2001");
+        studentDto.setGender(Gender.female);
+        studentDto.setPhoneNumber("8639924113");
+        studentDto.setRole("student");
+        
+        Student student=new Student();
+        student.setUserId(studentId);
+        student.setUserName("Satya");
+        student.setEmail("satya1919@nucleusteq.com");
+        student.setDateOfBirth("24-02-2001");
+        student.setGender(Gender.female);
+        student.setPhoneNumber("8639924113");
+        student.setPassword(new BCryptPasswordEncoder().encode("Satya@1919"));
+        student.setRole("student");
+        
         String email="satya1919@nucleusteq.com";
         String password="Satya@1919";
-       LoginDto loginDto=new LoginDto();
-       loginDto.setEmail(email);
-       loginDto.setPassword(password);
+        LoginDto loginDto=new LoginDto();
+        loginDto.setEmail(email);
+        loginDto.setPassword(password);
         String hashCode=new BCryptPasswordEncoder().encode(password);
-        Student student=new Student();
-        student.setEmail(email);
-        student.setPassword(hashCode);
         
         when(studentRepo.findByEmail(email)).thenReturn(Optional.of(student));
-        Optional<StudentDto> studentDto=studentService.aunthenticateUser(loginDto);
-        assertTrue(studentDto.isPresent());
+        StudentDto studentDto2=studentService.aunthenticateUser(loginDto);
         assertTrue(new BCryptPasswordEncoder().matches(password, hashCode));
+        assertEquals(studentDto2,studentDto);
         
         }
     @Test
@@ -255,7 +281,7 @@ class StudentServiceImpTest {
             studentDto2.setPhoneNumber("8639924113");
             studentDto2.setRole("student");
             StudentDto studentDto3= studentService.updateStudent(studentDto2, studentId);
-            assertEquals(studentDto2.getUserName(),studentDto3.getUserName());
+            assertEquals(studentDto3,studentDto2);
             
         }
         @Test

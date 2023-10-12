@@ -3,6 +3,8 @@ import '../../Pages/Categories/CategoryStyles.css';
 import ButtonComponent from "../Inputs/ButtonComponent";
 import { FaList, FaPencilAlt, FaTrash } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import ReactPaginate from "react-paginate";
+
 
 const Table = ({ columns, data, rows, category, deleteData, viewQuizes, role, quiz, question, isTrue }) => {
   return (

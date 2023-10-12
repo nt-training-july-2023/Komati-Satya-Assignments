@@ -7,7 +7,6 @@ import Category from './Pages/Categories/Category';
 import AddCategory from '../src/Pages/Categories/AddCategory';
 import Quiz from './Pages/Quiz/Quiz';
 import { useState } from 'react';
-
 import Result from './Pages/Result/Result';
 import AddQuiz from './Pages/Quiz/AddQuiz';
 import Questions from './Pages/Questions/Questions';

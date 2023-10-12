@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import com.example.demo.dto.CategoryDto;
 
 
@@ -22,7 +20,7 @@ public interface CategoryService {
      * @param id category id
      * @return category
      */
-    Optional<CategoryDto> findById(int id);
+    CategoryDto findById(int id);
 
     /**
      * finaAll method.
@@ -50,5 +48,5 @@ public interface CategoryService {
      * @param s category name
      * @return category
      */
-    Optional<CategoryDto> findByName(String s);
+    CategoryDto findByName(String s);
 }

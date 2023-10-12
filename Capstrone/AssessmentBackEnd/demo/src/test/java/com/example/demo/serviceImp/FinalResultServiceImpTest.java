@@ -40,22 +40,24 @@ class FinalResultServiceImpTest {
         MockitoAnnotations.openMocks(this);
     }
     @Test
-    void testFindResultByUserId() {        
+    void testFindResultByUserId() {
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
+                "Java",97,9,10,1,12);
         FinalRes finalRess=new FinalRes();
-        finalRess.setCategoryName("java");
+        finalRess.setCategoryName("Java");
         finalRess.setDateAndTime("23-10-23");
         finalRess.setEmail("satya@nucleusteq.com");
         finalRess.setMarks(97);
         finalRess.setFinalId(12);
         finalRess.setQuizTopic("Array");
         finalRess.setUserId(1);
-        finalRess.setUserName("satya");
+        finalRess.setUserName("Madhuri");
         finalRess.setMaxMarks(101);
   
         
         Category category=new Category();
-        category.setCategoryId(1);
-        category.setCategoryName("java");
+        category.setCategoryId(9);
+        category.setCategoryName("Java");
         category.setCategoryDescription("javaa");
         
         List<FinalRes> finallist=new ArrayList<>();
@@ -64,6 +66,7 @@ class FinalResultServiceImpTest {
         
         when(finalRepo.findAll()).thenReturn(finallist);
         List<ResultDto> resultDtoList=finalService.getById(1);
+        
     }
     
    
@@ -76,22 +79,28 @@ class FinalResultServiceImpTest {
     }
     @Test
     void testFindAllResult() {
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
+                "java",97,9,10,1,12);
         int studentId=1;
         FinalRes finalRess=new FinalRes();
         finalRess.setCategoryName("java");
         finalRess.setDateAndTime("23-10-23");
         finalRess.setEmail("satya@nucleusteq.com");
-        finalRess.setMarks(97);
+        finalRess.setMarks(102);
         finalRess.setFinalId(12);
         finalRess.setQuizTopic("Array");
         finalRess.setUserId(studentId);
-        finalRess.setUserName("satya");
-        finalRess.setMaxMarks(101);
-        
+        finalRess.setUserName("Madhuri");
+        finalRess.setMaxMarks(97);
+        finalRess.setQuizTopic("Array");
+        finalRess.setAttemptedQuestions(19);
+        finalRess.setTotalNoOfQuestions(12);
+
         Category category=new Category();
-        category.setCategoryId(1);
+        category.setCategoryId(9);
         category.setCategoryName("java");
         category.setCategoryDescription("javaa");
+      
         List<FinalRes> f=new ArrayList<>();
         f.add(finalRess);
         finalRepo.save(finalRess);

@@ -22,7 +22,10 @@ const Result = () => {
     FinalResultApi.getAllResult().then(response => {
       setResult(response.data.data || []);
       setOriginalResult(response.data.data || []);
-    }).finally(() => {
+    }).catch((error)=>{
+      console.error(error);
+    })
+    .finally(() => {
       setIsLoading(false);
     })
   };
@@ -30,7 +33,10 @@ const Result = () => {
     FinalResultApi.getResultByStudentId(userId).then(response => {
       setResult(response.data.data || []);
       setOriginalResult(response.data.data || []);
-    }).finally(() => {
+    }).catch((error)=>{
+      console.error(error);
+   })
+    .finally(() => {
       setIsLoading(false);
     })
   };

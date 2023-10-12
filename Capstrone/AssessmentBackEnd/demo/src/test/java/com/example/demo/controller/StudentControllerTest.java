@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -36,10 +35,13 @@ class StudentControllerTest {
        StudentSaveDto saveDto=new StudentSaveDto();
        saveDto.setUserName("satya");
        
+       Response expectedResponse =new Response();
+       expectedResponse.setCode(HttpStatus.OK.value());
+       expectedResponse.setMessage("User register successfully");
+       
        when(studentService.saveStudent(student)).thenReturn("registered");
        Response response=studentController.save(student);
-       assertEquals(HttpStatus.OK.value(),response.getCode());
-       assertEquals("User register successfully",response.getMessage());
+       assertEquals(response,expectedResponse);
     }
     @Test
     void testUserFindByIdSuccess() {
@@ -49,11 +51,14 @@ class StudentControllerTest {
         StudentDto saveDto=new StudentDto();
         saveDto.setUserName("satya");
 
-        when(studentService.findById(12)).thenReturn(Optional.of(saveDto));
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("successfully retrieve the student by id");
+        expectedResponse.setData(saveDto);
+        
+        when(studentService.findById(12)).thenReturn(saveDto);
         Response response=studentController.findById(12);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("successfully retrieve the student by id",response.getMessage());
-        assertEquals(Optional.of(saveDto),response.getData());
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testLoginSuccess() {
@@ -63,20 +68,28 @@ class StudentControllerTest {
         StudentDto saveDto=new StudentDto();
         saveDto.setUserName("satya");
         
-        when(studentService.aunthenticateUser(loginDto)).thenReturn(Optional.of(saveDto));
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("student logged in");
+        expectedResponse.setData(saveDto);
+        
+        when(studentService.aunthenticateUser(loginDto)).thenReturn(saveDto);
         Response response=studentController.login(loginDto);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("student logged in",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testFindAllStudentsSuccess() {
         List<StudentDto> studentDto=new ArrayList<>();
+        
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("successfully retrieve the all studnet details");
+        expectedResponse.setData(studentDto);
+        
         when(studentService.findAllStudents()).thenReturn(studentDto);
         Response response=studentController.findAllStudents();
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("successfully retrieve the all studnet details",response.getMessage());
-        assertEquals(studentDto,response.getData());
-    }
+        assertEquals(response,expectedResponse);
+        }
     @Test
     void testUpdateStudentSuccess() {
         StudentDto saveDto=new StudentDto();
@@ -84,19 +97,24 @@ class StudentControllerTest {
         saveDto.setUserName("Satya");
         int i=1;
 
-        when(studentService.updateStudent(saveDto, 1)).thenReturn(saveDto);
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("user updated successfully");
         
+        when(studentService.updateStudent(saveDto, 1)).thenReturn(saveDto);
         Response response=studentController.updateStudent(saveDto, i);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("user updated successfully",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testDeleteSuccess() {
         Student student= new Student();
         student.setUserId(1);
         
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("User deleted successfully");
+        
         Response response=studentController.deleteStudent(1);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("User deleted successfully",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
 }

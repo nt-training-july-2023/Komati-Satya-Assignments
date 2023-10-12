@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.dto.ResultDto;
 import com.example.demo.response.Response;
 import com.example.demo.service.ResultService;
@@ -59,7 +56,7 @@ public class ResultController {
     @GetMapping("/result/{id}")
     public final Response getResult(
             @PathVariable final int id) {
-            Optional<ResultDto> resultDto = resultService.getResult(id);
+            ResultDto resultDto = resultService.getResult(id);
             LOGGER.info(Messages.FIND_RESULT);
             String message = Messages.FIND_RESULT;
             Integer code = HttpStatus.OK.value();

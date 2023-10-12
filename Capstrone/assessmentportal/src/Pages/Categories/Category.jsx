@@ -26,7 +26,10 @@ function Category() {
       response => {
         setCategory(response.data.data || []);
         setOriginalCategory(response.data.data || []);
-      }).finally(() => {
+      }).catch((error)=>{
+        console.error(error);
+     })
+      .finally(() => {
         setIsLoading(false);
       })
   };

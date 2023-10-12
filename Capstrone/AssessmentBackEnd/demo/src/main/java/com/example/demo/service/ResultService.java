@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import com.example.demo.dto.ResultDto;
 
 
@@ -22,7 +20,7 @@ public interface ResultService {
      * @param id student id
      * @return student result
      */
-    Optional<ResultDto> getResult(int id);
+    ResultDto getResult(int id);
 
     /**
      * get all result method.

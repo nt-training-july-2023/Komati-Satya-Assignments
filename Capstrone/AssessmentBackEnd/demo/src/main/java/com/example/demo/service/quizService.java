@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
 
@@ -23,7 +21,7 @@ public interface QuizService {
      * @param id quiz id
      * @return quiz
      */
-    Optional<QuizDto> getQuiz(int id);
+    QuizDto getQuiz(int id);
 
     /**
      * find all method.
@@ -58,5 +56,5 @@ public interface QuizService {
      * @param name category name
      * @return quiz
      */
-    Optional<QuizDto> findQuizByName(String name);
+    QuizDto findQuizByName(String name);
 }

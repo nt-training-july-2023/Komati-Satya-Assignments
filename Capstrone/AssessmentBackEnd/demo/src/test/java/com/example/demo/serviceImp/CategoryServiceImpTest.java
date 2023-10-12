@@ -46,8 +46,7 @@ class CategoryServiceImpTest {
         when(categoryRepo.findByCategoryName(categoryDto.getCategoryName())).thenReturn(Optional.empty());
         when(categoryRepo.save(category)).thenReturn(category);
         CategoryDto categoryDto1=categoryService.saveCategory(categoryDto);
-        assertEquals(categoryDto.getCategoryName(),categoryDto1.getCategoryName());
-        assertEquals(categoryDto.getCategoryDescription(),categoryDto1.getCategoryDescription());
+        assertEquals(categoryDto1,categoryDto);
     }
     
     @Test
@@ -67,14 +66,11 @@ class CategoryServiceImpTest {
         category.setCategoryId(1);
         category.setCategoryName("java");
         category.setCategoryDescription("java basics");
-        
+        CategoryDto expectedCategory = new CategoryDto(1,"java","java basics");
         when(categoryRepo.findAll()).thenReturn(Collections.singletonList(new Category()));
         when(categoryRepo.findById(category.getCategoryId())).thenReturn(Optional.of(category));
-        Optional<CategoryDto> categoryDto=categoryService.findById(category.getCategoryId());
-        assertTrue(categoryDto.isPresent());
-        assertEquals(category.getCategoryId(),categoryDto.get().getCategoryId());
-        assertEquals(category.getCategoryName(),categoryDto.get().getCategoryName());
-        assertEquals(category.getCategoryDescription(),categoryDto.get().getCategoryDescription());
+        CategoryDto categoryDto=categoryService.findById(category.getCategoryId());
+         assertEquals(expectedCategory,categoryDto);
       }
     @Test
     void testAllCategoryNotFound() {
@@ -93,15 +89,20 @@ class CategoryServiceImpTest {
     }
     @Test
     void testFindAllCategories() {
-        List<Category> categoryList=new ArrayList<Category>();
-        Category category =new Category(1,"java","java basics");
-        categoryList.add(category);
-
-        when(categoryRepo.findAll()).thenReturn(categoryList);
-        List<CategoryDto> categoryDto=categoryService.findAll();
-        assertEquals(1,categoryDto.size());
-        assertEquals("java",categoryDto.get(0).getCategoryName());
-        assertEquals("java basics",categoryDto.get(0).getCategoryDescription());
+        CategoryDto categoryDto = new CategoryDto();
+        categoryDto.setCategoryId(1);
+        categoryDto.setCategoryName("Java");
+        
+        Category category = new Category();
+        category.setCategoryId(categoryDto.getCategoryId());
+        category.setCategoryName(categoryDto.getCategoryName());
+        List<Category> listofcategories = new ArrayList<>();
+        listofcategories.add(category);
+        
+        categoryRepo.save(category);
+        when(categoryRepo.findAll()).thenReturn(listofcategories);
+        List<CategoryDto> categoryList = categoryService.findAll();
+        assertEquals(Collections.singletonList(categoryDto),categoryList);
     }
     @Test
     void testAllCategoriesNotFound() {
@@ -111,7 +112,7 @@ class CategoryServiceImpTest {
     }
     @Test
    void testUpdateCategory() {
-       Category category =new Category(1,"java","java basics");
+         Category category =new Category(1,"java","java basics");
          CategoryDto categoryDto=new CategoryDto();
          categoryDto.setCategoryId(category.getCategoryId());
          categoryDto.setCategoryName(category.getCategoryName());
@@ -125,8 +126,7 @@ class CategoryServiceImpTest {
          cd.setCategoryDescription("java basics");
          cd.setCategoryId(1);
          CategoryDto c=categoryService.updateCategory(cd, 1);
-         assertEquals(category.getCategoryName(),c.getCategoryName());
-         assertEquals(category.getCategoryDescription(),c.getCategoryDescription());
+         assertEquals(c,cd);
    }
     
     @Test
@@ -163,13 +163,11 @@ class CategoryServiceImpTest {
    @Test
    public void testFindByName() {
        Category category=new Category(1,"java","java basics");
-       
+       CategoryDto expectedCategory=new CategoryDto(1,"java","java basics");
        when(categoryRepo.findAll()).thenReturn(Collections.singletonList(new Category()));
        when(categoryRepo.findByCategoryName(category.getCategoryName())).thenReturn(Optional.of(category));
-       Optional<CategoryDto> categoryDto=categoryService.findByName(category.getCategoryName());
-       assertTrue(categoryDto.isPresent());
-       assertEquals(category.getCategoryName(),categoryDto.get().getCategoryName());
-       assertEquals(category.getCategoryDescription(),categoryDto.get().getCategoryDescription());
+       CategoryDto categoryDto=categoryService.findByName(expectedCategory.getCategoryName());
+       assertEquals(expectedCategory,categoryDto);
    }
    @Test
    public void testCategoryNameNotPresent() {

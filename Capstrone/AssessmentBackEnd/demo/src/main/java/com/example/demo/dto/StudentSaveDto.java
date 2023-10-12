@@ -1,12 +1,12 @@
 package com.example.demo.dto;
 
 
+import java.util.Objects;
+
 import com.example.demo.validationMessages.ValidationMessages;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -25,7 +25,6 @@ public class StudentSaveDto {
      * stores the user id.
      */
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private int userId;
     /**
      * stores the user name.
@@ -76,4 +75,34 @@ public class StudentSaveDto {
     @NotBlank(message = ValidationMessages.DOB_NOTBLANK)
     @Column(nullable = false)
     private String dateOfBirth;
+    /**
+     * hash code.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(dateOfBirth, email, gender, password, phoneNumber,
+                role, userId, userName);
+    }
+    /**
+     * equals method.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        StudentSaveDto other = (StudentSaveDto) obj;
+        return Objects.equals(dateOfBirth, other.dateOfBirth)
+                && Objects.equals(email, other.email) && gender == other.gender
+                && Objects.equals(password, other.password)
+                && Objects.equals(phoneNumber, other.phoneNumber)
+                && Objects.equals(role, other.role) && userId == other.userId
+                && Objects.equals(userName, other.userName);
+    }
 }

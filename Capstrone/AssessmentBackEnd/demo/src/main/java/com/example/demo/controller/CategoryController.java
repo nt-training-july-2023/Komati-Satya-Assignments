@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -59,7 +58,7 @@ public class CategoryController {
     @GetMapping("/category/category/{id}")
     public final Response
                  findById(@PathVariable final int id) {
-            Optional<CategoryDto> categoryDto = categoryService.findById(id);
+            CategoryDto categoryDto = categoryService.findById(id);
             LOGGER.info(Messages.FIND_CATEGORY);
             String message = Messages.FIND_CATEGORY;
             Integer code = HttpStatus.OK.value();
@@ -123,7 +122,7 @@ public class CategoryController {
     @GetMapping("/category/{categoryName}")
     public final Response findByName(
             @PathVariable final String categoryName) {
-            Optional<CategoryDto> categoryDto = categoryService.
+            CategoryDto categoryDto = categoryService.
                     findByName(categoryName);
             LOGGER.info(Messages.FIND_CATEGORY);
             String message = Messages.FIND_CATEGORY;

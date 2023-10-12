@@ -44,7 +44,7 @@ public class StudentServiceImp implements StudentService {
      * @return student
      */
     @Override
-    public final Optional<StudentDto> aunthenticateUser(
+    public final StudentDto aunthenticateUser(
             final LoginDto loginDto) {
         BCryptPasswordEncoder bcrypt = new BCryptPasswordEncoder();
         Optional<Student> optionalStudent = studentRepo
@@ -61,7 +61,7 @@ public class StudentServiceImp implements StudentService {
                 studentDto.setEmail(student.getEmail());
                 studentDto.setRole(student.getRole());
                 LOGGER.info(Messages.LOGIN_STUDENT);
-                return Optional.of(studentDto);
+                return studentDto;
             } else {
                 LOGGER.error(ErrorMessages.WRONG_PASSWORD);
                 throw new PasswordMissMatchException(
@@ -105,7 +105,7 @@ public class StudentServiceImp implements StudentService {
      * @return student
      */
     @Override
-    public final Optional<StudentDto> findById(final int id) {
+    public final StudentDto findById(final int id) {
         if (studentRepo.findById(id).isPresent()) {
             StudentDto studentDto = new StudentDto();
             Optional<Student> optionalStudent = studentRepo.findById(id);
@@ -118,7 +118,7 @@ public class StudentServiceImp implements StudentService {
             studentDto.setEmail(student.getEmail());
             studentDto.setRole(student.getRole());
             LOGGER.info(Messages.FIND_STUDENTBYID);
-            return Optional.of(studentDto);
+            return studentDto;
         } else {
             LOGGER.error(ErrorMessages.USER_NOTPRESENT);
             throw new NotFoundException(ErrorMessages.USER_NOTPRESENT);

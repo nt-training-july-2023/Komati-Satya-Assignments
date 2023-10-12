@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
 import com.example.demo.response.Response;
@@ -130,7 +127,7 @@ public class QuestionsController {
     @GetMapping("/questions/questionByName/{name}")
     public final Response findByQuestion(
             @PathVariable final String name) {
-            Optional<QuestionsDto> questionsDto = questionsService.
+            QuestionsDto questionsDto = questionsService.
                     findByQuestion(name);
             LOGGER.info(Messages.FIND_QUESTION);
             String message = Messages.FIND_QUESTION;

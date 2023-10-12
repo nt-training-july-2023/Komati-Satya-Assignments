@@ -129,7 +129,7 @@ public class ResultServiceImp implements ResultService {
      * @return student result
      */
     @Override
-    public final Optional<ResultDto> getResult(final int id) {
+    public final ResultDto getResult(final int id) {
         if (studentResultRepo.findAll().size() != 0) {
             Optional<StudentResult> studentResult =
                     studentResultRepo.findById(id);
@@ -152,7 +152,7 @@ public class ResultServiceImp implements ResultService {
                         getAttemptedQuestions());
                 resultDto.setCategoryId(category.getCategoryId());
                 LOGGER.info(Messages.FIND_RESULT);
-                return Optional.of(resultDto);
+                return resultDto;
             } else {
                 LOGGER.error(ErrorMessages.WRONG_USERID);
                 throw new NotFoundException(ErrorMessages.WRONG_USERID);

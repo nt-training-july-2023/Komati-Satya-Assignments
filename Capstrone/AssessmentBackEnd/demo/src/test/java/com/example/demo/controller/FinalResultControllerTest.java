@@ -27,24 +27,32 @@ class FinalResultControllerTest {
     }
     @Test
     void testGetByUserIdSuccess() {
+        List<ResultDto> resultDtoList=new ArrayList<>();
+        ResultDto resultDto = new ResultDto();
+        resultDto.setUserId(1);
+        resultDtoList.add(resultDto);
         FinalRes finalResult=new FinalRes();
         finalResult.setUserId(1);
-        
-        List<ResultDto> resultDto=new ArrayList<>();
-        when(resultService.getById(1)).thenReturn(resultDto);
+       
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("successfully retrieve the student result");
+        expectedResponse.setData(resultDtoList);
+        when(resultService.getById(1)).thenReturn(resultDtoList);
         Response response=resultController.getById(1);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals(resultDto,response.getData());
-        assertEquals("successfully retrieve the student result",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testAllResultSuccess() {
         List<ResultDto> resultDto=new ArrayList<>();
+        
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("successfully retrieve thestudent results");
+        expectedResponse.setData(resultDto);
+        
         when(resultService.findAll()).thenReturn(resultDto);
         Response response=resultController.findAllResult();
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals(resultDto,response.getData());
-        assertEquals("successfully retrieve the"
-                + "student results",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
 }

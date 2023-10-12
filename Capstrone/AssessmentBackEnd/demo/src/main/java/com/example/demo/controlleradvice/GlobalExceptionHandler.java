@@ -62,10 +62,10 @@ public class GlobalExceptionHandler {
     public final ResponseEntity<Response> handleAllNotFoundException(final
             AllNotFoundException exception) {
         String message = exception.getMessage();
-        Integer errorCode = HttpStatus.NO_CONTENT.value();
+        Integer errorCode = HttpStatus.CONFLICT.value();
         Response errorResponse = new Response(errorCode, message);
    return new ResponseEntity<Response>(errorResponse,
-          HttpStatus.NO_CONTENT);
+          HttpStatus.CONFLICT);
    }
     /**
      * EmailDoesNotExistException handler.

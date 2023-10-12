@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import java.util.Objects;
+
 import com.example.demo.validationMessages.ValidationMessages;
 
 import jakarta.validation.constraints.NotEmpty;
@@ -76,4 +78,41 @@ public class ResultDto {
      */
     @NotNull(message = ValidationMessages.TOTALQUESTIONS_NOTNULL)
     private int totalQuestions;
+    /**
+     * hash code.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(attemptedQuestions, categoryId, categoryName,
+                dateAndTime, email, maxMarks, obtainMarks, quizName, resultId,
+                totalQuestions, userId, userName);
+    }
+    /**
+     * equals method.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        ResultDto other = (ResultDto) obj;
+        return attemptedQuestions == other.attemptedQuestions
+                && categoryId == other.categoryId
+                && Objects.equals(categoryName, other.categoryName)
+                && Objects.equals(dateAndTime, other.dateAndTime)
+                && Objects.equals(email, other.email)
+                && maxMarks == other.maxMarks
+                && obtainMarks == other.obtainMarks
+                && Objects.equals(quizName, other.quizName)
+                && resultId == other.resultId
+                && totalQuestions == other.totalQuestions
+                && userId == other.userId
+                && Objects.equals(userName, other.userName);
+    }
 }

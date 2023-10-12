@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -34,11 +33,13 @@ class QuizControllerTest {
         QuizDto quizDto=new QuizDto();
         quizDto.setTopicName("arrays");
         
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("succcessfully add the data");
+        
         when(quizService.addQuiz(quiz)).thenReturn(quizDto);
         Response response=quizController.saveQuiz(quiz);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("succcessfully add the data",response.getMessage());
-        
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testGetQuizByIdSuccess() {
@@ -48,30 +49,38 @@ class QuizControllerTest {
         QuizDto quizDto=new QuizDto();
         quizDto.setTopicName("arrays");
         
-        when(quizService.getQuiz(1)).thenReturn(Optional.of(quizDto));
-        Response response=quizController.getQuiz(1);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("successfully retrieve the quiz detaills",response.getMessage());
-        assertEquals(Optional.of(quizDto),response.getData());
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("successfully retrieve the quiz detaills");
+        expectedResponse.setData(quizDto);
         
+        when(quizService.getQuiz(1)).thenReturn(quizDto);
+        Response response=quizController.getQuiz(1);
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testFindAllQuizSuccess() {
         List<QuizDto> quizDto=new ArrayList<>();
+        
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("successfully find all quizes");
+        expectedResponse.setData(quizDto);
+        
         when(quizService.findAll()).thenReturn(quizDto);
         Response response=quizController.findAll();
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals(quizDto,response.getData());
-        assertEquals("successfully find all quizes",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testDeleteQuizSuccess() {
         Quiz quiz=new Quiz();
         quiz.setQuizId(1);
         
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("quiz deleted successfully");
         Response response=quizController.deleteQuiz(1);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("quiz deleted successfully",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testUpdateQuizSuccess() {
@@ -80,11 +89,13 @@ class QuizControllerTest {
         quizDto.setTopicName("Arrays");
         int i=1;
         
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("quiz updated successfully");
+        
         when(quizService.updateQuiz(quizDto, i)).thenReturn(quizDto);
-        Response errorResponse = new Response(HttpStatus.CREATED.value(), "quiz updated successfully");
         Response response=quizController.updateQuiz(quizDto, i);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("quiz updated successfully",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testQuizFindById() {
@@ -95,13 +106,16 @@ class QuizControllerTest {
         c.setCategoryId(2);
         QuizDto quizDto=new QuizDto();
         quizDto.setTopicName("arrays");
-        
         List<QuizDto> q=new ArrayList<>();
+        
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("successfully retrieve the quiz by category id");
+        expectedResponse.setData(q);
+        
         when(quizService.findQuizById(2)).thenReturn(q);
         Response response=quizController.findQuizById(2);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals(q,response.getData());
-        assertEquals("successfully retrieve the quiz by category id",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testQuizByNameSuccess() {
@@ -111,10 +125,13 @@ class QuizControllerTest {
         QuizDto quizDto=new QuizDto();
         quizDto.setTopicName("arrays");
         
-        when(quizService.findQuizByName("arrays")).thenReturn(Optional.of(quizDto));
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("successfully retrieve the quiz detaills");
+        expectedResponse.setData(quizDto);
+        
+        when(quizService.findQuizByName("arrays")).thenReturn(quizDto);
         Response response=quizController.findQuizByName("arrays");
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals(Optional.of(quizDto),response.getData());
-        assertEquals("successfully retrieve the quiz detaills",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
 }

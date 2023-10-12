@@ -62,7 +62,7 @@ public class CategoryServiceImp implements CategoryService {
      * @return category
      */
     @Override
-    public final Optional<CategoryDto> findById(final int id) {
+    public final CategoryDto findById(final int id) {
         if (categoryRepo.findAll().size() != 0) {
             if (categoryRepo.findById(id).isPresent()) {
                 CategoryDto categoryDto = new CategoryDto();
@@ -73,7 +73,7 @@ public class CategoryServiceImp implements CategoryService {
                 categoryDto.setCategoryName(categoryy.getCategoryName());
                 categoryDto.setCategoryId(categoryy.getCategoryId());
                 LOGGER.info(Messages.FIND_CATEGORY);
-                return Optional.of(categoryDto);
+                return categoryDto;
             } else {
                 LOGGER.error(ErrorMessages.WRONG_CATEGORYID);
                 throw new NotFoundException(ErrorMessages.WRONG_CATEGORYID);
@@ -169,7 +169,7 @@ public class CategoryServiceImp implements CategoryService {
      * @return category
      */
     @Override
-    public final Optional<CategoryDto> findByName(final String s) {
+    public final CategoryDto findByName(final String s) {
         if (categoryRepo.findAll().size() != 0) {
             if (categoryRepo.findByCategoryName(s).isPresent()) {
                 CategoryDto categoryDto = new CategoryDto();
@@ -178,8 +178,9 @@ public class CategoryServiceImp implements CategoryService {
                 categoryDto.setCategoryDescription(
                         category.get().getCategoryDescription());
                 categoryDto.setCategoryName(category.get().getCategoryName());
+                categoryDto.setCategoryId(category.get().getCategoryId());
                 LOGGER.info(Messages.FIND_CATEGORY);
-                return Optional.of(categoryDto);
+                return categoryDto;
             } else {
                 LOGGER.error(ErrorMessages.CATEGORY_NOTPRESENT);
                 throw new NotFoundException(ErrorMessages.CATEGORY_NOTPRESENT);

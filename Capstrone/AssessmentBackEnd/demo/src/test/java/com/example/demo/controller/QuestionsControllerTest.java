@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -35,20 +34,26 @@ class QuestionsControllerTest {
         QuestionsDto questionsDto=new QuestionsDto();
         questionsDto.setQuestion("java is?");
         
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("question added successfully");
+        
         when(questionService.addQuestion(question)).thenReturn(questionsDto);
-        Response errorResponse = new Response(HttpStatus.OK.value(), "question added successfully");
         Response response=questionController.addQuestion(question);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("question added successfully",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testGetAllQuestionsSuccess() {
         List<QuestionsDto> questionsDto=new ArrayList<>();
+        
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("successfully retrieve all questions");
+        expectedResponse.setData(questionsDto);
+        
         when(questionService.getQuestions()).thenReturn(questionsDto);
         Response response=questionController.getQuestions();
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals(questionsDto,response.getData());
-        assertEquals("successfully retrieve all questions",response.getMessage());
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testDeleteSuccess() {
@@ -56,11 +61,11 @@ class QuestionsControllerTest {
         question.setQuestion("java is?");
         int i=1;
         
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("question deleted successfully");
         Response response=questionController.delete(i);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("question deleted successfully",response.getMessage());
-      
-
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testUpdateSuccess() {
@@ -69,20 +74,25 @@ class QuestionsControllerTest {
         q.setQuestion("java is??");
         int i=1;
         
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("question updated successfully");
         when(questionService.updateQuestion(q, i)).thenReturn(q);
         Response response=questionController.updateQue(q, i);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("question updated successfully",response.getMessage()); 
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testGetQuestionByQuizIdSuccess() {
         List<QuestionsDto> q=new ArrayList<>();
         int i=1;
+        
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("successfully retrieve question by quiz id");
+        expectedResponse.setData(q);
         when(questionService.findQuestionById(i)).thenReturn(q);
         Response response=questionController.findQueById(i);
-        assertEquals(HttpStatus.OK.value(),response.getCode());
-        assertEquals("successfully retrieve question by quiz id",response.getMessage());  
-        
+        assertEquals(response,expectedResponse);
     }
     @Test
     void testFindQuestionByQuestionSuccess() {
@@ -91,9 +101,14 @@ class QuestionsControllerTest {
         QuestionsDto questionsDto=new QuestionsDto();
         questionsDto.setQuestion("java is?");
         
-        when(questionService.findByQuestion("java is?")).thenReturn(Optional.of(questionsDto));
+        Response expectedResponse =new Response();
+        expectedResponse.setCode(HttpStatus.OK.value());
+        expectedResponse.setMessage("successfully retrieve the data");
+        expectedResponse.setData(questionsDto);
+        
+        when(questionService.findByQuestion("java is?")).thenReturn(questionsDto);
         Response response=questionController.findByQuestion("java is?");
         assertEquals(HttpStatus.OK.value(),response.getCode());
-           
+        assertEquals(response,expectedResponse);
     }
 }

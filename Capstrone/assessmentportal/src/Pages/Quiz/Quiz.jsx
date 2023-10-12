@@ -29,7 +29,10 @@ function Quiz({ setTrue }) {
     QuizApi.getQuizByCategoryId(categoryId).then(response => {
       setQuiz(response.data.data|| []);
       setOriginalQuiz(response.data.data || []);
-    }).finally(() => {
+    }).catch((error)=>{
+      console.error(error)
+    })
+    .finally(() => {
       setIsLoading(false);
     })
   };

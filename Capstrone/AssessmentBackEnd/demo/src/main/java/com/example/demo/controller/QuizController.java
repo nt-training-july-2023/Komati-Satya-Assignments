@@ -1,8 +1,6 @@
 package com.example.demo.controller;
 
 import java.util.List;
-import java.util.Optional;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.demo.dto.QuizDto;
 import com.example.demo.dto.QuizUpdateDto;
 import com.example.demo.response.Response;
@@ -64,7 +61,7 @@ public class QuizController {
     @GetMapping("/quiz/id/{id}")
     public final Response getQuiz(
             @PathVariable final int id) {
-            Optional<QuizDto> quizDto = quizSevice.getQuiz(id);
+            QuizDto quizDto = quizSevice.getQuiz(id);
             LOGGER.info(Messages.FIND_QUIZ);
             String message = Messages.FIND_QUIZ;
             Integer code = HttpStatus.OK.value();
@@ -148,7 +145,7 @@ public class QuizController {
     @GetMapping("/quiz/quizByName/{name}")
     public final Response findQuizByName(
             @PathVariable final String name) {
-            Optional<QuizDto> quizDto = quizSevice.findQuizByName(name);
+            QuizDto quizDto = quizSevice.findQuizByName(name);
             LOGGER.info(Messages.FIND_QUIZ);
             String message = Messages.FIND_QUIZ;
             Integer code = HttpStatus.OK.value();

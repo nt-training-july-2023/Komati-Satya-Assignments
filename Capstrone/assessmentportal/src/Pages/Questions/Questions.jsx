@@ -28,7 +28,10 @@ const Questions = () => {
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
       setQuestions(response.data.data || []);
       setOriginalQuestions(response.data.data || []);
-    }).finally(() => {
+    }).catch((error)=>{
+       console.error(error);
+    })
+    .finally(() => {
       setIsLoading(false);
     })
   };

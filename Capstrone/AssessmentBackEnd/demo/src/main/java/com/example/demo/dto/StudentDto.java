@@ -1,5 +1,7 @@
 package com.example.demo.dto;
 
+import java.util.Objects;
+
 import com.example.demo.validationMessages.ValidationMessages;
 
 import jakarta.persistence.EnumType;
@@ -55,4 +57,33 @@ public class StudentDto {
      */
     @NotBlank(message = ValidationMessages.DOB_NOTBLANK)
     private String dateOfBirth;
+    /**
+     * hash code.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(dateOfBirth, email, gender, phoneNumber, role,
+                userId, userName);
+    }
+    /**
+     * equals code.
+     */
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        StudentDto other = (StudentDto) obj;
+        return Objects.equals(dateOfBirth, other.dateOfBirth)
+                && Objects.equals(email, other.email) && gender == other.gender
+                && Objects.equals(phoneNumber, other.phoneNumber)
+                && Objects.equals(role, other.role) && userId == other.userId
+                && Objects.equals(userName, other.userName);
+    }
 }

@@ -1,5 +1,7 @@
 package com.example.demo.response;
 
+import java.util.Objects;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 import lombok.AllArgsConstructor;
@@ -37,6 +39,31 @@ import lombok.Setter;
             super();
             this.code = statusCode;
             this.message = messageParam;
+        }
+        /**
+         * hash code.
+         */
+        @Override
+        public int hashCode() {
+            return Objects.hash(code, data, message);
+        }
+        /**
+         * equals method.
+         */
+        @Override
+        public boolean equals(final Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj == null) {
+                return false;
+            }
+            if (getClass() != obj.getClass()) {
+                return false;
+            }
+            Response other = (Response) obj;
+            return code == other.code && Objects.equals(data, other.data)
+                    && Objects.equals(message, other.message);
         }
 }
 

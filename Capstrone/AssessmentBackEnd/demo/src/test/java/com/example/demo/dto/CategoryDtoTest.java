@@ -8,7 +8,7 @@ class CategoryDtoTest {
 
     @Test
     void testAllArgsConstructor() {
-        CategoryDto categoryDto=new CategoryDto("java","java basics",1);
+        CategoryDto categoryDto=new CategoryDto(1,"java","java basics");
         assertEquals("java",categoryDto.getCategoryName());
         assertEquals("java basics",categoryDto.getCategoryDescription());
         assertEquals(1,categoryDto.getCategoryId());

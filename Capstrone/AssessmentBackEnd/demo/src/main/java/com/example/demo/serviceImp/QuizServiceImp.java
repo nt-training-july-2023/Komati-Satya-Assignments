@@ -78,7 +78,7 @@ public class QuizServiceImp implements QuizService {
      * @result quiz
      */
     @Override
-    public final Optional<QuizDto> getQuiz(final int id) {
+    public final QuizDto getQuiz(final int id) {
         if (quizRepo.findAll().size() != 0) {
             if (quizRepo.findById(id).isPresent()) {
                 QuizDto quizDto = new QuizDto();
@@ -90,7 +90,7 @@ public class QuizServiceImp implements QuizService {
                 quizDto.setCategoryId(quiz.getCategory().getCategoryId());
                 quizDto.setTimer(quiz.getTimer());
                 LOGGER.info(Messages.FIND_QUIZ);
-                return Optional.of(quizDto);
+                return quizDto;
             } else {
                 LOGGER.error(ErrorMessages.WRONG_QUIZID);
                 throw new NotFoundException(ErrorMessages.WRONG_QUIZID);
@@ -211,7 +211,7 @@ public class QuizServiceImp implements QuizService {
      * @return quiz
      */
     @Override
-    public final Optional<QuizDto> findQuizByName(final String name) {
+    public final QuizDto findQuizByName(final String name) {
         if (quizRepo.findAll().size() != 0) {
             if (quizRepo.findQuizByName(name).isPresent()) {
                 QuizDto quizDto = new QuizDto();
@@ -223,7 +223,7 @@ public class QuizServiceImp implements QuizService {
                 quizDto.setCategoryId(quiz.getCategory().getCategoryId());
                 quizDto.setTimer(quiz.getTimer());
                 LOGGER.info(Messages.FIND_QUIZ);
-                return Optional.of(quizDto);
+                return quizDto;
             } else {
                 LOGGER.error(ErrorMessages.QUIZ_NOTPRESENT);
                 throw new NotFoundException(ErrorMessages.QUIZ_NOTPRESENT);

@@ -238,7 +238,7 @@ public class QuestionServiceImp implements QuestionsService {
      * @return questions
      */
     @Override
-    public final Optional<QuestionsDto> findByQuestion(final String question) {
+    public final QuestionsDto findByQuestion(final String question) {
         List<Questions> questionsList = questionsRepo.findAll();
         for (Questions questions : questionsList) {
             if (questions.getQuestion().contains(question)) {
@@ -252,7 +252,7 @@ public class QuestionServiceImp implements QuestionsService {
                 questionsDto.setQuestion(questions.getQuestion());
                 questionsDto.setQuestionId(questions.getQid());
                 LOGGER.info(Messages.FIND_QUESTION);
-                return Optional.of(questionsDto);
+                return questionsDto;
             }
         }
         LOGGER.error(ErrorMessages.NO_QUESTION);

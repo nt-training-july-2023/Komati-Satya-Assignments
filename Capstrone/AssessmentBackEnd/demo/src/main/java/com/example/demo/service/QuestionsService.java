@@ -1,8 +1,6 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.Optional;
-
 import com.example.demo.dto.QuestionsDto;
 import com.example.demo.dto.QuestionsUpdateDto;
 
@@ -51,5 +49,5 @@ public interface QuestionsService {
      * @param name question
      * @return question
      */
-    Optional<QuestionsDto> findByQuestion(String name);
+    QuestionsDto findByQuestion(String name);
 }

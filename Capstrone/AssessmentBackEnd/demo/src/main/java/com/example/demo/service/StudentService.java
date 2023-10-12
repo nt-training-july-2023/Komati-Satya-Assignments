@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import java.util.List;
-import java.util.Optional;
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
 import com.example.demo.dto.StudentSaveDto;
@@ -23,14 +22,14 @@ public interface StudentService {
      * @param id student id
      * @return student
      */
-    Optional<StudentDto> findById(int id);
+    StudentDto findById(int id);
 
     /**
      * authenticateUser method.
      * @param loginDto loginDto
      * @return student
      */
-    Optional<StudentDto> aunthenticateUser(LoginDto loginDto);
+    StudentDto aunthenticateUser(LoginDto loginDto);
 
     /**
      * find all student method.
