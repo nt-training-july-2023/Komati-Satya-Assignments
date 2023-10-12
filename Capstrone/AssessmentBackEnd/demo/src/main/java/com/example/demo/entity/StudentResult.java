@@ -45,12 +45,10 @@ public class StudentResult {
     @Column(nullable = false)
     private int attemptedQuestions;
     /**
-     * stores the result id.
+     * stores quiz name.
      */
-    @ManyToOne
-    @JoinColumn(name = "qz_Id")
-    @JsonIgnoreProperties("studentResult")
-    private Quiz quiz;
+    @Column(nullable = false)
+    private String quizName;
     /**
      * categoryId.
      */
@@ -91,6 +89,20 @@ public class StudentResult {
         this.maxMarks = maxmarks;
     }
     /**
+     * set quiz method.
+     * @param name quiz name
+     */
+    public void setQuizName(final String name) {
+        this.quizName = name;
+    }
+    /**
+     * get quiz method.
+     * @return quiz name
+     */
+    public String getQuizName() {
+        return quizName;
+    }
+    /**
      * get.
      * @return questions
      */
@@ -103,24 +115,6 @@ public class StudentResult {
      */
     public void setAttemptedQuestions(final int attemptedquestions) {
         this.attemptedQuestions = attemptedquestions;
-    }
-    /**
-     * quiz.
-     * @return quiz
-     */
-    public Quiz getQuiz() {
-        return new Quiz(quiz.getQuizId(), quiz.getTopicName(),
-                quiz.getTopicDescription(), quiz.getTimer()
-                );
-    }
-    /**
-     * set question.
-     * @param quizParam question
-     */
-    public void setQuiz(final Quiz quizParam) {
-        this.quiz = new Quiz(quizParam.getQuizId(), quizParam.getTopicName(),
-                quizParam.getTopicDescription(), quizParam.getTimer()
-                );
     }
     /**
      * student.

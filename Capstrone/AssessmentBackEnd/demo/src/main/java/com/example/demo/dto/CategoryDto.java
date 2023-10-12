@@ -3,7 +3,6 @@ package com.example.demo.dto;
 import java.util.Objects;
 
 import com.example.demo.validationMessages.ValidationMessages;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +20,6 @@ public class CategoryDto {
     /**
      * store the category id.
      */
-    @Id
     private int categoryId;
     /**
      * store the category Name.

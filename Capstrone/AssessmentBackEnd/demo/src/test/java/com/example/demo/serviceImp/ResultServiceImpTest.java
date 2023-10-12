@@ -151,7 +151,7 @@ class ResultServiceImpTest {
        studentResult.setCategoryId(resultDto.getCategoryId());
        studentResult.setDateAndTime(resultDto.getDateAndTime());
        studentResult.setMaxMarks(resultDto.getObtainMarks());
-       studentResult.setQuiz(quiz);
+      // studentResult.setQuiz(quiz);
        studentResult.setResultId(resultDto.getResultId());
        studentResult.setStudentResult(student);
         
@@ -178,7 +178,7 @@ class ResultServiceImpTest {
         studentResult.setResultId(1);
         Quiz quiz=new Quiz();
         quiz.setTopicName("variables");
-        studentResult.setQuiz(quiz);
+      //  studentResult.setQuiz(quiz);
         Student student=new Student();
         student.setUserId(18);
         studentResult.setStudentResult(student);

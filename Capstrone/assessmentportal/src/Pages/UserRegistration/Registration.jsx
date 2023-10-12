@@ -12,6 +12,9 @@ import H1Component from "../../Components/HeadingComponent/H1component";
 const Registration = () => {
   const [showPassword, setShowPassword] = useState("false");
   const [showConfirmPassword, setShowConfirmPassword] = useState("false");
+  const [focus, setFocused] = useState(false);
+  const onFocus = () => setFocused(true);
+  const onBlur = () => setFocused(false);
   const [formData, setFormData] = useState({
     userName: "",
     email: "",
@@ -135,7 +138,7 @@ const Registration = () => {
                 {showConfirmPassword ? <FaEyeSlash /> : <FaEye />}
               </ButtonComponent>
             </div><br />
-            <Input className="values" type="Date" placeholder="Enter date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} /><br /><br />
+            <Input className="values" type={focus ? "date" : "text"} placeholder="Enter date of birth" name="dateOfBirth" value={formData.dateOfBirth} onChange={changeData} onFocus={onFocus} onBlur={onBlur}/><br /><br />
             <Input className="values" type="number" name="phoneNumber" placeholder="Enter phone number" value={formData.phoneNumber} onChange={changeData} /><br /><br />
             <div className="gender">
               <Input className="gen1" type="radio" name="gender" value="male" onChange={changeDataForRadioButton} />

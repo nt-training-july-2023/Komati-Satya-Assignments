@@ -109,7 +109,7 @@ public class ResultServiceImp implements ResultService {
             Optional<Quiz> optionalQuiz = quizRepo.
                     findQuizByName(resultDto.getQuizName());
             Quiz quiz = optionalQuiz.get();
-            studentResult.setQuiz(quiz);
+           studentResult.setQuizName(quiz.getTopicName());
             Optional<Student> optionalStudent = studentRepo
                     .findByEmail(resultDto.getEmail());
             Student student = optionalStudent.get();
@@ -144,8 +144,8 @@ public class ResultServiceImp implements ResultService {
                         .findById(studentResults.getCategoryId());
                 Category category = optionalCategory.get();
                 resultDto.setCategoryName(category.getCategoryName());
-                resultDto.setQuizName(studentResults.getQuiz().
-                        getTopicName());
+                resultDto.setQuizName(studentResults.
+                        getQuizName());
                 resultDto.setDateAndTime(studentResults.getDateAndTime());
                 resultDto.setObtainMarks(studentResults.getMaxMarks());
                 resultDto.setAttemptedQuestions(studentResults.
@@ -195,7 +195,7 @@ public class ResultServiceImp implements ResultService {
                     getUserName());
             resultDto.setEmail(studentResult.getStudentResult().getEmail());
             resultDto.setCategoryName(category.get().getCategoryName());
-            resultDto.setQuizName(studentResult.getQuiz().getTopicName());
+            resultDto.setQuizName(studentResult.getQuizName());
             resultDto.setDateAndTime(studentResult.getDateAndTime());
             resultDto.setObtainMarks(studentResult.getMaxMarks());
             resultDto.setCategoryId(category.get().getCategoryId());

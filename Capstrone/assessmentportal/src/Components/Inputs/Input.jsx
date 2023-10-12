@@ -11,6 +11,8 @@ const Input = (props) => {
                 onChange={props.onChange}
                 disabled={props.disabled}
                 checked={props.checked}
+                onFocus={props.onFocus}
+                onBlur={props.onBlur}
             />
         </div>
     )

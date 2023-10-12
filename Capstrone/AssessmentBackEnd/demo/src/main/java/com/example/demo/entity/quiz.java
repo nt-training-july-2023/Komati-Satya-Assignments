@@ -1,9 +1,6 @@
 package com.example.demo.entity;
 import java.util.ArrayList;
 import java.util.List;
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -118,20 +115,6 @@ public class Quiz {
     }
     /**
      * get question.
-     * @return list
-     */
-    public List<StudentResult> getStudentResult() {
-        return new ArrayList<>(studentResult);
-    }
-    /**
-     * get question.
-     * @param student student result
-     */
-    public void setStudentResult(final List<StudentResult> student) {
-        this.studentResult = new ArrayList<>(student);
-    }
-    /**
-     * get question.
      * @return question question
      */
     public List<Questions> getQuestions() {
@@ -166,14 +149,6 @@ public class Quiz {
     @JoinColumn(name = "c_fk")
     @JsonIgnoreProperties("quiz")
     private Category category;
-    /**
-     * one to many relationship with quiz.
-     */
-    @OneToMany(targetEntity = StudentResult.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "qz_id", referencedColumnName = "quizId")
-    @JsonIgnoreProperties("Quiz")
-    @JsonIgnore
-    private List<StudentResult> studentResult;
     /**
      * one to many relationship with questions.
      */

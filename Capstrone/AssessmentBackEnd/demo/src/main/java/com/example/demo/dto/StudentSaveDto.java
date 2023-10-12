@@ -7,7 +7,6 @@ import com.example.demo.validationMessages.ValidationMessages;
 import jakarta.persistence.Column;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import lombok.Getter;
@@ -24,7 +23,6 @@ public class StudentSaveDto {
     /**
      * stores the user id.
      */
-    @Id
     private int userId;
     /**
      * stores the user name.

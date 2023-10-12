@@ -10,9 +10,9 @@ class StudentResultTest {
     void testGetterSetter() {
         StudentResult studentResult=new StudentResult();
         studentResult.setResultId(1);
-        Quiz q=new Quiz();
-        q.setTopicName("variables");
-        studentResult.setQuiz(q);
+//        Quiz q=new Quiz();
+//        q.setTopicName("variables");
+//        studentResult.setQuiz(q);
         Student student=new Student();
         student.setUserId(18);
         studentResult.setStudentResult(student);
