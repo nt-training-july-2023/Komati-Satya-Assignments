@@ -33,6 +33,7 @@ function Category() {
         setIsLoading(false);
       })
   };
+  
   const deleteData = async (id) => {
     SweetAlert.deleteData("category", deleteCategory, id)
   }
@@ -102,4 +103,3 @@ function Category() {
   );
 }
 export default Category;
-

@@ -222,14 +222,14 @@ public class QuestionServiceImp implements QuestionsService {
      */
     @Override
     public final List<QuestionsDto> findQuestionById(final int id) {
-        if (questionsRepo.findQueById(id).size() != 0) {
+        if (quizRepo.findById(id).isPresent()) {
                 List<Questions> questions = questionsRepo.findQueById(id);
                 List<QuestionsDto> questionDto = convertToDto(questions);
                 LOGGER.info(Messages.FIND_QUESTIONBYQUIZID);
                 return questionDto;
         } else {
-            LOGGER.error(ErrorMessages.NO_QUESTION);
-            throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
+            LOGGER.error(ErrorMessages.WRONG_QUIZID);
+            throw new AllNotFoundException(ErrorMessages.WRONG_QUIZID);
         }
     }
     /**

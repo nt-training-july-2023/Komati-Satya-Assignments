@@ -62,9 +62,9 @@ class GlobalExceptionHandlerTest {
     public void testHandleAllNotFoundException() {
         AllNotFoundException exception = new AllNotFoundException("Resource not found");
         ResponseEntity<Response> responseEntity = globalhandler.handleAllNotFoundException(exception);
-        assertEquals(HttpStatus.CONFLICT, responseEntity.getStatusCode());
+        assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
         Response errorResponse = responseEntity.getBody();
-        assertEquals(HttpStatus.CONFLICT.value(), errorResponse.getCode());
+        assertEquals(HttpStatus.NO_CONTENT.value(), errorResponse.getCode());
         assertEquals("Resource not found", errorResponse.getMessage());
     }
     @Test

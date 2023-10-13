@@ -35,7 +35,8 @@ function Test({ isRefresh, setTrue }) {
   const [attemptedQuestionss, setAttemptedQuestions] = useState(0);
   const [date, setDate] = useState()
   const [timeLeft, setTimeLeft] = useState((verifyTimer) * 10);
-
+  const [attempted,setAttempted]=useState(0);
+  
   useEffect(() => {
     const currentDate = new Date();
     const options = {
@@ -50,7 +51,8 @@ function Test({ isRefresh, setTrue }) {
     const formattedDate = currentDate.toLocaleDateString('en-US', options);
     setDate(formattedDate);
   }, [])
-
+  localStorage.setItem('activeTab','true')
+  
   useEffect(() => {
     getQuiz();
   }, [quizId])
@@ -86,6 +88,7 @@ function Test({ isRefresh, setTrue }) {
     for (let i = 0; i < questions.length; i++) {
       const questionId = questions[i].questionId;
       const storedOption = localStorage.getItem(`selectedOption_${questionId}`);
+      
       if (storedOption) {
         initialSelectedOptions[questionId] = storedOption;
       }
@@ -100,6 +103,7 @@ function Test({ isRefresh, setTrue }) {
       };
     });
     localStorage.setItem(`selectedOption_${questionId}`, selectedOption);
+    setAttempted(countSelectedOptionsInLocalStorage());
   };
   useEffect(() => {
     initializeSelectedOptions();
@@ -220,6 +224,8 @@ function Test({ isRefresh, setTrue }) {
   useEffect(() => {
     if (verifyRole === "student") {
       if (!isRefresh) {
+        const a = countSelectedOptionsInLocalStorage()
+        setAttempted(a)
         Swal.fire({
           title: 'If you refresh the page the test will be submitted',
           showDenyButton: true,
@@ -287,6 +293,7 @@ function Test({ isRefresh, setTrue }) {
             <>
               <div className="navbar">
                 <H1Component className="navbar-title">Test</H1Component>
+                <p className="attempted">Attempted Questions:{attempted+"/"+numberOfQuestions}</p>
                 <div className="timer">
                   Time Left: {formatTime(timeLeft)}
                 </div>

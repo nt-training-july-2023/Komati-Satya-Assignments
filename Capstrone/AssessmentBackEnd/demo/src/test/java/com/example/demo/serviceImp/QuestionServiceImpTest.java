@@ -184,6 +184,7 @@ class QuestionServiceImpTest {
         questions.setQuiz(quiz);
         List<Questions> questionsList = new ArrayList<>();
         questionsList.add(questions);
+        when(quizRepo.findById(1)).thenReturn(Optional.of(quiz));
         when(questionsRepo.findQueById(1)).thenReturn(questionsList);
         List<QuestionsDto> questionsDto=questionsService.findQuestionById(1);
         assertEquals(questionsDto,Collections.singletonList(questionDto));

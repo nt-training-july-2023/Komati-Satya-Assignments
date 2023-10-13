@@ -2,7 +2,7 @@
   .navbar {
     background-color: #5dcc5d;
     color: #fff;
-    padding: 10px;
+    padding: 1px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -15,7 +15,9 @@
 .confirm{
   background-color: #5dcc5d;
 }
-  
+  .attempted{
+   font-size: 20px;
+  }
   
   .timer {
     font-size: 18px;

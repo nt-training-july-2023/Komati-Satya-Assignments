@@ -34,7 +34,6 @@ public interface QuizService {
      * @param id quiz id
      */
     void deleteQuiz(int id);
-
     /**
      * update quiz method.
      * @param quizUpdateDto  quiz
@@ -43,14 +42,12 @@ public interface QuizService {
      */
     QuizUpdateDto updateQuiz(QuizUpdateDto
             quizUpdateDto, int id);
-
     /**
      * find by id method.
      * @param id quiz id
      * @return quiz
      */
     List<QuizDto> findQuizById(int id);
-
     /**
      * find quiz by name method.
      * @param name category name
