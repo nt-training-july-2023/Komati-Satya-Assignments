@@ -51,12 +51,42 @@ const Table = ({ columns, data, rows, category, deleteData, viewQuizes, role, qu
             </>
             )
             }
-            {question && (<>
-              {role === "Admin" && (<>
-                <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.questionId)}><FaTrash className="add-icon" /> Delete</ButtonComponent></td>
-                <td><Link to={`/UpdateQuestion/${item.question}`} className="updateData"><FaList className="add-icon" /> Update</Link></td>
-              </>)}
-            </>)}
+           
+            {question && (
+  <>
+    {role === "Admin" && (
+      <>
+       <td><ButtonComponent className="deleteData" type="button" onClick={() => deleteData(item.questionId)}><FaTrash className="add-icon" /> Delete</ButtonComponent></td>
+       {item.option1 && item.option2 && item.option3 && item.option4 ? (
+          <>
+            
+            <td>
+              <Link
+                to={`/UpdateQuestion/${item.question}`}
+                className="updateData"
+              >
+                <FaList className="add-icon" /> Update
+              </Link>
+            </td>
+          </>
+        ) : item.option1 && item.option2  ? (
+          <>
+           
+            <td>
+              <Link
+                to={`/UpdateAssertionQuestion/${item.question}`}
+                className="updateData"
+              >
+                <FaList className="add-icon" /> Update
+              </Link>
+            </td>
+          </>
+        ) : null}
+      </>
+    )}
+  </>
+)}
+
           </tr>
         ))}
       </tbody>

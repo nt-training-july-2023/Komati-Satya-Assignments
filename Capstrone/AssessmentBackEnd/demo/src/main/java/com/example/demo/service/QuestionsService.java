@@ -2,6 +2,7 @@ package com.example.demo.service;
 
 import java.util.List;
 import com.example.demo.dto.QuestionsDto;
+import com.example.demo.dto.QuestionsDtoForAssertions;
 import com.example.demo.dto.QuestionsUpdateDto;
 
 
@@ -50,4 +51,19 @@ public interface QuestionsService {
      * @return question
      */
     QuestionsDto findByQuestion(String name);
+    /**
+     * add asertion question.
+     * @param questionsDto question dto.
+     * @return question dto
+     */
+    QuestionsDtoForAssertions addAssertionQuestions(
+            QuestionsDtoForAssertions questionsDto);
+    /**
+     * update assertion question.
+     * @param questionsDto questionDto
+     * @param id id
+     * @return updated question
+     */
+    QuestionsDtoForAssertions updateAssertionQuestions(
+            QuestionsDtoForAssertions questionsDto, int id);
 }

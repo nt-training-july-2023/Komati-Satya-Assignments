@@ -63,19 +63,16 @@ public class Questions {
      * stores the option2.
      */
     @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.OPTION2_NOTBLANK)
     private String option2;
     /**
      * stores the option3.
      */
-    @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.OPTION3_NOTBLANK)
+    @Column(name = "option3")
     private String option3;
     /**
-     * stores the option4.
+     * option4.
      */
-    @Column(nullable = false)
-    @NotEmpty(message = ValidationMessages.OPTION4_NOTBLANK)
+    @Column(name = "option4")
     private String option4;
     /**
      * stores the correct option.

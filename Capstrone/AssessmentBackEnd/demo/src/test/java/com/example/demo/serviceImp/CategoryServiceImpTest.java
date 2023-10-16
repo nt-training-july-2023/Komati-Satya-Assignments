@@ -128,7 +128,6 @@ class CategoryServiceImpTest {
          CategoryDto c=categoryService.updateCategory(cd, 1);
          assertEquals(c,cd);
    }
-    
     @Test
     void testCategoryNotFoundUpdate() {
         int categoryId=1;

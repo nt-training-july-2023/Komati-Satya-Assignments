@@ -13,6 +13,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import com.example.demo.dto.QuestionsDto;
+import com.example.demo.dto.QuestionsDtoForAssertions;
 import com.example.demo.dto.QuestionsUpdateDto;
 import com.example.demo.entity.Questions;
 import com.example.demo.entity.Quiz;
@@ -227,5 +228,79 @@ class QuestionServiceImpTest {
            assertThrows(NotFoundException.class , () ->{ questionsService.findByQuestion(questionsName);
            });
        }
-  
+       @Test
+       void testAddAssertionQuestion() {
+          QuestionsDtoForAssertions questionDto=new QuestionsDtoForAssertions("java is","oops","popl","oops",7,9);
+          Quiz quiz=new Quiz(9,"variables","java variables",60);
+          
+          when(quizRepo.findById(questionDto.getQuizId())).thenReturn(Optional.of(quiz));
+          when(questionsRepo.findByQuestion(questionDto.getQuestion())).thenReturn(Optional.empty());
+          assertEquals(questionDto.getCorrectOption(),questionDto.getOption1());
+          Questions question=new Questions();
+          question.setQuiz(quiz);
+          question.setQuestion(questionDto.getQuestion());
+          question.setOption1(questionDto.getOption1());
+          question.setOption2(questionDto.getOption2());
+          question.setCorrectOption(questionDto.getCorrectOption());
+          QuestionsDtoForAssertions questionDto2=questionsService.addAssertionQuestions(questionDto);
+         assertEquals(questionDto2,questionDto);
+       }
+       @Test
+       void testAssertionQuestionAlreadyExistException() {
+           QuestionsDtoForAssertions questionDto=new QuestionsDtoForAssertions("java is","oops","popl","oopl",1,3);
+           Quiz quiz=new Quiz(1,"variables","java variables",60);
+           Questions question=new Questions("java is","oops","popl","none","both","oopl");
+           
+           when(quizRepo.findById(questionDto.getQuizId())).thenReturn(Optional.of(quiz));
+           when(questionsRepo.findByQuestion(questionDto.getQuestion())).thenReturn(Optional.of(question));
+           assertThrows(AlreadyExistException.class,()->{  questionsService.addAssertionQuestions(questionDto);
+           });
+      }
+       @Test
+       void testAsseryionQuizTopicNotPresent() {
+           QuestionsDtoForAssertions questionDto=new QuestionsDtoForAssertions("java is","oops","popl","oopl",7,9);
+           
+           when(quizRepo.findById(questionDto.getQuizId())).thenReturn(Optional.empty());
+           assertThrows(NotFoundException.class,()->{  questionsService.addAssertionQuestions(questionDto);
+          });
+       }
+       @Test
+       public void testUpdateAssertionQuestion() {
+           Questions questions=new Questions("java is","oops","popl",null,null,"oopl");
+           questions.setQid(1);
+           Quiz quiz=new Quiz(1,"variables","java variables",60);
+            questions.setQuiz(quiz);
+           questionsRepo.save(questions);
+           QuestionsDtoForAssertions questionsDto=new  QuestionsDtoForAssertions();
+           questionsDto.setQuizId(quiz.getQuizId());
+           questionsDto.setQuestion(questions.getQuestion());
+           questionsDto.setOption1(questions.getOption1());
+           questionsDto.setOption2(questions.getOption2());
+           questionsDto.setCorrectOption(questions.getCorrectOption());
+           
+           when(questionsRepo.findById(questions.getQid())).thenReturn(Optional.of(questions));
+           assertTrue(Optional.of(questions).isPresent());
+           QuestionsDtoForAssertions question=new  QuestionsDtoForAssertions("java is?","oopl","popl","oopl",7,9);
+           List<Questions> questionList=new ArrayList<>();
+           questionList.add(questions);
+           when(questionsRepo.findAll()).thenReturn(questionList);
+           QuestionsDtoForAssertions qd=questionsService.updateAssertionQuestions(question, 1);
+           assertEquals(qd,question);
+       }
+       
+       @Test
+       public void testAssertionNoQuizisPresent() {
+           QuestionsDtoForAssertions question=new  QuestionsDtoForAssertions("java is?","oopl","popl","oopl",7,9);
+           when(questionsRepo.findAll()).thenReturn(new ArrayList<>());
+           assertThrows(AllNotFoundException.class , () ->{questionsService.updateAssertionQuestions(question,9 );
+           });
+       }
+       @Test
+       public void testAssertionUpdateQuizNotPresent() {
+           QuestionsDtoForAssertions question=new  QuestionsDtoForAssertions("java is?","oopl","popl","oopl",7,9);
+           when(questionsRepo.findAll()).thenReturn(Collections.singletonList(new Questions()));
+           when(questionsRepo.findById(1)).thenReturn(Optional.empty());
+           assertThrows(NotFoundException.class, () ->{questionsService.updateAssertionQuestions(question, 9);
+       });
+       }
 }

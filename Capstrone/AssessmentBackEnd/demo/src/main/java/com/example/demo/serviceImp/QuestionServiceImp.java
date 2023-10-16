@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.dto.QuestionsDto;
+import com.example.demo.dto.QuestionsDtoForAssertions;
 import com.example.demo.dto.QuestionsUpdateDto;
 import com.example.demo.entity.Questions;
 import com.example.demo.exceptions.AllNotFoundException;
@@ -258,4 +259,107 @@ public class QuestionServiceImp implements QuestionsService {
         LOGGER.error(ErrorMessages.NO_QUESTION);
         throw new NotFoundException(ErrorMessages.NO_QUESTION);
     }
-}
+    /**
+     * add assertion question.
+     * @param questionsDto question dto
+     * return added question
+     */
+    @Override
+    public QuestionsDtoForAssertions addAssertionQuestions(
+        final QuestionsDtoForAssertions questionsDto) {
+        if (quizRepo.findById(questionsDto.getQuizId()).isPresent()) {
+            if (!questionsRepo.findByQuestion(questionsDto.getQuestion())
+                    .isPresent()) {
+                Set<String> options = new HashSet<>();
+                options.add(questionsDto.getOption1());
+                options.add(questionsDto.getOption2());
+                final int number = 2;
+                if (options.size() < number) {
+                    throw new AlreadyExistException(ErrorMessages
+                           .OPTION_EXIST);
+                }
+                if (questionsDto.getCorrectOption().equals(
+                        questionsDto.getOption1())
+                   || questionsDto.getCorrectOption().equals(
+                           questionsDto.getOption2())) {
+                Questions question = new Questions();
+                question.setQid(questionsDto.getQuizId());
+                question.setQuiz(quizRepo.findById(
+                        questionsDto.getQuizId()).get());
+                question.setCorrectOption(questionsDto.getCorrectOption());
+                question.setOption1(questionsDto.getOption1());
+                question.setOption2(questionsDto.getOption2());
+                question.setQuestion(questionsDto.getQuestion());
+                questionsRepo.save(question);
+                LOGGER.info(Messages.SAVE_QUESTION);
+                return questionsDto;
+                } else {
+                    LOGGER.error(ErrorMessages.CORRECT_OPTION);
+                    throw new NotFoundException(ErrorMessages.CORRECT_OPTION);
+                }
+            } else {
+                LOGGER.error(ErrorMessages.QUESTION_EXIST);
+                throw new AlreadyExistException(ErrorMessages.QUESTION_EXIST);
+            }
+        } else {
+            LOGGER.error(ErrorMessages.QUIZ_NOTPRESENT);
+            throw new NotFoundException(ErrorMessages.QUIZ_NOTPRESENT);
+        }
+    }
+    /**
+     * update assertion question.
+     * @param questionsDto question dto
+     * @param id id
+     * return updated question
+     */
+    @Override
+    public QuestionsDtoForAssertions updateAssertionQuestions(
+          final QuestionsDtoForAssertions questionsDto,
+          final int id) {
+        if (questionsRepo.findAll().size() != 0) {
+            Optional<Questions> existingQue = questionsRepo.findById(id);
+            if (existingQue.isPresent()) {
+                Questions exiQue = existingQue.get();
+                Optional<Questions> question = questionsRepo
+                        .findByQuestion(questionsDto.getQuestion());
+                if (question.isPresent()
+                        && !(question.get().getQid() == id)) {
+                throw new AlreadyExistException(ErrorMessages.QUESTION_EXIST);
+                }
+                Set<String> options = new HashSet<>();
+                options.add(questionsDto.getOption1());
+                options.add(questionsDto.getOption2());
+                final int number = 2;
+                if (options.size() < number) {
+                    throw new AlreadyExistException(ErrorMessages
+                           .OPTION_EXIST);
+                }
+                if (questionsDto.getCorrectOption().equals(
+                        questionsDto.getOption1())
+                   || questionsDto.getCorrectOption().equals(
+                           questionsDto.getOption2())
+                   ) {
+                exiQue.setOption1(questionsDto.getOption1());
+                exiQue.setOption2(questionsDto.getOption2());
+                exiQue.setCorrectOption(questionsDto.getCorrectOption());
+                exiQue.setQuestion(questionsDto.getQuestion());
+                questionsRepo.save(exiQue);
+                LOGGER.info(Messages.UPDATE_QUESTION);
+                return questionsDto;
+                } else {
+                    LOGGER.error(ErrorMessages.CORRECT_OPTION);
+                    throw new NotFoundException(ErrorMessages.CORRECT_OPTION);
+                }
+            } else {
+                LOGGER.error(ErrorMessages.WRONG_QUESTIONID);
+                throw new NotFoundException(ErrorMessages.WRONG_QUESTIONID);
+            }
+        } else {
+            LOGGER.error(ErrorMessages.NO_QUESTION);
+            throw new AllNotFoundException(ErrorMessages.NO_QUESTION);
+        }
+
+    }
+
+    }
+

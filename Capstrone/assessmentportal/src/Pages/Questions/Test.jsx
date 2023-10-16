@@ -36,6 +36,7 @@ function Test({ isRefresh, setTrue }) {
   const [date, setDate] = useState()
   const [timeLeft, setTimeLeft] = useState((verifyTimer) * 10);
   const [attempted,setAttempted]=useState(0);
+  const [tab,setTab]=useState(false);
   
   useEffect(() => {
     const currentDate = new Date();
@@ -78,11 +79,36 @@ function Test({ isRefresh, setTrue }) {
       setIsLoading(false);
     })
   };
-
+  
   useEffect(() => {
     setQuestionCounter(1);
   }, [questions]);
-  
+  useEffect(() => {
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        if (!quizSubmitted) {
+          setTab(true)
+          calculateScoreForTab()
+          const s = localStorage.getItem("user");
+          console.log(s)
+          setUserScore(s);
+          const a = countSelectedOptionsInLocalStorage()
+          setAttemptedQuestions(a);
+          setQuizSubmitted(true);
+          localStorage.removeItem('timerValue');
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+    return () => {
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+    };
+  }, []);
+ useEffect(()=>{
+  if(tab){
+    removeSelectedOptionsInLocalStorage()
+  }
+ })
   const initializeSelectedOptions = () => {
     const initialSelectedOptions = {};
     for (let i = 0; i < questions.length; i++) {
@@ -160,7 +186,28 @@ function Test({ isRefresh, setTrue }) {
     localStorage.setItem('user', score);
     return score;
   };
+  const calculateScoreForTab = () => {
+    console.log("score")
+    let score = 0;
+    
+    const questions =  JSON.parse(localStorage.getItem('questions'));
+    console.log(questions)
+    for (let i = 0; i < questions.length; i++) {
+      console.log("for")
+      const questionId = questions[i].questionId;
+      const selectedOption = localStorage.getItem(`selectedOption_${questionId}`);
+      console.log(localStorage)
+      console.log(selectedOption)
+      const correctOption = questions[i].correctOption;
+      if (selectedOption === correctOption) {
+        score++;
+      }
+    }
+    localStorage.setItem('user', score);
+    console.log(score)
+    return score;
 
+  };
   const handleSubmitQuiz = async () => {
     Swal.fire({
       title: 'Do you want to Submit the test??',
@@ -327,6 +374,8 @@ function Test({ isRefresh, setTrue }) {
                             />
                             <LabelComponent htmlFor={`option2_${item.questionId}`}>{item.option2}</LabelComponent>
                           </div>
+                          {item.option3 && item.option4 ? (
+                           <>
                           <div className="option">
                             <Input
                               type="radio"
@@ -349,6 +398,8 @@ function Test({ isRefresh, setTrue }) {
                             />
                             <LabelComponent htmlFor={`option4_${item.questionId}`}>{item.option4}</LabelComponent>
                           </div>
+                          </>
+                       ) : null}
                         </div>
                       </div>
                     ))}

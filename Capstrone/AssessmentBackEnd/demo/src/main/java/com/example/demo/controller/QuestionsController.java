@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.dto.QuestionsDto;
+import com.example.demo.dto.QuestionsDtoForAssertions;
 import com.example.demo.dto.QuestionsUpdateDto;
 import com.example.demo.response.Response;
 import com.example.demo.service.QuestionsService;
@@ -47,6 +48,20 @@ public class QuestionsController {
     public final Response addQuestion(
             @RequestBody @Valid final QuestionsDto questionDto) {
             questionsService.addQuestion(questionDto);
+            LOGGER.info(Messages.SAVE_QUESTION);
+            String message = Messages.SAVE_QUESTION;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
+    }   /**
+     * Questions add method.
+     * @param questionDto question
+     * @return response
+     */
+    @PostMapping("/questions/assetionQuestions")
+    public final Response addAssertionQuestion(
+            @RequestBody @Valid final QuestionsDtoForAssertions questionDto) {
+            questionsService.addAssertionQuestions(questionDto);
             LOGGER.info(Messages.SAVE_QUESTION);
             String message = Messages.SAVE_QUESTION;
             Integer code = HttpStatus.OK.value();
@@ -94,6 +109,23 @@ public class QuestionsController {
             @RequestBody @Valid final QuestionsUpdateDto questionUpdateDto,
             @PathVariable final int id) {
             questionsService.updateQuestion(questionUpdateDto, id);
+            LOGGER.info(Messages.UPDATE_QUESTION);
+            String message = Messages.UPDATE_QUESTION;
+            Integer code = HttpStatus.OK.value();
+            Response response = new Response(code, message);
+       return response;
+    }
+    /**
+     * update question method.
+     * @param id question id
+     * @param questionUpdateDto  question
+     * @return response
+     */
+    @PutMapping("/questions/assertion/{id}")
+    public final Response updateAssertionQue(
+            @RequestBody @Valid final QuestionsDtoForAssertions
+            questionUpdateDto, @PathVariable final int id) {
+            questionsService.updateAssertionQuestions(questionUpdateDto, id);
             LOGGER.info(Messages.UPDATE_QUESTION);
             String message = Messages.UPDATE_QUESTION;
             Integer code = HttpStatus.OK.value();

@@ -15,6 +15,7 @@ import Login from './Pages/UserRegistration/Login';
 import Student from './Pages/User/Students';
 import Test from './Pages/Questions/Test';
 import ErrorPage from './Components/ErrorPage';
+import AddAssertionQuestion from './Pages/Questions/AddAssertionQuestion';
 
 function App() {
  const[isRefresh,setIsRefresh]=useState(false)
@@ -45,6 +46,8 @@ function App() {
         <Route path="/AddQuestion/:quizId" element={<AddQuestions/>}></Route>
         <Route path="/UpdateQuestion/:question" element={<AddQuestions/>}></Route>
         <Route path="/Test/:quizId" element={<Test isRefresh={isRefresh} setTrue={setTrue}/>}></Route>
+        <Route path="/AddAssertionQuestion/:quizId" element = {<AddAssertionQuestion/>}></Route>
+        <Route path="/UpdateAssertionQuestion/:question" element={<AddAssertionQuestion/>}></Route>
        </Routes>
      </BrowserRouter>
     </div>

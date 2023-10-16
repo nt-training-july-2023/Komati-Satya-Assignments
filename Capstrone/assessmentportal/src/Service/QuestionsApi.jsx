@@ -7,8 +7,14 @@ class QuestionsApi{
     addQuestion(Quiz){
         return axios.post(QUESTIONS_BASE_URL, Quiz);
     }
+    addAssertionQuestion(Quiz){
+        return axios.post(QUESTIONS_BASE_URL+'/assetionQuestions', Quiz);
+    }
     updateQuestion(id, Question){
         return axios.put(QUESTIONS_BASE_URL+'/que/'+id,Question);
+    }
+    updateAssertionQuestion(id, Question){
+        return axios.put(QUESTIONS_BASE_URL+'/assertion/'+id,Question);
     }
 
     deleteQuestion(id){

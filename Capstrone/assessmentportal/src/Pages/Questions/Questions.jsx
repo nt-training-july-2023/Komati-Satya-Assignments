@@ -50,6 +50,9 @@ const Questions = () => {
   const addData = () => {
     navigate(`/AddQuestion/${quizId}`);
   }
+  const addQuestion = () => {
+    navigate(`/AddAssertionQuestion/${quizId}`);
+  }
   const rows = [
     'question',
     'option1',
@@ -77,7 +80,8 @@ const Questions = () => {
         <>
           <H1Component className="addHead">Questions Details</H1Component>
           <ButtonComponent className="back-Button" onClick={handleBackButton}><FaBackward className="back-icon" /> Back</ButtonComponent>
-          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}><FaPlusCircle className="add-icon" /> Add Question</ButtonComponent>}
+          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addData()}><FaPlusCircle className="add-icon" /> Add Mcq Question</ButtonComponent>}
+          {verifyRole === 'Admin' && <ButtonComponent className="addButton" onClick={() => addQuestion()}><FaPlusCircle className="add-icon" /> Add Assertion Question</ButtonComponent>}
           <div className="searchContainer">
              <SearchButton
                 originalData={originalQuestions}
