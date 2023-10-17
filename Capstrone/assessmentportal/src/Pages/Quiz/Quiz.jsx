@@ -38,6 +38,7 @@ function Quiz({ setTrue }) {
           return questionData.data.data.length > 0 ? quiz : null;
         }));
         setQuiz(quizzesWithQuestions.filter(Boolean));
+        setOriginalQuiz(quizzesWithQuestions.filter(Boolean))
       } catch (error) {
         console.error("Error loading quizzes:", error);
       }

@@ -35,9 +35,9 @@ function Test({ isRefresh, setTrue }) {
   const [attemptedQuestionss, setAttemptedQuestions] = useState(0);
   const [date, setDate] = useState()
   const [timeLeft, setTimeLeft] = useState((verifyTimer) * 10);
-  const [attempted,setAttempted]=useState(0);
-  const [tab,setTab]=useState(false);
-  
+  const [attempted, setAttempted] = useState(0);
+  const [tab, setTab] = useState(false);
+
   useEffect(() => {
     const currentDate = new Date();
     const options = {
@@ -52,8 +52,8 @@ function Test({ isRefresh, setTrue }) {
     const formattedDate = currentDate.toLocaleDateString('en-US', options);
     setDate(formattedDate);
   }, [])
-  localStorage.setItem('activeTab','true')
-  
+  localStorage.setItem('activeTab', 'true')
+
   useEffect(() => {
     getQuiz();
   }, [quizId])
@@ -65,7 +65,7 @@ function Test({ isRefresh, setTrue }) {
       setIsLoading(false);
     })
   }
-  
+
   useEffect(() => {
     getQuestions();
   }, [quizId]);
@@ -73,13 +73,13 @@ function Test({ isRefresh, setTrue }) {
   const getQuestions = async () => {
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
       setQuestions(response.data.data || []);
-      if(response.data.data)
-      setNumberOfQuestions(response.data.data.length)   
+      if (response.data.data)
+        setNumberOfQuestions(response.data.data.length)
     }).finally(() => {
       setIsLoading(false);
     })
   };
-  
+
   useEffect(() => {
     setQuestionCounter(1);
   }, [questions]);
@@ -90,12 +90,11 @@ function Test({ isRefresh, setTrue }) {
           setTab(true)
           calculateScoreForTab()
           const s = localStorage.getItem("user");
-          console.log(s)
           setUserScore(s);
           const a = countSelectedOptionsInLocalStorage()
           setAttemptedQuestions(a);
           setQuizSubmitted(true);
-          localStorage.removeItem('timerValue');
+
         }
       }
     };
@@ -104,17 +103,18 @@ function Test({ isRefresh, setTrue }) {
       document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, []);
- useEffect(()=>{
-  if(tab){
-    removeSelectedOptionsInLocalStorage()
-  }
- })
+  useEffect(() => {
+    if (tab) {
+      removeSelectedOptionsInLocalStorage()
+      localStorage.removeItem('timerValue');
+    }
+  })
   const initializeSelectedOptions = () => {
     const initialSelectedOptions = {};
     for (let i = 0; i < questions.length; i++) {
       const questionId = questions[i].questionId;
       const storedOption = localStorage.getItem(`selectedOption_${questionId}`);
-      
+
       if (storedOption) {
         initialSelectedOptions[questionId] = storedOption;
       }
@@ -187,24 +187,18 @@ function Test({ isRefresh, setTrue }) {
     return score;
   };
   const calculateScoreForTab = () => {
-    console.log("score")
     let score = 0;
-    
-    const questions =  JSON.parse(localStorage.getItem('questions'));
-    console.log(questions)
+
+    const questions = JSON.parse(localStorage.getItem('questions'));
     for (let i = 0; i < questions.length; i++) {
-      console.log("for")
       const questionId = questions[i].questionId;
       const selectedOption = localStorage.getItem(`selectedOption_${questionId}`);
-      console.log(localStorage)
-      console.log(selectedOption)
       const correctOption = questions[i].correctOption;
       if (selectedOption === correctOption) {
         score++;
       }
     }
     localStorage.setItem('user', score);
-    console.log(score)
     return score;
 
   };
@@ -340,7 +334,7 @@ function Test({ isRefresh, setTrue }) {
             <>
               <div className="navbar">
                 <H1Component className="navbar-title">Test</H1Component>
-                <p className="attempted">Attempted Questions:{attempted+"/"+numberOfQuestions}</p>
+                <p className="attempted">Attempted Questions:{attempted + "/" + numberOfQuestions}</p>
                 <div className="timer">
                   Time Left: {formatTime(timeLeft)}
                 </div>
@@ -375,31 +369,31 @@ function Test({ isRefresh, setTrue }) {
                             <LabelComponent htmlFor={`option2_${item.questionId}`}>{item.option2}</LabelComponent>
                           </div>
                           {item.option3 && item.option4 ? (
-                           <>
-                          <div className="option">
-                            <Input
-                              type="radio"
-                              id={`option3_${item.questionId}`}
-                              name={`question_${item.questionId}`}
-                              value={item.option3}
-                              onChange={() => handleOptionChange(item.questionId, item.option3)}
-                              checked={selectedOptions[item.questionId] === item.option3}
-                            />
-                            <LabelComponent htmlFor={`option3_${item.questionId}`}>{item.option3}</LabelComponent>
-                          </div>
-                          <div className="option">
-                            <Input
-                              type="radio"
-                              id={`option4_${item.questionId}`}
-                              name={`question_${item.questionId}`}
-                              value={item.option4}
-                              onChange={() => handleOptionChange(item.questionId, item.option4)}
-                              checked={selectedOptions[item.questionId] === item.option4}
-                            />
-                            <LabelComponent htmlFor={`option4_${item.questionId}`}>{item.option4}</LabelComponent>
-                          </div>
-                          </>
-                       ) : null}
+                            <>
+                              <div className="option">
+                                <Input
+                                  type="radio"
+                                  id={`option3_${item.questionId}`}
+                                  name={`question_${item.questionId}`}
+                                  value={item.option3}
+                                  onChange={() => handleOptionChange(item.questionId, item.option3)}
+                                  checked={selectedOptions[item.questionId] === item.option3}
+                                />
+                                <LabelComponent htmlFor={`option3_${item.questionId}`}>{item.option3}</LabelComponent>
+                              </div>
+                              <div className="option">
+                                <Input
+                                  type="radio"
+                                  id={`option4_${item.questionId}`}
+                                  name={`question_${item.questionId}`}
+                                  value={item.option4}
+                                  onChange={() => handleOptionChange(item.questionId, item.option4)}
+                                  checked={selectedOptions[item.questionId] === item.option4}
+                                />
+                                <LabelComponent htmlFor={`option4_${item.questionId}`}>{item.option4}</LabelComponent>
+                              </div>
+                            </>
+                          ) : null}
                         </div>
                       </div>
                     ))}
