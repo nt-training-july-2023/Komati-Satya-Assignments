@@ -86,6 +86,8 @@ function Quiz({ setTrue }) {
             <li>4. No negative marking for wrong answers.</li>
             <li>5. Questions are of Multiple Choice.</li>
             <li>6. Each question carries one mark.</li>
+            <li>7. If you open the new tab then the test will automatically</li>
+            <li>   submit.</li>
             </ul>
           </div>
         `

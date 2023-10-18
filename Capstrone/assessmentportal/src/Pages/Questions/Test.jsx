@@ -73,8 +73,10 @@ function Test({ isRefresh, setTrue }) {
   const getQuestions = async () => {
     QuestionsApi.getQuestionByQuizId(quizId).then(response => {
       setQuestions(response.data.data || []);
+      localStorage.setItem('questions', JSON.stringify(response.data.data));
       if (response.data.data)
         setNumberOfQuestions(response.data.data.length)
+        
     }).finally(() => {
       setIsLoading(false);
     })
@@ -94,7 +96,6 @@ function Test({ isRefresh, setTrue }) {
           const a = countSelectedOptionsInLocalStorage()
           setAttemptedQuestions(a);
           setQuizSubmitted(true);
-
         }
       }
     };
@@ -114,7 +115,6 @@ function Test({ isRefresh, setTrue }) {
     for (let i = 0; i < questions.length; i++) {
       const questionId = questions[i].questionId;
       const storedOption = localStorage.getItem(`selectedOption_${questionId}`);
-
       if (storedOption) {
         initialSelectedOptions[questionId] = storedOption;
       }
@@ -188,12 +188,14 @@ function Test({ isRefresh, setTrue }) {
   };
   const calculateScoreForTab = () => {
     let score = 0;
-
     const questions = JSON.parse(localStorage.getItem('questions'));
+    console.log(questions)
     for (let i = 0; i < questions.length; i++) {
       const questionId = questions[i].questionId;
-      const selectedOption = localStorage.getItem(`selectedOption_${questionId}`);
+       const selectedOption = localStorage.getItem(`selectedOption_${questionId}`);
       const correctOption = questions[i].correctOption;
+      console.log(correctOption)
+      console.log(selectedOption)
       if (selectedOption === correctOption) {
         score++;
       }
