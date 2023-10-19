@@ -68,7 +68,7 @@ public class CategoryController {
     }
     /**
      * Category find all method.
-     * @return response.
+     * @return find all response.
      */
     @GetMapping("/category")
     public final Response findAll() {
