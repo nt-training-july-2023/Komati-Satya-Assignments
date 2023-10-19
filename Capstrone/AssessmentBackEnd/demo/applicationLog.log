@@ -1195,3 +1195,182 @@
 2023-10-18T12:31:44.354+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.controller.ResultController     : result saved successfully
 2023-10-18T12:31:44.406+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
 2023-10-18T12:31:44.421+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-18T14:33:17.314+05:30  WARN 8968 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h51m11s5ms916µs300ns).
+2023-10-18T14:57:31.566+05:30  WARN 8968 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=18m14s177ms912µs800ns).
+2023-10-18T15:44:41.269+05:30  WARN 8968 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=33m9s472ms173µs100ns).
+2023-10-18T15:46:21.884+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-18T15:46:21.884+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-18T15:46:21.902+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-18T15:46:21.902+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-18T15:46:23.026+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T15:46:23.026+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T15:46:23.038+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T15:46:23.038+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T15:46:23.045+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T15:46:23.045+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T15:46:23.061+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T15:46:23.061+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T15:46:23.576+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T15:46:23.576+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T15:46:23.623+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T15:46:23.623+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T15:46:24.763+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz detaills
+2023-10-18T15:46:24.763+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-18T15:46:24.778+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz detaills
+2023-10-18T15:46:24.778+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-18T15:46:24.779+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T15:46:24.779+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T15:46:24.793+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T15:46:24.793+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T15:46:28.884+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.ResultServiceImp     : result saved successfully
+2023-10-18T15:46:28.931+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.controller.ResultController     : result saved successfully
+2023-10-18T15:46:28.974+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-18T15:46:28.984+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-18T16:14:42.278+05:30  WARN 8968 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=26m946ms17µs100ns).
+2023-10-18T16:34:37.764+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-18T16:34:37.764+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-18T16:34:37.781+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-18T16:34:37.781+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-18T16:34:39.196+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:34:39.196+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:34:39.207+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:34:39.209+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:34:39.227+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:34:39.227+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:34:39.246+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:34:39.246+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:34:39.672+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:34:39.672+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:34:39.713+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:34:39.713+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:34:40.811+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz detaills
+2023-10-18T16:34:40.811+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-18T16:34:40.819+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:34:40.819+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:34:40.823+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz detaills
+2023-10-18T16:34:40.823+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-18T16:34:40.823+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:34:40.823+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:34:47.480+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.ResultServiceImp     : result saved successfully
+2023-10-18T16:34:47.533+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.controller.ResultController     : result saved successfully
+2023-10-18T16:34:47.586+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-18T16:34:47.603+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-18T16:36:49.366+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-18T16:36:49.366+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-18T16:36:49.380+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-18T16:36:49.380+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-18T16:36:50.373+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:36:50.373+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:36:50.394+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:36:50.394+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:36:50.394+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:36:50.394+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:36:50.394+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:36:50.407+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:36:50.840+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:36:50.840+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:36:50.886+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:36:50.886+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:36:52.105+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz detaills
+2023-10-18T16:36:52.105+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-18T16:36:52.105+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:36:52.105+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:36:52.121+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz detaills
+2023-10-18T16:36:52.121+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-18T16:36:52.121+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:36:52.121+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:36:57.119+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.ResultServiceImp     : result saved successfully
+2023-10-18T16:36:57.134+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.controller.ResultController     : result saved successfully
+2023-10-18T16:36:57.164+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-18T16:36:57.167+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-18T16:37:01.137+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-18T16:37:01.137+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-18T16:37:01.157+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-18T16:37:01.157+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-18T16:37:02.092+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:37:02.092+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:37:02.106+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:37:02.106+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:37:02.118+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:37:02.119+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:37:02.122+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:37:02.122+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:37:03.253+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:37:03.253+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:37:03.285+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:37:03.285+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:37:13.661+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:37:13.661+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:37:13.661+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:37:13.661+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:37:13.684+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:37:13.684+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:37:13.716+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:37:13.716+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:39:05.234+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:39:05.234+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:39:05.235+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:39:05.235+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:39:05.250+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:39:05.250+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:39:05.306+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:39:05.306+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:40:20.724+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:40:20.724+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:40:20.725+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:40:20.725+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:40:20.741+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:40:20.741+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:40:20.790+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:40:20.790+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:40:38.666+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:40:38.666+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:40:38.666+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:40:38.666+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:40:38.698+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:40:38.698+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:40:38.736+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:40:38.736+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:40:44.572+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:40:44.572+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:40:44.572+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz detaills
+2023-10-18T16:40:44.572+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-18T16:40:44.585+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz detaills
+2023-10-18T16:40:44.585+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-18T16:40:44.587+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:40:44.587+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:40:46.777+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.ResultServiceImp     : result saved successfully
+2023-10-18T16:40:46.801+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.controller.ResultController     : result saved successfully
+2023-10-18T16:40:46.825+05:30  INFO 8968 --- [http-nio-6002-exec-6] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-18T16:40:46.834+05:30  INFO 8968 --- [http-nio-6002-exec-9] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-18T16:40:57.771+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-18T16:40:57.771+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-18T16:40:57.787+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.CategoryServiceImp   : successfully retrieve thecategory data
+2023-10-18T16:40:57.787+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.controller.CategoryController   : successfully retrieve thecategory data
+2023-10-18T16:40:58.567+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:40:58.567+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:40:58.588+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz by category id
+2023-10-18T16:40:58.588+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : successfully retrieve the quiz by category id
+2023-10-18T16:40:58.592+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:40:58.592+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:40:58.600+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:40:58.600+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:41:00.117+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:41:00.117+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:41:00.149+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:41:00.149+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:49:27.632+05:30  WARN 8968 --- [HikariPool-1 housekeeper] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m44s832ms761µs800ns).
+2023-10-18T16:55:05.663+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:55:05.663+05:30  INFO 8968 --- [http-nio-6002-exec-3] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:55:07.153+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz detaills
+2023-10-18T16:55:07.153+05:30  INFO 8968 --- [http-nio-6002-exec-5] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-18T16:55:07.162+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.serviceImp.QuizServiceImp       : successfully retrieve the quiz detaills
+2023-10-18T16:55:07.162+05:30  INFO 8968 --- [http-nio-6002-exec-2] c.e.demo.controller.QuizController       : successfully retrieve the quiz detaills
+2023-10-18T16:55:07.173+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:55:07.173+05:30  INFO 8968 --- [http-nio-6002-exec-1] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:55:07.173+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.serviceImp.QuestionServiceImp   : successfully retrieve question by quiz id
+2023-10-18T16:55:07.173+05:30  INFO 8968 --- [http-nio-6002-exec-7] c.e.demo.controller.QuestionsController  : successfully retrieve question by quiz id
+2023-10-18T16:55:13.280+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.serviceImp.ResultServiceImp     : result saved successfully
+2023-10-18T16:55:13.288+05:30  INFO 8968 --- [http-nio-6002-exec-4] c.e.demo.controller.ResultController     : result saved successfully
+2023-10-18T16:55:13.321+05:30  INFO 8968 --- [http-nio-6002-exec-8] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
+2023-10-18T16:55:13.336+05:30  INFO 8968 --- [http-nio-6002-exec-10] c.e.d.serviceImp.FinalResultServiceImp   : successfully retrieve the student result
