@@ -85,7 +85,7 @@ public class CategoryController {
      * Category update method.
      * @param categoryDto  category.
      * @param id category id.
-     * @return response.
+     * @return update category response.
      */
     @PutMapping("/category/{id}")
     public final Response updateCategory(
