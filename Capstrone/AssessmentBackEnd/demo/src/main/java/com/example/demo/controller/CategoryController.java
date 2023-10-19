@@ -117,7 +117,7 @@ public class CategoryController {
     /**
      * Category find by name method.
      * @param categoryName name.
-     * @return response.
+     * @return find by name response.
      */
     @GetMapping("/category/{categoryName}")
     public final Response findByName(
