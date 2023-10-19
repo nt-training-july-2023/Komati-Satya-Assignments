@@ -34,7 +34,7 @@ public class FinalResultController {
     /**
      * Final result controller get by id method.
      * @param id category id.
-     * @return response.
+     * @return get by id response.
      */
     @GetMapping("/finalResult/{id}")
     public final Response getById(
