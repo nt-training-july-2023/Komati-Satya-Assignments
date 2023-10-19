@@ -38,7 +38,7 @@ public class CategoryController {
     /**
      * Category save method.
      * @param categoryDto category.
-     * @return response
+     * @return save category response
      */
     @PostMapping("/category")
     public final Response saveCategory(
