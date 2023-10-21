@@ -56,7 +56,7 @@ public class QuizController {
     /**
      * get quiz method.
      * @param id quiz id
-     * @return response
+     * @return get quiz response
      */
     @GetMapping("/quiz/id/{id}")
     public final Response getQuiz(
