@@ -60,7 +60,8 @@ const Login = () => {
                 } else if (response?.data.data.role === "student") {
                     localStorage.setItem("userRole", response.data.data.role);
                     localStorage.setItem("userEmail", response.data.data.email);
-                    localStorage.setItem("userName", response.data.data.userName);
+                    localStorage.setItem("FirstName", response.data.data.firstName);
+                    localStorage.setItem("LastName", response.data.data.lastName);
                     localStorage.setItem("userId", response.data.data.userId);
                     SweetAlert.success("login success")
                     navigate('/UserDashBoard');

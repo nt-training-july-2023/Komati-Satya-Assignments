@@ -43,7 +43,8 @@ const Result = () => {
 
   const sortedResults = [...result].sort((a, b) => new Date(b.dateAndTime) - new Date(a.dateAndTime));
   const rows = [
-    'userName',
+    'firstName',
+    'lastName',
     'email',
     'dateAndTime',
     'categoryName',
@@ -54,7 +55,8 @@ const Result = () => {
     'obtainMarks'
   ];
   const columns = [
-    'User Name',
+    'First Name',
+    'Last Name',
     'Email',
     'DateAndTime',
     'Category Name',

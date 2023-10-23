@@ -27,7 +27,13 @@ public class StudentSaveDto {
      */
     @Column(nullable = false)
     @NotBlank(message = ValidationMessages.NAME_NOTBLANK)
-    private String userName;
+    private String firstName;
+    /**
+     * stores the last name.
+     */
+    @Column(nullable = false)
+    @NotBlank(message = ValidationMessages.NAME_NOTBLANK)
+    private String lastName;
     /**
      * stores the user email.
      */

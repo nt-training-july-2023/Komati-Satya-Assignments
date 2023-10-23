@@ -75,7 +75,8 @@ public class FinalResultServiceImp implements FinalResService {
             resultDto.setDateAndTime(finalResult.getDateAndTime());
             resultDto.setDateAndTime(finalResult.getDateAndTime());
             resultDto.setQuizName(finalResult.getQuizTopic());
-            resultDto.setUserName(finalResult.getUserName());
+            resultDto.setFirstName(finalResult.getFirstName());
+            resultDto.setLastName(finalResult.getLastName());
             resultDto.setObtainMarks(finalResult.getMarks());
             resultDto.setCategoryId(finalResult.getCategoryId());
             resultDto.setAttemptedQuestions(finalResult.

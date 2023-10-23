@@ -9,7 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 class DemoApplicationTests {
 
 	@Test
-	void contextLoads() {
+	public void mainTest() {
 	    assertDoesNotThrow(() -> DemoApplication.main(new String[]{}));
 	}
 

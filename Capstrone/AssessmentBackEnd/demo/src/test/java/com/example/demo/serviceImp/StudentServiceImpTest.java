@@ -17,6 +17,7 @@ import com.example.demo.dto.Gender;
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
 import com.example.demo.dto.StudentSaveDto;
+import com.example.demo.entity.ContactInfo;
 import com.example.demo.entity.Student;
 import com.example.demo.exceptions.AllNotFoundException;
 import com.example.demo.exceptions.DuplicateEmailException;
@@ -39,22 +40,26 @@ class StudentServiceImpTest {
     @Test
     public void testSaveStudent() {
         StudentSaveDto studentSaveDto=new StudentSaveDto();
-        studentSaveDto.setUserName("Satya");
+        studentSaveDto.setFirstName("Satya");
+        studentSaveDto.setLastName("komati");
         studentSaveDto.setEmail("satya1919@nucleusteq.com");
         studentSaveDto.setDateOfBirth("24-02-2001");
         studentSaveDto.setGender(Gender.female);
         studentSaveDto.setPhoneNumber("8639924113");
         studentSaveDto.setPassword("Satya@1919");
         studentSaveDto.setRole("student");
-        
         when(studentRepo.findByEmail(studentSaveDto.getEmail())).thenReturn(Optional.empty());
+        ContactInfo contactInfo = new ContactInfo();
+        contactInfo.setEmail(studentSaveDto.getEmail());
+        contactInfo.setPhoneNumber(studentSaveDto.getPhoneNumber());
         Student student=new Student();
         student.setDateOfBirth(studentSaveDto.getDateOfBirth());
-        student.setUserName(studentSaveDto.getUserName());
-        student.setEmail(studentSaveDto.getEmail());
+        student.setFirstName(studentSaveDto.getFirstName());
+        student.setLastName(studentSaveDto.getLastName());
+        student.setContactInfo(contactInfo);
         student.setRole(studentSaveDto.getRole());
         student.setGender(studentSaveDto.getGender());
-        student.setPhoneNumber(studentSaveDto.getPhoneNumber());
+        
         String register=studentService.saveStudent(studentSaveDto);
         assertEquals(register,"register");
     }
@@ -72,20 +77,22 @@ class StudentServiceImpTest {
         StudentDto studentDto=new StudentDto();
         int studentId=1; 
         studentDto.setUserId(studentId);
-        studentDto.setUserName("Satya");
+        studentDto.setFirstName("Satya");
+        studentDto.setLastName("komati");
         studentDto.setEmail("satya1919@nucleusteq.com");
         studentDto.setDateOfBirth("24-02-2001");
         studentDto.setGender(Gender.female);
         studentDto.setPhoneNumber("8639924113");
         studentDto.setRole("student");
-        
+       
         Student student=new Student();
         student.setUserId(studentId);;
-        student.setUserName("Satya");
-        student.setEmail("satya1919@nucleusteq.com");
+        student.setFirstName("Satya");
+        student.setLastName("komati");
+        student.setContactInfo(new ContactInfo(studentDto.getEmail(),
+                studentDto.getPhoneNumber()));
         student.setDateOfBirth("24-02-2001");
         student.setGender(Gender.female);
-        student.setPhoneNumber("8639924113");
         student.setPassword("Satya@1919");
         student.setRole("student");
         
@@ -107,7 +114,8 @@ class StudentServiceImpTest {
         StudentDto studentDto=new StudentDto();
         int studentId=1; 
         studentDto.setUserId(studentId);
-        studentDto.setUserName("Satya");
+        studentDto.setFirstName("Satya");
+        studentDto.setLastName("komati");
         studentDto.setEmail("satya1919@nucleusteq.com");
         studentDto.setDateOfBirth("24-02-2001");
         studentDto.setGender(Gender.female);
@@ -116,11 +124,12 @@ class StudentServiceImpTest {
         
         Student student=new Student();
         student.setUserId(studentId);
-        student.setUserName("Satya");
-        student.setEmail("satya1919@nucleusteq.com");
+        student.setFirstName("Satya");
+        student.setLastName("komati"); 
+        student.setContactInfo(new ContactInfo(studentDto.getEmail(),
+                studentDto.getPhoneNumber()));
         student.setDateOfBirth("24-02-2001");
-        student.setGender(Gender.female);
-        student.setPhoneNumber("8639924113");
+        student.setGender(Gender.female);;
         student.setPassword("Satya@1919");
         student.setRole("student");
         studentList.add(student);
@@ -141,11 +150,12 @@ class StudentServiceImpTest {
     public void testDeleteStudent() {
         int studentId=1;
         Student student=new Student();
-        student.setUserName("Satya");
-        student.setEmail("satya1919@nucleusteq.com");
+        student.setFirstName("Satya");
+        student.setLastName("komati");
+        student.setContactInfo(new ContactInfo("komatisatya@nucleusteq.com",
+               "8639924113"));
         student.setDateOfBirth("24-02-2001");
         student.setGender(Gender.female);
-        student.setPhoneNumber("8639924113");
         student.setPassword("Satya@1919");
         student.setRole("student");
         
@@ -158,11 +168,12 @@ class StudentServiceImpTest {
     public void testDeleteStudentNotFound() {
        Student student=new Student();
         int studentId=1; 
-        student.setUserName("Satya");
-        student.setEmail("satya1919@nucleusteq.com");
+        student.setFirstName("Satya");
+        student.setLastName("komati");
+        student.setContactInfo(new ContactInfo("komatisatya@nucleusteq.com",
+                "8639924113"));
         student.setDateOfBirth("24-02-2001");
         student.setGender(Gender.female);
-        student.setPhoneNumber("8639924113");
         student.setPassword("Satya@1919");
         student.setRole("student");
         studentRepo.save(student);
@@ -183,7 +194,8 @@ class StudentServiceImpTest {
         StudentDto studentDto=new StudentDto();
         int studentId=1; 
         studentDto.setUserId(studentId);
-        studentDto.setUserName("Satya");
+        studentDto.setFirstName("Satya");
+        studentDto.setLastName("komati");
         studentDto.setEmail("satya1919@nucleusteq.com");
         studentDto.setDateOfBirth("24-02-2001");
         studentDto.setGender(Gender.female);
@@ -192,11 +204,12 @@ class StudentServiceImpTest {
         
         Student student=new Student();
         student.setUserId(studentId);
-        student.setUserName("Satya");
-        student.setEmail("satya1919@nucleusteq.com");
+        student.setFirstName("Satya");
+        student.setLastName("komati");
+        student.setContactInfo(new ContactInfo(studentDto.getEmail(),
+                studentDto.getPhoneNumber()));
         student.setDateOfBirth("24-02-2001");
         student.setGender(Gender.female);
-        student.setPhoneNumber("8639924113");
         student.setPassword(new BCryptPasswordEncoder().encode("Satya@1919"));
         student.setRole("student");
         
@@ -220,10 +233,6 @@ class StudentServiceImpTest {
        LoginDto loginDto=new LoginDto();
        loginDto.setEmail(email);
        loginDto.setPassword(password);
-        String hashCode=new BCryptPasswordEncoder().encode(password);
-        Student student=new Student();
-        student.setEmail(email);
-        student.setPassword(hashCode);
         
         when(studentRepo.findByEmail(email)).thenReturn(Optional.empty());
         assertThrows(EmailDoesNotExistException.class, () ->{   studentService.aunthenticateUser(loginDto);
@@ -239,7 +248,9 @@ class StudentServiceImpTest {
            String password2="Adhi@1919";
             String hashCode=new BCryptPasswordEncoder().encode(password2);
             Student student=new Student();
-            student.setEmail(loginDto.getEmail());
+            ContactInfo contactInfo = new ContactInfo();
+            contactInfo.setEmail(email);
+            student.setContactInfo(contactInfo);
             student.setPassword(hashCode);
             
             when(studentRepo.findByEmail(email)).thenReturn(Optional.of(student));
@@ -253,7 +264,8 @@ class StudentServiceImpTest {
             StudentDto studentDto=new StudentDto();
             int studentId=1; 
             studentDto.setUserId(studentId);
-            studentDto.setUserName("Satya");
+            studentDto.setFirstName("Satya");
+            studentDto.setLastName("komati");
             studentDto.setEmail("satya1919@nucleusteq.com");
             studentDto.setDateOfBirth("24-02-2001");
             studentDto.setGender(Gender.female);
@@ -262,19 +274,21 @@ class StudentServiceImpTest {
             
             Student student=new Student();
             student.setDateOfBirth(studentDto.getDateOfBirth());
-            student.setEmail(studentDto.getEmail());
+            student.setContactInfo(new ContactInfo(studentDto.getEmail(),
+                    studentDto.getPhoneNumber()));
             student.setGender(studentDto.getGender());
-            student.setPhoneNumber(studentDto.getPhoneNumber());
             student.setRole(studentDto.getRole());
             student.setUserId(studentDto.getUserId());
-            student.setUserName(studentDto.getUserName());
+            student.setFirstName(studentDto.getFirstName());
+            student.setLastName(studentDto.getLastName());
             
             when(studentRepo.findById(studentId)).thenReturn(Optional.of(student));
             studentService.updateStudent(studentDto,1);
             assertTrue(Optional.of(studentDto).isPresent());
             StudentDto studentDto2=new StudentDto();
             studentDto2.setUserId(studentId);
-            studentDto2.setUserName("SatyaKomati");
+            studentDto2.setFirstName("Satya");
+            studentDto2.setLastName("komati");
             studentDto2.setEmail("satya1919@nucleusteq.com");
             studentDto2.setDateOfBirth("24-02-2001");
             studentDto2.setGender(Gender.female);

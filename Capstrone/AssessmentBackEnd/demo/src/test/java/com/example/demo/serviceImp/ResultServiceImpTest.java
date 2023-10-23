@@ -1,6 +1,5 @@
 package com.example.demo.serviceImp;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -16,6 +15,7 @@ import org.mockito.MockitoAnnotations;
 
 import com.example.demo.dto.ResultDto;
 import com.example.demo.entity.Category;
+import com.example.demo.entity.ContactInfo;
 import com.example.demo.entity.FinalRes;
 import com.example.demo.entity.Quiz;
 import com.example.demo.entity.Student;
@@ -49,10 +49,14 @@ class ResultServiceImpTest {
     }
     @Test
     void testAddResult() {
-        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Satya","Komati","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         Student student=new Student();
-        student.setEmail("satya@nucleusteq.com");
+        student.setUserId(resultDto.getUserId());
+        ContactInfo contactInfo = new ContactInfo();
+        contactInfo.setEmail("satya@nucleusteq.com");
+        contactInfo.setPhoneNumber("2139429389");
+        student.setContactInfo(contactInfo);
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.of(student));
         Quiz quiz = new Quiz();
         Category category = new Category();
@@ -60,7 +64,8 @@ class ResultServiceImpTest {
  
         finalResult.setCategoryName(resultDto.getCategoryName()); 
         finalResult.setUserId(resultDto.getUserId());
-        finalResult.setUserName(resultDto.getUserName());
+        finalResult.setFirstName(resultDto.getFirstName());
+        finalResult.setLastName(resultDto.getLastName());
         finalResult.setQuizTopic(resultDto.getQuizName());
         finalResult.setDateAndTime(resultDto.getDateAndTime());
         finalResult.setMarks(resultDto.getObtainMarks());
@@ -72,7 +77,7 @@ class ResultServiceImpTest {
          
         when(quizRepo.findQuizByName("Array")).thenReturn(Optional.of(quiz));
         when(categoryRepo.findByCategoryName("Java")).thenReturn(Optional.of(category));
-         ResultDto result= resultService.addResult(resultDto);
+        ResultDto result= resultService.addResult(resultDto);
         assertEquals(result,resultDto);
     }
     @Test
@@ -84,17 +89,20 @@ class ResultServiceImpTest {
     }
     @Test
     void testAddQuizNotFoundExcetion() {
-        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Satya","Komati","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         Student student=new Student();
-        student.setEmail("satya@nucleusteq.com");
+        ContactInfo contactInfo = new ContactInfo();
+        contactInfo.setEmail("satya@nucleusteq.com");
+        student.setContactInfo(contactInfo);
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.of(student));
         FinalRes finalResult=new FinalRes();
         Optional<Category> optionalCategory=categoryRepo.findById(resultDto.getCategoryId());
         
         finalResult.setCategoryName(resultDto.getCategoryName()); 
         finalResult.setUserId(resultDto.getUserId());
-        finalResult.setUserName(resultDto.getUserName());
+        finalResult.setFirstName(resultDto.getFirstName());
+        finalResult.setLastName(resultDto.getLastName());
         finalResult.setQuizTopic(resultDto.getQuizName());
         finalResult.setDateAndTime(resultDto.getDateAndTime());
         finalResult.setMarks(resultDto.getObtainMarks());
@@ -109,10 +117,12 @@ class ResultServiceImpTest {
     }
     @Test
     void testAddCategoryNotPresent() {
-        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Satya","komati","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         Student student=new Student();
-        student.setEmail("satya@nucleusteq.com");
+        ContactInfo contactInfo = new ContactInfo();
+        contactInfo.setEmail("satya@nucleusteq.com");
+        student.setContactInfo(contactInfo);
         when(studentRepo.findByEmail("satya@nucleusteq.com")).thenReturn(Optional.of(student));
         Quiz quiz = new Quiz();
         FinalRes finalResult=new FinalRes();
@@ -120,7 +130,8 @@ class ResultServiceImpTest {
         
         finalResult.setCategoryName(resultDto.getCategoryName()); 
         finalResult.setUserId(resultDto.getUserId());
-        finalResult.setUserName(resultDto.getUserName());
+        finalResult.setFirstName(resultDto.getFirstName());
+        finalResult.setLastName(resultDto.getLastName());
         finalResult.setQuizTopic(resultDto.getQuizName());
         finalResult.setDateAndTime(resultDto.getDateAndTime());
         finalResult.setMarks(resultDto.getObtainMarks());
@@ -136,24 +147,38 @@ class ResultServiceImpTest {
     }
    @Test
     void testGetResult() {
-       ResultDto resultDto = new ResultDto(0,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
-               "Java",0,9,0,0,0);
-       Quiz quiz = new Quiz();
-       quiz.setTopicName("Array");
-       Student student= new Student();
-       Category category = new Category();
-       category.setCategoryId(resultDto.getCategoryId());
-       category.setCategoryName(resultDto.getCategoryName());
-       student.setEmail(resultDto.getEmail());
-       student.setUserId(resultDto.getUserId());
        StudentResult studentResult=new StudentResult();
-       studentResult.setAttemptedQuestions(resultDto.getAttemptedQuestions());
-       studentResult.setCategoryId(resultDto.getCategoryId());
-       studentResult.setDateAndTime(resultDto.getDateAndTime());
-       studentResult.setMaxMarks(resultDto.getObtainMarks());
-      // studentResult.setQuiz(quiz);
-       studentResult.setResultId(resultDto.getResultId());
+       studentResult.setResultId(1);
+       Quiz quiz=new Quiz();
+       quiz.setTopicName("variables");
+       ContactInfo contactInfo = new ContactInfo();
+       contactInfo.setEmail("satya@nucleusteq.com");
+       
+       Student student=new Student();
+       student.setContactInfo(contactInfo);
+       student.setUserId(18);
+
+       studentResult.setContactInfo(contactInfo);
        studentResult.setStudentResult(student);
+       Category category=new Category();
+       category.setCategoryName("java");
+       category.setCategoryId(13);
+       studentResult.setCategoryId(13);
+       ResultDto resultDto = new ResultDto();
+       resultDto.setFirstName(studentResult.getStudentResult().
+               getFirstName());
+       
+       resultDto.setLastName(studentResult.getStudentResult().
+               getLastName());
+       resultDto.setEmail(studentResult.getContactInfo().getEmail());
+       resultDto.setCategoryName(category.getCategoryName());
+       resultDto.setQuizName(studentResult.
+               getQuizName());
+       resultDto.setDateAndTime(studentResult.getDateAndTime());
+       resultDto.setObtainMarks(studentResult.getMaxMarks());
+       resultDto.setAttemptedQuestions(studentResult.
+               getAttemptedQuestions());
+       resultDto.setCategoryId(category.getCategoryId());
         
         when(resultRepo.findAll()).thenReturn(Collections.singletonList(new StudentResult()));
         when(resultRepo.findById(resultDto.getResultId())).thenReturn(Optional.of(studentResult));
@@ -178,14 +203,34 @@ class ResultServiceImpTest {
         studentResult.setResultId(1);
         Quiz quiz=new Quiz();
         quiz.setTopicName("variables");
-      //  studentResult.setQuiz(quiz);
+        ContactInfo contactInfo = new ContactInfo();
+        contactInfo.setEmail("satya@nucleusteq.com");
+        
         Student student=new Student();
+        student.setContactInfo(contactInfo);
         student.setUserId(18);
+        studentResult.setContactInfo(contactInfo);
         studentResult.setStudentResult(student);
+        
         Category category=new Category();
         category.setCategoryName("java");
         category.setCategoryId(13);
         studentResult.setCategoryId(13);
+        ResultDto resultDto = new ResultDto();
+        resultDto.setFirstName(studentResult.getStudentResult().
+                getFirstName());
+        
+        resultDto.setLastName(studentResult.getStudentResult().
+                getLastName());
+        resultDto.setEmail(studentResult.getContactInfo().getEmail());
+        resultDto.setCategoryName(category.getCategoryName());
+        resultDto.setQuizName(studentResult.
+                getQuizName());
+        resultDto.setDateAndTime(studentResult.getDateAndTime());
+        resultDto.setObtainMarks(studentResult.getMaxMarks());
+        resultDto.setAttemptedQuestions(studentResult.
+                getAttemptedQuestions());
+        resultDto.setCategoryId(category.getCategoryId());
         List<StudentResult> studentResultList=new ArrayList<>();
         studentResultList.add(studentResult);
         
@@ -193,8 +238,8 @@ class ResultServiceImpTest {
        when(resultRepo.findById(1)).thenReturn(Optional.of(studentResult));
         when(categoryRepo.findById(13)).thenReturn(Optional.of(category));
         assertTrue(Optional.of(category).isPresent());
-        List<ResultDto> resultDto=resultService.getResults();
-        assertEquals(studentResult.getCategoryId(),resultDto.get(0).getCategoryId());       
+        List<ResultDto> resultsDto=resultService.getResults();
+        assertEquals(studentResult.getCategoryId(),resultsDto.get(0).getCategoryId());       
    }
     @Test
    void testNoStudentResultIsPresent() {

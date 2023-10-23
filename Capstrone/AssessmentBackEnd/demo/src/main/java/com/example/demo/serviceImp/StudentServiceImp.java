@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.dto.LoginDto;
 import com.example.demo.dto.StudentDto;
 import com.example.demo.dto.StudentSaveDto;
+import com.example.demo.entity.ContactInfo;
 import com.example.demo.entity.Student;
 import com.example.demo.exceptions.DuplicateEmailException;
 import com.example.demo.exceptions.EmailDoesNotExistException;
@@ -53,12 +54,14 @@ public class StudentServiceImp implements StudentService {
             Student student = optionalStudent.get();
             if (bcrypt.matches(loginDto.getPassword(), student.getPassword())) {
                 StudentDto studentDto = new StudentDto();
-                studentDto.setUserName(student.getUserName());
+                studentDto.setFirstName(student.getFirstName());
+                studentDto.setLastName(student.getLastName());
                 studentDto.setUserId(student.getUserId());
-                studentDto.setPhoneNumber(student.getPhoneNumber());
+                studentDto.setPhoneNumber(student.getContactInfo()
+                        .getPhoneNumber());
                 studentDto.setGender(student.getGender());
                 studentDto.setDateOfBirth(student.getDateOfBirth());
-                studentDto.setEmail(student.getEmail());
+                studentDto.setEmail(student.getContactInfo().getEmail());
                 studentDto.setRole(student.getRole());
                 LOGGER.info(Messages.LOGIN_STUDENT);
                 return studentDto;
@@ -84,11 +87,12 @@ public class StudentServiceImp implements StudentService {
             String encrypted = bcrypt.encode(studentSaveDto.getPassword());
             studentSaveDto.setPassword(encrypted);
             Student student = new Student();
-            student.setUserName(studentSaveDto.getUserName());
-            student.setPhoneNumber(studentSaveDto.getPhoneNumber());
+            student.setFirstName(studentSaveDto.getFirstName());
+            student.setLastName(studentSaveDto.getLastName());
+            student.setContactInfo(new ContactInfo(studentSaveDto.getEmail(),
+                    studentSaveDto.getPhoneNumber()));
             student.setGender(studentSaveDto.getGender());
             student.setDateOfBirth(studentSaveDto.getDateOfBirth());
-            student.setEmail(studentSaveDto.getEmail());
             student.setRole(studentSaveDto.getRole());
             student.setPassword(encrypted);
             LOGGER.info(Messages.SAVE_STUDENT);
@@ -110,12 +114,14 @@ public class StudentServiceImp implements StudentService {
             StudentDto studentDto = new StudentDto();
             Optional<Student> optionalStudent = studentRepo.findById(id);
             Student student = optionalStudent.get();
-            studentDto.setUserName(student.getUserName());
+            studentDto.setFirstName(student.getFirstName());
+            studentDto.setLastName(student.getLastName());
             studentDto.setUserId(student.getUserId());
-            studentDto.setPhoneNumber(student.getPhoneNumber());
+            studentDto.setPhoneNumber(student.getContactInfo()
+                    .getPhoneNumber());
             studentDto.setGender(student.getGender());
             studentDto.setDateOfBirth(student.getDateOfBirth());
-            studentDto.setEmail(student.getEmail());
+            studentDto.setEmail(student.getContactInfo().getEmail());
             studentDto.setRole(student.getRole());
             LOGGER.info(Messages.FIND_STUDENTBYID);
             return studentDto;
@@ -149,12 +155,14 @@ public class StudentServiceImp implements StudentService {
         List<StudentDto> studentDtoList = new ArrayList<>();
         for (Student student : s) {
             StudentDto studentDto = new StudentDto();
-            studentDto.setUserName(student.getUserName());
+            studentDto.setFirstName(student.getFirstName());
+            studentDto.setLastName(student.getLastName());
             studentDto.setUserId(student.getUserId());
-            studentDto.setPhoneNumber(student.getPhoneNumber());
+            studentDto.setPhoneNumber(student.getContactInfo()
+                    .getPhoneNumber());
             studentDto.setGender(student.getGender());
             studentDto.setDateOfBirth(student.getDateOfBirth());
-            studentDto.setEmail(student.getEmail());
+            studentDto.setEmail(student.getContactInfo().getEmail());
             studentDto.setRole(student.getRole());
             studentDtoList.add(studentDto);
         }
@@ -174,8 +182,10 @@ public class StudentServiceImp implements StudentService {
             Student exiStudent = user.get();
             exiStudent.setDateOfBirth(studentDto.getDateOfBirth());
             exiStudent.setGender(studentDto.getGender());
-            exiStudent.setPhoneNumber(studentDto.getPhoneNumber());
-            exiStudent.setUserName(studentDto.getUserName());
+            exiStudent.setContactInfo(new ContactInfo(studentDto.getEmail(),
+                    studentDto.getPhoneNumber()));
+            exiStudent.setFirstName(studentDto.getFirstName());
+            exiStudent.setLastName(studentDto.getLastName());
             studentRepo.save(exiStudent);
             LOGGER.info(Messages.UPDATE_STUDENT);
             return studentDto;

@@ -73,7 +73,8 @@ public class ResultServiceImp implements ResultService {
         if (studentRepo.findByEmail(resultDto.getEmail()).isPresent()) {
             finalResult.setCategoryName(resultDto.getCategoryName());
             finalResult.setUserId(resultDto.getUserId());
-            finalResult.setUserName(resultDto.getUserName());
+            finalResult.setFirstName(resultDto.getFirstName());
+            finalResult.setLastName(resultDto.getLastName());
             finalResult.setQuizTopic(resultDto.getQuizName());
             finalResult.setDateAndTime(resultDto.getDateAndTime());
             finalResult.setMarks(resultDto.getObtainMarks());
@@ -136,9 +137,12 @@ public class ResultServiceImp implements ResultService {
             if (studentResult.isPresent()) {
                 ResultDto resultDto = new ResultDto();
                 StudentResult studentResults = studentResult.get();
-                resultDto.setUserName(studentResults.getStudentResult().
-                        getUserName());
+                resultDto.setFirstName(studentResults.getStudentResult().
+                        getFirstName());
+                resultDto.setLastName(studentResults.getStudentResult().
+                        getLastName());
                 resultDto.setEmail(studentResults.getStudentResult().
+                        getContactInfo().
                         getEmail());
                 Optional<Category> optionalCategory = categoryRepo
                         .findById(studentResults.getCategoryId());
@@ -191,9 +195,12 @@ public class ResultServiceImp implements ResultService {
             int n = studentResultList.get(i).getCategoryId();
             Optional<Category> category = categoryRepo.findById(n);
             ResultDto resultDto = new ResultDto();
-            resultDto.setUserName(studentResult.getStudentResult().
-                    getUserName());
-            resultDto.setEmail(studentResult.getStudentResult().getEmail());
+            resultDto.setFirstName(studentResult.getStudentResult().
+                    getFirstName());
+            resultDto.setLastName(studentResult.getStudentResult().
+                    getLastName());
+            resultDto.setEmail(studentResult.getStudentResult().
+                    getContactInfo().getEmail());
             resultDto.setCategoryName(category.get().getCategoryName());
             resultDto.setQuizName(studentResult.getQuizName());
             resultDto.setDateAndTime(studentResult.getDateAndTime());

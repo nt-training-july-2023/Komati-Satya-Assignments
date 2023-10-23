@@ -41,7 +41,7 @@ class FinalResultServiceImpTest {
     }
     @Test
     void testFindResultByUserId() {
-        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Satya","Komati","satya@nucleusteq.com","Array",
                 "Java",97,9,10,1,12);
         FinalRes finalRess=new FinalRes();
         finalRess.setCategoryName("Java");
@@ -51,7 +51,8 @@ class FinalResultServiceImpTest {
         finalRess.setFinalId(12);
         finalRess.setQuizTopic("Array");
         finalRess.setUserId(1);
-        finalRess.setUserName("Madhuri");
+        finalRess.setFirstName("Satya");
+        finalRess.setLastName("Komati");
         finalRess.setMaxMarks(101);
   
         
@@ -66,7 +67,6 @@ class FinalResultServiceImpTest {
         
         when(finalRepo.findAll()).thenReturn(finallist);
         List<ResultDto> resultDtoList=finalService.getById(1);
-        
     }
     
    
@@ -79,7 +79,7 @@ class FinalResultServiceImpTest {
     }
     @Test
     void testFindAllResult() {
-        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Madhuri","satya@nucleusteq.com","Array",
+        ResultDto resultDto = new ResultDto(101,"23-10-23",19, "Satya","Komati","satya@nucleusteq.com","Array",
                 "java",97,9,10,1,12);
         int studentId=1;
         FinalRes finalRess=new FinalRes();
@@ -90,7 +90,8 @@ class FinalResultServiceImpTest {
         finalRess.setFinalId(12);
         finalRess.setQuizTopic("Array");
         finalRess.setUserId(studentId);
-        finalRess.setUserName("Madhuri");
+        finalRess.setFirstName("Satya");
+        finalRess.setLastName("Komati");
         finalRess.setMaxMarks(97);
         finalRess.setQuizTopic("Array");
         finalRess.setAttemptedQuestions(19);

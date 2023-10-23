@@ -31,9 +31,9 @@ class StudentControllerTest {
     @Test
     void testAddStudentSuccess() {
        StudentSaveDto student=new StudentSaveDto();
-       student.setUserName("satya");
+       student.setFirstName("satya");
        StudentSaveDto saveDto=new StudentSaveDto();
-       saveDto.setUserName("satya");
+       saveDto.setFirstName("satya");
        
        Response expectedResponse =new Response();
        expectedResponse.setCode(HttpStatus.OK.value());
@@ -46,10 +46,10 @@ class StudentControllerTest {
     @Test
     void testUserFindByIdSuccess() {
         Student student=new Student();
-        student.setUserName("satya");
+        student.setFirstName("satya");
         student.setUserId(12);
         StudentDto saveDto=new StudentDto();
-        saveDto.setUserName("satya");
+        saveDto.setFirstName("satya");
 
         Response expectedResponse =new Response();
         expectedResponse.setCode(HttpStatus.OK.value());
@@ -66,7 +66,7 @@ class StudentControllerTest {
         loginDto.setEmail("satya19@nucleusteq.com");
         loginDto.setPassword("satya@1919");
         StudentDto saveDto=new StudentDto();
-        saveDto.setUserName("satya");
+        saveDto.setFirstName("satya");
         
         Response expectedResponse =new Response();
         expectedResponse.setCode(HttpStatus.OK.value());
@@ -93,8 +93,8 @@ class StudentControllerTest {
     @Test
     void testUpdateStudentSuccess() {
         StudentDto saveDto=new StudentDto();
-        saveDto.setUserName("satya");
-        saveDto.setUserName("Satya");
+        saveDto.setFirstName("satya");
+        saveDto.setFirstName("Satya");
         int i=1;
 
         Response expectedResponse =new Response();

@@ -10,12 +10,14 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 /**
  * Result data transfer object.
  */
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
+@ToString
 @Setter
 public class ResultDto {
     /**
@@ -37,7 +39,12 @@ public class ResultDto {
      * stores userName.
      */
     @NotEmpty(message = ValidationMessages.NAME_NOTBLANK)
-    private String userName;
+    private String firstName;
+    /**
+     * stores userName.
+     */
+    @NotEmpty(message = ValidationMessages.NAME_NOTBLANK)
+    private String lastName;
     /**
      * stores email.
      */
@@ -84,8 +91,8 @@ public class ResultDto {
     @Override
     public int hashCode() {
         return Objects.hash(attemptedQuestions, categoryId, categoryName,
-                dateAndTime, email, maxMarks, obtainMarks, quizName, resultId,
-                totalQuestions, userId, userName);
+                dateAndTime, email, firstName, lastName, maxMarks, obtainMarks,
+                quizName, resultId, totalQuestions, userId);
     }
     /**
      * equals method.
@@ -107,12 +114,13 @@ public class ResultDto {
                 && Objects.equals(categoryName, other.categoryName)
                 && Objects.equals(dateAndTime, other.dateAndTime)
                 && Objects.equals(email, other.email)
+                && Objects.equals(firstName, other.firstName)
+                && Objects.equals(lastName, other.lastName)
                 && maxMarks == other.maxMarks
                 && obtainMarks == other.obtainMarks
                 && Objects.equals(quizName, other.quizName)
                 && resultId == other.resultId
                 && totalQuestions == other.totalQuestions
-                && userId == other.userId
-                && Objects.equals(userName, other.userName);
+                && userId == other.userId;
     }
-}
+  }

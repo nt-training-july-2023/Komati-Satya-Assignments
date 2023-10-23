@@ -16,14 +16,14 @@ class FinalResTest {
         finalRess.setFinalId(12);
         finalRess.setQuizTopic("Array");
         finalRess.setUserId(1);
-        finalRess.setUserName("satya");
+        finalRess.setFirstName("satya");
         finalRess.setMaxMarks(101);
         
         assertEquals("java",finalRess.getCategoryName());
         assertEquals("23-10-23",finalRess.getDateAndTime());
         assertEquals("satya@nucleusteq.com",finalRess.getEmail());
         assertEquals(101,finalRess.getMaxMarks());
-        assertEquals("satya",finalRess.getUserName());
+        assertEquals("satya",finalRess.getFirstName());
         assertEquals("Array",finalRess.getQuizTopic());
     }
 

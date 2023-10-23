@@ -16,7 +16,8 @@ const Registration = () => {
   const onFocus = () => setFocused(true);
   const onBlur = () => setFocused(false);
   const [formData, setFormData] = useState({
-    userName: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
     confirmPassword: "",
@@ -50,8 +51,11 @@ const Registration = () => {
     if (!formData.confirmPassword) {
       validationErrors.confirmPassword = 'Confirm Password Required';
     }
-    if (!formData.userName) {
-      validationErrors.userName = 'Username Required';
+    if (!formData.firstName) {
+      validationErrors.firstName = 'Firstname Required';
+    }
+    if (!formData.lastName) {
+      validationErrors.lastName = 'Lastname Required';
     }
 
     if (!formData.dateOfBirth) {
@@ -124,7 +128,8 @@ const Registration = () => {
         <div  className="signUp" >
           <H1Component>Registration</H1Component>
           <div className="details">
-            <Input className="values" type="text" placeholder="Enter name" name="userName" value={formData.userName} onChange={changeData} /><br /><br />
+            <Input className="values" type="text" placeholder="Enter first name" name="firstName" value={formData.firstName} onChange={changeData} /><br /><br />
+            <Input className="values" type="text" placeholder="Enter last name" name="lastName" value={formData.lastName} onChange={changeData} /><br /><br />
             <Input className="values" type="email" placeholder="Enter email" name="email" value={formData.email} onChange={changeData} /><br /><br />
             <div className="password-container2">
               <Input className="values" type={showPassword ? 'password' : 'text'} name="password" placeholder="Enter password" value={formData.password} onChange={changeData} /><br />

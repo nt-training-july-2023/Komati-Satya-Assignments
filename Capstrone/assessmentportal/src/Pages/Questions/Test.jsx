@@ -26,7 +26,8 @@ function Test({ isRefresh, setTrue }) {
   const [selectedOptions, setSelectedOptions] = useState({})
   const [quizSubmitted, setQuizSubmitted] = useState(false);
   const verifyEmail = localStorage.getItem('userEmail');
-  const verifyName = localStorage.getItem('userName');
+  const verifyFirstName = localStorage.getItem('FirstName');
+  const verifyLastName = localStorage.getItem('LastName');
   const verifyCategory = localStorage.getItem('categoryName')
   const verifyQuizName = localStorage.getItem('quizName')
   const verifyUserId = localStorage.getItem('userId')
@@ -307,7 +308,8 @@ function Test({ isRefresh, setTrue }) {
   const postData = async () => {
     const postDataa = {
       userId: verifyUserId,
-      userName: verifyName,
+      firstName: verifyFirstName,
+      lastName:verifyLastName,
       email: verifyEmail,
       categoryName: verifyCategory,
       quizName: verifyQuizName,

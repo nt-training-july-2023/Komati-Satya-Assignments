@@ -10,14 +10,14 @@ class StudentSaveDtoTest {
     @Test
     void testGetterSetter() {
         StudentSaveDto studentSaveDto=new StudentSaveDto();
-        studentSaveDto.setUserName("Satya");
+        studentSaveDto.setFirstName("Satya");
         studentSaveDto.setEmail("satya1919@nucleusteq.com");
         studentSaveDto.setDateOfBirth("24-02-2001");
         studentSaveDto.setGender(Gender.female);
         studentSaveDto.setPhoneNumber("8639924113");
         studentSaveDto.setPassword("Satya@1919");
         studentSaveDto.setRole("student");
-        assertEquals("Satya",studentSaveDto.getUserName());
+        assertEquals("Satya",studentSaveDto.getFirstName());
         assertEquals("satya1919@nucleusteq.com",studentSaveDto.getEmail());
         assertEquals("24-02-2001",studentSaveDto.getDateOfBirth());
         assertEquals(Gender.female,studentSaveDto.getGender());

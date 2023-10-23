@@ -27,7 +27,8 @@ function Student() {
   };
 
   const rows = [
-    'userName',
+    'firstName',
+    'lastName',
     'userId',
     'email',
     'gender',
@@ -35,7 +36,8 @@ function Student() {
     'dateOfBirth'
   ]
   const columns = [
-    'User Name',
+    'First Name',
+    'Last Name',
     'User Id',
     'Email',
     'Gender',

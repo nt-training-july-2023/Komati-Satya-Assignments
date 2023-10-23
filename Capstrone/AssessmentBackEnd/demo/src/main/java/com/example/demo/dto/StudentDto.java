@@ -20,10 +20,15 @@ import lombok.Setter;
 @Setter
 public class StudentDto {
     /**
-     * stores user name.
+     * stores first name.
      */
     @NotBlank(message = ValidationMessages.NAME_NOTBLANK)
-    private String userName;
+    private String firstName;
+    /**
+     * stores last name.
+     */
+    @NotBlank(message = ValidationMessages.NAME_NOTBLANK)
+    private String lastName;
     /**
      * stores user email.
      */
@@ -62,8 +67,8 @@ public class StudentDto {
      */
     @Override
     public int hashCode() {
-        return Objects.hash(dateOfBirth, email, gender, phoneNumber, role,
-                userId, userName);
+        return Objects.hash(dateOfBirth, email, firstName, gender, lastName,
+                phoneNumber, role, userId);
     }
     /**
      * equals code.
@@ -81,9 +86,11 @@ public class StudentDto {
         }
         StudentDto other = (StudentDto) obj;
         return Objects.equals(dateOfBirth, other.dateOfBirth)
-                && Objects.equals(email, other.email) && gender == other.gender
+                && Objects.equals(email, other.email)
+                && Objects.equals(firstName, other.firstName)
+                && gender == other.gender
+                && Objects.equals(lastName, other.lastName)
                 && Objects.equals(phoneNumber, other.phoneNumber)
-                && Objects.equals(role, other.role) && userId == other.userId
-                && Objects.equals(userName, other.userName);
+                && Objects.equals(role, other.role) && userId == other.userId;
     }
 }

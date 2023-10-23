@@ -14,7 +14,8 @@ const UserUpdate = () => {
   const { userId } = useParams();
   const navigate = useNavigate();
   const [userData, setUserData] = useState({
-    userName: "",
+    firstName: "",
+    lastName: "",
     phoneNumber: "",
     dateOfBirth: "",
     gender: "",
@@ -28,7 +29,8 @@ const UserUpdate = () => {
       .then((response) => {
         const userInformation = response.data.data;
         setUserData({
-          userName: userInformation.userName,
+          firstName: userInformation.firstName,
+          lastName: userInformation.lastName,
           phoneNumber: userInformation.phoneNumber,
           dateOfBirth: userInformation.dateOfBirth,
           gender: userInformation.gender,
@@ -95,15 +97,29 @@ const UserUpdate = () => {
                   />
                 </div>
                 <div>
-                  <LabelComponent className="head2">User Name:</LabelComponent>
+                  <LabelComponent className="head2">First Name:</LabelComponent>
                   <Input
                     className="data2"
                     type="text"
-                    value={userData.userName}
+                    value={userData.firstName}
                     onChange={(e) =>
                       setUserData({
                         ...userData,
-                        userName: e.target.value,
+                        firstName: e.target.value,
+                      })
+                    }
+                  />
+                </div>
+                <div>
+                  <LabelComponent className="head2">Last Name:</LabelComponent>
+                  <Input
+                    className="data2"
+                    type="text"
+                    value={userData.lastName}
+                    onChange={(e) =>
+                      setUserData({
+                        ...userData,
+                        lastName: e.target.value,
                       })
                     }
                   />

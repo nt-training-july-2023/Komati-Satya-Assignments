@@ -57,9 +57,15 @@ const UserDashBoard = () => {
           <div className="details">
             <div className="details-item">
               <div>
-              <LabelComponent><strong>Name:</strong></LabelComponent>  {student.userName} 
+              <LabelComponent><strong>First Name:</strong></LabelComponent>  {student.firstName} 
               </div>
-            </div>
+              </div>
+              <div className="details-item">
+              <div>
+              <LabelComponent><strong>Last Name:</strong></LabelComponent>  {student.lastName} 
+              </div>
+              </div>
+          
             <div className="details-item">
               <div>
               <LabelComponent><strong>UserId:</strong></LabelComponent>  {student.userId}  
