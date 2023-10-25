@@ -42,7 +42,7 @@ public class GlobalExceptionHandler {
     /**
      * AlreadyExistException handler.
      * @param exception argument
-     * @return response
+     * @return alreadyexistexception response
      */
     @ExceptionHandler(AlreadyExistException.class)
     public final ResponseEntity<Response> handleAlreadyExistException(final
