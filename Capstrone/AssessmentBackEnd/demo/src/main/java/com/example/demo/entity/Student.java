@@ -15,14 +15,12 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 /**
  * Student entity class.
  */
 @NoArgsConstructor
 @Entity
-@ToString
 public class Student {
     /**
      * stores the user id.

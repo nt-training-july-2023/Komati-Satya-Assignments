@@ -118,6 +118,7 @@ public class ResultServiceImp implements ResultService {
             studentResult.setMaxMarks(resultDto.getObtainMarks());
             studentResult.setResultId(resultDto.getResultId());
             studentResultRepo.save(studentResult);
+            
         } else {
             LOGGER.error(ErrorMessages.WRONG_EMAIL);
             throw new NotFoundException(ErrorMessages.WRONG_EMAIL);

@@ -53,7 +53,6 @@ function Test({ isRefresh, setTrue }) {
     const formattedDate = currentDate.toLocaleDateString('en-US', options);
     setDate(formattedDate);
   }, [])
-  localStorage.setItem('activeTab', 'true')
 
   useEffect(() => {
     getQuiz();

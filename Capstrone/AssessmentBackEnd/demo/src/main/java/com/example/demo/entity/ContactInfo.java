@@ -3,11 +3,9 @@ package com.example.demo.entity;
 import java.util.Objects;
 import jakarta.persistence.Embeddable;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @NoArgsConstructor
 @Embeddable
-@ToString
 public class ContactInfo {
     /**
      * stores the user email.
