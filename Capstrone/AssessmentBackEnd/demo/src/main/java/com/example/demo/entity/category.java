@@ -45,7 +45,7 @@ public class Category {
     @JsonIgnoreProperties("Category")
     private List<Quiz> quiz;
     /**
-     * get category.
+     * get category method.
      * @return category id
      */
     public int getCategoryId() {
